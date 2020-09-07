@@ -39,6 +39,9 @@ export class HeaderComponent implements OnInit {
         this.activeclass=[false,false,true];
         this.heading = "POC Widgets"
       }
+      else{
+        this.heading="PS Registration"
+      }
       var data = sessionStorage.getItem("useraccount");
       this.useraccount = JSON.parse(data);
       if (this.useraccount != undefined || null) {

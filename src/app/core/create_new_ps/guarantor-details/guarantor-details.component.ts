@@ -90,6 +90,8 @@ export class GuarantorDetailsComponent implements OnInit {
         "phone": this.guarantorForm.value.number,
         "updatedUserId": "47",
         "psId": this.previousPsDetails.psId,
+        "occupationId":'286',
+        "guarantorId":this.guarantorId
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -209,6 +211,7 @@ export class GuarantorDetailsComponent implements OnInit {
   // for update data
   private getGuarantorDetails() {
     let session:any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    this.guarantorId=session.psGuarId;
    let params = {'guarantorId':session.psGuarId}
     try {
       console.log("$$$$$$$$$$$$$$",params,session)

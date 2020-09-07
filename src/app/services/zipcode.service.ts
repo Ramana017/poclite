@@ -10,7 +10,8 @@ export class ZipcodeService {
 
   public lookUpDetails:string;
   public getUrl():void {
-    this.lookUpDetails = localStorage.getItem('webServiceUrl');
+    let url = localStorage.getItem('webserviceURL');
+    this.lookUpDetails=url+'pocextacc-webservices_9.2/telephony'
   }
   public zip;
 
@@ -52,7 +53,15 @@ export class ZipcodeService {
   }
   public getAdmissionLookups(params): Observable<any> {
     this.getUrl();
+   // return this.http.get("assets/1.json")
+
     return this.http.get(this.lookUpDetails + '/getAdmissionLookups?jsonObj=' + params).pipe(catchError(this.errorHandler));
+  }
+  public getDiagnosisDetails(params1): Observable<any> {
+    this.getUrl();
+   // return this.http.get("assets/1.json")
+
+    return this.http.get(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
 
   private errorHandler(error: HttpErrorResponse): Observable<any> {

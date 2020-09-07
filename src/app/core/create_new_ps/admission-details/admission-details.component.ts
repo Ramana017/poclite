@@ -11,89 +11,132 @@ export class AdmissionDetailsComponent implements OnInit {
   public bsModelRef: BsModalRef;
   public Keyword = 'userName'
   public coordinatorList = [];
+  public listingPageData = [];
   //code;
   field1;
   I;
   id = 'id';
-  name = 'name'
+  name = 'name';
+  public clientType;
+  public clientClass;
+  public guarantorName;
+  public diagnosisList;
+  public PSName;
+  public selectedItems = [];
+  public pageArray = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  public lowerBound: number = 1;
+  public upperBound: number;
+  public perPage: number = 20;
+  public maxCount: number = 100;
   code = 'code'
-  public tableData = {
-    "salutationList": [
-      { "id": 401, "label": "karunya", "id1": 1, "label1": "Home111" },
-      { "id": 402, "label": "miss", "id1": 2, "label1": "Work" },
-      { "id": 403, "label": "diana", "id1": 3, "label1": "School" },
-      { "id": 404, "label": "asha", "id1": 4, "label1": "Other" }
-    ]
-  }
   name1: any;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
   rows: any;
   ds: any;
-
-  constructor(public service: ZipcodeService, public modalService: BsModalService) { }
+  numbers = [];
+  constructor(public service: ZipcodeService, public modalService: BsModalService) {
+    for (let i = 1; i <= 100; i++) {
+      this.numbers.push(i);
+    }
+  }
   ngOnInit() {
     this.newAttribute = { rank: null, name: '', code: '' };
-    this.fieldArray.push(this.newAttribute)
-
+    // this.fieldArray.push(this.newAttribute)
+    this.upperBound = this.perPage;
     this.getAdmissionLookups();
+    this.getDiagnosisData();
   }
-
+  d;
   public getAdmissionLookups(): void {
-    let params = { "userId": 47 }
+    let params = { "userId": 47, "psId": 1201, "guarantorId": 1190 };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
         console.log(data)
         let data1: any = data;
-        this.coordinatorList = data1.coordinatorList
+        this.coordinatorList = data1.coordinatorList;
+        this.clientType = data.clientType;
+        this.clientClass = data.clientClass;
+        this.PSName = data.PSName;
+        this.guarantorName = data.guarantorName;
+        console.log(this.clientType);
+
       })
+  }
+  public pagenext(): void {
+    if (this.upperBound < this.maxCount) {
+      this.lowerBound = this.lowerBound + this.perPage;
+      this.upperBound = this.upperBound + this.perPage;
+      this.listingPageData.length = 0;
+      this.getDiagnosisData();
     }
-
-
-
-addFieldValue(template: TemplateRef<any>) {
-      // this.fieldArray.push(this.newAttribute)
-      // this.newAttribute = {};
-      this.bsModelRef = this.modalService.show(template);
-
+    else {
+      this.upperBound = this.maxCount;
+      this.lowerBound = this.maxCount - this.perPage;
+      this.getDiagnosisData();
     }
+  }
+  //method to change previous page
+  public prevpage(): void {
+    if (this.lowerBound !== 1) {
 
-
-  deleteFieldValue(index) {
-      if(this.fieldArray.length !== 1) {
-      this.fieldArray.splice(index, 1);
-      console.log(this.fieldArray.length);
-    }
-    if (this.fieldArray.length === 0) {
-      console.log(this.fieldArray.length);
-      alert('value cant be null');
+      this.lowerBound = this.lowerBound - this.perPage;
+      this.upperBound = this.upperBound - this.perPage;
+      if (this.lowerBound <= 1) {
+        this.lowerBound = 1;
+        this.upperBound = this.perPage;
+        this.listingPageData.length = 0;
+        this.getDiagnosisData();
+      } else {
+        this.getDiagnosisData();
+      }
     }
   }
 
-  // getDiagnosisCode(el) {
-  // this.newAttribute = { rank: '', name: '', code: '' };
-  // this.fieldArray.push(this.newAttribute);
-  // console.log(this.newAttribute);
-
-
-  // }
-  public displayName(event) {
-    // console.log("jhgfdasdfghjkl");
-
-    // this.diagnosisData.forEach((ele) => {
-    //   console.log(event.target.value);
-    //   if ((event.target.value).toUpperCase() === ele.diagnosisCode) {
-    //     alert("hdfghjkl;'");
-    //     console.log(ele.diagnosisCode)
-    //     console.log(event.target.value);
-    //     this.I = ele.diagnosisName;
-    //     console.log(this.I);
-
-    //   }
-    // });
-
+  public pagereset(): void {
+    console.log(this.perPage);
+    this.listingPageData.length = 0;
+    this.lowerBound = 1;
+    this.upperBound = this.perPage;
+    this.getDiagnosisData();
 
   }
 
+  public getDiagnosisData(): void {
+    let params = { "userId": 47, "code": "", "name": "", "lowerBound": this.lowerBound, "upperBound": this.upperBound };
+    this.service.getDiagnosisDetails(JSON.stringify(params)).subscribe(
+      data => {
+        let data1: any = data;
+        this.diagnosisList = data.daignosisList;
+        console.log(this.diagnosisList);
+        this.maxCount = data1.totalRecordsCount;
+      })
+  }
+  public check(event, ind) {
+    console.log(event.target.value, "evnet.......");
+    console.log(ind, "iiiiiiii.......");
+    this.diagnosisList.forEach((res, i) => {
+      if (ind === i) {
+        this.selectedItems.push(res);
+        console.log(res);
+        console.log(this.selectedItems);
+      }
+
+    });
+
+  }
+
+
+  addFieldValue(template: TemplateRef<any>) {
+    // this.fieldArray.push(this.newAttribute)
+    // this.newAttribute = {};
+    this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
+
+  }
+
+
+    onRemoveRow(rowIndex: number) {
+      // this.rows.removeAt(rowIndex);
+  }
 
 }

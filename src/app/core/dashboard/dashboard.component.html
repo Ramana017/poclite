@@ -24,7 +24,7 @@
                       <option value="5">Visits</option>
                       <option value="6">Cms</option>
                     </select> -->
-                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2" [routerLink]='["/registration-re/child-basic"]'>
                       <i class="fas fa-plus-circle mr-2 mt-0"></i>
                       <span>Create</span>
                     </button>
@@ -84,23 +84,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                              <a href="javascript:void(0)" class="text-white">
-                                              </a>
-                                          </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                              <a href="javascript:void(0)"  class="text-white">
-                                              </a>
-                                          </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                              <a href="javascript:void(0)"  class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                              </a>
-                                          </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -149,10 +149,11 @@
                       <option value="5">Visits</option>
                       <option value="6">Cms</option>
                     </select> -->
-                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                                        <!-- <button class="d-flex btn-common widget-header-button align-items-center mr-2">
                       <i class="fas fa-plus-circle mr-2 mt-0"></i>
                       <span>Create</span>
-                    </button>
+                    </button> -->
+                                        <div></div>
                                     </div>
 
                                     <div class="widget-inner p-2">
@@ -171,9 +172,9 @@
                                                     <tr>
                                                         <!-- <th class="align-middle">Info</th> -->
                                                         <th class="align-middle"></th>
-                                                        <th class="align-middle">Enterprise</th>
-                                                        <th class="align-middle">Weekly Scheduled Hours</th>
-                                                        <th class="align-middle">Expiring certificates</th>
+                                                        <th class="align-middle">DCS Name</th>
+                                                        <th class="align-middle">HomeSite</th>
+                                                        <th class="align-middle">Emp Code</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -188,32 +189,32 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                <a href="javascript:void(0)"  class="text-white">
-                                                </a>
-                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                <a href="javascript:void(0)"  class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                </a>
-                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
                                                             </ul>
                                                         </td>
                                                         <td>{{dcs.dcsName}}</td>
-                                                        <td>{{dcs.weeklyScheduledHours}}</td>
-                                                        <td *ngIf='dcs.expiringCertificates==1'>Yes</td>
-                                                        <td *ngIf='dcs.expiringCertificates==0'>No</td>
+                                                        <td>{{dcs.homeSite}}</td>
+                                                        <td>{{''}}</td>
+                                                        <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
                                                     </tr>
 
                                                 </tbody>
@@ -251,10 +252,12 @@
                       <option value="5">Visits</option>
                       <option value="6">Cms</option>
                     </select> -->
-                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                                        <!-- <button class="d-flex btn-common widget-header-button align-items-center mr-2">
                       <i class="fas fa-plus-circle mr-2 mt-0"></i>
                       <span>Create</span>
-                    </button>
+                    </button> -->
+                                        <div></div>
+
                                     </div>
 
                                     <div class="widget-inner p-2">
@@ -262,7 +265,7 @@
                                             <h5>Admissions</h5>
                                             <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
 
-                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Admissions search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -292,23 +295,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                <a href="javascript:void(0)"  class="text-white">
-                                                </a>
-                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                <a href="javascript:void(0)"  class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                </a>
-                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -334,7 +337,7 @@
                                             <i class="fas fa-compress-alt min-1 px-2"></i>
                                             <i class="fas fa-expand max-1 px-2"></i>
                                         </div>
-                                        <h5 class="text-white m-0">Authorisation services</h5>
+                                        <h5 class="text-white m-0">Authorization services</h5>
                                         <!-- <select class="mt-1 text-right">
                       <option value="1">Widget Choice</option>
                       <option value="2">Admissions</option>
@@ -343,17 +346,19 @@
                       <option value="5">Visits</option>
                       <option value="6">Cms</option>
                     </select> -->
-                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                                        <!-- <button class="d-flex btn-common widget-header-button align-items-center mr-2">
                       <i class="fas fa-plus-circle mr-2 mt-0"></i>
                       <span>Create</span>
-                    </button>
+                    </button> -->
+                                        <div></div>
+
                                     </div>
 
                                     <div class="widget-inner p-2">
                                         <div class="d-flex justify-content-between widget-inner-header mb-1">
-                                            <h5>Authorisation services</h5>
+                                            <h5>Authorization services</h5>
                                             <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
-                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="PS search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="Authorization search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -365,12 +370,12 @@
                                             <table class="table position-relative">
                                                 <thead class="thead-light no-wrap">
                                                     <tr>
-                                                        <!-- <th>Info</th> -->
+                                                        <th></th>
                                                         <th class="align-middle">PS Name</th>
                                                         <th class="align-middle">Auth</th>
-                                                        <th class="align-middle">Proc1</th>
-                                                        <th class="align-middle">units</th>
-                                                        <th class="align-middle">Consumed DP</th>
+                                                        <th class="align-middle">Procedure Code</th>
+                                                        <th class="align-middle">TotalUnits</th>
+                                                        <!-- <th class="align-middle">Consumed DP</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -384,23 +389,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                              <a href="javascript:void(0)" class="text-white">
-                                              </a>
-                                          </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                              <a href="javascript:void(0)"  class="text-white">
-                                              </a>
-                                          </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                              <a href="javascript:void(0)"  class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                              </a>
-                                          </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -410,7 +415,7 @@
                                                         <td>{{auth.authorizationNumber}}</td>
                                                         <td>{{auth.procedureCode}}</td>
                                                         <td>{{auth.totalUnits}}</td>
-                                                        <td>{{auth.consumedUnits}}</td>
+                                                        <!-- <td>{{auth.consumedUnits}}</td> -->
                                                     </tr>
                                                 </tbody>
                                             </table>

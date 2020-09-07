@@ -11,7 +11,10 @@ import { ZipcodeService } from 'src/app/services/zipcode.service';
 })
 
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService,private zipcode :ZipcodeService) {}
+  constructor(private dashboardService: DashboardService,private zipcode :ZipcodeService) {
+    sessionStorage.removeItem('psDetails');
+    sessionStorage.removeItem('guarantorDetails');
+  }
   public dcsList: any;
   public visitsData=[];
   public authorizationList: any;
@@ -25,7 +28,7 @@ export class DashboardComponent implements OnInit {
   private arrayData =['scrolling alert message','sample text message scrolling','alert scrolling text']
   public scrollData: any;
   public lowerBound=1;
-  public upperBound=129;
+  public upperBound=1;
   ngOnInit() {
     this.scrollDataFun();
     this.userData = { userId: '47' };
@@ -139,7 +142,7 @@ getVisitsByData(e) {
     });
   }
 getDcsList() {
-  const userData = { dcsId: '0', userId: '47' };
+  const userData =  { "userId":"47", "lowerBound":"1", "upperBound":"10" }
   this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
     this.dcsList = res;
   });
@@ -149,7 +152,7 @@ clearDcsList() {
 }
 // Authorization
 getAuthorizationList() {
-  const userData = { userId: '47' };
+  const userData ={"userId":"47","lowerBound":"1","upperBound":"10"}
   this.dashboardService.getAuthorizationsList(JSON.stringify(userData)).subscribe((res) => {
     this.authorizationList = res;
   });
@@ -171,6 +174,7 @@ selectAuthorizationByPsId(PsId) {
   //   });
   // }
   getPsList(){
+    this.upperBound=this.upperBound+10;
   let parameters = { 'userId': 47, 'lowerBound': this.lowerBound, 'upperBound': this.upperBound };
   this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
     let data :any=res
@@ -180,7 +184,8 @@ selectAuthorizationByPsId(PsId) {
   }
 // Admissions
   getAdmissionsList() {
-    this.dashboardService.getAdmissionsList(JSON.stringify(this.userData)).subscribe((res) => {
+    let params={"userId":"47","lowerBound":"1","upperBound":"10"}
+    this.dashboardService.getAdmissionsList(JSON.stringify(params)).subscribe((res) => {
       this.admissionsList = res;
     });
   }
