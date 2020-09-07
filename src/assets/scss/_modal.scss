@@ -1,31 +1,52 @@
+.registration-modal-container {
+  max-width: 75%;
 
-    .registration-modal-container{
-        max-width: 75%;
-        // margin: 0 auto;
-        .container-wrapper{
-            padding: 0;
-            .ps-registration-tabs-container{
-                margin-bottom: 0;
-            }
-        }
-        .registration-modal-header{
-            height: 50px;
+  // margin: 0 auto;
+  .container-wrapper {
+    padding: 0;
+
+    .ps-registration-tabs-container {
+      margin-bottom: 0;
+    }
+  }
+
+  .registration-modal-header {
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #343a40;
     color: #ffffff;
-        }
-        .listing-table {
-            height: 71vh;
-        }
-    }
+  }
 
-    @media(max-width:576px){
-        .registration-modal-container{
-            max-width: 95%;
-            margin: 0 auto;
-         
-            
-        }
-    }
+  .listing-table {
+    height: 71vh;
+  }
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+    height: 100% !important;
+}
+label {
+    margin-bottom: 0 !important;
+    font-size: 15px;
+    color: #212529;
+}
+}
+
+@media(max-width:576px) {
+  .registration-modal-container {
+    max-width: 95%;
+    margin: 0 auto;
+
+
+  }
+}

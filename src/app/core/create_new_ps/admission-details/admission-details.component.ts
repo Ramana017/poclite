@@ -54,7 +54,7 @@ export class AdmissionDetailsComponent implements OnInit {
 addFieldValue(template: TemplateRef<any>) {
       // this.fieldArray.push(this.newAttribute)
       // this.newAttribute = {};
-      this.bsModelRef = this.modalService.show(template);
+      this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
 
     }
 
