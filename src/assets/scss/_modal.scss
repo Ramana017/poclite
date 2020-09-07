@@ -1,0 +1,31 @@
+
+    .registration-modal-container{
+        max-width: 75%;
+        // margin: 0 auto;
+        .container-wrapper{
+            padding: 0;
+            .ps-registration-tabs-container{
+                margin-bottom: 0;
+            }
+        }
+        .registration-modal-header{
+            height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #343a40;
+    color: #ffffff;
+        }
+        .listing-table {
+            height: 71vh;
+        }
+    }
+
+    @media(max-width:576px){
+        .registration-modal-container{
+            max-width: 95%;
+            margin: 0 auto;
+         
+            
+        }
+    }
