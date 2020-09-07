@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 declare var $: any;
 import * as d3 from 'd3';
 import * as  GaugeChart from 'gauge-chart';
+import { ZipcodeService } from 'src/app/services/zipcode.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +11,7 @@ import * as  GaugeChart from 'gauge-chart';
 })
 
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService,private zipcode :ZipcodeService) {}
   public dcsList: any;
   public visitsData=[];
   public authorizationList: any;
@@ -23,6 +24,8 @@ export class DashboardComponent implements OnInit {
   public visitsList: any;
   private arrayData =['scrolling alert message','sample text message scrolling','alert scrolling text']
   public scrollData: any;
+  public lowerBound=1;
+  public upperBound=129;
   ngOnInit() {
     this.scrollDataFun();
     this.userData = { userId: '47' };
@@ -162,10 +165,17 @@ selectAuthorizationByPsId(PsId) {
     this.getAuthorizationList();
   }
   // PsList
-  getPsList() {
-    this.dashboardService.getPSList(JSON.stringify(this.userData)).subscribe((res) => {
-      this.psList = res;
-    });
+  // getPsList() {
+  //   this.dashboardService.getPSList(JSON.stringify(this.userData)).subscribe((res) => {
+  //     this.psList = res;
+  //   });
+  // }
+  getPsList(){
+  let parameters = { 'userId': 47, 'lowerBound': this.lowerBound, 'upperBound': this.upperBound };
+  this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
+        this.psList = res;
+        console.log(this.psList)
+      });
   }
 // Admissions
   getAdmissionsList() {
