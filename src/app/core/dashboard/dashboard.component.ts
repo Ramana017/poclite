@@ -173,7 +173,8 @@ selectAuthorizationByPsId(PsId) {
   getPsList(){
   let parameters = { 'userId': 47, 'lowerBound': this.lowerBound, 'upperBound': this.upperBound };
   this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
-        this.psList = res;
+    let data :any=res
+        this.psList = data.psList;
         console.log(this.psList)
       });
   }
