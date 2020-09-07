@@ -1,0 +1,131 @@
+<!-- Login Page Starts Here  -->
+
+<!-- Full Page Intro -->
+<!-- <div class="view"> -->
+<!-- Mask & flexbox options-->
+<!-- <div class="mask rgba-gradient align-items-center"> -->
+
+
+<!-- Content -->
+<!-- <div class="customcontainer"> -->
+<!--Grid row-->
+<!-- <div class="row"> -->
+<!--Grid column-->
+<!-- <div class="col-md-6 mb-5 mt-md-0 mt-sm-0 mt-lg-5 white-text text-center  text-md-left">
+                    <div class="poc-item pl-4 pr-4 pt-sm-0 pt-md-0 pt-lg-5">
+                        <div class="all-ways-caring-logo d-flex  justify-content-sm-center justify-content-md-center">
+                            <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
+                        </div>
+                        <div class="welcome-heading-wrapper justify-content-sm-center justify-content-md-center">
+                            <h3 class="welcome-To-POC-Call-Management text-dark">Welcome To POC Call Management</h3>
+                        </div>
+                    </div>
+                </div> -->
+<!--Grid column-->
+<!--Grid column-->
+<!-- <div class="col-md-6 col-xl-6 mb-4 mt-md-0 mt-sm-0 mt-lg-5 text-center  text-md-left"> -->
+<!--Form-->
+<!-- <div class="form-item pr-4 pl-4">
+                        <div class="global-container d-flex justify-content-lg-end justify-content-sm-center justify-content-md-center justify-content-xs-center">
+                            <div class="card login-form">
+                                <div class="card-body">
+                                    <div class="setting-icon ">
+                                        <i class="fas fa-cog" routerLink="/config"></i>
+                                    </div>
+                                    <h3 class="card-title text-center">POC Call Management</h3>
+                                    <div class="card-text">
+                                        <div class="">
+                                            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control form-control-sm " id="exampleInputEmail" placeholder="UserID" formControlName="email">
+                                                </div>
+                                                <div *ngIf="form.email.invalid && formError" class="massage text-left">
+                                                    <span *ngIf="form.email.errors?.required" class="text-danger text-left">UserID Required</span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="{{ShowPassword ? 'text':'password'}}" class="form-control form-control-sm" id="exampleInputPassword" placeholder="Password" formControlName="password" autocomplete="off">
+                                                    <span *ngIf="ShowPassword==false" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" (click)="showpassword()"></span>
+                                                    <span *ngIf="ShowPassword==true" toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="showpassword()"></span>
+                                                </div>
+                                                <div *ngIf="form.password.invalid && formError" class="massage text-left">
+                                                    <span *ngIf="form.password.errors?.required" class="text-danger text-left">Password Required</span>
+                                                </div>
+                                                <button type="submit" class="btn global-button login-btn btn-block">login</button>
+
+                                                <div class="detail-wrapper text-center">
+                                                    Copyright @ 2020. Aquila Software Inc.
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+<!--/.Form-->
+<!-- </div> -->
+<!--Grid column-->
+<!-- </div> -->
+<!--Grid row-->
+<!-- </div> -->
+<!-- Content -->
+<!-- </div> -->
+<!-- Mask & flexbox options-->
+
+<div class="container-fluid page-wrapper">
+    <div class="login-wrapper d-flex align-items-center justify-content-center">
+        <div class="row login-inner-wrapper d-flex align-items-start justify-content-center">
+            <div class="col-md-6 mt-4">
+                <div class="all-ways-caring-logo">
+                    <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
+                </div>
+                <div class="welcome-heading-wrapper">
+                    <h3 class="welcome-To-POC-Call-Management text-light">Welcome To POC Call Management</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-item pr-4 pl-4">
+                    <div class="global-container d-flex justify-content-lg-end justify-content-sm-center justify-content-md-center justify-content-xs-center">
+                        <div class="card login-form">
+                            <div class="card-body">
+                                <!-- <div class="setting-icon ">
+                                    <i class="fas fa-cog" routerLink="/config"></i>
+                                </div> -->
+                                <h3 class="card-title text-center">POC Call Management</h3>
+                                <div class="card-text">
+                                    <div class="">
+                                        <form [formGroup]="loginForm" (ngSubmit)="login()">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control form-control-sm " id="exampleInputEmail" placeholder="UserID" formControlName="email">
+                                            </div>
+                                            <div *ngIf="form.email.invalid && formError" class="massage text-left">
+                                                <span *ngIf="form.email.errors?.required" class="text-danger text-left">UserID Required</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="{{ShowPassword ? 'text':'password'}}" class="form-control form-control-sm" id="exampleInputPassword" placeholder="Password" formControlName="password" autocomplete="off">
+                                                <span *ngIf="ShowPassword==false" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" (click)="showpassword()"></span>
+                                                <span *ngIf="ShowPassword==true" toggle="#password-field" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="showpassword()"></span>
+                                            </div>
+                                            <div *ngIf="form.password.invalid && formError" class="massage text-left">
+                                                <span *ngIf="form.password.errors?.required" class="text-danger text-left">Password Required</span>
+                                            </div>
+                                            <button type="submit" class="btn global-button login-btn btn-block">login</button>
+
+                                            <div class="detail-wrapper text-center">
+                                                Copyright @ 2020. Aquila Software Inc.
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- </div> -->

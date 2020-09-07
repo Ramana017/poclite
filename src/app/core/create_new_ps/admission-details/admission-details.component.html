@@ -1,0 +1,204 @@
+<!-- <app-header></app-header> -->
+<div class="container-wrapper">
+    <div class="ps-registration-tabs-container">
+        <div class="bg-grey-l p-3">
+
+            <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Admission Details</h4>
+            <form class="form-group" class="border-2">
+                <div class="d-flex align-items-center justify-content-between nav">
+                    <div class=" input-container-wrapper">
+                        <label class="">
+                            PS
+                        </label>
+
+            <div class="input-group ">
+              <input type="text" class="form-control">
+
+            </div>
+
+                    </div>
+                    <div class=" input-container-wrapper">
+                        <label class="">
+                            Coordinator<span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group ">
+                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
+                                [itemTemplate]="itemTemplate">
+                            </ng-autocomplete>
+                            <ng-template style="width: 100%;" #itemTemplate let-item>
+                                <a [innerHTML]="item.userName"></a>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class=" m-0 input-container-wrapper">
+                        <label class="">
+                            Guarantor
+                        </label>
+
+            <div class="input-group">
+              <input type="text" class="form-control">
+            </div>
+
+                    </div>
+                    <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            Admission Date<span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group ">
+
+                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
+                                bsDatepicker>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between nav">
+                    <!-- <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            Admission Date<span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group ">
+
+                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
+                                bsDatepicker>
+
+                        </div>
+
+                    </div> -->
+
+                    <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            First Visit Date<span class="text-danger">*</span>
+                        </label>
+
+            <div class="input-group ">
+
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+                                bsDatepicker>
+                        </div>
+
+                    </div>
+                    <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            Referred Date<span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group ">
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+                                bsDatepicker>
+                        </div>
+
+                    </div>
+                    <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            label<span class="text-danger">*</span>
+                        </label>
+
+            <div class="input-group ">
+
+                            <input type="text" placeholder="" class="form-control"
+                                >
+
+                        </div>
+
+                    </div>
+                    <div class=" m-0 input-container-wrapper pb-0">
+                        <label class="">
+                            label<span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group ">
+
+                            <input type="text" placeholder="" class="form-control"
+                               >
+
+                        </div>
+
+          </div>
+        </div>
+        <!-- <div class=" m-0 input-container-wrapper visibility-hidden display-none-sm">
+
+</div>
+<div class=" m-0 input-container-wrapper visibility-hidden display-none-sm">
+
+</div> -->
+            </form>
+
+            <h4 class="AvenirLTStd-Heavy py-2 m-0 f-size-16">ICD-10 Diagnosis Code <span class="text-danger">*</span>
+            </h4>
+            <div class="border-1 ">
+                <div class="table-responsive icd-table-container">
+                    <table class="table border-bottom diagnosis-code-table m-0">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" class="width-200">Rank</th>
+                                <th scope="col" class="width-200">Diagnosis Code </th>
+                                <th scope="col">Diagnosis Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let field of fieldArray; let i = index">
+                                <td class="border-right delete-option">
+                                    <div class="bg-whiite remove-item" (click)="deleteFieldValue(i)" title="remove">
+                                        <!-- <span class="material-icons material-icon-remove">
+clear
+</span> -->
+                                        <span class="material-icons material-icon-remove">
+                                            delete
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="border-right">
+                                    <input [(ngModel)]="field.id" class="form-control" type="text"
+                                        name="{{field.id}}" />
+                                </td>
+                                <td class="border-right">
+                                    <input [(ngModel)]="field.name" class="form-control" type="text"
+                                        name="{{field.name}}" />
+                                </td>
+                                <td>
+                                    <input [(ngModel)]="field.code" class="form-control" type="text"
+                                        name="{{field.code}}" />
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="next pr-0 d-flex justify-content-center height-50">
+                    <button type="button" (click)="addFieldValue(template)"
+                        class="btn-info btn-next add-diagnsis-button">Add
+                        Diagnosis</button>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-3">
+                <div class="previous">
+                    <button type="button" class="btn-info btn-next prev-step"
+                        [routerLink]="['/registration-re/child-guarantor']">Previous</button>
+                </div>
+                <div class="next">
+                    <button type="button" class="btn-info btn-next next-step" >Save & Next</button>
+                </div>
+                <!-- <div class="next">
+<button type="button" class="btn-info next-step btn-next">Next</button>
+</div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is a modal.
+    </div>
+</ng-template>

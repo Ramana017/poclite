@@ -1,0 +1,184 @@
+// // LOGO HEADING PERAGRAPH START
+.view {
+    // background-image: url(src/assets/images/group-13@2x.png);
+    // overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    @include size(100%, 100vh);
+    // @include size(1366px,null);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include padding(null, 18px, null, 18px);
+}
+
+.all-ways-caring-logo {
+    @include size(350px, 78px);
+}
+
+.page-wrapper {
+    background-image: linear-gradient(to bottom right, $button, $blue);
+    .login-wrapper {
+        @include size(null, 100vh);
+        .login-inner-wrapper {
+            width: 95%;
+        }
+    }
+}
+
+.welcome-heading-wrapper{
+    h3{
+        text-align: left;
+        font-size: 34px;
+    }
+}
+
+.login-btn {
+    @include padding(10px, null, 10px, null);
+}
+
+@media (max-width: 768px) {
+    .view {
+        height: 1000px;
+        display: flex;
+        justify-content: center;
+    }
+    .poc-item .all-ways-caring-logo {
+        @include size(0px, 78px);
+        @include margin(0px, auto, 0px, auto);
+        // image: url(/src/assets/images/images/all-ways-caring-logo@2x.png);
+    }
+    .login-form {
+        @include margin(0px, auto, 0px, auto);
+    }
+    .form-item {
+        @include padding(0px, 0px, 0px, 0px);
+        @include margin(0px, auto, 0px, auto);
+    }
+    .customcontainer {
+        position: relative;
+        top: -30px;
+    }
+    .welcome-heading-wrapper{
+        h3{
+            text-align: center;
+            font-size: 25px;
+        }
+        .all-ways-caring-logo{
+            text-align: center;
+        }
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+    .view {
+        height: 650px;
+    }
+}
+
+.login-inner-wrapper {
+    .welcome-heading-wrapper {
+        @include padding(15px, null, null, null);
+        h3 {
+            @include size(100%, 30%);
+            font-weight: 500;
+            color: $login-text;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: 1.2;
+        }
+    }
+    .peragraph {
+        @include margin(4px, null, null, null);
+        p {
+            @include size(98%, 89%);
+            color: $login-text;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+        }
+    }
+}
+
+// LOGO HEADING PERAGRAPH END
+// LOGIG FORM START FROM HERE
+.form-item {
+    .global-container {
+        @include size(null, 400px);
+    }
+    form {
+        @include padding(10px, null, null, null);
+        font-size: 14px;
+        @include margin(null, null, null, null);
+        #exampleInputEmail {
+            @include border-radius(null, 8px, null, 8px);
+            height: 35px;
+            @include padding(null, 0px, null, 15px);
+            @include margin(0px, null, 0px, null);
+            &:hover {
+                background-color: $button-background-color;
+            }
+        }
+        #exampleInputPassword {
+            @include border-radius(null, 8px, null, 8px);
+            height: 35px;
+            @include padding(null, 0px, null, 15px);
+            @include margin(null, null, 25px, null);
+            &:hover {
+                background-color: $button-background-color;
+            }
+        }
+        .massage {
+            position: relative;
+            bottom: 20px;
+        }
+        .field-icon {
+            float: right;
+            @include margin(-46px, 10px, null, null);
+            position: relative;
+            // z-index: 2;
+        }
+    }
+    .card-title {
+        @include size(null, 24px);
+        font-size: 24px;
+        font-weight: 900;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: $blue;
+        @include padding(22px, 13px, 22px, 13px);
+    }
+    
+    .login-form {
+      
+        width: 400px;
+    }
+    .setting-icon {
+        @include margin(8px, null, 14px, null);
+        i {
+            @include size(24px, 24px);
+            opacity: 0.8;
+            position: absolute;
+            right: 5%;
+            color: $setting-icon;
+        }
+    }
+    .detail-wrapper {
+        text-align: center;
+        position: absolute;
+        bottom: 5%;
+        @include margin(0px, auto, 0px, auto);
+        @include padding(0px, 15px, 0px, 15px);
+        color: $bottom-text;
+        font-size: 14px;
+    }
+}
+
+// LOGIG FORM END HERE

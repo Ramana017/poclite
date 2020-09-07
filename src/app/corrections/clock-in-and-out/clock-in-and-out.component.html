@@ -1,0 +1,305 @@
+<!-- <app-header></app-header> -->
+<div class="clockin-and-out-wrapper position-relative">
+    <div class="correction-heading d-flex justify-content-between align-items-center sticky-top p-0 bg-dark">
+        <div class="d-flex align-items-center modal-title">
+            <img src="assets/images/Icon.svg" alt="logo" class="pr-2">
+            <h4 class="py-1 m-0">POC Call Management- InComplete Clock In/Out</h4>
+        </div>
+        <button type="button" class="close pull-right" (click)="bsmodelRef.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- </div> -->
+    </div>
+    <div class="costum-conainer component-wrapper">
+        <!-- <div class="clock-in-out-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3></h3>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="Resolution-outer-wrapper">
+            <!-- <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="issue-wrapper">
+                        <h3>Issue</h3>
+                        <p>Incomplete Clock In/Out . Link to the orphan punch if available or create the manual punch</p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="Resolution-wrapper">
+                        <h3 class="m-0">Resolution</h3>
+                        <div class="table-responsive">
+                            <!-- <table class="table table-borderless clock-in-out-table">
+                                <thead>
+                                    <tr>
+                                        <th class="pb-0">PS</th>
+                                        <th class="pb-0">DCS</th>
+                                        <th class="pb-0">Procedure Code</th>
+                                        <th class="pb-0">Scheduled Start </th>
+                                        <th class="pb-0">Scheduled End </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" [disabled]='true' [(ngModel)]="psName" name="phone" placeholder="PS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate"> -->
+                            <!-- <input class="input-field" type="text" [disabled]='true' [(ngModel)]="scheduleStartTime" placeholder="HH:MM" name="StartTime"> -->
+                            <!-- </td>
+                                        <td>
+                                            <input type="text" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate">
+                                            <input class="input-field" type="text" [disabled]='true' [(ngModel)]="scheduleEndTime" placeholder="HH:MM" name="endTime">
+                                        </td> -->
+                            <!-- </tr>
+                                </tbody>
+                            </table> -->
+                            <ul class="nav mx-3 p-0 align-items-center modal-box-input-list">
+                                <li class="mt-1">
+                                    <label for="" class="m-0">PS</label>
+
+                                    <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
+
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">DCS</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Procedure Code</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="Procedure" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Scheduled Start</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Scheduled End</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-flex">
+                            <!-- <input type="radio" name="radio" id="radio-btn" class=" mt-3" /> -->
+                            <h3>Link Clock In/Out</h3>
+                        </div>
+
+                        <div class="formate-add-wrapper">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th scope="col">
+                                                <!-- <input type="checkbox" name="radio" id="" class="mt-1 p-0" /> -->
+                                                <span class="ml-3">Clock In</span>
+                                            </th>
+                                            <th scope="col">
+                                                <!-- <input type="checkbox" name="radio" id="" class="mt-1 p-0" /> -->
+                                                <span class="ml-3">Clock Out</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-bordered" *ngFor="let link of unLinkedPunchesList;let i =index">
+                                            <td class="m-0 p-0">
+                                                <input type="radio" (change)="linkPunch(link)" name="formate-add-wrapper" id="radio{{i+1}}" class="ml-2 mt-3 w-150 " />
+                                                <label for="radio{{i+1}}" class="ml-2 mt-3 mr-n1"></label>
+                                            </td>
+                                            <td>
+                                                <div class="input-btn">
+                                                    <input type="text" disabled name="" class="w-150" value="{{link.arrivalAdjustedTime}}" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-btn">
+                                                    <input type="text" disabled name="" class="w-150" value="{{link.departureAdjustedTime}}" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="table-bordered" *ngIf="unLinkedPunchesList.length==0">
+                                            <td colspan="3">
+                                                <h3 class="text-center">No Records Found</h3>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="button-btn-wrapper" *ngIf="unLinkedPunchesList.length> 0">
+                                <button type="button" class="btn mt-2" [disabled]="!linkBUtton" (click)="validateLink()">Link</button>
+                            </div>
+                        </div>
+
+                        <!-- Arrival-block-start -->
+                        <div class="d-flex mt-n2 mb-n2">
+                            <!-- <input type="radio" name="radio" id="radioman" class=" mt-3" /> -->
+                            <input type="radio" [value]='manualbutton' [ngModel]='saveButton' name="formate-add-wrapper" id="radio0" class="ml-2 mt-3 ml-2 " />
+                            <label for="radio0" class="ml-2 mr-n1 text-dark" (click)="manuallink()">
+                                <h3 class="ml-n2 mt-2">Manual Clock
+                                    In/Out</h3>
+                            </label><br>
+                        </div>
+                        <!-- <input type="checkbox" name="radio" id="" class="mt-1 p-0" /> -->
+
+                        <!-- <h3 class="mt-2">ClockIn</h3> -->
+                        <!-- <div class="custom-check-box"> -->
+                        <div>
+                            <div class="form-group ml-3  d-inline-block">
+                                <!-- <input type="checkbox" id="ClockedIn"> -->
+                                <!-- <label class="text-dark">Clock In</label> -->
+                                <h3 class="mb-n3">Clock In</h3>
+                            </div>
+                        </div>
+
+                        <div class="formate-add-wrapper mt-n2">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <span class="ml-3">Date</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="ml-3">Hours</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="ml-3">Mileage</span>
+                                            </th>
+                                            <!-- <th scope="col">
+                                                <span class="ml-3">Travel Time</span>
+                                            </th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-bordered">
+                                            <td class="pt-2">
+                                                <label class=""></label>
+                                                <input [disabled]="!saveButton" type="text" name="phone" class="my-2 w-150 ml-2" bsDatepicker [(ngModel)]="manualArrivalDate" placement="right" placeholder="MM/DD/YYYY" pattern="">
+                                            </td>
+                                            <td class="align-middle clockin-out-select d-flex border-0 f-14 pt-2
+                                             ">
+                                                <!-- <span>Hrs</span>
+                                                <input [disabled]="saveButton" type="text" name="phone" [(ngModel)]="manualArrivalhrs" class="time-field" placeholder="HH" pattern="">
+                                                <span>Min</span>
+                                                <input [disabled]="saveButton" type="text" class="time-field" [(ngModel)]="manualArrivalminutes" placeholder="MM" pattern=""> -->
+                                                <!-- <timepicker class="border-0" [(ngModel)]="manualArrivalDate" [showSpinners]="true"></timepicker> -->
+                                                <div class="border-0  mx-auto">
+                                                    <select [(ngModel)]="manualClockInHours" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2">
+                                                      <option *ngFor="let hh of hours;let i=index" [ngValue]='hours[i]'>{{hh}}</option>
+
+                                                </select>
+                                                    <select [(ngModel)]="manualClockInMinutes" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2">
+                                                      <option *ngFor="let mm of minutes;let i=index" [ngValue]='minutes[i]'>{{mm}}</option>
+
+                                                </select>
+                                                    <select [(ngModel)]="manualClockInMeridian" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2 ">
+                                                      <option *ngFor="let mer of meridian;let i=index" [ngValue]="meridian[i]">{{mer}}</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle pt-2">
+                                                <input [disabled]="!saveButton" type="text" [(ngModel)]="manualArrivalMileage" name="phone" class="time-field mt-2 ml-2" placeholder="0.00" pattern="">
+                                                <p class="mt-1 pt-1">Miles</p>
+                                            </td>
+                                            <!-- <td class="align-middle">
+                                                <input [disabled]="!editTravelTimePriv&&!saveButton"
+                                                    [(ngModel)]="manualTravelTime" type="text" name="phone"
+                                                    class="time-field mt-1 ml-2" placeholder="0" pattern="">
+                                                    <p class="mt-1 pt-1 ">Minutes</p>
+
+                                            </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Arrival-block-end -->
+
+                        <!-- Departure-block-start -->
+                        <div class="d-flex">
+                            <!-- <input type="checkbox" name="radio" id="" class="mt-1 p-0" /> -->
+                            <div>
+                                <div class="form-group ml-3 d-inline-block mt-3">
+                                    <!-- <input type="checkbox" id="ClockedOut"> -->
+                                    <!-- <label for="ClockedOut" class="text-dark">Clock Out</label> -->
+                                    <h3 class="mb-n2">Clock Out</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formate-add-wrapper mt-n2">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <span class="ml-3">Date</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="ml-3">Hours</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="ml-3">Mileage</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-bordered">
+                                            <td class="pt-2">
+                                                <label class=""></label>
+                                                <input type="text" [disabled]="!saveButton" name="phone" class="my-2 w-150" bsDatepicker [(ngModel)]="manualdepartureDate" placement="right" placeholder="MM/DD/YYYY" pattern="">
+                                            </td>
+                                            <td class="align-middle d-flex border-0 f-14 pt-2">
+                                                <!-- <timepicker class="border-0" [(ngModel)]="manualArrivalDate" [showSpinners]="true"></timepicker> -->
+                                                <div class="border-0  mx-auto">
+                                                    <select [(ngModel)]="manualClockOutHours" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2">
+
+                                                        <option *ngFor="let hh of hours;let i=index"
+                                                            [ngValue]='hours[i]'>{{hh}}</option>
+
+
+                                                </select>
+                                                    <select [(ngModel)]="manualClockOutminutes" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2">
+                                                      <option *ngFor="let mm of minutes;let i=index" [ngValue]='minutes[i]'>{{mm}}</option>
+
+
+                                                </select>
+                                                    <select [(ngModel)]="manualClockOutMeridian" class="hours bg-white border-0 outline-0 mx-2 f-14 p-2 my-2">
+                                                      <option *ngFor="let mer of meridian;let i=index" [ngValue]="meridian[i]">{{mer}}</option>
+
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle pt-2">
+                                                <input type="text" [disabled]="!saveButton" name="phone" class="time-field mt-1" [(ngModel)]="manualDepartureMileage" placeholder="0.00" pattern="">
+                                                <p class="mt-1 pt-1">Miles</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Departure-block-end -->
+                        <div class="button-btn-wrapper mt-2">
+                            <button type="button" [disabled]="!saveButton" class="btn" (click)="validation()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

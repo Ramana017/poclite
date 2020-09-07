@@ -1,0 +1,115 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './core/login/login/login.component';
+import { ConfigComponent } from './core/config/config.component';
+import { SummarytableComponent } from './core/summarytable/summarytable.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CorrectionheaderComponent } from './corrections/correctionheader/correctionheader.component';
+import { ScheduledvarianceComponent } from './corrections/scheduledvariance/scheduledvariance.component';
+import { InvalidcalleridComponent } from './corrections/invalidcallerid/invalidcallerid.component';
+import { MileageexceptionComponent } from './corrections/mileageexception/mileageexception.component';
+import { TarveltimeexceptionComponent } from './corrections/tarveltimeexception/tarveltimeexception.component';
+import { GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
+import { ClockinComponent } from './corrections/clockin/clockin.component';
+import { ClockoutComponent } from './corrections/clockout/clockout.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderComponent } from './core/header/header.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe, APP_BASE_HREF, TitleCasePipe } from '@angular/common';
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { ClockInAndOutComponent } from './corrections/clock-in-and-out/clock-in-and-out.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { AgmCoreModule } from '@agm/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {APIs } from '../assets/url';
+import { ChartsComponent } from './core/charts/charts.component';
+// import { NgxGaugeModule } from 'ngx-gauge';
+
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
+import { MomentModule } from 'angular2-moment';
+import { InvalidTokenComponent } from './corrections/invalid-token/invalid-token.component'; // optional, provides moment-style pipes for date formatting
+import { DashboardComponent } from './core/dashboard/dashboard.component';
+
+import {RegistrationComponent} from './core/create_new_ps/registration/registration.component';
+import {HeaderComponentPS} from './core/create_new_ps/header/header.component';
+import{BasicInfoComponent} from './core/create_new_ps/basic-info/basic-info.component';
+import{GuarantorDetailsComponent}from './core/create_new_ps/guarantor-details/guarantor-details.component';
+import {AdmissionDetailsComponent} from './core/create_new_ps/admission-details/admission-details.component';
+import {PayorPlanDetailsComponent} from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
+import {AuthorizationComponent} from './core/create_new_ps/authorization/authorization.component'
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ConfigComponent,
+    SummarytableComponent,
+    CorrectionheaderComponent,
+    ScheduledvarianceComponent,
+    InvalidcalleridComponent,
+    MileageexceptionComponent,
+    TarveltimeexceptionComponent,
+    GpsdescrepancyComponent,
+    ClockinComponent,
+    ClockoutComponent,
+    HeaderComponent,
+    ClockInAndOutComponent,
+    ChartsComponent,
+    InvalidTokenComponent,
+    DashboardComponent,
+    HeaderComponentPS,
+    RegistrationComponent,
+    BasicInfoComponent,
+    GuarantorDetailsComponent,
+    AdmissionDetailsComponent,
+    PayorPlanDetailsComponent,
+    AuthorizationComponent
+
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AutocompleteLibModule,
+    BsDatepickerModule.forRoot(),
+    NgxSpinnerModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    AngularMultiSelectModule,
+    TimepickerModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: APIs.mapApiKey,
+    }),
+    NgbModule,
+    // NgxGaugeModule,
+    NgIdleKeepaliveModule.forRoot(),
+    MomentModule,
+
+  ],
+  providers: [DatePipe, BsModalRef,TitleCasePipe
+    , {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: window['base-href']
+    }
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [CorrectionheaderComponent, MileageexceptionComponent, LoginComponent, AppComponent]
+})
+export class AppModule { }

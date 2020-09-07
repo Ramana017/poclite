@@ -1,0 +1,101 @@
+<!-- <app-correctionheader></app-correctionheader> -->
+<div class="traveltime-wrapper">
+    <div class="wrapper">
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <div class="heading-wrapper">
+                    <p>Visit Information</p>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <!-- <table class="table table-borderless  mt-0">
+                        <thead>
+                            <tr>
+                                <th class="pb-0">PS</th>
+                                <th class="pb-0">DCS</th>
+                                <th class="pb-0">Procedure Code</th>
+                                <th class="pb-0">Scheduled Start</th>
+                                <th class="pb-0">Scheduled End</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input [disabled]='true' type="text" name="psName" [(ngModel)]="psName" placeholder="PsName" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' type="text" name="DcsName" [(ngModel)]="DcsName" placeholder="DCSName" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' type="text" name="procedureCode" [ngModel]="procedureCode" placeholder="SOURPS" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' class="input-field" type="text" name="scheduleStartDate" [(ngModel)]="scheduleStartDate" placeholder="DD/MM/YYYY" pattern="">
+                                   
+                                </td>
+                                <td>
+                                    <input [disabled]='true' class="input-field" type="text" name="scheduleEndDate" [(ngModel)]="scheduleEndDate" placeholder="DD/MM/YYYY" pattern="">
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+                        <li class="mt-1">
+                            <label for="" class="m-0">PS</label>
+
+                            <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS"
+                                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
+                               
+                        </li>
+                        <li class="mt-1">
+                            <label for="">DCS</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="DCS"
+                                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Procedure Code</label>
+                            <input type="text" class="form-control modal-box-input"  aria-label="Procedure"
+                                aria-describedby="basic-addon1"  [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Scheduled Start</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="Schedule Start"
+                                aria-describedby="basic-addon1"  [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Scheduled End</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="End date"
+                                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="custom-wrapper">
+                    <p>Site Level Preferences:{{TTLimitPrefVal}} Mins</p>
+                </div> -->
+            <!-- </div> -->
+        </div>
+        <div class="row m-0">
+            <div class="col-md-8 col-lg-6 col-sm-12">
+                <div class="clock-detail-wrapper">
+                    <!-- <h3>Issue</h3>
+                    <p>Travel Time exceeds the site level preference.</p> -->
+                    <h4>Travel Time</h4>
+                    <div class="travel-time d-flex">
+                        <input type="text" [disabled]="!editTravelTimePriv" class="form-control" id="input" [(ngModel)]="travelTime" placeholder="">
+                        <p>Mins</p>
+                    </div>
+                    <div class="button-btn-wrapper d-flex justify-content-end">
+                        <button type="button" (click)="acceptTravelTimeException()" class="btn mr-2 mb-2">Accept</button>
+                        <button type="button" (click)="validateTraveltime()" class="second-button mr-2 mb-2">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

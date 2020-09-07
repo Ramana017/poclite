@@ -1,0 +1,475 @@
+<app-header></app-header>
+<div class="css-dashboard-wrapper">
+    <!-- home-inner-wrapper -->
+    <div class="home-inner-wrapper d-flex">
+        <!-- Content-wrapper -->
+        <section class="content-wrapper p-3 d-flex">
+            <div class="content-inner-wrapper">
+                <div class="d-flex">
+                    <div class="cards-content w-100">
+                        <div class="row m-0">
+                            <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                                <div class="widget-block">
+                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 blue-bg">
+                                        <div class="ico">
+                                            <i class="fas fa-compress-alt min-1 px-2"></i>
+                                            <i class="fas fa-expand max-1 px-2"></i>
+                                        </div>
+                                        <h5 class="text-white m-0">PS</h5>
+                                        <!-- <select class="mt-1 text-right">
+                      <option value="1">Widget Choice</option>
+                      <option value="2">Admissions</option>
+                      <option value="3">DCS</option>
+                      <option value="4">Authorisation services</option>
+                      <option value="5">Visits</option>
+                      <option value="6">Cms</option>
+                    </select> -->
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                      <span>Create</span>
+                    </button>
+                                    </div>
+
+                                    <div class="widget-inner p-2">
+                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
+                                            <h5>PS</h5>
+                                            <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
+
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            </ng-autocomplete>
+
+                                            <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                                <a [innerHTML]="item.PSName"></a>
+                                            </ng-template>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table position-relative">
+                                                <thead class="thead-light no-wrap">
+                                                    <tr>
+                                                        <th class=""></th>
+                                                        <th class="align-middle">PS Name</th>
+                                                        <th class="align-middle">Home Site</th>
+                                                        <th class="align-middle">MRN</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <tr *ngFor='let ps of psList; let i=index;'>
+                                                        <!-- <tr *ngFor='let x of heroes; let i=index;'> -->
+
+                                                        <!-- <td class="position-relative">
+                              <span>
+                                <i class="fas fa-info-circle icon-toggle" (click)="icontoggle(i)" id="toggle"></i>
+                              </span>
+                              <span class="inner-icons hide icon-blue">
+                                <div>
+                                  <div class="d-flex multi-iconboard">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <i class="far fa-calendar-plus"></i>
+                                    <i class="far fa-calendar-alt"></i>
+                                    <i class="fas fa-phone-alt"></i>
+                                    <i class="fas fa-cog"></i>
+                                  </div>
+                                </div>
+                              </span>
+                            </td> -->
+                                                        <td class="position-relative edit-option">
+                                                            <ul class="m-0 p-0">
+                                                                <li class="">
+                                                                    <div class="share-button">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <p class="blue-bg twitter">
+                                                                            <span>
+                                              <a href="javascript:void(0)" class="text-white">
+                                              </a>
+                                          </span>
+
+                                                                        </p>
+                                                                        <p class="blue-bg facebook ">
+                                                                            <span>
+                                              <a href="javascript:void(0)"  class="text-white">
+                                              </a>
+                                          </span>
+                                                                        </p>
+                                                                        <p class="blue-bg googleplus">
+                                                                            <span>
+                                              <a href="javascript:void(0)"  class="text-white">
+
+                                              </a>
+                                          </span>
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>{{ps.PSName}}</td>
+                                                        <td>{{ps.accountNumber}}</td>
+                                                        <td>{{ps.admissionDate}}</td>
+                                                        <!-- <td>{{x.name}}</td>
+                            <td>{{x.name}}</td>
+                            <td>{{x.name}}</td> -->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="pager">
+                                        <span class="mr-2">Per page</span>
+                                        <select class="border-0 mr-2">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                    </select>
+                                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- =========================================== 2nd Widget============================= -->
+
+
+                            <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                                <div class="widget-block">
+                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 green-bg">
+                                        <div class="ico">
+                                            <i class="fas fa-compress-alt min-1 px-2"></i>
+                                            <i class="fas fa-expand max-1 px-2"></i>
+                                        </div>
+                                        <h5 class="text-white m-0">DCS</h5>
+                                        <!-- <select class="mt-1 text-right">
+                      <option value="1">Widget Choice</option>
+                      <option value="2">Admissions</option>
+                      <option value="3">DCS</option>
+                      <option value="4">Authorisation services</option>
+                      <option value="5">Visits</option>
+                      <option value="6">Cms</option>
+                    </select> -->
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                      <span>Create</span>
+                    </button>
+                                    </div>
+
+                                    <div class="widget-inner p-2">
+                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
+                                            <h5>DCS</h5>
+                                            <ng-autocomplete class="col-4" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="clearDcsList()" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateps">
+                                            </ng-autocomplete>
+
+                                            <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                                <a [innerHTML]="item.dcsName"></a>
+                                            </ng-template>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table position-relative">
+                                                <thead class="thead-light no-wrap">
+                                                    <tr>
+                                                        <!-- <th class="align-middle">Info</th> -->
+                                                        <th class="align-middle"></th>
+                                                        <th class="align-middle">Enterprise</th>
+                                                        <th class="align-middle">Weekly Scheduled Hours</th>
+                                                        <th class="align-middle">Expiring certificates</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor='let dcs of dcsList; let i=index;'>
+                                                        <td class="position-relative edit-option">
+                                                            <ul class="m-0 p-0">
+                                                                <li class="">
+                                                                    <div class="share-button">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <p class="blue-bg twitter">
+                                                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+
+                                                                        </p>
+                                                                        <p class="blue-bg facebook ">
+                                                                            <span>
+                                                <a href="javascript:void(0)"  class="text-white">
+                                                </a>
+                                            </span>
+                                                                        </p>
+                                                                        <p class="blue-bg googleplus">
+                                                                            <span>
+                                                <a href="javascript:void(0)"  class="text-white">
+
+                                                </a>
+                                            </span>
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>{{dcs.dcsName}}</td>
+                                                        <td>{{dcs.weeklyScheduledHours}}</td>
+                                                        <td *ngIf='dcs.expiringCertificates==1'>Yes</td>
+                                                        <td *ngIf='dcs.expiringCertificates==0'>No</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="pager">
+                    <span class="mr-2">Per page</span>
+                    <select class="border-0 mr-2">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                    </select>
+                  <button type="button" class="btn-common-small mx-2" >Prev</button>
+                  <button type="button"  class="btn-common-small mx-2" >Next</button>
+                  </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row m-0">
+                            <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                                <div class="widget-block">
+                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 peach-bg">
+                                        <div class="ico">
+                                            <i class="fas fa-compress-alt min-1 px-2"></i>
+                                            <i class="fas fa-expand max-1 px-2"></i>
+                                        </div>
+                                        <h5 class="text-white m-0">Admissions</h5>
+                                        <!-- <select class="mt-1 text-right">
+                      <option value="1">Widget Choice</option>
+                      <option value="2">Admissions</option>
+                      <option value="3">DCS</option>
+                      <option value="4">Authorisation services</option>
+                      <option value="5">Visits</option>
+                      <option value="6">Cms</option>
+                    </select> -->
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                      <span>Create</span>
+                    </button>
+                                    </div>
+
+                                    <div class="widget-inner p-2">
+                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
+                                            <h5>Admissions</h5>
+                                            <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
+
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            </ng-autocomplete>
+
+                                            <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                                <a [innerHTML]="item.PSName"></a>
+                                            </ng-template>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table position-relative">
+                                                <thead class="thead-light no-wrap">
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th class="align-middle">PS Name</th>
+                                                        <th class="align-middle">Account</th>
+                                                        <th class="align-middle">Admission Date</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr *ngFor='let  admission of admissionsList; let i=index;'>
+                                                        <td class="position-relative edit-option">
+                                                            <ul class="m-0 p-0">
+                                                                <li class="">
+                                                                    <div class="share-button">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <p class="blue-bg twitter">
+                                                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+
+                                                                        </p>
+                                                                        <p class="blue-bg facebook ">
+                                                                            <span>
+                                                <a href="javascript:void(0)"  class="text-white">
+                                                </a>
+                                            </span>
+                                                                        </p>
+                                                                        <p class="blue-bg googleplus">
+                                                                            <span>
+                                                <a href="javascript:void(0)"  class="text-white">
+
+                                                </a>
+                                            </span>
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>{{admission.PSName}}</td>
+                                                        <td>{{admission.accountNumber}}</td>
+                                                        <td>{{admission.admissionDate}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                                <div class="widget-block">
+                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 lightblue-bg">
+                                        <div class="ico">
+                                            <i class="fas fa-compress-alt min-1 px-2"></i>
+                                            <i class="fas fa-expand max-1 px-2"></i>
+                                        </div>
+                                        <h5 class="text-white m-0">Authorisation services</h5>
+                                        <!-- <select class="mt-1 text-right">
+                      <option value="1">Widget Choice</option>
+                      <option value="2">Admissions</option>
+                      <option value="3">DCS</option>
+                      <option value="4">Authorisation services</option>
+                      <option value="5">Visits</option>
+                      <option value="6">Cms</option>
+                    </select> -->
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                      <span>Create</span>
+                    </button>
+                                    </div>
+
+                                    <div class="widget-inner p-2">
+                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
+                                            <h5>Authorisation services</h5>
+                                            <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="PS search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
+                                            </ng-autocomplete>
+
+                                            <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
+                                                <a [innerHTML]="item.PSName"></a>
+                                            </ng-template>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table position-relative">
+                                                <thead class="thead-light no-wrap">
+                                                    <tr>
+                                                        <!-- <th>Info</th> -->
+                                                        <th class="align-middle">PS Name</th>
+                                                        <th class="align-middle">Auth</th>
+                                                        <th class="align-middle">Proc1</th>
+                                                        <th class="align-middle">units</th>
+                                                        <th class="align-middle">Consumed DP</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor='let auth of authorizationList'>
+                                                        <td class="position-relative edit-option">
+                                                            <ul class="m-0 p-0">
+                                                                <li class="">
+                                                                    <div class="share-button">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <p class="blue-bg twitter">
+                                                                            <span>
+                                              <a href="javascript:void(0)" class="text-white">
+                                              </a>
+                                          </span>
+
+                                                                        </p>
+                                                                        <p class="blue-bg facebook ">
+                                                                            <span>
+                                              <a href="javascript:void(0)"  class="text-white">
+                                              </a>
+                                          </span>
+                                                                        </p>
+                                                                        <p class="blue-bg googleplus">
+                                                                            <span>
+                                              <a href="javascript:void(0)"  class="text-white">
+
+                                              </a>
+                                          </span>
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>{{auth.PSName}}</td>
+                                                        <td>{{auth.authorizationNumber}}</td>
+                                                        <td>{{auth.procedureCode}}</td>
+                                                        <td>{{auth.totalUnits}}</td>
+                                                        <td>{{auth.consumedUnits}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <section class="scrolling-alerts mt-1 pb-4">
+          <h5 class="text-center py-2 scrolling-alerts-title">Alerts List</h5>
+          <div class="d-flex justify-content-between align-items-center py-2">
+            <marquee>
+              <h6>
+                {{scrollData}}
+              </h6>
+            </marquee>
+          </div>
+        </section> -->
+            </div>
+
+            <!-- <div class="mr-0 mt-0 mb-2 cms-widget">
+        <div class="">
+          <div class="cms-header px-2">
+            <h5 class="text-white"><a href="javasript:void(0)">Call Management</a></h5>
+          </div>
+          <div class="cms-widget-content">
+            <li>
+              <div id="gpsGuage1"></div>
+              <p class="m-0 "><a href="javasript:void(0)">GPS Discrepancy</a></p>
+            </li>
+            <li>
+              <div id="gpsGuage2"></div>
+              <p class="m-0"><a href="javasript:void(0)">Invalid Caller ID</a></p>
+            </li>
+            <li>
+              <div id="gpsGuage3"></div>
+              <p class="m-0 "> <a href="javasript:void(0)">Scheduled Variance</a></p>
+            </li>
+            <li>
+              <div id="gpsGuage4"></div>
+              <p class="m-0 "><a href="javasript:void(0)">Missed Clock In/Out</a></p>
+            </li>
+            <li>
+              <div id="gpsGuage5"></div>
+              <p class="m-0 "><a href="javasript:void(0)">Excessive TT</a> </p>
+            </li>
+            <li>
+              <div id="gpsGuage6"></div>
+              <p class="m-0 "><a href="javasript:void(0)">Excessive Mileage</a></p>
+            </li>
+          </div>
+        </div>
+      </div> -->
+
+
+
+        </section>
+    </div>
+</div>

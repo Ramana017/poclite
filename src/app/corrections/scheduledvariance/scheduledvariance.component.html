@@ -1,0 +1,204 @@
+<!-- <app-correctionheader></app-correctionheader> -->
+<div class="schedule-wrapper">
+    <div class="wrapper">
+        <div class="row">
+            <!-- <div class="col-md-12">
+                <div class="heading-wrapper">
+                    <p>Visit Information</p>
+                </div>
+            </div> -->
+        </div>
+        <div class="row m-0">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <!-- <table class="table table-borderless mt-0">
+                        <thead>
+                            <tr>
+                                <th class="pb-0">PS</th>
+                                <th class="pb-0">DCS</th>
+                                <th class="pb-0">Procedure Code</th>
+                                <th class="pb-0">Scheduled Start </th>
+                                <th class="pb-0">Scheduled End </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input [disabled]='true' type="text" name="psName" [(ngModel)]="psName" placeholder="PsName" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' type="text" name="DcsName" [(ngModel)]="DcsName" placeholder="DCSName" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' type="text" name="procedureCode" [ngModel]="procedureCode" placeholder="SOURPS" pattern="">
+                                </td>
+                                <td>
+                                    <input [disabled]='true' class="input-field" type="text" name="scheduleStartDate" [(ngModel)]="scheduleStartDate" placeholder="DD/MM/YYYY" pattern="">
+
+                                </td>
+                                <td>
+                                    <input [disabled]='true' class="input-field" type="text" name="scheduleEndDate" [(ngModel)]="scheduleEndDate" placeholder="DD/MM/YYYY" pattern="">
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+                        <li class="mt-1">
+                            <label for="" class="m-0">PS</label>
+
+                            <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
+
+                        </li>
+                        <li class="mt-1">
+                            <label for="">DCS</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Procedure Code</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="Procedure" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Scheduled Start</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+                        </li>
+                        <li class="mt-1">
+                            <label for="">Scheduled End</label>
+                            <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="custom-wrapper">
+                    <p>Site Level Preferences: <b>{{scheduleVarPrefVal}}</b> Mins</p>
+                </div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="clock-detail-wrapper">
+                    <h3>Issue</h3>
+                    <p>There is a variance of <b> {{scheduleVariance}}</b> min between Original Scheduled and Rounded Scheduled Times.</p>
+                    <div class="row m-0">
+                        <div class="col-md-5">
+                            <div class="table-responsive">
+                                <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+                                    <li class="mt-1">
+                                        <label for="" class="m-0">Original Scheduled Start</label>
+                                        <input type="text" class="form-control modal-box-input" placeholder="M/DD/YYYY" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="orginalStartDate" name="originalstart" pattern="" tabindex="1">
+
+                                    </li>
+                                    <li class="mt-1">
+                                        <label for="" class="m-0">Original Scheduled End</label>
+                                        <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="OrginalEndDate" name="originalEnd" placeholder="MM/DD/YYYY" pattern="" tabindex="1">
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Change the Reported Times</h3>
+                    <!-- <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr class="d-flex">
+                                    <th class="mr-5 ml-3">Clock In Date Time</th>
+                                    <th class="ml-5">Clock Out Date Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="d-flex">
+                                    <td class="d-flex  mr-4 ml-0">
+                                        <input type="text" class="form-control" placeholder="02/18/2020" id="time-out">
+                                        <input type="text" class="form-control" placeholder="08:06 AM" id="time-out">
+                                    </td>
+                                    <td class="d-flex ml-5">
+                                        <input type="text" class="form-control" placeholder="02/18/2020" id="time-out">
+                                        <input type="text" class="form-control" placeholder="09:07 AM" id="time-out">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>  -->
+                    <div class="col-md-12 ">
+                        <div class="row m-0">
+                            <div class="col-md-6 col-sm-12 clockin-inner-wrapper mt-3 overflow-auto">
+                                <p class="mr-5 mb-0">Clock In Date Time</p>
+                                <div class="d-flex nav">
+                                    <input [(ngModel)]="clockinDateview" type="text" class="form-control mr-2 mxw-108 mt-3" bsDatepicker [maxDate]='todaysDate' placeholder="MM/DD/YYYY">
+                                    <!-- <input [(ngModel)]="clockInTime" type="text" class="form-control" placeholder="HH:MM"> -->
+                                    <!-- <timepicker [(ngModel)]="clockInDate" [showSpinners]="true" class="ml-n4"></timepicker> -->
+                                    <div class="mt-3">
+                                        <select [(ngModel)]="clockinHours" class="hours bg-white border-0 outline-0 mx-1">
+                      <option [ngValue]='undefined'>HH</option>
+
+                      <option *ngFor="let hh of hours;let i=index" [ngValue]='hours[i]'>{{hh}}</option>
+                      <!-- <option [ngValue]='undefined'>HH</option> -->
+
+                    </select>
+                                        <select [(ngModel)]="clockinMinutes" class="hours bg-white border-0 outline-0 mx-1">
+                      <option [ngValue]='undefined'>MM</option>
+                      <option *ngFor="let mm of minutes;let i=index" [ngValue]="minutes[i]">{{mm}}</option>
+                      <!-- <option value="hr-2">04</option> -->
+
+                    </select>
+                                        <select [(ngModel)]="ClockinMeridian" class="hours bg-white border-0 outline-0 mx-1">
+                      <option *ngFor="let mer of meridian;let i=index" [ngValue]="meridian[i]">{{mer}}</option>
+
+                    </select>
+                                    </div>
+
+                                </div>
+                                <p class="mt-2">Adjust Reason</p>
+                                <select [(ngModel)]="arrivalAdjReasonId" class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+                  <option [ngValue]=0>--Select--</option>
+                  <option *ngFor="let reason of arrivalAdjustReasons" [ngValue]="reason.id">{{reason.label}}</option>
+                  <!-- <option value="">Test2</option>
+                                    <option value="">Test3</option> -->
+                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-12 clockout-inner-wrapper mt-3 overflow-auto ">
+                                <p class="mr-5 mb-0">Clock Out Date Time</p>
+                                <div class="d-flex nav">
+                                    <input [(ngModel)]="clockOutDateview" type="text mr-2" class="form-control mr-2 mxw-108 mt-3" [maxDate]='todaysDate' bsDatepicker placeholder="MM/DD/YYYY">
+                                    <!-- <timepicker [(ngModel)]="clockOutDate" [showSpinners]="true" class="ml-n4"></timepicker> -->
+                                    <!-- <input [(ngModel)]="ClockOutTime" type="text" class="form-control" placeholder="HH:MM"> -->
+                                    <div class="mt-3">
+                                        <select [(ngModel)]="clockoutHours" class="hours bg-white border-0 outline-0 mx-1">
+                      <option [ngValue]='undefined'>HH</option>
+                      <option *ngFor="let hh of hours;let i=index" [ngValue]='hours[i]'>{{hh}}</option>
+
+                    </select>
+                                        <select [(ngModel)]="clockoutMinutes" class="hours bg-white border-0 outline-0 mx-1">
+                      <option [ngValue]="undefined">MM</option>
+                      <option *ngFor="let mm of minutes;let i=index" [ngValue]='minutes[i]'>{{mm}}</option>
+
+                    </select>
+                                        <select [(ngModel)]="ClockoutMeridian" class="hours bg-white border-0 outline-0 mx-1">
+                      <option *ngFor="let mer of meridian;let i=index" [ngValue]="meridian[i]">{{mer}}</option>
+
+                    </select>
+                                    </div>
+
+                                </div>
+                                <p class="mt-2">Adjust Reason</p>
+                                <select [(ngModel)]="departureAdjReasonId" class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+                  <option [ngValue]=0>--Select--</option>
+                  <option *ngFor="let reason of departureAdjustReasons" [ngValue]="reason.id">{{reason.label}}</option>
+                  <!-- <option value="">Test2</option>
+                                    <option value="">Test3</option> -->
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-btn-wrapper d-flex justify-content-end">
+                        <button type="button" (click)="acceptScheduleVarException()" class="btn mb-2 mr-2">Accept</button>
+                        <button type="button" (click)="validationschedule()  " class="second-button mb-2 mr-2">Update</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

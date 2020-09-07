@@ -1,0 +1,144 @@
+  // INVALID USER ID WRAPPER START
+  .user-id-wrapper {
+      background-color: $table-body;
+      @include size(null, 100%);
+      .inner-wrapper {
+          @include margin(null, 3.3125rem, null, 3.3125rem);
+          border: 1px solid $button-bg-color;
+          @include margin(null, null, 20px, null);
+          background-color: $table-body;
+      }
+      .heading-wrapper {
+          @include padding(13px, 0px, 0px, 0px);
+          p {
+              font-size: 16px;
+              @include padding(0px, 0px, 0px, 12px);
+              @include margin(18px, null, null, null);
+          }
+      }
+      //  CLOCK DETAIL START
+      .clock-detail-wrapper {
+          @include margin(8px, null, 12px, 12px);
+          @include padding(null, null, 12px, null);
+          border: 1px solid $button-bg-color;
+          h3 {
+              font-size: 16px;
+              font-weight: 500;
+              @include msize(32px, 12px);
+              @include padding(12px, 0px, 12px, 12px);
+          }
+          p {
+              font-size: 15px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: left;
+              color: $text;
+              @include size(500px, null);
+              @include padding(12px, 0px, 12px, 12px);
+          }
+          h4 {
+              font-size: 16px;
+              font-weight: 500;
+              @include msize(32px, 12px);
+              @include padding(null, 0px, 12px, 12px);
+              @include margin(null, null, 15px, null);
+          }
+          .caller-id {
+              background-color: $Invalid-Caller-ID;
+              @include margin(12px, 72px, 12px, 12px);
+              @include border-radius(2px, 2px, 2px, 2px);
+              P {
+                  font-size: 15px;
+                  @include padding(null, null, 8px, null);
+              }
+          }
+          .button-wrapper {
+              @include margin(null, 12px, 50px, 12px);
+              // @include padding(null, 12px, 0px,12px);
+              button {
+                  // @include msize(100%, null);
+                  min-width: 100px;
+                  font-size: 16px;
+                  font-weight: 500;
+                  color: $white;
+                  background-color: $test-button;
+                  @include border-radius(0px, 8px, 0px, 8px);
+                  position: absolute;
+                  @include position(null, 23px, null, null);
+                  @include margin(null, 12px, 12px, 12px);
+              }
+          }
+          .btn-wrapper {
+              @include margin(null, 12px, 50px, 12px);
+              // @include padding(null, 12px, 0px,12px);
+              button {
+                  // @include msize(100%, null);
+                  min-width: 100px;
+                  font-size: 16px;
+                  font-weight: 500;
+                  color: $white;
+                  background-color: $button;
+                  @include border-radius(0px, 8px, 0px, 8px);
+                  position: absolute;
+                  @include position(null, 23px, null, null);
+                  @include margin(null, 12px, 12px, 12px);
+                  @include padding(null, 19px, null, 19px);
+              }
+          }
+          table {
+              @include margin(12px, null, 12px, null);
+              input#usr {
+                  @include padding(18px, 27px, 18px, 27px);
+                  @include margin(null, null, null, null);
+                  font-size: 14px;
+                  max-width: 150px;
+                  // font-weight: 600;
+              }
+              #Mobile {
+                  background-color: $btn-light;
+                  @include padding(18px, 27px, 18px, 27px);
+                  @include margin(null, null, null, null);
+                  font-size: 14px;
+                  max-width: 150px;
+                  font-weight: 500;
+                  color: $black;
+              }
+              #user {
+                  @include padding(18px, 27px, 18px, 27px);
+                  @include margin(null, null, null, null);
+                  font-size: 14px;
+                  max-width: 150px;
+              }
+          }
+      }
+      h3 {
+          font-size: 14px;
+          font-weight: 500;
+          @include msize(32px, 12px);
+          @include padding(null, 0px, null, 12px);
+      }
+      // input#user {
+      // 	&::placeholder {
+      // 		padding-left: 15px;
+      // 	}
+      // }
+  }
+
+  // INVALID USER ID WRAPPER END
+@media(max-width:768px){
+    .user-id-wrapper .clock-detail-wrapper .btn-wrapper{
+        margin-top: 12px;
+    }
+    .inner-wrapper{
+        margin-right: 8px !important;
+    }
+  
+}
+@media(max-width:991px){
+    .user-id-wrapper .clock-detail-wrapper .caller-id{
+        margin-right: 8px !important;
+    }
+}

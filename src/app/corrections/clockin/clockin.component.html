@@ -1,0 +1,193 @@
+<!-- <app-header></app-header> -->
+<div class="clockout-wrapper position-relative ">
+    <!-- <div class="component-wrapper"> -->
+    <div class="correction-heading d-flex justify-content-between align-items-center sticky-top p-0 bg-dark">
+        <div class="d-flex align-items-center modal-title">
+            <img src="assets/images/Icon.svg" alt="logo" class="pr-2">
+            <h4 class="py-1 m-0">POC Call Management- Incomplete Clock In</h4>
+        </div>
+        <button type="button" class="close pull-right" (click)="bsmodelRef.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        <!-- </div> -->
+    </div>
+    <div class="costum-conainer ">
+        <!-- <div class="clockin-outer-wrapper"> -->
+        <!-- <div class="row"> -->
+
+
+        <!-- </div> -->
+        <!-- </div> -->
+        <div class="Resolution-outer-wrapper">
+            <!-- <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="issue-wrapper">
+                        <h3>Issue</h3>
+                        <p>Incomplete Clock in</p>
+                    </div>
+                </div> -->
+            <!-- </div> -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="Resolution-wrapper">
+                        <h3>Resolution</h3>
+                        <div class="table-responsive">
+                            <!-- <table class="table table-borderless clock-in-table">
+                                <thead>
+                                    <tr>
+                                        <th class="pb-0">PS</th>
+                                        <th class="pb-0">DCS</th>
+                                        <th class="pb-0">Procedure Code</th>
+                                        <th class="pb-0">Scheduled Start </th>
+                                        <th class="pb-0">Scheduled End </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" [disabled]="true" [(ngModel)]="psName" name="phone" placeholder="PS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]="true" [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]="true" [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="">
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]="true" [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate">
+
+                                        </td>
+                                        <td>
+                                            <input type="text" [disabled]="true" [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate">
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                            <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+                                <li class="mt-1">
+                                    <label for="" class="m-0">PS</label>
+
+                                    <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
+
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">DCS</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Procedure Code</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="Procedure" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Scheduled Start</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+                                </li>
+                                <li class="mt-1">
+                                    <label for="">Scheduled End</label>
+                                    <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-flex">
+                            <!-- <input type="radio" name="formate-add-wrapper" id="radio8" class="ml-3 mt-2 mr-n2" />
+                            <label for="radio8" class="ml-2 mt-3 mr-n1"></label> -->
+                            <h3 class="mt-3">Link Clock In</h3>
+                        </div>
+                        <div class="formate-add-wrapper">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th scope="col">Date & Time</th>
+                                            <th scope="col">Travel Time</th>
+                                            <th scope="col">Mileage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-bordered" *ngFor="let list of unLinkedArrivalDepartureList;let i=index">
+                                            <td class="">
+                                                <input type="radio" name="formate-add-wrapper" (change)="linkIn(list)" id="radio{{i+1}}" class="ml-2 mt-2 " />
+                                                <label for="radio{{i+1}}" class="ml-2 mt-3 mr-n1"></label>
+                                            </td>
+                                            <td>
+                                                <p class="mt-2">{{list.arrivalAdjustedTime}}</p>
+                                                <!-- <input type="tel" id="phone" name="phone" placeholder="02/18/2020, 08:00 AM" pattern=""> -->
+                                            </td>
+                                            <td>
+                                                <p class="mt-2">{{list.travelTime}}</p>
+                                                <!-- <input type="tel" id="phone" name="phone" placeholder="10.0" pattern=""> -->
+                                            </td>
+                                            <td>
+                                                <p class="mt-2">{{list.mileage}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr class="table-bordered" *ngIf="unLinkedArrivalDepartureList.length==0">
+                                            <td colspan="4">
+                                                <h3 class="text-center">No Records Found</h3>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <input type="radio" name="formate-add-wrapper" [value]='manualinput' [(ngModel)]='defaultinput' id="radio0" (change)="manualSave()" class="ml-4 mt-2 mr-n2" />
+                            <label for="radio0" class="ml-2 mt-3 mr-n1"></label>
+                            <h3 class="mt-3"> Create Manual Clock In</h3>
+                        </div>
+                        <div class="formate-add-wrapper">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Time</th>
+                                            <!-- <th scope="col">Travel Time</th> -->
+                                            <th scope="col">Mileage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-bordered">
+                                            <td class="">
+                                                <input type="text" name="phone" [disabled]="!manualinput" [(ngModel)]="manualDate" bsDatepicker [bsConfig]="{ adaptivePosition: true }" placeholder="MM/DD/YYYY" pattern="" class="w-150">
+                                            </td>
+                                            <td class="align-middle d-flex border-0 f-14 pt-2 pl-5 ">
+                                                <div class="border-0  mx-auto">
+                                                    <select [(ngModel)]="manualhours" class="hours bg-white border-0 outline-0 mx-3 f-14 p-2 ">
+                            <!-- <option [ngValue]='undefined'>HH</option> -->
+                            <option *ngFor="let hh of hours;let i=index" [ngValue]='hours[i]'>{{hh}}</option>
+
+                          </select> <select [(ngModel)]="manualminutes" class="hours bg-white border-0 outline-0 mx-3 f-14 p-2 ">
+                            <!-- <option [ngValue]="undefined">MM</option> -->
+                            <option *ngFor="let mm of minutes;let i=index" [ngValue]='minutes[i]'>{{mm}}</option>
+
+                          </select>
+                                                    <select [(ngModel)]="manualmeridian" class="hours bg-white border-0 outline-0 mx-3 f-14 p-2">
+                            <option *ngFor="let mer of meridian;let i=index" [ngValue]="meridian[i]">{{mer}}</option>
+
+                          </select>
+                                                </div>
+                                            </td>
+                                            <!-- <td>
+                                                <input type="text" name="phone" [disabled]="!manualinput" [(ngModel)]="manualtraveltime" placeholder=" Travel Time" pattern="" class="w-150">
+                                            </td> -->
+                                            <td>
+                                                <input type="text" name="phone" [disabled]="!manualinput" [(ngModel)]="manualmileage" placeholder=" Mileage" pattern="w-150">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="button-btn-wrapper">
+                            <button type="button" class="btn" (click)=" manualinput? validation():linkValidation()">{{manualinput?'Save':'Link'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

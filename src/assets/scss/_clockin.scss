@@ -1,0 +1,201 @@
+// MAIN SECTION START 
+.clockin-wrapper{
+    @include size(100%,null);
+    background-color: $table-body;
+}
+// MAIN SECTION END 
+
+// Body start 
+.costum-conainer{
+    @include padding(null, 3.3125rem, null, 3.3125rem);
+    // @include margin(0px, auto, 0px, auto);
+.clockin-outer-wrapper{
+    // correction-heading{
+    //     padding: 0 !important;
+    // }
+    h3{
+        @include padding(1rem, 0rem, 1rem, 0rem);
+        font-size: 24px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        @include margin (40px, null,20px,null);
+    }
+}
+// Resolution-outer-wrapper start 
+
+.Resolution-outer-wrapper{
+    border: 1px solid $button-bg-color;
+    @include margin (null, null, 15px, null);
+    @include size(null, 100%);
+    .issue-wrapper{
+        border: 1px solid $button-bg-color;
+        @include margin (12px, 12px, null, 12px);
+        h3{
+            font-size:16px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            @include margin (12px, 12px, 10px, 12px);
+        }
+        p{
+            font-size: 15px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.6;
+            letter-spacing: normal;
+            text-align: left;
+            color: $text;
+            @include margin (0px, 12px, 12px, 12px);
+        }
+    }
+    // RESOLUTION STARTS  
+
+    .Resolution-wrapper{
+        border: 1px solid $button-bg-color;
+        @include margin (12px, 12px, 12px, 12px);
+                h3{
+            font-size:16px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left; 
+            @include padding (12px, 12px, 12px, 12px);
+
+        }
+// TABLE STARTS 
+        table{
+            thead{
+                tr{
+                    th{
+                      font-size: 1rem;
+                      @include padding(0px, null, null, 13px);
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                       // @include size(145px, 12px);
+                        @include margin(0px, 0px,0px,12px);
+                        @include padding(0px, 12px, 0px, 0px);
+                        input{
+                            @include size(128px, 12px);
+                            font-size: 12px;
+                            font-stretch: normal;
+                            line-height: normal;
+                            letter-spacing: normal;
+                            box-shadow: none;
+                            border: none;
+                            height: 35px;
+                            @include padding(null, 0px, null, 10px);
+                            @include margin(0px, 10px, null, 10px);
+                            @include border-radius(0px, 8px, 0px, 8px);
+                            background-color: $button-bg-color;
+                        }
+                        .input-field{
+                        @include size(92px, null);
+                        }
+                    }
+                }
+            }
+        }
+        // TABLE END 
+        // CODE FOR RADI BUTTON 
+        #radio-btn{
+            @include margin(null, null, null, 12px);
+
+        }
+// FORMATEADD WRAPPER START
+        .formate-add-wrapper{
+            @include margin(0px, 12px, 0px, 12px);
+            // TABLE START 
+            table{
+                thead{
+                    tr{
+                        th{
+                            @include padding(10px, 7px, 10px, 7px);  
+                            color:$white;
+                            background-color: $blue;
+                            text-align: center;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                            // text-align: center;
+                            // width: 190px;
+                            font-size: 10px;
+                            color: $text;
+                            text-align: center;
+                            @include padding(9px, 0px, 7px, 0px);   
+                            input{
+                                @include size(128px, 12px);
+                                font-size: 12px;
+                                font-stretch: normal;
+                                line-height: normal;
+                                letter-spacing: normal;
+                                box-shadow: none;
+                                border: none;
+                                height: 35px;
+                                @include padding(null, 0px, null, 10px);
+                                @include margin(0px, 8px, null, 8px);
+                                @include border-radius(0px, 0px, 0px, 0px);
+                                border: 1px solid $button-bg-color;
+                                background-color: $table-body;
+                            } 
+                            #box{
+                                @include size(100px, 12px);
+                            }   
+                          }
+                        }
+                    }
+                }
+                // TABLE END 
+            }
+            .clock-in-table{
+                tbody {
+                    tr {
+                        td {
+                            max-width: 120px !important;
+                        }
+                    }
+                }
+            }
+            // FORMATE ADD WRAPPER END
+            .button-btn-wrapper{
+                @include margin(0px, 12px, 50px,null);
+                @include padding(null, 12px, 0px,12px);
+                .btn{
+                    // @include msize(, null);
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: $white;
+                    background-color: $button;
+                    @include border-radius(0px, 8px, 0px, 8px);
+                    position: absolute;
+                    @include position(null, 33px, null, null);
+                    @include margin(null, 12px, 12px,null);
+                    @include padding(null, 20px, null, 20px);
+                }
+            }
+        }
+        // RESOLUTION END 
+    }
+
+    .clockin-timepicker{
+        table{
+            margin: 0 auto;
+        }
+    }
+}

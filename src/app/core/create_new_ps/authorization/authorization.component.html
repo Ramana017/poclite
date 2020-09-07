@@ -1,0 +1,717 @@
+<div class="container-wrapper">
+    <div class="ps-registration-tabs-container">
+        <div class="bg-grey-l p-3">
+            <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Authorization Details</h4>
+            <div class="d-flex align-items-center nav justify-content-between border-2">
+                <div class="input-container-wrapper">
+                    <label class="">
+                        PS Name
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="input-container-wrapper ">
+                    <label class="">
+                        Temp Auth<span class="text-danger">*</span>
+                    </label>
+
+
+                    <div class="check-box-wrapper">
+                        <div class="on-off-toggle">
+                            <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+                            <label for="bopis" class="on-off-toggle__slider"></label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-container-wrapper">
+                    <label class="">
+                        Auth #<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="input-container-wrapper">
+                    <label class="">
+                        Payor Plan<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper">
+                    <label class="">
+                        Case Manager<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper pb-0 procedurecode">
+                    <label class="">Procedure Code<span class="text-danger">*</span> </label>
+
+                    <angular2-multiselect [data]="procedureCode" [(ngModel)]="procedureSelctedItems" (onDeSelectAll)="procedureDeSelect()" (onSelect)="procedureSelect()" [settings]="dropdownSettings">
+                    </angular2-multiselect>
+                </div>
+                <div class="input-container-wrapper pb-0">
+                    <label class="">
+                        Begin Date<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" input-container-wrapper pb-0">
+                    <label class="">
+                        End Date<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" m-0  input-container-wrapper pb-0">
+                    <label class="">
+                        Billing Rate<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" [(ngModel)]="billingRate" disabled class="form-control" aria-label="Case Manager">
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper pb-0">
+                    <label class="">
+                        Total Units<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group  align-items-center">
+                        <input type="text" class="form-control mr-2" aria-label="Case Manager">
+                        <label class="customcheck">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16">Delivery Plan</h4>
+            <form class="d-flex align-items-center nav justify-content-between">
+
+                <div class=" m-0  input-container-wrapper pb-0">
+                    <label class="">
+                        Effective From
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control" aria-label="Case Manager" placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper pb-0">
+                    <label class="">
+                        Effective To
+                    </label>
+                    <div class="input-group  ">
+                        <input type="text" class="form-control" aria-label="Case Manager" placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-0">
+                    <div class=" mx-2">
+                        <label class="">
+                            Daily
+                        </label>
+
+                        <div class="check-box-wrapper">
+                            <div class="on-off-toggle ">
+                                <input class="on-off-toggle__input" type="checkbox" id="bopis-to" />
+                                <label for="bopis-to" class="on-off-toggle__slider" (click)=toggleDisplayDivDaily()></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="
+             mx-2">
+                        <label class="">
+                            Weekly
+                        </label>
+
+                        <div class="check-box-wrapper">
+                            <div class="on-off-toggle ">
+                                <input class="on-off-toggle__input" type="checkbox" id="bopis-t" />
+                                <label for="bopis-t" class="on-off-toggle__slider" (click)=toggleDisplayDivWeekly()></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper pb-0">
+                    <div class=" mx-2">
+                        <label class="">
+                            Monthly
+                        </label>
+
+                        <div class="check-box-wrapper ">
+                            <div class="on-off-toggle " (click)=toggleDisplayDivMonthly()>
+                                <input class="on-off-toggle__input" type="checkbox" id="bopis-toggle" />
+                                <label for="bopis-toggle" class="on-off-toggle__slider" (click)=toggleDisplayDivMonthly()></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-wrapper"></div>
+            </form>
+            <div *ngIf="weeklyFlag">
+
+
+                <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16
+            ">Weekly</h4>
+                <div class="border-2">
+
+
+                    <form class="d-flex align-items-center nav justify-content-between">
+                        <div class=" m-0 input-container-wrapper">
+                            <label class="">
+                                Max Units
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control" aria-label="Max Units" placeholder="">
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-wrapper">
+                            <label class="">Per Week</label>
+                            <div class="input-group ">
+                                <select class="form-control align-items-center">
+                                    <option selected>Select</option>
+                                    <option value="1">New York</option>
+                                    <option value="2">Texas</option>
+                                    <option value="3">New York</option>
+                                    <option value="4">New York</option>
+                                    <option value="5">New York</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class=" m-0 input-container-wrapper">
+                            <label class="">
+                                #Weeks
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class=" m-0  input-container-wrapper">
+                            <label class="">
+                                #Days Per Week
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                    <form class="d-flex align-items-center nav justify-content-between">
+                        <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-0">
+                            <div class="day-input">
+                                <label class="">
+                                    SUN
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-input">
+                                <label class="">
+                                    MON
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-0">
+                            <div class="  day-input">
+                                <label class="">
+                                    TUE
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-input">
+                                <label class="">
+                                    WED
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-0">
+                            <div class="  day-input">
+                                <label class="">
+                                    THU
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class=" day-input">
+                                <label class="">
+                                    FRI
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" input-container-wrapper d-flex align-items-center justify-content-between pb-0">
+                            <div class=" day-input">
+                                <label class="">
+                                    SAT
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between row m-0">
+                <div class="col-md-6 col-12 pl-0" *ngIf="dailyFlag">
+
+                    <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">Daily</h4>
+                    <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class=" m-0  input-container-wrapper pb-0">
+                            <label class="white-space-nowrap">
+                                Max Units Per Day
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class=" m-0  input-container-wrapper pb-0">
+                            <label class="">
+                                #Days
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-6 p-0 col-12" *ngIf="monthlyFlag">
+
+                    <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Monthly</h4>
+                    <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class=" m-0  input-container-wrapper pb-0">
+                            <label class="white-space-nowrap">
+                                Max Units Per Day
+                            </label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="d-flex align-items-center justify-content-between mt-3">
+                <div class="previous">
+                    <button type="button" class="btn-info  btn-next prev-step">Previous</button>
+                </div>
+                <div class="next">
+                    <button type="button" class="btn-info  btn-next">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="container-wrapper">
+    <div class="ps-registration-tabs-container">
+        <div class="bg-grey-l p-3">
+            <h4 class="pb-2 AvenirLTStd-Heavy m-0 ">Authorization Details</h4>
+            <div class="d-flex align-items-center nav justify-content-between border-2">
+                <div class="input-container-inner">
+                    <label class="">
+                        PS Name
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" [disabled]="true" [ngStyle]="{'cursor':'not-allowed'}"
+                                [(ngModel)]="psName" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container-inner mx-2 width-190">
+                    <label class="">
+                        Temp Auth<span class="text-danger">*</span>
+                    </label>
+
+                    <div class=" example">
+                        <button type="button" class="btn btn-sm btn-toggle" (click)="tempAuthCheck()"
+                            data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <div class="handle"></div>
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class=" input-container-inner">
+                    <label class="">
+                        Auth #<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class=" input-container-inner">
+                    <label class="">
+                        Payor Plan<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" [(ngModel)]="payorPlan" [disabled]="true"
+                                [ngStyle]="{'cursor':'not-allowed'}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-inner">
+                    <label class="">
+                        Case Manager<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-inner width-180">
+                    <label class="">Procedure Code<span class="text-danger">*</span> </label>
+
+
+                    <angular2-multiselect [data]="procedureCode" [(ngModel)]="procedureSelctedItems"
+                        (onDeSelectAll)="procedureDeSelect()" (onSelect)="procedureSelect()"
+                        [settings]="dropdownSettings">
+                    </angular2-multiselect>
+
+                </div>
+                <div class=" input-container-inner">
+                    <label class="">
+                        Begin Date<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " [(ngModel)]="beginDate" (ngModelChange)="dateChange()"
+                            aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" input-container-inner">
+                    <label class="">
+                        End Date<span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group ">
+                        <input type="text" class="form-control " [(ngModel)]="endDate" aria-label="date"
+                            placeholder="mm/dd/yyyy" bsDatepicker>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-inner">
+                    <label class="">
+                        Billing Rate<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" [ngStyle]='{"cursor":"not-allowed"}'
+                                [(ngModel)]="billingRate" [disabled]="true" aria-label="Case Manager"
+                                placeholder=" Billing rate">
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-inner width-190">
+                    <label class="">
+                        Total Units<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group align-items-center">
+                            <input type="text" [(ngModel)]="totalUnits"
+                                [ngStyle]="totalUnitsFlag?{'cursor':'not-allowed'}:null" [disabled]="totalUnitsFlag"
+                                class="form-control mr-2" aria-label="Case Manager" placeholder="Total Units">
+                            <label class="customcheck">
+                                <span title="Unspecified units">
+                                    <input type="checkbox" (click)="toggleCheck($event)">
+                                    <span class="checkmark"></span>
+                                </span>
+
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class=" AvenirLTStd-Heavy m-0 py-2">Delivery Plan</h4>
+            <div class="d-flex align-items-center nav justify-content-between">
+
+                <div class=" m-0 input-container-inner">
+                    <label class="">
+                        Effective From
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" aria-label="Case Manager"
+                                [(ngModel)]="effectiveFromDate" placeholder="mm/dd/yyyy" bsDatepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class=" m-0 input-container-inner">
+                    <label class="">
+                        Effective To
+                    </label>
+                    <div class="d-flex ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" aria-label="Case Manager"
+                                [(ngModel)]="effectiveToDate" placeholder="mm/dd/yyyy" bsDatepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class=" mx-2">
+                    <label class="">
+                        Daily
+                    </label>
+                    <div class="example">
+                        <button type="button" (click)="toggleDisplayDivDaily()" class="btn btn-sm btn-toggle"
+                            data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <div class="handle"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="
+    mx-2">
+                    <label class="">
+                        Weekly
+                    </label>
+                    <div class="example">
+                        <button type="button" (click)="toggleDisplayDivWeekly()" class="btn btn-sm btn-toggle"
+                            data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <div class="handle"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class=" mx-2">
+                    <label class="">
+                        Monthly
+                    </label>
+                    <div class=" example">
+                        <button type="button" (click)="toggleDisplayDivMonthly()" class="btn btn-sm btn-toggle"
+                            data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <div class="handle"></div>
+                        </button>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div *ngIf="weeklyFlag">
+
+
+                <h4 class=" AvenirLTStd-Heavy m-0 py-2
+    ">Weekly</h4>
+                <div class="border-2">
+
+
+                    <form class="d-flex align-items-center nav justify-content-between">
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                Max Units
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" aria-label="Max Units" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner">
+                            <label class="">Per Week</label>
+                            <div class="input-group ">
+                                <select class="form-control align-items-center">
+                                    <option selected>Sunday</option>
+                                    <option value="1">Tuesday</option>
+                                    <option value="2">Wednasday</option>
+                                    <option value="3">Thursday</option>
+                                    <option value="4">Friday</option>
+                                    <option value="5">Saturday</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                #Weeks
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                #Days Per Week
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="d-flex align-items-center nav justify-content-between">
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                SUN
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                MON
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                TUE
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                WED
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                THU
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                FRI
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner day-input">
+                            <label class="">
+                                SAT
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between row m-0">
+                <div class="col-md-6 col-12 pl-0" *ngIf="dailyFlag">
+
+                    <h4 class="AvenirLTStd-Heavy m-0 py-2">Daily</h4>
+                    <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                Max Units Per Days
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                #Days
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-6 p-0 col-12" *ngIf="monthlyFlag">
+
+                    <h4 class="py-2 AvenirLTStd-Heavy m-0 ">Monthly</h4>
+                    <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class=" m-0 input-container-inner">
+                            <label class="">
+                                Max Units Per Day
+                            </label>
+                            <div class="d-flex ">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="d-flex align-items-center justify-content-between mt-3">
+                <div class="previous">
+                    <button type="button" [routerLink]="['/registration-re/child-payorplan']"
+                        class="btn-info btn-next prev-step">Previous</button>
+                </div>
+                <div class="next">
+                    <button type="button" class="btn-info btn-next">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

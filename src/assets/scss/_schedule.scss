@@ -1,0 +1,204 @@
+// .schedule-wrapper start 
+.schedule-wrapper{
+    background-color: $table-body;
+    @include size(null, 100%);
+    .wrapper{
+        @include margin(null, 3.3125rem, null, 3.3125rem);
+        border: 1px solid $button-bg-color;
+        @include margin(null, null, 20px, null);
+        // @include padding(null, 12px, null, null);
+        background-color: $table-body;
+    }
+    .heading-wrapper{
+        @include padding(13px, 0px, 0px, 0px);
+        p{
+            font-size: 16px;
+            @include padding(0px, 0px, 0px, 12px);
+            @include margin(18px, null, null, null);
+        }
+    }
+    .custom-wrapper{
+        @include padding(0px, 0px, 12px, 15px);
+        @include margin(0px, 12px, 0px, 13px);
+    p{
+        @include padding(1px, 15px, 0px, 15px);
+        font-size: 15px;
+        color: $text;
+    }
+    }
+    // detail start 
+    .clock-detail-wrapper{
+        @include margin(null, 12px, 12px, 12px);
+        @include padding(null, 12px, 12px, null);
+        border: 1px solid $button-bg-color;
+        h3{
+            font-size: 16px;
+            font-weight: 500;
+            @include msize(32px, 12px);
+            @include padding(12px, 0px, 13px, 12px);
+        } 
+        p{
+            // height: 33px;
+            font-family: AvenirLTStd-Roman;
+            font-size: 15px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            color: $text;
+            // @include size(405px, null);
+            @include padding(12px, 0px, 0px, 12px);
+        }
+    }
+    // detail end 
+    //  table start 
+    .table-responsive{
+    overflow-y: hidden;
+    table{
+    @include margin(12px, null, 12px, null);
+   
+ 
+    thead{
+    tr{
+    th{
+       @include padding(null, null, 3px, null); 
+    }
+    }
+    }
+    tbody{
+    tr{
+    @include margin(null, 12px, null,12px);
+    td{
+        min-height: 40px;
+        // padding-left: 0px;
+        max-width: 150px;
+        #time-out{
+            outline: none;
+            border: none;
+            box-shadow: none;
+            min-width: 86px;
+            min-height: 40px;
+            background-color: #e4f2d9;
+            @include margin(null, 12px, null, null);
+            @include border-radius(0px, 8px, 0px, 8px);
+        }
+    }
+}
+    }
+}
+// } table end 
+}
+
+@media screen and (max-width:1025px) {
+    .col-md-6{
+        max-width: 100%;
+    }
+}
+
+timepicker {
+    table{
+     @include margin(null, null, null, 45px);
+     tr {
+         td {
+             border: none !important;
+             &:nth-child(2){
+                 padding-top: 0px !important;
+                 margin-left: -15px;
+             }
+             button{
+                 margin-left: -40px;
+                 padding-top: 10px;
+             }
+             a{
+                .bs-chevron-up {
+                    top: 0px;
+                }
+                .bs-chevron-down {
+                    top: 0px;
+                }
+             }
+         }
+     }
+    }
+}
+}
+
+.clockin-inner-wrapper,.clockout-inner-wrapper {
+	input {
+		outline: none;
+		border: none;
+		box-shadow: none;
+		//min-width: 86px;
+		min-height: 40px;
+		background-color: #e4f2d9;
+	}
+}
+
+.button-btn-wrapper{
+    @include margin(12px, null, 12px,null);
+    @include padding(null, null, null,12px);
+    
+    .btn{
+        // @include msize(, null);
+        min-width: 100px;
+        font-size: 16px;
+        font-weight: 500;
+        color: $white;
+        background-color: $test-button;
+        @include border-radius(0px, 8px, 0px, 8px);
+        @include padding(null, 12px, null, 12px);
+    }
+    .second-button{
+        min-width: 100px;
+        font-size: 16px;
+        font-weight: 500;
+        color: $white;
+        background-color: $button;
+        @include border-radius(0px, 8px, 0px, 8px);
+        @include padding(null, 12px, null, 12px);
+    }
+}
+
+.clockout-inner-wrapper{
+    .hours{
+        height: 40px;
+    }
+    // select{
+    //     width: 105px;
+    // }
+}
+.clockin-inner-wrapper {
+    .hours{
+        height: 40px;
+    }
+}
+// schedule-wrapper end 
+@media(max-width:768px){
+    .schedule-wrapper .wrapper{
+        margin-right: 8px !important;
+    }
+}
+
+@media(max-width:991px){
+    .clockout-inner-wrapper{
+
+        .adjust-reason{
+            width: 105px;
+        }
+    }  
+    .clockin-inner-wrapper {
+        .adjust-reason{
+            width: 105px;
+        }
+    }
+}
+@media(max-width:420px){
+    .clockin-inner-wrapper{
+        padding: 0 !important;
+    }
+    .clockout-inner-wrapper{
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,59 @@
+<div class="component-wrapper">
+    <div class="header-wrapper">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+            <div class="user-profile">
+                <a class="navbar-brand">
+                    <div class="dropdown d-flex">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-list" aria-hidden="true" style="font-size: 20px;"></i>
+              <!-- {{userName==undefined ||null?'--':userName}} -->
+            </button>
+                        <div class="dropdown-menu">
+                            <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
+                            <a [ngClass]="activeclass[0]? 'active':''" class="dropdown-item" routerLink="/summary">POC Call
+                Management</a>
+                            <a [ngClass]="activeclass[1]? 'active':''" class="dropdown-item" routerLink="/charts"> POC DashBoard</a>
+                            <a [ngClass]="activeclass[2]? 'active':''" class="dropdown-item" routerLink="/charts"> POC Widgets </a>
+
+                            <!-- <span class="dropdown-item-text">Just Text</span> -->
+                        </div>
+                        <!-- <div class="richard-img">
+                        <img src="assets/images/group-13.png" class="img-fluid">
+                    </div> -->
+                    </div>
+                </a>
+            </div>
+
+            <a class="navbar-brand">
+                <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
+            </a>
+
+            <div class="logo-cms mx-auto ml-n3">
+                <div class="d-flex">
+                    <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
+                    <h3 class="text-white mt-3">{{heading}}</h3>
+                </div>
+            </div>
+
+            <div class="">
+                <a class="navbar-brand">
+                    <div class="dropdown d-flex profile-dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              <!-- {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
+               -->{{userName}}
+            </button>
+                        <div class="dropdown-menu">
+                            <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
+                            <a class="dropdown-item" (click)="logout()">Logout</a>
+                            <!-- <a class="dropdown-item" >Change Password</a> -->
+                            <!-- <span class="dropdown-item-text">Just Text</span> -->
+                        </div>
+                        <!-- <div class="richard-img">
+                            <img src="assets/images/group-13.png" class="img-fluid">
+                        </div> -->
+                    </div>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>

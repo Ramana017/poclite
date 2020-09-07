@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="small" color="#fff" type="ball-spin" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<router-outlet>
+</router-outlet>
+
+<div class="timepopup">
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="bsmodelRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        </div>
+        <div class="modal-body">
+            {{idleState}}
+            <div class="row mrgbtm d-flex mt-3">
+                <div class="px-3">
+                    <button type="button" (click)="logout()" class="btn btn-danger btn common-table-btn ">Logout</button>
+                </div>
+                <div class="px-2">
+                    <button type="button" (click)="stay()" class="btn btn-success btn common-table-btn ">Stay</button>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+</div>

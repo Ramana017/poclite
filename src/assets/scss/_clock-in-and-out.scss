@@ -1,0 +1,297 @@
+// MAIN SECTION START
+// .clockin-wrapper {
+//     @include size(100%, null);
+//     background-color: $table-body;
+// }
+// MAIN SECTION END
+// Body start
+.f-14 {
+    font-size: 14px;
+}
+
+.clockin-and-out-wrapper {
+    .costum-conainer {
+        @include padding(null, 3.3125rem, null, 3.3125rem);
+        // @include margin(0px, auto, 0px, auto);
+        .clock-in-out-wrapper {
+            h3 {
+                font-size: 24px;
+                font-weight: 500;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: left;
+                @include margin (40px, null, 20px, null);
+            }
+        }
+        // Resolution-outer-wrapper start
+        .Resolution-outer-wrapper {
+            border: 1px solid $button-bg-color;
+            @include margin (null, null, 15px, null);
+            @include size(null, 100%);
+            .issue-wrapper {
+                border: 1px solid $button-bg-color;
+                @include margin (12px, 12px, null, 12px);
+                h3 {
+                    font-size: 16px;
+                    font-weight: 600;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: left;
+                    @include margin (12px, 12px, 10px, 12px);
+                }
+                p {
+                    font-size: 15px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.6;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: $text;
+                    @include margin (0px, 12px, 12px, 12px);
+                }
+            }
+            // RESOLUTION STARTS
+            .Resolution-wrapper {
+                border: 1px solid $button-bg-color;
+                @include margin (12px, 12px, 12px, 12px);
+                h3 {
+                    font-size: 16px;
+                    font-weight: 600;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: normal;
+                    text-align: left;
+                    @include padding (12px, 12px, 12px, 12px);
+                }
+                // TABLE STARTS
+                table {
+                    thead {
+                        tr {
+                            th {
+                                font-size: 1rem;
+                                @include padding(0px, null, null, 13px);
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                // @include size(145px, 12px);
+                                // @include margin(0px, 0px, 0px, 12px);
+                                @include padding(0px, 12px, 0px, 12px);
+                                input {
+                                    @include size(100%, 12px);
+                                    font-size: 12px;
+                                    font-stretch: normal;
+                                    line-height: normal;
+                                    letter-spacing: normal;
+                                    box-shadow: none;
+                                    border: none;
+                                    height: 35px;
+                                    // @include padding(null, 5px, null, 10px);
+                                    // @include margin(0px, 10px, null, 10px);
+                                    @include border-radius(0px, 8px, 0px, 8px);
+                                    background-color: $button-bg-color;
+                                }
+                                .input-field {
+                                    @include size(79px, null);
+                                }
+                                .input-btn{
+margin: 10px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+                // TABLE END
+                // FORMATEADD WRAPPER START
+                .formate-add-wrapper {
+                    @include margin(0px, 12px, 0px, 12px);
+                    // TABLE START
+                    table {
+                        thead {
+                            tr {
+                                th {
+                                    @include padding(10px, 7px, 10px, 7px);
+                                    color: $white;
+                                    background-color: $blue;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        tbody {
+                            tr {
+                                td {
+                                    font-size: 10px;
+                                    color: $text;
+                                    text-align: center;
+                                    // @include padding(9px, 0px, 7px, 0px);
+                                    // padding: 0 5px;
+                                    input {
+                                        font-size: 12px;
+                                        font-stretch: normal;
+                                        line-height: normal;
+                                        letter-spacing: normal;
+                                        box-shadow: none;
+                                        border: none;
+                                        //width: 39%;
+                                        // max-width: 145px;
+                                        height: 35px;
+                                         @include padding(null, 0px, null, 10px);
+                                        // @include margin(0px, 8px, null, 8px);
+                                        @include border-radius(0px, 0px, 0px, 0px);
+                                        border: 1px solid $button-bg-color;
+                                        background-color: $table-body;
+                                        //width: 95%;
+                                        margin:  0 !important;
+                                        //width: 100%;
+                                       
+                                    }
+                                    #box {
+                                        @include size(100px, 12px);
+                                    }
+                                    .time-field {
+                                        @include size(80px, null);
+                                    }
+                                }
+                                .clockout-timepicker {
+                                    table {
+                                        margin: 0 auto;
+                                    }
+                                }
+                                .clockin-timepicker {
+                                    table {
+                                        margin: 0 auto;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // TABLE END
+                }
+                .clock-in-out-table {
+                    tbody {
+                        tr {
+                            td {
+                                max-width: 145px !important;
+                            }
+                        }
+                    }
+                }
+                // FORMATE ADD WRAPPER END
+                .button-btn-wrapper {
+                    @include margin(0px, 12px, 50px, null);
+                    @include padding(null, 12px, 0px, 12px);
+                    .btn {
+                        // @include msize(, null);
+                        font-size: 16px;
+                        font-weight: 500;
+                        color: $white;
+                        background-color: $button;
+                        @include border-radius(0px, 8px, 0px, 8px);
+                        position: absolute;
+                        @include position(null, 33px, null, null);
+                        @include margin(null, 12px, 12px, null);
+                        @include padding(null, 20px, null, 20px);
+                    }
+                }
+            }
+            // RESOLUTION END
+        }
+        // input[type="radio"] {
+        // //   display: none;
+        // }
+        input[type="radio"]+label:before {
+            content: "";
+            /* create custom radiobutton appearance */
+            @include size(null, 14px);
+            @include padding(2px, 2px, 2px, 2px);
+            @include margin(null, 5px, null, 3px);
+            min-width: 14px;
+            /* background-color only for content */
+            background-clip: content-box;
+            border: 2px solid $login-text;
+            // background-color: $text;
+            @include border-radius(50%, 50%, 50%, 50%);
+        }
+        /* appearance for checked radiobutton */
+        input[type="radio"]:checked+label:before {
+            background-color: $button;
+            border: 2px solid $button;
+            color: $button;
+        }
+        //  custom check-box styles
+        /* This css is for normalizing styles. You can skip this. */
+        .custom-check-box {
+            *,
+            *:before,
+            *:after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            .new {
+                padding: 50px;
+            }
+            .form-group {
+                display: block;
+                margin-bottom: 15px;
+            }
+            .form-group input {
+                padding: 0;
+                height: initial;
+                width: initial;
+                margin-bottom: 0;
+                display: none;
+                cursor: pointer;
+            }
+            .form-group label {
+                position: relative;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+                color: $black;
+            }
+            .form-group label:before {
+                content: '';
+                -webkit-appearance: none;
+                background-color: transparent;
+                border: 2px solid $blue;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                padding: 7px;
+                display: inline-block;
+                position: relative;
+                vertical-align: middle;
+                cursor: pointer;
+                margin-right: 5px;
+            }
+            .form-group input:checked+label:after {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 5px;
+                height: 10px;
+                border: solid $blue;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+//media-start
+@media (max-width:769px){
+    .clockin-out-select{
+        flex-direction: column;
+    }
+}

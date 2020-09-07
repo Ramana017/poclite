@@ -1,0 +1,106 @@
+<app-header></app-header>
+<div class="charts-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 p-0 side-bar">
+
+                <ul>
+                    <li><a>Visits</a></li>
+                    <!-- <li><a >Admission</a></li>
+                    <li><a >Auths</a></li>
+                    <li><a >PS</a></li>
+                    <li><a >DCS</a></li> -->
+                </ul>
+
+            </div>
+            <div class="col-md-10 chart-content p-0 col-xs-12">
+
+                <div class="chart-content-header d-flex py-2  mb-5 justify-content-center">
+                    <div class="site-dropdown text-center px-2">
+                        <p class="m-0">Site </p>
+                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="selctedItems" (onClose)="siteselect()" (onSelectAll)='siteAllselect()' (onDeSelectAll)="siteDeselect()" [settings]="dropdownSettings">
+
+                        </angular2-multiselect>
+                    </div>
+                    <div class="start-date text-center px-2">
+                        <p class="m-0">Scheduled Start </p>
+                        <input type="text" maxlength=10 bsDatepicker [(ngModel)]="startdate" (bsValueChange)='datechanger?dateenter($event,endDate):""' placeholder="MM/DD/YYYY">
+                    </div>
+                    <div class="end-date text-center px-2">
+                        <p class="m-0">Scheduled End </p>
+                        <input type="text" maxlength=10 bsDatepicker [(ngModel)]="endDate" (bsValueChange)='datechanger?dateenter(startdate,$event):""' bsDatepicker [minDate]="startdate" placeholder="MM/DD/YYYY">
+                    </div>
+                    <!-- <div class="category-dropdown text-center px-2">
+                        <p class="m-0">Category</p>
+                        <angular2-multiselect [data]="categorylist" [(ngModel)]="selectecatogery" [settings]="dropdownSettings2">
+
+                        </angular2-multiselect>
+                    </div> -->
+                    <div class="category-dropdown text-center px-2">
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="reset()">Reset</button>
+                        </div>
+
+                    </div>
+                    <div class="category-dropdown text-center px-2">
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="siteFilterChange()">Refresh</button></div>
+
+                    </div>
+                </div>
+
+
+                <div class="chart-content-body d-flex col-md-12">
+                    <div id='canvas' class="mx-auto  px-6"></div>
+                    <div id='canvas2' class="mx-auto  px-6"></div>
+
+                    <div class="chart-popup">
+                        <ng-template id="template chartpopup" #template>
+                            <div class="modal-header fixed-top">
+                                <h4 class="modal-title pull-left">PS - {{psname|titlecase}}</h4>
+                                <!-- <span (click)="exportexcel()" title="Download"><i class="fa fa-download text-white px-3 py-2 f-18"></i> </span> -->
+
+                                <button type="button" class="close pull-right" aria-label="Close" style="color:#fff" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+
+
+                            </div>
+                            <div class="modal-body">
+                                <table class="table-bordered chart-detail-table table-responsive-md mx-auto " id="excel-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Scheduled Start
+                                            </th>
+                                            <th>
+                                                Scheduled End
+                                            </th>
+                                            <th *ngIf='searchflag==2'>
+                                                DCS Name
+                                            </th>
+                                            <th>
+                                                Service Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let record of popupdata; let i=index">
+                                            <td>{{record.schBeginDateTime|date:'MM/dd/yyy hh:mm a'}}</td>
+                                            <td>{{record.schEndDateTime|date:'MM/dd/yyy hh:mm a'}}</td>
+                                            <td *ngIf='searchflag==2'>{{record.dcsName}}</td>
+                                            <td>{{record.serviceName}}</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                                <div class="page-item">
+                                    <button type="button" class="btn common-table-btn chart-button mt-4 pull-right" (click)="exportexcel()"><i class="fa fa-download"></i> &nbsp;<span>Download</span> </button></div>
+                            </div>
+                        </ng-template>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

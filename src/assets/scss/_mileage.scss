@@ -1,0 +1,153 @@
+// main .mileage-wrapper start
+.mileage-wrapper{
+    background-color: $table-body;
+    @include size(null, 100%);
+    .wrapper{
+        @include margin(null, 3.3125rem, null, 3.3125rem);
+        border: 1px solid $button-bg-color;
+        @include margin(null, null, 20px, null);
+        // @include padding(null, 12px, null, null);
+        background-color: $table-body;
+
+        .heading-wrapper{
+            @include padding(13px, 0px, 0px, 0px);
+            p{
+                font-size: 16px;
+                @include padding(0px, 0px, 0px, 12px);
+                @include margin(18px, null, null, null);
+            }
+        }
+
+        // costom .wrapper start 
+        .custom-wrapper{
+            @include padding(0px, 0px, 12px, 12px);
+            @include margin(0px, 0px, 0px, 13px);
+        p{
+            @include padding(1px, 15px, 0px, 18px);
+            font-size: 15px;
+            color: $text;
+        }
+        }
+        // custom wrapper end 
+        // .clock-detail-wrapper start 
+        .clock-detail-wrapper{
+            @include margin(null, 12px, 12px, 12px);
+            @include padding(null, 12px, 12px, null);
+            border: 1px solid $button-bg-color;
+            @include size(null, null);
+            h3{
+                font-size: 16px;
+                font-weight: 500;
+                @include msize(32px, 12px);
+                @include padding(12px, 0px, 13px, 12px);
+            } 
+            p{
+                // height: 33px;
+                font-family: AvenirLTStd-Roman;
+                font-size: 15px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: left;
+                color: $text;
+                // @include size(405px, null);
+                @include padding(12px, 0px, 0px, 12px);
+            }
+            h4{
+                font-size: 15px; 
+                font-weight: 600;
+                @include msize(32px, 12px);
+                @include padding(12px, 0px, 13px, 12px)
+            }
+            .travel-time {
+            #input{
+                width: 100px;
+                font-size: 15px;
+                font-weight: 500;
+                background-color:$btn-light;
+                @include border-radius(0px, 8px, 0px, 8px);
+                @include margin(5px, 5px, 12px,12px);
+                @include padding(10px, 12px, 8px, 12px);
+            }
+            p{
+                width: 29px;
+                height: 10px;
+                font-family: AvenirLTStd-Roman;
+                font-size: 14px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: left;
+                color: $black;
+            }
+          }
+           
+    }
+    // .clock-detail-wrapper end 
+    // table start 
+    .table-responsive{
+        overflow-y: hidden;
+    table{
+        @include margin(12px, null, 0px, null);
+       
+     
+    thead{
+        tr{
+        th{
+           @include padding(null, null, 3px, 12px); 
+        }
+    }
+    }
+        tbody{
+    tr{
+        @include margin(null, 12px, null,12px);
+        td{
+            min-height: 45px;
+            #time-out{
+                outline: none;
+            border: none;
+            box-shadow: none;
+                min-width: 90px;
+                min-height: 40px;
+                background-color: $btn-light;
+                @include margin(null, 12px, 12px, 0px);
+                @include border-radius(0px, 8px, 0px, 8px);
+            }
+        }
+    }
+        }
+    }
+    }
+    // table end 
+    } 
+    .button-btn-wrapper{
+        @include margin(12px, null, 12px,null);
+        @include padding(null, null, null,12px);
+        
+        .btn{
+            // @include msize(, null);
+            min-width: 100px;
+            font-size: 16px;
+            font-weight: 500;
+            color: $white;
+            background-color: $test-button;
+            @include border-radius(0px, 8px, 0px, 8px);
+            @include margin(null, 12px, null,null);
+            @include padding(null, 12px, null, 12px);
+        }
+        .second-button{
+            min-width: 100px;
+            font-size: 16px;
+            font-weight: 500;
+            color: $white;
+            background-color: $button;
+            @include border-radius(0px, 8px, 0px, 8px);
+            @include padding(null, 12px, null, 12px);
+        }
+    }
+}
+// main .mileage-wrapper end 

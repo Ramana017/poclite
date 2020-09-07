@@ -1,0 +1,303 @@
+<app-header></app-header>
+<!-- {{tableData.length}} -->
+<div class="summary-wrapper">
+    <div class="custum-wrapper">
+        <!-- Table start from here   -->
+        <div class="summary-heading">
+            <!-- <h6>Summary</h6> -->
+        </div>
+
+        <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="gps-box" [ngStyle]="gpsExceptionCount > 5 ?gpsExceptionCount>20?{'background-color':'red'}:{'background-color':'#ff7979'}:{'background-color':'#a1f863'}"> -->
+                    <!-- <h5 class="inner-item-gps">GPS Discrepancy</h5>
+                        <div>
+                            <h6>{{gpsExceptionCount}}</h6>
+                        </div> -->
+                    <div id='gpsGuage'></div>
+                    <b><p class="f-15 mt-n4">{{gpsExceptionCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12 ">GPS Discrepancy</h5>
+                    <!-- </div> -->
+
+                    <!-- <ngx-gauge [thresholds]="thressholdConfig" [cap]="round" [aria-label]="gaugeLabel" [thick]=8 [type]="gaugeType" [value]="gpsExceptionCount" [size]=150 [label]="gaugeLabel">
+                    </ngx-gauge> -->
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="gps-box" [ngStyle]="callerIdExceptionCount > 5 ?callerIdExceptionCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
+                        <h5 class="inner-item-id">Invalid Caller ID</h5>
+                        <div>
+                            <h6>{{callerIdExceptionCount}}</h6>
+                        </div> -->
+                    <div id='invalidGuage'></div>
+                    <b><p class="f-12 mt-n4">{{callerIdExceptionCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Caller ID</h5>
+                    <!-- </div> -->
+
+
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="gps-box" [ngStyle]="scheduleVarExceptionCount > 5 ?scheduleVarExceptionCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
+                        <h5 class="inner-item-gps">Schedule Variance</h5>
+                        <div>
+                            <h6>{{scheduleVarExceptionCount}}</h6>
+                        </div>
+                    </div> -->
+                    <div id='scheduleGuage'></div>
+                    <b><p class="f-12 mt-n4">{{scheduleVarExceptionCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12">Schedule Variance</h5>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="caller-id-box" [ngStyle]="incompleteClockInOutCount > 5 ?incompleteClockInOutCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
+                        <h5 class="inner-item-id pink-box">Missed Clock In/Out</h5>
+                        <div>
+                            <h6>{{incompleteClockInOutCount}}</h6>
+                        </div>
+                    </div> -->
+                    <div id='clockGuage'></div>
+                    <b><p class="f-15 mt-n4">{{incompleteClockInOutCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12">Missed Clock In/Out</h5>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="gps-box" [ngStyle]="excessiveTtCount > 5 ?excessiveTtCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
+                        <h5 class="inner-item-gps">Excessive TT</h5>
+                        <div>
+                            <h6>{{excessiveTtCount}}</h6>
+                        </div>
+                    </div> -->
+                    <div id='travelGuage'></div>
+                    <b><p class="f-12 mt-n4"> {{excessiveTtCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12">Excessive TT</h5>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <!-- <div class="id-box" [ngStyle]="excessiveMileageCount >5 ? excessiveMileageCount>20?{'background-color':'red'}:{'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
+                        <h5 class="inner-item-id">Excessive Mileage</h5>
+                        <div>
+                            <h6>{{excessiveMileageCount}}</h6>
+                        </div>
+                    </div> -->
+
+                    <div id='mileageGuage'></div>
+                    <b><p class="f-12 mt-n4">{{excessiveMileageCount}}</p></b>
+                    <h5 class="inner-item-gps mt-n3 f-12">Excessive Mileage</h5>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- **************  -->
+        <div class="outer-wrapper">
+            <div id="table-scroll" class="table-scroll">
+                <div class="table-width-scroll">
+                    <table id="main-table" class="main-table" cellpadding="0">
+                        <thead class="thead-row">
+                            <tr class="pb-0">
+                                <th scope="col" class="sticky-top table-header-inner">
+                                    <h5 class="mainheading-wrapper">Site</h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <div class="ng-autocomplete code-dropdown" style="width: 100%;">
+                                            <!-- <ng-autocomplete [data]="siteList" [searchKeyword]="sitekeyword" placeHolder="code" (inputCleared)="selectFilterEvent('','site')" (selected)='selectFilterEvent($event,"site")' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
+                                            </ng-autocomplete>
+                                            <ng-template style="width: 100%;" #itemTemplate let-item>
+                                                <a [innerHTML]="item.siteName"></a>
+                                            </ng-template> -->
+                                            <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="selctedItems" (onClose)="siteselect()" (onSelectAll)='siteAllselect()' (onDeSelectAll)="siteDeselect()" (onSelect)="onItemSelect($event)" [settings]="dropdownSettings">
+                                            </angular2-multiselect>
+
+                                        </div>
+
+                                    </div>
+                                </th>
+                                <th scope="col" class="sticky-top table-header-wrapper">
+                                    <h5 class="mainheading-wrapper">PS</h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <div class="ng-autocomplete" style="width: 100%;">
+                                            <ng-autocomplete [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS" (inputCleared)="resetfilter ? selectFilterEvent('','ps'):''" (selected)='selectFilterEvent($event,"ps")' [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+                                            </ng-autocomplete>
+                                            <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                                <a [innerHTML]="item.psName"></a>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="sticky-top table-header-wrapper">
+                                    <h5 class="mainheading-wrapper">DCS</h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <div class="ng-autocomplete" style="width: 100%;">
+                                            <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="keyword" #autodcs placeHolder="DCS" (inputCleared)="resetfilter ? selectFilterEvent('','dcs'):''" (selected)='selectFilterEvent($event,"dcs")' [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate">
+                                            </ng-autocomplete>
+                                            <ng-template style="width: 100%;" #itemTemplatedcs let-item>
+                                                <a [innerHTML]="item.dcsName"></a>
+                                            </ng-template>
+
+                                            <ng-template #notFoundTemplate let-notFound>
+                                                <div [innerHTML]="notFound" class="text-dark"></div>
+                                            </ng-template>
+                                        </div>
+
+
+                                    </div>
+                                </th>
+                                <th scope="col" class="sticky-top table-header-wrapper">
+                                    <h5 class="mainheading-wrapper">CSS</h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="csskeyword" #autocss placeHolder="CSS" [initialValue]='intialcssvalue' (inputCleared)="resetfilter ? selectFilterEvent('','css'):''" (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""'
+                                            [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate">
+                                        </ng-autocomplete>
+                                        <ng-template style="width: 100%;" #itemTemplatecss let-item>
+                                            <a [innerHTML]="item.cssName"></a>
+                                        </ng-template>
+                                    </div>
+                                </th>
+                                <th scope="col" class="sticky-top table-header-inner">
+                                    <h5 class="mainheading-wrapper">Service </h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="serviceKeyword" #autoservice placeHolder="Service" (inputCleared)="resetfilter ? selectFilterEvent('','service'):''" (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
+                                            [notFoundTemplate]="notFoundTemplate">
+                                        </ng-autocomplete>
+                                        <ng-template style="width: 100%;" #itemTemplateservice let-item>
+                                            <a [innerHTML]="item.serviceName"></a>
+                                        </ng-template>
+                                    </div>
+                                </th>
+                                <th scope="col" class="sticky-top table-header-inner-wrapper">
+                                    <h5 class="mainheading-wrapper">Scheduled Start </h5>
+                                    <div class="input-outter-wrapper dropdown">
+
+                                        <input type="text" placeholder="start Time" maxlength=10 [(ngModel)]="intialStartDate" (bsValueChange)='datechanger?dateenter($event,currentDate):""' bsDatepicker [minDate]="minimumintialdatetwo" [maxDate]="todayDate" class="date-input">
+                                    </div>
+                                </th>
+                                <th scope="col " class="sticky-top table-header-inner-wrapper">
+                                    <h5 class="mainheading-wrapper ">Scheduled End </h5>
+                                    <div class="input-outter-wrapper dropdown ">
+
+                                        <input type="text" placeholder="start Time" maxlength=10 [(ngModel)]="currentDate" [minDate]='intialStartDate' (bsValueChange)="datechanger? dateenter(intialStartDate,$event):''" [maxDate]="todayDate" bsDatepicker class="date-input">
+
+                                    </div>
+                                </th>
+                                <th scope="col " class="sticky-top table-header-inner-wrapper">
+                                    <h5 class="mainheading-wrapper ">Clock In</h5>
+                                    <div class="input-outter-wrapper dropdown ">
+
+                                        <input type="text" maxlength="0" placeholder="" class="date-input">
+
+                                    </div>
+                                </th>
+                                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                                    <h5 class="mainheading-wrapper ">Clock Out </h5>
+                                    <div class="input-outter-wrapper dropdown ">
+
+                                        <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                                    </div>
+                                </th>
+                                <th scope="col " class="sticky-top  table-header-inner-wrapper ">
+                                    <h5 class="mainheading-wrapper ">Exception</h5>
+                                    <div class="input-outter-wrapper dropdown">
+                                        <angular2-multiselect #ffff [data]="exception" [(ngModel)]="exceptionSelected" (onDeSelect)="exceptionDeselect()" (onClose)="exceptionselect()" (onFilterSelectAll)="filterchecking()" (onSelectAll)="ffff.closeDropdown()" (onDeSelectAll)="this.exceptionDeselectALL()"
+                                            [settings]="exceptiondropdownSettings">
+
+                                        </angular2-multiselect>
+
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let data of tableData let i=index " class="table-border ">
+                                <td class="body-cell col2 text-color sitecodeinner">
+                                    <div [tooltip]="sitecontent" tooltipPlacement="right">{{data.siteCode}}
+                                        <ng-template #sitecontent>{{data.siteName}}</ng-template>
+                                    </div>
+                                </td>
+                                <td class="body-cell col2 ">{{data.psName}}</td>
+                                <td class="body-cell col3 ">{{data.dcsName}}</td>
+                                <td class="body-cell col4 ">{{data.css}}</td>
+                                <td class="body-cell text-color col4 Serviceprocedurecode">
+                                    <div [tooltip]="tipContent">
+                                        {{data.procedureCode}}
+                                        <ng-template #tipContent><b>{{data.serviceName}}</b></ng-template>
+                                    </div>
+
+                                </td>
+                                <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
+                                <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
+                                <td class="body-cell col4 ">{{data.arrivalDateTime}}</td>
+                                <td class="body-cell col4 ">{{data.departureDateTime}}</td>
+                                <td class="body-cell col4 ml-0 pl-0 ">
+                                    <div class="d-flex">
+                                        <div class="icon-wrapper " *ngIf="data.ArrGpsException==1||data.DepGpsException==1 " (click)="correctException(i,0)"><i class="fas fa-map-marker-alt" title="GPS Discrepancy"></i></div>
+                                        <div class="icon-wrapper " *ngIf="data.scheduleVarException==1 "><i class="fas fa-calendar-alt" (click)="correctException(i,1)" title="Scheduled Variance"></i>
+                                        </div>
+                                        <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 " (click)="correctException(i,2)"><i class="fas fa-phone-slash" title="Invalid Caller ID"></i></div>
+                                        <div class="icon-wrapper " *ngIf="data.arrTravelTimeException==1 " (click)="correctException(i,3) ">
+                                            <i class="fas fa-stopwatch" title="Travel Time Exception"></i>
+                                        </div>
+                                        <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 " (click)="correctException(i,4) "><i class="fas fa-tachometer-alt" title="Mileage Exception"></i></div>
+                                        <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 " (click)="clockException(i) "><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
+                                        <!-- <div class="icon-wrapper " (click)="correctException(i,5) "><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div> -->
+
+                                    </div>
+
+
+                                    <!-- <div class="d-flex ">
+
+                                    </div> -->
+                                </td>
+                            </tr>
+                            <!-- <tr *ngIf="tablelength <1 " class="pl-3 no-data-text col-12">
+                                No Data To Display
+
+                                <div >
+                                    No Data To Display
+                                </div>
+                            </tr> -->
+                        </tbody>
+
+                    </table>
+                </div>
+                <div *ngIf="tablelength <1 " class="text-center no-data-text">
+                    No Data To Display
+                </div>
+            </div>
+        </div>
+        <!-- **************  -->
+        <!-- Table end  -->
+        <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-n1 ">
+            <div class="pagination  justify-content-end pagination-button">
+                <div class="page-item">
+                    <button type="button" (click)='tableControl()' class=" btn common-table-btn reset-button mb-2">Refresh</button>
+                    <button type="button" (click)='resetall()' class="btn common-table-btn reset-button mb-2">Reset</button>
+                </div>
+                <div class="page-item">
+                    <h3>Per page</h3>
+                </div>
+                <select [(ngModel)]="perpage " (change)="pagereset()" class="bg-white border-0 outline-0 ">
+                    <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}</option>
+                </select>
+                <div class="page-item ">
+                    <h3>Showing {{ tablelength==0 ? 0 : lowerBound}} to {{tablelength==0 ? 0:upperBound>maxCount?maxCount:upperBound}} of {{maxCount}}</h3>
+                </div>
+                <div class="page-item "><button type="button " [disabled]="lowerBound<perpage||tablelength==0 " [ngClass]="lowerBound<=1||tablelength==0  ? 'btn prev-btn primary-button': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() ">Prev</button></div>
+                <div class="page-item "><button type="button " [disabled]="upperBound>= maxCount ||tablelength==0 " [ngClass]="upperBound>= maxCount ||tablelength==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()">Next</button>
+                </div>
+            </div>
+            <!-- Pagination end  -->
+        </div>
+
+    </div>
+
+    <!-- <button type="button" class="btn btn-primary" (click)="openModalWithClass(template)">Create template modal</button>
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <app-correctionheader></app-correctionheader>
+        </div>
+    </ng-template> -->
