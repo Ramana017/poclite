@@ -130,6 +130,7 @@
   label {
     margin-bottom: 0 !important;
     font-size: 15px;
+    color: #212529;
   }
 }
 
@@ -385,6 +386,8 @@ form {
   }
 }
 
+.site-container{
+
 
 .multiselect-angular {
 
@@ -421,10 +424,10 @@ form {
 
   .selected-list .c-btn {
 
-    width: 244px;
+    width: 244px !important;
   }
 }
-
+}
 // .form-control:invalid:focus {
 //   border-color: #dc3545;
 //   border: 1px solid #dc3545 !important;
