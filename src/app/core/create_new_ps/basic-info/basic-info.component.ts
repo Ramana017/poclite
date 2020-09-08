@@ -119,7 +119,7 @@ export class BasicInfoComponent implements OnInit {
         "officeId": (this.siteId),
         "updatedUserId": "47",
         "psId": this.psId,
-        "mappedOfficeIds": mappedArray,
+        "mappedOfficeIds": mappedArray.toString(),
       };
       console.log(JSON.stringify(jsonObj));
       let parameters = JSON.stringify(jsonObj)

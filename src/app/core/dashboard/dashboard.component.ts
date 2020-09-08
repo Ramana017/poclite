@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 declare var $: any;
 import * as d3 from 'd3';
 import * as  GaugeChart from 'gauge-chart';
+import { ZipcodeService } from 'src/app/services/zipcode.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +11,10 @@ import * as  GaugeChart from 'gauge-chart';
 })
 
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DashboardService,private zipcode :ZipcodeService) {
+    sessionStorage.removeItem('psDetails');
+    sessionStorage.removeItem('guarantorDetails');
+  }
   public dcsList: any;
   public visitsData=[];
   public authorizationList: any;
@@ -23,6 +27,8 @@ export class DashboardComponent implements OnInit {
   public visitsList: any;
   private arrayData =['scrolling alert message','sample text message scrolling','alert scrolling text']
   public scrollData: any;
+  public lowerBound=1;
+  public upperBound=1;
   ngOnInit() {
     this.scrollDataFun();
     this.userData = { userId: '47' };
@@ -136,7 +142,7 @@ getVisitsByData(e) {
     });
   }
 getDcsList() {
-  const userData = { dcsId: '0', userId: '47' };
+  const userData =  { "userId":"47", "lowerBound":"1", "upperBound":"10" }
   this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
     this.dcsList = res;
   });
@@ -146,7 +152,7 @@ clearDcsList() {
 }
 // Authorization
 getAuthorizationList() {
-  const userData = { userId: '47' };
+  const userData ={"userId":"47","lowerBound":"1","upperBound":"10"}
   this.dashboardService.getAuthorizationsList(JSON.stringify(userData)).subscribe((res) => {
     this.authorizationList = res;
   });
@@ -162,14 +168,24 @@ selectAuthorizationByPsId(PsId) {
     this.getAuthorizationList();
   }
   // PsList
-  getPsList() {
-    this.dashboardService.getPSList(JSON.stringify(this.userData)).subscribe((res) => {
-      this.psList = res;
-    });
+  // getPsList() {
+  //   this.dashboardService.getPSList(JSON.stringify(this.userData)).subscribe((res) => {
+  //     this.psList = res;
+  //   });
+  // }
+  getPsList(){
+    this.upperBound=this.upperBound+10;
+  let parameters = { 'userId': 47, 'lowerBound': this.lowerBound, 'upperBound': this.upperBound };
+  this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
+    let data :any=res
+        this.psList = data.psList;
+        console.log(this.psList)
+      });
   }
 // Admissions
   getAdmissionsList() {
-    this.dashboardService.getAdmissionsList(JSON.stringify(this.userData)).subscribe((res) => {
+    let params={"userId":"47","lowerBound":"1","upperBound":"10"}
+    this.dashboardService.getAdmissionsList(JSON.stringify(params)).subscribe((res) => {
       this.admissionsList = res;
     });
   }
