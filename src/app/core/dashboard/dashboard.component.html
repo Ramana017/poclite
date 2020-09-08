@@ -10,17 +10,12 @@
                         <div class="row m-0">
                             <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                                 <div class="widget-block">
-                                    <div
-                                        class="widget-header d-flex  align-items-center justify-content-between blue-bg">
+                                    <div class="widget-header d-flex  align-items-center justify-content-between blue-bg">
 
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">PS</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword"
-                                                #autops placeHolder="PS search filter"
-                                                (inputCleared)="selectFilterEvent('',false)"
-                                                (selected)='selectFilterEvent($event,true)'
-                                                [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                 <a [innerHTML]="item.PSName"></a>
@@ -28,9 +23,7 @@
                                         </div>
 
                                         <div class="d-flex align-items-center ">
-                                            <button
-                                                class="d-flex btn-common widget-header-button align-items-center mr-2 "
-                                                [routerLink]='["/registration-re/child-basic"]'>
+                                            <button class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
                                                 <i class="fas fa-plus-circle mr-2 mt-0"></i>
                                                 <span>Create</span>
                                             </button>
@@ -91,12 +84,9 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
-                                                                    <div
-                                                                        class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
                                                                                 <a href="javascript:void(0)"
@@ -137,18 +127,15 @@
                                     </div>
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
-                                        <select [(ngModel)]='psPerPage' class="border-0 mr-2">
+                                        <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
                                             <option [ngValue]="5">5</option>
                                             <option [ngValue]="10">10</option>
                                             <option [ngValue]="15">15</option>
                                             <option [ngValue]="20">20</option>
 
                                         </select>
-                                        <button type="button" class="btn-common-small mx-2" [disabled]='psLowerBound==1'
-                                            (click)="this.psPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2"
-                                            [disabled]="psUpperBound>=pstotalRecordsCount"
-                                            (click)="this.psPageNext()">Next</button>
+                                        <button type="button" class="btn-common-small mx-2" [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -158,16 +145,11 @@
                             <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
                                 <div class="widget-block">
 
-                                    <div
-                                        class="widget-header d-flex  align-items-center justify-content-between p-1 green-bg">
+                                    <div class="widget-header d-flex  align-items-center justify-content-between p-1 green-bg">
                                         <div class="d-flex align-items-center">
 
                                             <h5 class="text-white m-0 pl-2 mr-2">DCS</h5>
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword"
-                                                #autops placeHolder="DCS search filter"
-                                                (inputCleared)="selectFilterEvent('')"
-                                                (selected)='selectDcsListByDcsId($event)'
-                                                [itemTemplate]="itemTemplateDcs">
+                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="selectFilterEvent('')" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateDcs">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateDcs let-item>
@@ -218,12 +200,9 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
-                                                                    <div
-                                                                        class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
                                                                                 <a class="text-white">
@@ -278,15 +257,11 @@
                                 <div class="widget-block">
 
 
-                                    <div
-                                        class="widget-header d-flex  align-items-center justify-content-between p-1 peach-bg">
+                                    <div class="widget-header d-flex  align-items-center justify-content-between p-1 peach-bg">
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">Admissions</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword"
-                                                #autops placeHolder="Admissions search filter"
-                                                (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)'
-                                                [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Admissions search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -334,12 +309,9 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
-                                                                    <div
-                                                                        class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
                                                                                 <a href="javascript:void(0)"
@@ -393,17 +365,11 @@
                                 <div class="widget-block">
 
 
-                                    <div
-                                        class="widget-header d-flex  align-items-center justify-content-between p-1 lightblue-bg">
+                                    <div class="widget-header d-flex  align-items-center justify-content-between p-1 lightblue-bg">
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">Authorization services</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList"
-                                                [searchKeyword]="authorizationkeyword" #autops
-                                                placeHolder="Authorization search filter"
-                                                (inputCleared)="clearAuthorizationList()"
-                                                (selected)='selectAuthorizationByPsId($event)'
-                                                [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="Authorization search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -452,12 +418,9 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
-                                                                    <div
-                                                                        class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
+                                                                    <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
                                                                                 <a href="javascript:void(0)"
