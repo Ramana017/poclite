@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: "app-admission-details",
@@ -9,7 +11,9 @@ import { ZipcodeService } from 'src/app/services/zipcode.service';
 })
 export class AdmissionDetailsComponent implements OnInit {
   public bsModelRef: BsModalRef;
-  public Keyword = 'userName'
+  public admissionForm:FormGroup;
+  public Keyword = 'userName';
+  public coordinatorValue : string;
   public coordinatorList = [];
   public listingPageData = [];
   field1;
@@ -17,6 +21,10 @@ export class AdmissionDetailsComponent implements OnInit {
   id = 'id';
   name = 'name';
   public clientType;
+  public coordinatorData;
+  public AdmissionDate: Date;
+  public FirstVisitDate: Date;
+  public referredDate: Date;
   public clientClass;
   public guarantorName;
   public diagnosisList;
@@ -34,27 +42,42 @@ export class AdmissionDetailsComponent implements OnInit {
   rows: any;
   ds: any;
   numbers = [];
-  constructor(public service: ZipcodeService, public modalService: BsModalService) {
+  constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService) {
     for (let i = 1; i <= 100; i++) {
       this.numbers.push(i);
     }
+    this.newForm();
   }
   ngOnInit() {
     this.upperBound = this.perPage;
     this.newAttribute = { rank: null, name: '', code: '' };
-    // this.fieldArray.push(this.newAttribute)
     this.upperBound = this.perPage;
     this.getAdmissionLookups();
     this.getDiagnosisData();
+  }
+  private newForm(): void {
+    this.admissionForm = this.fb.group({
+
+      firstVisitDate: ['', Validators.required],
+      admissionDate: ['', Validators.required],
+      referredDate: ['', Validators.required],
+      coordinatorId: ['', Validators.required],
+
+
+    });
+  }
+  get f() {
+    return this.admissionForm.controls;
+
   }
 
   public getAdmissionLookups(): void {
     let params = { "userId": 47, "psId": 1201, "guarantorId": 1190 };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
-        console.log(data)
-        let data1: any = data;
-        this.coordinatorList = data1.coordinatorList;
+        console.log(data);
+        this.coordinatorData = data;
+        this.coordinatorList = data.coordinatorList;
         this.clientType = data.clientType;
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
@@ -92,7 +115,6 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     }
   }
-
   public pagereset(): void {
     console.log(this.perPage);
     this.diagnosisList.length = 0;
@@ -110,7 +132,6 @@ export class AdmissionDetailsComponent implements OnInit {
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
         console.log(data);
-        // this.maxCount = data1.totalRecordsCount;
       })
   }
   public check(event, ind) {
@@ -121,25 +142,10 @@ export class AdmissionDetailsComponent implements OnInit {
     }
 
   }
-
-
   addFieldValue(template: TemplateRef<any>) {
-    // this.fieldArray.push(this.newAttribute)
-    // this.newAttribute = {};
+
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
 
-  }
-
-
-  deleteFieldValue(index) {
-    if (this.fieldArray.length !== 1) {
-      this.fieldArray.splice(index, 1);
-      console.log(this.selectedItems.length);
-    }
-    if (this.fieldArray.length === 0) {
-      console.log(this.fieldArray.length);
-      alert('value cant be null');
-    }
   }
   public deleteRow(index): void {
     this.selectedItems.forEach((ele, i) => {
@@ -148,6 +154,33 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(this.selectedItems);
       }
     });
+  }
+  savePs(){
+    console.log(this.admissionForm.value)
+   // this.admissionForm.get('coordinatorId').setValue(event);
+    let params ={
+      "psId":22948,
+      "coordinatorId":this.admissionForm.value.coordinatorId.userInfoId,
+      "psGuarantorId":23040,
+      "admitDate":this.date.transform(this.admissionForm.value.admissionDate,'MM/dd/yyyy'),
+      "firstVisitDate": this.date.transform(this.admissionForm.value.firstVisitDate,'MM/dd/yyyy'),
+      "referralDate":this.date.transform(this.admissionForm.value.referredDate,'MM/dd/yyyy'),
+      "clientTypeId":this.coordinatorData.clientTypeId,
+      "clientClassId":this.coordinatorData.clientClassId,
+      // "primaryDiagnosisCode":"E8010",
+      // "otherDiagnoses":"E800,E8000,E8001,E8002,E8003",
+      "primaryDiagnosisCode":"37851",
+      "otherDiagnoses":"3790,37886,37922,37924",
+      "officeId":191,
+      "userId": 47
+    }
+    alert("lhgdsfdfghjkl;'")
+    console.log(params)
+    this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
+      data => {
+        console.log(data);
+      })
+
   }
 
 

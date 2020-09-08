@@ -49,7 +49,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   submitted = false;
   constructor(private fb: FormBuilder, public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
-
+    this.getPayorPlanData();
     this.authorizationForm = this.fb.group({
 
       genderId: ['', Validators.required],
@@ -90,45 +90,35 @@ export class PayorPlanDetailsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // const obj = this.authorizationForm.value;
-    // obj.stateName = this.zipDetails.state;
-    // obj.countyName = this.zipDetails.county;
-    // obj.timeZone = this.zipDetails.timeZone;
-    // obj.addressTypeList1 = this.locationName;
-    // obj.numberName = this.phone;
-    // obj.site = this.siteId;
-    // if (this.authorizationForm.valid) {
-    //   this.regis = this.authorizationForm.value;
-    // } else {
-    //   alert('Fill the required fields');
-    // }
     console.log(this.authorizationForm.value)
-    //   localStorage.setItem('regis', JSON.stringify(obj));
     this.user = JSON.parse(localStorage.getItem('regis'));
-    // tslint:disable-next-line: align
 
     // this.service.savePs(JSON.stringify(jsonObj)).subscribe(res => {
     //   console.log(res, 'getting the saved ps details')
     // })
   }
+  public getPayorPlanData(): void {
+    let params = {"officeId":191,"privateDuty":0}
+    this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
+      data => {
+        console.log(data);
 
+
+      })
+  }
   basicDetails() {
     let jsonObj = { 'userId': '47' };
-
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
       this.lookupDetails = data;
-      //   console.log(this.lookupDetails);
+      console.log(this.lookupDetails);
       this.saluationId = this.lookupDetails.salutationList;
       this.userMappedOffices = this.lookupDetails.userMappedOffices;
-
       this.addressTypeList = this.lookupDetails.addressTypeList;
       this.relationshipList = this.lookupDetails.relationshipList;
       this.maritalStatusList = this.lookupDetails.maritalStatusList;
       this.raceId = this.lookupDetails.raceList;
       this.phoneTypeList = this.lookupDetails.phoneTypeList;
       this.genderId = this.lookupDetails.raceList;
-
-
     });
   }
 
@@ -165,7 +155,7 @@ export class PayorPlanDetailsComponent implements OnInit {
 
   getzip(event) {
     const zip = this.authorizationForm.get('zipcode').value;
-    //  console.log(zip)
+    console.log(zip)
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
         this.zipDetails = data;

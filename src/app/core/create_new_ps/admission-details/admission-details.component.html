@@ -1,62 +1,62 @@
 <!-- <app-header></app-header> -->
 <div class="container-wrapper">
-    <div class="ps-registration-tabs-container">
-        <div class="bg-grey-l p-3">
+  <div class="ps-registration-tabs-container">
+    <div class="bg-grey-l p-3">
 
-            <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Admission Details</h4>
-            <form class="form-group" class="border-2">
-                <div class="d-flex align-items-center justify-content-between nav">
-                    <div class=" input-container-wrapper">
-                        <label class="">
-                            PS
-                        </label>
+      <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Admission Details</h4>
+      <form class="form-group" class="border-2" [formGroup]="admissionForm" (ngSubmit)="savePs()">
+        <div class="d-flex align-items-center justify-content-between nav">
+          <div class=" input-container-wrapper">
+            <label class="">
+              PS
+            </label>
 
-                        <div class="input-group ">
-                            <input type="text" class="form-control" value="{{PSName}}">
+            <div class="input-group ">
+              <input type="text" class="form-control"  value="{{PSName}}">
 
-                        </div>
+            </div>
 
-                    </div>
-                    <div class=" input-container-wrapper co-ordinator">
-                        <label class="">
-                            Coordinator<span class="text-danger">*</span>
-                        </label>
+          </div>
+          <div class=" input-container-wrapper co-ordinator">
+            <label class="">
+              Coordinator<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
-                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
-                                [itemTemplate]="itemTemplate">
-                            </ng-autocomplete>
-                            <ng-template style="width: 100%;" #itemTemplate let-item>
-                                <a [innerHTML]="item.userName"></a>
-                            </ng-template>
-                        </div>
-                    </div>
-                    <div class=" m-0 input-container-wrapper">
-                        <label class="">
-                            Guarantor
-                        </label>
+            <div class="input-group ">
+              <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword" formControlName="coordinatorId"
+                [itemTemplate]="itemTemplate">
+              </ng-autocomplete>
+              <ng-template style="width: 100%;" #itemTemplate let-item>
+                <a [innerHTML]="item.userName"></a>
+              </ng-template>
+            </div>
+          </div>
+          <div class=" m-0 input-container-wrapper">
+            <label class="">
+              Guarantor
+            </label>
 
-                        <div class="input-group">
-                            <input type="text" class="form-control" value="{{guarantorName}}">
-                        </div>
+            <div class="input-group">
+              <input type="text" class="form-control" value="{{guarantorName}}">
+            </div>
 
-                    </div>
-                    <div class=" m-0 input-container-wrapper pb-0">
-                        <label class="">
-                            Admission Date<span class="text-danger">*</span>
-                        </label>
+          </div>
+          <div class=" m-0 input-container-wrapper pb-0">
+            <label class="">
+              Admission Date<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
+            <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
-                                bsDatepicker>
+              <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
+              formControlName="admissionDate" bsDatepicker>
 
-                        </div>
+            </div>
 
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between nav">
-                    <!-- <div class=" m-0 input-container-wrapper pb-0">
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between nav">
+          <!-- <div class=" m-0 input-container-wrapper pb-0">
     <label class="">
     Admission Date<span class="text-danger">*</span>
     </label>
@@ -70,213 +70,216 @@
 
     </div> -->
 
-                    <div class=" m-0 input-container-wrapper pb-0">
-                        <label class="">
-                            First Visit Date<span class="text-danger">*</span>
-                        </label>
+          <div class=" m-0 input-container-wrapper pb-0">
+            <label class="">
+              First Visit Date<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
+            <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                bsDatepicker>
-                        </div>
+              <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+               formControlName="firstVisitDate"  bsDatepicker>
+            </div>
 
-                    </div>
-                    <div class=" m-0 input-container-wrapper pb-0">
-                        <label class="">
-                            Referred Date<span class="text-danger">*</span>
-                        </label>
+          </div>
+          <div class=" m-0 input-container-wrapper pb-0">
+            <label class="">
+              Referred Date<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                bsDatepicker>
-                        </div>
+            <div class="input-group ">
+              <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+               formControlName="referredDate"  bsDatepicker>
+            </div>
 
-                    </div>
-                    <div class=" m-0 input-container-wrapper pb-0">
-                        <label class="">
-                            Client Type<span class="text-danger">*</span>
-                        </label>
+          </div>
+          <div class=" m-0 input-container-wrapper pb-0">
+            <label class="">
+              Client Type<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
+            <div class="input-group ">
 
-                            <input type="text" placeholder="" value="{{clientType}}" class="form-control">
+              <input type="text" placeholder="" value="{{clientType}}" class="form-control">
 
-                        </div>
+            </div>
 
-                    </div>
-                    <div class=" m-0 input-container-wrapper pb-0">
-                        <label class="">
-                            Client Class<span class="text-danger">*</span>
-                        </label>
+          </div>
+          <div class=" m-0 input-container-wrapper pb-0">
+            <label class="">
+              Client Class<span class="text-danger">*</span>
+            </label>
 
-                        <div class="input-group ">
+            <div class="input-group ">
 
-                            <input type="text" placeholder="" class="form-control" value="{{clientClass}}">
+              <input type="text" placeholder="" class="form-control" value="{{clientClass}}">
 
-                        </div>
+            </div>
 
-                    </div>
-                </div>
-                <!-- <div class=" m-0 input-container-wrapper visibility-hidden display-none-sm">
+          </div>
+        </div>
+        <!-- <div class=" m-0 input-container-wrapper visibility-hidden display-none-sm">
 
     </div>
     <div class=" m-0 input-container-wrapper visibility-hidden display-none-sm">
 
     </div> -->
-            </form>
+      </form>
 
-            <h4 class="AvenirLTStd-Heavy py-2 m-0 f-size-16">ICD-10 Diagnosis Code <span class="text-danger">*</span>
-            </h4>
-            <div class="border-1 border-top-0">
-                <div class="table-responsive icd-table-container">
-                    <table class="table border-bottom diagnosis-code-table m-0">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="sticky-top"></th>
-                                <th scope="col" class="width-200 sticky-top">Rank</th>
-                                <th scope="col" class="width-200 sticky-top">Diagnosis Code </th>
-                                <th scope="col" class="sticky-top">
-                                    <div class="d-flex align-items-center nav justify-content-between">
-                                        Diagnosis Name
-                                        <span>
-                                            <button
-                                                class="d-flex btn-common widget-header-button align-items-center mr-2"
-                                                tabindex="0" (click)="addFieldValue(template)"><i
-                                                    class="fas fa-plus-circle mr-2 mt-0"></i><span>Add
-                                                    Diagnosis</span></button>
-                                        </span>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let field of fieldArray;let selected of selectedItems; let i = index">
-                                <td class="border-right delete-option">
-                                    <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
-                                        <span class="material-icons material-icon-remove">
-                                            delete
-                                        </span>
-                                    </div>
-                                </td>
-                                <td class="border-right form-input">
-                                    <select class="select-input">
-                                        <option *ngFor="let i of numbers">{{i}}
-                                        </option>
-                                    </select>
-                                </td>
-                                <td class="border-right form-input">
-                                    <!-- <input [(ngModel)]="selected.diagnosisCode" class="form-control" type="text" /> -->
-                                    <span class="diagnosis-code">{{selected.diagnosisCode}}</span>
-                                </td>
-                                <td class="form-input">
-                                    <!-- <input [(ngModel)]="selected.diagnosisName" class="form-control" type="text" /> -->
-                                    <span class="diagnosis-code">{{selected.diagnosisName}}</span>
-                                </td>
-                            </tr>
+      <h4 class="AvenirLTStd-Heavy py-2 m-0 f-size-16">ICD-10 Diagnosis Code <span class="text-danger">*</span>
+      </h4>
+      <div class="border-1 border-top-0">
+        <div class="table-responsive icd-table-container">
+          <table class="table border-bottom diagnosis-code-table m-0">
+            <thead>
+              <tr>
+                <th scope="col" class="sticky-top"></th>
+                <th scope="col" class="width-200 sticky-top">Rank</th>
+                <th scope="col" class="width-200 sticky-top">Diagnosis Code </th>
+                <th scope="col" class="sticky-top">
+                  <div class="d-flex align-items-center nav justify-content-between">
+                    Diagnosis Name
+                    <span>
+                      <button class="d-flex btn-common widget-header-button align-items-center mr-2" tabindex="0"
+                        (click)="addFieldValue(template)"><i class="fas fa-plus-circle mr-2 mt-0"></i><span>Add
+                          Diagnosis</span></button>
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let field of fieldArray;let selected of selectedItems; let i = index">
+                <td class="border-right delete-option">
+                  <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                    <span class="material-icons material-icon-remove">
+                      delete
+                    </span>
+                  </div>
+                </td>
+                <td class="border-right form-input">
+                  <select class="select-input">
+                    <option *ngFor="let i of numbers">{{i}}
+                    </option>
+                  </select>
+                </td>
+                <td class="border-right form-input">
+                  <!-- <input [(ngModel)]="selected.diagnosisCode" class="form-control" type="text" /> -->
+                  <span class="diagnosis-code">{{selected.diagnosisCode}}</span>
+                </td>
+                <td class="form-input">
+                  <!-- <input [(ngModel)]="selected.diagnosisName" class="form-control" type="text" /> -->
+                  <span class="diagnosis-code">{{selected.diagnosisName}}</span>
+                </td>
+              </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-                <!-- <div class="next pr-0 d-flex justify-content-center height-50">
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="next pr-0 d-flex justify-content-center height-50">
                     <button type="button" (click)="addFieldValue(template)"
                         class="btn-info btn-next add-diagnsis-button">Add
                         Diagnosis</button>
                 </div> -->
-            </div>
-            <div class="d-flex align-items-center justify-content-end mt-3">
-                <!-- <div class="previous">
+      </div>
+      <div class="d-flex align-items-center justify-content-end mt-3">
+        <!-- <div class="previous">
                     <button type="button" class="btn-info btn-next prev-step"
                         [routerLink]="['/registration-re/child-guarantor']">Previous</button>
                 </div> -->
-                <div class="next">
-                    <button type="button" class="btn-info btn-next next-step">Save & Next</button>
-                </div>
-            </div>
+        <div class="next">
+          <button type="button" class="btn-info btn-next next-step" (click)="savePs()">Save & Next</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <ng-template #template>
-    <div class="modal-header py-0 registration-modal-header ">
-        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Admission Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body p-0">
-        <div class="listing-container ">
-            <div class="">
-                <div class="interface-container">
-                    <div class="table-container mb-2">
-                        <div class="nav align-items-center justify-content-around">
-                            <div class=" m-0 form-input p-2 d-flex align-items-center ">
-                                <label class="mb-0 mr-2 white-space-nowrap">
-                                    Diagnosis Code
-                                </label>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control">
-                                </div>
-
-                            </div>
-                            <div class=" m-0 form-input p-2 d-flex align-items-center">
-                                <label class="mb-0 mr-2 white-space-nowrap">
-                                    Diagnosis Name
-                                </label>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <button type="button" class="blue-btn"><span class="mr-2"><i
-                                        class="fas fa-search"></i></span>Search</button>
-                        </div>
-                        <div class="table-responsive listing-table">
-                            <table class="table m-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="sticky-top"></th>
-                                        <th scope="col" class="sticky-top"> Dignosis Code
-
-                                        </th>
-                                        <th scope="col" class="sticky-top">Diagnosis Name
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let data of diagnosisList ; let i=index ">
-                                        <td class="position-relative edit-option">
-                                            <label class="customcheck margin-left-15 m-0">
-                                                <input type="checkbox" (click)="check($event,i)">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td class="width-180">{{data.diagnosisCode}}</td>
-                                        <td class="diagnosis-name">{{data.diagnosisName}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- <div class="text-center no-data-text"> No Data To Display </div> -->
-                        </div>
-                        <div class="d-flex align-items-center justify-content-end pagination">
-                            <button type="button " (click)="getDiagnosisData()"
-                                    class="pagination-btn btn next-btn primary-button mr-3">Save</button>
-                            <div class="mr-2">
-                              <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button mr-3">close</button>
-                              <span class="footer-text">Per Page</span>
-                              <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
-                                <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}
-                                </option>`
-                              </select>
-                              <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
-                                {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                              <span>{{maxCount}}</span></span>
-                              <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                              <button type="button " class="pagination-btn" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
-                                  class="pagination-btn">Next</button>
-                            </div>
-                        </div>
-                    </div>
+  <div class="modal-header py-0 registration-modal-header ">
+    <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Admission Details</h4>
+    <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-0">
+    <div class="listing-container ">
+      <div class="">
+        <div class="interface-container">
+          <div class="table-container mb-2">
+            <div class="nav align-items-center justify-content-around">
+              <div class=" m-0 form-input p-2 d-flex align-items-center ">
+                <label class="mb-0 mr-2 white-space-nowrap">
+                  Diagnosis Code
+                </label>
+                <div class="input-group ">
+                  <input type="text" class="form-control">
                 </div>
+
+              </div>
+              <div class=" m-0 form-input p-2 d-flex align-items-center">
+                <label class="mb-0 mr-2 white-space-nowrap">
+                  Diagnosis Name
+                </label>
+                <div class="input-group ">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <button type="button" class="blue-btn"><span class="mr-2"><i
+                    class="fas fa-search"></i></span>Search</button>
             </div>
+            <div class="table-responsive listing-table">
+              <table class="table m-0">
+                <thead>
+                  <tr>
+                    <th scope="col" class="sticky-top"></th>
+                    <th scope="col" class="sticky-top"> Dignosis Code
+
+                    </th>
+                    <th scope="col" class="sticky-top">Diagnosis Name
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of diagnosisList ; let i=index ">
+                    <td class="position-relative edit-option">
+                      <label class="customcheck margin-left-15 m-0">
+                        <input type="checkbox" (click)="check($event,i)">
+                        <span class="checkmark"></span>
+                      </label>
+                    </td>
+                    <td class="width-180">{{data.diagnosisCode}}</td>
+                    <td class="diagnosis-name">{{data.diagnosisName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="text-center no-data-text"> No Data To Display </div> -->
+            </div>
+            <div class="d-flex align-items-center justify-content-end pagination">
+              <button type="button " (click)="getDiagnosisData()"
+                class="pagination-btn btn next-btn primary-button mr-3">Save</button>
+              <div class="mr-2">
+                <button type="button " (click)="bsModelRef.hide()"
+                  class="pagination-btn btn next-btn primary-button mr-3">close</button>
+                <span class="footer-text">Per Page</span>
+                <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
+                  <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}
+                  </option>`
+                </select>
+                <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
+                    {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                  <span>{{maxCount}}</span></span>
+                <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 "
+                  [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' "
+                  id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                <button type="button " class="pagination-btn"
+                  [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
+                  [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
+                  id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </ng-template>
