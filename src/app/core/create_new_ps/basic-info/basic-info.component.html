@@ -12,7 +12,7 @@
                         <div class="input-group ">
                             <!-- <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete #auto [data]="userMappedOffices" formControlName="siteName"
-                    (selected)="selectChange($event,'site')" [searchKeyword]="keyword1" [itemTemplate]="itemTemplate1">
+                    (selected)="selectChange($event,'site')" [searchKeyword]="keyword1"[notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate1">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate1 let-item>
                     <a [innerHTML]="item.siteName"></a>
@@ -36,7 +36,7 @@
                 </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;">
-                                        <ng-autocomplete #auto [data]="saluationList" (selected)="selectChange($event,'saluationId')" formControlName="saluation" [searchKeyword]="Keyword" [itemTemplate]="itemTemplate">
+                                        <ng-autocomplete #auto [data]="saluationList" (selected)="selectChange($event,'saluationId')" formControlName="saluation" [searchKeyword]="Keyword" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -87,7 +87,7 @@
                                 <label class="">Gender<span class="text-danger">*</span></label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;">
-                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate">
+                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" (selected)="selectChange($event,'genderId')" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -102,7 +102,7 @@
                 </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;">
-                                        <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword" formControlName="race" (selected)="selectChange($event,'raceId')" [itemTemplate]="itemTemplate">
+                                        <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword" formControlName="race" (selected)="selectChange($event,'raceId')" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -117,7 +117,7 @@
                 </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;">
-                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword" formControlName="maritalStatus" (selected)="selectChange($event,'maritalStatusList')" [itemTemplate]="itemTemplate">
+                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword" formControlName="maritalStatus" (selected)="selectChange($event,'maritalStatusList')" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -190,7 +190,7 @@
 
                         <div class="input-group ">
                             <div class="ng-autocomplete" style="width: 100%;">
-                                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="location" (selected)="selectChange($event,'addressTypeList')" [itemTemplate]="itemTemplate">
+                                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="location" (selected)="selectChange($event,'addressTypeList')" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
                                 <ng-template style="width: 100%;" #itemTemplate let-item>
                                     <a [innerHTML]="item.label"></a>
@@ -230,7 +230,7 @@
                         <div class="input-group  ">
                             <div class="  date-input  d-flex align-items-center w-100">
                                 <div class="ng-autocomplete phone-select">
-                                    <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" (selected)="selectChange($event, 'phoneTypeList')" formControlName="phonetype" placeHolder="Type" [itemTemplate]="itemTemplate">
+                                    <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" (selected)="selectChange($event, 'phoneTypeList')" formControlName="phonetype" placeHolder="Type" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate let-item>
                                         <a [innerHTML]="item.label"></a>
@@ -291,7 +291,7 @@
                     </div>
                 </form>
                 <div class="next justify-content-end mt-3">
-                    <button type="button" class="next-step btn-next" (click)="onSubmit()">{{popup?'Save':'Save&Next'}}</button>
+                    <button type="button" class="next-step btn-next" (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
 
                 </div>
 
@@ -300,3 +300,6 @@
 
     </div>
 </div>
+<ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>

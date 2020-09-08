@@ -115,26 +115,26 @@
                 <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-0">
                     <div class=" mx-2">
                         <label class="">
-                            Daily
+                            Weekly
                         </label>
 
                         <div class="check-box-wrapper">
                             <div class="on-off-toggle ">
                                 <input class="on-off-toggle__input" type="checkbox" id="bopis-to" />
-                                <label for="bopis-to" class="on-off-toggle__slider" (click)=toggleDisplayDivDaily()></label>
+                                <label for="bopis-to" class="on-off-toggle__slider" (click)='toggleDisplayDivWeekly()'></label>
                             </div>
                         </div>
                     </div>
                     <div class="
              mx-2">
                         <label class="">
-                            Weekly
+                            Daily
                         </label>
 
                         <div class="check-box-wrapper">
                             <div class="on-off-toggle ">
                                 <input class="on-off-toggle__input" type="checkbox" id="bopis-t" />
-                                <label for="bopis-t" class="on-off-toggle__slider" (click)=toggleDisplayDivWeekly()></label>
+                                <label for="bopis-t" class="on-off-toggle__slider" (click)="toggleDisplayDivDaily()"></label>
                             </div>
                         </div>
                     </div>
@@ -146,9 +146,9 @@
                         </label>
 
                         <div class="check-box-wrapper ">
-                            <div class="on-off-toggle " (click)=toggleDisplayDivMonthly()>
+                            <div class="on-off-toggle ">
                                 <input class="on-off-toggle__input" type="checkbox" id="bopis-toggle" />
-                                <label for="bopis-toggle" class="on-off-toggle__slider" (click)=toggleDisplayDivMonthly()></label>
+                                <label for="bopis-toggle" class="on-off-toggle__slider" (click)='toggleDisplayDivMonthly()'></label>
                             </div>
                         </div>
                     </div>
@@ -316,10 +316,10 @@
 
 
 
-            <div class="d-flex align-items-center justify-content-between mt-3">
-                <div class="previous">
+            <div class="d-flex align-items-center justify-content-end mt-3">
+                <!-- <div class="previous">
                     <button type="button" class="btn-info  btn-next prev-step">Previous</button>
-                </div>
+                </div> -->
                 <div class="next">
                     <button type="button" class="btn-info  btn-next">Save</button>
                 </div>

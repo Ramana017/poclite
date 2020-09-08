@@ -6,6 +6,8 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-basic-info',
@@ -48,10 +50,10 @@ export class BasicInfoComponent implements OnInit {
   constructor(private fb: FormBuilder,public modalService:BsModalService ,public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
     console.log("basic constructer",this.popup);
     this.newForm();
-    let userExist = sessionStorage.getItem('psDetails');
-    if (userExist) {
-      this.previousBasicInfo();
-    }
+    // let userExist = sessionStorage.getItem('psDetails');
+    // if (userExist) {
+    //   this.previousBasicInfo();
+    // }
 
   }
   ngOnInit() {
@@ -127,7 +129,7 @@ export class BasicInfoComponent implements OnInit {
         this.service.savePs(parameters).subscribe(res => {
           this.SaveResponse = res;
           console.log(res, 'getting the psId details');
-          alert(JSON.stringify(this.SaveResponse));
+          // alert(JSON.stringify(this.SaveResponse));
           if (Object.keys(this.SaveResponse).length !== 0) {
             if(this.popup){
               this.modelref.hide();
@@ -144,19 +146,15 @@ export class BasicInfoComponent implements OnInit {
       }
 
     } else {
-      alert('Fill the required fields');
-      let mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
-
-      console.log(this.basicForm.value);
-      console.log(mappedArray);
-      if(this.popup){
-        // this.modelref.hide();
-        this.modalService._hideModal(1)
-
-      }else{
-        sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
-        this.router.navigateByUrl('registration-re/child-guarantor');
-      }
+      // alert('Fill the required fields');
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+      console.log(this.basicForm.value)
 
     }
 
