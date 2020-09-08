@@ -14,7 +14,7 @@
 
                                         <h5 class="text-white m-0 pl-2">PS</h5>
 
-                                        <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                        <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplateps let-item>
                                             <a [innerHTML]="item.PSName"></a>
@@ -22,9 +22,9 @@
 
                                         <div class="d-flex align-items-center ">
                                             <button class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
-                                            <i class="fas fa-plus-circle mr-2 mt-0"></i>
-                                            <span>Create</span>
-                                        </button>
+                        <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                        <span>Create</span>
+                      </button>
                                             <div class="ico">
                                                 <i class="fas fa-compress-alt min-1 px-2"></i>
                                                 <i class="fas fa-expand max-1 px-2"></i>
@@ -87,26 +87,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -126,14 +123,14 @@
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
                                         <select [(ngModel)]='psPerPage' class="border-0 mr-2">
-                                            <option [value]="5">5</option>
-                                            <option [value]="10">10</option>
-                                            <option [value]="15">15</option>
-                                            <option [value]="20">20</option>
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="10">10</option>
+                      <option [ngValue]="15">15</option>
+                      <option [ngValue]="20">20</option>
 
-                                        </select>
-                                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2">Next</button>
+                    </select>
+                                        <button type="button" class="btn-common-small mx-2" [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +144,7 @@
                                     <div class="widget-header d-flex  align-items-center p-1 green-bg">
 
                                         <h5 class="text-white m-0 flex-grow-1">DCS</h5>
-                                        <ng-autocomplete class="col-4" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="clearDcsList()" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateDcs">
+                                        <ng-autocomplete class="col-4" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="selectFilterEvent('')" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateDcs">
                                         </ng-autocomplete>
 
                                         <ng-template style="width: 100%;" #itemTemplateDcs let-item>
@@ -199,26 +196,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a  class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a  class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a  class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -308,26 +302,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -414,26 +405,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
