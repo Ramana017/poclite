@@ -16,6 +16,12 @@ export class DashboardComponent implements OnInit {
     this.userId = data.userId;
   }
   @ViewChild('autops') autops;
+  @ViewChild('autodcs') autodcs;
+  @ViewChild('autoauth') autoauth;
+  @ViewChild('autoadm') autoadm;
+
+
+
 
   public dcsList: any;
   public visitsData = [];
@@ -33,23 +39,26 @@ export class DashboardComponent implements OnInit {
   public psLowerBound = 1;
   public psUpperBound = 20;
   public psPerPage = 20;
-  public pstotalRecordsCount=0;
+  public pstotalRecordsCount = 0;
   public dcsLowerBound = 1;
   public dcsUpperBound = 20;
-  public dcsPerPage = 5;
+  public dcsPerPage = 20;
   public admissionLowerBound = 1;
   public admissionUpperBound = 20;
-  public admissionPerPage = 5;
+  public admissionPerPage = 20;
   public authorizationLowerBound = 1;
   public authorizationUpperBound = 20;
-  public authorizationPerPage = 5;
-  public dcstotalRecordsCount:number;
-  public admissiontotalRecordsCount:number;
-  public authorizationtotalRecordsCount:number
+  public authorizationPerPage = 20;
+  public dcstotalRecordsCount: number;
+  public admissiontotalRecordsCount: number;
+  public authorizationtotalRecordsCount: number
 
 
+  public dcsId: number = 0;
+  public psId = 0;
+  public authorizationId: number = 0;
+  public admissionId: number = 0;
 
-  public psId=0;
 
   ngOnInit() {
     this.scrollDataFun();
@@ -62,84 +71,76 @@ export class DashboardComponent implements OnInit {
     // this.plotGaugeChat1();
   }
 
-  public getVisitsByDcsId(e) {
-    const userData = { psId: '0', dcsId: e.dcsId, fromDate: '', toDate: '', userId: this.userId };
-    this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
-      this.visitsList = res;
-    });
-  }
 
-  getVisitsByPsId(e) {
-    const userData = { psId: e.PSId, dcsId: '0', fromDate: '', toDate: '', userId: this.userId };
-    this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
-      this.visitsList = res;
-    });
-  }
+
 
   // dcs
-  selectDcsListByDcsId(dcsId) {
-    const userData = { dcsId: dcsId.dcsId, userId: this.userId };
-    this.dashboardService.getDcsListByDcsId(JSON.stringify(userData)).subscribe((res) => {
-      this.dcsList = res;
-    });
+  selectAdmissionListByDcsId(e, flag) {
+    flag ? this.admissionId = e.PSId : this.admissionId = 0;
+    flag ? '' : this.autoadm.close();
+    this.getAdmissionsList();
+  }
+
+  selectDcsListByDcsId(e, flag) {
+    flag ? this.dcsId = e.dcsId : this.dcsId = 0;
+    flag ? '' : this.autodcs.close();
+    this.getDcsList();
+
   }
   getDcsList() {
-    const userData = { "userId": this.userId, "lowerBound": this.psLowerBound, "upperBound": this.psUpperBound }
+    const userData = { "userId": this.userId, dcsId: this.dcsId, "lowerBound": this.dcsLowerBound, "upperBound": this.dcsUpperBound }
     this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
-      let data:any=res;
+      let data: any = res;
       console.log(res)
       this.dcsList = data.dcsList;
-      this.dcstotalRecordsCount=data.totalRecordsCount;
+      this.dcstotalRecordsCount = data.totalRecordsCount;
 
     });
-  }
-  clearDcsList() {
-    this.getDcsList();
   }
   // Authorization
   getAuthorizationList() {
-    const userData = { "userId": this.userId, "lowerBound": "1", "upperBound": "10" }
+    const userData = { "userId": this.userId,'psId':this.authorizationId ,"lowerBound": "1", "upperBound": "10" }
     this.dashboardService.getAuthorizationsList(JSON.stringify(userData)).subscribe((res) => {
-      // this.authorizationList = res;
-      console.log(res)
+      let data: any = res
+      this.authorizationList = data.authServiceList;
+      this.authorizationtotalRecordsCount = data.totalRecordsCount;
     });
   }
 
-  selectAuthorizationByPsId(PsId) {
-    const userData = { psId: PsId.PSId, userId: this.userId };
-    this.dashboardService.getAuthorizationsListByPsId(JSON.stringify(userData)).subscribe((res) => {
-      this.authorizationList = res;
-    });
-  }
-  clearAuthorizationList() {
+  selectAuthorizationByPsId(e, flag) {
+    flag ? this.authorizationId = e.PSId : this.authorizationId = 0;
+    flag ? "" : this.autoauth.close();
     this.getAuthorizationList();
+
   }
-  getPsList() {
-    this.psList=[];
-    let parameters = { 'userId': this.userId, 'lowerBound': this.psLowerBound,"psId":this.psId, 'upperBound': this.psUpperBound };
+
+  public getPsList() {
+    this.psList = [];
+    let parameters = { 'userId': this.userId, 'lowerBound': this.psLowerBound, "psId": this.psId, 'upperBound': this.psUpperBound };
     console.log(parameters)
     this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
       let data: any = res
       this.psList = data.psList;
-      this.pstotalRecordsCount=data.totalRecordsCount;
+      this.pstotalRecordsCount = data.totalRecordsCount;
       console.log(this.psList)
     });
   }
   // Admissions
-  getAdmissionsList() {
-    let params = { "userId": this.userId, "lowerBound": "1", "upperBound": "10" }
+  public getAdmissionsList() {
+    let params = { "userId": this.userId, "psId": this.admissionId, "lowerBound": this.admissionLowerBound, "upperBound": this.admissionUpperBound }
     this.dashboardService.getAdmissionsList(JSON.stringify(params)).subscribe((res) => {
-      this.admissionsList = res;
+      console.log(res);
+      let data: any = res;
+      this.admissionsList = data.admissionList;
+      this.admissiontotalRecordsCount = data.totalRecordsCount;
     });
   }
-  selectFilterEvent(e?,flag?) {
-    flag ?this.psId=e.PSId:this.psId=0;
-    flag?'':this.autops.close();
+  public selectFilterEvent(e?, flag?) {
+    flag ? this.psId = e.PSId : this.psId = 0;
+    flag ? '' : this.autops.close();
     this.getPsList();
   }
-  inputClean() {
-    this.getAdmissionsList();
-  }
+
 
   resize() {
     $('.max-1,.max-2,.max-3,.max-4').click(function () {
@@ -187,7 +188,7 @@ export class DashboardComponent implements OnInit {
     //     $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
     // });
   }
-// plotGaugeChat1() {
+  // plotGaugeChat1() {
   //     GaugeChart.gaugeChart(document.getElementById('gpsGuage1'), 150, {
   //     hasNeedle: true,
   //     needleColor: 'gray',
@@ -278,38 +279,70 @@ export class DashboardComponent implements OnInit {
 
 
   //pagination methods
-  public psPageNext(){
-   this.psLowerBound=this.psLowerBound+this.psPerPage;
-   this.psUpperBound=this.psUpperBound+this.psPerPage;
-   this.getPsList();
-  }
-  public psPagePrev(){
-    this.psLowerBound=this.psLowerBound-this.psPerPage;
-    this.psUpperBound=this.psUpperBound-this.psPerPage;
-    console.log(this.psUpperBound,this.psLowerBound,this.psPerPage)
+  public psPageNext() {
+    this.psLowerBound = this.psLowerBound + this.psPerPage;
+    this.psUpperBound = this.psUpperBound + this.psPerPage;
     this.getPsList();
-   }
-   public pspagereset(): void {
+  }
+  public psPagePrev() {
+    this.psLowerBound = this.psLowerBound - this.psPerPage;
+    this.psUpperBound = this.psUpperBound - this.psPerPage;
+    console.log(this.psUpperBound, this.psLowerBound, this.psPerPage)
+    this.getPsList();
+  }
+  public pspagereset(): void {
     this.psLowerBound = 1;
     this.psUpperBound = this.psPerPage;
     this.getPsList();
   }
-  public dcsPageNext(){
-    this.dcsLowerBound=this.dcsLowerBound+this.dcsPerPage;
-    this.dcsUpperBound=this.dcsUpperBound+this.dcsPerPage;
+  public dcsPageNext() {
+    this.dcsLowerBound = this.dcsLowerBound + this.dcsPerPage;
+    this.dcsUpperBound = this.dcsUpperBound + this.dcsPerPage;
     this.getDcsList();
-   }
-   public dcsPagePrev(){
-     this.dcsLowerBound=this.dcsLowerBound-this.dcsPerPage;
-     this.dcsUpperBound=this.dcsUpperBound-this.dcsPerPage;
-     console.log(this.dcsUpperBound,this.dcsLowerBound,this.dcsPerPage)
-     this.getDcsList();
-    }
-    public dcspagereset(): void {
-     this.dcsLowerBound = 1;
-     this.dcsUpperBound = this.dcsPerPage;
-     this.getDcsList();
-   }
+  }
+  public dcsPagePrev() {
+    this.dcsLowerBound = this.dcsLowerBound - this.dcsPerPage;
+    this.dcsUpperBound = this.dcsUpperBound - this.dcsPerPage;
+    console.log(this.dcsUpperBound, this.dcsLowerBound, this.dcsPerPage)
+    this.getDcsList();
+  }
+  public dcspagereset(): void {
+    this.dcsLowerBound = 1;
+    this.dcsUpperBound = this.dcsPerPage;
+    this.getDcsList();
+  }
+  public admissionPageNext() {
+    this.admissionLowerBound = this.admissionLowerBound + this.admissionPerPage;
+    this.admissionUpperBound = this.admissionUpperBound + this.admissionPerPage;
+    this.getAdmissionsList();
+  }
+  public admissionPagePrev() {
+    this.admissionLowerBound = this.admissionLowerBound - this.admissionPerPage;
+    this.admissionUpperBound = this.admissionUpperBound - this.admissionPerPage;
+    console.log(this.admissionUpperBound, this.admissionLowerBound, this.admissionPerPage)
+    this.getAdmissionsList();
+  }
+  public admissionpagereset(): void {
+    this.admissionLowerBound = 1;
+    this.admissionUpperBound = this.admissionPerPage;
+    this.getAdmissionsList();
+  }
+  public authorizationPageNext() {
+    this.authorizationLowerBound = this.authorizationLowerBound + this.authorizationPerPage;
+    this.authorizationUpperBound = this.authorizationUpperBound + this.authorizationPerPage;
+    this.getAuthorizationList();
+  }
+  public authorizationPagePrev() {
+    this.authorizationLowerBound = this.authorizationLowerBound - this.authorizationPerPage;
+    this.authorizationUpperBound = this.authorizationUpperBound - this.authorizationPerPage;
+    console.log(this.authorizationUpperBound, this.authorizationLowerBound, this.authorizationPerPage)
+    this.getAuthorizationList();
+  }
+  public authorizationpagereset(): void {
+    this.authorizationLowerBound = 1;
+    this.authorizationUpperBound = this.authorizationPerPage;
+    this.getAuthorizationList();
+  }
 
 
 }

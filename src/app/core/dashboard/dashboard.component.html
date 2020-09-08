@@ -134,8 +134,10 @@
                                             <option [ngValue]="20">20</option>
 
                                         </select>
-                                        <button type="button" class="btn-common-small mx-2" [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2" [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
+                                        <span class="mr-2">showing {{psLowerBound}} to {{psUpperBound}} of {{pstotalRecordsCount}}  </span>
+
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +151,7 @@
                                         <div class="d-flex align-items-center">
 
                                             <h5 class="text-white m-0 pl-2 mr-2">DCS</h5>
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="selectFilterEvent('')" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateDcs">
+                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="DCS search filter" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateDcs let-item>
@@ -239,13 +241,20 @@
                                     </div>
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
-                                        <select class="border-0 mr-2">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
+                                        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
+                                            <option [ngValue]="5">5</option>
+                                            <option [ngValue]="10">10</option>
+                                            <option [ngValue]="15">15</option>
+                                            <option [ngValue]="20">20</option>
+
+
                                         </select>
-                                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2">Next</button>
+                                        <span class="mr-2">showing {{dcsLowerBound}} to {{dcsUpperBound}} of {{dcstotalRecordsCount}}  </span>
+
+
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +270,7 @@
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">Admissions</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Admissions search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Admissions search filter" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -349,13 +358,20 @@
 
                                         <div class="pager">
                                             <span class="mr-2">Per page</span>
-                                            <select class="border-0 mr-2">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                            </select>
-                                            <button type="button" class="btn-common-small mx-2">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2">Next</button>
+                                            <select [(ngModel)]="this.admissionPerPage" class="border-0 mr-2">
+                                              <option [ngValue]="5">5</option>
+                                              <option [ngValue]="10">10</option>
+                                              <option [ngValue]="15">15</option>
+                                              <option [ngValue]="20">20</option>
+
+
+                                          </select>
+                                            <span class="mr-2">showing {{admissionLowerBound}} to {{admissionUpperBound}} of {{admissiontotalRecordsCount}}  </span>
+
+
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' " [disabled]="admissionUpperBound>=admissiontotalRecordsCount" (click)="this.admissionPageNext()">Next</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -369,7 +385,7 @@
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">Authorization services</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="Authorization search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Authorization search filter" (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -459,13 +475,18 @@
                                         </div>
                                         <div class="pager">
                                             <span class="mr-2">Per page</span>
-                                            <select class="border-0 mr-2">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                            </select>
-                                            <button type="button" class="btn-common-small mx-2">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2">Next</button>
+                                            <select [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
+                                              <option [ngValue]="5">5</option>
+                                              <option [ngValue]="10">10</option>
+                                              <option [ngValue]="15">15</option>
+                                              <option [ngValue]="20">20</option>
+                                          </select>
+                                            <span class="mr-2">showing {{authorizationLowerBound}} to {{authorizationUpperBound}} of {{authorizationtotalRecordsCount}}  </span>
+
+
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' " [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount" (click)="this.authorizationPageNext()">Next</button>
+
                                         </div>
                                     </div>
                                 </div>
