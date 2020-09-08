@@ -12,8 +12,8 @@ import { ZipcodeService } from 'src/app/services/zipcode.service';
 
 export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService,private zipcode :ZipcodeService) {
-    sessionStorage.removeItem('psDetails');
-    sessionStorage.removeItem('guarantorDetails');
+    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId=data.userId;
   }
   public dcsList: any;
   public visitsData=[];
@@ -23,87 +23,87 @@ export class DashboardComponent implements OnInit {
   public pskeyword = 'PSName';
   public authorizationkeyword = 'PSName';
   public dcskeyword = 'dcsName';
-  private userData: any;
+  private userId: number;
   public visitsList: any;
   private arrayData =['scrolling alert message','sample text message scrolling','alert scrolling text']
   public scrollData: any;
-  public lowerBound=1;
-  public upperBound=1;
+  public psLowerBound=1;
+  public psUpperBound=20;
+  public psPerPage=5;
   ngOnInit() {
     this.scrollDataFun();
-    this.userData = { userId: '47' };
     this.resize();
     this.getPsList();
     this.getAdmissionsList();
     this.getAuthorizationList();
     this.getDcsList();
     // this.getVisitsList();
-    this.plotGaugeChat1();
+    // this.plotGaugeChat1();
   }
-plotGaugeChat1() {
-    GaugeChart.gaugeChart(document.getElementById('gpsGuage1'), 150, {
-    hasNeedle: true,
-    needleColor: 'gray',
-    needleUpdateSpeed: 1000,
-    arcColors: ['green', 'orange', 'red'],
-    arcDelimiters: [10, 20],
-  }).updateNeedle(43);
-    this.plotGaugeChat2();
-}
+// plotGaugeChat1() {
+//     GaugeChart.gaugeChart(document.getElementById('gpsGuage1'), 150, {
+//     hasNeedle: true,
+//     needleColor: 'gray',
+//     needleUpdateSpeed: 1000,
+//     arcColors: ['green', 'orange', 'red'],
+//     arcDelimiters: [10, 20],
+//   }).updateNeedle(43);
+//     this.plotGaugeChat2();
+// }
 
-plotGaugeChat2() {
-  GaugeChart.gaugeChart(document.getElementById('gpsGuage2'), 150, {
-  hasNeedle: true,
-  needleColor: 'gray',
-  needleUpdateSpeed: 1000,
-  arcColors: ['green', 'orange', 'red'],
-  arcDelimiters: [10, 20],
-}).updateNeedle(62);
-  this.plotGaugeChat3();
-}
-plotGaugeChat3() {
-  GaugeChart.gaugeChart(document.getElementById('gpsGuage3'), 150, {
-  hasNeedle: true,
-  needleColor: 'gray',
-  needleUpdateSpeed: 1000,
-  arcColors: ['green', 'orange', 'red'],
-  arcDelimiters: [10, 20],
-}).updateNeedle(45);
-  this.plotGaugeChat4();
-}
-plotGaugeChat4() {
-  GaugeChart.gaugeChart(document.getElementById('gpsGuage4'), 150, {
-  hasNeedle: true,
-  needleColor: 'gray',
-  needleUpdateSpeed: 1000,
-  arcColors: ['green', 'orange', 'red'],
-  arcDelimiters: [10, 20],
-}).updateNeedle(89);
-  this.plotGaugeChat5();
-}
-plotGaugeChat5() {
-  GaugeChart.gaugeChart(document.getElementById('gpsGuage5'), 150, {
-  hasNeedle: true,
-  needleColor: 'gray',
-  needleUpdateSpeed: 1000,
-  arcColors: ['green', 'orange', 'red'],
-  arcDelimiters: [10, 20],
-}).updateNeedle(32);
-  this.plotGaugeChat6();
-}
-plotGaugeChat6() {
-  GaugeChart.gaugeChart(document.getElementById('gpsGuage6'), 150, {
-  hasNeedle: true,
-  needleColor: 'gray',
-  needleUpdateSpeed: 1000,
-  arcColors: ['green', 'orange', 'red'],
-  arcDelimiters: [10, 20],
-}).updateNeedle(59);
-}
+// plotGaugeChat2() {
+//   GaugeChart.gaugeChart(document.getElementById('gpsGuage2'), 150, {
+//   hasNeedle: true,
+//   needleColor: 'gray',
+//   needleUpdateSpeed: 1000,
+//   arcColors: ['green', 'orange', 'red'],
+//   arcDelimiters: [10, 20],
+// }).updateNeedle(62);
+//   this.plotGaugeChat3();
+// }
+// plotGaugeChat3() {
+//   GaugeChart.gaugeChart(document.getElementById('gpsGuage3'), 150, {
+//   hasNeedle: true,
+//   needleColor: 'gray',
+//   needleUpdateSpeed: 1000,
+//   arcColors: ['green', 'orange', 'red'],
+//   arcDelimiters: [10, 20],
+// }).updateNeedle(45);
+//   this.plotGaugeChat4();
+// }
+// plotGaugeChat4() {
+//   GaugeChart.gaugeChart(document.getElementById('gpsGuage4'), 150, {
+//   hasNeedle: true,
+//   needleColor: 'gray',
+//   needleUpdateSpeed: 1000,
+//   arcColors: ['green', 'orange', 'red'],
+//   arcDelimiters: [10, 20],
+// }).updateNeedle(89);
+//   this.plotGaugeChat5();
+// }
+// plotGaugeChat5() {
+//   GaugeChart.gaugeChart(document.getElementById('gpsGuage5'), 150, {
+//   hasNeedle: true,
+//   needleColor: 'gray',
+//   needleUpdateSpeed: 1000,
+//   arcColors: ['green', 'orange', 'red'],
+//   arcDelimiters: [10, 20],
+// }).updateNeedle(32);
+//   this.plotGaugeChat6();
+// }
+// plotGaugeChat6() {
+//   GaugeChart.gaugeChart(document.getElementById('gpsGuage6'), 150, {
+//   hasNeedle: true,
+//   needleColor: 'gray',
+//   needleUpdateSpeed: 1000,
+//   arcColors: ['green', 'orange', 'red'],
+//   arcDelimiters: [10, 20],
+// }).updateNeedle(59);
+// }
 
   // visits
 getVisitsList() {
-const userData = {psId: '0', dcsId: '0', fromDate: '', toDate: '', userId: '47' };
+const userData = {psId: '0', dcsId: '0', fromDate: '', toDate: '', userId: this.userId };
 this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
   console.log(res)
   this.visitsList = res;
@@ -111,14 +111,14 @@ this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) =>
 }
 
 getVisitsByDcsId(e) {
-  const userData = {psId: '0', dcsId: e.dcsId, fromDate: '', toDate: '', userId: '47' };
+  const userData = {psId: '0', dcsId: e.dcsId, fromDate: '', toDate: '', userId: this.userId };
   this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
     this.visitsList = res;
   });
 }
 
 getVisitsByPsId(e) {
-  const userData = {psId: e.PSId, dcsId: '0', fromDate: '', toDate: '', userId: '47' };
+  const userData = {psId: e.PSId, dcsId: '0', fromDate: '', toDate: '', userId: this.userId };
   this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
     this.visitsList = res;
   });
@@ -128,7 +128,7 @@ clearVisits() {
 }
 getVisitsByData(e) {
   console.log(this.visitsData[0])
-  const userData = {psId:'0', dcsId: '0', fromDate: this.visitsData[0], toDate: this.visitsData[1], userId: '47' };
+  const userData = {psId:'0', dcsId: '0', fromDate: this.visitsData[0], toDate: this.visitsData[1], userId: this.userId };
   this.dashboardService.getVisitsList(JSON.stringify(userData)).subscribe((res) => {
     this.visitsList = res;
   });
@@ -136,13 +136,13 @@ getVisitsByData(e) {
 }
   // dcs
   selectDcsListByDcsId(dcsId) {
-    const userData = { dcsId: dcsId.dcsId, userId: '47' };
+    const userData = { dcsId: dcsId.dcsId, userId: this.userId };
     this.dashboardService.getDcsListByDcsId(JSON.stringify(userData)).subscribe((res) => {
       this.dcsList = res;
     });
   }
 getDcsList() {
-  const userData =  { "userId":"47", "lowerBound":"1", "upperBound":"10" }
+  const userData =  { "userId":this.userId, "lowerBound":"1", "upperBound":"10" }
   this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
     this.dcsList = res;
   });
@@ -152,14 +152,14 @@ clearDcsList() {
 }
 // Authorization
 getAuthorizationList() {
-  const userData ={"userId":"47","lowerBound":"1","upperBound":"10"}
+  const userData ={"userId":this.userId,"lowerBound":"1","upperBound":"10"}
   this.dashboardService.getAuthorizationsList(JSON.stringify(userData)).subscribe((res) => {
     this.authorizationList = res;
   });
 }
 
 selectAuthorizationByPsId(PsId) {
-    const userData = { psId: PsId.PSId, userId: '47' };
+    const userData = { psId: PsId.PSId, userId: this.userId };
     this.dashboardService.getAuthorizationsListByPsId(JSON.stringify(userData)).subscribe((res) => {
       this.authorizationList = res;
     });
@@ -174,8 +174,7 @@ selectAuthorizationByPsId(PsId) {
   //   });
   // }
   getPsList(){
-    this.upperBound=this.upperBound+10;
-  let parameters = { 'userId': 47, 'lowerBound': this.lowerBound, 'upperBound': this.upperBound };
+  let parameters = { 'userId': this.userId, 'lowerBound': this.psLowerBound, 'upperBound': this.psUpperBound };
   this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
     let data :any=res
         this.psList = data.psList;
@@ -184,13 +183,13 @@ selectAuthorizationByPsId(PsId) {
   }
 // Admissions
   getAdmissionsList() {
-    let params={"userId":"47","lowerBound":"1","upperBound":"10"}
+    let params={"userId":this.userId,"lowerBound":"1","upperBound":"10"}
     this.dashboardService.getAdmissionsList(JSON.stringify(params)).subscribe((res) => {
       this.admissionsList = res;
     });
   }
   selectFilterEvent(e) {
-    const userData = { userId: '47', psId: e.PSId };
+    const userData = { userId: this.userId, psId: e.PSId };
     this.dashboardService.getAdmissionsListbypsId(JSON.stringify(userData)).subscribe((res) => {
       this.admissionsList = res;
     });
