@@ -492,6 +492,8 @@ th {
 
 select {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+outline: none;
+border: 0;
 }
 
 .selected-list {
@@ -738,7 +740,7 @@ modal-container {
 
 
 
-//sichand
+//saichand
 
 a {
     text-decoration: none !important;
@@ -931,6 +933,9 @@ a {
   }
   
   // ng-autocomplete code
+  .ng-autocomplete{
+      z-index: 1025;
+  }
   .input-container-wrapper ,.basic-input-container,.form-input{
     .autocomplete-container {
       box-shadow: none;

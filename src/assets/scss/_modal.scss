@@ -22,6 +22,7 @@
   .listing-table {
     height: 71vh;
   }
+
   .modal-content {
     position: relative;
     display: flex;
@@ -30,16 +31,17 @@
     pointer-events: auto;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
+    border: 1px solid rgba(0, 0, 0, .2);
     border-radius: .3rem;
     outline: 0;
     height: 100% !important;
-}
-label {
+  }
+
+  label {
     margin-bottom: 0 !important;
     font-size: 15px;
     color: #212529;
-}
+  }
 }
 
 @media(max-width:576px) {
