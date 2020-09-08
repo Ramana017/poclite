@@ -22,6 +22,7 @@
                                 <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems" (onDeSelectAll)="siteListDeSelect()" [settings]="dropdownSettings">
                                 </angular2-multiselect>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -50,12 +51,10 @@
                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [ngClass]="{ 'is-invalid': f.lastName.touched && f.lastName.errors }" formControlName="lastName" class="form-control lastName">
+                                    <input type="text" [class.is-invalid]="f.lastName.invalid && f.lastName.touched" formControlName="lastName" class="form-control lastName">
                                 </div>
-                                <div *ngIf="f.lastName.invalid  && f.lastName.touched && f.lastName.errors" class="invalid-feedback">
-                                    <!-- <div *ngIf="f.lastName.invalid && f.lastName.errors && f.lastname.dirty" class="alert alert-danger"> -->
-                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                                    <!-- <small class="text-danger" *ngIf="f.lastName.errors?.required">Username is required!</small> -->
+                                <div *ngIf="f.lastName.invalid && f.lastName.touched && f.lastName.errors" class="errors">
+                                    <small class="text-danger" *ngIf="f.lastName.errors?.required">Last Name required!</small>
                                 </div>
                             </div>
 
@@ -69,7 +68,7 @@
 
                                 </div>
                                 <div *ngIf="f.firstName.invalid && f.firstName.touched && f.firstName.errors" class="errors">
-                                    <small class="text-danger" *ngIf="f.firstName.errors?.required">Username is required!</small>
+                                    <small class="text-danger" *ngIf="f.firstName.errors?.required">First Name required!</small>
                                 </div>
                             </div>
                             <div class=" m-0 basic-input-container pr-sm-0">
@@ -78,8 +77,11 @@
                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" placeholder="mm/dd/yyyy " formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
+                                    <input type="text" [class.is-invalid]="f.dob.invalid && f.dob.touched" placeholder="mm/dd/yyyy " formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
 
+                                </div>
+                                <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
+                                    <small class="text-danger" *ngIf="f.dob.errors?.required">DOB is required</small>
                                 </div>
 
                             </div>
@@ -94,6 +96,9 @@
                                         </ng-template>
                                     </div>
 
+                                </div>
+                                <div class="errors">
+                                    <small class="text-danger  mt-5" *ngIf="f.genderId.errors?.required || f.gender.errors?.required">First Name required!</small>
                                 </div>
                             </div>
                             <div class=" basic-input-container pb-sm-0">
