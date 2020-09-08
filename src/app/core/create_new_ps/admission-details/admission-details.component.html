@@ -17,7 +17,7 @@
                         </div>
 
                     </div>
-                    <div class=" input-container-wrapper">
+                    <div class=" input-container-wrapper co-ordinator">
                         <label class="">
                             Coordinator<span class="text-danger">*</span>
                         </label>
@@ -136,7 +136,18 @@
                                 <th scope="col" class="sticky-top"></th>
                                 <th scope="col" class="width-200 sticky-top">Rank</th>
                                 <th scope="col" class="width-200 sticky-top">Diagnosis Code </th>
-                                <th scope="col" class="sticky-top">Diagnosis Name</th>
+                                <th scope="col" class="sticky-top">
+                                    <div class="d-flex align-items-center nav justify-content-between">
+                                        Diagnosis Name
+                                        <span>
+                                            <button
+                                                class="d-flex btn-common widget-header-button align-items-center mr-2"
+                                                tabindex="0" (click)="addFieldValue(template)"><i
+                                                    class="fas fa-plus-circle mr-2 mt-0"></i><span>Add
+                                                    Diagnosis</span></button>
+                                        </span>
+                                    </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -149,29 +160,29 @@
                                     </div>
                                 </td>
                                 <td class="border-right form-input">
-                                    <select>
+                                    <select class="select-input">
                                         <option *ngFor="let i of numbers">{{i}}
                                         </option>
                                     </select>
                                 </td>
                                 <td class="border-right form-input">
                                     <!-- <input [(ngModel)]="selected.diagnosisCode" class="form-control" type="text" /> -->
-                                    <span class="diagnosis-code" >{{selected.diagnosisCode}}</span>
+                                    <span class="diagnosis-code">{{selected.diagnosisCode}}</span>
                                 </td>
                                 <td class="form-input">
                                     <!-- <input [(ngModel)]="selected.diagnosisName" class="form-control" type="text" /> -->
-                                    <span class="diagnosis-code"   >{{selected.diagnosisName}}</span>
+                                    <span class="diagnosis-code">{{selected.diagnosisName}}</span>
                                 </td>
                             </tr>
 
                         </tbody>
                     </table>
                 </div>
-                <div class="next pr-0 d-flex justify-content-center height-50">
+                <!-- <div class="next pr-0 d-flex justify-content-center height-50">
                     <button type="button" (click)="addFieldValue(template)"
                         class="btn-info btn-next add-diagnsis-button">Add
                         Diagnosis</button>
-                </div>
+                </div> -->
             </div>
             <div class="d-flex align-items-center justify-content-between mt-3">
                 <div class="previous">
@@ -246,7 +257,7 @@
                             <!-- <div class="text-center no-data-text"> No Data To Display </div> -->
                         </div>
                         <div class="d-flex align-items-center justify-content-end pagination">
-                            <div>
+                            <div class="mr-2">
                                 <button type="button " (click)="getDiagnosisData()"
                                     class="pagination-btn btn next-btn primary-button mr-3">Refresh</button>
                                 <span class="footer-text">Per Page</span>
