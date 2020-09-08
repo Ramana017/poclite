@@ -100,7 +100,8 @@ export class DashboardComponent implements OnInit {
   getAuthorizationList() {
     const userData = { "userId": this.userId, "lowerBound": "1", "upperBound": "10" }
     this.dashboardService.getAuthorizationsList(JSON.stringify(userData)).subscribe((res) => {
-      this.authorizationList = res;
+      // this.authorizationList = res;
+      console.log(res)
     });
   }
 
