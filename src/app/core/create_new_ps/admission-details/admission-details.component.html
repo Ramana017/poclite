@@ -153,7 +153,7 @@
                         <tbody>
                             <tr *ngFor="let field of fieldArray;let selected of selectedItems; let i = index">
                                 <td class="border-right delete-option">
-                                    <div class="bg-whiite remove-item" (click)="onRemoveRow(i)" title="remove">
+                                    <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
                                         <span class="material-icons material-icon-remove">
                                             delete
                                         </span>
@@ -258,25 +258,18 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-end pagination">
                             <div class="mr-2">
-                                <button type="button " (click)="getDiagnosisData()"
-                                    class="pagination-btn btn next-btn primary-button mr-3">Refresh</button>
-                                <span class="footer-text">Per Page</span>
-                                <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
-                                    <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
-                                        {{page}}
-                                    </option>`
-                                </select>
-                                <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
-                                        {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                                    <span>{{maxCount}}</span></span>
-                                <button type="button " class="pagination-btn"
-                                    [disabled]="lowerBound<perPage||listingPageData.length==0 "
-                                    [ngClass]="lowerBound<=1 ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' "
-                                    id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                                <button type="button " class="pagination-btn"
-                                    [disabled]="upperBound>= maxCount ||listingPageData.length==0 "
-                                    [ngClass]="upperBound>= maxCount ||listingPageData.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
-                                    id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+                              <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button mr-3">close</button>
+                              <span class="footer-text">Per Page</span>
+                              <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
+                                <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}
+                                </option>`
+                              </select>
+                              <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
+                                {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                              <span>{{maxCount}}</span></span>
+                              <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                              <button type="button " class="pagination-btn" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
+                                  class="pagination-btn">Next</button>
                             </div>
                         </div>
                     </div>
