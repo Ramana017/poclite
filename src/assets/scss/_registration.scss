@@ -184,6 +184,11 @@
   color: #808080 !important;
   overflow: auto;
   padding: 8px;
+  .form-check {
+    /* padding-left: 1.25rem; */
+    font-size: 12px;
+    padding: 0;
+}
 }
 
 .mapped-site-container {
@@ -430,18 +435,22 @@ form {
       display: block;
       white-space: nowrap;
       /* float: left; */
-      width: 40px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      margin-right: 36px;
+      // width: 40px;
+      // text-overflow: ellipsis;
+      // overflow: hidden;
+      // margin-right: 36px;
+      width: 68px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 15px;
     }
 
     .selected-list .c-list .c-token {
       list-style: none;
-      padding: 4px 0px 4px 0px;
+      padding: 2px 0px 2px 0px;
       border-radius: 2px;
       margin-right: 4px;
-      margin-top: 2px;
+     
       float: left;
       position: relative;
     }
@@ -450,6 +459,9 @@ form {
 
       width: 244px !important;
     }
+    .selected-list .c-list .c-token .c-remove svg {
+      fill: $black;
+  }
   }
 }
 

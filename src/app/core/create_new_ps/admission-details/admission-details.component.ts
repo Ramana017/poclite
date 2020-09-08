@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { ZipcodeService } from "../../../services/zipcode.service";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ZipcodeService } from 'src/app/services/zipcode.service';
 
 @Component({
   selector: "app-admission-details",
@@ -12,7 +12,6 @@ export class AdmissionDetailsComponent implements OnInit {
   public Keyword = 'userName'
   public coordinatorList = [];
   public listingPageData = [];
-  //code;
   field1;
   I;
   id = 'id';
@@ -41,13 +40,14 @@ export class AdmissionDetailsComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.upperBound = this.perPage;
     this.newAttribute = { rank: null, name: '', code: '' };
     // this.fieldArray.push(this.newAttribute)
     this.upperBound = this.perPage;
     this.getAdmissionLookups();
     this.getDiagnosisData();
   }
-  d;
+
   public getAdmissionLookups(): void {
     let params = { "userId": 47, "psId": 1201, "guarantorId": 1190 };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
@@ -59,7 +59,6 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        console.log(this.clientType);
 
       })
   }
@@ -67,13 +66,14 @@ export class AdmissionDetailsComponent implements OnInit {
     if (this.upperBound < this.maxCount) {
       this.lowerBound = this.lowerBound + this.perPage;
       this.upperBound = this.upperBound + this.perPage;
+      console.log("************", this.upperBound, this.lowerBound)
       this.listingPageData.length = 0;
       this.getDiagnosisData();
     }
     else {
       this.upperBound = this.maxCount;
       this.lowerBound = this.maxCount - this.perPage;
-      this.getDiagnosisData();
+      // this.listingData();
     }
   }
   //method to change previous page
@@ -85,7 +85,7 @@ export class AdmissionDetailsComponent implements OnInit {
       if (this.lowerBound <= 1) {
         this.lowerBound = 1;
         this.upperBound = this.perPage;
-        this.listingPageData.length = 0;
+        this.diagnosisList.length = 0;
         this.getDiagnosisData();
       } else {
         this.getDiagnosisData();
@@ -95,7 +95,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
   public pagereset(): void {
     console.log(this.perPage);
-    this.listingPageData.length = 0;
+    this.diagnosisList.length = 0;
     this.lowerBound = 1;
     this.upperBound = this.perPage;
     this.getDiagnosisData();
@@ -104,25 +104,21 @@ export class AdmissionDetailsComponent implements OnInit {
 
   public getDiagnosisData(): void {
     let params = { "userId": 47, "code": "", "name": "", "lowerBound": this.lowerBound, "upperBound": this.upperBound };
+    console.log(params)
     this.service.getDiagnosisDetails(JSON.stringify(params)).subscribe(
       data => {
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
-        console.log(this.diagnosisList);
-        this.maxCount = data1.totalRecordsCount;
+        console.log(data);
+        // this.maxCount = data1.totalRecordsCount;
       })
   }
   public check(event, ind) {
-    console.log(event.target.value, "evnet.......");
-    console.log(ind, "iiiiiiii.......");
-    this.diagnosisList.forEach((res, i) => {
-      if (ind === i) {
-        this.selectedItems.push(res);
-        console.log(res);
-        console.log(this.selectedItems);
-      }
-
-    });
+    console.log(event.target.checked)
+    if(event.target.checked){
+      this.selectedItems.push(this.diagnosisList[ind])
+      console.log(this.selectedItems);
+    }
 
   }
 
@@ -135,8 +131,24 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
 
-    onRemoveRow(rowIndex: number) {
-      // this.rows.removeAt(rowIndex);
+  deleteFieldValue(index) {
+    if (this.fieldArray.length !== 1) {
+      this.fieldArray.splice(index, 1);
+      console.log(this.selectedItems.length);
+    }
+    if (this.fieldArray.length === 0) {
+      console.log(this.fieldArray.length);
+      alert('value cant be null');
+    }
   }
+  public deleteRow(index): void {
+    this.selectedItems.forEach((ele, i) => {
+      if (index === i) {
+        this.selectedItems.splice(index, 1);
+        console.log(this.selectedItems);
+      }
+    });
+  }
+
 
 }

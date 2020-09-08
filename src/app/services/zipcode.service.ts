@@ -63,7 +63,12 @@ export class ZipcodeService {
 
     return this.http.get(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
+  public saveAdmissionDetails(params1): Observable<any> {
+    this.getUrl();
+   // return this.http.get("assets/1.json")
 
+    return this.http.post(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' , params1).pipe(catchError(this.errorHandler));
+  }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);
