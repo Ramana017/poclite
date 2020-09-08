@@ -1,8 +1,9 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit, TemplateRef, Input } from "@angular/core";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ZipcodeService } from 'src/app/services/zipcode.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-admission-details",
@@ -10,7 +11,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ["./admission-details.component.scss"],
 })
 export class AdmissionDetailsComponent implements OnInit {
-  public bsModelRef: BsModalRef;
+  @Input() popup:boolean;
+  bsModelRef: BsModalRef;
   public admissionForm:FormGroup;
   public Keyword = 'userName';
   public coordinatorValue : string;
@@ -20,7 +22,6 @@ export class AdmissionDetailsComponent implements OnInit {
   I;
   id = 'id';
   name = 'name';
-  public diaCode=[];
   public clientType;
   public coordinatorData;
   public AdmissionDate: Date;
@@ -45,7 +46,9 @@ export class AdmissionDetailsComponent implements OnInit {
   numbers = [];
   guarantorId: any;
   psId: any;
-  constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService) {
+  admissionRes: {};
+  constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
+    console.log("basic constructer",this.popup);
     for (let i = 1; i <= 100; i++) {
       this.numbers.push(i);
     }
@@ -164,35 +167,53 @@ export class AdmissionDetailsComponent implements OnInit {
     });
   }
   savePs(){
-    let temp=[];
-    console.log(this.admissionForm.value)
-    this.selectedItems.map((x)=>{
-      temp.push(x.diagnosisCode)
-    })
-    console.log(temp)
-   // this.admissionForm.get('coordinatorId').setValue(event);
-    let params ={
-      "psId":this.psId,
-      "coordinatorId":this.admissionForm.value.coordinatorId.userInfoId,
-      "psGuarantorId":23040,
-      "admitDate":this.date.transform(this.admissionForm.value.admissionDate,'MM/dd/yyyy'),
-      "firstVisitDate": this.date.transform(this.admissionForm.value.firstVisitDate,'MM/dd/yyyy'),
-      "referralDate":this.date.transform(this.admissionForm.value.referredDate,'MM/dd/yyyy'),
-      "clientTypeId":this.coordinatorData.clientTypeId,
-      "clientClassId":this.coordinatorData.clientClassId,
-      // "primaryDiagnosisCode":"E8010",
-      // "otherDiagnoses":"E800,E8000,E8001,E8002,E8003",
-      "primaryDiagnosisCode":temp[0],
-      "otherDiagnoses":(temp.shift()).toString(),
-      "officeId":191,
-      "userId": 47
-    }
-    alert("lhgdsfdfghjkl;'")
-    console.log(params)
-    this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
-      data => {
-        console.log(data);
+    if (this.admissionForm.valid) {
+      let temp=[];
+      console.log(this.admissionForm.value)
+      this.selectedItems.map((x)=>{
+        temp.push(x.diagnosisCode)
       })
+      console.log(temp)
+      let params ={
+        "psId":this.psId,
+        "coordinatorId":this.admissionForm.value.coordinatorId.userInfoId,
+        "psGuarantorId":this.guarantorId,
+        "admitDate":this.date.transform(this.admissionForm.value.admissionDate,'MM/dd/yyyy'),
+        "firstVisitDate": this.date.transform(this.admissionForm.value.firstVisitDate,'MM/dd/yyyy'),
+        "referralDate":this.date.transform(this.admissionForm.value.referredDate,'MM/dd/yyyy'),
+        "clientTypeId":this.coordinatorData.clientTypeId,
+        "clientClassId":this.coordinatorData.clientClassId,
+        "primaryDiagnosisCode":temp[0],
+        "otherDiagnoses":(temp.shift()).toString(),
+        "officeId":191,
+        "userId": 47
+      }
+      alert("lhgdsfdfghjkl;'")
+      console.log(params)
+      try {
+        this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
+          data => {
+            console.log(data);
+            this.admissionRes=data
+          })
+          if (Object.keys(this.admissionRes).length !== 0) {
+            if(this.popup){
+              this.bsModelRef.hide();
+
+            }else{
+              sessionStorage.setItem('psDetails', JSON.stringify(this.admissionRes));
+              this.router.navigateByUrl('registration-re/child-payorplan');
+            }
+          }}
+
+       catch (error) {
+        console.log(error);
+
+      }
+    }
+
+
+
 
   }
 
