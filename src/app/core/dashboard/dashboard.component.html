@@ -10,38 +10,44 @@
                         <div class="row m-0">
                             <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                                 <div class="widget-block">
-                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 blue-bg">
+                                    <div class="widget-header d-flex  align-items-center justify-content-between nav p-1 blue-bg">
+
+                                        <h5 class="text-white m-0 pl-2">PS</h5>
+
+                                        <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword"
+                                            #autops placeHolder="PS search filter" (inputCleared)="inputClean()"
+                                            (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                        </ng-autocomplete>
+                                        <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                            <a [innerHTML]="item.PSName"></a>
+                                        </ng-template>
+
+                                        <div class="d-flex align-items-center ">
+                                            <button class="d-flex btn-common widget-header-button align-items-center mr-2 "
+                                            [routerLink]='["/registration-re/child-basic"]'>
+                                            <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                                            <span>Create</span>
+                                        </button>
                                         <div class="ico">
                                             <i class="fas fa-compress-alt min-1 px-2"></i>
                                             <i class="fas fa-expand max-1 px-2"></i>
                                         </div>
-                                        <h5 class="text-white m-0">PS</h5>
-                                        <!-- <select class="mt-1 text-right">
-                      <option value="1">Widget Choice</option>
-                      <option value="2">Admissions</option>
-                      <option value="3">DCS</option>
-                      <option value="4">Authorisation services</option>
-                      <option value="5">Visits</option>
-                      <option value="6">Cms</option>
-                    </select> -->
-                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2" [routerLink]='["/registration-re/child-basic"]'>
-                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
-                      <span>Create</span>
-                    </button>
+                                        </div>
                                     </div>
 
                                     <div class="widget-inner p-2">
-                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
-                                            <h5>PS</h5>
-                                            <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
+                                        <!-- <div class="d-flex justify-content-between widget-inner-header mb-1">
+                                            <h5>PS</h5>                                            
 
-                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword"
+                                                #autops placeHolder="PS search filter" (inputCleared)="inputClean()"
+                                                (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                 <a [innerHTML]="item.PSName"></a>
                                             </ng-template>
-                                        </div>
+                                        </div> -->
 
                                         <div class="table-responsive">
                                             <table class="table position-relative">
@@ -79,28 +85,34 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                                                        <label for="toggle-input" class="toggle"></label></div>
-                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input"
+                                                                            type="checkbox" />
+                                                                        <label for="toggle-input"
+                                                                            class="toggle"></label></div>
+                                                                    <div
+                                                                        class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
 
-                                        </a>
-                                      </span>
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -120,10 +132,10 @@
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
                                         <select class="border-0 mr-2">
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                    </select>
+                                            <option value="">5</option>
+                                            <option value="">10</option>
+                                            <option value="">15</option>
+                                        </select>
                                         <button type="button" class="btn-common-small mx-2">Prev</button>
                                         <button type="button" class="btn-common-small mx-2">Next</button>
                                     </div>
@@ -135,37 +147,41 @@
 
                             <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
                                 <div class="widget-block">
-                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 green-bg">
+
+                                    <div class="widget-header d-flex  align-items-center p-1 green-bg">
+
+                                        <h5 class="text-white m-0 flex-grow-1">DCS</h5>
+                                        <ng-autocomplete class="col-4" [data]="dcsList" [searchKeyword]="dcskeyword"
+                                            #autops placeHolder="DCS search filter" (inputCleared)="clearDcsList()"
+                                            (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateps">
+                                        </ng-autocomplete>
+
+                                        <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                            <a [innerHTML]="item.dcsName"></a>
+                                        </ng-template>
+
+                                        <button class="d-flex btn-common widget-header-button align-items-center mr-2">
+                                            <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                                            <span>Create</span>
+                                        </button>
                                         <div class="ico">
                                             <i class="fas fa-compress-alt min-1 px-2"></i>
                                             <i class="fas fa-expand max-1 px-2"></i>
                                         </div>
-                                        <h5 class="text-white m-0">DCS</h5>
-                                        <!-- <select class="mt-1 text-right">
-                      <option value="1">Widget Choice</option>
-                      <option value="2">Admissions</option>
-                      <option value="3">DCS</option>
-                      <option value="4">Authorisation services</option>
-                      <option value="5">Visits</option>
-                      <option value="6">Cms</option>
-                    </select> -->
-                                        <!-- <button class="d-flex btn-common widget-header-button align-items-center mr-2">
-                      <i class="fas fa-plus-circle mr-2 mt-0"></i>
-                      <span>Create</span>
-                    </button> -->
-                                        <div></div>
+
+                                                            <!-- <select class="mt-1 text-right">
+                                        <option value="1">Widget Choice</option>
+                                        <option value="2">Admissions</option>
+                                        <option value="3">DCS</option>
+                                        <option value="4">Authorisation services</option>
+                                        <option value="5">Visits</option>
+                                        <option value="6">Cms</option>
+                                        </select> -->
                                     </div>
 
-                                    <div class="widget-inner p-2">
-                                        <div class="d-flex justify-content-between widget-inner-header mb-1">
-                                            <h5>DCS</h5>
-                                            <ng-autocomplete class="col-4" [data]="dcsList" [searchKeyword]="dcskeyword" #autops placeHolder="DCS search filter" (inputCleared)="clearDcsList()" (selected)='selectDcsListByDcsId($event)' [itemTemplate]="itemTemplateps">
-                                            </ng-autocomplete>
 
-                                            <ng-template style="width: 100%;" #itemTemplateps let-item>
-                                                <a [innerHTML]="item.dcsName"></a>
-                                            </ng-template>
-                                        </div>
+
+                                    <div class="widget-inner p-2">
                                         <div class="table-responsive">
                                             <table class="table position-relative">
                                                 <thead class="thead-light no-wrap">
@@ -184,28 +200,34 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                                                        <label for="toggle-input" class="toggle"></label></div>
-                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input"
+                                                                            type="checkbox" />
+                                                                        <label for="toggle-input"
+                                                                            class="toggle"></label></div>
+                                                                    <div
+                                                                        class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
 
-                                        </a>
-                                      </span>
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -238,7 +260,8 @@
                         <div class="row m-0">
                             <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                                 <div class="widget-block">
-                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 peach-bg">
+                                    <div
+                                        class="widget-header d-flex justify-content-between align-items-center p-1 peach-bg">
                                         <div class="ico">
                                             <i class="fas fa-compress-alt min-1 px-2"></i>
                                             <i class="fas fa-expand max-1 px-2"></i>
@@ -265,7 +288,10 @@
                                             <h5>Admissions</h5>
                                             <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
 
-                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Admissions search filter" (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="pskeyword"
+                                                #autops placeHolder="Admissions search filter"
+                                                (inputCleared)="inputClean()" (selected)='selectFilterEvent($event)'
+                                                [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -290,28 +316,34 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                                                        <label for="toggle-input" class="toggle"></label></div>
-                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input"
+                                                                            type="checkbox" />
+                                                                        <label for="toggle-input"
+                                                                            class="toggle"></label></div>
+                                                                    <div
+                                                                        class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
 
-                                        </a>
-                                      </span>
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -332,7 +364,8 @@
 
                             <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
                                 <div class="widget-block">
-                                    <div class="widget-header d-flex justify-content-between align-items-center p-1 lightblue-bg">
+                                    <div
+                                        class="widget-header d-flex justify-content-between align-items-center p-1 lightblue-bg">
                                         <div class="ico">
                                             <i class="fas fa-compress-alt min-1 px-2"></i>
                                             <i class="fas fa-expand max-1 px-2"></i>
@@ -358,7 +391,12 @@
                                         <div class="d-flex justify-content-between widget-inner-header mb-1">
                                             <h5>Authorization services</h5>
                                             <!-- <input type="text" placeholder="PS search filter" class="float-right form-control"> -->
-                                            <ng-autocomplete class="col-4" [data]="psList" [searchKeyword]="authorizationkeyword" #autops placeHolder="Authorization search filter" (inputCleared)="clearAuthorizationList()" (selected)='selectAuthorizationByPsId($event)' [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="col-4" [data]="psList"
+                                                [searchKeyword]="authorizationkeyword" #autops
+                                                placeHolder="Authorization search filter"
+                                                (inputCleared)="clearAuthorizationList()"
+                                                (selected)='selectAuthorizationByPsId($event)'
+                                                [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -384,28 +422,34 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                                                        <label for="toggle-input" class="toggle"></label></div>
-                                                                    <div class="slider d-flex align-items-center justify-content-around">
+                                                                        <input class="toggle-input" id="toggle-input"
+                                                                            type="checkbox" />
+                                                                        <label for="toggle-input"
+                                                                            class="toggle"></label></div>
+                                                                    <div
+                                                                        class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
-                                      </span>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="text-white">
 
-                                        </a>
-                                      </span>
+                                                                                </a>
+                                                                            </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -472,9 +516,6 @@
           </div>
         </div>
       </div> -->
-
-
-
         </section>
     </div>
 </div>

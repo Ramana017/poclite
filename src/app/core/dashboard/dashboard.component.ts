@@ -201,28 +201,28 @@ selectAuthorizationByPsId(PsId) {
 
   resize() {
     $('.max-1,.max-2,.max-3,.max-4').click(function () {
-      $(this).parent().parent().parent().parent().siblings().hide();
       $(this).parent().parent().parent().parent().parent().siblings().hide();
-      $(this).parent().parent().parent().css({ height: '530px' });
+      $(this).parent().parent().parent().parent().parent().parent().siblings().hide();
+      $(this).parent().parent().parent().parent().css({ height: '83vh' });
       $('.widget-block').find('.table-responsive').addClass('table-resize');
       $('.cms-widget,.scrolling-alerts').hide();
 
-      if ($(this).parent().parent().parent().parent().hasClass('col-md-6')) {
-        $(this).parent().parent().parent().parent().addClass('col-md-12');
-        $(this).parent().parent().parent().parent().removeClass('col-md-6');
+      if ($(this).parent().parent().parent().parent().parent().hasClass('col-md-6')) {
+        $(this).parent().parent().parent().parent().parent().addClass('col-md-12');
+        $(this).parent().parent().parent().parent().parent().removeClass('col-md-6');
       }
     });
 
     $('.min-1,.min-2,.min-3,.min-4').click(function () {
-      $(this).parent().parent().parent().parent().siblings().show();
       $(this).parent().parent().parent().parent().parent().siblings().show();
-      $(this).parent().parent().parent().css({ height: '', width: '' });
+      $(this).parent().parent().parent().parent().parent().parent().siblings().show();
+      $(this).parent().parent().parent().parent().css({ height: '', width: '' });
       $('.widget-block').find('.table-responsive').removeClass('table-resize');
       $('.cms-widget,.scrolling-alerts').show();
 
-      if ($(this).parent().parent().parent().parent().hasClass('col-md-12')) {
-        $(this).parent().parent().parent().parent().addClass('col-md-6');
-        $(this).parent().parent().parent().parent().removeClass('col-md-12');
+      if ($(this).parent().parent().parent().parent().parent().hasClass('col-md-12')) {
+        $(this).parent().parent().parent().parent().parent().addClass('col-md-6');
+        $(this).parent().parent().parent().parent().parent().removeClass('col-md-12');
       }
     });
 
