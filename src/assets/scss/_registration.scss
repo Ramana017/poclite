@@ -171,6 +171,13 @@
     border: 1px solid #dc3545 !important;
     box-shadow: none !important;
   }
+  .invalid-input{
+    input{
+      border-color: #dc3545;
+      border: 1px solid #dc3545 !important;
+      box-shadow: none !important;
+    }
+  }
 }
 
 .textarea-wrapper {
