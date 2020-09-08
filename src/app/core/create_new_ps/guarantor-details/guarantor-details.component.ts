@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-guarantor-details',
   templateUrl: './guarantor-details.component.html',
@@ -29,11 +30,11 @@ export class GuarantorDetailsComponent implements OnInit {
   public previousPsDetails: any;
   public guarantorResponse: Object;
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
-    let session = sessionStorage.getItem('guarantorDetails');
-    if (session) {
-      console.log('guranter present')
-      this.getGuarantorDetails();
-    }
+    // let session = sessionStorage.getItem('guarantorDetails');
+    // if (session) {
+    //   console.log('guranter present')
+    //   this.getGuarantorDetails();
+    // }
 
   }
   ngOnInit() {
