@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -13,7 +14,6 @@ import { Router } from '@angular/router';
 export class GuarantorDetailsComponent implements OnInit {
   public selfChecBox:boolean=false;
   public addressCheckBox:boolean=false;
-
   public guarantorId:number=0;
   public basicPreviousData: any;
   public guarantorForm: FormGroup;
@@ -29,7 +29,11 @@ export class GuarantorDetailsComponent implements OnInit {
   public submitted: boolean = false;
   public previousPsDetails: any;
   public guarantorResponse: Object;
+  public checkBoxAddress:boolean=false;
+  public userId:number;
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
+    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId=data.userId
     // let session = sessionStorage.getItem('guarantorDetails');
     // if (session) {
     //   console.log('guranter present')
@@ -89,9 +93,9 @@ export class GuarantorDetailsComponent implements OnInit {
         "zipcode": this.guarantorForm.value.zipcode,
         "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
         "phone": this.guarantorForm.value.number,
-        "updatedUserId": "47",
+        "updatedUserId": this.userId,
         "psId": this.previousPsDetails.psId,
-        "occupationId":'286',
+        "occupationId":this.guarantorForm.value.occupationList,
         "guarantorId":this.guarantorId
       }
       let param = JSON.stringify(jsonObj);
@@ -110,13 +114,21 @@ export class GuarantorDetailsComponent implements OnInit {
       }
 
     } else {
-      alert("Fill all the required fields")
+      // alert("Fill all the required fields")
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+
     }
 
   }
 
  public  basicDetails():void {
-    let jsonObj = { 'userId': '47' };
+    let jsonObj = { 'userId': this.userId};
 
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
       console.log(data)
@@ -181,7 +193,9 @@ export class GuarantorDetailsComponent implements OnInit {
   }
   public addressCheck(event):void {
 
-    let flag = event.target.checked
+    console.log(event)
+    let flag =event.target.checked
+
     console.log("addressCheck")
     this.guarantorForm.get('addressTypeList').setValue(flag ? this.basicPreviousData.locationId : '');
     this.guarantorForm.get('location').setValue(flag ? this.basicPreviousData.locationName : '');
@@ -204,6 +218,8 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
     this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
+    flag ?this.checkBoxAddress=true:this.checkBoxAddress=false;
+    flag?this.addressCheck(event):this.addressCheck(event);
   }
   public getPreviousBasic() :void{
     this.router.navigateByUrl('registration-re/child-basic')
@@ -215,7 +231,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorId=session.psGuarId;
    let params = {'guarantorId':session.psGuarId}
     try {
-      console.log("$$$$$$$$$$$$$$",params,session)
+      // console.log("$$$$$$$$$$$$$$",params,session)
       this.service.getGuarantorDetails(JSON.stringify(params)).subscribe(
         response => {
           let data: any = response;
