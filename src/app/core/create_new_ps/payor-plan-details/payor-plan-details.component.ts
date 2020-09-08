@@ -20,19 +20,20 @@ export class PayorPlanDetailsComponent implements OnInit {
   saluationId: any;
   addressTypeList: any;
   checked1;
+  public payorData;
   maritalStatusList: any;
   raceId: any;
   user1;
   phoneTypeList: any;
   genderId: any;
   checked;
-  Keyword = 'label';
   data;
   addressid;
   locationName;
   siteId;
   raceid;
-
+  payorKeyword = 'payorPlanId';
+  Keyword = 'label';
   fill;
   city;
   zipDetails;
@@ -103,6 +104,9 @@ export class PayorPlanDetailsComponent implements OnInit {
     let params = {"officeId":191,"privateDuty":0}
     this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
       data => {
+     //   debugger;
+        this.payorData =data
+
         console.log(data);
       })
   }
@@ -121,20 +125,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.genderId = this.lookupDetails.raceList;
     });
   }
-  private getPsDetails(): void {
-    try {
-      this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-      let parameters = { 'psId': this.previousPsDetails.psId }
-      this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
-        console.log(res)
-        this.service.getbasic.next(res)
-        this.basicPreviousData = res;
-        this.authorizationForm.get('saluationId').setValue(this.basicPreviousData.SALUTATIONId);
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
 
   selectChange(event, field) {
 
@@ -192,12 +183,8 @@ export class PayorPlanDetailsComponent implements OnInit {
       //   if(res !== null){
       //   this.authorizationForm.patchValue(res)
       //   this.authorizationForm.get('city').setValue(res.county);
-
       //   }
-
       // })
-
-
       try {
         this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
         let parameters = { 'psId': this.previousPsDetails.psId }
