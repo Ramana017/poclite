@@ -43,6 +43,11 @@ export class DashboardComponent implements OnInit {
   public authorizationLowerBound = 1;
   public authorizationUpperBound = 20;
   public authorizationPerPage = 5;
+  public dcstotalRecordsCount:number;
+  public admissiontotalRecordsCount:number;
+  public authorizationtotalRecordsCount:number
+
+
 
   public psId=0;
 
@@ -79,9 +84,13 @@ export class DashboardComponent implements OnInit {
     });
   }
   getDcsList() {
-    const userData = { "userId": this.userId, "lowerBound": "1", "upperBound": "10" }
+    const userData = { "userId": this.userId, "lowerBound": this.psLowerBound, "upperBound": this.psUpperBound }
     this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
-      this.dcsList = res;
+      let data:any=res;
+      console.log(res)
+      this.dcsList = data.dcsList;
+      this.dcstotalRecordsCount=data.totalRecordsCount;
+
     });
   }
   clearDcsList() {
@@ -105,6 +114,7 @@ export class DashboardComponent implements OnInit {
     this.getAuthorizationList();
   }
   getPsList() {
+    this.psList=[];
     let parameters = { 'userId': this.userId, 'lowerBound': this.psLowerBound,"psId":this.psId, 'upperBound': this.psUpperBound };
     console.log(parameters)
     this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
@@ -270,13 +280,34 @@ export class DashboardComponent implements OnInit {
   public psPageNext(){
    this.psLowerBound=this.psLowerBound+this.psPerPage;
    this.psUpperBound=this.psUpperBound+this.psPerPage;
-   this.getPsList()
+   this.getPsList();
   }
   public psPagePrev(){
     this.psLowerBound=this.psLowerBound-this.psPerPage;
     this.psUpperBound=this.psUpperBound-this.psPerPage;
     console.log(this.psUpperBound,this.psLowerBound,this.psPerPage)
-    this.getPsList()
+    this.getPsList();
+   }
+   public pspagereset(): void {
+    this.psLowerBound = 1;
+    this.psUpperBound = this.psPerPage;
+    this.getPsList();
+  }
+  public dcsPageNext(){
+    this.dcsLowerBound=this.dcsLowerBound+this.dcsPerPage;
+    this.dcsUpperBound=this.dcsUpperBound+this.dcsPerPage;
+    this.getDcsList();
+   }
+   public dcsPagePrev(){
+     this.dcsLowerBound=this.dcsLowerBound-this.dcsPerPage;
+     this.dcsUpperBound=this.dcsUpperBound-this.dcsPerPage;
+     console.log(this.dcsUpperBound,this.dcsLowerBound,this.dcsPerPage)
+     this.getDcsList();
+    }
+    public dcspagereset(): void {
+     this.dcsLowerBound = 1;
+     this.dcsUpperBound = this.dcsPerPage;
+     this.getDcsList();
    }
 
 
