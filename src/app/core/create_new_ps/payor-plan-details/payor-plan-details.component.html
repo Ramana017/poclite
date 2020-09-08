@@ -1,7 +1,6 @@
-<!-- <app-header></app-header> -->
 <div class="container-wrapper">
   <div class="ps-registration-tabs-container">
-    <div class="bg-grey-l p-3">
+     <div class="bg-grey-l p-3">
       <div class="d-flex align-items-center height-30">
         <h4 class="AvenirLTStd-Heavy m-0 f-size-16">Payor Plan Details</h4>
         <div class="pl-3 d-flex align-items-center justify-content-between">
@@ -16,60 +15,51 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="border-2">
-        <form class="" [formGroup]="authorizationForm">
+        <form class="" [formGroup]="payorPlanForm">
           <div class="d-flex align-items-center justify-content-between nav">
             <div class="input-container-wrapper">
               <label class="">
                 Payor Plan<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
-                <!-- <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete  [data]="payorData"
-                  [searchKeyword]="payorKeyword" [itemTemplate]="payordataauto">
+                <div class="ng-autocomplete" style="width: 100%;">
+                  <ng-autocomplete  [data]="payorData"  [searchKeyword]="payorKeyword" [itemTemplate]="payorAuto">
                   </ng-autocomplete>
-                  <ng-template style="width: 100%;" #payordataauto let-item>
+                  <ng-template style="width: 100%;" #payorAuto let-item>
                       <a [innerHTML]="item.payorPlanId"></a>
                   </ng-template>
-              </div> -->
-              <div class="ng-autocomplete" style="width: 100%;">
-                <ng-autocomplete  [data]="payorData"  [searchKeyword]="payorKeyword"
-                [itemTemplate]="payorauto">
-                </ng-autocomplete>
-                <ng-template style="width: 100%;" #payorauto let-item>
-                    <a [innerHTML]="item.payorPlanId"></a>
-                </ng-template>
-            </div>
               </div>
-
+              </div>
+ 
             </div>
             <div class="input-container-wrapper">
               <label class="">
                 Payor Code<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" aria-label="Case Manager" disabled>
-
+ 
               </div>
-
+ 
             </div>
             <div class="input-container-wrapper">
               <label class="">
                 Plan Code<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control"  aria-label="Case Manager" disabled>
-
+ 
               </div>
-
+ 
             </div>
-
+ 
           </div>
-
+ 
           <!-- <div class="input-container-wrapper"></div>
           <div class="input-container-wrapper"></div> -->
           <div class="d-flex align-items-center justify-content-between nav">
@@ -77,7 +67,7 @@
               <label class="">
                 Rank<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <select class="form-control">
                   <option selected>Select</option>
@@ -86,34 +76,34 @@
                   <option value="3">MR</option>
                   <option value="4">MRS</option>
                   <option value="5">MS</option>
-
+ 
                 </select>
               </div>
-
+ 
             </div>
-
+ 
             <div class=" input-container-wrapper pb-0">
               <label class="">
                 Effective From<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker>
               </div>
-
+ 
             </div>
             <div class=" input-container-wrapper pb-0">
               <label class="">
                 Effective To
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker>
               </div>
-
+ 
             </div>
           </div>
-
+ 
           <!-- <div class=" input-container-wrapper"></div>
           <div class=" input-container-wrapper"></div>
           <div class=" input-container-wrapper"></div> -->
@@ -131,15 +121,15 @@
             </label>
           </div>
         </div>
-        <form class="" [formGroup]="authorizationForm">
+        <form class="" [formGroup]="payorPlanForm">
           <div class="d-flex align-items-center justify-content-between nav">
             <div class="input-container-wrapper">
               <label class="">
                 Relationship<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group ">
-                <!-- <div class="ng-autocomplete" style="width: 100%;">
+                <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete #relationName [data]="relationshipList" formControlName="relation"
                     (selected)="selectChange($event,'relationshipList')" [searchKeyword]="Keyword"
                     [itemTemplate]="itemTemplate1">
@@ -147,42 +137,42 @@
                   <ng-template style="width: 100%;" #itemTemplate1 let-item>
                     <a [innerHTML]="item.label"></a>
                   </ng-template>
-                </div> -->
+                </div>
               </div>
-
+ 
             </div>
-
+ 
             <div class=" input-container-wrapper">
               <label class="">
                 Last Name<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" formControlName="lastName" class="form-control"
                   value="{{user!=undefined && checked ? user.lastName:''}}" aria-label="Auth">
               </div>
-
+ 
             </div>
             <div class=" input-container-wrapper">
               <label class="">
                 First Name<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" aria-label="Last Name" formControlName="firstName"
                   value="{{user!=undefined && checked ? user.firstName:''}}">
-
+ 
               </div>
             </div>
             <div class=" input-container-wrapper">
               <label class="">
                 Policy Number<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" formControlName="policyNumber">
               </div>
-
+ 
             </div>
           </div>
           <div class="d-flex align-items-center justify-content-between nav">
@@ -190,98 +180,98 @@
               <label class="">
                 Date of Birth<span class="text-danger">*</span>
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" class="form-control" formControlName="dob" aria-label="Case Manager"
                   placeholder="mm/dd/yyyy " bsDatepicker>
               </div>
-
+ 
             </div>
             <div class=" m-0  input-container-wrapper ">
               <label class="">Gender<span class="text-danger">*</span></label>
               <div class="input-group ">
-                <!-- <div class="ng-autocomplete" style="width: 100%;">
+                <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete [data]="genderId" [searchKeyword]="Keyword" formControlName="gender"
                     (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>
                     <a [innerHTML]="item.label"></a>
                   </ng-template>
-                </div> -->
+                </div>
               </div>
             </div>
             <div class=" m-0  input-container-wrapper">
               <label class="">
                 SSN
               </label>
-
+ 
               <div class="input-group  ">
                 <input type="text" formControlName='ssn' class="form-control" aria-label="Case Manager">
               </div>
-
+ 
             </div>
-
+ 
             <div class=" input-container-wrapper"></div>
           </div>
           <!-- <div class=" input-container-wrapper"></div>
           <div class=" input-container-wrapper"></div> -->
         </form>
-
-        <form class="d-flex align-items-center nav justify-content-between" [formGroup]="authorizationForm">
+ 
+        <form class="d-flex align-items-center nav justify-content-between" [formGroup]="payorPlanForm">
           <div class="input-container-wrapper">
             <label class="">
               Location<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
-              <!-- <div class="ng-autocomplete" style="width: 100%;">
+              <div class="ng-autocomplete" style="width: 100%;">
                 <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="address"
                   (selected)="selectChange($event,'addressTypeList')" [itemTemplate]="itemTemplate">
                 </ng-autocomplete>
                 <ng-template style="width: 100%;" #itemTemplate let-item>
                   <a [innerHTML]="item.label"></a>
                 </ng-template>
-              </div> -->
+              </div>
             </div>
-
+ 
           </div>
-
+ 
           <div class=" input-container-wrapper">
             <label class="">
               Address Lane<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
               <input type="text" formControlName="lane" class="form-control">
             </div>
-
+ 
           </div>
           <div class=" input-container-wrapper">
             <label class="">
               Zip Code<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
               <input type="text" class="form-control " aria-label="date" formControlName='zipcode'
                 (keyup)="getzip($event)" id="autocomplete" type="text" class="form-control">
-
+ 
             </div>
           </div>
           <div class=" m-0  input-container-wrapper phone-container">
             <label class="">
               Phone<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
               <div class="  date-input  d-flex align-items-center w-100">
-                <!-- <div class="ng-autocomplete phone-select">
+                <div class="ng-autocomplete phone-select">
                   <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phone"
                     (selected)="selectChange($event, 'phoneTypeList')" placeHolder="Type" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>
                     <a [innerHTML]="item.label"></a>
                   </ng-template>
-                </div> -->
+                </div>
                 <div class="input-group ">
                   <input type="text" [class.is-invalid]="f.number.invalid && f.number.touched" formControlName="number"
                     class="form-control">
@@ -297,7 +287,7 @@
                           <small class="text-danger" *ngIf="f.number.errors?.minlength ">Digits should be 10</small>
                           <small class="text-danger" *ngIf="f.number.errors?.maxlength "></small> -->
             </div>
-
+ 
           </div>
           <div class=" m-0  input-container-wrapper pb-0">
             <label class="">City<span class="text-danger">*</span> </label>
@@ -328,25 +318,25 @@
             <label class="">
               Time Zone<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
               <input type="text" class="form-control" formControlName="timeZone" aria-label="Case Manager"
                 [(ngModel)]="timeZone" disabled="true">
             </div>
-
+ 
           </div>
           <div class=" m-0  input-container-wrapper pb-0">
             <label class="">
               Country<span class="text-danger">*</span>
             </label>
-
+ 
             <div class="input-group  ">
               <input type="text" class="form-control" formControlName="country" aria-label="Case Manager"
                 [(ngModel)]="country" disabled="true">
             </div>
-
+ 
           </div>
-
+ 
         </form>
       </div>
       <!-- <div class="d-flex align-items-center justify-content-between mt-3">
@@ -370,4 +360,5 @@
       </div>
     </div>
   </div>
-</div>
+ </div>
+ 

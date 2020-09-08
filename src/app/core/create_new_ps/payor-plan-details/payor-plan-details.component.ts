@@ -13,7 +13,7 @@ export class PayorPlanDetailsComponent implements OnInit {
 
 
   title = 'Form';
-  authorizationForm: FormGroup;
+  payorPlanForm: FormGroup;
   salutationid: number;
   lookupDetails: any;
   relationshipList;
@@ -49,28 +49,27 @@ export class PayorPlanDetailsComponent implements OnInit {
   phone;
   submitted = false;
   previousPsDetails: any;
-  basicPreviousData: any;
   constructor(private fb: FormBuilder, public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
     this.getPayorPlanData();
-    this.authorizationForm = this.fb.group({
+    this.payorPlanForm = this.fb.group({
 
       genderId: ['', Validators.required],
-      policyNumber:[''],
-      payorCode:[''],
-      plancode:[''],
-      payorPlan:[''],
-      rank:[''],
-      effectiveFrom:[''],
-      effectiveto:[''],
-      phone:[''],
+      policyNumber: [''],
+      payorCode: [''],
+      plancode: [''],
+      payorPlan: [''],
+      rank: [''],
+      effectiveFrom: [''],
+      effectiveto: [''],
+      phone: [''],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
-      relationshipList:[''],
-      relation:[''],
-      gender:[''],
+      relationshipList: [''],
+      relation: [''],
+      gender: [''],
       ssn: [''],
-      address:[''],
+      address: [''],
       number: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -86,14 +85,14 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.basicDetails();
   }
   get f() {
-    return this.authorizationForm.controls;
+    return this.payorPlanForm.controls;
 
   }
 
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.authorizationForm.value)
+    console.log(this.payorPlanForm.value)
     this.user = JSON.parse(localStorage.getItem('regis'));
 
     // this.service.savePs(JSON.stringify(jsonObj)).subscribe(res => {
@@ -101,11 +100,11 @@ export class PayorPlanDetailsComponent implements OnInit {
     // })
   }
   public getPayorPlanData(): void {
-    let params = {"officeId":191,"privateDuty":0}
+    let params = { "officeId": 191, "privateDuty": 0 }
     this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
       data => {
-     //   debugger;
-        this.payorData =data
+        //   debugger;
+        this.payorData = data
 
         console.log(data);
       })
@@ -130,36 +129,36 @@ export class PayorPlanDetailsComponent implements OnInit {
   selectChange(event, field) {
 
     if (field === 'genderId') {
-      this.authorizationForm.get('genderId').setValue(event.id);
+      this.payorPlanForm.get('genderId').setValue(event.id);
     }
     if (field === 'site') {
-      this.authorizationForm.get('site').setValue(event.id),
+      this.payorPlanForm.get('site').setValue(event.id),
         this.siteId = event.id;
       // console.log(this.siteId);
     }
 
     if (field === 'relationshipList') {
-      this.authorizationForm.get('relationshipList').setValue(event.id);
+      this.payorPlanForm.get('relationshipList').setValue(event.id);
     }
 
     if (field === 'addressTypeList') {
-      this.authorizationForm.get('addressTypeList').setValue(event.id);
+      this.payorPlanForm.get('addressTypeList').setValue(event.id);
       this.locationName = event.label;
 
     }
     if (field === 'phoneTypeList') {
-      this.authorizationForm.get('phoneTypeList').setValue(event.id);
+      this.payorPlanForm.get('phoneTypeList').setValue(event.id);
       this.phone = event.label;
     }
     if (field === 'state') {
-      this.authorizationForm.get('phoneTypeList').setValue(event.id);
+      this.payorPlanForm.get('phoneTypeList').setValue(event.id);
     }
 
 
   }
 
   getzip(event) {
-    const zip = this.authorizationForm.get('zipcode').value;
+    const zip = this.payorPlanForm.get('zipcode').value;
     console.log(zip)
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
@@ -181,6 +180,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       // this.service.getbasic.subscribe(res=>{
       //   console.log(res)
       //   if(res !== null){
+      // this.service.getbasic.next(res)
       //   this.authorizationForm.patchValue(res)
       //   this.authorizationForm.get('city').setValue(res.county);
       //   }
@@ -190,55 +190,53 @@ export class PayorPlanDetailsComponent implements OnInit {
         let parameters = { 'psId': this.previousPsDetails.psId }
         this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
           console.log(res)
-          this.service.getbasic.next(res)
-          this.basicPreviousData = res;
-          this.authorizationForm.get('saluationId').setValue(this.basicPreviousData.SALUTATIONId);
+          let s = res;
+          // this.authorizationForm.get('addressTypeList').setValue(s.addressTypeList1);
+          this.payorPlanForm.get('number').setValue(s.number);
+          this.payorPlanForm.get('zipcode').setValue(s.zipcode);
+          this.payorPlanForm.get('lane').setValue(s.lane);
+          this.payorPlanForm.get('lastName').setValue(s.lastname);
+          this.payorPlanForm.get('firstName').setValue(s.firstName);
+          this.payorPlanForm.get('city').setValue(s.city);
+          this.payorPlanForm.get('phone').setValue(s.numberName);
+          this.payorPlanForm.get('county').setValue(s.countyName);
+          this.payorPlanForm.get('state').setValue(s.state);
+          this.payorPlanForm.get('timeZone').setValue(s.timeZone);
+          this.payorPlanForm.get('country').setValue(s.country);
+          this.payorPlanForm.get('address').setValue(s.addressTypeList1);
+          this.payorPlanForm.get('dob1').setValue(s.dob1);
+          this.payorPlanForm.get('gender').setValue(s.genderName);
+          //this.payorPlanForm.get('relation').setValue(s.relationname);
+          //    this.guarantorForm.get('phoneTypeList').setValue(s.numberName);
+          //    this.get2('', true)
         })
       } catch (error) {
         console.log(error)
       }
-      // // this.authorizationForm.get('addressTypeList').setValue(s.addressTypeList1);
-      // this.authorizationForm.get('number').setValue(s.number);
-      // this.authorizationForm.get('zipcode').setValue(s.zipcode);
-      // this.authorizationForm.get('lane').setValue(s.lane);
-      // this.authorizationForm.get('lastName').setValue(s.lastName);
-      // this.authorizationForm.get('firstName').setValue(s.firstName);
-      // this.authorizationForm.get('city').setValue(s.city);
-      // this.authorizationForm.get('phone').setValue(s.numberName);
-      // this.authorizationForm.get('county').setValue(s.countyName);
-      // this.authorizationForm.get('state').setValue(s.state);
-      // this.authorizationForm.get('timeZone').setValue(s.timeZone);
-      // this.authorizationForm.get('country').setValue(s.country);
-      // this.authorizationForm.get('address').setValue(s.addressTypeList1);
-      // this.authorizationForm.get('dob').setValue(s.dob1);
-      // this.authorizationForm.get('gender').setValue(s.genderName);
-      // this.authorizationForm.get('relation').setValue(s1.relationname);
-      // //    this.guarantorForm.get('phoneTypeList').setValue(s.numberName);
-      // //    this.get2('', true)
+
 
     } else {
       this.checked = false;
       this.checked1 = false;
-  //    this.authorizationForm.value=null
-      this.authorizationForm.get('addressTypeList').setValue('');
-      this.authorizationForm.get('phoneTypeList').setValue('');
-      this.authorizationForm.get('number').setValue('');
-      this.authorizationForm.get('zipcode').setValue('');
-      this.authorizationForm.get('lane').setValue('');
-      this.authorizationForm.get('lastName').setValue('');
-      this.authorizationForm.get('firstName').setValue('');
-      this.authorizationForm.get('city').setValue('');
-      this.authorizationForm.get('phone').setValue('');
-      this.authorizationForm.get('county').setValue('');
-      this.authorizationForm.get('state').setValue('');
-      this.authorizationForm.get('timeZone').setValue('');
-      this.authorizationForm.get('country').setValue('');
-      this.authorizationForm.get('address').setValue('');
-      this.authorizationForm.get('dob').setValue('');
-      this.authorizationForm.get('gender').setValue('');
-      this.authorizationForm.get('relation').setValue('');
-      this.user = null;
-      this.user1 = null;
+      //    this.authorizationForm.value=null
+      // this.authorizationForm.get('addressTypeList').setValue('');
+      // this.authorizationForm.get('phoneTypeList').setValue('');
+      // this.authorizationForm.get('number').setValue('');
+      // this.authorizationForm.get('zipcode').setValue('');
+      // this.authorizationForm.get('lane').setValue('');
+      // this.authorizationForm.get('lastName').setValue('');
+      // this.authorizationForm.get('firstName').setValue('');
+      // this.authorizationForm.get('city').setValue('');
+      // this.authorizationForm.get('phone').setValue('');
+      // this.authorizationForm.get('county').setValue('');
+      // this.authorizationForm.get('state').setValue('');
+      // this.authorizationForm.get('timeZone').setValue('');
+      // this.authorizationForm.get('country').setValue('');
+      // this.authorizationForm.get('address').setValue('');
+      // this.authorizationForm.get('dob').setValue('');
+      // this.authorizationForm.get('gender').setValue('');
+      // this.authorizationForm.get('relation').setValue('');
+
       // this.relationAuto.clear();
       // this.relationAuto.close();
       // this.ocuupationAuto.clear();
