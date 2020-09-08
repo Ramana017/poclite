@@ -46,14 +46,18 @@ export class BasicInfoComponent implements OnInit {
     showCheckbox: true
 
   };
+  private userId:number;
   // tslint:disable-next-line: max-line-length
   constructor(private fb: FormBuilder,public modalService:BsModalService ,public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
     console.log("basic constructer",this.popup);
+    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId=data.userId
     this.newForm();
     // let userExist = sessionStorage.getItem('psDetails');
     // if (userExist) {
     //   this.previousBasicInfo();
-    // }
+    // }+6
+
 
   }
   ngOnInit() {
@@ -78,7 +82,7 @@ export class BasicInfoComponent implements OnInit {
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
-      number: ['', Validators.required],
+      number: ['', [Validators.required,Validators.pattern( /^\d{10}$/)]],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -119,7 +123,7 @@ export class BasicInfoComponent implements OnInit {
         "phoneTypeid": (this.basicForm.value.phoneTypeList),
         "phone": (this.basicForm.value.number),
         "officeId": (this.siteId),
-        "updatedUserId": "47",
+        "updatedUserId": this.userId,
         "psId": this.psId,
         "mappedOfficeIds": mappedArray.toString(),
       };
@@ -161,7 +165,7 @@ export class BasicInfoComponent implements OnInit {
   }
 
   private basicDetails(): void {
-    let jsonObj = { 'userId': '47' };
+    let jsonObj = { 'userId': this.userId };
 
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
       this.lookupDetails = data;

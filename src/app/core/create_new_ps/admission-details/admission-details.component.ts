@@ -20,6 +20,7 @@ export class AdmissionDetailsComponent implements OnInit {
   I;
   id = 'id';
   name = 'name';
+  public diaCode=[];
   public clientType;
   public coordinatorData;
   public AdmissionDate: Date;
@@ -42,6 +43,8 @@ export class AdmissionDetailsComponent implements OnInit {
   rows: any;
   ds: any;
   numbers = [];
+  guarantorId: any;
+  psId: any;
   constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService) {
     for (let i = 1; i <= 100; i++) {
       this.numbers.push(i);
@@ -72,7 +75,11 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   public getAdmissionLookups(): void {
-    let params = { "userId": 47, "psId": 1201, "guarantorId": 1190 };
+    let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
+    this.guarantorId = guarantorSession.psGuarId;
+    this.psId=psSession.psId
+    let params = { "userId": 47, "psId": this.psId, "guarantorId": this.guarantorId };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
         console.log(data);
@@ -139,6 +146,7 @@ export class AdmissionDetailsComponent implements OnInit {
     if(event.target.checked){
       this.selectedItems.push(this.diagnosisList[ind])
       console.log(this.selectedItems);
+
     }
 
   }
@@ -156,10 +164,15 @@ export class AdmissionDetailsComponent implements OnInit {
     });
   }
   savePs(){
+    let temp=[];
     console.log(this.admissionForm.value)
+    this.selectedItems.map((x)=>{
+      temp.push(x.diagnosisCode)
+    })
+    console.log(temp)
    // this.admissionForm.get('coordinatorId').setValue(event);
     let params ={
-      "psId":22948,
+      "psId":this.psId,
       "coordinatorId":this.admissionForm.value.coordinatorId.userInfoId,
       "psGuarantorId":23040,
       "admitDate":this.date.transform(this.admissionForm.value.admissionDate,'MM/dd/yyyy'),
@@ -169,8 +182,8 @@ export class AdmissionDetailsComponent implements OnInit {
       "clientClassId":this.coordinatorData.clientClassId,
       // "primaryDiagnosisCode":"E8010",
       // "otherDiagnoses":"E800,E8000,E8001,E8002,E8003",
-      "primaryDiagnosisCode":"37851",
-      "otherDiagnoses":"3790,37886,37922,37924",
+      "primaryDiagnosisCode":temp[0],
+      "otherDiagnoses":(temp.shift()).toString(),
       "officeId":191,
       "userId": 47
     }

@@ -1,13 +1,13 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ZipcodeService {
-
+  public getbasic = new BehaviorSubject<any>(null);
   public lookUpDetails:string;
   public getUrl():void {
     let url = localStorage.getItem('webserviceURL');
