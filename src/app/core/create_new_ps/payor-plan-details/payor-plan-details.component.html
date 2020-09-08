@@ -26,15 +26,13 @@
               </label>
 
               <div class="input-group  ">
-                <select class="form-control">
-                  <option selected>Select</option>
-                  <option value="1">DR</option>
-                  <option value="2">MISS</option>
-                  <option value="3">MR</option>
-                  <option value="4">MRS</option>
-                  <option value="5">MS</option>
-
-                </select>
+                <div class="ng-autocomplete" style="width: 100%;">
+                  <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId" (selected)="selectChange($event,'relationshipList')" [searchKeyword]="Keyword" [itemTemplate]="itemTemplate1">
+                  </ng-autocomplete>
+                  <ng-template style="width: 100%;" #itemTemplate1 let-item>
+                      <a [innerHTML]="item.label"></a>
+                  </ng-template>
+              </div>
               </div>
 
             </div>
@@ -44,15 +42,8 @@
               </label>
 
               <div class="input-group  ">
-                <select class="form-control">
-                  <option selected>Select</option>
-                  <option value="1">DR</option>
-                  <option value="2">MISS</option>
-                  <option value="3">MR</option>
-                  <option value="4">MRS</option>
-                  <option value="5">MS</option>
+                <input type="text" class="form-control" aria-label="Case Manager" disabled>
 
-                </select>
               </div>
 
             </div>
@@ -62,15 +53,8 @@
               </label>
 
               <div class="input-group  ">
-                <select class="form-control">
-                  <option selected>Select</option>
-                  <option value="1">DR</option>
-                  <option value="2">MISS</option>
-                  <option value="3">MR</option>
-                  <option value="4">MRS</option>
-                  <option value="5">MS</option>
+                <input type="text" class="form-control"  aria-label="Case Manager" disabled>
 
-                </select>
               </div>
 
             </div>

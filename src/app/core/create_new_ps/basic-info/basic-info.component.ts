@@ -73,7 +73,7 @@ export class BasicInfoComponent implements OnInit {
       phonetype: [''],
       maritalStatus: [''],
       race: [''],
-      gender: [''],
+      gender: ['',[Validators.required]],
       saluation: [''],
       saluationId: ['', Validators.required],
       site: ['', Validators.required],

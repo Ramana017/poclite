@@ -1,13 +1,13 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ZipcodeService {
-
+  public getbasic = new BehaviorSubject<any>(null);
   public lookUpDetails:string;
   public getUrl():void {
     let url = localStorage.getItem('webserviceURL');
@@ -64,10 +64,17 @@ export class ZipcodeService {
     return this.http.get(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   public saveAdmissionDetails(params1): Observable<any> {
-    this.getUrl();
+    //this.getUrl();
    // return this.http.get("assets/1.json")
 
-    return this.http.post(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' , params1).pipe(catchError(this.errorHandler));
+    return this.http.post(' http://poc.aquilasoftware.com/poclite/dashboard/savePSAdmission' , params1).pipe(catchError(this.errorHandler));
+  }
+  public getPayorPlanList(params1): Observable<any> {
+    //this.getUrl();
+   // return this.http.get("assets/1.json")
+
+    // tslint:disable-next-line: max-line-length
+    return this.http.get('http://poc.aquilasoftware.com/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
