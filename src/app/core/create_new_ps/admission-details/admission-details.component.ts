@@ -13,11 +13,11 @@ import swal from 'sweetalert2';
   styleUrls: ["./admission-details.component.scss"],
 })
 export class AdmissionDetailsComponent implements OnInit {
-  @Input() popup:boolean;
+  @Input() popup: boolean;
   bsModelRef: BsModalRef;
-  public admissionForm:FormGroup;
+  public admissionForm: FormGroup;
   public Keyword = 'userName';
-  public coordinatorValue : string;
+  public coordinatorValue: string;
   public coordinatorList = [];
   public listingPageData = [];
   field1;
@@ -49,12 +49,14 @@ export class AdmissionDetailsComponent implements OnInit {
   numbers = [];
   guarantorId: any;
   psId: number;
-  admissionRes:any;
-  public userId:number;
-  constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
-    console.log("basic constructer",this.popup);
-    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId=data.userId
+  admissionRes: any;
+  public userId: number;
+  public diagnosisCode: string = '';
+  public diagnosisName: string = '';
+  constructor(private fb: FormBuilder, public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
+    console.log("basic constructer", this.popup);
+    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId = data.userId
     for (let i = 1; i <= 100; i++) {
       this.numbers.push(i);
     }
@@ -87,7 +89,7 @@ export class AdmissionDetailsComponent implements OnInit {
     let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
     this.guarantorId = guarantorSession.psGuarId;
-    this.psId=psSession.psId
+    this.psId = psSession.psId
     let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
@@ -98,9 +100,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        this.psId=data.psId;
-        this.officeId = data.officeId
-        console.log(this.officeId)
+        this.psId = data.psId;
 
       })
   }
@@ -144,19 +144,19 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   public getDiagnosisData(): void {
-    let params = { "userId": this.userId, "code": "", "name": "", "lowerBound": this.lowerBound, "upperBound": this.upperBound };
+    let params = { "userId": this.userId, "code": this.diagnosisCode, "name": this.diagnosisName, "lowerBound": this.lowerBound, "upperBound": this.upperBound };
     console.log(params)
     this.service.getDiagnosisDetails(JSON.stringify(params)).subscribe(
       data => {
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
-        this.maxCount=data.totalRecordsCount;
+        this.maxCount = data.totalRecordsCount;
         console.log(data);
       })
   }
   public check(event, ind) {
     console.log(event.target.checked)
-    if(event.target.checked){
+    if (event.target.checked) {
       this.selectedItems.push(this.diagnosisList[ind])
       console.log(this.selectedItems);
 
@@ -176,26 +176,26 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     });
   }
-  savePs(){
+  savePs() {
     if (this.admissionForm.valid) {
-      let temp=[];
+      let temp = [];
       console.log(this.admissionForm.value)
-      this.selectedItems.map((x)=>{
+      this.selectedItems.map((x) => {
         temp.push(x.diagnosisCode)
       })
       console.log(temp)
-      let params ={
-        "psId":this.psId,
-        "coordinatorId":this.admissionForm.value.coordinatorId.userInfoId,
-        "psGuarantorId":this.guarantorId,
-        "admitDate":this.date.transform(this.admissionForm.value.admissionDate,'MM/dd/yyyy'),
-        "firstVisitDate": this.date.transform(this.admissionForm.value.firstVisitDate,'MM/dd/yyyy'),
-        "referralDate":this.date.transform(this.admissionForm.value.referredDate,'MM/dd/yyyy'),
-        "clientTypeId":this.coordinatorData.clientTypeId,
-        "clientClassId":this.coordinatorData.clientClassId,
-        "primaryDiagnosisCode":temp[0],
-        "otherDiagnoses":(temp.shift()).toString(),
-        "officeId":191,
+      let params = {
+        "psId": this.psId,
+        "coordinatorId": this.admissionForm.value.coordinatorId.userInfoId,
+        "psGuarantorId": this.guarantorId,
+        "admitDate": this.date.transform(this.admissionForm.value.admissionDate, 'MM/dd/yyyy'),
+        "firstVisitDate": this.date.transform(this.admissionForm.value.firstVisitDate, 'MM/dd/yyyy'),
+        "referralDate": this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'),
+        "clientTypeId": this.coordinatorData.clientTypeId,
+        "clientClassId": this.coordinatorData.clientClassId,
+        "primaryDiagnosisCode": temp[0],
+        "otherDiagnoses": (temp.shift()).toString(),
+        "officeId": 191,
         "userId": this.userId
       }
       console.log(params)
@@ -203,25 +203,22 @@ export class AdmissionDetailsComponent implements OnInit {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
             console.log(data);
-            this.admissionRes=data
-            console.log("datasaved successfully");
-              sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-              this.router.navigateByUrl('registration-re/child-payorplan');
+            this.admissionRes = data
           })
-          //  if (Object.keys(this.admissionRes).length !== 0)
-          //  {
-          //   console.log("datasaved successfully");
-          //     sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-          //     this.router.navigateByUrl('registration-re/child-payorplan');
-          // }
+        // if (Object.keys(this.admissionRes).length !== 0)
+        {
+          console.log("datasaved successfully");
+          sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+          this.router.navigateByUrl('registration-re/child-payorplan');
         }
+      }
 
-       catch (error) {
+      catch (error) {
         console.log(error);
 
       }
     }
-    else{
+    else {
       swal.fire({
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
@@ -235,6 +232,17 @@ export class AdmissionDetailsComponent implements OnInit {
 
 
   }
-
+ public  searchCLick() {
+    this.upperBound = this.perPage;
+    this.lowerBound = 1;
+    this.getDiagnosisData();
+  }
+  public reset() {
+    this.diagnosisName = '';
+    this.diagnosisCode = '';
+    this.upperBound = this.perPage;
+    this.lowerBound = 1;
+    this.getDiagnosisData();
+  }
 
 }

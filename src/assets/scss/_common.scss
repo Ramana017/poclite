@@ -915,9 +915,23 @@ ul {
 .right-icon {
     position: absolute;
     right: 0;
-    top: 5px;
+    /* top: 5px; */
     z-index: 9;
-    color: #343a40;
+    color: #f7fafc;
+    width: 30px;
+    height: 30px;
+    background: #145194;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right-icon-cancel{
+    position: absolute;
+    right: 35px;
+    /* top: 5px; */
+    z-index: 9;
+   top: 6px;
+  
 }
 
 // ng-autocomplete code

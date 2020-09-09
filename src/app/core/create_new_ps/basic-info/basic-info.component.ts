@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
+import { valHooks } from 'jquery';
 
 
 @Component({
@@ -15,9 +16,9 @@ import swal from 'sweetalert2';
   styleUrls: ['./basic-info.component.scss']
 })
 export class BasicInfoComponent implements OnInit {
-  @Input() popup:boolean;
-  modelref:BsModalRef;
-  public psId:number=0;
+  @Input() popup: boolean;
+  modelref: BsModalRef;
+  public psId: number=0 ;
   public basicForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
@@ -46,12 +47,13 @@ export class BasicInfoComponent implements OnInit {
     showCheckbox: true
 
   };
-  private userId:number;
+  public formError: boolean = false;
+  private userId: number;
   // tslint:disable-next-line: max-line-length
-  constructor(private fb: FormBuilder,public modalService:BsModalService ,public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
-    console.log("basic constructer",this.popup);
-    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId=data.userId
+  constructor(private fb: FormBuilder, public modalService: BsModalService, public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
+    console.log("basic constructer", this.popup);
+    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId = data.userId
     this.newForm();
     // let userExist = sessionStorage.getItem('psDetails');
     // if (userExist) {
@@ -62,27 +64,26 @@ export class BasicInfoComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("basic");
+    console.log("basic",this.userMappedOffices.length == 0);
     this.basicDetails();
   }
 
   private newForm(): void {
     this.basicForm = this.fb.group({
-      location: [''],
-      address: [''],
-      phonetype: [''],
-      maritalStatus: [''],
-      race: [''],
-      gender: ['',[Validators.required]],
-      saluation: [''],
+      location: ['',Validators.required],
+      phonetype: ['',Validators.required],
+      maritalStatus: ['',Validators.required],
+      race: ['',Validators.required],
+      gender: ['', Validators.required],
+      saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
-      site: ['', Validators.required],
+      site: [''],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
-      number: ['', [Validators.required,Validators.pattern( /^\d{10}$/)]],
+      number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -94,7 +95,7 @@ export class BasicInfoComponent implements OnInit {
       timeZone: ['', Validators.required],
       lane: ['', Validators.required],
       dob: ['', Validators.required],
-      siteName: ['', Validators.required]
+      siteName: ['']
     });
   }
   get f() {
@@ -103,9 +104,11 @@ export class BasicInfoComponent implements OnInit {
   }
   dob1;
   public onSubmit(): void {
+    this.formError = true;
 
+    console.log("#########", this.basicForm.get('gender').invalid)
     console.log(this.basicForm.valid)
-    if (this.basicForm.valid) {
+    if (this.basicForm.valid && this.siteSelectedItems.length!=0&&this.psId!=0) {
       let mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
 
       const jsonObj = {
@@ -135,10 +138,10 @@ export class BasicInfoComponent implements OnInit {
           console.log(res, 'getting the psId details');
           // alert(JSON.stringify(this.SaveResponse));
           if (Object.keys(this.SaveResponse).length !== 0) {
-            if(this.popup){
+            if (this.popup) {
               this.modelref.hide();
 
-            }else{
+            } else {
               sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
               this.router.navigateByUrl('registration-re/child-guarantor');
             }
@@ -151,6 +154,7 @@ export class BasicInfoComponent implements OnInit {
 
     } else {
       // alert('Fill the required fields');
+
       swal.fire({
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
@@ -180,10 +184,10 @@ export class BasicInfoComponent implements OnInit {
     });
   }
 
-  public selectChange(event, field): void {
+  public selectChange(event, field, flag: boolean): void {
 
     if (field === 'genderId') {
-      this.basicForm.get('genderId').setValue(event.id);
+      flag ? this.basicForm.get('genderId').setValue(event.id) : this.basicForm.get('genderId').setValue('');
     }
     if (field === 'site') {
       this.basicForm.get('site').setValue(event.id);
@@ -191,47 +195,58 @@ export class BasicInfoComponent implements OnInit {
       console.log(this.siteId);
     }
     if (field === 'raceId') {
-      this.basicForm.get('raceId').setValue(event.id);
+     flag? this.basicForm.get('raceId').setValue(event.id): this.basicForm.get('raceId').setValue('');;
     }
     if (field === 'maritalStatusList') {
-      this.basicForm.get('maritalStatusList').setValue(event.id);
+     flag? this.basicForm.get('maritalStatusList').setValue(event.id): this.basicForm.get('maritalStatusList').setValue('');
     }
     if (field === 'saluationId') {
-      this.basicForm.get('saluationId').setValue(event.id);
+    flag ?  this.basicForm.get('saluationId').setValue(event.id):this.basicForm.get('saluationId').setValue('');
     }
     if (field === 'addressTypeList') {
-      this.basicForm.get('addressTypeList').setValue(event.id);
+     flag ? this.basicForm.get('addressTypeList').setValue(event.id):this.basicForm.get('addressTypeList').setValue('');
       this.locationName = event.label;
 
     }
     if (field === 'phoneTypeList') {
-      this.basicForm.get('phoneTypeList').setValue(event.id);
+      flag ? this.basicForm.get('phoneTypeList').setValue(event.id):this.basicForm.get('phoneTypeList').setValue('');
     }
     if (field === 'state') {
-      this.basicForm.get('phoneTypeList').setValue(event.id);
+     flag ? this.basicForm.get('phoneTypeList').setValue(event.id):this.basicForm.get('phoneTypeList').setValue('');
     }
 
   }
 
-  getzip(event): void {
+  getzip(): void {
     const zip = this.basicForm.get('zipcode').value;
-    // console.log(zip)
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
-        console.log(data);
+       if(Object.keys(data).length !== 0){
         this.zipDetails = data;
         this.basicForm.get('city').setValue(this.zipDetails.city);
         this.basicForm.get('country').setValue(this.zipDetails.country);
         this.basicForm.get('county').setValue(this.zipDetails.county);
         this.basicForm.get('timeZone').setValue(this.zipDetails.timeZone);
         this.basicForm.get('state').setValue(this.zipDetails.state);
+       }
+
+       else{
+        swal.fire({
+          title: 'Invalid pincode',
+          text: 'Please enter valid pincode',
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+        this.basicForm.get('zipcode').setValue('');
+       }
 
       });
     }
   }
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-    this.psId=this.previousPsDetails.psId;
+    this.psId = this.previousPsDetails.psId;
     let parameters = { 'psId': this.previousPsDetails.psId }
     try {
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
