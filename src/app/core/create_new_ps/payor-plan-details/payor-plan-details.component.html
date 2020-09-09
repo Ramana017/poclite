@@ -27,7 +27,7 @@
               <div class="input-group  ">
                 <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete [data]="payorData" [searchKeyword]="payor" 
-                  (selected)="selectChange($event, 'payorPlan')"  [itemTemplate]="itemTemplate10" formControlName="payorPlan" (selected)="getPayorCodes($event)">
+                  [itemTemplate]="itemTemplate10" formControlName="payorPlan" (selected)="getPayorCodes($event)">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate10 let-item>
                     <a [innerHTML]="item.planname"></a>

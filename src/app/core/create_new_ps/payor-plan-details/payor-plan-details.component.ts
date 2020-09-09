@@ -178,15 +178,16 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.phone = event.label;
       console.log(this.phone)
     }
-    if (field === 'payorPlan') {
-      this.planId = event.payorPlanId;
-      console.log(this.planId)
-    }
+    // if (field === 'payorPlan') {
+    //   console.log(this.planId)
+    // }
   }
   planname
   public getPayorCodes(event) {
     console.log(event)
     this.planname =event.planname
+    this.planId = event.payorPlanId;
+
     // this.payorcode = event.payorcode;
     // this.plancode = event.plancode;
     this.payorPlanForm.get('payorCode').setValue(event.payorcode)
@@ -237,7 +238,6 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.payorPlanForm.get('phoneTypeList').setValue(this.psdata.PHONETYPE);
         this.phone = this.psdata.PHONETYPEID
         this.locationName1 = this.psdata.locationId
-        this.payorPlanForm.get('relation').setValue(this.guardata.relationship);
         this.relation = this.guardata.relationshipId
         this.payorPlanForm.get('number').setValue(this.psdata.PHONE);
         this.payorPlanForm.get('zipcode').setValue(this.psdata.ZIPCODE);
@@ -260,16 +260,12 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.payorPlanForm.get('lastName').setValue('');
       this.payorPlanForm.get('firstName').setValue('');
       this.payorPlanForm.get('city').setValue('');
-      this.payorPlanForm.get('phone').setValue('');
       this.payorPlanForm.get('county').setValue('');
       this.payorPlanForm.get('state').setValue('');
       this.payorPlanForm.get('timeZone').setValue('');
       this.payorPlanForm.get('country').setValue('');
-      this.payorPlanForm.get('address').setValue('');
       this.payorPlanForm.get('dob').setValue('');
       this.payorPlanForm.get('genderId').setValue('');
-      this.payorPlanForm.get('gender').setValue('');
-
       // this.relationAuto.clear();
       // this.relationAuto.close();
       // this.ocuupationAuto.clear();
