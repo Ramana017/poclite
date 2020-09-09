@@ -46,7 +46,7 @@ export class AdmissionDetailsComponent implements OnInit {
   numbers = [];
   guarantorId: any;
   psId: any;
-  admissionRes: {};
+  admissionRes;
   constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
     console.log("basic constructer",this.popup);
     for (let i = 1; i <= 100; i++) {
@@ -197,13 +197,8 @@ export class AdmissionDetailsComponent implements OnInit {
             this.admissionRes=data
           })
           if (Object.keys(this.admissionRes).length !== 0) {
-            if(this.popup){
-              this.bsModelRef.hide();
-
-            }else{
-              sessionStorage.setItem('psDetails', JSON.stringify(this.admissionRes));
-              this.router.navigateByUrl('registration-re/child-payorplan');
-            }
+            this.router.navigateByUrl('registration-re/child-payorplan');
+            
           }}
 
        catch (error) {
