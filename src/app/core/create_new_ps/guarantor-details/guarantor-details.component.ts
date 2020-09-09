@@ -12,9 +12,9 @@ import swal from 'sweetalert2';
   styleUrls: ['./guarantor-details.component.scss']
 })
 export class GuarantorDetailsComponent implements OnInit {
-  public selfChecBox:boolean=false;
-  public addressCheckBox:boolean=false;
-  public guarantorId:number=0;
+  public selfChecBox: boolean = false;
+  public addressCheckBox: boolean = false;
+  public guarantorId: number = 0;
   public basicPreviousData: any;
   public guarantorForm: FormGroup;
   public zipDetails: any;
@@ -29,11 +29,11 @@ export class GuarantorDetailsComponent implements OnInit {
   public submitted: boolean = false;
   public previousPsDetails: any;
   public guarantorResponse: Object;
-  public checkBoxAddress:boolean=false;
-  public userId:number;
+  public checkBoxAddress: boolean = false;
+  public userId: number;
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
-    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId=data.userId
+    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId = data.userId
     // let session = sessionStorage.getItem('guarantorDetails');
     // if (session) {
     //   console.log('guranter present')
@@ -47,7 +47,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.basicDetails();
     this.getPsDetails();
   }
-  private newForm():void {
+  private newForm(): void {
     this.guarantorForm = this.fb.group({
       saluationId: ['', Validators.required],
       relationshipList: ['', Validators.required],
@@ -78,7 +78,7 @@ export class GuarantorDetailsComponent implements OnInit {
 
   }
 
-  public onSubmit():void {
+  public onSubmit(): void {
     this.submitted = true;
     console.log(this.guarantorForm.value)
     if (this.guarantorForm.valid) {
@@ -95,8 +95,8 @@ export class GuarantorDetailsComponent implements OnInit {
         "phone": this.guarantorForm.value.number,
         "updatedUserId": this.userId,
         "psId": this.previousPsDetails.psId,
-        "occupationId":this.guarantorForm.value.occupationList,
-        "guarantorId":this.guarantorId
+        "occupationId": this.guarantorForm.value.occupationList,
+        "guarantorId": this.guarantorId
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -105,8 +105,8 @@ export class GuarantorDetailsComponent implements OnInit {
           this.guarantorResponse = res;
           console.log(this.guarantorResponse)
           if (Object.keys(this.guarantorResponse).length !== 0) {
-          sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
-          this.router.navigateByUrl('registration-re/child-admission')
+            sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
+            this.router.navigateByUrl('registration-re/child-admission')
           }
         });
       } catch (error) {
@@ -127,8 +127,8 @@ export class GuarantorDetailsComponent implements OnInit {
 
   }
 
- public  basicDetails():void {
-    let jsonObj = { 'userId': this.userId};
+  public basicDetails(): void {
+    let jsonObj = { 'userId': this.userId };
 
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
       console.log(data)
@@ -140,7 +140,7 @@ export class GuarantorDetailsComponent implements OnInit {
 
     });
   }
-  public selectChange(event, field) :void{
+  public selectChange(event, field): void {
     if (field === 'addressTypeList') {
       this.guarantorForm.get('addressTypeList').setValue(event.id);
     }
@@ -160,7 +160,7 @@ export class GuarantorDetailsComponent implements OnInit {
     }
   }
 
-  public getzip():void{
+  public getzip(): void {
     const zip = this.guarantorForm.get('zipcode').value;
     // console.log(zip)
     if (zip.length === 5) {
@@ -178,7 +178,7 @@ export class GuarantorDetailsComponent implements OnInit {
   }
 
 
-  private getPsDetails():void {
+  private getPsDetails(): void {
     try {
       this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
       let parameters = { 'psId': this.previousPsDetails.psId }
@@ -191,10 +191,10 @@ export class GuarantorDetailsComponent implements OnInit {
       console.log(error)
     }
   }
-  public addressCheck(event):void {
+  public addressCheck(event): void {
 
     console.log(event)
-    let flag =event.target.checked
+    let flag = event.target.checked
 
     console.log("addressCheck")
     this.guarantorForm.get('addressTypeList').setValue(flag ? this.basicPreviousData.locationId : '');
@@ -210,7 +210,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('timeZone').setValue(flag ? this.basicPreviousData.timezone : '');
     this.guarantorForm.get('country').setValue(flag ? this.basicPreviousData.country : '');
   }
-  public SelfCheck(event):void {
+  public SelfCheck(event): void {
     let flag = event.target.checked;
     console.log("selfcheck")
     this.guarantorForm.get('relationshipList').setValue(flag ? 100 : '');
@@ -218,18 +218,18 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
     this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
-    flag ?this.checkBoxAddress=true:this.checkBoxAddress=false;
-    flag?this.addressCheck(event):this.addressCheck(event);
+    flag ? this.checkBoxAddress = true : this.checkBoxAddress = false;
+    flag ? this.addressCheck(event) : this.addressCheck(event);
   }
-  public getPreviousBasic() :void{
+  public getPreviousBasic(): void {
     this.router.navigateByUrl('registration-re/child-basic')
   }
 
   // for update data
   private getGuarantorDetails() {
-    let session:any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
-    this.guarantorId=session.psGuarId;
-   let params = {'guarantorId':session.psGuarId}
+    let session: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    this.guarantorId = session.psGuarId;
+    let params = { 'guarantorId': session.psGuarId }
     try {
       // console.log("$$$$$$$$$$$$$$",params,session)
       this.service.getGuarantorDetails(JSON.stringify(params)).subscribe(
@@ -237,26 +237,26 @@ export class GuarantorDetailsComponent implements OnInit {
           let data: any = response;
           console.log(data)
           this.guarantorForm.get('relationshipList').setValue(data.relationshipId);
-          this.guarantorForm.get('relationId').setValue( 'SELF');//data.relationshipName
-          this.guarantorForm.get('occupationName').setValue( 'occuptaion');//data.occuptaionname
-          this.guarantorForm.get('occupationList').setValue( data.occupationId);//data.occuptaionname
-          this.guarantorForm.get('lastName').setValue( data.lastname );
-          this.guarantorForm.get('firstName').setValue( data.firstname);
-          this.guarantorForm.get('ssn').setValue( data.ssn );
+          this.guarantorForm.get('relationId').setValue('SELF');//data.relationshipName
+          this.guarantorForm.get('occupationName').setValue('occuptaion');//data.occuptaionname
+          this.guarantorForm.get('occupationList').setValue(data.occupationId);//data.occuptaionname
+          this.guarantorForm.get('lastName').setValue(data.lastname);
+          this.guarantorForm.get('firstName').setValue(data.firstname);
+          this.guarantorForm.get('ssn').setValue(data.ssn);
 
           //address
           this.guarantorForm.get('addressTypeList').setValue(data.locationId);
-          this.guarantorForm.get('location').setValue( data.locationName);
-          this.guarantorForm.get('lane').setValue( data.street );
-          this.guarantorForm.get('zipcode').setValue( data.ZIPCODE );
-          this.guarantorForm.get('phoneTypeList').setValue( data.PHONETYPEID )
-          this.guarantorForm.get('phoneTypeName').setValue( data.PHONETYPE )
-          this.guarantorForm.get('number').setValue( data.PHONE );
-          this.guarantorForm.get('city').setValue( data.county );
-          this.guarantorForm.get('state').setValue( data.state );
-          this.guarantorForm.get('county').setValue( data.county );
-          this.guarantorForm.get('timeZone').setValue( data.timezone );
-          this.guarantorForm.get('country').setValue( data.country );
+          this.guarantorForm.get('location').setValue(data.locationName);
+          this.guarantorForm.get('lane').setValue(data.street);
+          this.guarantorForm.get('zipcode').setValue(data.ZIPCODE);
+          this.guarantorForm.get('phoneTypeList').setValue(data.PHONETYPEID)
+          this.guarantorForm.get('phoneTypeName').setValue(data.PHONETYPE)
+          this.guarantorForm.get('number').setValue(data.PHONE);
+          this.guarantorForm.get('city').setValue(data.county);
+          this.guarantorForm.get('state').setValue(data.state);
+          this.guarantorForm.get('county').setValue(data.county);
+          this.guarantorForm.get('timeZone').setValue(data.timezone);
+          this.guarantorForm.get('country').setValue(data.country);
 
         }
       )
