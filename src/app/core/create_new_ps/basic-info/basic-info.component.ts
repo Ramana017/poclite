@@ -220,16 +220,27 @@ export class BasicInfoComponent implements OnInit {
 
   getzip(event): void {
     const zip = this.basicForm.get('zipcode').value;
-    // console.log(zip)
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
-        console.log(data);
+       if(Object.keys(data).length !== 0){
         this.zipDetails = data;
         this.basicForm.get('city').setValue(this.zipDetails.city);
         this.basicForm.get('country').setValue(this.zipDetails.country);
         this.basicForm.get('county').setValue(this.zipDetails.county);
         this.basicForm.get('timeZone').setValue(this.zipDetails.timeZone);
         this.basicForm.get('state').setValue(this.zipDetails.state);
+       }
+
+       else{
+        swal.fire({
+          title: 'Invalid pincode',
+          text: 'Please enter valid pincode',
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+        this.basicForm.get('zipcode').setValue('');
+       }
 
       });
     }
