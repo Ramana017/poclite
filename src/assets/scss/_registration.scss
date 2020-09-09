@@ -184,6 +184,15 @@
     }
   }
 }
+.site-container{
+  .invalid-input{
+    .c-btn{
+      border-color: #dc3545;
+      border: 1px solid #dc3545 !important;
+      box-shadow: none !important;
+    }
+  }
+}
 
 .textarea-wrapper {
   height: 120px !important;
