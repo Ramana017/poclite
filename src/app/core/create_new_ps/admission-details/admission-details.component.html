@@ -8,8 +8,8 @@
                 <div class="d-flex align-items-center justify-content-between nav">
                     <div class=" input-container-wrapper">
                         <label class="">
-              PS
-            </label>
+                            PS
+                        </label>
 
                         <div class="input-group ">
                             <input type="text" class="form-control" value="{{PSName}}">
@@ -19,8 +19,8 @@
                     </div>
                     <div class=" input-container-wrapper co-ordinator">
                         <label class="">
-              Coordinator<span class="text-danger">*</span>
-            </label>
+                            Coordinator<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
                             <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword" formControlName="coordinatorId" [itemTemplate]="itemTemplate">
@@ -32,8 +32,8 @@
                     </div>
                     <div class=" m-0 input-container-wrapper">
                         <label class="">
-              Guarantor
-            </label>
+                            Guarantor
+                        </label>
 
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{guarantorName}}">
@@ -42,8 +42,8 @@
                     </div>
                     <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Admission Date<span class="text-danger">*</span>
-            </label>
+                            Admission Date<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
 
@@ -70,8 +70,8 @@
 
                     <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              First Visit Date<span class="text-danger">*</span>
-            </label>
+                            First Visit Date<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
 
@@ -81,8 +81,8 @@
                     </div>
                     <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Referred Date<span class="text-danger">*</span>
-            </label>
+                            Referred Date<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
                             <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" formControlName="referredDate" bsDatepicker>
@@ -91,8 +91,8 @@
                     </div>
                     <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Client Type<span class="text-danger">*</span>
-            </label>
+                            Client Type<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
 
@@ -103,8 +103,8 @@
                     </div>
                     <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Client Class<span class="text-danger">*</span>
-            </label>
+                            Client Class<span class="text-danger">*</span>
+                        </label>
 
                         <div class="input-group ">
 
@@ -136,9 +136,11 @@
                                     <div class="d-flex align-items-center nav justify-content-between">
                                         Diagnosis Name
                                         <span>
-                      <button class="d-flex btn-common widget-header-button align-items-center mr-2" tabindex="0"
-                        (click)="addFieldValue(template)"><i class="fas fa-plus-circle mr-2 mt-0"></i><span>Add
-                          Diagnosis</span></button>
+                                            <button
+                                                class="d-flex btn-common widget-header-button align-items-center mr-2"
+                                                tabindex="0" (click)="addFieldValue(template)"><i
+                                                    class="fas fa-plus-circle mr-2 mt-0"></i><span>Add
+                                                    Diagnosis</span></button>
                                         </span>
                                     </div>
                                 </th>
@@ -149,8 +151,8 @@
                                 <td class="border-right delete-option">
                                     <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
                                         <span class="material-icons material-icon-remove">
-                      delete
-                    </span>
+                                            delete
+                                        </span>
                                     </div>
                                 </td>
                                 <td class="border-right form-input">
@@ -192,10 +194,10 @@
 </div>
 <ng-template #template>
     <div class="modal-header py-0 registration-modal-header ">
-        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Admission Details</h4>
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()" data-dismiss="modal">
-      <span aria-hidden="true">&times;</span>
-    </button>
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body p-0">
         <div class="listing-container ">
@@ -205,23 +207,28 @@
                         <div class="nav align-items-center justify-content-around">
                             <div class=" m-0 form-input p-2 d-flex align-items-center ">
                                 <label class="mb-0 mr-2 white-space-nowrap">
-                  Diagnosis Code
-                </label>
+                                    Diagnosis Code
+                                </label>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control">
+                                    <input type="search" class="form-control search-input">
+                                    <span class="right-icon"><i
+                                        class="fas fa-search"></i></span>
+                                    <!-- <span class="right-icon"><i
+                                            class="fas fa-times"></i></span> -->
                                 </div>
 
                             </div>
                             <div class=" m-0 form-input p-2 d-flex align-items-center">
                                 <label class="mb-0 mr-2 white-space-nowrap">
-                  Diagnosis Name
-                </label>
+                                    Diagnosis Name
+                                </label>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control">
+                                    <input type="search" class="form-control search-input"><span class="right-icon"><i
+                                        class="fas fa-search"></i></span>
                                 </div>
                             </div>
-                            <button type="button" class="blue-btn"><span class="mr-2"><i
-                    class="fas fa-search"></i></span>Search</button>
+                            <!-- <button type="button" class="blue-btn"><span class="mr-2"><i
+                                        class="fas fa-search"></i></span>Search</button> -->
                         </div>
                         <div class="table-responsive listing-table">
                             <table class="table m-0">
@@ -239,9 +246,9 @@
                                     <tr *ngFor="let data of diagnosisList ; let i=index ">
                                         <td class="position-relative edit-option">
                                             <label class="customcheck margin-left-15 m-0">
-                        <input type="checkbox" (click)="check($event,i)">
-                        <span class="checkmark"></span>
-                      </label>
+                                                <input type="checkbox" (click)="check($event,i)">
+                                                <span class="checkmark"></span>
+                                            </label>
                                         </td>
                                         <td class="width-180">{{data.diagnosisCode}}</td>
                                         <td class="diagnosis-name">{{data.diagnosisName}}</td>
@@ -257,11 +264,12 @@
                                 <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button mr-3">close</button>
                                 <span class="footer-text">Per Page</span>
                                 <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
-                  <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}
-                  </option>`
-                </select>
+                                    <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
+                                        {{page}}
+                                    </option>`
+                                </select>
                                 <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
-                    {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                                        {{upperBound>maxCount?maxCount:upperBound}} </span> of
                                 <span>{{maxCount}}</span></span>
                                 <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
                                 <button type="button " class="pagination-btn" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
