@@ -26,12 +26,13 @@
  
               <div class="input-group  ">
                 <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete  [data]="payorData"  [searchKeyword]="payorKeyword" [itemTemplate]="payorAuto">
+                  <ng-autocomplete [data]="payorData" [searchKeyword]="payor" formControlName="payorCode"
+                     [itemTemplate]="itemTemplate10" (selected)="getPayorCodes($event)">
                   </ng-autocomplete>
-                  <ng-template style="width: 100%;" #payorAuto let-item>
-                      <a [innerHTML]="item.payorPlanId"></a>
+                  <ng-template style="width: 100%;" #itemTemplate10 let-item>
+                    <a [innerHTML]="item.planname"></a>
                   </ng-template>
-              </div>
+                </div>
               </div>
  
             </div>
@@ -41,7 +42,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" aria-label="Case Manager" disabled>
+                <input type="text" class="form-control" aria-label="Case Manager" value="{{payorcode}}" disabled>
  
               </div>
  
@@ -52,7 +53,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control"  aria-label="Case Manager" disabled>
+                <input type="text" class="form-control"  aria-label="Case Manager" value="{{plancode}}" disabled>
  
               </div>
  
@@ -88,7 +89,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker>
+                <input type="text" class="form-control" placeholder="mm/dd/yyyy" value="{{effectiveFrom}}"  bsDatepicker disabled>
               </div>
  
             </div>
@@ -98,7 +99,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" placeholder="mm/dd/yyyy" bsDatepicker>
+                <input type="text" class="form-control" placeholder="mm/dd/yyyy"   value="{{effectiveTo}}"  disabled bsDatepicker>
               </div>
  
             </div>
@@ -130,8 +131,8 @@
  
               <div class="input-group ">
                 <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete #relationName [data]="relationshipList" formControlName="relation"
-                    (selected)="selectChange($event,'relationshipList')" [searchKeyword]="Keyword"
+                  <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationshipList"
+                    (selected)="selectChange($event,'relation')" [searchKeyword]="Keyword"
                     [itemTemplate]="itemTemplate1">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate1 let-item>
@@ -225,8 +226,8 @@
  
             <div class="input-group  ">
               <div class="ng-autocomplete" style="width: 100%;">
-                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="address"
-                  (selected)="selectChange($event,'addressTypeList')" [itemTemplate]="itemTemplate">
+                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="addressTypeList"
+                  (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
                 </ng-autocomplete>
                 <ng-template style="width: 100%;" #itemTemplate let-item>
                   <a [innerHTML]="item.label"></a>
@@ -265,8 +266,8 @@
             <div class="input-group  ">
               <div class="  date-input  d-flex align-items-center w-100">
                 <div class="ng-autocomplete phone-select">
-                  <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phone"
-                    (selected)="selectChange($event, 'phoneTypeList')" placeHolder="Type" [itemTemplate]="itemTemplate">
+                  <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phoneTypeList"
+                    (selected)="selectChange($event, 'phId')" placeHolder="Type" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>
                     <a [innerHTML]="item.label"></a>
