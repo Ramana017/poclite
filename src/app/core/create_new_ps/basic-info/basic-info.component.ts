@@ -18,7 +18,7 @@ import { valHooks } from 'jquery';
 export class BasicInfoComponent implements OnInit {
   @Input() popup: boolean;
   modelref: BsModalRef;
-  public psId: number = 0;
+  public psId: number=0 ;
   public basicForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
@@ -47,7 +47,7 @@ export class BasicInfoComponent implements OnInit {
     showCheckbox: true
 
   };
-  public formError: boolean = true;
+  public formError: boolean = false;
   private userId: number;
   // tslint:disable-next-line: max-line-length
   constructor(private fb: FormBuilder, public modalService: BsModalService, public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
@@ -64,21 +64,20 @@ export class BasicInfoComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("basic");
+    console.log("basic",this.userMappedOffices.length == 0);
     this.basicDetails();
   }
 
   private newForm(): void {
     this.basicForm = this.fb.group({
       location: ['',Validators.required],
-      address: ['',Validators.required],
       phonetype: ['',Validators.required],
       maritalStatus: ['',Validators.required],
       race: ['',Validators.required],
       gender: ['', Validators.required],
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
-      site: ['', Validators.required],
+      site: [''],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -96,7 +95,7 @@ export class BasicInfoComponent implements OnInit {
       timeZone: ['', Validators.required],
       lane: ['', Validators.required],
       dob: ['', Validators.required],
-      siteName: ['', Validators.required]
+      siteName: ['']
     });
   }
   get f() {
@@ -109,7 +108,7 @@ export class BasicInfoComponent implements OnInit {
 
     console.log("#########", this.basicForm.get('gender').invalid)
     console.log(this.basicForm.valid)
-    if (this.basicForm.valid) {
+    if (this.basicForm.valid && this.siteSelectedItems.length!=0&&this.psId!=0) {
       let mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
 
       const jsonObj = {
@@ -218,18 +217,29 @@ export class BasicInfoComponent implements OnInit {
 
   }
 
-  getzip(event): void {
+  getzip(): void {
     const zip = this.basicForm.get('zipcode').value;
-    // console.log(zip)
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
-        console.log(data);
+       if(Object.keys(data).length !== 0){
         this.zipDetails = data;
         this.basicForm.get('city').setValue(this.zipDetails.city);
         this.basicForm.get('country').setValue(this.zipDetails.country);
         this.basicForm.get('county').setValue(this.zipDetails.county);
         this.basicForm.get('timeZone').setValue(this.zipDetails.timeZone);
         this.basicForm.get('state').setValue(this.zipDetails.state);
+       }
+
+       else{
+        swal.fire({
+          title: 'Invalid pincode',
+          text: 'Please enter valid pincode',
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+        this.basicForm.get('zipcode').setValue('');
+       }
 
       });
     }

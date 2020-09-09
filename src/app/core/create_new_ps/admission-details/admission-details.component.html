@@ -23,8 +23,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
-                                formControlName="coordinatorId" [itemTemplate]="itemTemplate">
+                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword" formControlName="coordinatorId" [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate let-item>
                                 <a [innerHTML]="item.userName"></a>
@@ -48,8 +47,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
-                                formControlName="admissionDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -77,8 +75,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                formControlName="firstVisitDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" formControlName="firstVisitDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -88,8 +85,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                formControlName="referredDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" formControlName="referredDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -161,9 +157,9 @@
                                 </td>
                                 <td class="border-right form-input">
                                     <select class="select-input">
-                                        <option *ngFor="let i of numbers">{{i}}
-                                        </option>
-                                    </select>
+                    <option *ngFor="let num of selectedItems;let j=index">{{j+1}}
+                    </option>
+                  </select>
                                 </td>
                                 <td class="border-right form-input">
                                     <!-- <input [(ngModel)]="selected.diagnosisCode" class="form-control" type="text" /> -->
@@ -199,8 +195,7 @@
 <ng-template #template>
     <div class="modal-header py-0 registration-modal-header ">
         <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()"
-            data-dismiss="modal">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -265,8 +260,7 @@
                             <!-- <button type="button " (click)="getDiagnosisData()"
                 class="pagination-btn btn next-btn primary-button mr-3">Save</button> -->
                             <div class="mr-2">
-                                <button type="button " (click)="bsModelRef.hide()"
-                                    class="pagination-btn btn next-btn primary-button mr-3">close</button>
+                                <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button mr-3">close</button>
                                 <span class="footer-text">Per Page</span>
                                 <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
                                     <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
@@ -275,15 +269,10 @@
                                 </select>
                                 <span class="footer-text">Showing <span>{{lowerBound}}</span> to <span>
                                         {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                                    <span>{{maxCount}}</span></span>
-                                <button type="button " class="pagination-btn"
-                                    [disabled]="lowerBound<perPage||diagnosisList.length==0 "
-                                    [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' "
-                                    id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                                <button type="button " class="pagination-btn"
-                                    [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
-                                    [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
-                                    id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+                                <span>{{maxCount}}</span></span>
+                                <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                                <button type="button " class="pagination-btn" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
+                                    class="pagination-btn">Next</button>
                             </div>
                         </div>
                     </div>
