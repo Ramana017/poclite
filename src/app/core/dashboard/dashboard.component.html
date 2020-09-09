@@ -15,7 +15,7 @@
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">PS</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="PS search filter" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Search PS" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                 <a [innerHTML]="item.PSName"></a>
@@ -87,20 +87,20 @@
                                                                         <input class="toggle-input" id="toggle-input" type="checkbox" />
                                                                         <label for="toggle-input" class="toggle"></label></div>
                                                                     <div class="slider d-flex align-items-center justify-content-around">
-                                                                        <p class="blue-bg twitter">
+                                                                        <!-- <p class="blue-bg twitter">
                                                                             <span>
                                         <a href="javascript:void(0)" class="text-white">
                                         </a>
                                       </span>
 
-                                                                        </p>
-                                                                        <p class="blue-bg facebook ">
+                                                                        </p> -->
+                                                                        <p class="blue-bg facebook " title="Admission">
                                                                             <span>
                                         <a href="javascript:void(0)" class="text-white">
                                         </a>
                                       </span>
                                                                         </p>
-                                                                        <p class="blue-bg googleplus">
+                                                                        <p class="blue-bg googleplus" title="Authorization">
                                                                             <span>
                                         <a href="javascript:void(0)" class="text-white">
 
@@ -150,7 +150,7 @@
                                         <div class="d-flex align-items-center">
 
                                             <h5 class="text-white m-0 pl-2 mr-2">DCS</h5>
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="DCS search filter" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
+                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateDcs let-item>
@@ -197,7 +197,7 @@
                                                 <tbody>
 
                                                     <tr *ngFor='let dcs of dcsList; let i=index;'>
-                                                        <td class="position-relative edit-option">
+                                                        <!-- <td class="position-relative edit-option">
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
@@ -227,7 +227,8 @@
                                                                     </div>
                                                                 </li>
                                                             </ul>
-                                                        </td>
+                                                        </td> -->
+                                                        <td></td>
                                                         <td>{{dcs.dcsName}}</td>
                                                         <td>{{dcs.homeSite}}</td>
                                                         <td>{{''}}</td>
@@ -271,7 +272,7 @@
                                         <div class="d-flex align-items-center">
                                             <h5 class="text-white m-0 pl-2 mr-2">Admissions</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Admissions search filter" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -322,26 +323,28 @@
                                                                         <input class="toggle-input" id="toggle-input" type="checkbox" />
                                                                         <label for="toggle-input" class="toggle"></label></div>
                                                                     <div class="slider d-flex align-items-center justify-content-around">
+
+                                                                        <p class="blue-bg googleplus">
+                                                                            <span>
+                                        <a  class="text-white" (click)="selectAuthorizationByPsId(admission,true)" title="Aurhorization">
+
+                                        </a>
+                                      </span>
+                                                                            <!-- </p>
                                                                         <p class="blue-bg twitter">
                                                                             <span>
                                         <a href="javascript:void(0)" class="text-white">
                                         </a>
                                       </span>
 
-                                                                        </p>
-                                                                        <p class="blue-bg facebook ">
-                                                                            <span>
+                                                                        </p> -->
+                                                                            <!-- <p class="blue-bg facebook ">
+                                                                                <span>
                                         <a href="javascript:void(0)" class="text-white">
                                         </a>
                                       </span>
-                                                                        </p>
-                                                                        <p class="blue-bg googleplus">
-                                                                            <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                            </p> -->
 
-                                        </a>
-                                      </span>
-                                                                        </p>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -383,9 +386,9 @@
 
                                     <div class="widget-header d-flex  align-items-center justify-content-between p-1 lightblue-bg">
                                         <div class="d-flex align-items-center">
-                                            <h5 class="text-white m-0 pl-2 mr-2">Authorization services</h5>
+                                            <h5 class="text-white m-0 pl-2 mr-2">Authorization</h5>
 
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Authorization search filter" (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -430,7 +433,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor='let auth of authorizationList'>
-                                                        <td class="position-relative edit-option">
+                                                        <!-- <td class="position-relative edit-option">
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
@@ -460,7 +463,8 @@
                                                                     </div>
                                                                 </li>
                                                             </ul>
-                                                        </td>
+                                                        </td> -->
+                                                        <td></td>
                                                         <td>{{auth.PSName}}</td>
                                                         <td>{{auth.authorizationNumber}}</td>
                                                         <td>{{auth.procedureCode}}</td>

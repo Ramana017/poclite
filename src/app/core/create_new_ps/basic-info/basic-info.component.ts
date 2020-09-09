@@ -108,7 +108,9 @@ export class BasicInfoComponent implements OnInit {
 
     console.log("#########", this.basicForm.get('gender').invalid)
     console.log(this.basicForm.valid)
-    if (this.basicForm.valid && this.siteSelectedItems.length!=0&&this.psId!=0) {
+    console.log(this.basicForm.value)
+
+    if (this.basicForm.valid) {
       let mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
 
       const jsonObj = {
