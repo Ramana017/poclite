@@ -189,6 +189,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.planname =event.planname
     // this.payorcode = event.payorcode;
     // this.plancode = event.plancode;
+    this.planId = event.payorPlanId;
     this.payorPlanForm.get('payorCode').setValue(event.payorcode)
     this.payorPlanForm.get('plancode1').setValue(event.plancode)
 
@@ -268,7 +269,6 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.payorPlanForm.get('address').setValue('');
       this.payorPlanForm.get('dob').setValue('');
       this.payorPlanForm.get('genderId').setValue('');
-      this.payorPlanForm.get('gender').setValue('');
 
       // this.relationAuto.clear();
       // this.relationAuto.close();
@@ -314,6 +314,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     }
       console.log(params1)
       try {
+
         this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
 
           console.log(d)
@@ -339,4 +340,8 @@ export class PayorPlanDetailsComponent implements OnInit {
 
 
   }
+
+
+
+
 }
