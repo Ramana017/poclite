@@ -26,6 +26,8 @@ export class PayorPlanDetailsComponent implements OnInit {
   user1;
   phoneTypeList: any;
   genderId: any;
+  pvtCheck;
+  public psdata;
   checked;
   data;
   addressid;
@@ -36,6 +38,12 @@ export class PayorPlanDetailsComponent implements OnInit {
   Keyword = 'label';
   fill;
   city;
+  public selflag: boolean = false;
+  public pvtDutyFlag: boolean = false;
+  public payorcode;
+  public plancode;
+  public effectiveTo;
+  public effectiveFrom;
   zipDetails;
   country;
   timeZone;
@@ -51,13 +59,15 @@ export class PayorPlanDetailsComponent implements OnInit {
   previousPsDetails: any;
   constructor(private fb: FormBuilder, public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
+    this.psGuarData();
     this.getPayorPlanData();
+    console.log(this.pvtDutyFlag)
     this.payorPlanForm = this.fb.group({
 
       genderId: ['', Validators.required],
       policyNumber: [''],
       payorCode: [''],
-      plancode: [''],
+      plancode1: [''],
       payorPlan: [''],
       rank: [''],
       phId: [''],
@@ -90,26 +100,48 @@ export class PayorPlanDetailsComponent implements OnInit {
     return this.payorPlanForm.controls;
 
   }
+  public pvtDuty(event) {
+    console.log(event.target.checked)
+    this.pvtDutyFlag = event.target.checked
 
-  onSubmit() {
-    this.submitted = true;
 
-    console.log(this.payorPlanForm.value);
-    this.user = JSON.parse(localStorage.getItem('regis'));
-
-    // this.service.savePs(JSON.stringify(jsonObj)).subscribe(res => {
-    //   console.log(res, 'getting the saved ps details')
-    // })
   }
+
   payorName;
+  guardata;
+  psId;
+  AdmissionId;
+  countyId2
+  officeId;
+  genderList;
+  psGuarData() {
+    const AdmissionDetails = JSON.parse(sessionStorage.getItem('AdmissionDetails'));
+    const previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
+    const guarantorDetails = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    const officeId2 = JSON.parse(sessionStorage.getItem('officeId'));
+    this.officeId = officeId2
+    console.log(this.officeId)
+
+    const guarantorId = guarantorDetails.psGuarId;
+    const parameters1 = { 'guarantorId': guarantorId };
+    const parameters = { 'psId': previousPsDetails.psId };
+    this.psId = previousPsDetails.psId
+    this.AdmissionId = AdmissionDetails.psAdmissionId
+    this.service.getGuarantorDetails(JSON.stringify(parameters1)).subscribe(d => {
+      this.guardata = d
+      console.log(this.guardata)
+    });
+    this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
+      this.psdata = res;
+      console.log(res)
+    })
+  }
   public getPayorPlanData(): void {
-    const params = { "officeId": 191, "privateDuty": 0 };
+    const params = { "officeId": this.officeId, "privateDuty": this.pvtDutyFlag ? 1 : 0 };
     this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
       data => {
         this.payorData = data;
         console.log(data);
-
-       
       });
   }
   basicDetails() {
@@ -124,52 +156,43 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.maritalStatusList = this.lookupDetails.maritalStatusList;
       this.raceId = this.lookupDetails.raceList;
       this.phoneTypeList = this.lookupDetails.phoneTypeList;
-      this.genderId = this.lookupDetails.raceList;
+      this.genderList = this.lookupDetails.genderList;
+      //  this.genderId = this.lookupDetails.genderId
     });
   }
 
-
+  relation;
+  gender;
+  planId;
   selectChange(event, field) {
 
     if (field === 'genderId') {
-      this.payorPlanForm.get('genderId').setValue(event.id);
+      this.gender = event.id;
     }
-    if (field === 'phId') {
-      this.payorPlanForm.get('phId').setValue(event.id),
-        this.siteId = event.id;
-      // console.log(this.siteId);
-    }
-
     if (field === 'relation') {
-      this.payorPlanForm.get('relation').setValue(event.id);
+      this.relation = event.id;
     }
-
     if (field === 'addressTypeId') {
-      this.payorPlanForm.get('addressTypeId').setValue(event.id);
-      this.locationName = event.label;
-
+      this.locationName = event.id;
     }
     if (field === 'phoneTypeList') {
-      this.payorPlanForm.get('phoneTypeList').setValue(event.id);
       this.phone = event.label;
+      console.log(this.phone)
     }
-    if (field === 'state') {
-      this.payorPlanForm.get('phoneTypeList').setValue(event.id);
+    if (field === 'payorPlan') {
+      this.planId = event.payorPlanId;
+      console.log(this.planId)
     }
-
-
   }
-  public payorcode;
-  public plancode;
-  public effectiveTo;
-  public effectiveFrom;
-  public getPayorCodes(event){
+
+  public getPayorCodes(event) {
     console.log(event)
-    this.payorcode= event.payorcode;
+    this.payorcode = event.payorcode;
     this.plancode = event.plancode;
-    this.effectiveTo = event.effectiveto;
-    this.effectiveFrom = event.effectivefrom;
+
   }
+  timeId;
+  stateId;
   getzip(event) {
     const zip = this.payorPlanForm.get('zipcode').value;
     console.log(zip);
@@ -180,49 +203,61 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.city = this.zipDetails.city;
         this.country = this.zipDetails.country;
         this.state = this.zipDetails.state;
+        this.stateId = this.zipDetails.stateId;
         this.timeZone = this.zipDetails.timeZone;
+        this.timeId = this.zipDetails.timeZoneId
         this.county = this.zipDetails.county;
+        this.countyId2 = this.zipDetails.countyId
       });
     }
   }
-
+  genderName
   get1(event) {
     if (event.target.checked) {
-      this.checked = true;
+      this.checked1 = true;
+      if (this.psId.genderId === 3) {
+        this.genderName = 'FEMALE';
+      } else if (this.psId.genderId === 4) {
+        this.genderName = 'MALE';
+      }
+      else if (this.psId.genderId === 5) {
+        this.genderName = 'UNKNOWN';
+      }
+      this.selflag = true;
+      console.log(this.selflag)
       try {
-        this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-        const guarantorDetails = JSON.parse(sessionStorage.getItem('guarantorDetails'));
-        const guarantorId = guarantorDetails.psGuarId;
-        const parameters1 = { 'guarantorId': guarantorId };
-        const parameters = { 'psId': this.previousPsDetails.psId };
-        this.service.getGuarantorDetails(JSON.stringify(parameters1)).subscribe(d => {
-          const res1 = d;
-          this.payorPlanForm.get('relationshipList').setValue(res1.relationship);
-        });
-        this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
-          const s = res;
-          this.payorPlanForm.get('firstName').setValue(s.firstname);
-          this.payorPlanForm.get('lastName').setValue(s.lastname);
-          this.payorPlanForm.get('dob').setValue(s.dob);
-          this.payorPlanForm.get('gender').setValue(s.gender);
-          this.payorPlanForm.get('city').setValue(s.county);
-          this.payorPlanForm.get('country').setValue(s.country);
-          this.payorPlanForm.get('county').setValue(s.county);
-          this.payorPlanForm.get('timeZone').setValue(s.timezone);
-          this.payorPlanForm.get('state').setValue(s.state);
-          this.payorPlanForm.get('phoneTypeList').setValue(s.PHONETYPE);
-          this.payorPlanForm.get('number').setValue(s.PHONE);
-          this.payorPlanForm.get('zipcode').setValue(s.ZIPCODE);
-          this.payorPlanForm.get('addressTypeList').setValue(s.locationName);
-          this.payorPlanForm.get('lane').setValue(s.street);
-        });
+
+        this.payorPlanForm.get('relationshipList').setValue(this.guardata.relationship);
+        this.payorPlanForm.get('firstName').setValue(this.psdata.firstname);
+        this.payorPlanForm.get('lastName').setValue(this.psdata.lastname);
+        this.payorPlanForm.get('dob').setValue(this.psdata.dob);
+        this.payorPlanForm.get('gender').setValue(this.genderName);
+        this.gender = this.psdata.genderId
+        this.payorPlanForm.get('city').setValue(this.psdata.county);
+        this.payorPlanForm.get('country').setValue(this.psdata.country);
+        this.payorPlanForm.get('county').setValue(this.psdata.county);
+        this.countyId2 = this.psdata.countyId
+        this.payorPlanForm.get('timeZone').setValue(this.psdata.timezone);
+        this.timeId = this.psdata.TIMEZONEID
+        this.payorPlanForm.get('state').setValue(this.psdata.state);
+        this.stateId = this.psdata.stateId
+        this.payorPlanForm.get('phoneTypeList').setValue(this.psdata.PHONETYPE);
+        this.phone = this.psdata.PHONETYPE
+        this.locationName = this.psdata.locationId
+        this.payorPlanForm.get('relation').setValue(this.guardata.relationship);
+        this.relation = this.guardata.relationshipId
+        this.payorPlanForm.get('number').setValue(this.psdata.PHONE);
+        this.payorPlanForm.get('zipcode').setValue(this.psdata.ZIPCODE);
+        this.payorPlanForm.get('addressTypeList').setValue(this.psdata.locationName);
+        this.payorPlanForm.get('lane').setValue(this.psdata.street);
+
       } catch (error) {
         console.log(error);
       }
 
 
     } else {
-      this.checked = false;
+      this.checked1 = false;
       this.payorPlanForm.get('addressTypeList').setValue('');
       this.payorPlanForm.get('phoneTypeList').setValue('');
       this.payorPlanForm.get('number').setValue('');
@@ -247,5 +282,49 @@ export class PayorPlanDetailsComponent implements OnInit {
       // this.ocuupationAuto.close();
       // this.get2('', false)
     }
+  }
+  onSubmit() {
+    console.log(this.payorPlanForm.value, "formvalue");
+    console.log(this.psdata.PHONETYPE, "psdatavalue")
+    if (this.selflag === false) {
+      console.log(this.phone)
+    } else {
+      console.log(this.psdata.PHONETYPE)
+    }
+    console.log(this.selflag)
+    let params = {
+      "psAdmissionId": this.AdmissionId,
+      "payorPlanId": this.planId,
+      "policyNumber": this.payorPlanForm.value.policyNumber,
+      "rank": +this.payorPlanForm.value.rank,
+      "effectiveFrom": this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
+      "effectiveTo": this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
+      "psId": this.psId,
+      "relationshipId": this.relation,
+      "firstName": this.payorPlanForm.value.firstName,
+      "lastName": this.payorPlanForm.value.lastName,
+      "middleName": "",
+      "gender": this.gender,
+      "dob": this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
+      "ssn": this.payorPlanForm.value.ssn,
+      "addressId": 0,
+      "locationName": this.locationName,
+      "street": this.payorPlanForm.value.lane,
+      "city": this.payorPlanForm.value.city,
+      "countyId": this.countyId2,
+      "timeZoneId": this.timeId,
+      "stateId": this.stateId,
+      "zipCode": +this.payorPlanForm.value.zipcode,
+      "country": this.payorPlanForm.value.country,
+      'phoneType1': this.phone,
+      "phone1": this.payorPlanForm.value.number,
+      "userId": 1164,
+    }
+    console.log(params)
+    this.service.savePSAdmissionPayorPlan(JSON.stringify(params)).subscribe(d => {
+
+      console.log(d)
+    });
+
   }
 }

@@ -72,11 +72,15 @@ export class ZipcodeService {
   }
   public getPayorPlanList(params1): Observable<any> {
     this.getUrl();
-    // return this.http.get("assets/1.json")
-
     // tslint:disable-next-line: max-line-length
     return this.http.get(this.url+ '/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
+  public savePSAdmissionPayorPlan(params): Observable<any> {
+    this.getUrl();
+    // tslint:disable-next-line: max-line-length
+    return this.http.post(this.url+ '/poclite/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);
