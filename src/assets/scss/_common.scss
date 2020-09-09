@@ -925,6 +925,14 @@ ul {
     align-items: center;
     justify-content: center;
 }
+.right-icon-cancel{
+    position: absolute;
+    right: 35px;
+    /* top: 5px; */
+    z-index: 9;
+   top: 6px;
+  
+}
 
 // ng-autocomplete code
 .co-ordinator {
