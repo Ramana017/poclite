@@ -96,13 +96,13 @@
                                                                         </p> -->
                                                                         <p class="blue-bg facebook " title="Admission">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
-                                        </a>
+                                                                              <a  class="text-white" (click)="selectAdmissionListByDcsId(ps,true)" title="Admission">
+                                                                              </a>
                                       </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus" title="Authorization">
                                                                             <span>
-                                        <a href="javascript:void(0)" class="text-white">
+                                                                              <a  class="text-white" (click)="selectAuthorizationByPsId(ps,true)" title="Aurhorization">
 
                                         </a>
                                       </span>
@@ -120,9 +120,12 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <div class="text-center no-data-text" *ngIf="pstotalRecordsCount==0"> No Data To Display </div>
+
                                         </div>
                                     </div>
                                     <div class="pager">
+
                                         <span class="mr-2">Per page</span>
                                         <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
                       <option [ngValue]="5">5</option>
@@ -237,6 +240,8 @@
 
                                                 </tbody>
                                             </table>
+                                            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
+
                                         </div>
                                     </div>
                                     <div class="pager">
@@ -355,6 +360,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <div class="text-center no-data-text" *ngIf="admissiontotalRecordsCount==0"> No Data To Display </div>
+
                                         </div>
 
                                         <div class="pager">
@@ -472,7 +479,10 @@
                                                         <!-- <td>{{auth.consumedUnits}}</td> -->
                                                     </tr>
                                                 </tbody>
+
                                             </table>
+                                            <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To Display </div>
+
                                         </div>
                                         <div class="pager">
                                             <span class="mr-2">Per page</span>

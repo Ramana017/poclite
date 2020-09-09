@@ -23,11 +23,11 @@ export class DashboardComponent implements OnInit {
 
 
 
-  public dcsList: any;
+  public dcsList: any=[];
   public visitsData = [];
-  public authorizationList: any;
-  public psList: any;
-  public admissionsList: any;
+  public authorizationList: any=[];
+  public psList: any=[];
+  public admissionsList: any=[];
   public pskeyword = 'PSName';
   public authorizationkeyword = 'PSName';
   public dcskeyword = 'dcsName';
