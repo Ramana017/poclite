@@ -9,7 +9,7 @@
           </label>
           <div class="check-box-wrapper pl-3">
             <div class="on-off-toggle">
-              <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+              <input class="on-off-toggle__input" type="checkbox" (click)="pvtDuty($event)" id="bopis" />
               <label for="bopis" class="on-off-toggle__slider"></label>
             </div>
           </div>
@@ -26,8 +26,8 @@
  
               <div class="input-group  ">
                 <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete [data]="payorData" [searchKeyword]="payor" formControlName="payorCode"
-                     [itemTemplate]="itemTemplate10" (selected)="getPayorCodes($event)">
+                  <ng-autocomplete [data]="payorData" [searchKeyword]="payor" 
+                  (selected)="selectChange($event, 'payorPlan')"  [itemTemplate]="itemTemplate10" formControlName="payorPlan" (selected)="getPayorCodes($event)">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate10 let-item>
                     <a [innerHTML]="item.planname"></a>
@@ -42,7 +42,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" aria-label="Case Manager" value="{{payorcode}}" disabled>
+                <input type="text" class="form-control" formControlName="payorCode" aria-label="Case Manager" value="{{payorcode}}" disabled>
  
               </div>
  
@@ -53,7 +53,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control"  aria-label="Case Manager" value="{{plancode}}" disabled>
+                <input type="text" class="form-control" formControlName="plancode1" aria-label="Case Manager" value="{{plancode}}" disabled>
  
               </div>
  
@@ -70,13 +70,12 @@
               </label>
  
               <div class="input-group  ">
-                <select class="form-control">
+                <select class="form-control" formControlName="rank">
                   <option selected>Select</option>
-                  <option value="1">DR</option>
-                  <option value="2">MISS</option>
-                  <option value="3">MR</option>
-                  <option value="4">MRS</option>
-                  <option value="5">MS</option>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  
  
                 </select>
               </div>
@@ -89,7 +88,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" placeholder="mm/dd/yyyy" value="{{effectiveFrom}}"  bsDatepicker disabled>
+                <input type="text" class="form-control" formControlName="effectiveFrom" placeholder="mm/dd/yyyy"   bsDatepicker >
               </div>
  
             </div>
@@ -99,7 +98,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" placeholder="mm/dd/yyyy"   value="{{effectiveTo}}"  disabled bsDatepicker>
+                <input type="text" class="form-control" placeholder="mm/dd/yyyy" formControlName="effectiveto" bsDatepicker>
               </div>
  
             </div>
@@ -267,7 +266,7 @@
               <div class="  date-input  d-flex align-items-center w-100">
                 <div class="ng-autocomplete phone-select">
                   <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phoneTypeList"
-                    (selected)="selectChange($event, 'phId')" placeHolder="Type" [itemTemplate]="itemTemplate">
+                    (selected)="selectChange($event, 'phoneTypeList')" placeHolder="Type" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>
                     <a [innerHTML]="item.label"></a>

@@ -24,6 +24,7 @@ export class AdmissionDetailsComponent implements OnInit {
   I;
   id = 'id';
   name = 'name';
+  public officeId;
   public clientType;
   public coordinatorData;
   public AdmissionDate: Date;
@@ -98,6 +99,8 @@ export class AdmissionDetailsComponent implements OnInit {
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
         this.psId=data.psId;
+        this.officeId = data.officeId
+        console.log(this.officeId)
 
       })
   }
@@ -201,13 +204,17 @@ export class AdmissionDetailsComponent implements OnInit {
           data => {
             console.log(data);
             this.admissionRes=data
-          })
-          // if (Object.keys(this.admissionRes).length !== 0)
-           {
             console.log("datasaved successfully");
               sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
               this.router.navigateByUrl('registration-re/child-payorplan');
-          }}
+          })
+          //  if (Object.keys(this.admissionRes).length !== 0)
+          //  {
+          //   console.log("datasaved successfully");
+          //     sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+          //     this.router.navigateByUrl('registration-re/child-payorplan');
+          // }
+        }
 
        catch (error) {
         console.log(error);
