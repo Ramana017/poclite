@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { DatePipe } from '@angular/common';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payor-plan-details',
@@ -38,6 +40,14 @@ export class PayorPlanDetailsComponent implements OnInit {
   Keyword = 'label';
   fill;
   city;
+  payorName;
+  guardata;
+  psId;
+  AdmissionId;
+  countyId2
+  officeId;
+  genderList;
+  public savePayorRes;
   public selflag: boolean = false;
   public pvtDutyFlag: boolean = false;
   public payorcode;
@@ -57,7 +67,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   phone;
   submitted = false;
   previousPsDetails: any;
-  constructor(private fb: FormBuilder, public service: ZipcodeService, public date: DatePipe) { }
+  constructor(private fb: FormBuilder,  private router: Router,public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
     this.psGuarData();
     this.getPayorPlanData();
@@ -65,23 +75,18 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.payorPlanForm = this.fb.group({
 
       genderId: ['', Validators.required],
-      policyNumber: [''],
-      payorCode: [''],
-      plancode1: [''],
-      payorPlan: [''],
-      rank: [''],
-      phId: [''],
-      effectiveFrom: [''],
+      policyNumber: ['',Validators.required],
+      payorCode: ['',Validators.required],
+      plancode1: ['',Validators.required],
+      payorPlan: ['',Validators.required],
+      rank: ['',Validators.required],
+      effectiveFrom: ['',Validators.required],
       effectiveto: [''],
-      phone: [''],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
-      relationshipList: [''],
-      relation: [''],
-      gender: [''],
+      relationshipList: ['',Validators.required],
+      gender: ['',Validators.required],
       ssn: [''],
-      addressTypeId: [''],
-      address: [''],
       number: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -107,13 +112,7 @@ export class PayorPlanDetailsComponent implements OnInit {
 
   }
 
-  payorName;
-  guardata;
-  psId;
-  AdmissionId;
-  countyId2
-  officeId;
-  genderList;
+ 
   psGuarData() {
     const AdmissionDetails = JSON.parse(sessionStorage.getItem('AdmissionDetails'));
     const previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
@@ -157,6 +156,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.raceId = this.lookupDetails.raceList;
       this.phoneTypeList = this.lookupDetails.phoneTypeList;
       this.genderList = this.lookupDetails.genderList;
+      console.log(this.genderList)
       //  this.genderId = this.lookupDetails.genderId
     });
   }
@@ -282,52 +282,64 @@ export class PayorPlanDetailsComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log(this.payorPlanForm.value, "formvalue");
-    console.log(this.psdata.PHONETYPE, "psdatavalue")
-    if (this.selflag === false) {
-      console.log(this.phone)
-    } else {
-      console.log(this.psdata.PHONETYPE)
+    if (this.payorPlanForm.valid) {
+      let params1={
+        "psAdmissionId":this.AdmissionId,
+        "payorPlanId":this.planId,
+      "planname":this.planname,
+      "payorcode":this.payorcode,
+      "plancode":this.plancode,
+      "privateDuty":this.pvtDutyFlag,
+      "policyNumber":this.payorPlanForm.value.policyNumber,
+      "rank":+this.payorPlanForm.value.rank,
+      "effectiveFrom":this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
+      "effectiveTo":this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
+      "psId":this.psId,
+      "relationshipId":this.relation,
+      "firstName":this.payorPlanForm.value.firstName,
+      "lastName":this.payorPlanForm.value.lastName,
+      "middleName":"",
+      "gender":this.gender,
+      "dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
+      "ssn":this.payorPlanForm.value.ssn,
+      "addressId":0,
+      "locationName":this.locationName,
+      "street":this.payorPlanForm.value.lane,
+      "city":this.payorPlanForm.value.city,
+      "countyId":this.countyId2,
+      "timeZoneId":this.timeId,
+      "stateId":this.stateId,
+      "zipCode":+this.payorPlanForm.value.zipcode,
+      "country":this.payorPlanForm.value.country,
+      "phoneType1":this.phone,
+      "phone1":this.payorPlanForm.value.number,
+      "userId":1164
     }
-    console.log(this.selflag)
-  
-    let params1={
-      "psAdmissionId":this.AdmissionId,
-      "payorPlanId":this.planId,
-    "planname":this.planname,
-    "payorcode":this.payorcode,
-    "plancode":this.plancode,
-    "privateDuty":this.pvtDutyFlag,
-    "policyNumber":this.payorPlanForm.value.policyNumber,
-    "rank":+this.payorPlanForm.value.rank,
-    "effectiveFrom":this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
-    "effectiveTo":this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
-    "psId":this.psId,
-    "relationshipId":this.relation,
-    "firstName":this.payorPlanForm.value.firstName,
-    "lastName":this.payorPlanForm.value.lastName,
-    "middleName":"",
-    "gender":this.gender,
-    "dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-    "ssn":this.payorPlanForm.value.ssn,
-    "addressId":0,
-    "locationName":this.locationName,
-    "street":this.payorPlanForm.value.lane,
-    "city":this.payorPlanForm.value.city,
-    "countyId":this.countyId2,
-    "timeZoneId":this.timeId,
-    "stateId":this.stateId,
-    "zipCode":+this.payorPlanForm.value.zipcode,
-    "country":this.payorPlanForm.value.country,
-    "phoneType1":this.phone,
-    "phone1":this.payorPlanForm.value.number,
-    "userId":1164
-  }
-    console.log(params1)
-    this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
+      console.log(params1)
+      try {
+        this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
 
-      console.log(d)
-    });
+          console.log(d)
+          this.savePayorRes =d
+          sessionStorage.setItem('savePayorRes', JSON.stringify(this.savePayorRes));
+          this.router.navigateByUrl('registration-re/child-authorization');
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else {
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+  
+ 
+   
 
   }
 }
