@@ -27,13 +27,13 @@ export class PayorPlanDetailsComponent implements OnInit {
   raceId: any;
   user1;
   phoneTypeList: any;
-  genderId: any;
+  genderId1: any;
   pvtCheck;
   public psdata;
   checked;
   data;
   addressid;
-  locationName;
+  locationName1;
   siteId;
   raceid;
   payor = 'planname';
@@ -69,8 +69,10 @@ export class PayorPlanDetailsComponent implements OnInit {
   previousPsDetails: any;
   constructor(private fb: FormBuilder,  private router: Router,public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
+    this.psGuarData();
+    this.getPayorPlanData();
+    this.basicDetails();
 
-    console.log(this.pvtDuty)
     this.payorPlanForm = this.fb.group({
 
       genderId: ['', Validators.required],
@@ -84,23 +86,19 @@ export class PayorPlanDetailsComponent implements OnInit {
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
       relationshipList: ['',Validators.required],
-      gender: ['',Validators.required],
       ssn: [''],
       number: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
-      country: ['', Validators.required],
+      country: [''],
       county: ['', Validators.required],
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
       lane: ['', Validators.required],
       dob: ['', Validators.required],
     });
-    this.psGuarData();
-    this.getPayorPlanData();
-    this.basicDetails();
   }
   get f() {
     return this.payorPlanForm.controls;
@@ -158,23 +156,23 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.phoneTypeList = this.lookupDetails.phoneTypeList;
       this.genderList = this.lookupDetails.genderList;
       console.log(this.genderList)
-      //  this.genderId = this.lookupDetails.genderId
+        //this.genderId1 = this.lookupDetails.genderId
     });
   }
 
   relation;
-  gender;
+  gender1;
   planId;
   selectChange(event, field) {
 
     if (field === 'genderId') {
-      this.gender = event.id;
+      this.gender1 = event.id;
     }
     if (field === 'relation') {
       this.relation = event.id;
     }
     if (field === 'addressTypeId') {
-      this.locationName = event.id;
+      this.locationName1 = event.id;
     }
     if (field === 'phoneTypeList') {
       this.phone = event.label;
@@ -189,8 +187,10 @@ export class PayorPlanDetailsComponent implements OnInit {
   public getPayorCodes(event) {
     console.log(event)
     this.planname =event.planname
-    this.payorcode = event.payorcode;
-    this.plancode = event.plancode;
+    // this.payorcode = event.payorcode;
+    // this.plancode = event.plancode;
+    this.payorPlanForm.get('payorCode').setValue(event.payorcode)
+    this.payorPlanForm.get('plancode1').setValue(event.plancode)
 
   }
   timeId;
@@ -216,15 +216,8 @@ export class PayorPlanDetailsComponent implements OnInit {
   genderName
   get1(event) {
     if (event.target.checked) {
-      this.checked1 = true;
-      if (this.psId.genderId === 3) {
-        this.genderName = 'FEMALE';
-      } else if (this.psId.genderId === 4) {
-        this.genderName = 'MALE';
-      }
-      else if (this.psId.genderId === 5) {
-        this.genderName = 'UNKNOWN';
-      }
+      this.checked = true;
+
       try {
 
         this.payorPlanForm.get('relationshipList').setValue(this.guardata.relationship);
@@ -232,7 +225,7 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.payorPlanForm.get('lastName').setValue(this.psdata.lastname);
         this.payorPlanForm.get('dob').setValue(this.psdata.dob);
         this.payorPlanForm.get('genderId').setValue(this.psdata.gender);
-        this.gender = this.psdata.genderId
+        this.gender1 = this.psdata.genderId
         this.payorPlanForm.get('city').setValue(this.psdata.county);
         this.payorPlanForm.get('country').setValue(this.psdata.country);
         this.payorPlanForm.get('county').setValue(this.psdata.county);
@@ -242,8 +235,8 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.payorPlanForm.get('state').setValue(this.psdata.state);
         this.stateId = this.psdata.stateId
         this.payorPlanForm.get('phoneTypeList').setValue(this.psdata.PHONETYPE);
-        this.phone = this.psdata.PHONETYPE
-        this.locationName = this.psdata.locationId
+        this.phone = this.psdata.PHONETYPEID
+        this.locationName1 = this.psdata.locationId
         this.payorPlanForm.get('relation').setValue(this.guardata.relationship);
         this.relation = this.guardata.relationshipId
         this.payorPlanForm.get('number').setValue(this.psdata.PHONE);
@@ -257,7 +250,8 @@ export class PayorPlanDetailsComponent implements OnInit {
 
 
     } else {
-      this.checked1 = false;
+      this.checked = false;
+      this.payorPlanForm.get('relationshipList').setValue('');
       this.payorPlanForm.get('addressTypeList').setValue('');
       this.payorPlanForm.get('phoneTypeList').setValue('');
       this.payorPlanForm.get('number').setValue('');
@@ -273,8 +267,8 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.payorPlanForm.get('country').setValue('');
       this.payorPlanForm.get('address').setValue('');
       this.payorPlanForm.get('dob').setValue('');
+      this.payorPlanForm.get('genderId').setValue('');
       this.payorPlanForm.get('gender').setValue('');
-      this.payorPlanForm.get('relationshipList').setValue('');
 
       // this.relationAuto.clear();
       // this.relationAuto.close();
@@ -283,13 +277,15 @@ export class PayorPlanDetailsComponent implements OnInit {
     }
   }
   onSubmit() {
+  console.log(this.payorPlanForm.value)
+  console.log(this.payorPlanForm.valid)
     if (this.payorPlanForm.valid) {
       let params1={
         "psAdmissionId":this.AdmissionId,
         "payorPlanId":this.planId,
       "planname":this.planname,
-      "payorcode":this.payorcode,
-      "plancode":this.plancode,
+      "payorcode":this.payorPlanForm.value.payorCode,
+      "plancode":this.payorPlanForm.value.plancode1,
       "privateDuty":this.pvtDutyFlag,
       "policyNumber":this.payorPlanForm.value.policyNumber,
       "rank":+this.payorPlanForm.value.rank,
@@ -300,11 +296,11 @@ export class PayorPlanDetailsComponent implements OnInit {
       "firstName":this.payorPlanForm.value.firstName,
       "lastName":this.payorPlanForm.value.lastName,
       "middleName":"",
-      "gender":this.gender,
+      "gender":this.gender1,
       "dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
       "ssn":this.payorPlanForm.value.ssn,
       "addressId":0,
-      "locationName":this.locationName,
+      "locationName":this.locationName1,
       "street":this.payorPlanForm.value.lane,
       "city":this.payorPlanForm.value.city,
       "countyId":this.countyId2,
