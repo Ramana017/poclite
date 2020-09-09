@@ -59,8 +59,8 @@ export class PayorPlanDetailsComponent implements OnInit {
   previousPsDetails: any;
   constructor(private fb: FormBuilder, public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
-    this.getPayorPlanData();
     this.psGuarData();
+    this.getPayorPlanData();
     console.log(this.pvtDutyFlag)
     this.payorPlanForm = this.fb.group({
 
@@ -108,22 +108,20 @@ export class PayorPlanDetailsComponent implements OnInit {
   }
 
   payorName;
-  public getPayorPlanData(): void {
-    const params = { "officeId": 191, "privateDuty": this.pvtDutyFlag ? 1 : 0 };
-    this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
-      data => {
-        this.payorData = data;
-        console.log(data);
-      });
-  }
   guardata;
   psId;
   AdmissionId;
   countyId2
+  officeId;
+  genderList;
   psGuarData() {
     const AdmissionDetails = JSON.parse(sessionStorage.getItem('AdmissionDetails'));
     const previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     const guarantorDetails = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    const officeId2 = JSON.parse(sessionStorage.getItem('officeId'));
+    this.officeId = officeId2
+    console.log(this.officeId)
+
     const guarantorId = guarantorDetails.psGuarId;
     const parameters1 = { 'guarantorId': guarantorId };
     const parameters = { 'psId': previousPsDetails.psId };
@@ -138,6 +136,14 @@ export class PayorPlanDetailsComponent implements OnInit {
       console.log(res)
     })
   }
+  public getPayorPlanData(): void {
+    const params = { "officeId": this.officeId, "privateDuty": this.pvtDutyFlag ? 1 : 0 };
+    this.service.getPayorPlanList(JSON.stringify(params)).subscribe(
+      data => {
+        this.payorData = data;
+        console.log(data);
+      });
+  }
   basicDetails() {
     const jsonObj = { 'userId': '47' };
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
@@ -150,7 +156,8 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.maritalStatusList = this.lookupDetails.maritalStatusList;
       this.raceId = this.lookupDetails.raceList;
       this.phoneTypeList = this.lookupDetails.phoneTypeList;
-      this.genderId = this.lookupDetails.raceList;
+      this.genderList = this.lookupDetails.genderList;
+      //  this.genderId = this.lookupDetails.genderId
     });
   }
 
@@ -204,10 +211,18 @@ export class PayorPlanDetailsComponent implements OnInit {
       });
     }
   }
-
+  genderName
   get1(event) {
     if (event.target.checked) {
       this.checked1 = true;
+      if (this.psId.genderId === 3) {
+        this.genderName = 'FEMALE';
+      } else if (this.psId.genderId === 4) {
+        this.genderName = 'MALE';
+      }
+      else if (this.psId.genderId === 5) {
+        this.genderName = 'UNKNOWN';
+      }
       this.selflag = true;
       console.log(this.selflag)
       try {
@@ -216,21 +231,21 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.payorPlanForm.get('firstName').setValue(this.psdata.firstname);
         this.payorPlanForm.get('lastName').setValue(this.psdata.lastname);
         this.payorPlanForm.get('dob').setValue(this.psdata.dob);
-        this.payorPlanForm.get('gender').setValue(this.psdata.gender);
+        this.payorPlanForm.get('gender').setValue(this.genderName);
+        this.gender = this.psdata.genderId
         this.payorPlanForm.get('city').setValue(this.psdata.county);
         this.payorPlanForm.get('country').setValue(this.psdata.country);
         this.payorPlanForm.get('county').setValue(this.psdata.county);
-        this.countyId2 =this.psdata.countyId
+        this.countyId2 = this.psdata.countyId
         this.payorPlanForm.get('timeZone').setValue(this.psdata.timezone);
-        this.timeId =this.psdata.TIMEZONEID
+        this.timeId = this.psdata.TIMEZONEID
         this.payorPlanForm.get('state').setValue(this.psdata.state);
-        this.stateId =this.psdata.stateId
+        this.stateId = this.psdata.stateId
         this.payorPlanForm.get('phoneTypeList').setValue(this.psdata.PHONETYPE);
-         this.phone = this.psdata.PHONETYPE
-        this.gender = this.psdata.genderId
+        this.phone = this.psdata.PHONETYPE
         this.locationName = this.psdata.locationId
         this.payorPlanForm.get('relation').setValue(this.guardata.relationship);
-         this.relation=this.guardata.relationshipId
+        this.relation = this.guardata.relationshipId
         this.payorPlanForm.get('number').setValue(this.psdata.PHONE);
         this.payorPlanForm.get('zipcode').setValue(this.psdata.ZIPCODE);
         this.payorPlanForm.get('addressTypeList').setValue(this.psdata.locationName);
@@ -286,24 +301,24 @@ export class PayorPlanDetailsComponent implements OnInit {
       "effectiveTo": this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
       "psId": this.psId,
       "relationshipId": this.relation,
-       "firstName":this.payorPlanForm.value.firstName,
-       "lastName":this.payorPlanForm.value.lastName,
-       "middleName":"",
+      "firstName": this.payorPlanForm.value.firstName,
+      "lastName": this.payorPlanForm.value.lastName,
+      "middleName": "",
       "gender": this.gender,
-       "dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-       "ssn":this.payorPlanForm.value.ssn,
-       "addressId":0,
+      "dob": this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
+      "ssn": this.payorPlanForm.value.ssn,
+      "addressId": 0,
       "locationName": this.locationName,
-       "street":this.payorPlanForm.value.lane,
-       "city":this.payorPlanForm.value.city,
-       "countyId":this.countyId2,
-       "timeZoneId":this.timeId ,
-       "stateId":this.stateId,
-       "zipCode":+this.payorPlanForm.value.zipcode,
-       "country":this.payorPlanForm.value.country,
+      "street": this.payorPlanForm.value.lane,
+      "city": this.payorPlanForm.value.city,
+      "countyId": this.countyId2,
+      "timeZoneId": this.timeId,
+      "stateId": this.stateId,
+      "zipCode": +this.payorPlanForm.value.zipcode,
+      "country": this.payorPlanForm.value.country,
       'phoneType1': this.phone,
-       "phone1":this.payorPlanForm.value.number,
-       "userId":1164,
+      "phone1": this.payorPlanForm.value.number,
+      "userId": 1164,
     }
     console.log(params)
     this.service.savePSAdmissionPayorPlan(JSON.stringify(params)).subscribe(d => {

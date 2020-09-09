@@ -191,7 +191,7 @@
               <label class="">Gender<span class="text-danger">*</span></label>
               <div class="input-group ">
                 <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete [data]="genderId" [searchKeyword]="Keyword" formControlName="gender"
+                  <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="genderId"
                     (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>

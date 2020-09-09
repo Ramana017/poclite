@@ -101,6 +101,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
         this.psId = data.psId;
+        this.officeId = data.officeId
 
       })
   }
@@ -195,7 +196,7 @@ export class AdmissionDetailsComponent implements OnInit {
         "clientClassId": this.coordinatorData.clientClassId,
         "primaryDiagnosisCode": temp[0],
         "otherDiagnoses": (temp.shift()).toString(),
-        "officeId": 191,
+        "officeId": this.officeId,
         "userId": this.userId
       }
       console.log(params)
@@ -204,13 +205,17 @@ export class AdmissionDetailsComponent implements OnInit {
           data => {
             console.log(data);
             this.admissionRes = data
+            console.log("datasaved successfully");
+            sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+            sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
+            this.router.navigateByUrl('registration-re/child-payorplan');
           })
-        // if (Object.keys(this.admissionRes).length !== 0)
-        {
-          console.log("datasaved successfully");
-          sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-          this.router.navigateByUrl('registration-re/child-payorplan');
-        }
+        // // if (Object.keys(this.admissionRes).length !== 0)
+        // {
+        //   console.log("datasaved successfully");
+        //   sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+        //   this.router.navigateByUrl('registration-re/child-payorplan');
+        // }
       }
 
       catch (error) {
