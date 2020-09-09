@@ -4,6 +4,8 @@ import { ZipcodeService } from 'src/app/services/zipcode.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: "app-admission-details",
@@ -45,10 +47,13 @@ export class AdmissionDetailsComponent implements OnInit {
   ds: any;
   numbers = [];
   guarantorId: any;
-  psId: any;
-  admissionRes;
+  psId: number;
+  admissionRes:any;
+  public userId:number;
   constructor(private fb: FormBuilder,  public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
     console.log("basic constructer",this.popup);
+    let data :any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+    this.userId=data.userId
     for (let i = 1; i <= 100; i++) {
       this.numbers.push(i);
     }
@@ -82,7 +87,7 @@ export class AdmissionDetailsComponent implements OnInit {
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
     this.guarantorId = guarantorSession.psGuarId;
     this.psId=psSession.psId
-    let params = { "userId": 47, "psId": this.psId, "guarantorId": this.guarantorId };
+    let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
         console.log(data);
@@ -92,6 +97,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
+        this.psId=data.psId;
 
       })
   }
@@ -135,12 +141,13 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   public getDiagnosisData(): void {
-    let params = { "userId": 47, "code": "", "name": "", "lowerBound": this.lowerBound, "upperBound": this.upperBound };
+    let params = { "userId": this.userId, "code": "", "name": "", "lowerBound": this.lowerBound, "upperBound": this.upperBound };
     console.log(params)
     this.service.getDiagnosisDetails(JSON.stringify(params)).subscribe(
       data => {
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
+        this.maxCount=data.totalRecordsCount;
         console.log(data);
       })
   }
@@ -186,9 +193,8 @@ export class AdmissionDetailsComponent implements OnInit {
         "primaryDiagnosisCode":temp[0],
         "otherDiagnoses":(temp.shift()).toString(),
         "officeId":191,
-        "userId": 47
+        "userId": this.userId
       }
-      alert("lhgdsfdfghjkl;'")
       console.log(params)
       try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
@@ -196,15 +202,26 @@ export class AdmissionDetailsComponent implements OnInit {
             console.log(data);
             this.admissionRes=data
           })
-          if (Object.keys(this.admissionRes).length !== 0) {
-            this.router.navigateByUrl('registration-re/child-payorplan');
-            
+          // if (Object.keys(this.admissionRes).length !== 0)
+           {
+            console.log("datasaved successfully");
+              sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+              this.router.navigateByUrl('registration-re/child-payorplan');
           }}
 
        catch (error) {
         console.log(error);
 
       }
+    }
+    else{
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
     }
 
 

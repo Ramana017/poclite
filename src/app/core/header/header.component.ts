@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
         this.heading = "POC Call Management"
       }else if(this.router.url == '/widgets'){
         this.activeclass=[false,false,true];
-        this.heading = "POC Widgets"
+        this.heading = "POC Home"
       }
       else{
         this.heading="PS Registration"

@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     private router: Router, private modalService: BsModalService, private appService: AppService, title: Title) {
     // sets an idle timeout of 5 seconds, for testing purposes.
     // console.log("inconstructor",(session))
-    title.setTitle("Poclite")
+    title.setTitle("POCLite")
     console.log("app.compenent.ts", localStorage.getItem('sessionTimeOut'))
 
     // idle.setIdle(15*60);

@@ -36,19 +36,20 @@ export class DashboardComponent implements OnInit {
   private arrayData = ['scrolling alert message', 'sample text message scrolling', 'alert scrolling text']
   public scrollData: any;
   //paginationVariables
-  public psLowerBound = 1;
-  public psUpperBound = 20;
-  public psPerPage = 20;
-  public pstotalRecordsCount = 0;
-  public dcsLowerBound = 1;
-  public dcsUpperBound = 20;
-  public dcsPerPage = 20;
-  public admissionLowerBound = 1;
-  public admissionUpperBound = 20;
-  public admissionPerPage = 20;
+  public psLowerBound:number = 1;
+  public psUpperBound :number= 20;
+  public psPerPage:number = 20;
+  public dcsLowerBound:number = 1;
+  public dcsUpperBound :number = 20;
+  public dcsPerPage:number = 20;
+  public admissionLowerBound:number = 1;
+  public admissionUpperBound:number = 20;
+  public admissionPerPage :number= 20;
   public authorizationLowerBound = 1;
-  public authorizationUpperBound = 20;
-  public authorizationPerPage = 20;
+  public authorizationUpperBound:number = 20;
+  public authorizationPerPage:number = 20;
+  public pstotalRecordsCount:number = 0;
+
   public dcstotalRecordsCount: number;
   public admissiontotalRecordsCount: number;
   public authorizationtotalRecordsCount: number

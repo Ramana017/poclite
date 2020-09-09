@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,17 +8,18 @@ import { catchError } from 'rxjs/operators';
 })
 export class ZipcodeService {
   public getbasic = new BehaviorSubject<any>(null);
-  public lookUpDetails:string;
-  public getUrl():void {
-    let url = localStorage.getItem('webserviceURL');
-    this.lookUpDetails=url+'pocextacc-webservices_9.2/telephony'
+  public lookUpDetails: string;
+  public url
+  public getUrl(): void {
+    this.url = localStorage.getItem('webserviceURL');
+    this.lookUpDetails = this.url + 'pocextacc-webservices_9.2/telephony'
   }
   public zip;
 
   constructor(private http: HttpClient) { }
   public getLookupDetails(params): Observable<any> {
     this.getUrl()
-    return this.http.get(this.lookUpDetails + "/getLookupDetails?jsonObj=" +params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.lookUpDetails + "/getLookupDetails?jsonObj=" + params).pipe(catchError(this.errorHandler));
   }
   public getZipcodeDetails(zipCode): Observable<any> {
     this.getUrl()
@@ -53,28 +54,28 @@ export class ZipcodeService {
   }
   public getAdmissionLookups(params): Observable<any> {
     this.getUrl();
-   // return this.http.get("assets/1.json")
+    // return this.http.get("assets/1.json")
 
     return this.http.get(this.lookUpDetails + '/getAdmissionLookups?jsonObj=' + params).pipe(catchError(this.errorHandler));
   }
   public getDiagnosisDetails(params1): Observable<any> {
     this.getUrl();
-   // return this.http.get("assets/1.json")
+    // return this.http.get("assets/1.json")
 
     return this.http.get(this.lookUpDetails + '/getDiagnosisDetails?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   public saveAdmissionDetails(params1): Observable<any> {
-    //this.getUrl();
-   // return this.http.get("assets/1.json")
+    this.getUrl();
+    // return this.http.get("assets/1.json")
 
-    return this.http.post(' http://poc.aquilasoftware.com/poclite/dashboard/savePSAdmission' , params1).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url + '/poclite/dashboard/savePSAdmission', params1).pipe(catchError(this.errorHandler));
   }
   public getPayorPlanList(params1): Observable<any> {
-    //this.getUrl();
-   // return this.http.get("assets/1.json")
+    this.getUrl();
+    // return this.http.get("assets/1.json")
 
     // tslint:disable-next-line: max-line-length
-    return this.http.get('http://poc.aquilasoftware.com/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url+ '/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);

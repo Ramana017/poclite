@@ -24,9 +24,9 @@
 
                                         <div class="d-flex align-items-center ">
                                             <button class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
-                                                <i class="fas fa-plus-circle mr-2 mt-0"></i>
-                                                <span>Create</span>
-                                            </button>
+                        <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                        <span>Create</span>
+                      </button>
                                             <div class="ico">
                                                 <i class="fas fa-compress-alt min-1 px-2"></i>
                                                 <i class="fas fa-expand max-1 px-2"></i>
@@ -89,26 +89,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -128,13 +125,15 @@
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
                                         <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
-                                            <option [ngValue]="5">5</option>
-                                            <option [ngValue]="10">10</option>
-                                            <option [ngValue]="15">15</option>
-                                            <option [ngValue]="20">20</option>
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="10">10</option>
+                      <option [ngValue]="15">15</option>
+                      <option [ngValue]="20">20</option>
 
-                                        </select>
-                                        <span class="mr-2">showing {{psLowerBound}} to {{psUpperBound}} of {{pstotalRecordsCount}}  </span>
+                    </select>
+                                        <span class="mr-2">showing {{pstotalRecordsCount !=0? psLowerBound:0}} to
+                      {{psUpperBound>=pstotalRecordsCount?pstotalRecordsCount:psUpperBound}} of {{pstotalRecordsCount}}
+                    </span>
 
                                         <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
                                         <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
@@ -207,23 +206,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a class="text-white">
+                                        <a class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -242,14 +241,16 @@
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
                                         <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
-                                            <option [ngValue]="5">5</option>
-                                            <option [ngValue]="10">10</option>
-                                            <option [ngValue]="15">15</option>
-                                            <option [ngValue]="20">20</option>
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="10">10</option>
+                      <option [ngValue]="15">15</option>
+                      <option [ngValue]="20">20</option>
 
 
-                                        </select>
-                                        <span class="mr-2">showing {{dcsLowerBound}} to {{dcsUpperBound}} of {{dcstotalRecordsCount}}  </span>
+                    </select>
+                                        <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
+                      {{dcsUpperBound>=dcstotalRecordsCount?dcstotalRecordsCount:dcsUpperBound}} of
+                      {{dcstotalRecordsCount}} </span>
 
 
                                         <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
@@ -323,26 +324,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -359,14 +357,16 @@
                                         <div class="pager">
                                             <span class="mr-2">Per page</span>
                                             <select [(ngModel)]="this.admissionPerPage" class="border-0 mr-2">
-                                              <option [ngValue]="5">5</option>
-                                              <option [ngValue]="10">10</option>
-                                              <option [ngValue]="15">15</option>
-                                              <option [ngValue]="20">20</option>
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="15">15</option>
+                        <option [ngValue]="20">20</option>
 
 
-                                          </select>
-                                            <span class="mr-2">showing {{admissionLowerBound}} to {{admissionUpperBound}} of {{admissiontotalRecordsCount}}  </span>
+                      </select>
+                                            <span class="mr-2">showing {{ admissiontotalRecordsCount!=0? admissionLowerBound:0}} to
+                        {{admissionUpperBound>=admissiontotalRecordsCount?admissiontotalRecordsCount:admissionUpperBound}}
+                        of {{admissiontotalRecordsCount}} </span>
 
 
                                             <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
@@ -439,26 +439,23 @@
                                                                     <div class="slider d-flex align-items-center justify-content-around">
                                                                         <p class="blue-bg twitter">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
 
                                                                         </p>
                                                                         <p class="blue-bg facebook ">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
-                                                                                </a>
-                                                                            </span>
+                                        <a href="javascript:void(0)" class="text-white">
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                                                                <a href="javascript:void(0)"
-                                                                                    class="text-white">
+                                        <a href="javascript:void(0)" class="text-white">
 
-                                                                                </a>
-                                                                            </span>
+                                        </a>
+                                      </span>
                                                                         </p>
                                                                     </div>
                                                                 </li>
@@ -476,12 +473,14 @@
                                         <div class="pager">
                                             <span class="mr-2">Per page</span>
                                             <select [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
-                                              <option [ngValue]="5">5</option>
-                                              <option [ngValue]="10">10</option>
-                                              <option [ngValue]="15">15</option>
-                                              <option [ngValue]="20">20</option>
-                                          </select>
-                                            <span class="mr-2">showing {{authorizationLowerBound}} to {{authorizationUpperBound}} of {{authorizationtotalRecordsCount}}  </span>
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="15">15</option>
+                        <option [ngValue]="20">20</option>
+                      </select>
+                                            <span class="mr-2">showing {{authorizationtotalRecordsCount!=0 ? authorizationLowerBound:'0'}} to
+                        {{authorizationUpperBound>=authorizationtotalRecordsCount?authorizationtotalRecordsCount:authorizationUpperBound}}
+                        of {{authorizationtotalRecordsCount}} </span>
 
 
                                             <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
