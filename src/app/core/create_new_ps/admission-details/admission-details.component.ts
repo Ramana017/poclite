@@ -203,7 +203,7 @@ export class AdmissionDetailsComponent implements OnInit {
       try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
-            console.log(data);
+            console.log("saveadmission",data);
             this.admissionRes = data
             console.log("datasaved successfully");
             sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));

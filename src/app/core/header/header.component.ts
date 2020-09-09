@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal/public_api';
 import { AppService } from 'src/app/services/app.service';
+import { ApiserviceService } from 'src/app/services/apiservice.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   public activeclass: Array<boolean> = []
 
-  constructor(private router: Router,private appService:AppService) { }
+  constructor(private router: Router,private appService:AppService,public apiService:ApiserviceService) { }
 
   ngOnInit(): void {
 
@@ -57,6 +58,8 @@ export class HeaderComponent implements OnInit {
       // console.log("Hello from setTimeout");
       this.router.navigateByUrl('login');
     this.appService.setUserLoggedIn(false);
+    sessionStorage.clear()
+
 
     }, 100);
 

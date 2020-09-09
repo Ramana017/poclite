@@ -23,7 +23,7 @@
                                         </div>
 
                                         <div class="d-flex align-items-center ">
-                                            <button class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
+                                            <button *ngIf="!this.apiService.checkUser()" class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
                         <i class="fas fa-plus-circle mr-2 mt-0"></i>
                         <span>Create</span>
                       </button>

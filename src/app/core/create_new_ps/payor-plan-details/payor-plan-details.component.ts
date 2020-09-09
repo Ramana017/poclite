@@ -69,8 +69,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   previousPsDetails: any;
   constructor(private fb: FormBuilder,  private router: Router,public service: ZipcodeService, public date: DatePipe) { }
   ngOnInit() {
-    this.psGuarData();
-    this.getPayorPlanData();
+
     console.log(this.pvtDuty)
     this.payorPlanForm = this.fb.group({
 
@@ -99,6 +98,8 @@ export class PayorPlanDetailsComponent implements OnInit {
       lane: ['', Validators.required],
       dob: ['', Validators.required],
     });
+    this.psGuarData();
+    this.getPayorPlanData();
     this.basicDetails();
   }
   get f() {
@@ -112,7 +113,7 @@ export class PayorPlanDetailsComponent implements OnInit {
 
   }
 
- 
+
   psGuarData() {
     const AdmissionDetails = JSON.parse(sessionStorage.getItem('AdmissionDetails'));
     const previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
@@ -337,9 +338,9 @@ export class PayorPlanDetailsComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-  
- 
-   
+
+
+
 
   }
 }
