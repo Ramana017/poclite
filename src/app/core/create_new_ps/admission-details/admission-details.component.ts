@@ -162,7 +162,6 @@ export class AdmissionDetailsComponent implements OnInit {
       console.log(this.selectedItems);
 
     }
-
   }
   addFieldValue(template: TemplateRef<any>) {
 

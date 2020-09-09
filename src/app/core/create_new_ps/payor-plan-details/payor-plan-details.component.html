@@ -5,8 +5,8 @@
                 <h4 class="AvenirLTStd-Heavy m-0 f-size-16">Payor Plan Details</h4>
                 <div class="pl-3 d-flex align-items-center justify-content-between">
                     <label class="m-0 color-black">
-            Private Duty<span class="text-danger">*</span>
-          </label>
+  Private Duty<span class="text-danger">*</span>
+  </label>
                     <div class="check-box-wrapper pl-3">
                         <div class="on-off-toggle">
                             <input class="on-off-toggle__input" type="checkbox" (click)="pvtDuty($event)" id="bopis" />
@@ -21,12 +21,12 @@
                     <div class="d-flex align-items-center justify-content-between nav">
                         <div class="input-container-wrapper">
                             <label class="">
-                Payor Plan<span class="text-danger">*</span>
-              </label>
+  Payor Plan<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <div class="ng-autocomplete" style="width: 100%;">
-                                    <ng-autocomplete [data]="payorData" [searchKeyword]="payor" (selected)="getPayorCodes($event)" [itemTemplate]="itemTemplate10" formControlName="payorPlan">
+                                    <ng-autocomplete [data]="payorData" [searchKeyword]="payor" [itemTemplate]="itemTemplate10" formControlName="payorPlan" (selected)="getPayorCodes($event)">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate10 let-item>
                                         <a [innerHTML]="item.planname"></a>
@@ -37,10 +37,10 @@
                         </div>
                         <div class="input-container-wrapper">
                             <label class="">
-                Payor Code<span class="text-danger">*</span>
-              </label>
+  Payor Code<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" formControlName="payorCode" aria-label="Case Manager" disabled>
 
                             </div>
@@ -48,10 +48,10 @@
                         </div>
                         <div class="input-container-wrapper">
                             <label class="">
-                Plan Code<span class="text-danger">*</span>
-              </label>
+  Plan Code<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" formControlName="plancode1" aria-label="Case Manager" disabled>
 
                             </div>
@@ -61,42 +61,42 @@
                     </div>
 
                     <!-- <div class="input-container-wrapper"></div>
-          <div class="input-container-wrapper"></div> -->
+  <div class="input-container-wrapper"></div> -->
                     <div class="d-flex align-items-center justify-content-between nav">
                         <div class="input-container-wrapper pb-0">
                             <label class="">
-                Rank<span class="text-danger">*</span>
-              </label>
+  Rank<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <select class="form-control" formControlName="rank">
-                  <option selected>Select</option>
-                  <option value=1>1</option>
-                  <option value=2>2</option>
-                  <option value=3>3</option>
+  <option selected>Select</option>
+  <option value=1>1</option>
+  <option value=2>2</option>
+  <option value=3>3</option>
 
 
-                </select>
+  </select>
                             </div>
 
                         </div>
 
                         <div class=" input-container-wrapper pb-0">
                             <label class="">
-                Effective From<span class="text-danger">*</span>
-              </label>
+  Effective From<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" formControlName="effectiveFrom" placeholder="mm/dd/yyyy" bsDatepicker>
                             </div>
 
                         </div>
                         <div class=" input-container-wrapper pb-0">
                             <label class="">
-                Effective To
-              </label>
+  Effective To
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" placeholder="mm/dd/yyyy" formControlName="effectiveto" bsDatepicker>
                             </div>
 
@@ -104,28 +104,28 @@
                     </div>
 
                     <!-- <div class=" input-container-wrapper"></div>
-          <div class=" input-container-wrapper"></div>
-          <div class=" input-container-wrapper"></div> -->
+  <div class=" input-container-wrapper"></div>
+  <div class=" input-container-wrapper"></div> -->
                 </form>
                 <div class="d-flex align-items-center pt-2">
                     <h4 class="py-2
-                            AvenirLTStd-Heavy m-0 address-title p-0 f-size-16 pr-3">Subscriber Details</h4>
+  AvenirLTStd-Heavy m-0 address-title p-0 f-size-16 pr-3">Subscriber Details</h4>
                     <div class="d-flex align-items-center">
                         <label class="customcheck m-0">
-              <input type="checkbox" (change)="get1($event)" [checked]="checked">
-              <span class="checkmark"></span>
-            </label>
+  <input type="checkbox" (change)="get1($event)" [checked]="checked">
+  <span class="checkmark"></span>
+  </label>
                         <label for='checkbox' class="m-0">
-              <span class="color-black">Self</span>
-            </label>
+  <span class="color-black">Self</span>
+  </label>
                     </div>
                 </div>
                 <form class="" [formGroup]="payorPlanForm">
                     <div class="d-flex align-items-center justify-content-between nav">
                         <div class="input-container-wrapper">
                             <label class="">
-                Relationship<span class="text-danger">*</span>
-              </label>
+  Relationship<span class="text-danger">*</span>
+  </label>
 
                             <div class="input-group ">
                                 <div class="ng-autocomplete" style="width: 100%;">
@@ -141,47 +141,47 @@
 
                         <div class=" input-container-wrapper">
                             <label class="">
-                Last Name<span class="text-danger">*</span>
-              </label>
+  Last Name<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" formControlName="lastName" class="form-control" value="{{checked ? psdata.lastname:''}}" aria-label="Auth">
                             </div>
 
                         </div>
                         <div class=" input-container-wrapper">
                             <label class="">
-                First Name<span class="text-danger">*</span>
-              </label>
+  First Name<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" aria-label="Last Name" formControlName="firstName" value="{{checked ? psdata.firstname:''}}">
 
                             </div>
                         </div>
                         <div class=" input-container-wrapper">
                             <label class="">
-                Policy Number<span class="text-danger">*</span>
-              </label>
+  Policy Number<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" formControlName="policyNumber">
                             </div>
 
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between nav">
-                        <div class=" m-0  input-container-wrapper">
+                        <div class=" m-0 input-container-wrapper">
                             <label class="">
-                Date of Birth<span class="text-danger">*</span>
-              </label>
+  Date of Birth<span class="text-danger">*</span>
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" class="form-control" value="{{checked ? psdata.dob:''}}" formControlName="dob" aria-label="Case Manager" placeholder="mm/dd/yyyy " bsDatepicker>
                             </div>
 
                         </div>
-                        <div class=" m-0  input-container-wrapper ">
+                        <div class=" m-0 input-container-wrapper ">
                             <label class="">Gender<span class="text-danger">*</span></label>
                             <div class="input-group ">
                                 <div class="ng-autocomplete" style="width: 100%;">
@@ -193,12 +193,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class=" m-0  input-container-wrapper">
+                        <div class=" m-0 input-container-wrapper">
                             <label class="">
-                SSN
-              </label>
+  SSN
+  </label>
 
-                            <div class="input-group  ">
+                            <div class="input-group ">
                                 <input type="text" value="{{checked ? psdata.ssn:''}}" formControlName='ssn' class="form-control" aria-label="Case Manager">
                             </div>
 
@@ -207,16 +207,16 @@
                         <div class=" input-container-wrapper"></div>
                     </div>
                     <!-- <div class=" input-container-wrapper"></div>
-          <div class=" input-container-wrapper"></div> -->
+  <div class=" input-container-wrapper"></div> -->
                 </form>
 
                 <form class="d-flex align-items-center nav justify-content-between" [formGroup]="payorPlanForm">
                     <div class="input-container-wrapper">
                         <label class="">
-              Location<span class="text-danger">*</span>
-            </label>
+  Location<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
+                        <div class="input-group ">
                             <div class="ng-autocomplete" style="width: 100%;">
                                 <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="addressTypeList" value="{{checked ? psdata.locationName:''}}" (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
@@ -230,31 +230,31 @@
 
                     <div class=" input-container-wrapper">
                         <label class="">
-              Address Lane<span class="text-danger">*</span>
-            </label>
+  Address Lane<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
+                        <div class="input-group ">
                             <input type="text" formControlName="lane" value="{{checked ? psdata.street:''}}" class="form-control">
                         </div>
 
                     </div>
                     <div class=" input-container-wrapper">
                         <label class="">
-              Zip Code<span class="text-danger">*</span>
-            </label>
+  Zip Code<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
+                        <div class="input-group ">
                             <input type="text" class="form-control" value="{{checked ? psdata.ZIPCODE:''}}" aria-label="date" formControlName='zipcode' (keyup)="getzip($event)" id="autocomplete" type="text" class="form-control">
 
                         </div>
                     </div>
-                    <div class=" m-0  input-container-wrapper phone-container">
+                    <div class=" m-0 input-container-wrapper phone-container">
                         <label class="">
-              Phone<span class="text-danger">*</span>
-            </label>
+  Phone<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
-                            <div class="  date-input  d-flex align-items-center w-100">
+                        <div class="input-group ">
+                            <div class=" date-input d-flex align-items-center w-100">
                                 <div class="ng-autocomplete phone-select">
                                     <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phoneTypeList" (selected)="selectChange($event, 'phoneTypeList')" placeHolder="Type" [itemTemplate]="itemTemplate">
                                     </ng-autocomplete>
@@ -265,20 +265,20 @@
                                 <div class="input-group ">
                                     <input type="text" [class.is-invalid]="f.number.invalid && f.number.touched" formControlName="number" value="{{checked ? psdata.PHONE:''}}" class="form-control">
                                     <!-- <div *ngIf="f.number.invalid && f.number.touched && f.number.errors">
-                                <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
-                              </div> -->
+  <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
+  </div> -->
                                 </div>
                             </div>
                         </div>
                         <div *ngIf="f.number.invalid && f.number.touched && f.number.errors" class="errors">
                             <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
                             <!-- <small class="text-danger" *ngIf="f.number.errors?.pattern ">Only Numbers</small>
-                          <small class="text-danger" *ngIf="f.number.errors?.minlength ">Digits should be 10</small>
-                          <small class="text-danger" *ngIf="f.number.errors?.maxlength "></small> -->
+  <small class="text-danger" *ngIf="f.number.errors?.minlength ">Digits should be 10</small>
+  <small class="text-danger" *ngIf="f.number.errors?.maxlength "></small> -->
                         </div>
 
                     </div>
-                    <div class=" m-0  input-container-wrapper pb-0">
+                    <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">City<span class="text-danger">*</span> </label>
                         <div class="input-group ">
                             <input type="text" class="form-control" [(ngModel)]="city" formControlName="city" aria-label="date" value="{{checked ? psdata.county:''}}" disabled=true>
@@ -286,36 +286,36 @@
                     </div>
                     <div class=" input-container-wrapper pb-0">
                         <label class="">
-              State <span class="text-danger">*</span>
-            </label>
+  State <span class="text-danger">*</span>
+  </label>
                         <div class="input-group ">
                             <input type="text" class="form-control " [(ngModel)]="state" aria-label="date" formControlName="state" value="{{checked ? psdata.state:''}}" disabled="true">
                         </div>
                     </div>
                     <div class=" input-container-wrapper pb-0">
                         <label class="">
-              County<span class="text-danger">*</span>
-            </label>
+  County<span class="text-danger">*</span>
+  </label>
                         <div class="input-group ">
                             <input type="text" class="form-control" [(ngModel)]="county" formControlName="county" aria-label="date" value="{{checked ? psdata.county:''}}" disabled="true">
                         </div>
                     </div>
-                    <div class=" m-0  input-container-wrapper pb-0">
+                    <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Time Zone<span class="text-danger">*</span>
-            </label>
+  Time Zone<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
+                        <div class="input-group ">
                             <input type="text" class="form-control" [(ngModel)]="timeZone" formControlName="timeZone" aria-label="Case Manager" value="{{checked ? psdata.timezone:''}}" disabled="true">
                         </div>
 
                     </div>
-                    <div class=" m-0  input-container-wrapper pb-0">
+                    <div class=" m-0 input-container-wrapper pb-0">
                         <label class="">
-              Country<span class="text-danger">*</span>
-            </label>
+  Country<span class="text-danger">*</span>
+  </label>
 
-                        <div class="input-group  ">
+                        <div class="input-group ">
                             <input type="text" class="form-control" value="{{checked ? psdata.country:''}}" formControlName="country" aria-label="Case Manager" [(ngModel)]="country" disabled="true">
                         </div>
 
@@ -324,23 +324,23 @@
                 </form>
             </div>
             <!-- <div class="d-flex align-items-center justify-content-between mt-3">
-                <div class="previous">
-                    <button type="button" class="btn-info  btn-next prev-step" >Previous</button>
-                </div>
-                <div class="next">
-                    <button type="button" class="btn-info  btn-next">Save</button>
-                </div>
-            </div> -->
+  <div class="previous">
+  <button type="button" class="btn-info btn-next prev-step" >Previous</button>
+  </div>
+  <div class="next">
+  <button type="button" class="btn-info btn-next">Save</button>
+  </div>
+  </div> -->
             <div class="d-flex align-items-center justify-content-end mt-3">
                 <!-- <div class="previous">
-          <button type="button" class="btn-info  btn-next prev-step">Previous</button>
-        </div> -->
+  <button type="button" class="btn-info btn-next prev-step">Previous</button>
+  </div> -->
                 <div class="next">
-                    <button type="button" class="btn-info  btn-next next-step" (click)="onSubmit()">Save & Next</button>
+                    <button type="button" class="btn-info btn-next next-step" (click)="onSubmit()">Save & Next</button>
                 </div>
                 <!-- <div class="next">
-          <button type="button" class="btn-info next-step btn-next">Next</button>
-        </div> -->
+  <button type="button" class="btn-info next-step btn-next">Next</button>
+  </div> -->
             </div>
         </div>
     </div>
