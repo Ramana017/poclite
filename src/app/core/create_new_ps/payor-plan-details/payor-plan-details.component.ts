@@ -61,7 +61,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   ngOnInit() {
     this.psGuarData();
     this.getPayorPlanData();
-    console.log(this.pvtDutyFlag)
+    console.log(this.pvtDuty)
     this.payorPlanForm = this.fb.group({
 
       genderId: ['', Validators.required],
@@ -184,9 +184,10 @@ export class PayorPlanDetailsComponent implements OnInit {
       console.log(this.planId)
     }
   }
-
+  planname
   public getPayorCodes(event) {
     console.log(event)
+    this.planname =event.planname
     this.payorcode = event.payorcode;
     this.plancode = event.plancode;
 
@@ -223,15 +224,13 @@ export class PayorPlanDetailsComponent implements OnInit {
       else if (this.psId.genderId === 5) {
         this.genderName = 'UNKNOWN';
       }
-      this.selflag = true;
-      console.log(this.selflag)
       try {
 
         this.payorPlanForm.get('relationshipList').setValue(this.guardata.relationship);
         this.payorPlanForm.get('firstName').setValue(this.psdata.firstname);
         this.payorPlanForm.get('lastName').setValue(this.psdata.lastname);
         this.payorPlanForm.get('dob').setValue(this.psdata.dob);
-        this.payorPlanForm.get('gender').setValue(this.genderName);
+        this.payorPlanForm.get('genderId').setValue(this.psdata.gender);
         this.gender = this.psdata.genderId
         this.payorPlanForm.get('city').setValue(this.psdata.county);
         this.payorPlanForm.get('country').setValue(this.psdata.country);
@@ -280,7 +279,6 @@ export class PayorPlanDetailsComponent implements OnInit {
       // this.relationAuto.close();
       // this.ocuupationAuto.clear();
       // this.ocuupationAuto.close();
-      // this.get2('', false)
     }
   }
   onSubmit() {
@@ -292,36 +290,41 @@ export class PayorPlanDetailsComponent implements OnInit {
       console.log(this.psdata.PHONETYPE)
     }
     console.log(this.selflag)
-    let params = {
-      "psAdmissionId": this.AdmissionId,
-      "payorPlanId": this.planId,
-      "policyNumber": this.payorPlanForm.value.policyNumber,
-      "rank": +this.payorPlanForm.value.rank,
-      "effectiveFrom": this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
-      "effectiveTo": this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
-      "psId": this.psId,
-      "relationshipId": this.relation,
-      "firstName": this.payorPlanForm.value.firstName,
-      "lastName": this.payorPlanForm.value.lastName,
-      "middleName": "",
-      "gender": this.gender,
-      "dob": this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-      "ssn": this.payorPlanForm.value.ssn,
-      "addressId": 0,
-      "locationName": this.locationName,
-      "street": this.payorPlanForm.value.lane,
-      "city": this.payorPlanForm.value.city,
-      "countyId": this.countyId2,
-      "timeZoneId": this.timeId,
-      "stateId": this.stateId,
-      "zipCode": +this.payorPlanForm.value.zipcode,
-      "country": this.payorPlanForm.value.country,
-      'phoneType1': this.phone,
-      "phone1": this.payorPlanForm.value.number,
-      "userId": 1164,
-    }
-    console.log(params)
-    this.service.savePSAdmissionPayorPlan(JSON.stringify(params)).subscribe(d => {
+  
+    let params1={
+      "psAdmissionId":this.AdmissionId,
+      "payorPlanId":this.planId,
+    "planname":this.planname,
+    "payorcode":this.payorcode,
+    "plancode":this.plancode,
+    "privateDuty":this.pvtDutyFlag,
+    "policyNumber":this.payorPlanForm.value.policyNumber,
+    "rank":+this.payorPlanForm.value.rank,
+    "effectiveFrom":this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
+    "effectiveTo":this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
+    "psId":this.psId,
+    "relationshipId":this.relation,
+    "firstName":this.payorPlanForm.value.firstName,
+    "lastName":this.payorPlanForm.value.lastName,
+    "middleName":"",
+    "gender":this.gender,
+    "dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
+    "ssn":this.payorPlanForm.value.ssn,
+    "addressId":0,
+    "locationName":this.locationName,
+    "street":this.payorPlanForm.value.lane,
+    "city":this.payorPlanForm.value.city,
+    "countyId":this.countyId2,
+    "timeZoneId":this.timeId,
+    "stateId":this.stateId,
+    "zipCode":+this.payorPlanForm.value.zipcode,
+    "country":this.payorPlanForm.value.country,
+    "phoneType1":this.phone,
+    "phone1":this.payorPlanForm.value.number,
+    "userId":1164
+  }
+    console.log(params1)
+    this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
 
       console.log(d)
     });
