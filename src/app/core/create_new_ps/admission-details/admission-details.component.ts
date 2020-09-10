@@ -103,7 +103,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        this.psId = data.psId;
+        // this.psId = data.psId;
         this.officeId = data.officeId
 
       })
@@ -189,10 +189,10 @@ export class AdmissionDetailsComponent implements OnInit {
 
   }
   public deleteRow(index): void {
-    this.selectedItems.forEach((ele, i) => {
+    this.result.forEach((ele, i) => {
       if (index === i) {
-        this.selectedItems.splice(index, 1);
-        console.log(this.selectedItems);
+        this.result.splice(index, 1);
+        console.log(this.result);
       }
     });
   }

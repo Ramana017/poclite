@@ -1,798 +1,794 @@
-.css-dashboard-wrapper{
-  position: inherit;
-//   .ng-autocomplete {
-//     width: 450px;
-// }
-
-a{
-  color:#fff;
-  &:hover{
-    color:#fff;
-  }
-}
-
-.cms-widget-content{
-  a{
-    color:#000;
-  &:hover{
-    color:#000;
-  }
-  }
-  svg{
-    height: 85px;
-  }
-}
-
-.content-wrapper{
-   padding-left: 100px;
-   width: 100%;
-}
-.content-inner-wrapper{
-  width: 100%;
-}
-
-.widget-block{
-  box-shadow: 2px 2px 10px $shadow-color;
-  height: 40vh;
-  overflow-y: auto;
-  background-color: $section-bg;
-}
-
-.widget-header{
-  height: 42px;
-  select{
-    width: 200px !important;
-    float: right;
-    height: 28px;
-  }
-  i{
-    // margin-top: 10px;
-    font-size: 15px;
-    color:$white;
-    cursor: pointer;
-  }
-  .widget-header-button{
-    background-color:rgba(255, 255, 255, 0.301);
-    // float: right;
-    border: none;
-    height: 30px;
-    width: 85px;
-  }
-}
-
-.widget-inner-header{
-  h5{
-    font-size: 16px;
-    font-weight:800;
-    margin-top: 7px;
-  }
-}
-
-
-.cms-widget{
-  // min-height:794px ;
-  background-color: $section-bg;
-  box-shadow: 2px 2px 10px #ccc;
-  .cms-header{
-    background-color: $dashboard-blue;
-    height: 42px;
-    padding-top: 8px;
-    color: $white;
-    text-align: center;
-  }
-  .cms-widget-content{
-    height: 685px;
-    overflow-y: auto;
-    li{
-      list-style-type: none;
-      @include padding(10px, 15px, 5px, 15px);
-      text-align: center;
-      border-bottom: 1px solid #ccc;
-      p{
-        font-size: 14px;
-      }
+.css-dashboard-wrapper {
+    position: inherit;
+    //   .ng-autocomplete {
+    //     width: 450px;
+    // }
+    a {
+        color: #fff;
+        &:hover {
+            color: #fff;
+        }
     }
-  }
-}
-
-.scrolling-alerts{
-  height: 120px;
-  background-color: $section-bg;
-  box-shadow: 2px 2px 10px #ccc;
-  width: 99%;
-  .scrolling-alerts-title{
-    background-color: $heading-bg;
-    color:$white ;
-  }
-}
-
-.widget-inner{
-  img{
-    width: 192px;
-    height: 120px;
-  }
-}
-
-.multi-iconboard i{
-  padding:10px;
-  border-radius:50%;
-  // background-color: $blue;
-  color:#fff;
-  font-size:14px;
-  margin-right: 10px;
-}
-
-th {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
-td{
-  padding: 0.55rem !important;
-  font-size: 14px;
-}
-
-.widget-block{
-  .table-responsive{
-    thead{
-      th{
+    .cms-widget-content {
+        a {
+            color: #000;
+            &:hover {
+                color: #000;
+            }
+        }
+        svg {
+            height: 85px;
+        }
+    }
+    .content-wrapper {
+        padding-left: 100px;
+        width: 100%;
+    }
+    .content-inner-wrapper {
+        width: 100%;
+    }
+    .widget-block {
+        box-shadow: 2px 2px 10px $shadow-color;
+        height: 40vh;
+        overflow-y: auto;
+        background-color: $section-bg;
+    }
+    .widget-header {
+        height: 42px;
+        select {
+            width: 200px !important;
+            float: right;
+            height: 28px;
+        }
+        i {
+            // margin-top: 10px;
+            font-size: 15px;
+            color: $white;
+            cursor: pointer;
+        }
+        .widget-header-button {
+            background-color: rgba(255, 255, 255, 0.301);
+            // float: right;
+            border: none;
+            height: 30px;
+            width: 85px;
+        }
+    }
+    .widget-inner-header {
+        h5 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-top: 7px;
+        }
+    }
+    .cms-widget {
+        // min-height:794px ;
+        background-color: $section-bg;
+        box-shadow: 2px 2px 10px #ccc;
+        .cms-header {
+            background-color: $dashboard-blue;
+            height: 42px;
+            padding-top: 8px;
+            color: $white;
+            text-align: center;
+        }
+        .cms-widget-content {
+            height: 685px;
+            overflow-y: auto;
+            li {
+                list-style-type: none;
+                @include padding(10px, 15px, 5px, 15px);
+                text-align: center;
+                border-bottom: 1px solid #ccc;
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .scrolling-alerts {
+        height: 120px;
+        background-color: $section-bg;
+        box-shadow: 2px 2px 10px #ccc;
+        width: 99%;
+        .scrolling-alerts-title {
+            background-color: $heading-bg;
+            color: $white;
+        }
+    }
+    .widget-inner {
+        img {
+            width: 192px;
+            height: 120px;
+        }
+    }
+    .multi-iconboard i {
+        padding: 10px;
+        border-radius: 50%;
+        // background-color: $blue;
+        color: #fff;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    th {
         position: -webkit-sticky;
         position: sticky;
-        z-index: 1;
-        top:-1px;
-        padding: 0.45rem;
-      } 
     }
-    height: 25vh;
-  }
-  .table-resize{
-    height: 68vh;
-  }
-}
-/* 
-Using FontAwesome for icons 
+    td {
+        padding: 0.55rem !important;
+        font-size: 14px;
+    }
+    .widget-block {
+        .table-responsive {
+            thead {
+                th {
+                    position: -webkit-sticky;
+                    position: sticky;
+                    z-index: 1;
+                    top: -1px;
+                    padding: 0.45rem;
+                }
+            }
+            height: 25vh;
+        }
+        .table-resize {
+            height: 68vh;
+        }
+    }
+    /*
+Using FontAwesome for icons
 https://fortawesome.github.io/Font-Awesome/
 */
-
-// =============================================
-// Color Settings
-// =============================================
-
-// Toggle Icon Colors
-
-
-
-// =============================================
-// Share button
-// =============================================  
-// .icon::before {
-//     display: inline-block;
-//     font-style: normal;
-//     font-variant: normal;
-//     text-rendering: auto;
-//     -webkit-font-smoothing: antialiased;
-//   }
-// Share Button Wrapper
-.edit-option{
-
-
-.share-button {
-  position: relative;
-  width: 25px;
-
-  //   margin: 20px;
-  // =============================================
-  // Open Toggle Button
-  &-input:checked+.toggle,
-  &-input:hover+.toggle {
-
-    // Cross Icon Bars
-    &:after,
-    &:before {
-      background-color: #ffffff;
-      content: "";
-      height: 3px;
-      width: 19px;
-      position: absolute;
-      left: 5px;
-      top: 14px;
+    // =============================================
+    // Color Settings
+    // =============================================
+    // Toggle Icon Colors
+    // =============================================
+    // Share button
+    // =============================================
+    // .icon::before {
+    //     display: inline-block;
+    //     font-style: normal;
+    //     font-variant: normal;
+    //     text-rendering: auto;
+    //     -webkit-font-smoothing: antialiased;
+    //   }
+    // Share Button Wrapper
+    .edit-option {
+        .share-button {
+            position: relative;
+            width: 25px;
+            //   margin: 20px;
+            // =============================================
+            // Open Toggle Button
+            &-input:checked+.toggle,
+            &-input:hover+.toggle {
+                // Cross Icon Bars
+                &:after,
+                &:before {
+                    background-color: #ffffff;
+                    content: "";
+                    height: 3px;
+                    width: 19px;
+                    position: absolute;
+                    left: 5px;
+                    top: 14px;
+                }
+                // Bar 1
+                &:after {
+                    transform: rotate(45deg);
+                    // animation: bar1 0.3s forwards;
+                }
+                // Bar 2
+                &:before {
+                    transform: rotate(-45deg);
+                    // animation: bar2 0.3s forwards;
+                }
+            }
+        }
+        // Toggle Button
+        .toggle {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            z-index: 0;
+            display: block;
+            border-radius: 25px;
+            cursor: pointer;
+            color: $blue;
+            // box-shadow: inset 0 0 0 1px #C8C7C0;
+            background: none;
+            //  animation: pulse-red 2s infinite;
+            // Toggle Button Hover
+            &:hover {
+                // box-shadow: inset 0 0 0 2px $toggle;
+                transform: rotate(90deg);
+                transition: transform 0.25s;
+            }
+            //   @keyframes pulse-red {
+            //     0% {
+            //         transform: scale(0.95);
+            //         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+            //     }
+            //     70% {
+            //         transform: scale(1);
+            //         box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+            //     }
+            //     100% {
+            //         transform: scale(0.95);
+            //         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+            //     }
+            // }
+            // Share Icon
+            &:after {
+                position: relative;
+                display: block;
+                width: 20px;
+                height: 20px;
+                font-family: "FontAwesome";
+                content: "\f055";
+                line-height: 17px;
+                font-size: 18px;
+                text-align: center;
+                // left: -2px;
+                font-family: "Font Awesome 5 Free";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+            }
+            // Hidden input to toggle state
+            &-input {
+                display: none;
+            }
+            // // =============================================
+            // // Open Toggle Button
+            // &-input:checked + .toggle, &-input:hover + .toggle {
+            //   // Cross Icon Bars
+            //   &:after, &:before {
+            //       background-color: #ffffff;
+            //       content: "";
+            //       height: 3px;
+            //       width: 19px;
+            //       position: absolute;
+            //       left: 5px;
+            //       top: 14px;
+            //   }
+            //   // Bar 1
+            //   &:after {
+            //     transform: rotate(45deg);
+            //     animation: bar1 0.3s forwards;
+            //   }
+            //   // Bar 2
+            //   &:before {
+            //     transform: rotate(-45deg);
+            //     animation: bar2 0.3s forwards;
+            //   }
+            // }
+        }
+        // // =============================================
+        // // Network List
+        // // =============================================
+        // .network-list {
+        //   // List Item
+        //   li {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     display: block;
+        //     width: 30px;
+        //     height: 30px;
+        //     margin: 0;
+        //     padding: 0;
+        //     list-style-type: none;
+        //     opacity: 0;
+        //     transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
+        //   }
+        //   // Link
+        //   a {
+        //     position: relative;
+        //     display: block;
+        //     width: 28px;
+        //     height: 28px;
+        //     overflow: hidden;
+        //     line-height: 30px;
+        //     text-indent: 120%;
+        //     text-decoration: none;
+        //     box-shadow: 6px 3px 3px 1px #ccc;
+        //   }
+        //   // Network Icon
+        //   a:before {
+        //     top: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     left: 0;
+        //     position: absolute;
+        //     width: 28px;
+        //     height: 28px;
+        //     // border-radius: 25px;
+        //     font-family:'FontAwesome';
+        //     font-size: 18px;
+        //     -webkit-font-smoothing: antialiased;
+        //     text-align: center;
+        //     line-height: 30px;
+        //     text-indent: 0;
+        //     // box-shadow: inset 0 0 0 1px $toggle;
+        //    background: #ffffff;
+        //   }
+        // Twitter
+        .twitter {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f007";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $twitter;
+            }
+        }
+        // Facebook
+        .facebook {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f007";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $facebook;
+            }
+        }
+        // google Plus
+        .googleplus {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f19c";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $googleplus;
+            }
+        }
+        // }
+        // // =============================================
+        // // Open Network List
+        // .share-button input:checked ~ .network-list, .share-button input:hover ~ .network-list {
+        //   li {
+        //     opacity: 1;
+        //   }
+        //   li:nth-child(1) {
+        //     left: 35px;
+        //   }
+        //   li:nth-child(2) {
+        //     left: 73px;
+        //   }
+        //   li:nth-child(3) {
+        //     left: 110px;
+        //   }
+        // }
+        // // =============================================
+        // // Keyframe Animations
+        // // =============================================
+        // @keyframes bar1 {
+        // 	0% {
+        //     content: "\f1e0";
+        //     width: 46px;
+        //     height: 50px;
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(1);
+        //     top: 0;
+        //     left: 0;
+        //     opacity: 1;
+        // 	}
+        // 	30% {
+        //     background-color: transparent;
+        //     content: "\f1e0";
+        //     width: 46px;
+        //     height: 30px;
+        //     top: 0;
+        //     left: 0;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        //   30.001% {
+        //     background-color: #fff;
+        //     left: 10px;
+        //     top: 22px;
+        //     content: "";
+        //     height: 3px;
+        //     width: 30px;
+        // 	}
+        //   60% {
+        //     transform: rotate(0deg) scale(1);
+        //     opacity: 1;
+        //   }
+        //   100% {
+        //     transform: rotate(45deg) scale(1);
+        //   }
+        // }
+        // @keyframes bar2 {
+        // 	0% {
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        // 	30% {
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        //   60% {
+        //     transform: rotate(0deg) scale(1);
+        //     opacity: 1;
+        //   }
+        //   100% {
+        //     transform: rotate(-45deg) scale(1);
+        //   }
+        // }
+        // // =============================================
+        // // Just to keep it tidy
+        // // =============================================
+        // // // Title
+        // // h1 {
+        // //   position: absolute;
+        // //   top: 5vh;
+        // //   left: 0;
+        // //   width: 100%;
+        // //   text-align: center;
+        // //   font-size: 22px;
+        // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        // //   color: #C4C2BB;
+        // //   text-shadow: 1px 1px 0px #FFFFFF;
+        // //   letter-spacing: 0.5px;
+        // // }
+        // // // Center the icon
+        // // body {
+        // //   display: -ms-flexbox;
+        // //   display: -webkit-flex;
+        // //   display: flex;
+        // //   justify-content: center;
+        // //   align-items: center;
+        // //   height: 90vh;
+        // //   background-color: #F4F3ED;
+        // // }
+        // .slider {
+        //   content: "";
+        //   position: absolute;
+        //   top: 0;
+        //   left: 51px;
+        //   width: 0px;
+        //   height: 50px;
+        //   background: #eebb5c;
+        //   border-radius: 3px;
+        //   transition: all 0.5s 0.3s ease;
+        // }
+        // .slider p {
+        //   text-transform: uppercase;
+        //   font-size: 16px;
+        //   font-weight: 900;
+        //   color: #fff;
+        //   text-align: center;
+        //   line-height: 50px;
+        //   opacity: 0;
+        //   transition: all 0.6s ease;
+        // }
+        // .share-button input:hover ~ .network-list  {
+        //   width: 180px;
+        //   transition: all 0.5s ease;
+        // }
+        // .share-button input:hover ~ .network-list li {
+        //   opacity: 1;
+        //   transition: all 1s 0.2s ease;
+        // }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            width: 22px;
+            height: 21px;
+            position: relative;
+            // background: #e59500;
+            // margin: 10px 0;
+            // cursor: pointer;
+            // border-radius: 3px;
+            // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+        }
+        ul li .fa {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #fff;
+        }
+        ul li.facebook {
+            // background: #76bc43;
+        }
+        ul li.facebook div.slider {
+            // background: #76bc43;
+        }
+        .slider {
+            content: "";
+            position: absolute;
+            top: -7px;
+            left: 30px;
+            width: 0px;
+            height: 36px;
+            // background: #76bc43;
+            border-radius: 3px;
+            transition: all 0.5s 0.3s ease;
+        }
+        .slider p {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            opacity: 0;
+            transition: all 0.6s ease;
+            margin: 0;
+            border-radius: 50%;
+            // background: #ffffff;
+            // widows: 35px;
+            // height: 35px;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        ul li:hover .slider {
+            width: 140px;
+            transition: all 0.5s ease;
+        }
+        ul li:hover .slider p {
+            opacity: 1;
+            transition: all 1s 0.2s ease;
+            background-color: $blue;
+            color: $white;
+        }
     }
-
-    // Bar 1
-    &:after {
-      transform: rotate(45deg);
-      // animation: bar1 0.3s forwards;
+    // ng-autocomplete code
+    .widget-header {
+        .autocomplete-container {
+            box-shadow: none;
+            height: 35px;
+        }
+        .autocomplete-container .input-container input {
+            font-size: 12px;
+            box-sizing: border-box;
+            border: none;
+            box-shadow: none;
+            outline: 0;
+            background-color: #e9ecef;
+            // color: rgba(0,0,0,.87);
+            width: 100%;
+            padding: 0 15px;
+            line-height: 35px;
+            height: 30px;
+            box-shadow: 2px 2px 8px #777;
+            color: #808080 !important;
+            text-overflow: ellipsis;
+            border-radius: 3px;
+        }
+        .autocomplete-container .suggestions-container {
+            z-index: 999;
+            ul {
+                max-height: 200px;
+                // overflow: auto;
+                li {
+                    a {
+                        padding: 3px 15px;
+                        display: block;
+                        text-decoration: none;
+                        cursor: pointer;
+                        color: rgba(0, 0, 0, .87);
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+        .autocomplete-container .input-container .x {
+            right: 0px;
+        }
+        .phone-select {
+            .autocomplete-container .input-container input {
+                padding: 0 5px;
+            }
+        }
     }
-
-    // Bar 2
-    &:before {
-      transform: rotate(-45deg);
-      // animation: bar2 0.3s forwards;
-    }
-  }
+    // Auto complete code
 }
 
-// Toggle Button
-.toggle {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  z-index: 0;
-  display: block;
-  border-radius: 25px;
-  cursor: pointer;
-  color: $blue;
-  // box-shadow: inset 0 0 0 1px #C8C7C0;
-   background: none;
-  //  animation: pulse-red 2s infinite;
-
-  // Toggle Button Hover
-  &:hover {
-    // box-shadow: inset 0 0 0 2px $toggle;
-    transform: rotate(90deg);
-    transition: transform 0.25s;
-  }
-
-//   @keyframes pulse-red {
-//     0% {
-//         transform: scale(0.95);
-//         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
-//     }
-    
-//     70% {
-//         transform: scale(1);
-//         box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
-//     }
-    
-//     100% {
-//         transform: scale(0.95);
-//         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
-//     }
-// }
-
-  // Share Icon
-  &:after {
-    position: relative;
-    display: block;
-    width: 20px;
-    height: 20px;
-    font-family: "FontAwesome";
-    content: "\f055";
-    line-height: 17px;
-    font-size: 18px;
-    text-align: center;
-    // left: -2px;
-    font-family: "Font Awesome 5 Free";
-
-    display: inline-block;
-    // padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-
-  }
-
-  // Hidden input to toggle state
-  &-input {
-    display: none;
-  }
-
-  // // =============================================
-  // // Open Toggle Button
-  // &-input:checked + .toggle, &-input:hover + .toggle {
-
-  //   // Cross Icon Bars
-  //   &:after, &:before {
-  //       background-color: #ffffff;
-  //       content: "";
-  //       height: 3px;
-  //       width: 19px;
-  //       position: absolute;
-  //       left: 5px;
-  //       top: 14px;
-  //   }
-
-  //   // Bar 1
-  //   &:after {
-  //     transform: rotate(45deg);
-  //     animation: bar1 0.3s forwards;
-  //   }
-
-  //   // Bar 2
-  //   &:before {
-  //     transform: rotate(-45deg);
-  //     animation: bar2 0.3s forwards;
-  //   }
-  // }
-}
-
-
-// // =============================================
-// // Network List
-// // ============================================= 
-
-// .network-list {
-//   // List Item
-//   li {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     display: block;
-//     width: 30px;
-//     height: 30px;
-//     margin: 0;
-//     padding: 0;
-//     list-style-type: none;
-//     opacity: 0;
-//     transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
-//   }
-
-
-//   // Link
-//   a {
-//     position: relative;
-//     display: block;
-//     width: 28px;
-//     height: 28px;
-//     overflow: hidden;
-//     line-height: 30px;
-//     text-indent: 120%;
-//     text-decoration: none;
-//     box-shadow: 6px 3px 3px 1px #ccc;
-//   }
-
-
-//   // Network Icon
-//   a:before {
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//     position: absolute;
-//     width: 28px;
-//     height: 28px;
-//     // border-radius: 25px;
-//     font-family:'FontAwesome';
-//     font-size: 18px;
-//     -webkit-font-smoothing: antialiased;
-//     text-align: center;
-//     line-height: 30px;
-//     text-indent: 0;
-//     // box-shadow: inset 0 0 0 1px $toggle;
-//    background: #ffffff;
-
-//   }
-
-// Twitter
-.twitter {
-  a:before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f007";
-    display: inline-block;
-    // padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-    color: $white;
-
-  }
-
-  a:hover:before {
-    //   box-shadow: inset 0 0 0 2px $twitter;
-  }
-}
-
-// Facebook
-.facebook {
-  a:before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f007";
-    display: inline-block;
-    // padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-    color: $white;
-  }
-
-  a:hover:before {
-    //   box-shadow: inset 0 0 0 2px $facebook;
-  }
-}
-
-// google Plus
-.googleplus {
-  a:before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f19c";
-    display: inline-block;
-    // padding-right: 3px;
-    vertical-align: middle;
-    font-weight: 900;
-    color: $white;
-  }
-
-  a:hover:before {
-    //   box-shadow: inset 0 0 0 2px $googleplus;
-  }
-}
-
-// }
-
-// // =============================================
-// // Open Network List
-
-// .share-button input:checked ~ .network-list, .share-button input:hover ~ .network-list {
-//   li {
-//     opacity: 1;
-//   }
-//   li:nth-child(1) {
-//     left: 35px;
-//   }
-//   li:nth-child(2) {
-//     left: 73px;
-//   }
-//   li:nth-child(3) {
-//     left: 110px;
-//   }
-// }
-
-
-// // =============================================
-// // Keyframe Animations
-// // ============================================= 
-
-// @keyframes bar1 {
-// 	0% {
-//     content: "\f1e0";
-//     width: 46px;
-//     height: 50px;
-//     background-color: transparent;
-//     transform: rotate(0deg) scale(1);
-//     top: 0;
-//     left: 0;
-//     opacity: 1;
-// 	}
-
-// 	30% {
-//     background-color: transparent;
-//     content: "\f1e0";
-//     width: 46px;
-//     height: 30px;
-//     top: 0;
-//     left: 0;
-//     transform: rotate(0deg) scale(0.2);
-//     opacity: 0;
-// 	}
-//   30.001% {
-//     background-color: #fff;
-//     left: 10px;
-//     top: 22px;
-//     content: "";
-//     height: 3px;
-//     width: 30px;
-// 	}
-
-//   60% {
-//     transform: rotate(0deg) scale(1);
-//     opacity: 1;
-//   }
-
-//   100% {
-//     transform: rotate(45deg) scale(1);
-//   }
-// }
-
-
-// @keyframes bar2 {
-// 	0% {
-//     background-color: transparent;
-//     transform: rotate(0deg) scale(0.2);
-//     opacity: 0;
-// 	}
-
-// 	30% {
-//     background-color: transparent;
-//     transform: rotate(0deg) scale(0.2);
-//     opacity: 0;
-// 	}
-
-//   60% {
-//     transform: rotate(0deg) scale(1);
-//     opacity: 1;
-//   }
-
-//   100% {
-//     transform: rotate(-45deg) scale(1);
-//   }
-// }
-
-
-
-
-// // =============================================
-// // Just to keep it tidy
-// // ============================================= 
-
-// // // Title
-// // h1 {
-// //   position: absolute;
-// //   top: 5vh;
-// //   left: 0;
-// //   width: 100%;
-// //   text-align: center;
-// //   font-size: 22px;
-// //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-// //   color: #C4C2BB;
-// //   text-shadow: 1px 1px 0px #FFFFFF;
-// //   letter-spacing: 0.5px;
-// // }
-
-// // // Center the icon
-// // body {
-// //   display: -ms-flexbox;
-// //   display: -webkit-flex;
-// //   display: flex;
-// //   justify-content: center;
-// //   align-items: center;
-// //   height: 90vh;
-// //   background-color: #F4F3ED;
-// // }
-
-
-
-// .slider {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 51px;
-//   width: 0px;
-//   height: 50px;
-//   background: #eebb5c;
-//   border-radius: 3px;
-//   transition: all 0.5s 0.3s ease;
-// } 
-// .slider p {
-//   text-transform: uppercase;
-//   font-size: 16px;
-//   font-weight: 900;
-//   color: #fff;
-//   text-align: center;
-//   line-height: 50px;
-//   opacity: 0;
-//   transition: all 0.6s ease;
-// } 
-// .share-button input:hover ~ .network-list  {
-//   width: 180px;
-//   transition: all 0.5s ease;
-// } 
-// .share-button input:hover ~ .network-list li {
-//   opacity: 1;
-//   transition: all 1s 0.2s ease;
-// }
-
-
-ul {
-  list-style: none;
-}
-
-ul li {
-  width: 22px;
-  height: 21px;
-  position: relative;
-  // background: #e59500;
-  // margin: 10px 0;
-  // cursor: pointer;
-  // border-radius: 3px;
-  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-}
-
-ul li .fa {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  color: #fff;
-}
-
-ul li.facebook {
-  // background: #76bc43;
-}
-
-
-
-ul li.facebook div.slider {
-  // background: #76bc43;
-}
-
-
-
-.slider {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 30px;
-  width: 0px;
-  height: 36px;
-  // background: #76bc43;
-  border-radius: 3px;
-  transition: all 0.5s 0.3s ease;
-}
-
-.slider p {
-  text-transform: uppercase;
-  font-size: 16px;
-  font-weight: 900;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
-  opacity: 0;
-  transition: all 0.6s ease;
-  margin: 0;
-  border-radius: 50%;
-  // background: #ffffff;
-  // widows: 35px;
-  // height: 35px;
-  background: white;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-ul li:hover .slider {
-  width: 140px;
-  transition: all 0.5s ease;
-}
-
-ul li:hover .slider p {
-  opacity: 1;
-  transition: all 1s 0.2s ease;
-  background-color: $blue;
-  color: $white;
-}
-}
-// ng-autocomplete code
-
-.widget-header{
-  .autocomplete-container{
-    box-shadow: none;
-    height: 35px;
-  }
-  .autocomplete-container .input-container input {
-    font-size: 12px;
-    box-sizing: border-box;
-    border: none;
-    box-shadow: none;
-    outline: 0;
-    background-color: #e9ecef;
-    // color: rgba(0,0,0,.87);
-    width: 100%;
-    padding: 0 15px;
-    line-height: 35px;
-    height: 30px;
-    box-shadow: 2px 2px 8px #777;
-    color: #808080 !important;
-    text-overflow: ellipsis;
-    border-radius: 3px;
-  }
-  .autocomplete-container .suggestions-container {
-    ul {
-      max-height: 200px;
-      // overflow: auto;
-      li{
-        a {
-          padding: 3px 15px;
-          display: block;
-          text-decoration: none;
-          cursor: pointer;
-          color: rgba(0,0,0,.87);
-          font-size: 13px;
-         }
-      }
-  
-  }
-  
-   
-  }
-  .autocomplete-container .input-container .x{
-    right: 0px;
-  }
-  .phone-select{
-    .autocomplete-container .input-container input {
-      padding: 0 5px;
-    }
-  }
-}
-  // Auto complete code
-}
 //====================== icon-backgrounds ==============
-.icon-blue{
-  i{
-    background-color: $blue;
-  }  
-}
-.icon-green{
-  i{
-    background-color: $green;
-  } 
-}
-.icon-peach{
-  i{
-    background-color: $peach;
-  }  
-}
-.icon-lightblue{
-  i{
-    background-color: $dashboard-blue;
-  }  
+.icon-blue {
+    i {
+        background-color: $blue;
+    }
 }
 
-.inner-icons{
-  position: absolute;
-  top:10px;
-  left:35px;
+.icon-green {
+    i {
+        background-color: $green;
+    }
 }
 
-.inner-icons{
-  &.show{
-    display: block;
-    -webkit-animation: slide-right .3s ease-in-out;
-    -moz-animation: slide-right .3s ease-in-out;
-    animation-duration: 0.5s;
-  }
-  &.hide{
-    display: none;
-    -webkit-animation: slide-right .3s ease-out;
-    -moz-animation: slide-right .3s ease-out;
+.icon-peach {
+    i {
+        background-color: $peach;
+    }
+}
 
-  }
+.icon-lightblue {
+    i {
+        background-color: $dashboard-blue;
+    }
+}
+
+.inner-icons {
+    position: absolute;
+    top: 10px;
+    left: 35px;
+}
+
+.inner-icons {
+    &.show {
+        display: block;
+        -webkit-animation: slide-right .3s ease-in-out;
+        -moz-animation: slide-right .3s ease-in-out;
+        animation-duration: 0.5s;
+    }
+    &.hide {
+        display: none;
+        -webkit-animation: slide-right .3s ease-out;
+        -moz-animation: slide-right .3s ease-out;
+    }
 }
 
 @-webkit-keyframes slide-right {
-  0% { opacity: 0; -webkit-transform: translateX(-100%); }   
-100% { opacity: 1; -webkit-transform: translateX(0); }
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
 }
+
 @-moz-keyframes slide-right {
-  0% { opacity: 0; -moz-transform: translateX(-100%); }   
-100% { opacity: 1; -moz-transform: translateX(0); }
+    0% {
+        opacity: 0;
+        -moz-transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: translateX(0);
+    }
 }
 
-
-@media (min-width:$screen-xxs) and (max-width:$screen-xs){
-  .widget-inner-title{
-    flex-direction: column;
-  }
-  .form-check-label{
-    margin-right: 15px;
-  }
-  .content-inner-wrapper{
-    flex-direction: column;
-  }
-  .xs-pad{
-    padding: 0px 0px !important;
-  }
-  .scrolling-alerts{
-    width: 100%;
-    @include margin(10px,null,10px,null)
-  }
-  .content-wrapper{
-    flex-direction: column;
-  }
-
+@media (min-width:$screen-xxs) and (max-width:$screen-xs) {
+    .widget-inner-title {
+        flex-direction: column;
+    }
+    .form-check-label {
+        margin-right: 15px;
+    }
+    .content-inner-wrapper {
+        flex-direction: column;
+    }
+    .xs-pad {
+        padding: 0px 0px !important;
+    }
+    .scrolling-alerts {
+        width: 100%;
+        @include margin(10px, null, 10px, null)
+    }
+    .content-wrapper {
+        flex-direction: column;
+    }
 }
 
-//common css code 
-.pager{
-float: right;
-  .btn-common-small{
+//common css code
+.pager {
+    float: right;
+    .btn-common-small {
+        font-size: 15px;
+        color: #ffffff;
+        font-weight: 500;
+        background-color: $green;
+        width: 50px;
+        height: 25px;
+        border: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 8px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 8px;
+        -webkit-border-bottom-right-radius: 0px;
+        -webkit-border-bottom-left-radius: 8px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 0px;
+        -moz-border-radius-bottomleft: 8px;
+    }
+    select {
+        height: 25px;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.f-15 {
+    font-size: 15px;
+}
+
+.f-22 {
+    font-size: 22px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.h-30 {
+    height: 30px;
+}
+
+.w-25 {
+    width: 25px;
+}
+
+.w-150 {
+    width: 150px;
+}
+
+.w-250 {
+    width: 250px;
+}
+
+.widget-inner-header {
+    input[type="text"] {
+        width: 125px;
+        height: 30px;
+        background-color: #e0e3e4;
+    }
+}
+
+// table{
+//   box-shadow: 2px 2px 10px #ccc;
+// }
+// ===============Global button styles===========
+.btn-common {
     font-size: 15px;
     color: #ffffff;
     font-weight: 500;
-    background-color: $green;
-    width: 50px;
-    height: 25px;
-    border:none;
+    width: 120px;
+    height: 35px;
     border-top-left-radius: 0px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 0px;
@@ -805,178 +801,115 @@ float: right;
     -moz-border-radius-topright: 8px;
     -moz-border-radius-bottomright: 0px;
     -moz-border-radius-bottomleft: 8px;
-  }
-  select{
-    height: 25px;
-    &:focus{
-      outline: none;
-    }
-  }
 }
 
-
-ul{
-  list-style-type: none;
-}
-.f-16{
-  font-size: 16px;
-}
-.f-15{
-  font-size: 15px;
-}
-.f-22{
-  font-size: 22px;
-}
-.no-wrap{
-  white-space: nowrap;
-}
-.h-30{
-  height:30px;
-}
-.w-25{
-  width: 25px;
-}
-.w-150{
-  width: 150px;
-}
-.w-250{
-width: 250px;
-}
-
-.widget-inner-header{
-  input[type="text"]{
-    width: 125px;
-    height: 30px;
-    background-color: #e0e3e4;
-  }
-}
-// table{
-//   box-shadow: 2px 2px 10px #ccc;
-// }
-
-// ===============Global button styles===========
-.btn-common{
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 500;
-  width: 120px;
-  height: 35px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 8px;
-  -webkit-border-top-left-radius: 0px;
-  -webkit-border-top-right-radius: 8px;
-  -webkit-border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-topleft: 0px;
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 8px;
-}
-.btn-green{
-  background-color: $green;
-  &:hover{
+.btn-green {
     background-color: $green;
-  }
+    &:hover {
+        background-color: $green;
+    }
 }
-.btn-blue{
-  background-color: $blue;
-  &:hover{
+
+.btn-blue {
     background-color: $blue;
-  } 
+    &:hover {
+        background-color: $blue;
+    }
 }
 
-.btn-primary:not(:disabled):not(.disabled).active{
-  background-color: $blue !important;
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: $blue !important;
 }
+
 // ==================Global button styles==========
-
 // ==================scroll styles=================
 
 /* width & height*/
+
 ::-webkit-scrollbar {
-  width: 7px !important;
-  height: 7px;
+    width: 7px !important;
+    height: 7px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px rgb(226, 226, 226); 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(202, 201, 201); 
-  border-radius: 10px;
+    box-shadow: inset 0 0 2px rgb(226, 226, 226);
+    border-radius: 10px;
 }
 
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(202, 201, 201);
+    border-radius: 10px;
+}
+
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #acacac; 
+    background: #acacac;
 }
 
 // ==================scroll styles=================
-
-:-ms-input-placeholder { 
-  font-size: 12px;
-  background-color: #e0e3e4;
+:-ms-input-placeholder {
+    font-size: 12px;
+    background-color: #e0e3e4;
 }
 
 ::placeholder {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 .form-control:focus {
-  border-color: #dddddd;
-  box-shadow: none; 
+    border-color: #dddddd;
+    box-shadow: none;
 }
 
-.custom-select:focus{
-  border-color: #dddddd;
-  box-shadow: none;
+.custom-select:focus {
+    border-color: #dddddd;
+    box-shadow: none;
 }
 
 select {
-  height: 36px;
-  border-radius: 5px;
-  padding: 0px 0px 0px 5px;
+    height: 36px;
+    border-radius: 5px;
+    padding: 0px 0px 0px 5px;
 }
 
-.green-bg{
-  background-color: $green;
-}
-.blue-bg{
-  background-color: $blue;
-}
-.lightblue-bg{
-  background-color: $dashboard-blue;
-}
-.peach-bg{
-  background-color: $peach;
+.green-bg {
+    background-color: $green;
 }
 
+.blue-bg {
+    background-color: $blue;
+}
+
+.lightblue-bg {
+    background-color: $dashboard-blue;
+}
+
+.peach-bg {
+    background-color: $peach;
+}
 
 // ====================flyover=====================
 
-
-/* 
-Using FontAwesome for icons 
+/*
+Using FontAwesome for icons
 https://fortawesome.github.io/Font-Awesome/
 */
 
 // =============================================
 // Color Settings
 // =============================================
-
 // Toggle Icon Colors
-
-
-
 // =============================================
 // Share button
-// =============================================  
+// =============================================
 // .icon::before {
 //     display: inline-block;
 //     font-style: normal;
@@ -985,460 +918,392 @@ https://fortawesome.github.io/Font-Awesome/
 //     -webkit-font-smoothing: antialiased;
 //   }
 // Share Button Wrapper
-.edit-option{
-
-
-  .share-button {
-    position: relative;
-    width: 70px;
-  
-    //   margin: 20px;
-    // =============================================
-    // Open Toggle Button
-    &-input:checked+.toggle,
-    &-input:hover+.toggle {
-  
-      // Cross Icon Bars
-      &:after,
-      &:before {
-        background-color: #ffffff;
-        content: "";
-        height: 3px;
-        width: 19px;
-        position: absolute;
-        left: 5px;
-        top: 14px;
-      }
-  
-      // Bar 1
-      &:after {
-        transform: rotate(45deg);
-        // animation: bar1 0.3s forwards;
-      }
-  
-      // Bar 2
-      &:before {
-        transform: rotate(-45deg);
-        // animation: bar2 0.3s forwards;
-      }
+.edit-option {
+    .share-button {
+        position: relative;
+        width: 70px;
+        //   margin: 20px;
+        // =============================================
+        // Open Toggle Button
+        &-input:checked+.toggle,
+        &-input:hover+.toggle {
+            // Cross Icon Bars
+            &:after,
+            &:before {
+                background-color: #ffffff;
+                content: "";
+                height: 3px;
+                width: 19px;
+                position: absolute;
+                left: 5px;
+                top: 14px;
+            }
+            // Bar 1
+            &:after {
+                transform: rotate(45deg);
+                // animation: bar1 0.3s forwards;
+            }
+            // Bar 2
+            &:before {
+                transform: rotate(-45deg);
+                // animation: bar2 0.3s forwards;
+            }
+        }
     }
-  }
-  
-  // Toggle Button
-  .toggle {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    z-index: 10;
-    display: block;
-    border-radius: 25px;
-    cursor: pointer;
-    color: #ffffff;
-    // box-shadow: inset 0 0 0 1px #C8C7C0;
-    background: #76bc43;
-  
-    // Toggle Button Hover
-    &:hover {
-      // box-shadow: inset 0 0 0 2px $toggle;
+    // Toggle Button
+    .toggle {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        z-index: 10;
+        display: block;
+        border-radius: 25px;
+        cursor: pointer;
+        color: #ffffff;
+        // box-shadow: inset 0 0 0 1px #C8C7C0;
+        background: #76bc43;
+        // Toggle Button Hover
+        &:hover {
+            // box-shadow: inset 0 0 0 2px $toggle;
+        }
+        // Share Icon
+        &:after {
+            position: relative;
+            display: block;
+            width: 30px;
+            height: 30px;
+            font-family: "FontAwesome";
+            content: "\f4ff";
+            line-height: 30px;
+            font-size: 15px;
+            text-align: center;
+            // left: -2px;
+            font-family: "Font Awesome 5 Free";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+        }
+        // Hidden input to toggle state
+        &-input {
+            display: none;
+        }
+        // // =============================================
+        // // Open Toggle Button
+        // &-input:checked + .toggle, &-input:hover + .toggle {
+        //   // Cross Icon Bars
+        //   &:after, &:before {
+        //       background-color: #ffffff;
+        //       content: "";
+        //       height: 3px;
+        //       width: 19px;
+        //       position: absolute;
+        //       left: 5px;
+        //       top: 14px;
+        //   }
+        //   // Bar 1
+        //   &:after {
+        //     transform: rotate(45deg);
+        //     animation: bar1 0.3s forwards;
+        //   }
+        //   // Bar 2
+        //   &:before {
+        //     transform: rotate(-45deg);
+        //     animation: bar2 0.3s forwards;
+        //   }
+        // }
     }
-  
-    // Share Icon
-    &:after {
-      position: relative;
-      display: block;
-      width: 30px;
-      height: 30px;
-      font-family: "FontAwesome";
-      content: "\f4ff";
-      line-height: 30px;
-      font-size: 15px;
-      text-align: center;
-      // left: -2px;
-      font-family: "Font Awesome 5 Free";
-  
-      display: inline-block;
-      // padding-right: 3px;
-      vertical-align: middle;
-      font-weight: 900;
-  
-    }
-  
-    // Hidden input to toggle state
-    &-input {
-      display: none;
-    }
-  
     // // =============================================
-    // // Open Toggle Button
-    // &-input:checked + .toggle, &-input:hover + .toggle {
-  
-    //   // Cross Icon Bars
-    //   &:after, &:before {
-    //       background-color: #ffffff;
-    //       content: "";
-    //       height: 3px;
-    //       width: 19px;
-    //       position: absolute;
-    //       left: 5px;
-    //       top: 14px;
+    // // Network List
+    // // =============================================
+    // .network-list {
+    //   // List Item
+    //   li {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     display: block;
+    //     width: 30px;
+    //     height: 30px;
+    //     margin: 0;
+    //     padding: 0;
+    //     list-style-type: none;
+    //     opacity: 0;
+    //     transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
     //   }
-  
-    //   // Bar 1
-    //   &:after {
-    //     transform: rotate(45deg);
-    //     animation: bar1 0.3s forwards;
+    //   // Link
+    //   a {
+    //     position: relative;
+    //     display: block;
+    //     width: 28px;
+    //     height: 28px;
+    //     overflow: hidden;
+    //     line-height: 30px;
+    //     text-indent: 120%;
+    //     text-decoration: none;
+    //     box-shadow: 6px 3px 3px 1px #ccc;
     //   }
-  
-    //   // Bar 2
-    //   &:before {
-    //     transform: rotate(-45deg);
-    //     animation: bar2 0.3s forwards;
+    //   // Network Icon
+    //   a:before {
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     position: absolute;
+    //     width: 28px;
+    //     height: 28px;
+    //     // border-radius: 25px;
+    //     font-family:'FontAwesome';
+    //     font-size: 18px;
+    //     -webkit-font-smoothing: antialiased;
+    //     text-align: center;
+    //     line-height: 30px;
+    //     text-indent: 0;
+    //     // box-shadow: inset 0 0 0 1px $toggle;
+    //    background: #ffffff;
+    //   }
+    // Twitter
+    .twitter {
+        a:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f007";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #343a40;
+        }
+        a:hover:before {
+            //   box-shadow: inset 0 0 0 2px $twitter;
+        }
+    }
+    // Facebook
+    .facebook {
+        a:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f500";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #343a40;
+        }
+        a:hover:before {
+            //   box-shadow: inset 0 0 0 2px $facebook;
+        }
+    }
+    // google Plus
+    .googleplus {
+        a:before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f19c";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #343a40;
+        }
+        a:hover:before {
+            //   box-shadow: inset 0 0 0 2px $googleplus;
+        }
+    }
+    // }
+    // // =============================================
+    // // Open Network List
+    // .share-button input:checked ~ .network-list, .share-button input:hover ~ .network-list {
+    //   li {
+    //     opacity: 1;
+    //   }
+    //   li:nth-child(1) {
+    //     left: 35px;
+    //   }
+    //   li:nth-child(2) {
+    //     left: 73px;
+    //   }
+    //   li:nth-child(3) {
+    //     left: 110px;
     //   }
     // }
-  }
-  
-  
-  // // =============================================
-  // // Network List
-  // // ============================================= 
-  
-  // .network-list {
-  //   // List Item
-  //   li {
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     display: block;
-  //     width: 30px;
-  //     height: 30px;
-  //     margin: 0;
-  //     padding: 0;
-  //     list-style-type: none;
-  //     opacity: 0;
-  //     transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
-  //   }
-  
-  
-  //   // Link
-  //   a {
-  //     position: relative;
-  //     display: block;
-  //     width: 28px;
-  //     height: 28px;
-  //     overflow: hidden;
-  //     line-height: 30px;
-  //     text-indent: 120%;
-  //     text-decoration: none;
-  //     box-shadow: 6px 3px 3px 1px #ccc;
-  //   }
-  
-  
-  //   // Network Icon
-  //   a:before {
-  //     top: 0;
-  //     right: 0;
-  //     bottom: 0;
-  //     left: 0;
-  //     position: absolute;
-  //     width: 28px;
-  //     height: 28px;
-  //     // border-radius: 25px;
-  //     font-family:'FontAwesome';
-  //     font-size: 18px;
-  //     -webkit-font-smoothing: antialiased;
-  //     text-align: center;
-  //     line-height: 30px;
-  //     text-indent: 0;
-  //     // box-shadow: inset 0 0 0 1px $toggle;
-  //    background: #ffffff;
-  
-  //   }
-  
-  // Twitter
-  .twitter {
-    a:before {
-      font-family: "Font Awesome 5 Free";
-      content: "\f007";
-      display: inline-block;
-      // padding-right: 3px;
-      vertical-align: middle;
-      font-weight: 900;
-      color: #343a40;
-  
+    // // =============================================
+    // // Keyframe Animations
+    // // =============================================
+    // @keyframes bar1 {
+    // 	0% {
+    //     content: "\f1e0";
+    //     width: 46px;
+    //     height: 50px;
+    //     background-color: transparent;
+    //     transform: rotate(0deg) scale(1);
+    //     top: 0;
+    //     left: 0;
+    //     opacity: 1;
+    // 	}
+    // 	30% {
+    //     background-color: transparent;
+    //     content: "\f1e0";
+    //     width: 46px;
+    //     height: 30px;
+    //     top: 0;
+    //     left: 0;
+    //     transform: rotate(0deg) scale(0.2);
+    //     opacity: 0;
+    // 	}
+    //   30.001% {
+    //     background-color: #fff;
+    //     left: 10px;
+    //     top: 22px;
+    //     content: "";
+    //     height: 3px;
+    //     width: 30px;
+    // 	}
+    //   60% {
+    //     transform: rotate(0deg) scale(1);
+    //     opacity: 1;
+    //   }
+    //   100% {
+    //     transform: rotate(45deg) scale(1);
+    //   }
+    // }
+    // @keyframes bar2 {
+    // 	0% {
+    //     background-color: transparent;
+    //     transform: rotate(0deg) scale(0.2);
+    //     opacity: 0;
+    // 	}
+    // 	30% {
+    //     background-color: transparent;
+    //     transform: rotate(0deg) scale(0.2);
+    //     opacity: 0;
+    // 	}
+    //   60% {
+    //     transform: rotate(0deg) scale(1);
+    //     opacity: 1;
+    //   }
+    //   100% {
+    //     transform: rotate(-45deg) scale(1);
+    //   }
+    // }
+    // // =============================================
+    // // Just to keep it tidy
+    // // =============================================
+    // // // Title
+    // // h1 {
+    // //   position: absolute;
+    // //   top: 5vh;
+    // //   left: 0;
+    // //   width: 100%;
+    // //   text-align: center;
+    // //   font-size: 22px;
+    // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    // //   color: #C4C2BB;
+    // //   text-shadow: 1px 1px 0px #FFFFFF;
+    // //   letter-spacing: 0.5px;
+    // // }
+    // // // Center the icon
+    // // body {
+    // //   display: -ms-flexbox;
+    // //   display: -webkit-flex;
+    // //   display: flex;
+    // //   justify-content: center;
+    // //   align-items: center;
+    // //   height: 90vh;
+    // //   background-color: #F4F3ED;
+    // // }
+    // .slider {
+    //   content: "";
+    //   position: absolute;
+    //   top: 0;
+    //   left: 51px;
+    //   width: 0px;
+    //   height: 50px;
+    //   background: #eebb5c;
+    //   border-radius: 3px;
+    //   transition: all 0.5s 0.3s ease;
+    // }
+    // .slider p {
+    //   text-transform: uppercase;
+    //   font-size: 16px;
+    //   font-weight: 900;
+    //   color: #fff;
+    //   text-align: center;
+    //   line-height: 50px;
+    //   opacity: 0;
+    //   transition: all 0.6s ease;
+    // }
+    // .share-button input:hover ~ .network-list  {
+    //   width: 180px;
+    //   transition: all 0.5s ease;
+    // }
+    // .share-button input:hover ~ .network-list li {
+    //   opacity: 1;
+    //   transition: all 1s 0.2s ease;
+    // }
+    ul {
+        list-style: none;
     }
-  
-    a:hover:before {
-      //   box-shadow: inset 0 0 0 2px $twitter;
+    ul li {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        // background: #e59500;
+        // margin: 10px 0;
+        // cursor: pointer;
+        // border-radius: 3px;
+        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
     }
-  }
-  
-  // Facebook
-  .facebook {
-    a:before {
-      font-family: "Font Awesome 5 Free";
-      content: "\f500";
-      display: inline-block;
-      // padding-right: 3px;
-      vertical-align: middle;
-      font-weight: 900;
-      color: #343a40;
+    ul li .fa {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: #fff;
     }
-  
-    a:hover:before {
-      //   box-shadow: inset 0 0 0 2px $facebook;
+    ul li.facebook {
+        // background: #76bc43;
     }
-  }
-  
-  // google Plus
-  .googleplus {
-    a:before {
-      font-family: "Font Awesome 5 Free";
-      content: "\f19c";
-      display: inline-block;
-      // padding-right: 3px;
-      vertical-align: middle;
-      font-weight: 900;
-      color: #343a40;
+    ul li.facebook div.slider {
+        // background: #76bc43;
     }
-  
-    a:hover:before {
-      //   box-shadow: inset 0 0 0 2px $googleplus;
+    .slider {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: 30px;
+        width: 0px;
+        height: 36px;
+        // background: #76bc43;
+        border-radius: 3px;
+        transition: all 0.5s 0.3s ease;
     }
-  }
-  
-  // }
-  
-  // // =============================================
-  // // Open Network List
-  
-  // .share-button input:checked ~ .network-list, .share-button input:hover ~ .network-list {
-  //   li {
-  //     opacity: 1;
-  //   }
-  //   li:nth-child(1) {
-  //     left: 35px;
-  //   }
-  //   li:nth-child(2) {
-  //     left: 73px;
-  //   }
-  //   li:nth-child(3) {
-  //     left: 110px;
-  //   }
-  // }
-  
-  
-  // // =============================================
-  // // Keyframe Animations
-  // // ============================================= 
-  
-  // @keyframes bar1 {
-  // 	0% {
-  //     content: "\f1e0";
-  //     width: 46px;
-  //     height: 50px;
-  //     background-color: transparent;
-  //     transform: rotate(0deg) scale(1);
-  //     top: 0;
-  //     left: 0;
-  //     opacity: 1;
-  // 	}
-  
-  // 	30% {
-  //     background-color: transparent;
-  //     content: "\f1e0";
-  //     width: 46px;
-  //     height: 30px;
-  //     top: 0;
-  //     left: 0;
-  //     transform: rotate(0deg) scale(0.2);
-  //     opacity: 0;
-  // 	}
-  //   30.001% {
-  //     background-color: #fff;
-  //     left: 10px;
-  //     top: 22px;
-  //     content: "";
-  //     height: 3px;
-  //     width: 30px;
-  // 	}
-  
-  //   60% {
-  //     transform: rotate(0deg) scale(1);
-  //     opacity: 1;
-  //   }
-  
-  //   100% {
-  //     transform: rotate(45deg) scale(1);
-  //   }
-  // }
-  
-  
-  // @keyframes bar2 {
-  // 	0% {
-  //     background-color: transparent;
-  //     transform: rotate(0deg) scale(0.2);
-  //     opacity: 0;
-  // 	}
-  
-  // 	30% {
-  //     background-color: transparent;
-  //     transform: rotate(0deg) scale(0.2);
-  //     opacity: 0;
-  // 	}
-  
-  //   60% {
-  //     transform: rotate(0deg) scale(1);
-  //     opacity: 1;
-  //   }
-  
-  //   100% {
-  //     transform: rotate(-45deg) scale(1);
-  //   }
-  // }
-  
-  
-  
-  
-  // // =============================================
-  // // Just to keep it tidy
-  // // ============================================= 
-  
-  // // // Title
-  // // h1 {
-  // //   position: absolute;
-  // //   top: 5vh;
-  // //   left: 0;
-  // //   width: 100%;
-  // //   text-align: center;
-  // //   font-size: 22px;
-  // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  // //   color: #C4C2BB;
-  // //   text-shadow: 1px 1px 0px #FFFFFF;
-  // //   letter-spacing: 0.5px;
-  // // }
-  
-  // // // Center the icon
-  // // body {
-  // //   display: -ms-flexbox;
-  // //   display: -webkit-flex;
-  // //   display: flex;
-  // //   justify-content: center;
-  // //   align-items: center;
-  // //   height: 90vh;
-  // //   background-color: #F4F3ED;
-  // // }
-  
-  
-  
-  // .slider {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 51px;
-  //   width: 0px;
-  //   height: 50px;
-  //   background: #eebb5c;
-  //   border-radius: 3px;
-  //   transition: all 0.5s 0.3s ease;
-  // } 
-  // .slider p {
-  //   text-transform: uppercase;
-  //   font-size: 16px;
-  //   font-weight: 900;
-  //   color: #fff;
-  //   text-align: center;
-  //   line-height: 50px;
-  //   opacity: 0;
-  //   transition: all 0.6s ease;
-  // } 
-  // .share-button input:hover ~ .network-list  {
-  //   width: 180px;
-  //   transition: all 0.5s ease;
-  // } 
-  // .share-button input:hover ~ .network-list li {
-  //   opacity: 1;
-  //   transition: all 1s 0.2s ease;
-  // }
-  
-  
-  ul {
-    list-style: none;
-  }
-  
-  ul li {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    // background: #e59500;
-    // margin: 10px 0;
-    // cursor: pointer;
-    // border-radius: 3px;
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-  }
-  
-  ul li .fa {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    color: #fff;
-  }
-  
-  ul li.facebook {
-    // background: #76bc43;
-  }
-  
-  
-  
-  ul li.facebook div.slider {
-    // background: #76bc43;
-  }
-  
-  
-  
-  .slider {
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: 30px;
-    width: 0px;
-    height: 36px;
-    // background: #76bc43;
-    border-radius: 3px;
-    transition: all 0.5s 0.3s ease;
-  }
-  
-  .slider p {
-    text-transform: uppercase;
-    font-size: 16px;
-    font-weight: 900;
-    color: #fff;
-    text-align: center;
-    line-height: 50px;
-    opacity: 0;
-    transition: all 0.6s ease;
-    margin: 0;
-    border-radius: 50%;
-    // background: #ffffff;
-    // widows: 35px;
-    // height: 35px;
-    background: white;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  ul li:hover .slider {
-    width: 140px;
-    transition: all 0.5s ease;
-  }
-  
-  ul li:hover .slider p {
-    opacity: 1;
-    transition: all 1s 0.2s ease;
-  }
-  }
+    .slider p {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 900;
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+        opacity: 0;
+        transition: all 0.6s ease;
+        margin: 0;
+        border-radius: 50%;
+        // background: #ffffff;
+        // widows: 35px;
+        // height: 35px;
+        background: white;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    ul li:hover .slider {
+        width: 140px;
+        transition: all 0.5s ease;
+    }
+    ul li:hover .slider p {
+        opacity: 1;
+        transition: all 1s 0.2s ease;
+    }
+}
