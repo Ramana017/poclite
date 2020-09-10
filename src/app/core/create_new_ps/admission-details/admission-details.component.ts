@@ -91,7 +91,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public getAdmissionLookups(): void {
     let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
-    this.guarantorId = guarantorSession.psGuarId;
+    this.guarantorId = guarantorSession.psGuarantorId;
     this.psId = psSession.psId
     let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
@@ -103,7 +103,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        // this.psId = data.psId;
+        this.psId = data.psId;
         this.officeId = data.officeId
 
       })
@@ -182,6 +182,7 @@ export class AdmissionDetailsComponent implements OnInit {
       }
       console.log(this.result)
     }
+
   }
   addFieldValue(template: TemplateRef<any>) {
 
@@ -216,7 +217,8 @@ export class AdmissionDetailsComponent implements OnInit {
         "primaryDiagnosisCode": temp[0],
         "otherDiagnoses": (temp.shift()).toString(),
         "officeId": this.officeId,
-        "userId": this.userId
+        "userId": this.userId,
+        "referralSourceId":17
       }
       console.log(params)
       try {

@@ -5,16 +5,16 @@
             <div class="d-flex align-items-center nav justify-content-between border-2">
                 <div class="input-container-wrapper">
                     <label class="">
-                        PS Name
-                    </label>
+            PS Name
+          </label>
                     <div class="input-group  ">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" disabled [(ngModel)]="psName">
                     </div>
                 </div>
                 <div class="input-container-wrapper ">
                     <label class="">
-                        Temp Auth<span class="text-danger">*</span>
-                    </label>
+            Temp Auth<span class="text-danger">*</span>
+          </label>
 
 
                     <div class="check-box-wrapper">
@@ -27,101 +27,106 @@
                 </div>
                 <div class="input-container-wrapper">
                     <label class="">
-                        Auth #<span class="text-danger">*</span>
-                    </label>
+            Auth #<span class="text-danger">*</span>
+          </label>
                     <div class="input-group  ">
                         <input type="text" class="form-control">
                     </div>
                 </div>
                 <div class="input-container-wrapper">
                     <label class="">
-                        Payor Plan<span class="text-danger">*</span>
-                    </label>
+            Payor Plan<span class="text-danger">*</span>
+          </label>
                     <div class="input-group  ">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" disabled [(ngModel)]="payorPlan">
                     </div>
                 </div>
                 <div class=" m-0 input-container-wrapper">
                     <label class="">
-                        Case Manager<span class="text-danger">*</span>
-                    </label>
+            Case Manager<span class="text-danger">*</span>
+          </label>
                     <div class="input-group  ">
-                        <input type="text" class="form-control">
+                        <!-- <input type="text" class="form-control"> -->
+                        <ng-autocomplete [data]="caseManagerList" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate">
+                        </ng-autocomplete>
+                        <ng-template style="width: 100%;" #itemTemplate let-item>
+                            <a [innerHTML]="item.name"></a>
+                        </ng-template>
                     </div>
                 </div>
                 <div class=" m-0 input-container-wrapper pb-sm-0 procedurecode">
                     <label class="">Procedure Code<span class="text-danger">*</span> </label>
 
-                    <angular2-multiselect [data]="procedureCode" [(ngModel)]="procedureSelctedItems" (onDeSelectAll)="procedureDeSelect()" (onSelect)="procedureSelect()" [settings]="dropdownSettings" class="w-100">
+                    <angular2-multiselect [data]="servicesList" [(ngModel)]="procedureSelctedItems" (onDeSelectAll)="procedureDeSelect()" (onSelect)="procedureSelect()" [settings]="dropdownSettings" class="w-100">
                     </angular2-multiselect>
                 </div>
                 <div class="input-container-wrapper pb-sm-0">
                     <label class="">
-                        Begin Date<span class="text-danger">*</span>
-                    </label>
+            Begin Date<span class="text-danger">*</span>
+          </label>
                     <div class="input-group ">
                         <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
                     </div>
                 </div>
                 <div class=" input-container-wrapper pb-sm-0">
                     <label class="">
-                        End Date<span class="text-danger">*</span>
-                    </label>
+            End Date<span class="text-danger">*</span>
+          </label>
                     <div class="input-group ">
                         <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
                     </div>
                 </div>
                 <div class=" m-0  input-container-wrapper pb-sm-0">
                     <label class="">
-                        Billing Rate<span class="text-danger">*</span>
-                    </label>
+            Billing Rate<span class="text-danger">*</span>
+          </label>
                     <div class="input-group  ">
                         <input type="text" [(ngModel)]="billingRate" disabled class="form-control" aria-label="Case Manager">
                     </div>
                 </div>
                 <div class=" m-0 input-container-wrapper pb-sm-0">
                     <label class="">
-                        Total Units<span class="text-danger">*</span>
-                    </label>
+            Total Units<span class="text-danger">*</span>
+          </label>
                     <div class="input-group  align-items-center">
-                        <input type="text" class="form-control mr-2" aria-label="Case Manager">
+                        <input type="text" class="form-control mr-2" aria-label="Case Manager" [disabled]='totalUnitsFlag'>
                         <label class="customcheck">
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                        </label>
+              <input type="checkbox" (click)="toggleCheck($event)">
+              <span class="checkmark"></span>
+            </label>
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div *ngIf='!privateDuty'>
 
                 <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16">Delivery Plan</h4>
                 <form class="d-flex align-items-center nav justify-content-between">
 
                     <div class=" m-0  input-container-wrapper pb-sm-0">
-                        <label class="">
-                            Effective From
-                        </label>
+                        <label>
+              Effective From
+            </label>
                         <div class="input-group  ">
                             <input type="text" class="form-control" aria-label="Case Manager" placeholder="mm/dd/yyyy" bsDatepicker>
                         </div>
                     </div>
                     <div class=" m-0 input-container-wrapper pb-sm-0">
                         <label class="">
-                            Effective To
-                        </label>
+              Effective To
+            </label>
                         <div class="input-group  ">
                             <input type="text" class="form-control" aria-label="Case Manager" placeholder="mm/dd/yyyy" bsDatepicker>
                         </div>
                     </div>
-                    <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-sm-0">
+                    <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-sm-0" *ngIf="!privateDuty">
                         <div class=" mx-2">
                             <label class="">
-                                Weekly
-                            </label>
+                Weekly
+              </label>
 
                             <div class="check-box-wrapper">
                                 <div class="on-off-toggle ">
-                                    <input class="on-off-toggle__input" type="checkbox" id="bopis-to" (click)='toggleDisplayDivWeekly($event)' />
+                                    <input class="on-off-toggle__input" type="checkbox" (click)='toggleDisplayDivWeekly($event)' id="bopis-to" />
                                     <label for="bopis-to" class="on-off-toggle__slider"></label>
                                 </div>
                             </div>
@@ -129,8 +134,8 @@
                         <div class="
              mx-2">
                             <label class="">
-                                Daily
-                            </label>
+                Daily
+              </label>
 
                             <div class="check-box-wrapper">
                                 <div class="on-off-toggle ">
@@ -140,15 +145,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" m-0 input-container-wrapper pb-sm-0">
+                    <div class=" m-0 input-container-wrapper pb-sm-0" *ngIf="!privateDuty">
                         <div class=" mx-2">
                             <label class="">
-                                Monthly
-                            </label>
+                Monthly
+              </label>
 
                             <div class="check-box-wrapper ">
                                 <div class="on-off-toggle ">
-                                    <input class="on-off-toggle__input" type="checkbox" (click)='toggleDisplayDivMonthly($event)' id="bopis-toggle" />
+                                    <input class="on-off-toggle__input" (click)='toggleDisplayDivMonthly($event)' type="checkbox" id="bopis-toggle" />
                                     <label for="bopis-toggle" class="on-off-toggle__slider"></label>
                                 </div>
                             </div>
@@ -156,6 +161,7 @@
                     </div>
                     <div class=" m-0 input-container-wrapper"></div>
                 </form>
+
                 <div *ngIf="weeklyFlag">
 
 
@@ -167,8 +173,8 @@
                         <form class="d-flex align-items-center nav justify-content-between">
                             <div class=" m-0 input-container-wrapper">
                                 <label class="">
-                                    Max Units
-                                </label>
+                  Max Units
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control" aria-label="Max Units" placeholder="">
                                 </div>
@@ -177,29 +183,29 @@
                                 <label class="">Per Week</label>
                                 <div class="input-group ">
                                     <select class="form-control align-items-center">
-                                        <option selected>Select</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Texas</option>
-                                        <option value="3">New York</option>
-                                        <option value="4">New York</option>
-                                        <option value="5">New York</option>
+                    <option selected>Select</option>
+                    <option value="1">New York</option>
+                    <option value="2">Texas</option>
+                    <option value="3">New York</option>
+                    <option value="4">New York</option>
+                    <option value="5">New York</option>
 
-                                    </select>
+                  </select>
                                 </div>
 
                             </div>
                             <div class=" m-0 input-container-wrapper">
                                 <label class="">
-                                    #Weeks
-                                </label>
+                  #Weeks
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper">
                                 <label class="">
-                                    #Days Per Week
-                                </label>
+                  #Days Per Week
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control">
                                 </div>
@@ -209,16 +215,16 @@
                             <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-sm-0">
                                 <div class="day-input">
                                     <label class="">
-                                        SUN
-                                    </label>
+                    SUN
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="day-input">
                                     <label class="">
-                                        MON
-                                    </label>
+                    MON
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
@@ -227,16 +233,16 @@
                             <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-sm-0">
                                 <div class="  day-input">
                                     <label class="">
-                                        TUE
-                                    </label>
+                    TUE
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="day-input">
                                     <label class="">
-                                        WED
-                                    </label>
+                    WED
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
@@ -245,16 +251,16 @@
                             <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-sm-0">
                                 <div class="  day-input">
                                     <label class="">
-                                        THU
-                                    </label>
+                    THU
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class=" day-input">
                                     <label class="">
-                                        FRI
-                                    </label>
+                    FRI
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
@@ -263,8 +269,8 @@
                             <div class=" input-container-wrapper d-flex align-items-center justify-content-between pb-sm-0">
                                 <div class=" day-input">
                                     <label class="">
-                                        SAT
-                                    </label>
+                    SAT
+                  </label>
                                     <div class="input-group  ">
                                         <input type="text" class="form-control">
                                     </div>
@@ -281,16 +287,16 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0  input-container-wrapper pb-sm-0">
                                 <label class="white-space-nowrap">
-                                    Max Units Per Day
-                                </label>
+                  Max Units Per Day
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper pb-sm-0">
                                 <label class="">
-                                    #Days
-                                </label>
+                  #Days
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control">
                                 </div>
@@ -304,8 +310,8 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0  input-container-wrapper pb-sm-0">
                                 <label class="white-space-nowrap">
-                                    Max Units Per Day
-                                </label>
+                  Max Units Per Day
+                </label>
                                 <div class="input-group  ">
                                     <input type="text" class="form-control">
                                 </div>
@@ -315,7 +321,7 @@
                     </div>
                 </div>
             </div>
-            <div class="procedure-shift-code">
+            <div class="procedure-shift-code" *ngIf='privateDuty'>
 
                 <div class="d-flex align-items-center justify-content-between row m-0">
                     <div class="col-md-6 col-12 pl-0">
@@ -324,16 +330,16 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
                             <div class=" m-0 d-flex align-items-center pb-3">
                                 <label class="white-space-nowrap m-0 color-black pr-2">
-                                    Rate Type<span class="text-danger">*</span>
-                                </label>
+                  Rate Type<span class="text-danger">*</span>
+                </label>
                                 <div class="input-group  form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-3">
                                 <label class="white-space-nowrap m-0 pr-3 AvenirLTStd-Heavy color-black">
-                                    A Unit is
-                                </label>
+                  A Unit is
+                </label>
                                 <span class="AvenirLTStd-Heavy pr-2">Hr:</span>
                                 <div class="input-group width-80 pr-2 form-input">
                                     <input type="text" class="form-control">
@@ -352,24 +358,24 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 1
-                                </label>
+                  Shift 1
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 2
-                                </label>
+                  Shift 2
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 3
-                                </label>
+                  Shift 3
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
@@ -384,24 +390,24 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 1
-                                </label>
+                  Shift 1
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 2
-                                </label>
+                  Shift 2
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 3
-                                </label>
+                  Shift 3
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
@@ -414,24 +420,24 @@
                         <form class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 1
-                                </label>
+                  Shift 1
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 2
-                                </label>
+                  Shift 2
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-sm-0">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
-                                    Shift 3
-                                </label>
+                  Shift 3
+                </label>
                                 <div class="input-group width-80 form-input">
                                     <input type="text" class="form-control">
                                 </div>
@@ -457,7 +463,9 @@
 
 
 
-
+<ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>
 
 
 

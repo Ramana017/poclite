@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       this.idleState = 'Session expired!';
       this.timedOut = true;
       console.log(this.idleState);
-      sessionStorage.removeItem('useraccount');
+      sessionStorage.clear();
       setTimeout(() => {
         console.log("Hello from setTimeout");
         this.modalService._hideModal(1);
@@ -158,7 +158,7 @@ export class AppComponent implements OnInit {
     this.bsmodelRef.hide();
 
     this.appService.setUserLoggedIn(false);
-    sessionStorage.removeItem('useraccount');
+    sessionStorage.clear();
     setTimeout(() => {
       this.router.navigateByUrl('login');
       this.modalService._hideModal(1);

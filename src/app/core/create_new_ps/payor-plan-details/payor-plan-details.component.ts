@@ -67,7 +67,11 @@ all: any = [];
 phone;
 submitted = false;
 previousPsDetails: any;
-constructor(private fb: FormBuilder, private router: Router,public service: ZipcodeService, public date: DatePipe) { }
+public userId:number;
+constructor(private fb: FormBuilder, private router: Router,public service: ZipcodeService, public date: DatePipe) {
+  let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+  this.userId = data.userId
+}
 ngOnInit() {
 this.psGuarData();
 this.getPayorPlanData();
@@ -306,7 +310,7 @@ let params1={
 "country":this.payorPlanForm.value.country,
 "phoneType1":this.phone,
 "phone1":this.payorPlanForm.value.number,
-"userId":1164
+"userId":this.userId
 }
 console.log(params1)
 try {
