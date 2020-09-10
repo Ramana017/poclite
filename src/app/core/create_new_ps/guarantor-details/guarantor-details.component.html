@@ -6,7 +6,7 @@
                 <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Guarantor Details</h4>
                 <div class="d-flex align-items-center pl-2">
                     <label class="customcheck m-0">
-            <input type="checkbox" (change)="SelfCheck($event)" >
+            <input type="checkbox" (change)="SelfCheck($event)" [checked]="selfChecBox" >
             <span class="checkmark"></span>
           </label>
                     <label for='checkbox' class="checkbox m-0">
