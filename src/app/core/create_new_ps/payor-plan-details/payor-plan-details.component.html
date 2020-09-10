@@ -149,7 +149,7 @@
  
               <div class="input-group  ">
                 <input type="text" formControlName="lastName" class="form-control"
-                  value="{{checked ? psdata.lastname:''}}" aria-label="Auth">
+                  aria-label="Auth">
               </div>
  
             </div>
@@ -160,7 +160,7 @@
  
               <div class="input-group  ">
                 <input type="text" class="form-control" aria-label="Last Name" formControlName="firstName"
-                  value="{{checked ? psdata.firstname:''}}">
+                  >
  
               </div>
             </div>
@@ -182,7 +182,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" class="form-control" value="{{checked ? psdata.dob:''}}"  formControlName="dob" aria-label="Case Manager"
+                <input type="text" class="form-control"  formControlName="dob" aria-label="Case Manager"
                   placeholder="mm/dd/yyyy " bsDatepicker>
               </div>
  
@@ -192,7 +192,7 @@
               <div class="input-group ">
                 <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="genderId"
-                  value="{{checked ? psdata.gender:''}}" (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate20">
+                  (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate20">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate20 let-item>
                     <a [innerHTML]="item.label"></a>
@@ -206,7 +206,7 @@
               </label>
  
               <div class="input-group  ">
-                <input type="text" value="{{checked ? psdata.ssn:''}}" formControlName='ssn' class="form-control" aria-label="Case Manager">
+                <input type="text" formControlName='ssn' class="form-control" aria-label="Case Manager">
               </div>
  
             </div>
@@ -226,7 +226,7 @@
             <div class="input-group  ">
               <div class="ng-autocomplete" style="width: 100%;">
                 <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="addressTypeList"
-                value="{{checked ? psdata.locationName:''}}" (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
+                 (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
                 </ng-autocomplete>
                 <ng-template style="width: 100%;" #itemTemplate let-item>
                   <a [innerHTML]="item.label"></a>
@@ -242,7 +242,7 @@
             </label>
  
             <div class="input-group  ">
-              <input type="text" formControlName="lane" value="{{checked ? psdata.street:''}}" class="form-control">
+              <input type="text" formControlName="lane"  class="form-control">
             </div>
  
           </div>
@@ -252,7 +252,7 @@
             </label>
  
             <div class="input-group  ">
-              <input type="text" class="form-control" value="{{checked ? psdata.ZIPCODE:''}}" aria-label="date" formControlName='zipcode'
+              <input type="text" class="form-control"aria-label="date" formControlName='zipcode'
                 (keyup)="getzip($event)" id="autocomplete" type="text" class="form-control">
  
             </div>
@@ -274,7 +274,7 @@
                 </div>
                 <div class="input-group ">
                   <input type="text" [class.is-invalid]="f.number.invalid && f.number.touched" formControlName="number"
-                  value="{{checked ? psdata.PHONE:''}}" class="form-control">
+                   class="form-control">
                   <!-- <div *ngIf="f.number.invalid && f.number.touched && f.number.errors">
                                 <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
                               </div> -->
@@ -292,7 +292,7 @@
           <div class=" m-0  input-container-wrapper pb-0">
             <label class="">City<span class="text-danger">*</span> </label>
             <div class="input-group ">
-              <input type="text" class="form-control" [(ngModel)]="city" formControlName="city" aria-label="date"  value="{{checked ? psdata.county:''}}"
+              <input type="text" class="form-control" [(ngModel)]="city" formControlName="city" aria-label="date" 
                 disabled=true>
             </div>
           </div>
@@ -301,7 +301,7 @@
               State <span class="text-danger">*</span>
             </label>
             <div class="input-group ">
-              <input type="text" class="form-control "  [(ngModel)]="state"aria-label="date" formControlName="state" value="{{checked ? psdata.state:''}}"
+              <input type="text" class="form-control "  [(ngModel)]="state"aria-label="date" formControlName="state" 
                 disabled="true">
             </div>
           </div>
@@ -310,7 +310,7 @@
               County<span class="text-danger">*</span>
             </label>
             <div class="input-group ">
-              <input type="text" class="form-control"[(ngModel)]="county" formControlName="county" aria-label="date" value="{{checked ? psdata.county:''}}"
+              <input type="text" class="form-control"[(ngModel)]="county" formControlName="county" aria-label="date" 
                 disabled="true">
             </div>
           </div>
@@ -321,7 +321,7 @@
  
             <div class="input-group  ">
               <input type="text" class="form-control"[(ngModel)]="timeZone" formControlName="timeZone" aria-label="Case Manager"
-              value="{{checked ? psdata.timezone:''}}" disabled="true">
+              disabled="true">
             </div>
  
           </div>
@@ -331,7 +331,7 @@
             </label>
  
             <div class="input-group  ">
-              <input type="text" class="form-control"  value="{{checked ? psdata.country:''}}" formControlName="country" aria-label="Case Manager"
+              <input type="text" class="form-control"   formControlName="country" aria-label="Case Manager"
                 [(ngModel)]="country" disabled="true">
             </div>
  

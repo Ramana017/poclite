@@ -57,14 +57,19 @@ export class AdmissionDetailsComponent implements OnInit {
     console.log("basic constructer", this.popup);
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
-    for (let i = 1; i <= 100; i++) {
-      this.numbers.push(i);
+    for (this.i = 1; this.i <= 100; this.i++) {
+      this.numbers.push(this.i);
+
     }
+    this.newAttribute = { rank: 0, name: '', code: '' };
+
     this.newForm();
   }
+  i;
   ngOnInit() {
+
     this.upperBound = this.perPage;
-    this.newAttribute = { rank: null, name: '', code: '' };
+
     this.upperBound = this.perPage;
     this.getAdmissionLookups();
     this.getDiagnosisData();
@@ -155,13 +160,45 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-  public check(event, ind) {
-    console.log(event.target.checked)
-    if (event.target.checked) {
+  public check(event, ind, data) {
+    console.log(event)
+    console.log(data,data.id,"data............")
+    if (!this.selectedItems.length ) {
       this.selectedItems.push(this.diagnosisList[ind])
-      console.log(this.selectedItems);
-
     }
+    const productExistInCart = this.selectedItems.find(
+      ({ id }) => {
+        console.log(id,"id.........")
+      id === data.id
+      }
+      
+   );
+   if (!productExistInCart) {
+             this.selectedItems.push(this.diagnosisList[ind])
+
+     return;
+   }
+    // if (!this.selectedItems.length && event.target.checked) {
+    //   this.selectedItems.push(this.diagnosisList[ind])
+
+    // } else {
+    // //  if (event.target.checked) {
+    //     this.selectedItems.find((x) => {
+    //       console.log(x,x.id, "rank..........")
+    //       if (data.id === x.id) {
+    //         console.log(data.id=== x.id)
+    //         console.log("rank")
+    //       } else {
+      this.selectedItems.push(this.diagnosisList[ind])
+    //       }
+    //     })
+    //  // }
+
+    // }
+
+    console.log(this.selectedItems);
+
+    //  }
   }
   addFieldValue(template: TemplateRef<any>) {
 
@@ -236,7 +273,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
 
   }
- public  searchCLick() {
+  public searchCLick() {
     this.upperBound = this.perPage;
     this.lowerBound = 1;
     this.getDiagnosisData();

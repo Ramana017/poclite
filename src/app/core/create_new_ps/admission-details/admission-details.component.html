@@ -155,7 +155,7 @@
                                 </td>
                                 <td class="border-right form-input">
                                     <select class="select-input">
-                    <option *ngFor="let num of selectedItems;let j=index">{{j+1}}
+                    <option *ngFor="let num of numbers" [value]='num'>{{num}}
                     </option>
                   </select>
                                 </td>
@@ -250,7 +250,7 @@
                                     <tr *ngFor="let data of diagnosisList ; let i=index ">
                                         <td class="position-relative edit-option">
                                             <label class="customcheck margin-left-15 m-0">
-                        <input type="checkbox" (click)="check($event,i)">
+                        <input type="checkbox" (click)="check($event,i,data)">
                         <span class="checkmark"></span>
                       </label>
                                         </td>
