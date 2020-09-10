@@ -81,8 +81,14 @@
 .f-12 {
     font-size: 12px;
 }
-.width-80{
-    width: 80px;
+// .width-80{
+//     width: 80px;
+// }
+.w-39{
+    width: 39% !important;
+}
+.w-58{
+    width: 58% !important;
 }
 
 /*========Common classes End=======*/
@@ -264,6 +270,9 @@ button {
         .navbar {
             flex-direction: column;
         }
+    }
+    .pr-0-sm{
+padding-right: 0 !important;
     }
 }
 
@@ -695,6 +704,12 @@ modal-container {
             padding: 8px !important;
         }
     }
+    form{
+        .w-50-sm{
+            width: 50% !important;
+                }
+    }
+   
 }
 
 .timepopup {
@@ -1187,9 +1202,21 @@ ul {
     height: 30px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
-.w-94{
-    width: 94px !important;
+.w-144{
+    width: 144px !important;
 }
 .w-160{
     width: 160px !important;
+}
+.pb-8{
+    padding-bottom: 8px;
+}
+.w-50{
+    width: 50% !important;
+}
+.w-42{
+    width: 42% !important;
+}
+.w-auto{
+    width: auto !important;
 }

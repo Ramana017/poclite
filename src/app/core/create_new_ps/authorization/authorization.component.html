@@ -17,7 +17,7 @@
           </label>
 
 
-                    <div class="check-box-wrapper">
+                    <div class="check-box-wrapper ">
                         <div class="on-off-toggle">
                             <input class="on-off-toggle__input" type="checkbox" id="bopis" />
                             <label for="bopis" class="on-off-toggle__slider"></label>
@@ -84,13 +84,13 @@
                         <input type="text" [(ngModel)]="billingRate" disabled class="form-control" aria-label="Case Manager">
                     </div>
                 </div>
-                <div class=" m-0 input-container-wrapper pb-sm-0">
+                <div class=" m-0 input-container-wrapper pb-sm-0 total-units">
                     <label class="">
             Total Units<span class="text-danger">*</span>
           </label>
                     <div class="input-group  align-items-center">
                         <input type="text" class="form-control mr-2" aria-label="Case Manager" [disabled]='totalUnitsFlag'>
-                        <label class="customcheck">
+                        <label class="customcheck  w-auto">
               <input type="checkbox" (click)="toggleCheck($event)">
               <span class="checkmark"></span>
             </label>
@@ -118,7 +118,7 @@
                             <input type="text" class="form-control" aria-label="Case Manager" placeholder="mm/dd/yyyy" bsDatepicker>
                         </div>
                     </div>
-                    <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-sm-0" *ngIf="!privateDuty">
+                    <div class=" m-0 input-container-wrapper d-flex justify-content-around pb-sm-0 w-50-sm" *ngIf="!privateDuty">
                         <div class=" mx-2">
                             <label class="">
                 Weekly
@@ -131,8 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="
-             mx-2">
+                        <div class="mx-2">
                             <label class="">
                 Daily
               </label>
@@ -145,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" m-0 input-container-wrapper pb-sm-0" *ngIf="!privateDuty">
+                    <div class=" m-0 input-container-wrapper pb-sm-0 w-50-sm" *ngIf="!privateDuty">
                         <div class=" mx-2">
                             <label class="">
                 Monthly
@@ -285,7 +284,7 @@
 
                         <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">Daily</h4>
                         <form class="d-flex align-items-center nav justify-content-between border-2">
-                            <div class=" m-0  input-container-wrapper pb-sm-0">
+                            <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-50">
                                 <label class="white-space-nowrap">
                   Max Units Per Day
                 </label>
@@ -293,7 +292,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0  input-container-wrapper pb-sm-0">
+                            <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-42">
                                 <label class="">
                   #Days
                 </label>
@@ -308,7 +307,7 @@
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Monthly</h4>
                         <form class="d-flex align-items-center nav justify-content-between border-2">
-                            <div class=" m-0  input-container-wrapper pb-sm-0">
+                            <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-50">
                                 <label class="white-space-nowrap">
                   Max Units Per Day
                 </label>
@@ -324,11 +323,11 @@
             <div class="procedure-shift-code" *ngIf='privateDuty'>
 
                 <div class="d-flex align-items-center justify-content-between row m-0">
-                    <div class="col-md-6 col-12 pl-0">
+                    <div class="col-md-6 col-12 pl-0 pr-0-sm">
                         <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16">Private Duty</h4>
                         <!-- <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">Daily</h4> -->
                         <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
-                            <div class=" m-0 d-flex align-items-center pb-3">
+                            <div class=" m-0 d-flex align-items-center pb-8 w-39">
                                 <label class="white-space-nowrap m-0 color-black pr-2">
                   Rate Type<span class="text-danger">*</span>
                 </label>
@@ -336,7 +335,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-3">
+                            <div class=" m-0 d-flex align-items-center  pb-8 w-58">
                                 <label class="white-space-nowrap m-0 pr-3 AvenirLTStd-Heavy color-black">
                   A Unit is
                 </label>
@@ -355,8 +354,8 @@
                     <div class="col-md-6 p-0 col-12">
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Regular Shift Rate</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2">
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
                 </label>
@@ -364,7 +363,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 2
                 </label>
@@ -372,7 +371,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 3
                 </label>
@@ -384,11 +383,11 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between row m-0">
-                    <div class="col-md-6 col-12 pl-0">
+                    <div class="col-md-6 col-12 pl-0 pr-0-sm">
 
                         <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">WeekEnd Shift Rate</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2">
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
                 </label>
@@ -396,7 +395,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 2
                 </label>
@@ -404,7 +403,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 3
                 </label>
@@ -417,8 +416,8 @@
                     <div class="col-md-6 p-0 col-12">
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Holiday</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2">
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
                 </label>
@@ -426,7 +425,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 2
                 </label>
@@ -434,7 +433,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-sm-0">
+                            <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 3
                 </label>

@@ -413,10 +413,10 @@ width: 100% !important;
 
 form {
   .phone-container {
-    width: Calc(100%/2.5);
+    // width: 150px;
 
     .phone-select {
-      width: 98% !important;
+      width: 150px !important;
     }
   }
 }
@@ -552,4 +552,11 @@ form {
  .padding-right-0{
    padding-right: 0 !important;
  }
+}
+
+
+
+
+.m-0.d-flex.align-items-center.pb-8 {
+  width: 31%;
 }
