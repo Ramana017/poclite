@@ -107,7 +107,7 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        this.psId = data.psId;
+        // this.psId = data.psId;
         this.officeId = data.officeId
 
       })

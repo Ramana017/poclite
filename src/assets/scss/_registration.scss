@@ -413,10 +413,10 @@ width: 100% !important;
 
 form {
   .phone-container {
-    width: Calc(100%/2.5);
+    // width: 150px;
 
     .phone-select {
-      width: 98% !important;
+      width: 150px !important;
     }
   }
 }
@@ -531,7 +531,7 @@ form {
 
 
 
-@media(max-width:768px) {
+@media(max-width:769px) {
   .basic-container {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -544,4 +544,19 @@ form {
   .site-form {
     justify-content: flex-start;
   }
+}
+@media(max-width:580px) {
+ .input-wrap{
+   flex-wrap: wrap;
+ }
+ .padding-right-0{
+   padding-right: 0 !important;
+ }
+}
+
+
+
+
+.m-0.d-flex.align-items-center.pb-8 {
+  width: 31%;
 }

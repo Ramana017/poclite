@@ -30,8 +30,6 @@ public totalUnits: number;
 public totalUnitsFlag: boolean;
 public effectiveFromDate: Date = new Date()
 public effectiveToDate: Date = new Date()
-
-
 public dropdownSettings: object = {
 singleSelection: true,
 text: "Select Procedure",
@@ -39,10 +37,14 @@ enableSearchFilter: true,
 labelKey: 'procedureName',
 primaryKey: 'procedureId',
 class:'checkbox-list'
-
 }
+public privateDuty:boolean;
 
-constructor() { }
+
+constructor() {
+  let data:any=JSON.parse(localStorage.getItem('savePayorRes'));
+  this.privateDuty= data.privateDuty
+}
 
 ngOnInit() {
 console.log("Ps Authorization called")
@@ -51,15 +53,16 @@ this.beginDate=new Date('10/10/2020')
 }
 
 
-public toggleDisplayDivWeekly(): void {
-this.weeklyFlag = !this.weeklyFlag;
+public toggleDisplayDivWeekly(event): void {
+  console.log(event.target.checked)
+this.weeklyFlag = event.target.checked;
 
 }
-public toggleDisplayDivMonthly(): void {
-this.monthlyFlag = !this.monthlyFlag;
+public toggleDisplayDivMonthly(event): void {
+this.monthlyFlag = event.target.checked;
 }
-public toggleDisplayDivDaily(): void {
-this.dailyFlag = !this.dailyFlag;
+public toggleDisplayDivDaily(event): void {
+this.dailyFlag =event.target.checked;
 }
 public toggleCheck(event): void {
 console.log(event.target.checked);

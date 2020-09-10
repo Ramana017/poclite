@@ -150,7 +150,7 @@ export class DashboardComponent implements OnInit {
     $('.max-1,.max-2,.max-3,.max-4').click(function () {
       $(this).parent().parent().parent().parent().parent().siblings().hide();
       $(this).parent().parent().parent().parent().parent().parent().siblings().hide();
-      $(this).parent().parent().parent().parent().css({ height: '83vh' });
+      $(this).parent().parent().parent().parent().css({ height: '87vh' });
       $('.widget-block').find('.table-responsive').addClass('table-resize');
       $('.cms-widget,.scrolling-alerts').hide();
 
