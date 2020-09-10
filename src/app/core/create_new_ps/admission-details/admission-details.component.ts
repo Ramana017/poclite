@@ -199,7 +199,7 @@ export class AdmissionDetailsComponent implements OnInit {
   savePs() {
     let temp = [];
     console.log(this.admissionForm.value)
-    this.selectedItems.map((x) => {
+    this.result.map((x) => {
       temp.push(x.diagnosisCode)
     })
     if (this.admissionForm.valid && temp.length > 0) {
