@@ -531,7 +531,7 @@ form {
 
 
 
-@media(max-width:768px) {
+@media(max-width:769px) {
   .basic-container {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -544,4 +544,9 @@ form {
   .site-form {
     justify-content: flex-start;
   }
+}
+@media(max-width:580px) {
+ .input-wrap{
+   flex-wrap: wrap;
+ }
 }
