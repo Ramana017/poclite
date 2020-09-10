@@ -191,9 +191,6 @@ export class ApiserviceService {
     var data = sessionStorage.getItem('useraccount');
     var token = JSON.parse(data);
     if (token != undefined) {
-      if (token.priviledFlag == 'all') {
-        return true;
-      } else {
         // return false;
         if (token.priviledFlag == 'schedule') {
           return true;
@@ -201,6 +198,17 @@ export class ApiserviceService {
         else {
           return false;
         }
+    }
+
+  }
+  public checkAll(): boolean {
+    var data = sessionStorage.getItem('useraccount');
+    var token = JSON.parse(data);
+    if (token != undefined) {
+      if (token.priviledFlag == 'all') {
+        return true;
+      } else {
+        return false;
       }
     }
 

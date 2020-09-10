@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService,public apiService:ApiserviceService, private zipcode: ZipcodeService) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId;
+    (data.priviledFlag=="ceat")||(data.priviledFlag=="all")?this.userFlag=true:this.userFlag=false;
+
   }
   @ViewChild('autops') autops;
   @ViewChild('autodcs') autodcs;
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-
+ public userFlag:boolean;
   public dcsList: any=[];
   public visitsData = [];
   public authorizationList: any=[];

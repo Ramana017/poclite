@@ -13,6 +13,9 @@ import swal from 'sweetalert2';
   styleUrls: ["./admission-details.component.scss"],
 })
 export class AdmissionDetailsComponent implements OnInit {
+
+  public result = [];
+
   @Input() popup: boolean;
   bsModelRef: BsModalRef;
   public admissionForm: FormGroup;
@@ -156,11 +159,28 @@ export class AdmissionDetailsComponent implements OnInit {
       })
   }
   public check(event, ind) {
-    console.log(event.target.checked)
+    // console.log(event.target.checked)
     if (event.target.checked) {
       this.selectedItems.push(this.diagnosisList[ind])
-      console.log(this.selectedItems);
+      // console.log(this.selectedItems);
 
+      this.result = [];
+      const map = new Map();
+      let count=0
+      for (const item of this.selectedItems) {
+        count++;
+        if (!map.has(item.id)) {
+          map.set(item.id, true);    // set any value to Map
+          this.result.push({
+            id: item.id,
+            diagnosisName: item.diagnosisName,
+            diagnosisCode:item.diagnosisCode,
+            rank:count
+          });
+        }
+
+      }
+      console.log(this.result)
     }
   }
   addFieldValue(template: TemplateRef<any>) {
@@ -177,12 +197,12 @@ export class AdmissionDetailsComponent implements OnInit {
     });
   }
   savePs() {
-    if (this.admissionForm.valid) {
-      let temp = [];
-      console.log(this.admissionForm.value)
-      this.selectedItems.map((x) => {
-        temp.push(x.diagnosisCode)
-      })
+    let temp = [];
+    console.log(this.admissionForm.value)
+    this.selectedItems.map((x) => {
+      temp.push(x.diagnosisCode)
+    })
+    if (this.admissionForm.valid && temp.length > 0) {
       console.log(temp)
       let params = {
         "psId": this.psId,
@@ -202,7 +222,7 @@ export class AdmissionDetailsComponent implements OnInit {
       try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
-            console.log("saveadmission",data);
+            console.log("saveadmission", data);
             this.admissionRes = data
             console.log("datasaved successfully");
             sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
@@ -222,7 +242,15 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
     }
-    else {
+    else if (temp.length == 0) {
+      swal.fire({
+        title: 'Invalid Entry',
+        text: 'No Diagnosis is selected',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    } else {
       swal.fire({
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
@@ -236,7 +264,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
 
   }
- public  searchCLick() {
+  public searchCLick() {
     this.upperBound = this.perPage;
     this.lowerBound = 1;
     this.getDiagnosisData();

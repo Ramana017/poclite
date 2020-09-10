@@ -148,8 +148,12 @@ export class GuarantorDetailsComponent implements OnInit {
       this.guarantorForm.get('phoneTypeList').setValue(event.id);
     }
     if (field === 'relationshipList') {
-      this.guarantorForm.get('relationshipList').setValue(event.id),
-        this.relationName = event.label,
+      this.guarantorForm.get('relationshipList').setValue(event.id);
+      if(event.id==100){
+        // this.selfChecBox=true;
+        this.SelfCheck(null,true);
+      }
+        this.relationName = event.label;
         this.relationId = event.id;
     }
     if (field === 'occupationList') {
@@ -191,10 +195,10 @@ export class GuarantorDetailsComponent implements OnInit {
       console.log(error)
     }
   }
-  public addressCheck(event): void {
+  public addressCheck(event?,dropdown?:boolean): void {
 
     console.log(event)
-    let flag = event.target.checked
+    let flag = event!=null? event.target.checked:dropdown
 
     console.log("addressCheck")
     this.guarantorForm.get('addressTypeList').setValue(flag ? this.basicPreviousData.locationId : '');
@@ -210,8 +214,8 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('timeZone').setValue(flag ? this.basicPreviousData.timezone : '');
     this.guarantorForm.get('country').setValue(flag ? this.basicPreviousData.country : '');
   }
-  public SelfCheck(event): void {
-    let flag = event.target.checked;
+  public SelfCheck(event?,dropdown?:boolean): void {
+    let flag = event!=null? event.target.checked:dropdown;
     console.log("selfcheck")
     this.guarantorForm.get('relationshipList').setValue(flag ? 100 : '');
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
@@ -219,7 +223,8 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
     this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
     flag ? this.checkBoxAddress = true : this.checkBoxAddress = false;
-    flag ? this.addressCheck(event) : this.addressCheck(event);
+    // flag ? this.addressCheck(event) : this.addressCheck(event);
+    this.addressCheck(event,dropdown);
   }
   public getPreviousBasic(): void {
     this.router.navigateByUrl('registration-re/child-basic')
@@ -266,4 +271,7 @@ export class GuarantorDetailsComponent implements OnInit {
     }
 
   }
+   public relationshipCleared(event){
+     console.log(event)
+   }
 }

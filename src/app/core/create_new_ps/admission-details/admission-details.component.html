@@ -145,7 +145,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let field of fieldArray;let selected of selectedItems; let i = index">
+                            <tr *ngFor="let selected of result; let i = index">
                                 <td class="border-right delete-option">
                                     <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
                                         <span class="material-icons material-icon-remove">
@@ -153,9 +153,10 @@
                     </span>
                                     </div>
                                 </td>
+
                                 <td class="border-right form-input">
-                                    <select class="select-input">
-                    <option *ngFor="let num of selectedItems;let j=index">{{j+1}}
+                                    <select [(ngModel)]="result[i].rank" class="select-input">
+                    <option *ngFor="let num of result;let j=index"[ngValue]="j+1">{{j+1}}
                     </option>
                   </select>
                                 </td>

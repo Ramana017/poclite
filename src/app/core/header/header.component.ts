@@ -14,53 +14,44 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
+  public  userFlag:boolean;
 
   modalRef: BsModalRef;
 
   public activeclass: Array<boolean> = []
 
-  constructor(private router: Router,private appService:AppService,public apiService:ApiserviceService) { }
+  constructor(private router: Router, private appService: AppService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
-
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
     if (this.useraccount == undefined || null) {
       this.router.navigateByUrl('login')
-
     } else {
       console.log(this.router.url)
       if (this.router.url == '/charts') {
-        this.activeclass = [false, true,false]
         this.heading = "POC DashBoard"
-      } else if(this.router.url == '/summary') {
-        this.activeclass = [true, false,false];
+      } else if (this.router.url == '/summary') {
         this.heading = "POC Call Management"
-      }else if(this.router.url == '/widgets'){
-        this.activeclass=[false,false,true];
+      } else if (this.router.url == '/widgets') {
         this.heading = "POC Home"
       }
-      else{
-        this.heading="PS Registration"
+      else {
+        this.heading = "PS Registration"
       }
-      var data = sessionStorage.getItem("useraccount");
-      this.useraccount = JSON.parse(data);
       if (this.useraccount != undefined || null) {
         this.userName = this.useraccount.userName;
+        (this.useraccount.priviledFlag=="schedule")||(this.useraccount.priviledFlag=="all")?this.userFlag=true:this.userFlag=false;
+
       }
     }
-    // console.log("*********",this.userName);
   }
   public logout() {
     sessionStorage.removeItem('useraccount');
-
     setTimeout(() => {
-      // console.log("Hello from setTimeout");
       this.router.navigateByUrl('login');
-    this.appService.setUserLoggedIn(false);
-    sessionStorage.clear()
-
-
+      this.appService.setUserLoggedIn(false);
+      sessionStorage.clear();
     }, 100);
 
   }
