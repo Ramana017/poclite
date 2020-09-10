@@ -29,12 +29,13 @@
     }
     .widget-block {
         box-shadow: 2px 2px 10px $shadow-color;
-        height: 40vh;
+        height: 43vh;
         overflow-y: auto;
         background-color: $section-bg;
     }
     .widget-header {
-        height: 42px;
+        // 
+        padding: 5px 0px;
         select {
             width: 200px !important;
             float: right;
@@ -129,7 +130,7 @@
                     padding: 0.45rem;
                 }
             }
-            height: 25vh;
+            height: 29vh;
         }
         .table-resize {
             height: 68vh;
@@ -614,6 +615,8 @@ https://fortawesome.github.io/Font-Awesome/
     // Auto complete code
 }
 
+
+
 //====================== icon-backgrounds ==============
 .icon-blue {
     i {
@@ -701,6 +704,9 @@ https://fortawesome.github.io/Font-Awesome/
     .content-wrapper {
         flex-direction: column;
     }
+    .xs-mar{
+        margin-top:7px;
+    }
 }
 
 //common css code
@@ -727,6 +733,26 @@ https://fortawesome.github.io/Font-Awesome/
         -moz-border-radius-bottomright: 0px;
         -moz-border-radius-bottomleft: 8px;
     }
+    .btn-create{
+        font-size: 13px;
+        width: 80px;
+        height: 25px;
+        background-color: $green;
+        border: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 8px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 8px;
+        -webkit-border-bottom-right-radius: 0px;
+        -webkit-border-bottom-left-radius: 8px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 0px;
+        -moz-border-radius-bottomleft: 8px;
+    }
+
     select {
         height: 25px;
         &:focus {
