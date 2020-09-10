@@ -20,11 +20,13 @@ export class AdmissionDetailsComponent implements OnInit {
   public bsModelRef: BsModalRef;
   public admissionForm: FormGroup;
   public Keyword = 'userName';
+  public Keyword2 = 'name';
   public coordinatorValue: string;
   public coordinatorList = [];
   public listingPageData = [];
   id = 'id';
   name = 'name';
+  public referralSourceList;
   public officeId;
   public clientType;
   public coordinatorData;
@@ -83,6 +85,7 @@ export class AdmissionDetailsComponent implements OnInit {
       admissionDate: ['', Validators.required],
       referredDate: ['', Validators.required],
       coordinatorId: ['', Validators.required],
+      referralSource:['',Validators.required],
 
 
     });
@@ -95,7 +98,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public getAdmissionLookups(): void {
     let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
-    this.guarantorId = guarantorSession.psGuarId;
+    this.guarantorId = guarantorSession.psGuarantorId;
     this.psId = psSession.psId
     let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
@@ -107,10 +110,18 @@ export class AdmissionDetailsComponent implements OnInit {
         this.clientClass = data.clientClass;
         this.PSName = data.PSName;
         this.guarantorName = data.guarantorName;
-        // this.psId = data.psId;
+        this.psId = data.psId;
         this.officeId = data.officeId
 
       })
+    this.service.getLookupsData2().subscribe(
+      res => {
+        let data:any=res;
+        this.referralSourceList = data.referralSource
+
+        console.log("ggggggggg",this.referralSourceList)
+      }
+    )
   }
   public pagenext(): void {
     if (this.upperBound < this.maxCount) {
@@ -186,6 +197,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
       console.log(this.result)
+<<<<<<< HEAD
     } 
     // else if (event.target.checked === false && this.result.length !== 0) {
     //   console.log(this.result)
@@ -198,6 +210,9 @@ export class AdmissionDetailsComponent implements OnInit {
     //     console.log(this.result,'after splice')
     //   });
    // }
+=======
+    }
+>>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
   }
   // uncheck(event) {
@@ -251,7 +266,8 @@ export class AdmissionDetailsComponent implements OnInit {
         "primaryDiagnosisCode": primaryCode,
         "otherDiagnoses": temp.toString(),
         "officeId": this.officeId,
-        "userId": this.userId
+        "userId": this.userId,
+        "referralSourceId":  this.admissionForm.value.referralSource.id,
       }
       console.log(params)
       console.log(temp)

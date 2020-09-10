@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class PayorPlanDetailsComponent implements OnInit {
 
 
+<<<<<<< HEAD
     title = 'Form';
     public payorPlanForm: FormGroup;
     public lookupDetails: any;
@@ -65,6 +66,70 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.psGuarData();
         this.getPayorPlanData();
         this.basicDetails();
+=======
+title = 'Form';
+payorPlanForm: FormGroup;
+salutationid: number;
+lookupDetails: any;
+relationshipList;
+saluationId: any;
+addressTypeList: any;
+checked1;
+public payorData;
+maritalStatusList: any;
+raceId: any;
+user1;
+phoneTypeList: any;
+genderId1: any;
+pvtCheck;
+public psdata;
+checked;
+data;
+addressid;
+locationName1;
+siteId;
+raceid;
+payor = 'planname';
+Keyword = 'label';
+fill;
+city;
+payorName;
+guardata;
+psId;
+AdmissionId;
+countyId2
+officeId;
+genderList;
+public savePayorRes;
+public selflag: boolean = false;
+public pvtDutyFlag: boolean = false;
+public payorcode;
+public plancode;
+public effectiveTo;
+public effectiveFrom;
+zipDetails;
+country;
+timeZone;
+userMappedOffices;
+state;
+county;
+regis;
+keyword1 = 'siteName';
+user;
+all: any = [];
+phone;
+submitted = false;
+previousPsDetails: any;
+public userId:number;
+constructor(private fb: FormBuilder, private router: Router,public service: ZipcodeService, public date: DatePipe) {
+  let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+  this.userId = data.userId
+}
+ngOnInit() {
+this.psGuarData();
+this.getPayorPlanData();
+this.basicDetails();
+>>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
         this.payorPlanForm = this.fb.group({
 
@@ -227,6 +292,71 @@ export class PayorPlanDetailsComponent implements OnInit {
                 console.log(error);
             }
 
+<<<<<<< HEAD
+=======
+} else {
+this.checked = false;
+this.payorPlanForm.get('relationshipList').setValue('');
+this.payorPlanForm.get('addressTypeList').setValue('');
+this.payorPlanForm.get('phoneTypeList').setValue('');
+this.payorPlanForm.get('number').setValue('');
+this.payorPlanForm.get('zipcode').setValue('');
+this.payorPlanForm.get('lane').setValue('');
+this.payorPlanForm.get('lastName').setValue('');
+this.payorPlanForm.get('firstName').setValue('');
+this.payorPlanForm.get('city').setValue('');
+this.payorPlanForm.get('county').setValue('');
+this.payorPlanForm.get('state').setValue('');
+this.payorPlanForm.get('timeZone').setValue('');
+this.payorPlanForm.get('country').setValue('');
+this.payorPlanForm.get('dob').setValue('');
+this.payorPlanForm.get('genderId').setValue('');
+// this.relationAuto.clear();
+// this.relationAuto.close();
+// this.ocuupationAuto.clear();
+// this.ocuupationAuto.close();
+}
+}
+onSubmit() {
+console.log(this.payorPlanForm.value)
+console.log(this.payorPlanForm.valid)
+if (this.payorPlanForm.valid) {
+let params1={
+"psAdmissionId":this.AdmissionId,
+"payorPlanId":this.planId,
+"planname":this.planname,
+"payorcode":this.payorPlanForm.value.payorCode,
+"plancode":this.payorPlanForm.value.plancode1,
+"privateDuty":this.pvtDutyFlag,
+"policyNumber":this.payorPlanForm.value.policyNumber,
+"rank":+this.payorPlanForm.value.rank,
+"effectiveFrom":this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
+"effectiveTo":this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
+"psId":this.psId,
+"relationshipId":this.relation,
+"firstName":this.payorPlanForm.value.firstName,
+"lastName":this.payorPlanForm.value.lastName,
+"middleName":"",
+"gender":this.gender1,
+"dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
+"ssn":this.payorPlanForm.value.ssn,
+"addressId":0,
+"locationName":this.locationName1,
+"street":this.payorPlanForm.value.lane,
+"city":this.payorPlanForm.value.city,
+"countyId":this.countyId2,
+"timeZoneId":this.timeId,
+"stateId":this.stateId,
+"zipCode":+this.payorPlanForm.value.zipcode,
+"country":this.payorPlanForm.value.country,
+"phoneType1":this.phone,
+"phone1":this.payorPlanForm.value.number,
+"userId":this.userId
+}
+console.log(params1)
+try {
+this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
+>>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
         } else {
             this.checked = false;

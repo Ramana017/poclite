@@ -12,7 +12,7 @@ export class ZipcodeService {
   public url
   public getUrl(): void {
     this.url = localStorage.getItem('webserviceURL');
-    this.lookUpDetails = this.url + 'pocextacc-webservices_9.2/telephony'
+    this.lookUpDetails = this.url + '/dashboard'
   }
   public zip;
 
@@ -28,17 +28,17 @@ export class ZipcodeService {
   }
 
   public savePs(params): Observable<any> {
-    return this.http.get(this.lookUpDetails + '/savePsDetails?jsonObj=' + params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/savePSDetails' , params).pipe(catchError(this.errorHandler))
 
   }
   public saveGuarantor(params): Observable<any> {
-    return this.http.get(this.lookUpDetails + '/saveGuarantorDetails?jsonObj=' + params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/saveGuarantorDetails',params).pipe(catchError(this.errorHandler))
 
   }
 
   public getPsDetails(getPs): Observable<any> {
     this.getUrl();
-    return this.http.get(this.lookUpDetails + '/getPsDetails?jsonObj=' + getPs).pipe(catchError(this.errorHandler));
+    return this.http.get(this.lookUpDetails + '/getPSDetails?jsonObj=' + getPs).pipe(catchError(this.errorHandler));
 
   }
 
@@ -50,7 +50,7 @@ export class ZipcodeService {
 
   public getPSListForCEAT(params): Observable<any> {
     this.getUrl();
-    return this.http.get(this.lookUpDetails + '/getPSListForCEAT?jsonObj=' + params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.lookUpDetails + '/getPSList?jsonObj=' + params).pipe(catchError(this.errorHandler));
   }
   public getAdmissionLookups(params): Observable<any> {
     this.getUrl();
@@ -68,22 +68,38 @@ export class ZipcodeService {
     this.getUrl();
     // return this.http.get("assets/1.json")
 
-    return this.http.post(this.url + '/poclite/dashboard/savePSAdmission', params1).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url + '/dashboard/savePSAdmission', params1).pipe(catchError(this.errorHandler));
   }
   public getPayorPlanList(params1): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.get(this.url+ '/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url+ '/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   public savePSAdmissionPayorPlan(params): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.post(this.url+ '/poclite/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url+ '/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
   }
 
+  public getLookupsData():Observable<any>{
+    this.getUrl();
+    return this.http.get(this.url+'/common/getLookupsData?lookupNames=case_manager,temp_authz_day_span,rate_type').pipe(catchError(this.errorHandler));
+  }
+  public getAuthBasicDetails(params):Observable<any>{
+    this.getUrl();
+    return this.http.get(this.url+'/dashboard/getAuthBasicDetails?jsonObj='+params).pipe(catchError(this.errorHandler));
+  }
+  public savePSAuthorization(params):Observable<any>{
+    this.getUrl();
+    return this.http.post(this.url+'/dashboard/savePSAuthorization',params).pipe(catchError(this.errorHandler));
+  }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);
   }
 
+  public getLookupsData2():Observable<any>{
+    this.getUrl();
+    return this.http.get(this.url+'/common/getLookupsData?lookupNames=referral_source').pipe(catchError(this.errorHandler));
+  }
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 export class DashboardService {
 
   public baseURL: string;
-  public url:string = 'pocextacc-webservices_9.2/telephony/';
+  public url:string = '/dashboard/';
   constructor(private http: HttpClient) { }
 
 
@@ -25,7 +25,7 @@ export class DashboardService {
   }
   public getPSList(data: any): Observable<object> {
     this.geturl()
-    return this.http.get<object>( this.baseURL + 'getPSListForCSS?jsonObj=' + data , { responseType: 'json' });
+    return this.http.get<object>( this.baseURL + 'getPSList?jsonObj=' + data , { responseType: 'json' });
   }
   public getAdmissionsListbypsId(data: any): Observable<object> {
     this.geturl()
