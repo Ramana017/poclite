@@ -979,6 +979,14 @@ ul {
             padding: 0 5px 0 13px;
         }
     }
+ 
+    option{
+        background: white;
+    }
+    .form-control:disabled, .form-control[readonly] {
+        background-color: #d2d2d2 ;
+        opacity: 1;
+    }
 }
 
 .bg-blue-light {
@@ -1178,4 +1186,10 @@ ul {
 .select-input {
     height: 30px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.w-94{
+    width: 94px !important;
+}
+.w-160{
+    width: 160px !important;
 }
