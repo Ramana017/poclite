@@ -96,7 +96,12 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="" value="{{clientType}}" class="form-control">
+                            <!-- <input type="text" placeholder="" value="{{clientType}}" class="form-control"> -->
+                            <ng-autocomplete [data]="referralSourceList" [searchKeyword]="Keyword2" formControlName="referralSource" [itemTemplate]="itemTemplate2">
+                            </ng-autocomplete>
+                            <ng-template style="width: 100%;" #itemTemplate2 let-item>
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
 
                         </div>
 

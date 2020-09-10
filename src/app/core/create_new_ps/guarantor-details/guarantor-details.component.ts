@@ -55,7 +55,7 @@ export class GuarantorDetailsComponent implements OnInit {
       firstName: ['', Validators.required],
       ssn: [''],
       number: ['', Validators.required],
-      occupationList: ['', Validators.required],
+      occupationList: ['28', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
       city: ['', Validators.required],
@@ -67,9 +67,10 @@ export class GuarantorDetailsComponent implements OnInit {
       lane: ['', Validators.required],
       location: [''],
       phoneTypeName: [''],
-      occupationName: [''],
+      occupationName: ['UNKNOWN'],
       relationId: [''],
     });
+
   }
 
   get f() {

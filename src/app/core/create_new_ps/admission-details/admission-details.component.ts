@@ -20,6 +20,7 @@ export class AdmissionDetailsComponent implements OnInit {
   bsModelRef: BsModalRef;
   public admissionForm: FormGroup;
   public Keyword = 'userName';
+  public Keyword2 = 'name';
   public coordinatorValue: string;
   public coordinatorList = [];
   public listingPageData = [];
@@ -27,6 +28,7 @@ export class AdmissionDetailsComponent implements OnInit {
   I;
   id = 'id';
   name = 'name';
+  public referralSourceList;
   public officeId;
   public clientType;
   public coordinatorData;
@@ -79,6 +81,7 @@ export class AdmissionDetailsComponent implements OnInit {
       admissionDate: ['', Validators.required],
       referredDate: ['', Validators.required],
       coordinatorId: ['', Validators.required],
+      referralSource:['',Validators.required],
 
 
     });
@@ -107,6 +110,14 @@ export class AdmissionDetailsComponent implements OnInit {
         this.officeId = data.officeId
 
       })
+    this.service.getLookupsData2().subscribe(
+      res => {
+        let data:any=res;
+        this.referralSourceList = data.referralSource
+
+        console.log("ggggggggg",this.referralSourceList)
+      }
+    )
   }
   public pagenext(): void {
     if (this.upperBound < this.maxCount) {
@@ -166,7 +177,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
       this.result = [];
       const map = new Map();
-      let count=0
+      let count = 0
       for (const item of this.selectedItems) {
         count++;
         if (!map.has(item.id)) {
@@ -174,8 +185,8 @@ export class AdmissionDetailsComponent implements OnInit {
           this.result.push({
             id: item.id,
             diagnosisName: item.diagnosisName,
-            diagnosisCode:item.diagnosisCode,
-            rank:count
+            diagnosisCode: item.diagnosisCode,
+            rank: count
           });
         }
 
@@ -218,10 +229,10 @@ export class AdmissionDetailsComponent implements OnInit {
         "otherDiagnoses": (temp.shift()).toString(),
         "officeId": this.officeId,
         "userId": this.userId,
-        "referralSourceId":17
+        "referralSourceId":  this.admissionForm.value.referralSource.id,
       }
       console.log(params)
-    try {
+      try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
             console.log("saveadmission", data);

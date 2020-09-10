@@ -83,6 +83,7 @@ export class BasicInfoComponent implements OnInit {
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
+      addressLine2:[''],
       number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
@@ -131,6 +132,7 @@ export class BasicInfoComponent implements OnInit {
         "updatedUserId": this.userId,
         "psId": this.psId,
         "mappedOfficeIds": mappedArray.toString(),
+        "addressLine2":this.basicForm.value.addressLine2
       };
       console.log(JSON.stringify(jsonObj));
       let parameters = JSON.stringify(jsonObj)
@@ -189,7 +191,13 @@ export class BasicInfoComponent implements OnInit {
   public selectChange(event, field, flag: boolean): void {
 
     if (field === 'genderId') {
-      flag ? this.basicForm.get('genderId').setValue(event.id) : this.basicForm.get('genderId').setValue('');
+      if(flag){
+        this.basicForm.get('genderId').setValue(event.id);
+      event.label=="MALE" ?this.basicForm.get('saluationId').setValue(403):this.basicForm.get('saluationId').setValue(405);
+      event.label=="MALE" ? this.basicForm.get('saluation').setValue("MR"):this.basicForm.get('saluation').setValue("MS");
+      }else{
+        this.basicForm.get('genderId').setValue('');
+      }
     }
     if (field === 'site') {
       this.basicForm.get('site').setValue(event.id);

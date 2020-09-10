@@ -12,7 +12,7 @@ export class ZipcodeService {
   public url
   public getUrl(): void {
     this.url = localStorage.getItem('webserviceURL');
-    this.lookUpDetails = this.url + 'poclitetest/dashboard'
+    this.lookUpDetails = this.url + '/dashboard'
   }
   public zip;
 
@@ -68,34 +68,38 @@ export class ZipcodeService {
     this.getUrl();
     // return this.http.get("assets/1.json")
 
-    return this.http.post(this.url + 'poclitetest/dashboard/savePSAdmission', params1).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url + '/dashboard/savePSAdmission', params1).pipe(catchError(this.errorHandler));
   }
   public getPayorPlanList(params1): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.get(this.url+ '/poclite/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url+ '/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   public savePSAdmissionPayorPlan(params): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.post(this.url+ 'poclite/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url+ '/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
   }
 
   public getLookupsData():Observable<any>{
     this.getUrl();
-    return this.http.get(this.url+'poclite/common/getLookupsData?lookupNames=case_manager,temp_authz_day_span,rate_type').pipe(catchError(this.errorHandler));
+    return this.http.get(this.url+'/common/getLookupsData?lookupNames=case_manager,temp_authz_day_span,rate_type').pipe(catchError(this.errorHandler));
   }
   public getAuthBasicDetails(params):Observable<any>{
     this.getUrl();
-    return this.http.get(this.url+'poclite/dashboard/getAuthBasicDetails?jsonObj='+params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url+'/dashboard/getAuthBasicDetails?jsonObj='+params).pipe(catchError(this.errorHandler));
   }
   public savePSAuthorization(params):Observable<any>{
     this.getUrl();
-    return this.http.post(this.url+'poclite/dashboard/savePSAuthorization',params).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url+'/dashboard/savePSAuthorization',params).pipe(catchError(this.errorHandler));
   }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);
   }
 
+  public getLookupsData2():Observable<any>{
+    this.getUrl();
+    return this.http.get(this.url+'/common/getLookupsData?lookupNames=referral_source').pipe(catchError(this.errorHandler));
+  }
 }
