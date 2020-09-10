@@ -19,7 +19,7 @@ export class ApiserviceService {
   // settingObservable$: any;
   public geturl() {
     let data = localStorage.getItem('webserviceURL');
-    this.baseURL=data+'poclite/callmanagement'
+    this.baseURL = data + 'poclite/callmanagement'
   }
 
   public updateTable = new Subject();
@@ -184,5 +184,33 @@ export class ApiserviceService {
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in API service", error);
     return throwError(error);
+  }
+
+  //public
+  public checkUser(): boolean {
+    var data = sessionStorage.getItem('useraccount');
+    var token = JSON.parse(data);
+    if (token != undefined) {
+        // return false;
+        if (token.priviledFlag == 'schedule') {
+          return true;
+        }
+        else {
+          return false;
+        }
+    }
+
+  }
+  public checkAll(): boolean {
+    var data = sessionStorage.getItem('useraccount');
+    var token = JSON.parse(data);
+    if (token != undefined) {
+      if (token.priviledFlag == 'all') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
   }
 }

@@ -13,15 +13,16 @@ import swal from 'sweetalert2';
   styleUrls: ["./admission-details.component.scss"],
 })
 export class AdmissionDetailsComponent implements OnInit {
+
+  public result = [];
+
   @Input() popup: boolean;
-  bsModelRef: BsModalRef;
+  public bsModelRef: BsModalRef;
   public admissionForm: FormGroup;
   public Keyword = 'userName';
   public coordinatorValue: string;
   public coordinatorList = [];
   public listingPageData = [];
-  field1;
-  I;
   id = 'id';
   name = 'name';
   public officeId;
@@ -30,6 +31,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public AdmissionDate: Date;
   public FirstVisitDate: Date;
   public referredDate: Date;
+  public isDuplicate: boolean;
   public clientClass;
   public guarantorName;
   public diagnosisList;
@@ -160,67 +162,83 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-  public check(event, ind, data) {
-    console.log(event)
-    console.log(data,data.id,"data............")
-    if (!this.selectedItems.length ) {
+  public check(event, ind) {
+    console.log(event.target.checked)
+    console.log(ind)
+    if (event.target.checked) {
       this.selectedItems.push(this.diagnosisList[ind])
-    }
-    const productExistInCart = this.selectedItems.find(
-      ({ id }) => {
-        console.log(id,"id.........")
-      id === data.id
+      console.log(this.diagnosisList[ind])
+
+      this.result = [];
+      const map = new Map();
+      let count = 0
+      for (const item of this.selectedItems) {
+        count++;
+        if (!map.has(item.id)) {
+          map.set(item.id, true);    // set any value to Map
+          this.result.push({
+            id: item.id,
+            diagnosisName: item.diagnosisName,
+            diagnosisCode: item.diagnosisCode,
+            rank: count
+          });
+        }
+
       }
-      
-   );
-   if (!productExistInCart) {
-             this.selectedItems.push(this.diagnosisList[ind])
+      console.log(this.result)
+    } 
+    // else if (event.target.checked === false && this.result.length !== 0) {
+    //   console.log(this.result)
+    //   this.result.forEach((ele, i) => {
+    //     if (this.diagnosisList[ind].id=== ele['id']) {
+    //       console.log(this.diagnosisList[ind].id, ele['id'])
+    //       this.result.splice(this.diagnosisList[ind],1)
+    //     }
+    //     console.log(this.diagnosisList[ind].id === ele['id'])
+    //     console.log(this.result,'after splice')
+    //   });
+   // }
 
-     return;
-   }
-    // if (!this.selectedItems.length && event.target.checked) {
-    //   this.selectedItems.push(this.diagnosisList[ind])
-
-    // } else {
-    // //  if (event.target.checked) {
-    //     this.selectedItems.find((x) => {
-    //       console.log(x,x.id, "rank..........")
-    //       if (data.id === x.id) {
-    //         console.log(data.id=== x.id)
-    //         console.log("rank")
-    //       } else {
-      this.selectedItems.push(this.diagnosisList[ind])
-    //       }
-    //     })
-    //  // }
-
-    // }
-
-    console.log(this.selectedItems);
-
-    //  }
   }
+  // uncheck(event) {
+  //   if (event.target.checked === false)
+  //     console.log(this.diagnosisList)
+  //   console.log(this.result)
+  //   console.log(event.target.check)
+  // }
   addFieldValue(template: TemplateRef<any>) {
 
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
 
   }
   public deleteRow(index): void {
-    this.selectedItems.forEach((ele, i) => {
+    this.result.forEach((ele, i) => {
       if (index === i) {
-        this.selectedItems.splice(index, 1);
-        console.log(this.selectedItems);
+        this.result.splice(index, 1);
+        console.log(this.result);
       }
     });
   }
   savePs() {
-    if (this.admissionForm.valid) {
-      let temp = [];
-      console.log(this.admissionForm.value)
-      this.selectedItems.map((x) => {
-        temp.push(x.diagnosisCode)
-      })
-      console.log(temp)
+    let temp = [];
+    let rank = [];
+    let primaryCode;
+    console.log(this.admissionForm.value);
+    this.result.map((x) => {
+
+      rank.push(x.rank)
+      x.rank == 1 ? primaryCode = x.diagnosisCode : temp.push(x.diagnosisCode)
+      this.isDuplicate = rank.some(function (item, idx) {
+        return rank.indexOf(item) != idx++
+      });
+    })
+    console.log(this.isDuplicate);
+    // console.log(temp)
+    // console.log(rank)
+    // console.log(this.result)
+
+
+    if (this.admissionForm.valid && temp.length > 0 && this.isDuplicate == false) {
       let params = {
         "psId": this.psId,
         "coordinatorId": this.admissionForm.value.coordinatorId.userInfoId,
@@ -230,16 +248,17 @@ export class AdmissionDetailsComponent implements OnInit {
         "referralDate": this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'),
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
-        "primaryDiagnosisCode": temp[0],
-        "otherDiagnoses": (temp.shift()).toString(),
+        "primaryDiagnosisCode": primaryCode,
+        "otherDiagnoses": temp.toString(),
         "officeId": this.officeId,
         "userId": this.userId
       }
       console.log(params)
+      console.log(temp)
       try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
-            console.log(data);
+            console.log("saveadmission", data);
             this.admissionRes = data
             console.log("datasaved successfully");
             sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
@@ -259,6 +278,25 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
     }
+    else if (temp.length == 0) {
+      swal.fire({
+        title: 'Invalid Entry',
+        text: 'No Diagnosis is selected',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    else if (this.isDuplicate === true) {
+      swal.fire({
+        title: 'Invalid Entry',
+        text: 'Same rank is selected',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+
     else {
       swal.fire({
         title: 'Invalid Form',
@@ -268,9 +306,6 @@ export class AdmissionDetailsComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-
-
-
 
   }
   public searchCLick() {

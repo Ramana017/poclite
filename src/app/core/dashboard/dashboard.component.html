@@ -23,7 +23,7 @@
                                         </div>
 
                                         <div class="d-flex align-items-center ">
-                                            <button class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
+                                            <button *ngIf="userFlag" class="d-flex btn-common widget-header-button align-items-center mr-2 " [routerLink]='["/registration-re/child-basic"]'>
                         <i class="fas fa-plus-circle mr-2 mt-0"></i>
                         <span>Create</span>
                       </button>
@@ -96,13 +96,15 @@
                                                                         </p> -->
                                                                         <p class="blue-bg facebook " title="Admission">
                                                                             <span>
-                                                                              <a  class="text-white" (click)="selectAdmissionListByDcsId(ps,true)" title="Admission">
-                                                                              </a>
+                                        <a class="text-white" (click)="selectAdmissionListByDcsId(ps,true)"
+                                          title="Admission">
+                                        </a>
                                       </span>
                                                                         </p>
                                                                         <p class="blue-bg googleplus" title="Authorization">
                                                                             <span>
-                                                                              <a  class="text-white" (click)="selectAuthorizationByPsId(ps,true)" title="Aurhorization">
+                                        <a class="text-white" (click)="selectAuthorizationByPsId(ps,true)"
+                                          title="Aurhorization">
 
                                         </a>
                                       </span>
@@ -331,7 +333,8 @@
 
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
-                                        <a  class="text-white" (click)="selectAuthorizationByPsId(admission,true)" title="Aurhorization">
+                                        <a class="text-white" (click)="selectAuthorizationByPsId(admission,true)"
+                                          title="Aurhorization">
 
                                         </a>
                                       </span>
@@ -360,7 +363,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="text-center no-data-text" *ngIf="admissiontotalRecordsCount==0"> No Data To Display </div>
+                                            <div class="text-center no-data-text" *ngIf="admissiontotalRecordsCount==0"> No Data To Display
+                                            </div>
 
                                         </div>
 

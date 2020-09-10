@@ -4,6 +4,7 @@ declare var $: any;
 import * as d3 from 'd3';
 import * as  GaugeChart from 'gauge-chart';
 import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { ApiserviceService } from 'src/app/services/apiservice.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,9 +12,11 @@ import { ZipcodeService } from 'src/app/services/zipcode.service';
 })
 
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService, private zipcode: ZipcodeService) {
+  constructor(private dashboardService: DashboardService,public apiService:ApiserviceService, private zipcode: ZipcodeService) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId;
+    (data.priviledFlag=="ceat")||(data.priviledFlag=="all")?this.userFlag=true:this.userFlag=false;
+
   }
   @ViewChild('autops') autops;
   @ViewChild('autodcs') autodcs;
@@ -22,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-
+ public userFlag:boolean;
   public dcsList: any=[];
   public visitsData = [];
   public authorizationList: any=[];

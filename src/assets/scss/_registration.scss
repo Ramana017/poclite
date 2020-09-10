@@ -82,7 +82,7 @@
     box-shadow: 2px 2px 3px #ccc;
     color: #808080 !important;
     text-transform: capitalize;
-
+width: 100% !important;
     &:focus {
       outline: none;
     }
@@ -144,7 +144,7 @@
 
   .form-control {
     height: 30px !important;
-    background-color: #e9ecef !important;
+    background-color: #e9ecef;
     border: 0;
     // outline: none;
     // box-shadow: none;
