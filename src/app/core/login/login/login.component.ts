@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
               this.loginFailed = false;
               this.appService.setUserLoggedIn(true)
               sessionStorage.setItem('useraccount', JSON.stringify(this.responsedata));
-              this.responsedata.priviledFlag=="schedule"||"all"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
+              this.responsedata.priviledFlag=="all"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
 
 
             }

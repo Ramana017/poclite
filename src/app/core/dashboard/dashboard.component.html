@@ -14,17 +14,13 @@
                                         <div class="col-md-5 col-0"></div>
                                         <h5 class="text-white m-0 text-center col-md-2 col-12">PS</h5>
                                         <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword"
-                                                #autops placeHolder="Search PS"
-                                                (inputCleared)="selectFilterEvent('',false)"
-                                                (selected)='selectFilterEvent($event,true)'
-                                                [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Search PS" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                 <a [innerHTML]="item.PSName"></a>
                                             </ng-template>
 
-                                            <!-- <button 
+                                            <!-- <button
                                                 class="d-flex btn-common widget-header-button align-items-center mr-2 "
                                                 [routerLink]='["/registration-re/child-basic"]'>
                                                 <i class="fas fa-plus-circle mr-2 mt-0"></i>
@@ -87,10 +83,8 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
                                                                     <div class="slider d-flex align-items-center">
                                                                         <!-- <p class="blue-bg twitter">
                                                                             <span>
@@ -99,21 +93,19 @@
                                       </span>
 
                                                                         </p> -->
-                                                                        <p class="blue-bg facebook mr-2"
-                                                                            title="Admission">
+                                                                        <p class="blue-bg facebook mr-2" title="Admission">
                                                                             <span>
                                                                                 <a class="text-white"
                                                                                     (click)="selectAdmissionListByDcsId(ps,true)"
-                                                                                    title="Admission">
+                                                                                    title="Admissions">
                                                                                 </a>
                                                                             </span>
                                                                         </p>
-                                                                        <p class="blue-bg googleplus mr-2"
-                                                                            title="Authorization">
+                                                                        <p class="blue-bg googleplus mr-2" title="Authorizations">
                                                                             <span>
                                                                                 <a class="text-white"
                                                                                     (click)="selectAuthorizationByPsId(ps,true)"
-                                                                                    title="Aurhorization">
+                                                                                    title="Authorizations">
 
                                                                                 </a>
                                                                             </span>
@@ -131,14 +123,12 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="text-center no-data-text" *ngIf="pstotalRecordsCount==0"> No
-                                                Data To Display </div>
+                                            <div class="text-center no-data-text" *ngIf="pstotalRecordsCount==0"> No Data To Display </div>
 
                                         </div>
                                     </div>
                                     <div class="pager">
-                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userFlag"
-                                            [routerLink]='["/registration-re/child-basic"]'> <i
+                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userFlag" [routerLink]='["/registration-re/child-basic"]'> <i
                                                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
 
                                         <span class="mr-2">Per page</span>
@@ -154,13 +144,8 @@
                                             {{pstotalRecordsCount}}
                                         </span>
 
-                                        <button type="button" class="btn-common-small mx-2"
-                                            [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1'
-                                            (click)="this.psPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2"
-                                            [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' "
-                                            [disabled]="psUpperBound>=pstotalRecordsCount"
-                                            (click)="this.psPageNext()">Next</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -174,11 +159,7 @@
                                         <div class="col-md-5"></div>
                                         <h5 class="text-white m-0 text-center col-md-2">DCS</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword"
-                                                #autodcs placeHolder="search DCS"
-                                                (inputCleared)="selectDcsListByDcsId('',false)"
-                                                (selected)='selectDcsListByDcsId($event,true)'
-                                                [itemTemplate]="itemTemplateDcs">
+                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateDcs let-item>
@@ -260,15 +241,13 @@
 
                                                 </tbody>
                                             </table>
-                                            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No
-                                                Data To Display </div>
+                                            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
 
                                         </div>
                                     </div>
                                     <div class="pager">
                                         <span class="mr-2">Per page</span>
-                                        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()"
-                                            class="border-0 mr-2">
+                                        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
                                             <option [ngValue]="5">5</option>
                                             <option [ngValue]="10">10</option>
                                             <option [ngValue]="15">15</option>
@@ -282,13 +261,8 @@
                                             {{dcstotalRecordsCount}} </span>
 
 
-                                        <button type="button" class="btn-common-small mx-2"
-                                            [ngClass]=" dcsLowerBound==1?'psDisabled' :'' "
-                                            [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2"
-                                            [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' "
-                                            [disabled]="dcsUpperBound>=dcstotalRecordsCount"
-                                            (click)="this.dcsPageNext()">Next</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
+                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
 
                                     </div>
                                 </div>
@@ -304,11 +278,7 @@
                                         <div class="col-md-5"></div>
                                         <h5 class="text-white m-0 text-center col-md-2">Admissions</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword"
-                                                #autoadm placeHolder="Search PS"
-                                                (inputCleared)="selectAdmissionListByDcsId('',false)"
-                                                (selected)='selectAdmissionListByDcsId($event,true)'
-                                                [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -353,17 +323,15 @@
                                                             <ul class="m-0 p-0">
                                                                 <li class="">
                                                                     <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input"
-                                                                            type="checkbox" />
-                                                                        <label for="toggle-input"
-                                                                            class="toggle"></label></div>
+                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                                                        <label for="toggle-input" class="toggle"></label></div>
                                                                     <div class="slider d-flex align-items-center">
 
                                                                         <p class="blue-bg googleplus">
                                                                             <span>
                                                                                 <a class="text-white"
                                                                                     (click)="selectAuthorizationByPsId(admission,true)"
-                                                                                    title="Aurhorization">
+                                                                                    title="Authorizations">
 
                                                                                 </a>
                                                                             </span>
@@ -414,14 +382,8 @@
                                                 of {{admissiontotalRecordsCount}} </span>
 
 
-                                            <button type="button" class="btn-common-small mx-2"
-                                                [ngClass]="admissionLowerBound==1?'psDisabled' :'' "
-                                                [disabled]='admissionLowerBound==1'
-                                                (click)="this.admissionPagePrev()">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2"
-                                                [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' "
-                                                [disabled]="admissionUpperBound>=admissiontotalRecordsCount"
-                                                (click)="this.admissionPageNext()">Next</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' " [disabled]="admissionUpperBound>=admissiontotalRecordsCount" (click)="this.admissionPageNext()">Next</button>
 
                                         </div>
                                     </div>
@@ -434,12 +396,7 @@
                                         <div class="col-md-5"></div>
                                         <h5 class="text-white m-0 text-center col-md-2">Authorizations</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="psList"
-                                                [searchKeyword]="authorizationkeyword" #autoauth
-                                                placeHolder="Search PS "
-                                                (inputCleared)="selectAuthorizationByPsId('',false)"
-                                                (selected)='selectAuthorizationByPsId($event,true)'
-                                                [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
@@ -525,8 +482,7 @@
                                                 </tbody>
 
                                             </table>
-                                            <div class="text-center no-data-text"
-                                                *ngIf="authorizationtotalRecordsCount==0"> No Data To Display </div>
+                                            <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To Display </div>
 
                                         </div>
                                         <div class="pager mt-2">
@@ -543,14 +499,8 @@
                                                 of {{authorizationtotalRecordsCount}} </span>
 
 
-                                            <button type="button" class="btn-common-small mx-2"
-                                                [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' "
-                                                [disabled]='authorizationLowerBound==1'
-                                                (click)="this.authorizationPagePrev()">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2"
-                                                [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' "
-                                                [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount"
-                                                (click)="this.authorizationPageNext()">Next</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' " [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount" (click)="this.authorizationPageNext()">Next</button>
 
                                         </div>
                                     </div>

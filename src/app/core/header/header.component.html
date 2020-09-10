@@ -14,9 +14,9 @@
                                 Home </a>
                             <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
                                 Management</a>
-                            <a routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
+                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
                                 DashBoard</a>
-                           
+
 
                             <!-- <span class="dropdown-item-text">Just Text</span> -->
                         </div>

@@ -221,7 +221,7 @@ export class AdmissionDetailsComponent implements OnInit {
         "referralSourceId":17
       }
       console.log(params)
-      try {
+    try {
         this.service.saveAdmissionDetails(JSON.stringify(params)).subscribe(
           data => {
             console.log("saveadmission", data);
