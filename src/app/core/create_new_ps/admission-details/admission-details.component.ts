@@ -210,11 +210,17 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   savePs() {
     let temp = [];
+    let rank=[];
+    let isDuplicate;
+    let primaryRank;
     console.log(this.admissionForm.value)
     this.result.map((x) => {
+      x.rank==1?primaryRank=x.rank:rank.push(x.rank)
       temp.push(x.diagnosisCode)
+      isDuplicate = rank.some(function(item, idx){
+        return rank.indexOf(item) != idx })
     })
-    if (this.admissionForm.valid && temp.length > 0) {
+    if (this.admissionForm.valid && temp.length > 0 && !isDuplicate) {
       console.log(temp)
       let params = {
         "psId": this.psId,
@@ -225,8 +231,8 @@ export class AdmissionDetailsComponent implements OnInit {
         "referralDate": this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'),
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
-        "primaryDiagnosisCode": temp[0],
-        "otherDiagnoses": (temp.shift()).toString(),
+        "primaryDiagnosisCode": primaryRank,
+        "otherDiagnoses": temp.toString(),
         "officeId": this.officeId,
         "userId": this.userId,
         "referralSourceId":  this.admissionForm.value.referralSource.id,
@@ -259,6 +265,14 @@ export class AdmissionDetailsComponent implements OnInit {
       swal.fire({
         title: 'Invalid Entry',
         text: 'No Diagnosis is selected',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }else if(isDuplicate){
+      swal.fire({
+        title: 'Invalid Form',
+        text: ' same rank is selected for Different diagnosis',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false

@@ -19,7 +19,7 @@
 
                     <div class="check-box-wrapper ">
                         <div class="on-off-toggle">
-                            <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+                            <input class="on-off-toggle__input" type="checkbox" (click)="tempAuthCheck($event)" id="bopis" />
                             <label for="bopis" class="on-off-toggle__slider"></label>
                         </div>
                     </div>
@@ -29,8 +29,18 @@
                     <label class="">
             Auth #<span class="text-danger">*</span>
           </label>
-                    <div class="input-group  ">
-                        <input type="text" class="form-control">
+                    <div class="input-group" *ngIf="!tempAuth">
+                        <input type="text" class="form-control" [(ngModel)]="authorizationManual">
+
+                    </div>
+
+                    <div class="input-group" *ngIf="tempAuth">
+                        <!-- <input type="text" class="form-control"> -->
+                        <ng-autocomplete [data]="tempAuthzDaySpanList" (selected)="autoSelected($event,'tempAuthzDaySpanList')" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="tempAuthzDaySpanKeyword" [itemTemplate]="itemTemplate3">
+                        </ng-autocomplete>
+                        <ng-template style="width: 100%;" #itemTemplate3 let-item>
+                            <a [innerHTML]="item.name"></a>
+                        </ng-template>
                     </div>
                 </div>
                 <div class="input-container-wrapper">
@@ -47,7 +57,7 @@
           </label>
                     <div class="input-group  ">
                         <!-- <input type="text" class="form-control"> -->
-                        <ng-autocomplete [data]="caseManagerList" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate">
+                        <ng-autocomplete [data]="caseManagerList" [notFoundTemplate]="notFoundTemplate" (selected)="autoSelected($event,'caseManagerList')" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate">
                         </ng-autocomplete>
                         <ng-template style="width: 100%;" #itemTemplate let-item>
                             <a [innerHTML]="item.name"></a>
@@ -64,43 +74,62 @@
                     <label class="">
             Begin Date<span class="text-danger">*</span>
           </label>
-                    <div class="input-group ">
-                        <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
+                    <div class="input-group w-160 ">
+                        <input type="text" class="form-control  " [(ngModel)]="beginDate" aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
                     </div>
                 </div>
                 <div class=" input-container-wrapper pb-sm-0">
                     <label class="">
             End Date<span class="text-danger">*</span>
           </label>
-                    <div class="input-group ">
-                        <input type="text" class="form-control " aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
+                    <div class="input-group w-160 ">
+                        <input type="text" class="form-control " [(ngModel)]="endDate" aria-label="date" placeholder="mm/dd/yyyy" bsDatepicker>
                     </div>
                 </div>
                 <div class=" m-0  input-container-wrapper pb-sm-0">
                     <label class="">
             Billing Rate<span class="text-danger">*</span>
           </label>
-                    <div class="input-group  ">
+                    <div class="input-group w-160 ">
                         <input type="text" [(ngModel)]="billingRate" disabled class="form-control" aria-label="Case Manager">
                     </div>
+
                 </div>
+
                 <div class=" m-0 input-container-wrapper pb-sm-0 total-units">
                     <label class="">
             Total Units<span class="text-danger">*</span>
           </label>
                     <div class="input-group  align-items-center">
-                        <input type="text" class="form-control mr-2" aria-label="Case Manager" [disabled]='totalUnitsFlag'>
+                        <input type="text" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag'>
                         <label class="customcheck  w-auto">
               <input type="checkbox" (click)="toggleCheck($event)">
               <span class="checkmark"></span>
             </label>
                     </div>
+
                 </div>
+                <div class=" m-0  input-container-wrapper pb-sm-0">
+                    <label class="">
+            location<span class="text-danger">*</span>
+          </label>
+                    <div class="input-group w-160 ">
+
+                        <select [(ngModel)]="psAddressId" class="form-control align-items-center">
+              <option *ngFor="let location of locationList" [ngValue]='location.psAddressId'>{{location.locationName}}
+              </option>
+
+
+            </select>
+                    </div>
+
+                </div>
+
             </div>
             <div *ngIf='!privateDuty'>
 
                 <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16">Delivery Plan</h4>
-                <form class="d-flex align-items-center nav justify-content-between">
+                <div class="d-flex align-items-center nav justify-content-between">
 
                     <div class=" m-0  input-container-wrapper pb-sm-0">
                         <label>
@@ -159,7 +188,7 @@
                         </div>
                     </div>
                     <div class=" m-0 input-container-wrapper"></div>
-                </form>
+                </div>
 
                 <div *ngIf="weeklyFlag">
 
@@ -169,13 +198,13 @@
                     <div class="border-2">
 
 
-                        <form class="d-flex align-items-center nav justify-content-between">
+                        <div class="d-flex align-items-center nav justify-content-between">
                             <div class=" m-0 input-container-wrapper">
                                 <label class="">
                   Max Units
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" aria-label="Max Units" placeholder="">
+                                    <input type="text" class="form-control" [(ngModel)]="weeklyMaxUnits" aria-label="Max Units" placeholder="">
                                 </div>
                             </div>
                             <div class=" m-0 input-container-wrapper">
@@ -183,11 +212,9 @@
                                 <div class="input-group ">
                                     <select class="form-control align-items-center">
                     <option selected>Select</option>
-                    <option value="1">New York</option>
-                    <option value="2">Texas</option>
-                    <option value="3">New York</option>
-                    <option value="4">New York</option>
-                    <option value="5">New York</option>
+                    <option value="1">MON-FRI</option>
+                    <option value="2">SUN-SAT</option>
+
 
                   </select>
                                 </div>
@@ -198,7 +225,7 @@
                   #Weeks
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]='weeklyNoOfWeek'>
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper">
@@ -206,18 +233,18 @@
                   #Days Per Week
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="weeklyDaysPerWeek">
                                 </div>
                             </div>
-                        </form>
-                        <form class="d-flex align-items-center nav justify-content-between">
+                        </div>
+                        <div class="d-flex align-items-center nav justify-content-between">
                             <div class=" input-container-wrapper d-flex align-items-center justify-content-between nav pb-sm-0">
                                 <div class="day-input">
                                     <label class="">
                     SUN
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklySunUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -225,7 +252,7 @@
                     MON
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklyMonUnits">
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +262,7 @@
                     TUE
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklyTueUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -243,7 +270,7 @@
                     WED
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]='weeklyWedUnits'>
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +280,7 @@
                     THU
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklyThuUnits">
                                     </div>
                                 </div>
                                 <div class=" day-input">
@@ -261,7 +288,7 @@
                     FRI
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklyFriUnits">
                                     </div>
                                 </div>
                             </div>
@@ -271,11 +298,11 @@
                     SAT
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="weeklySatUnits">
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -283,13 +310,13 @@
                     <div class="col-md-6 col-12 pl-0" *ngIf="dailyFlag">
 
                         <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">Daily</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-50">
                                 <label class="white-space-nowrap">
                   Max Units Per Day
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]='dailyMaxUnits'>
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-42">
@@ -297,26 +324,26 @@
                   #Days
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="dailyDays">
                                 </div>
                             </div>
 
-                        </form>
+                        </div>
                     </div>
                     <div class="col-md-6 p-0 col-12" *ngIf="monthlyFlag">
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Monthly</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2">
+                        <div class="d-flex align-items-center nav justify-content-between border-2">
                             <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-50">
                                 <label class="white-space-nowrap">
                   Max Units Per Day
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="monthlyMaxUnits">
                                 </div>
                             </div>
 
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -326,13 +353,13 @@
                     <div class="col-md-6 col-12 pl-0 pr-0-sm">
                         <h4 class=" AvenirLTStd-Heavy m-0 py-2 f-size-16">Private Duty</h4>
                         <!-- <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">Daily</h4> -->
-                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                        <div class="d-flex align-items-center nav justify-content-between border-2 pb-0">
                             <div class=" m-0 d-flex align-items-center pb-8 w-39">
                                 <label class="white-space-nowrap m-0 color-black pr-2">
                   Rate Type<span class="text-danger">*</span>
                 </label>
                                 <div class="input-group  form-input">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="privateDutyRateType">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8 w-58">
@@ -349,12 +376,12 @@
                                 </div>
                             </div>
 
-                        </form>
+                        </div>
                     </div>
                     <div class="col-md-6 p-0 col-12">
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Regular Shift Rate</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                        <div class="d-flex align-items-center nav justify-content-between border-2 pb-0">
                             <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
@@ -379,14 +406,14 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between row m-0">
                     <div class="col-md-6 col-12 pl-0 pr-0-sm">
 
                         <h4 class="AvenirLTStd-Heavy m-0 py-2 f-size-16">WeekEnd Shift Rate</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                        <div class="d-flex align-items-center nav justify-content-between border-2 pb-0">
                             <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
@@ -411,12 +438,12 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="col-md-6 p-0 col-12">
 
                         <h4 class="py-2 AvenirLTStd-Heavy m-0 f-size-16">Holiday</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2 pb-0">
+                        <div class="d-flex align-items-center nav justify-content-between border-2 pb-0">
                             <div class=" m-0 d-flex align-items-center  pb-8">
                                 <label class="white-space-nowrap m-0 pr-2 AvenirLTStd-Medium color-black">
                   Shift 1
@@ -441,7 +468,7 @@
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -451,7 +478,7 @@
                     <button type="button" class="btn-info  btn-next prev-step">Previous</button>
                 </div> -->
                 <div class="next">
-                    <button type="button" class="btn-info  btn-next">Save</button>
+                    <button type="button" class="btn-info  btn-next" (click)="savePSAuthorization()">Save</button>
                 </div>
             </div>
         </div>
