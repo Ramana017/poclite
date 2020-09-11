@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { DatePipe } from '@angular/common';
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-authorization',
@@ -303,7 +304,15 @@ export class AuthorizationComponent implements OnInit {
     try {
       this._zipService.savePSAuthorization(JSON.stringify(params)).subscribe(
         response => {
-          console.log(response);
+          swal.fire({
+            title: 'Authorization Created successfully ',
+            text: 'Fill the all Required fields',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+          this
+
         }
       )
 
