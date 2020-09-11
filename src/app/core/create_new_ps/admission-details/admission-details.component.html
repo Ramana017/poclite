@@ -12,7 +12,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <input type="text" class="form-control" value="{{PSName}}">
+                            <input type="text" class="form-control" value="{{PSName}}" disabled>
 
                         </div>
 
@@ -23,7 +23,9 @@
                         </label>
 
                         <div class="input-group ">
-                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword" formControlName="coordinatorId" [itemTemplate]="itemTemplate">
+                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
+                            [class.invalid-input]="(f.coordinatorId.invalid && formError)||(f.coordinatorId.invalid && formError)"
+                             formControlName="coordinatorId" [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate let-item>
                                 <a [innerHTML]="item.userName"></a>
@@ -36,7 +38,7 @@
                         </label>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{guarantorName}}">
+                            <input type="text" class="form-control" value="{{guarantorName}}" disabled>
                         </div>
 
                     </div>
@@ -47,7 +49,8 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
+                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError"
+                            (click)="check($event,i,'frstDate')" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -75,7 +78,8 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" formControlName="firstVisitDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+                            [class.is-invalid]="f.firstVisitDate.invalid && formError" formControlName="firstVisitDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -85,7 +89,8 @@
                         </label>
 
                         <div class="input-group ">
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" formControlName="referredDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
+                            [class.is-invalid]="f.referredDate.invalid && formError"formControlName="referredDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -97,7 +102,9 @@
                         <div class="input-group ">
 
                             <!-- <input type="text" placeholder="" value="{{clientType}}" class="form-control"> -->
-                            <ng-autocomplete [data]="referralSourceList" [searchKeyword]="Keyword2" formControlName="referralSource" [itemTemplate]="itemTemplate2">
+                            <ng-autocomplete [data]="referralSourceList"
+                            [class.invalid-input]="(f.referralSource.invalid && formError)||(f.referralSource.invalid && formError)"
+                            [searchKeyword]="Keyword2" formControlName="referralSource" [itemTemplate]="itemTemplate2">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate2 let-item>
                                 <a [innerHTML]="item.name"></a>
@@ -113,7 +120,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="" class="form-control" value="{{clientClass}}">
+                            <input type="text" placeholder="" class="form-control" value="{{clientClass}}" disabled>
 
                         </div>
 
@@ -216,7 +223,8 @@
                                     Diagnosis Code
                                 </label>
                                 <div class="input-group ">
-                                    <input type="search" [(ngModel)]="diagnosisCode" (search)="searchCLick()" class="form-control search-input">
+                                    <input type="search" [(ngModel)]="diagnosisCode"
+                                     (search)="searchCLick()" class="form-control search-input">
                                     <span class="right-icon" (click)="searchCLick()"><i
                                             class="fas fa-search"></i></span>
                                     <!-- <span class="right-icon"><i class="fas fa-times"></i></span>-->
@@ -259,7 +267,8 @@
                                     <tr *ngFor="let data of diagnosisList ; let i=index ">
                                         <td class="position-relative edit-option">
                                             <label class="customcheck margin-left-15 m-0">
-                                                <input type="checkbox" (click)="check($event,i)">
+                                                <input type="checkbox" (click)="check($event,i,'addDiagnosis')"
+                                                    >
                                                 <span class="checkmark"></span>
                                             </label>
                                         </td>
