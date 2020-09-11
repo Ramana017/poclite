@@ -127,11 +127,12 @@
 
                                         </div>
                                     </div>
-                                    <div class="pager">
-                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userFlag" [routerLink]='["/registration-re/child-basic"]'> <i
+                                    <div class="pager d-flex justify-content-between">
+                                        <button type="button" class="btn-create text-white mx-2"  [routerLink]='["/registration-re/child-basic"]'> <i
                                                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
 
-                                        <span class="mr-2">Per page</span>
+                                        <div class="c">
+                                            <span class="mr-2">Per page</span>
                                         <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
                                             <option [ngValue]="5">5</option>
                                             <option [ngValue]="10">10</option>
@@ -146,6 +147,7 @@
 
                                         <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
                                         <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -153,125 +155,6 @@
                             <!-- =========================================== 2nd Widget============================= -->
 
                             <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-                                <div class="widget-block">
-
-                                    <div class="widget-header row align-items-center green-bg m-0">
-                                        <div class="col-md-4"></div>
-                                        <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
-                                        <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
-                                            </ng-autocomplete>
-
-                                            <ng-template style="width: 100%;" #itemTemplateDcs let-item>
-                                                <a [innerHTML]="item.dcsName"></a>
-                                            </ng-template>
-
-                                            <!-- <button
-                                                class="d-flex btn-common widget-header-button align-items-center mr-2">
-                                                <i class="fas fa-plus-circle mr-2 mt-0"></i>
-                                                <span>Create</span>
-                                            </button> -->
-                                            <div class="ico">
-                                                <i class="fas fa-compress-alt min-1 px-2"></i>
-                                                <i class="fas fa-expand max-1 px-2"></i>
-                                            </div>
-                                            <!-- <select class="mt-1 text-right">
-                                        <option value="1">Widget Choice</option>
-                                        <option value="2">Admissions</option>
-                                        <option value="3">DCS</option>
-                                        <option value="4">Authorisation services</option>
-                                        <option value="5">Visits</option>
-                                        <option value="6">Cms</option>
-                                        </select> -->
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-inner p-2">
-                                        <div class="table-responsive">
-                                            <table class="table position-relative">
-                                                <thead class="thead-light no-wrap">
-                                                    <tr>
-                                                        <!-- <th class="align-middle">Info</th> -->
-                                                        <th class="align-middle"></th>
-                                                        <th class="align-middle">DCS Name</th>
-                                                        <th class="align-middle">Home Site</th>
-                                                        <th class="align-middle">Emp Code</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr *ngFor='let dcs of dcsList; let i=index;'>
-                                                        <!-- <td class="position-relative edit-option">
-                                                            <ul class="m-0 p-0">
-                                                                <li class="">
-                                                                    <div class="share-button">
-                                                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                                                        <label for="toggle-input" class="toggle"></label></div>
-                                                                    <div class="slider d-flex align-items-center">
-                                                                        <p class="blue-bg twitter">
-                                                                            <span>
-                                        <a class="text-white">
-                                        </a>
-                                      </span>
-
-                                                                        </p>
-                                                                        <p class="blue-bg facebook mr-2 ">
-                                                                            <span>
-                                        <a class="text-white">
-                                        </a>
-                                      </span>
-                                                                        </p>
-                                                                        <p class="blue-bg googleplus mr-2">
-                                                                            <span>
-                                        <a class="text-white">
-
-                                        </a>
-                                      </span>
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </td> -->
-                                                        <td></td>
-                                                        <td>{{dcs.dcsName}}</td>
-                                                        <td>{{dcs.homeSite}}</td>
-                                                        <td>{{''}}</td>
-                                                        <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
-                                            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="pager">
-                                        <span class="mr-2">Per page</span>
-                                        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
-                                            <option [ngValue]="5">5</option>
-                                            <option [ngValue]="10">10</option>
-                                            <option [ngValue]="15">15</option>
-                                            <option [ngValue]="20">20</option>
-
-
-                                        </select>
-                                        <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
-                                            {{dcsUpperBound>=dcstotalRecordsCount?dcstotalRecordsCount:dcsUpperBound}}
-                                            of
-                                            {{dcstotalRecordsCount}} </span>
-
-
-                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row m-0">
-                            <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                                 <div class="widget-block xs-mar">
 
                                     <div class="widget-header row align-items-center peach-bg m-0">
@@ -366,8 +249,10 @@
 
                                         </div>
 
-                                        <div class="pager mt-2">
-                                            <span class="mr-2">Per page</span>
+                                        <div class="pager mt-2 d-flex justify-content-between">
+                                            <div></div>
+                                            <div class="nav">
+                                                <span class="mr-2">Per page</span>
                                             <select [(ngModel)]="this.admissionPerPage" class="border-0 mr-2">
                                                 <option [ngValue]="5">5</option>
                                                 <option [ngValue]="10">10</option>
@@ -384,13 +269,19 @@
 
                                             <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
                                             <button type="button" class="btn-common-small mx-2" [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' " [disabled]="admissionUpperBound>=admissiontotalRecordsCount" (click)="this.admissionPageNext()">Next</button>
-
-                                        </div>
+                                            </div>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                        </div>
+
+                        <div class="row m-0">
+                            <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                                
+
+
                                 <div class="widget-block">
                                     <div class="widget-header row align-items-center lightblue-bg m-0">
                                         <div class="col-md-4"></div>
@@ -485,8 +376,12 @@
                                             <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To Display </div>
 
                                         </div>
-                                        <div class="pager mt-2">
-                                            <span class="mr-2">Per page</span>
+                                        <div class="pager mt-2 d-flex justify-content-between">
+                                            <div>
+                                                <!-- <button></button> -->
+                                            </div>
+                                            <div class="nav">
+                                                <span class="mr-2">Per page</span>
                                             <select [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
                                                 <option [ngValue]="5">5</option>
                                                 <option [ngValue]="10">10</option>
@@ -501,10 +396,136 @@
 
                                             <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
                                             <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' " [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount" (click)="this.authorizationPageNext()">Next</button>
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                                
+
+<!-- ============ -->
+<div class="widget-block">
+
+    <div class="widget-header row align-items-center green-bg m-0">
+        <div class="col-md-4"></div>
+        <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
+        <div class="col-md-5 d-flex justify-content-end align-items-center">
+            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
+            </ng-autocomplete>
+
+            <ng-template style="width: 100%;" #itemTemplateDcs let-item>
+                <a [innerHTML]="item.dcsName"></a>
+            </ng-template>
+
+            <!-- <button
+                class="d-flex btn-common widget-header-button align-items-center mr-2">
+                <i class="fas fa-plus-circle mr-2 mt-0"></i>
+                <span>Create</span>
+            </button> -->
+            <div class="ico">
+                <i class="fas fa-compress-alt min-1 px-2"></i>
+                <i class="fas fa-expand max-1 px-2"></i>
+            </div>
+            <!-- <select class="mt-1 text-right">
+        <option value="1">Widget Choice</option>
+        <option value="2">Admissions</option>
+        <option value="3">DCS</option>
+        <option value="4">Authorisation services</option>
+        <option value="5">Visits</option>
+        <option value="6">Cms</option>
+        </select> -->
+        </div>
+    </div>
+
+    <div class="widget-inner p-2">
+        <div class="table-responsive">
+            <table class="table position-relative">
+                <thead class="thead-light no-wrap">
+                    <tr>
+                        <!-- <th class="align-middle">Info</th> -->
+                        <th class="align-middle"></th>
+                        <th class="align-middle">DCS Name</th>
+                        <th class="align-middle">Home Site</th>
+                        <th class="align-middle">Emp Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor='let dcs of dcsList; let i=index;'>
+                        <!-- <td class="position-relative edit-option">
+                            <ul class="m-0 p-0">
+                                <li class="">
+                                    <div class="share-button">
+                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                        <label for="toggle-input" class="toggle"></label></div>
+                                    <div class="slider d-flex align-items-center">
+                                        <p class="blue-bg twitter">
+                                            <span>
+        <a class="text-white">
+        </a>
+      </span>
+
+                                        </p>
+                                        <p class="blue-bg facebook mr-2 ">
+                                            <span>
+        <a class="text-white">
+        </a>
+      </span>
+                                        </p>
+                                        <p class="blue-bg googleplus mr-2">
+                                            <span>
+        <a class="text-white">
+
+        </a>
+      </span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </td> -->
+                        <td></td>
+                        <td>{{dcs.dcsName}}</td>
+                        <td>{{dcs.homeSite}}</td>
+                        <td>{{''}}</td>
+                        <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
+
+        </div>
+    </div>
+    <div class="pager d-flex justify-content-between">
+        <div> 
+            <!-- <button></button> -->
+        </div>
+        <div class="nav">
+            <span class="mr-2">Per page</span>
+        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="15">15</option>
+            <option [ngValue]="20">20</option>
+
+
+        </select>
+        <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
+            {{dcsUpperBound>=dcstotalRecordsCount?dcstotalRecordsCount:dcsUpperBound}}
+            of
+            {{dcstotalRecordsCount}} </span>
+
+
+        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
+        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
+
+        </div>
+    </div>
+</div>
+
                             </div>
                         </div>
                     </div>
