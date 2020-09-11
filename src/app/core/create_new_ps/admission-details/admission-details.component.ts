@@ -221,24 +221,18 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   savePs() {
     let temp = [];
-    let rank = [];
-    let primaryCode;
-    console.log(this.admissionForm.value);
+    let rank=[];
+    let isDuplicate;
+    let primaryRank;
+    console.log(this.admissionForm.value)
     this.result.map((x) => {
-
-      rank.push(x.rank)
-      x.rank == 1 ? primaryCode = x.diagnosisCode : temp.push(x.diagnosisCode)
-      this.isDuplicate = rank.some(function (item, idx) {
-        return rank.indexOf(item) != idx++
-      });
+      x.rank==1?primaryRank=x.rank:rank.push(x.rank)
+      temp.push(x.diagnosisCode)
+      isDuplicate = rank.some(function(item, idx){
+        return rank.indexOf(item) != idx })
     })
-    console.log(this.isDuplicate);
-    // console.log(temp)
-    // console.log(rank)
-    // console.log(this.result)
-
-
-    if (this.admissionForm.valid && temp.length > 0 && this.isDuplicate == false) {
+    if (this.admissionForm.valid && temp.length > 0 && !isDuplicate) {
+      console.log(temp)
       let params = {
         "psId": this.psId,
         "coordinatorId": this.admissionForm.value.coordinatorId.userInfoId,
@@ -248,7 +242,7 @@ export class AdmissionDetailsComponent implements OnInit {
         "referralDate": this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'),
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
-        "primaryDiagnosisCode": primaryCode,
+        "primaryDiagnosisCode": primaryRank,
         "otherDiagnoses": temp.toString(),
         "officeId": this.officeId,
         "userId": this.userId,
@@ -287,18 +281,15 @@ export class AdmissionDetailsComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    }
-    else if (this.isDuplicate === true) {
+    }else if(isDuplicate){
       swal.fire({
-        title: 'Invalid Entry',
-        text: 'Same rank is selected',
+        title: 'Invalid Form',
+        text: ' same rank is selected for Different diagnosis',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    }
-
-    else {
+    } else {
       swal.fire({
         title: 'Invalid Form',
         text: 'Fill the all Required fields',

@@ -19,7 +19,7 @@ export class ApiserviceService {
   // settingObservable$: any;
   public geturl() {
     let data = localStorage.getItem('webserviceURL');
-    this.baseURL = data + 'poclite/callmanagement'
+    this.baseURL = data + '/callmanagement'
   }
 
   public updateTable = new Subject();
