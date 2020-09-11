@@ -52,13 +52,13 @@ export class AuthorizationComponent implements OnInit {
   private ppEffectiveFrom;
   private ppEffectiveTo;
   private admitDate;
-  public ppEffectiveFromDate:Date;
-  public ppEffectiveToDate:Date;
+  public ppEffectiveFromDate: Date;
+  public ppEffectiveToDate: Date;
 
   public dailyMaxUnits: number;
   public dailyDays: number;
   public weeklyMaxUnits: number;
-  public weeklyPerWeek: string=null;
+  public weeklyPerWeek: string = null;
   public weeklyNoOfWeek: number;
   public weeklyDaysPerWeek: number;
   public weeklySunUnits: number;
@@ -81,7 +81,7 @@ export class AuthorizationComponent implements OnInit {
   public holidayShift3Rate;
   private userId;
   private authorizationNumber;
-  public rateTypeList:Array<any>;
+  public rateTypeList: Array<any>;
 
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe) {
@@ -98,8 +98,8 @@ export class AuthorizationComponent implements OnInit {
       this.psAdmissionId = this.payorPlanResponse.psAdmissionId;
       this.psAdmitPayorId = this.payorPlanResponse.psAdmitPayorId;
       this.psName = this.payorPlanResponse.psName;
-      this.ppEffectiveFromDate=new Date(this.ppEffectiveFrom);
-      this.ppEffectiveToDate=new Date(this.ppEffectiveTo)
+      this.ppEffectiveFromDate = new Date(this.ppEffectiveFrom);
+      this.ppEffectiveToDate = new Date(this.ppEffectiveTo)
 
     }
 
@@ -139,7 +139,7 @@ export class AuthorizationComponent implements OnInit {
           this.getlookUpResponse = response;
           this.caseManagerList = this.getlookUpResponse.caseManager;
           this.tempAuthzDaySpanList = this.getlookUpResponse.tempAuthzDaySpan;
-          this.rateTypeList=this.getlookUpResponse.rateType;
+          this.rateTypeList = this.getlookUpResponse.rateType;
 
         }
       )
@@ -192,8 +192,8 @@ export class AuthorizationComponent implements OnInit {
       this.caseManagerId = event.id;
 
     }
-    else if(templatetype=="rateTypeList"){
-      this.privateDutyRateType=event.id;
+    else if (templatetype == "rateTypeList") {
+      this.privateDutyRateType = event.id;
     }
     console.log(event);
 
@@ -216,12 +216,12 @@ export class AuthorizationComponent implements OnInit {
       "billingType": this.procedureSelctedItems[0].billingType,
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.tempAuth ? " " : this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "endDate": this.tempAuth ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "unitDuration": 15,
       "totalUnits": this.totalUnitsFlag ? 0 : +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
       "dpEffectiveFrom": this.privateDuty ? "" : this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
-      "dpEffectiveTo": this.privateDuty ? "  " : this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
+      "dpEffectiveTo": this.privateDuty ? "" : this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
       "dailyDP": this.dailyFlag ? 1 : 0,
       "dailyMaxUnits": this.dailyFlag ? +this.dailyMaxUnits : 0,
       "dailyDays": this.dailyFlag ? +this.dailyDays : 0,
@@ -264,10 +264,10 @@ export class AuthorizationComponent implements OnInit {
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
       "endDate": this.date.transform(this.endDate, 'MM/dd/yyyy'),
-      "totalUnits": this.totalUnits,
+      "totalUnits": +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
-      "dpEffectiveFrom": " ",
-      "dpEffectiveTo": " ",
+      "dpEffectiveTo": "",
+      "dpEffectiveFrom": "",
       "dailyDP": 0,
       "dailyMaxUnits": 0,
       "dailyDays": 0,
@@ -298,55 +298,8 @@ export class AuthorizationComponent implements OnInit {
       "unitDuration": 15,
       "userId": this.userId
     }
-    let params = this.privateDuty ? privatePlan : delivaryobject
-    let params2 = {
-      "psAdmissionid": 22605,
-      "caseManagerId": 1206,
-      "authorizationNumber": "DF56383",
-      "psAdmittPayorPlanId": 24684,
-      "tempAuth": 0,
-      "privateDuty": 0,
-      "serviceId": 16,
-      "billingRate": 4.74,
-      "billingType": "U",
-      "psAddressId": 22464,
-      "beginDate": "08/01/2020",
-      "endDate": " ",
-      "unitDuration": 15,
-      "totalUnits": 30,
-      "totalUnitsFlag": 0,
-      "dpEffectiveFrom": "08/01/2020",
-      "dpEffectiveTo": "",
-      "dailyDP": 1,
-      "dailyMaxUnits": 30,
-      "dailyDays": 0,
-      "weeklyDP": 1,
-      "weeklyMaxUnits": 30,
-      "weeklyPerWeek": "W",
-      "weeklyNoOfWeek": 0,
-      "weeklyDaysPerWeek": 0,
-      "weeklySunUnits": 0,
-      "weeklyMonUnits": 0,
-      "weeklyTueUnits": 0,
-      "weeklyWedUnits": 0,
-      "weeklyThuUnits": 0,
-      "weeklyFriUnits": 0,
-      "weeklySatUnits": 0,
-      "monthlyDP": 1,
-      "monthlyMaxUnits": 30,
-      "privateDutyRateType": "",
-      "regularShift1Rate": 0,
-      "regularShift2Rate": 0,
-      "regularShift3Rate": 0,
-      "weekendShift1Rate": 0,
-      "weekendShift2Rate": 0,
-      "weekendShift3Rate": 0,
-      "holidayShift1Rate": 0,
-      "holidayShift2Rate": 0,
-      "holidayShift3Rate": 0,
-      "userId": 1
-    }
-    console.log(delivaryobject)
+    let params = this.privateDuty ? privatePlan : delivaryobject;
+    console.log(params)
     try {
       this._zipService.savePSAuthorization(JSON.stringify(params)).subscribe(
         response => {

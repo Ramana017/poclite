@@ -193,11 +193,11 @@ export class AdmissionDetailsComponent implements OnInit {
       this.result = [];
       const map = new Map();
       let count = 0;
-      
+
       for (const item of this.selectedItems) {
         count++;
         if (!map.has(item.id)) {
-          map.set(item.id, true); 
+          map.set(item.id, true);
            // set any value to Map
           this.result.push({
             id: item.id,
@@ -209,7 +209,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
       if (event.target.checked === false) {
-        
+
         this.result.map((ele,i) => {
           if(ele.id === this.diagnosisList[ind].id){
             console.log(ele.id === this.diagnosisList[ind].id, 'true')
@@ -219,14 +219,14 @@ export class AdmissionDetailsComponent implements OnInit {
       }
       this.result.map((ele,i)=>{
     let k=[];
-        
+
           if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
             console.log(this.result[i],)
             this.result[i] =this.itemChecked ;
           }
           k.push(ele.id)
       return (k.indexOf(i) != -1) ? true : false;
-        
+
       })
       console.log(this.result);
     }
@@ -234,7 +234,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 //   toggleCheckBox(elementId){
 //     this.result.map((ele,i)=>{
-       
+
 //       // if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
 //       //   console.log(this.result[i],)
 //       //   this.result[i] =this.itemChecked ;
@@ -315,10 +315,9 @@ export class AdmissionDetailsComponent implements OnInit {
             console.log("saveadmission", data);
             this.admissionRes = data
             console.log("datasaved successfully");
-            sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+            // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
             sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
-            this.router.navigateByUrl('registration-re/child-payorplan');
-          })
+                      })
         // if (Object.keys(this.admissionRes).length !== 0)
         {
           console.log("datasaved successfully");
