@@ -20,7 +20,7 @@
   }
 
   .listing-table {
-    height: 72vh;
+    height: 63vh;
   }
 
   .modal-content {
@@ -54,4 +54,8 @@
 
 
   }
+}
+.modal-dialog-centered.modal-dialog-scrollable.registration-modal-container {
+
+  height: auto !important;
 }
