@@ -26,6 +26,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public listingPageData = [];
   id = 'id';
   name = 'name';
+  z = [];
   public referralSourceList;
   public officeId;
   public clientType;
@@ -38,6 +39,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public guarantorName;
   public diagnosisList;
   public PSName;
+  public flag: any;
   public selectedItems = [];
   public pageArray = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
   public lowerBound: number = 1;
@@ -140,6 +142,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   //method to change previous page
   public prevpage(): void {
+   
     if (this.lowerBound !== 1) {
 
       this.lowerBound = this.lowerBound - this.perPage;
@@ -155,6 +158,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
   }
   public pagereset(): void {
+    
     console.log(this.perPage);
     this.diagnosisList.length = 0;
     this.lowerBound = 1;
@@ -170,11 +174,17 @@ export class AdmissionDetailsComponent implements OnInit {
       data => {
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
+        this.diagnosisList.map(x => {
+          x.flag = false;
+
+        })
+        this.showCheckboxData();
+
         this.maxCount = data.totalRecordsCount;
         console.log(data);
       })
   }
-   itemChecked: Boolean;
+  // itemChecked;
 
   public check(event, ind, field) {
     //  console.log(event.target.checked)
@@ -185,21 +195,21 @@ export class AdmissionDetailsComponent implements OnInit {
       console.log(event.target.value)
 
     }
-
     if (event.target.checked, field === 'addDiagnosis') {
       this.selectedItems.push(this.diagnosisList[ind])
       // console.log(this.diagnosisList[ind])
-
+      let itemChecked = event.target.checked
       this.result = [];
       const map = new Map();
       let count = 0;
-      
+
       for (const item of this.selectedItems) {
         count++;
         if (!map.has(item.id)) {
-          map.set(item.id, true); 
-           // set any value to Map
+          map.set(item.id, true);
+          // set any value to Map
           this.result.push({
+            flag: true,
             id: item.id,
             diagnosisName: item.diagnosisName,
             diagnosisCode: item.diagnosisCode,
@@ -209,71 +219,71 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
       if (event.target.checked === false) {
-        
-        this.result.map((ele,i) => {
-          if(ele.id === this.diagnosisList[ind].id){
+
+        this.result.map((ele, i) => {
+          if (ele.id === this.diagnosisList[ind].id) {
             console.log(ele.id === this.diagnosisList[ind].id, 'true')
             this.result.splice(i, 1);
+            ele.flag=false
+            this.showCheckboxData();
           }
         });
       }
-      this.result.map((ele,i)=>{
-    let k=[];
-        
-          if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
-            console.log(this.result[i],)
-            this.result[i] =this.itemChecked ;
-          }
-          k.push(ele.id)
-      return (k.indexOf(i) != -1) ? true : false;
-        
-      })
-      console.log(this.result);
-    }
+     }
 
   }
-//   toggleCheckBox(elementId){
-//     this.result.map((ele,i)=>{
-       
-//       // if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
-//       //   console.log(this.result[i],)
-//       //   this.result[i] =this.itemChecked ;
-//       // }
-//       k.push(ele.id)
-//       return (k.indexOf(elementId) != -1) ? true : false;
+  showCheckboxData(){
+    this.result.forEach(ele => {
+      this.z.push(ele)
+    });
+    if (this.z.length > 0) {
 
-//     })
-//     console.log(k)
-//  };
-
-
+      this.diagnosisList.forEach((x, i) => {
+        this.z.forEach((y, i) => {
+          if (x.id === this.z[i].id) {
+            x.flag = true;
+            console.log(x, "dialog box");
+          }
+        });
+      });
+    }
+  }
   addFieldValue(template: TemplateRef<any>) {
+    this.showCheckboxData();
+   // console.log('res', this.result, 'dia', this.diagnosisList)
+    // this.result.forEach(ele => {
+    //   this.z.push(ele)
+    // });
+    // if (this.z.length > 0) {
+
+    //   this.diagnosisList.forEach((x, i) => {
+    //     this.z.forEach((y, i) => {
+    //       if (x.id === this.z[i].id) {
+    //         x.flag = true;
+    //         console.log(x, "dialog box");
+    //       }
+    //     });
+    //   });
+    // }
+
+    // this.diagnosisList.map(x=>{
+    //   x.
+    // })
 
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
-
   }
   public deleteRow(index): void {
     this.result.forEach((ele, i) => {
+      
       if (index === i) {
+        console.log(ele)
+      //  ele.flag=false
         this.result.splice(index, 1);
         console.log(this.result);
       }
     });
   }
-  uncheck(event, ind) {
-    // console.log(event)
-    // if(event.target.checked === false){
-    //   console.log(this.diagnosisList[ind].id)
-    //   this.result.forEach(ele => {
-    //     if(ele['id']===this.diagnosisList[ind].id ){
-    //       console.log(ele['id']===this.diagnosisList[ind].id,'true' )
-    //       this.result.splice(ele,1)
-    //     }
 
-    //   });
-
-    // }
-  }
   savePs() {
     this.formError = true;
     let temp = [];
@@ -320,11 +330,11 @@ export class AdmissionDetailsComponent implements OnInit {
             this.router.navigateByUrl('registration-re/child-payorplan');
           })
         // if (Object.keys(this.admissionRes).length !== 0)
-        {
-          console.log("datasaved successfully");
-          sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-          this.router.navigateByUrl('registration-re/child-payorplan');
-        }
+        // {
+        //   console.log("datasaved successfully");
+        //   sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+        //   this.router.navigateByUrl('registration-re/child-payorplan');
+        // }
       }
 
       catch (error) {

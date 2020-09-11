@@ -24,8 +24,8 @@
 
                         <div class="input-group ">
                             <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
-                            [class.invalid-input]="(f.coordinatorId.invalid && formError)||(f.coordinatorId.invalid && formError)"
-                             formControlName="coordinatorId" [itemTemplate]="itemTemplate">
+                                [class.invalid-input]="(f.coordinatorId.invalid && formError)||(f.coordinatorId.invalid && formError)"
+                                formControlName="coordinatorId" [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate let-item>
                                 <a [innerHTML]="item.userName"></a>
@@ -50,7 +50,8 @@
                         <div class="input-group ">
 
                             <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError"
-                            (click)="check($event,i,'frstDate')" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
+                                (click)="check($event,i,'frstDate')" placeholder="mm/dd/yyyy " class="form-control"
+                                aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -79,7 +80,8 @@
                         <div class="input-group ">
 
                             <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                            [class.is-invalid]="f.firstVisitDate.invalid && formError" formControlName="firstVisitDate" bsDatepicker>
+                                [class.is-invalid]="f.firstVisitDate.invalid && formError"
+                                formControlName="firstVisitDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -90,7 +92,8 @@
 
                         <div class="input-group ">
                             <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                            [class.is-invalid]="f.referredDate.invalid && formError"formControlName="referredDate" bsDatepicker>
+                                [class.is-invalid]="f.referredDate.invalid && formError" formControlName="referredDate"
+                                bsDatepicker>
                         </div>
 
                     </div>
@@ -103,8 +106,9 @@
 
                             <!-- <input type="text" placeholder="" value="{{clientType}}" class="form-control"> -->
                             <ng-autocomplete [data]="referralSourceList"
-                            [class.invalid-input]="(f.referralSource.invalid && formError)||(f.referralSource.invalid && formError)"
-                            [searchKeyword]="Keyword2" formControlName="referralSource" [itemTemplate]="itemTemplate2">
+                                [class.invalid-input]="(f.referralSource.invalid && formError)||(f.referralSource.invalid && formError)"
+                                [searchKeyword]="Keyword2" formControlName="referralSource"
+                                [itemTemplate]="itemTemplate2">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate2 let-item>
                                 <a [innerHTML]="item.name"></a>
@@ -170,9 +174,9 @@
 
                                 <td class="border-right form-input">
                                     <select [(ngModel)]="result[i].rank" class="select-input">
-                    <option *ngFor="let num of result;let j=index"[ngValue]="j+1">{{j+1}}
-                    </option>
-                  </select>
+                                        <option *ngFor="let num of result;let j=index" [ngValue]="j+1">{{j+1}}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td class="border-right form-input">
                                     <!-- <input [(ngModel)]="selected.diagnosisCode" class="form-control" type="text" /> -->
@@ -208,7 +212,8 @@
 <ng-template #template>
     <div class="modal-header py-0 registration-modal-header ">
         <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()" data-dismiss="modal">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()"
+            data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -223,8 +228,8 @@
                                     Diagnosis Code
                                 </label>
                                 <div class="input-group ">
-                                    <input type="search" [(ngModel)]="diagnosisCode"
-                                     (search)="searchCLick()" class="form-control search-input">
+                                    <input type="search" [(ngModel)]="diagnosisCode" (search)="searchCLick()"
+                                        class="form-control search-input">
                                     <span class="right-icon" (click)="searchCLick()"><i
                                             class="fas fa-search"></i></span>
                                     <!-- <span class="right-icon"><i class="fas fa-times"></i></span>-->
@@ -240,7 +245,8 @@
                                     Diagnosis Name
                                 </label>
                                 <div class="input-group ">
-                                    <input type="search" [(ngModel)]="diagnosisName" (search)="searchCLick()" class="form-control search-input">
+                                    <input type="search" [(ngModel)]="diagnosisName" (search)="searchCLick()"
+                                        class="form-control search-input">
                                     <span class="right-icon" (click)="searchCLick()"><i
                                             class="fas fa-search"></i></span>
                                     <!-- <input type="text" class="form-control search-input"><span class="right-icon"><i
@@ -268,7 +274,7 @@
                                         <td class="position-relative edit-option">
                                             <label class="customcheck margin-left-15 m-0">
                                                 <input type="checkbox" (click)="check($event,i,'addDiagnosis')"
-                                                    >
+                                                [checked]="data.flag == true">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </td>
@@ -282,27 +288,37 @@
                         </div>
                         <div class="d-flex align-items-center justify-content-between pagination nav row m-0">
                             <div class="col-4 p-0">
-                                <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button">Reset</button>
+                                <button type="button " (click)="reset()"
+                                    class="pagination-btn btn next-btn primary-button">Reset</button>
                             </div>
                             <div class="d-flex col-2 p-0 justify-content-end">
-                                <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button add ml-0">Add</button>
-                                <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button ">Close</button>
+                                <button type="button " (click)="reset()"
+                                    class="pagination-btn btn next-btn primary-button add ml-0">Add</button>
+                                <button type="button " (click)="bsModelRef.hide()"
+                                    class="pagination-btn btn next-btn primary-button ">Close</button>
                             </div>
                             <div class="pr-2 pagination-add-close col-6 pl-0 justify-content-end">
-                               
+
                                 <div>
                                     <span class="footer-text">Per Page</span>
-                                    <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
+                                    <select [(ngModel)]="perPage" (change)="pagereset()"
+                                        class="pagination-select border-0">
                                         <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
                                             {{page}}
                                         </option>`
                                     </select>
-                                    <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to <span>
+                                    <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to
+                                        <span>
                                             {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                                    <span>{{maxCount}}</span></span>
-                                    <button type="button " class="pagination-btn ml-0" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                                    <button type="button " class="pagination-btn ml-0" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
-                                        class="pagination-btn">Next</button>
+                                        <span>{{maxCount}}</span></span>
+                                    <button type="button " class="pagination-btn ml-0"
+                                        [disabled]="lowerBound<perPage||diagnosisList.length==0 "
+                                        [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' "
+                                        id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                                    <button type="button " class="pagination-btn ml-0"
+                                        [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
+                                        [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
+                                        id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
 
                                 </div>
 
