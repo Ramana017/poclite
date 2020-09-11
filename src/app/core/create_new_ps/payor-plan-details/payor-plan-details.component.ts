@@ -67,6 +67,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     phone;
     submitted = false;
     previousPsDetails: any;
+    public formError: boolean = false;
     public userId: number;
     constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) {
         let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -101,6 +102,7 @@ export class PayorPlanDetailsComponent implements OnInit {
             state: ['', Validators.required],
             timeZone: ['', Validators.required],
             lane: ['', Validators.required],
+            lane1:['', Validators.required],
             dob: ['', Validators.required],
         });
     }
@@ -124,7 +126,7 @@ export class PayorPlanDetailsComponent implements OnInit {
         this.officeId = officeId2
         console.log(this.officeId)
 
-        const guarantorId = guarantorDetails.psGuarId;
+        const guarantorId = guarantorDetails.psGuarantorId;
         const parameters1 = { 'guarantorId': guarantorId };
         const parameters = { 'psId': previousPsDetails.psId };
         this.psId = previousPsDetails.psId
@@ -182,9 +184,9 @@ export class PayorPlanDetailsComponent implements OnInit {
             this.phone = event.label;
             console.log(this.phone)
         }
-        // if (field === 'payorPlan') {
-        // console.log(this.planId)
-        // }
+        if (field === 'payorPlan') {
+        console.log(this.planId)
+        }
     }
     planname
     public getPayorCodes(event) {
@@ -277,6 +279,7 @@ export class PayorPlanDetailsComponent implements OnInit {
         }
     }
     onSubmit() {
+      this.formError = true;
         console.log(this.payorPlanForm.value)
         console.log(this.payorPlanForm.valid)
         if (this.payorPlanForm.valid) {

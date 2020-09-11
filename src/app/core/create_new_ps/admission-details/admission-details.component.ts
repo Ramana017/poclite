@@ -55,6 +55,7 @@ export class AdmissionDetailsComponent implements OnInit {
   psId: number;
   admissionRes: any;
   public userId: number;
+  public formError: boolean = false;
   public diagnosisCode: string = '';
   public diagnosisName: string = '';
   constructor(private fb: FormBuilder, public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
@@ -85,7 +86,7 @@ export class AdmissionDetailsComponent implements OnInit {
       admissionDate: ['', Validators.required],
       referredDate: ['', Validators.required],
       coordinatorId: ['', Validators.required],
-      referralSource:['',Validators.required],
+      referralSource: ['', Validators.required],
 
 
     });
@@ -116,10 +117,10 @@ export class AdmissionDetailsComponent implements OnInit {
       })
     this.service.getLookupsData2().subscribe(
       res => {
-        let data:any=res;
+        let data: any = res;
         this.referralSourceList = data.referralSource
 
-        console.log("ggggggggg",this.referralSourceList)
+        console.log("ggggggggg", this.referralSourceList)
       }
     )
   }
@@ -173,20 +174,31 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-  public check(event, ind) {
-    console.log(event.target.checked)
-    console.log(ind)
-    if (event.target.checked) {
+   itemChecked: Boolean;
+
+  public check(event, ind, field) {
+    //  console.log(event.target.checked)
+    //  console.log(ind)
+    if (event.target.value, field === 'frstDate') {
+      this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate, 'MM/dd/yyyy')
+      console.log(event)
+      console.log(event.target.value)
+
+    }
+
+    if (event.target.checked, field === 'addDiagnosis') {
       this.selectedItems.push(this.diagnosisList[ind])
-      console.log(this.diagnosisList[ind])
+      // console.log(this.diagnosisList[ind])
 
       this.result = [];
       const map = new Map();
-      let count = 0
+      let count = 0;
+      
       for (const item of this.selectedItems) {
         count++;
         if (!map.has(item.id)) {
-          map.set(item.id, true);    // set any value to Map
+          map.set(item.id, true); 
+           // set any value to Map
           this.result.push({
             id: item.id,
             diagnosisName: item.diagnosisName,
@@ -196,16 +208,45 @@ export class AdmissionDetailsComponent implements OnInit {
         }
 
       }
-      console.log(this.result)
+      if (event.target.checked === false) {
+        
+        this.result.map((ele,i) => {
+          if(ele.id === this.diagnosisList[ind].id){
+            console.log(ele.id === this.diagnosisList[ind].id, 'true')
+            this.result.splice(i, 1);
+          }
+        });
+      }
+      this.result.map((ele,i)=>{
+    let k=[];
+        
+          if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
+            console.log(this.result[i],)
+            this.result[i] =this.itemChecked ;
+          }
+          k.push(ele.id)
+      return (k.indexOf(i) != -1) ? true : false;
+        
+      })
+      console.log(this.result);
     }
 
   }
-  // uncheck(event) {
-  //   if (event.target.checked === false)
-  //     console.log(this.diagnosisList)
-  //   console.log(this.result)
-  //   console.log(event.target.check)
-  // }
+//   toggleCheckBox(elementId){
+//     this.result.map((ele,i)=>{
+       
+//       // if(!this.result.length && this.result[i].id === this.diagnosisList[ind].id ){
+//       //   console.log(this.result[i],)
+//       //   this.result[i] =this.itemChecked ;
+//       // }
+//       k.push(ele.id)
+//       return (k.indexOf(elementId) != -1) ? true : false;
+
+//     })
+//     console.log(k)
+//  };
+
+
   addFieldValue(template: TemplateRef<any>) {
 
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
@@ -219,20 +260,38 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     });
   }
+  uncheck(event, ind) {
+    // console.log(event)
+    // if(event.target.checked === false){
+    //   console.log(this.diagnosisList[ind].id)
+    //   this.result.forEach(ele => {
+    //     if(ele['id']===this.diagnosisList[ind].id ){
+    //       console.log(ele['id']===this.diagnosisList[ind].id,'true' )
+    //       this.result.splice(ele,1)
+    //     }
+
+    //   });
+
+    // }
+  }
   savePs() {
+    this.formError = true;
     let temp = [];
-    let rank=[];
+    let rank = [];
     let isDuplicate;
     let primaryRank;
-    console.log(this.admissionForm.value)
+    console.log(this.admissionForm.value);
     this.result.map((x) => {
-      x.rank==1?primaryRank=x.rank:rank.push(x.rank)
-      temp.push(x.diagnosisCode)
-      isDuplicate = rank.some(function(item, idx){
-        return rank.indexOf(item) != idx })
-    })
-    if (this.admissionForm.valid && temp.length > 0 && !isDuplicate) {
-      console.log(temp)
+      x.rank === +1 ? primaryRank = x.diagnosisCode : rank.push(x.diagnosisCode)
+      temp.push(x.diagnosisCode);
+      isDuplicate = rank.some(function (item, idx) {
+        return rank.indexOf(item) !== idx;
+      });
+
+    });
+    console.log(isDuplicate);
+    if (this.admissionForm.valid && temp.length > 0 && isDuplicate === false) {
+      console.log(temp);
       let params = {
         "psId": this.psId,
         "coordinatorId": this.admissionForm.value.coordinatorId.userInfoId,
@@ -243,10 +302,10 @@ export class AdmissionDetailsComponent implements OnInit {
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
         "primaryDiagnosisCode": primaryRank,
-        "otherDiagnoses": temp.toString(),
+        "otherDiagnoses": rank,
         "officeId": this.officeId,
         "userId": this.userId,
-        "referralSourceId":  this.admissionForm.value.referralSource.id,
+        "referralSourceId": this.admissionForm.value.referralSource.id,
       }
       console.log(params)
       console.log(temp)
@@ -260,12 +319,12 @@ export class AdmissionDetailsComponent implements OnInit {
             sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
             this.router.navigateByUrl('registration-re/child-payorplan');
           })
-        // // if (Object.keys(this.admissionRes).length !== 0)
-        // {
-        //   console.log("datasaved successfully");
-        //   sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-        //   this.router.navigateByUrl('registration-re/child-payorplan');
-        // }
+        // if (Object.keys(this.admissionRes).length !== 0)
+        {
+          console.log("datasaved successfully");
+          sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+          this.router.navigateByUrl('registration-re/child-payorplan');
+        }
       }
 
       catch (error) {
@@ -273,7 +332,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
     }
-    else if (temp.length == 0) {
+    else if (!temp.length) {
       swal.fire({
         title: 'Invalid Entry',
         text: 'No Diagnosis is selected',
@@ -281,7 +340,7 @@ export class AdmissionDetailsComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    }else if(isDuplicate){
+    } else if (isDuplicate) {
       swal.fire({
         title: 'Invalid Form',
         text: ' same rank is selected for Different diagnosis',

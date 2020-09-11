@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="border-2">
         <form class="" [formGroup]="payorPlanForm">
           <div class="d-flex align-items-center  nav">
@@ -23,85 +23,92 @@
               <label class="">
                 Payor Plan<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
                 <div class="ng-autocomplete" style="width: 100%;">
-                  <ng-autocomplete [data]="payorData" [searchKeyword]="payor" 
-                  [itemTemplate]="itemTemplate10" formControlName="payorPlan" (selected)="getPayorCodes($event)">
+                  <ng-autocomplete [data]="payorData" [searchKeyword]="payor"
+                  [itemTemplate]="itemTemplate10" formControlName="payorPlan"
+                  [class.invalid-input]="(f.payorPlan.invalid && formError)||(f.payorPlan.invalid && formError)"
+                    (selected)="getPayorCodes($event)">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate10 let-item>
                     <a [innerHTML]="item.planname"></a>
                   </ng-template>
                 </div>
               </div>
- 
+
             </div>
             <div class="input-container-wrapper">
               <label class="">
                 Payor Code<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" class="form-control" formControlName="payorCode" aria-label="Case Manager" disabled>
- 
+                <input type="text" class="form-control" formControlName="payorCode"
+              aria-label="Case Manager" disabled>
+
               </div>
- 
+
             </div>
             <div class="input-container-wrapper">
               <label class="">
                 Plan Code<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" class="form-control" formControlName="plancode1" aria-label="Case Manager" disabled>
- 
+                <input type="text" class="form-control" formControlName="plancode1"
+               aria-label="Case Manager" disabled>
+
               </div>
- 
+
             </div>
             <div class="input-container-wrapper d-flex pb-0 align-items-center input-wrap">
               <div class="input-container-wrapper w-144 padding-right-0">
                 <label class="">
                   Rank<span class="text-danger">*</span>
                 </label>
-   
+
                 <div class="input-group  ">
-                  <select class="form-control" formControlName="rank">
+                  <select class="form-control" formControlName="rank"
+                  [class.is-invalid]="f.rank.invalid && formError">
                     <option selected>Select</option>
                     <option value=1>1</option>
                     <option value=2>2</option>
                     <option value=3>3</option>
-                    
-   
+
+
                   </select>
                 </div>
-   
+
               </div>
-   
+
               <div class=" input-container-wrapper pr-0 w-100">
                 <label class="white-space-nowrap">
                   Effective From<span class="text-danger">*</span>
                 </label>
-   
+
                 <div class="input-group  ">
-                  <input type="text" class="form-control" formControlName="effectiveFrom" placeholder="mm/dd/yyyy"   bsDatepicker >
+                  <input type="text" class="form-control" formControlName="effectiveFrom"
+                  [class.is-invalid]="f.effectiveFrom.invalid && formError" placeholder="mm/dd/yyyy"   bsDatepicker >
                 </div>
-   
+
               </div>
             </div>
-           
+
             <div class=" input-container-wrapper w-160">
               <label class="">
                 Effective To
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" class="form-control" placeholder="mm/dd/yyyy" formControlName="effectiveto" bsDatepicker>
+                <input type="text" class="form-control" placeholder="mm/dd/yyyy" formControlName="effectiveto"
+                [class.is-invalid]="f.effectiveto.invalid && formError" bsDatepicker>
               </div>
- 
+
             </div>
           </div>
- 
-         
+
+
         </form>
         <div class="d-flex align-items-center pt-2">
           <h4 class="py-2
@@ -122,10 +129,11 @@
               <label class="">
                 Relationship<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group ">
                 <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationshipList"
+                  [class.invalid-input]="(f.relationshipList.invalid && formError)||(f.relationshipList.invalid && formError)"
                     (selected)="selectChange($event,'relation')" [searchKeyword]="Keyword"
                     [itemTemplate]="itemTemplate1">
                   </ng-autocomplete>
@@ -134,37 +142,40 @@
                   </ng-template>
                 </div>
               </div>
- 
+
             </div>
- 
+
             <div class=" input-container-wrapper">
               <label class="">
                 Last Name<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
                 <input type="text" formControlName="lastName" class="form-control"
+                [class.is-invalid]="f.lastName.invalid && formError"
                   value="{{checked ? psdata.lastname:''}}" aria-label="Auth">
               </div>
- 
+
             </div>
             <div class=" input-container-wrapper">
               <label class="">
                 First Name<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
                 <input type="text" class="form-control" aria-label="Last Name" formControlName="firstName"
+                [class.is-invalid]="f.firstName.invalid && formError"
                   value="{{checked ? psdata.firstname:''}}">
- 
+
               </div>
             </div>
-           
+
             <div class=" m-0  input-container-wrapper ">
               <label class="">Gender<span class="text-danger">*</span></label>
               <div class="input-group ">
                 <div class="ng-autocomplete" style="width: 100%;">
                   <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="genderId"
+                  [class.invalid-input]="(f.genderId.invalid && formError)||(f.genderId.invalid && formError)"
                   value="{{checked ? psdata.gender:''}}" (selected)="selectChange($event,'genderId')" [itemTemplate]="itemTemplate20">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate20 let-item>
@@ -177,36 +188,39 @@
               <label class="">
                 Date of Birth<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" class="form-control" value="{{checked ? psdata.dob:''}}"  formControlName="dob" aria-label="Case Manager"
+                <input type="text" class="form-control" value="{{checked ? psdata.dob:''}}"
+                [class.is-invalid]="f.dob.invalid && formError"  formControlName="dob" aria-label="Case Manager"
                   placeholder="mm/dd/yyyy " bsDatepicker>
               </div>
- 
+
             </div>
           </div>
           <div class="d-flex align-items-center  nav">
-           
-            
+
+
             <div class=" m-0  input-container-wrapper">
               <label class="">
                 SSN
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" value="{{checked ? psdata.ssn:''}}" formControlName='ssn' class="form-control" aria-label="Case Manager">
+                <input type="text" value="{{checked ? psdata.ssn:''}}" formControlName='ssn'
+                [class.is-invalid]="f.ssn.invalid && formError" class="form-control" aria-label="Case Manager">
               </div>
- 
+
             </div>
             <div class=" input-container-wrapper">
               <label class="">
                 Policy Number<span class="text-danger">*</span>
               </label>
- 
+
               <div class="input-group  ">
-                <input type="text" class="form-control" formControlName="policyNumber">
+                <input type="text" class="form-control" formControlName="policyNumber"
+                [class.is-invalid]="f.policyNumber.invalid && formError">
               </div>
- 
+
             </div>
             <!-- <div class=" input-container-wrapper"></div>
             <div class=" input-container-wrapper"></div>
@@ -215,16 +229,17 @@
           <!-- <div class=" input-container-wrapper"></div>
           <div class=" input-container-wrapper"></div> -->
         </form>
- 
+
         <form class="d-flex align-items-center nav justify-content-between" [formGroup]="payorPlanForm">
           <div class="input-container-wrapper">
             <label class="">
               Location<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
               <div class="ng-autocomplete" style="width: 100%;">
                 <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="addressTypeList"
+                [class.invalid-input]="(f.addressTypeList.invalid && formError)||(f.addressTypeList.invalid && formError)"
                 value="{{checked ? psdata.locationName:''}}" (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
                 </ng-autocomplete>
                 <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -232,49 +247,51 @@
                 </ng-template>
               </div>
             </div>
- 
+
           </div>
- 
+
           <div class=" input-container-wrapper">
             <label class="">
               Address Line #1<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
-              <input type="text" formControlName="lane" value="{{checked ? psdata.street:''}}" class="form-control">
+              <input type="text" formControlName="lane"  [class.is-invalid]="f.lane.invalid && formError" class="form-control">
             </div>
- 
+
           </div>
           <div class=" input-container-wrapper">
             <label class="">
               Address Line #2
             </label>
- 
+
             <div class="input-group  ">
-              <input type="text" formControlName="lane" value="{{checked ? psdata.street:''}}" class="form-control">
+              <input type="text" formControlName="lane1"  class="form-control"class="form-control">
             </div>
- 
+
           </div>
           <div class=" input-container-wrapper">
             <label class="">
               Zip Code<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
-              <input type="text" class="form-control" value="{{checked ? psdata.ZIPCODE:''}}" aria-label="date" formControlName='zipcode'
+              <input type="text" class="form-control" value="{{checked ? psdata.ZIPCODE:''}}"
+              [class.is-invalid]="f.zipcode.invalid && formError" aria-label="date" formControlName='zipcode'
                 (keyup)="getzip($event)" id="autocomplete" type="text" class="form-control">
- 
+
             </div>
           </div>
           <div class=" m-0  input-container-wrapper phone-container">
             <label class="">
               Phone<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
               <div class="  date-input  d-flex align-items-center w-100">
                 <div class="ng-autocomplete phone-select">
                   <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" formControlName="phoneTypeList"
+                  [class.invalid-input]="(f.phoneTypeList.invalid && formError)||(f.phoneTypeList.invalid && formError)"
                     (selected)="selectChange($event, 'phoneTypeList')" placeHolder="Type" [itemTemplate]="itemTemplate">
                   </ng-autocomplete>
                   <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -282,8 +299,8 @@
                   </ng-template>
                 </div>
                 <div class="input-group ">
-                  <input type="text" [class.is-invalid]="f.number.invalid && f.number.touched" formControlName="number"
-                  value="{{checked ? psdata.PHONE:''}}" class="form-control">
+                  <input type="text" [class.is-invalid]="f.number.invalid && formError" formControlName="number"
+                  class="form-control">
                   <!-- <div *ngIf="f.number.invalid && f.number.touched && f.number.errors">
                                 <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
                               </div> -->
@@ -296,7 +313,7 @@
                           <small class="text-danger" *ngIf="f.number.errors?.minlength ">Digits should be 10</small>
                           <small class="text-danger" *ngIf="f.number.errors?.maxlength "></small> -->
             </div>
- 
+
           </div>
           <div class=" m-0  input-container-wrapper pb-sm-0">
             <label class="">City<span class="text-danger">*</span> </label>
@@ -327,25 +344,25 @@
             <label class="">
               Time Zone<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
               <input type="text" class="form-control"[(ngModel)]="timeZone" formControlName="timeZone" aria-label="Case Manager"
               value="{{checked ? psdata.timezone:''}}" disabled="true">
             </div>
- 
+
           </div>
           <div class=" m-0  input-container-wrapper pb-sm-0">
             <label class="">
               Country<span class="text-danger">*</span>
             </label>
- 
+
             <div class="input-group  ">
               <input type="text" class="form-control"  value="{{checked ? psdata.country:''}}" formControlName="country" aria-label="Case Manager"
                 [(ngModel)]="country" disabled="true">
             </div>
- 
+
           </div>
- 
+
         </form>
       </div>
       <!-- <div class="d-flex align-items-center justify-content-between mt-3">
@@ -370,4 +387,3 @@
     </div>
   </div>
  </div>
- 
