@@ -19,13 +19,13 @@ export class AuthorizationComponent implements OnInit {
   public caseManager: string;
   public servicesList: Array<any>;
   public procedureSelctedItems: Array<any> = []
-  public beginDate: Date = new Date();
-  public endDate: Date = new Date();
-  public billingRate: number;
+  public beginDate: Date;
+  public endDate: Date;
+  public billingRate: string;
   public totalUnits: number;
   public totalUnitsFlag: boolean;
-  public effectiveFromDate: Date = new Date()
-  public effectiveToDate: Date = new Date();
+  public effectiveFromDate: Date
+  public effectiveToDate: Date;
   public caseManagerId: number;
   public dropdownSettings: object = {
     singleSelection: true,
@@ -52,21 +52,23 @@ export class AuthorizationComponent implements OnInit {
   private ppEffectiveFrom;
   private ppEffectiveTo;
   private admitDate;
+  public ppEffectiveFromDate:Date;
+  public ppEffectiveToDate:Date;
 
   public dailyMaxUnits: number;
-  public dailyDays;
-  public weeklyMaxUnits;
-  public weeklyPerWeek;
-  public weeklyNoOfWeek;
-  public weeklyDaysPerWeek;
-  public weeklySunUnits;
-  public weeklyMonUnits;
-  public weeklyTueUnits;
-  public weeklyWedUnits;
-  public weeklyThuUnits;
-  public weeklyFriUnits;
-  public weeklySatUnits;
-  public monthlyMaxUnits;
+  public dailyDays: number;
+  public weeklyMaxUnits: number;
+  public weeklyPerWeek: string=null;
+  public weeklyNoOfWeek: number;
+  public weeklyDaysPerWeek: number;
+  public weeklySunUnits: number;
+  public weeklyMonUnits: number;
+  public weeklyTueUnits: number;
+  public weeklyWedUnits: number;
+  public weeklyThuUnits: number;
+  public weeklyFriUnits: number;
+  public weeklySatUnits: number;
+  public monthlyMaxUnits: number;
   public privateDutyRateType;
   public regularShift1Rate;
   public regularShift2Rate;
@@ -78,6 +80,8 @@ export class AuthorizationComponent implements OnInit {
   public holidayShift2Rate;
   public holidayShift3Rate;
   private userId;
+  private authorizationNumber;
+  public rateTypeList:Array<any>;
 
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe) {
@@ -94,6 +98,8 @@ export class AuthorizationComponent implements OnInit {
       this.psAdmissionId = this.payorPlanResponse.psAdmissionId;
       this.psAdmitPayorId = this.payorPlanResponse.psAdmitPayorId;
       this.psName = this.payorPlanResponse.psName;
+      this.ppEffectiveFromDate=new Date(this.ppEffectiveFrom);
+      this.ppEffectiveToDate=new Date(this.ppEffectiveTo)
 
     }
 
@@ -105,7 +111,7 @@ export class AuthorizationComponent implements OnInit {
     this.getAuthBasicDetails();
 
     console.log("Ps Authorization called")
-    this.beginDate = new Date('10/10/2020')
+    // this.beginDate = new Date('10/10/2020')
 
   }
   private getAuthBasicDetails() {
@@ -133,6 +139,7 @@ export class AuthorizationComponent implements OnInit {
           this.getlookUpResponse = response;
           this.caseManagerList = this.getlookUpResponse.caseManager;
           this.tempAuthzDaySpanList = this.getlookUpResponse.tempAuthzDaySpan;
+          this.rateTypeList=this.getlookUpResponse.rateType;
 
         }
       )
@@ -155,7 +162,7 @@ export class AuthorizationComponent implements OnInit {
   public toggleCheck(event): void {
     console.log(event.target.checked);
     event.target.checked == true ? this.totalUnitsFlag = true : this.totalUnitsFlag = false;
-    this.totalUnitsFlag == true ? this.totalUnits = null : this.totalUnits;
+    this.totalUnitsFlag == true ? this.totalUnits = 0 : this.totalUnits;
     console.log(this.tempAuth)
   }
   public tempAuthCheck(event): void {
@@ -172,15 +179,21 @@ export class AuthorizationComponent implements OnInit {
   public procedureDeSelect(): void {
     this.procedureSelctedItems.length = 0;
     console.log(this.procedureSelctedItems)
-    this.billingRate = null;
+    this.billingRate = " ";
   }
   public autoSelected(event, templatetype) {
     templatetype == "tempAuthzDaySpanList";
     if (templatetype == "tempAuthzDaySpanList") {
 
+      this.authorizationNumber = event.id;
+
+
     } else if (templatetype == "caseManagerList") {
       this.caseManagerId = event.id;
 
+    }
+    else if(templatetype=="rateTypeList"){
+      this.privateDutyRateType=event.id;
     }
     console.log(event);
 
@@ -193,56 +206,57 @@ export class AuthorizationComponent implements OnInit {
   public savePSAuthorization() {
     let delivaryobject = {
       "psAdmissionid": this.psAdmissionId,
-      "caseManagerId": this.caseManagerId,
-      "authorizationNumber": this.authorizationManual,
+      "caseManagerId": +this.caseManagerId,
+      "authorizationNumber": this.tempAuth ? this.authorizationNumber : this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
-      "tempAuth": this.tempAuth,
+      "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
       "serviceId": this.procedureSelctedItems[0].serviceId,
       "billingRate": this.procedureSelctedItems[0].billingRate,
       "billingType": this.procedureSelctedItems[0].billingType,
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.date.transform(this.endDate, 'MM/dd/yyyy'),
-      "totalUnits": this.totalUnits,
+      "endDate": this.tempAuth ? " " : this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "unitDuration": 15,
+      "totalUnits": this.totalUnitsFlag ? 0 : +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
-      "dpEffectiveFrom": this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
-      "dpEffectiveTo": this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
+      "dpEffectiveFrom": this.privateDuty ? "" : this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
+      "dpEffectiveTo": this.privateDuty ? "  " : this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
       "dailyDP": this.dailyFlag ? 1 : 0,
-      "dailyMaxUnits": this.dailyMaxUnits,
-      "dailyDays": this.dailyDays,
+      "dailyMaxUnits": this.dailyFlag ? +this.dailyMaxUnits : 0,
+      "dailyDays": this.dailyFlag ? +this.dailyDays : 0,
       "weeklyDP": this.weeklyFlag ? 1 : 0,
-      "weeklyMaxUnits": this.weeklyMaxUnits,
-      "weeklyPerWeek": "W",
-      "weeklyNoOfWeek": this.weeklyPerWeek,
-      "weeklyDaysPerWeek": this.weeklyDaysPerWeek,
-      "weeklySunUnits": this.weeklySunUnits,
-      "weeklyMonUnits": this.weeklyMonUnits,
-      "weeklyTueUnits": this.weeklyTueUnits,
-      "weeklyWedUnits": this.weeklyWedUnits,
-      "weeklyThuUnits": this.weeklyThuUnits,
-      "weeklyFriUnits": this.weeklyFriUnits,
-      "weeklySatUnits": this.weeklySatUnits,
+      "weeklyMaxUnits": this.weeklyFlag ? +this.weeklyMaxUnits : 0,
+      "weeklyPerWeek": this.weeklyFlag ? this.weeklyPerWeek : '',
+      "weeklyNoOfWeek": this.weeklyFlag ? +this.weeklyNoOfWeek : 0,
+      "weeklyDaysPerWeek": this.weeklyFlag ? +this.weeklyDaysPerWeek : 0,
+      "weeklySunUnits": (this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == 'F') ? +this.weeklySunUnits : 0,
+      "weeklyMonUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyMonUnits : 0,
+      "weeklyTueUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyTueUnits : 0,
+      "weeklyWedUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyWedUnits : 0,
+      "weeklyThuUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyThuUnits : 0,
+      "weeklyFriUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyFriUnits : 0,
+      "weeklySatUnits": this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == "F" ? +this.weeklySatUnits : 0,
       "monthlyDP": this.monthlyFlag ? 1 : 0,
-      "monthlyMaxUnits": this.monthlyMaxUnits,
-      "privateDutyRateType":"",
-      "regularShift1Rate":0,
-      "regularShift2Rate":0,
-      "regularShift3Rate":0,
-      "weekendShift1Rate":0,
-      "weekendShift2Rate":0,
-      "weekendShift3Rate":0,
-      "holidayShift1Rate":0,
-      "holidayShift2Rate":0,
-      "holidayShift3Rate":0,
+      "monthlyMaxUnits": this.monthlyFlag ? +this.monthlyMaxUnits : 0,
+      "privateDutyRateType": "",
+      "regularShift1Rate": 0,
+      "regularShift2Rate": 0,
+      "regularShift3Rate": 0,
+      "weekendShift1Rate": 0,
+      "weekendShift2Rate": 0,
+      "weekendShift3Rate": 0,
+      "holidayShift1Rate": 0,
+      "holidayShift2Rate": 0,
+      "holidayShift3Rate": 0,
       "userId": this.userId
     }
     let privatePlan = {
       "psAdmissionid": this.psAdmissionId,
-      "caseManagerId": this.caseManagerId,
+      "caseManagerId": +this.caseManagerId,
       "authorizationNumber": this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
-      "tempAuth": this.tempAuth?1:0,
+      "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
       "serviceId": this.procedureSelctedItems[0].serviceId,
       "billingRate": this.procedureSelctedItems[0].billingRate,
@@ -252,14 +266,14 @@ export class AuthorizationComponent implements OnInit {
       "endDate": this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "totalUnits": this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
-      "dpEffectiveFrom": "",
-      "dpEffectiveTo": "",
+      "dpEffectiveFrom": " ",
+      "dpEffectiveTo": " ",
       "dailyDP": 0,
       "dailyMaxUnits": 0,
       "dailyDays": 0,
       "weeklyDP": 0,
       "weeklyMaxUnits": 0,
-      "weeklyPerWeek": "W",
+      "weeklyPerWeek": "",
       "weeklyNoOfWeek": 0,
       "weeklyDaysPerWeek": 0,
       "weeklySunUnits": 0,
@@ -272,31 +286,79 @@ export class AuthorizationComponent implements OnInit {
       "monthlyDP": 0,
       "monthlyMaxUnits": 0,
       "privateDutyRateType": this.privateDutyRateType,
-      "regularShift1Rate": this.regularShift1Rate,
-      "regularShift2Rate": this.regularShift2Rate,
-      "regularShift3Rate": this.regularShift3Rate,
-      "weekendShift1Rate": this.weekendShift1Rate,
-      "weekendShift2Rate": this.weekendShift2Rate,
-      "weekendShift3Rate": this.weekendShift3Rate,
-      "holidayShift1Rate": this.holidayShift1Rate,
-      "holidayShift2Rate": this.holidayShift2Rate,
-      "holidayShift3Rate": this.holidayShift3Rate,
+      "regularShift1Rate": +this.regularShift1Rate,
+      "regularShift2Rate": +this.regularShift2Rate,
+      "regularShift3Rate": +this.regularShift3Rate,
+      "weekendShift1Rate": +this.weekendShift1Rate,
+      "weekendShift2Rate": +this.weekendShift2Rate,
+      "weekendShift3Rate": +this.weekendShift3Rate,
+      "holidayShift1Rate": +this.holidayShift1Rate,
+      "holidayShift2Rate": +this.holidayShift2Rate,
+      "holidayShift3Rate": +this.holidayShift3Rate,
       "unitDuration": 15,
       "userId": this.userId
     }
-    let params =this.privateDuty?privatePlan:delivaryobject
-    console.log(params)
-      // try {
-      //   this._zipService.savePSAuthorization(JSON.stringify(params)).subscribe(
-      //     response=>{
-      //       console.log(response);
-      //     }
-      //   )
+    let params = this.privateDuty ? privatePlan : delivaryobject
+    let params2 = {
+      "psAdmissionid": 22605,
+      "caseManagerId": 1206,
+      "authorizationNumber": "DF56383",
+      "psAdmittPayorPlanId": 24684,
+      "tempAuth": 0,
+      "privateDuty": 0,
+      "serviceId": 16,
+      "billingRate": 4.74,
+      "billingType": "U",
+      "psAddressId": 22464,
+      "beginDate": "08/01/2020",
+      "endDate": " ",
+      "unitDuration": 15,
+      "totalUnits": 30,
+      "totalUnitsFlag": 0,
+      "dpEffectiveFrom": "08/01/2020",
+      "dpEffectiveTo": "",
+      "dailyDP": 1,
+      "dailyMaxUnits": 30,
+      "dailyDays": 0,
+      "weeklyDP": 1,
+      "weeklyMaxUnits": 30,
+      "weeklyPerWeek": "W",
+      "weeklyNoOfWeek": 0,
+      "weeklyDaysPerWeek": 0,
+      "weeklySunUnits": 0,
+      "weeklyMonUnits": 0,
+      "weeklyTueUnits": 0,
+      "weeklyWedUnits": 0,
+      "weeklyThuUnits": 0,
+      "weeklyFriUnits": 0,
+      "weeklySatUnits": 0,
+      "monthlyDP": 1,
+      "monthlyMaxUnits": 30,
+      "privateDutyRateType": "",
+      "regularShift1Rate": 0,
+      "regularShift2Rate": 0,
+      "regularShift3Rate": 0,
+      "weekendShift1Rate": 0,
+      "weekendShift2Rate": 0,
+      "weekendShift3Rate": 0,
+      "holidayShift1Rate": 0,
+      "holidayShift2Rate": 0,
+      "holidayShift3Rate": 0,
+      "userId": 1
+    }
+    console.log(delivaryobject)
+    try {
+      this._zipService.savePSAuthorization(JSON.stringify(params)).subscribe(
+        response => {
+          console.log(response);
+        }
+      )
 
-      // } catch (error) {
-      //   console.log(error)
-      // }
+    } catch (error) {
+      console.log(error)
+    }
   }
+
 
 
 

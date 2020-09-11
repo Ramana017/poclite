@@ -247,6 +247,8 @@ this.payorPlanForm.get('number').setValue(this.psdata.PHONE);
 this.payorPlanForm.get('zipcode').setValue(this.psdata.ZIPCODE);
 this.payorPlanForm.get('addressTypeList').setValue(this.psdata.locationName);
 this.payorPlanForm.get('lane').setValue(this.psdata.street);
+this.payorPlanForm.get('ssn').setValue(this.psdata.ssn);
+
 
 } catch (error) {
 console.log(error);
@@ -270,6 +272,8 @@ this.payorPlanForm.get('timeZone').setValue('');
 this.payorPlanForm.get('country').setValue('');
 this.payorPlanForm.get('dob').setValue('');
 this.payorPlanForm.get('genderId').setValue('');
+this.payorPlanForm.get('ssn').setValue('');
+
 // this.relationAuto.clear();
 // this.relationAuto.close();
 // this.ocuupationAuto.clear();

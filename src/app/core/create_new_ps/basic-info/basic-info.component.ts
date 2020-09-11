@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
-import { valHooks } from 'jquery';
 
 
 @Component({
@@ -132,7 +131,8 @@ export class BasicInfoComponent implements OnInit {
         "updatedUserId": this.userId,
         "psId": this.psId,
         "mappedOfficeIds": mappedArray.toString(),
-        "addressLine2":this.basicForm.value.addressLine2
+        "addressLine2":this.basicForm.value.addressLine2,
+        "ssn":this.basicForm.value.ssn
       };
       console.log(JSON.stringify(jsonObj));
       let parameters = JSON.stringify(jsonObj)
