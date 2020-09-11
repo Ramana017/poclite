@@ -249,7 +249,7 @@ i {
   margin-right: 25px;
 
   .footer-text {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     // padding-top: 0.6rem;
     padding-right: 1rem;
@@ -299,5 +299,23 @@ i {
   .btn.disabled,
   .btn:disabled {
     cursor: not-allowed;
+  }
+  .pagination-add-close{
+    display: flex;
+    align-items: center;
+    // width: 63%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+@media(max-width:991px){
+  .pagination-add-close{
+    
+    width: 100% !important;
+    .add{
+      margin-bottom: 10px !important;
+      margin-top: 10px !important;
+    }
+  
   }
 }
