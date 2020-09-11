@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { DatePipe } from '@angular/common';
 import swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
@@ -85,7 +86,7 @@ export class AuthorizationComponent implements OnInit {
   public rateTypeList: Array<any>;
 
 
-  constructor(private _zipService: ZipcodeService, private date: DatePipe) {
+  constructor(private _zipService: ZipcodeService, private date: DatePipe,private router:Router) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
     this.payorPlanResponse = JSON.parse(sessionStorage.getItem('savePayorRes'));
@@ -306,18 +307,22 @@ export class AuthorizationComponent implements OnInit {
         response => {
           swal.fire({
             title: 'Authorization Created successfully ',
-            text: 'Fill the all Required fields',
             icon: 'success',
             confirmButtonText: 'Ok',
             allowOutsideClick: false
           })
-          this
-
+          this.router.navigateByUrl('widgets')
         }
       )
 
     } catch (error) {
       console.log(error)
+      swal.fire({
+        title: 'Failed to save ',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
     }
   }
 
