@@ -280,22 +280,32 @@
                             <div class="text-center no-data-text" *ngIf="diagnosisList.length==0"> No Data To Display
                             </div>
                         </div>
-                        <div class="d-flex align-items-center justify-content-end pagination">
-                            <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button mr-3">Reset</button>
-                            <div class="mr-2">
-                                <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button mr-3">close</button>
-                                <span class="footer-text">Per Page</span>
-                                <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
-                                    <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
-                                        {{page}}
-                                    </option>`
-                                </select>
-                                <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to <span>
-                                        {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                                <span>{{maxCount}}</span></span>
-                                <button type="button " class="pagination-btn" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ': 'btn next-btn primary-button ' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                                <button type="button " class="pagination-btn" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
-                                    class="pagination-btn">Next</button>
+                        <div class="d-flex align-items-center justify-content-between pagination nav row m-0">
+                            <div class="col-4 p-0">
+                                <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button">Reset</button>
+                            </div>
+                            <div class="d-flex col-2 p-0 justify-content-end">
+                                <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button add ml-0">Add</button>
+                                <button type="button " (click)="bsModelRef.hide()" class="pagination-btn btn next-btn primary-button ">Close</button>
+                            </div>
+                            <div class="pr-2 pagination-add-close col-6 pl-0 justify-content-end">
+                               
+                                <div>
+                                    <span class="footer-text">Per Page</span>
+                                    <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
+                                        <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
+                                            {{page}}
+                                        </option>`
+                                    </select>
+                                    <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to <span>
+                                            {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                                    <span>{{maxCount}}</span></span>
+                                    <button type="button " class="pagination-btn ml-0" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1  ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                                    <button type="button " class="pagination-btn ml-0" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
+                                        class="pagination-btn">Next</button>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>

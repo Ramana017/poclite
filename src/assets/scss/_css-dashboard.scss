@@ -632,13 +632,13 @@ https://fortawesome.github.io/Font-Awesome/
 
 .icon-peach {
     i {
-        background-color: $peach;
+        background-color: $peach !important;
     }
 }
 
 .icon-lightblue {
     i {
-        background-color: $dashboard-blue;
+        background-color: $dashboard-blue !important;
     }
 }
 
@@ -707,11 +707,19 @@ https://fortawesome.github.io/Font-Awesome/
     .xs-mar{
         margin-top:7px;
     }
+    .css-dashboard-wrapper{
+        .widget-block {
+            .table-responsive {
+                height: 26vh;
+            }
+        }
+    }
+    
 }
 
 //common css code
 .pager {
-    float: right;
+    // float: right;
     .btn-common-small {
         font-size: 15px;
         color: #ffffff;
@@ -915,11 +923,11 @@ select {
 }
 
 .lightblue-bg {
-    background-color: $dashboard-blue;
+    background-color: $dashboard-blue !important;
 }
 
 .peach-bg {
-    background-color: $peach;
+    background-color: $peach !important;
 }
 
 // ====================flyover=====================
