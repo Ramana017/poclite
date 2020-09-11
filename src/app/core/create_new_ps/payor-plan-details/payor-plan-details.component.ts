@@ -14,122 +14,68 @@ import { Router } from '@angular/router';
 export class PayorPlanDetailsComponent implements OnInit {
 
 
-<<<<<<< HEAD
     title = 'Form';
-    public payorPlanForm: FormGroup;
-    public lookupDetails: any;
-    public relationshipList;
-    public addressTypeList: any;
+    payorPlanForm: FormGroup;
+    salutationid: number;
+    lookupDetails: any;
+    relationshipList;
+    saluationId: any;
+    addressTypeList: any;
+    checked1;
     public payorData;
-    public maritalStatusList: any;
-    public phoneTypeList: any;
-    public genderId1: any;
-    public pvtCheck;
+    maritalStatusList: any;
+    raceId: any;
+    user1;
+    phoneTypeList: any;
+    genderId1: any;
+    pvtCheck;
     public psdata;
-    public checked;
-    public addressid;
-    public locationName1;
-    public payor = 'planname';
-    public Keyword = 'label';
-    public city;
-    public payorName;
-    public guardata;
-    public psId;
-    public AdmissionId;
-    public countyId2;
-    public planname;
-    public officeId;
-    public genderList;
+    checked;
+    data;
+    addressid;
+    locationName1;
+    siteId;
+    raceid;
+    payor = 'planname';
+    Keyword = 'label';
+    fill;
+    city;
+    payorName;
+    guardata;
+    psId;
+    AdmissionId;
+    countyId2
+    officeId;
+    genderList;
     public savePayorRes;
     public selflag: boolean = false;
     public pvtDutyFlag: boolean = false;
     public payorcode;
     public plancode;
     public effectiveTo;
-    public stateId;
     public effectiveFrom;
-    public zipDetails;
-    public country;
-    public timeId;
-    public timeZone;
-    public state;
-    public county;
-    public keyword1 = 'siteName';
-    public phone;
-    public submitted = false;
-    public relation;
-    public gender1;
-    public planId;
-    public previousPsDetails: any;
-    constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) { }
+    zipDetails;
+    country;
+    timeZone;
+    userMappedOffices;
+    state;
+    county;
+    regis;
+    keyword1 = 'siteName';
+    user;
+    all: any = [];
+    phone;
+    submitted = false;
+    previousPsDetails: any;
+    public userId: number;
+    constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) {
+        let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
+        this.userId = data.userId
+    }
     ngOnInit() {
         this.psGuarData();
         this.getPayorPlanData();
         this.basicDetails();
-=======
-title = 'Form';
-payorPlanForm: FormGroup;
-salutationid: number;
-lookupDetails: any;
-relationshipList;
-saluationId: any;
-addressTypeList: any;
-checked1;
-public payorData;
-maritalStatusList: any;
-raceId: any;
-user1;
-phoneTypeList: any;
-genderId1: any;
-pvtCheck;
-public psdata;
-checked;
-data;
-addressid;
-locationName1;
-siteId;
-raceid;
-payor = 'planname';
-Keyword = 'label';
-fill;
-city;
-payorName;
-guardata;
-psId;
-AdmissionId;
-countyId2
-officeId;
-genderList;
-public savePayorRes;
-public selflag: boolean = false;
-public pvtDutyFlag: boolean = false;
-public payorcode;
-public plancode;
-public effectiveTo;
-public effectiveFrom;
-zipDetails;
-country;
-timeZone;
-userMappedOffices;
-state;
-county;
-regis;
-keyword1 = 'siteName';
-user;
-all: any = [];
-phone;
-submitted = false;
-previousPsDetails: any;
-public userId:number;
-constructor(private fb: FormBuilder, private router: Router,public service: ZipcodeService, public date: DatePipe) {
-  let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-  this.userId = data.userId
-}
-ngOnInit() {
-this.psGuarData();
-this.getPayorPlanData();
-this.basicDetails();
->>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
         this.payorPlanForm = this.fb.group({
 
@@ -163,32 +109,34 @@ this.basicDetails();
 
     }
     public pvtDuty(event) {
-        console.log(event.target.checked);
-        this.pvtDutyFlag = event.target.checked;
+        console.log(event.target.checked)
+        this.pvtDutyFlag = event.target.checked
 
 
     }
 
 
-    public psGuarData() {
+    psGuarData() {
         const AdmissionDetails = JSON.parse(sessionStorage.getItem('AdmissionDetails'));
         const previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
         const guarantorDetails = JSON.parse(sessionStorage.getItem('guarantorDetails'));
         const officeId2 = JSON.parse(sessionStorage.getItem('officeId'));
-        this.officeId = officeId2;
+        this.officeId = officeId2
+        console.log(this.officeId)
+
         const guarantorId = guarantorDetails.psGuarId;
         const parameters1 = { 'guarantorId': guarantorId };
         const parameters = { 'psId': previousPsDetails.psId };
-        this.psId = previousPsDetails.psId;
-        this.AdmissionId = AdmissionDetails.psAdmissionId;
+        this.psId = previousPsDetails.psId
+        this.AdmissionId = AdmissionDetails.psAdmissionId
         this.service.getGuarantorDetails(JSON.stringify(parameters1)).subscribe(d => {
-            this.guardata = d;
-            console.log(this.guardata);
+            this.guardata = d
+            console.log(this.guardata)
         });
         this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
             this.psdata = res;
-            console.log(res);
-        });
+            console.log(res)
+        })
     }
     public getPayorPlanData(): void {
         const params = { "officeId": this.officeId, "privateDuty": this.pvtDutyFlag ? 1 : 0 };
@@ -198,22 +146,28 @@ this.basicDetails();
                 console.log(data);
             });
     }
-    public basicDetails() {
+    basicDetails() {
         const jsonObj = { 'userId': '47' };
         this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
             this.lookupDetails = data;
             console.log(this.lookupDetails);
+            this.saluationId = this.lookupDetails.salutationList;
+            this.userMappedOffices = this.lookupDetails.userMappedOffices;
             this.addressTypeList = this.lookupDetails.addressTypeList;
             this.relationshipList = this.lookupDetails.relationshipList;
             this.maritalStatusList = this.lookupDetails.maritalStatusList;
+            this.raceId = this.lookupDetails.raceList;
             this.phoneTypeList = this.lookupDetails.phoneTypeList;
             this.genderList = this.lookupDetails.genderList;
             console.log(this.genderList)
+            //this.genderId1 = this.lookupDetails.genderId
         });
     }
 
-
-    public selectChange(event, field) {
+    relation;
+    gender1;
+    planId;
+    selectChange(event, field) {
 
         if (field === 'genderId') {
             this.gender1 = event.id;
@@ -228,10 +182,14 @@ this.basicDetails();
             this.phone = event.label;
             console.log(this.phone)
         }
+        // if (field === 'payorPlan') {
+        // console.log(this.planId)
+        // }
     }
+    planname
     public getPayorCodes(event) {
-        console.log(event);
-        this.planname = event.planname;
+        console.log(event)
+        this.planname = event.planname
         this.planId = event.payorPlanId;
 
         // this.payorcode = event.payorcode;
@@ -240,8 +198,9 @@ this.basicDetails();
         this.payorPlanForm.get('plancode1').setValue(event.plancode)
 
     }
-    
-    public getzip(event) {
+    timeId;
+    stateId;
+    getzip(event) {
         const zip = this.payorPlanForm.get('zipcode').value;
         console.log(zip);
         if (zip.length === 5) {
@@ -259,7 +218,8 @@ this.basicDetails();
             });
         }
     }
-    public get1(event) {
+    genderName
+    get1(event) {
         if (event.target.checked) {
             this.checked = true;
 
@@ -292,71 +252,6 @@ this.basicDetails();
                 console.log(error);
             }
 
-<<<<<<< HEAD
-=======
-} else {
-this.checked = false;
-this.payorPlanForm.get('relationshipList').setValue('');
-this.payorPlanForm.get('addressTypeList').setValue('');
-this.payorPlanForm.get('phoneTypeList').setValue('');
-this.payorPlanForm.get('number').setValue('');
-this.payorPlanForm.get('zipcode').setValue('');
-this.payorPlanForm.get('lane').setValue('');
-this.payorPlanForm.get('lastName').setValue('');
-this.payorPlanForm.get('firstName').setValue('');
-this.payorPlanForm.get('city').setValue('');
-this.payorPlanForm.get('county').setValue('');
-this.payorPlanForm.get('state').setValue('');
-this.payorPlanForm.get('timeZone').setValue('');
-this.payorPlanForm.get('country').setValue('');
-this.payorPlanForm.get('dob').setValue('');
-this.payorPlanForm.get('genderId').setValue('');
-// this.relationAuto.clear();
-// this.relationAuto.close();
-// this.ocuupationAuto.clear();
-// this.ocuupationAuto.close();
-}
-}
-onSubmit() {
-console.log(this.payorPlanForm.value)
-console.log(this.payorPlanForm.valid)
-if (this.payorPlanForm.valid) {
-let params1={
-"psAdmissionId":this.AdmissionId,
-"payorPlanId":this.planId,
-"planname":this.planname,
-"payorcode":this.payorPlanForm.value.payorCode,
-"plancode":this.payorPlanForm.value.plancode1,
-"privateDuty":this.pvtDutyFlag,
-"policyNumber":this.payorPlanForm.value.policyNumber,
-"rank":+this.payorPlanForm.value.rank,
-"effectiveFrom":this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
-"effectiveTo":this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
-"psId":this.psId,
-"relationshipId":this.relation,
-"firstName":this.payorPlanForm.value.firstName,
-"lastName":this.payorPlanForm.value.lastName,
-"middleName":"",
-"gender":this.gender1,
-"dob":this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-"ssn":this.payorPlanForm.value.ssn,
-"addressId":0,
-"locationName":this.locationName1,
-"street":this.payorPlanForm.value.lane,
-"city":this.payorPlanForm.value.city,
-"countyId":this.countyId2,
-"timeZoneId":this.timeId,
-"stateId":this.stateId,
-"zipCode":+this.payorPlanForm.value.zipcode,
-"country":this.payorPlanForm.value.country,
-"phoneType1":this.phone,
-"phone1":this.payorPlanForm.value.number,
-"userId":this.userId
-}
-console.log(params1)
-try {
-this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
->>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
         } else {
             this.checked = false;
@@ -381,7 +276,7 @@ this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
             // this.ocuupationAuto.close();
         }
     }
-    public onSubmit() {
+    onSubmit() {
         console.log(this.payorPlanForm.value)
         console.log(this.payorPlanForm.valid)
         if (this.payorPlanForm.valid) {
@@ -415,12 +310,13 @@ this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
                 "country": this.payorPlanForm.value.country,
                 "phoneType1": this.phone,
                 "phone1": this.payorPlanForm.value.number,
-                "userId": 1164
-            };
-            console.log(params1);
+                "userId": this.userId
+            }
+            console.log(params1)
             try {
                 this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
-                    console.log(d);
+
+                    console.log(d)
                     this.savePayorRes = d
                     sessionStorage.setItem('savePayorRes', JSON.stringify(this.savePayorRes));
                     this.router.navigateByUrl('registration-re/child-authorization');
@@ -436,7 +332,7 @@ this.service.savePSAdmissionPayorPlan(JSON.stringify(params1)).subscribe(d => {
                 icon: 'error',
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
-            });
+            })
         }
 
 

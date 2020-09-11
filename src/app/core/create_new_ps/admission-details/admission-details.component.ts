@@ -197,22 +197,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
       }
       console.log(this.result)
-<<<<<<< HEAD
-    } 
-    // else if (event.target.checked === false && this.result.length !== 0) {
-    //   console.log(this.result)
-    //   this.result.forEach((ele, i) => {
-    //     if (this.diagnosisList[ind].id=== ele['id']) {
-    //       console.log(this.diagnosisList[ind].id, ele['id'])
-    //       this.result.splice(this.diagnosisList[ind],1)
-    //     }
-    //     console.log(this.diagnosisList[ind].id === ele['id'])
-    //     console.log(this.result,'after splice')
-    //   });
-   // }
-=======
     }
->>>>>>> f3fcb619b0dc30f4b346cd7f68c22bdd943a3c7c
 
   }
   // uncheck(event) {
