@@ -19,20 +19,21 @@ export class ZipcodeService {
   constructor(private http: HttpClient) { }
   public getLookupDetails(params): Observable<any> {
     this.getUrl()
-    return this.http.get(this.lookUpDetails + "/getLookupDetails?jsonObj=" + params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.lookUpDetails + "/getUserOfficeList?jsonObj=" + params).pipe(catchError(this.errorHandler));
   }
   public getZipcodeDetails(zipCode): Observable<any> {
     this.getUrl()
-    this.zip = { 'zipCode': zipCode }
+    this.zip = { 'zipCode': zipCode };
+    // return this.http.get('http://poc.aquilasoftware.com/pocextacc-webservices_9.2/telephony/getZipCodeDetails?jsonObj=' + JSON.stringify(this.zip)).pipe(catchError(this.errorHandler))
     return this.http.get(this.lookUpDetails + '/getZipCodeDetails?jsonObj=' + JSON.stringify(this.zip)).pipe(catchError(this.errorHandler));
   }
 
   public savePs(params): Observable<any> {
-    return this.http.post(this.lookUpDetails + '/savePSDetails' , params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/savePSDetails', params).pipe(catchError(this.errorHandler))
 
   }
   public saveGuarantor(params): Observable<any> {
-    return this.http.post(this.lookUpDetails + '/saveGuarantorDetails',params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/saveGuarantorDetails', params).pipe(catchError(this.errorHandler))
 
   }
 
@@ -73,33 +74,47 @@ export class ZipcodeService {
   public getPayorPlanList(params1): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.get(this.url+ '/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/dashboard/getPayorPlanList?jsonObj=' + params1).pipe(catchError(this.errorHandler));
   }
   public savePSAdmissionPayorPlan(params): Observable<any> {
     this.getUrl();
     // tslint:disable-next-line: max-line-length
-    return this.http.post(this.url+ '/dashboard/savePSAdmissionPayorPlan?jsonObj=' , params).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url + '/dashboard/savePSAdmissionPayorPlan?jsonObj=', params).pipe(catchError(this.errorHandler));
   }
 
-  public getLookupsData():Observable<any>{
+  public getLookupsData(): Observable<any> {
     this.getUrl();
-    return this.http.get(this.url+'/common/getLookupsData?lookupNames=case_manager,temp_authz_day_span,rate_type').pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=case_manager,temp_authz_day_span,rate_type').pipe(catchError(this.errorHandler));
   }
-  public getAuthBasicDetails(params):Observable<any>{
+  public getAuthBasicDetails(params): Observable<any> {
     this.getUrl();
-    return this.http.get(this.url+'/dashboard/getAuthBasicDetails?jsonObj='+params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/dashboard/getAuthBasicDetails?jsonObj=' + params).pipe(catchError(this.errorHandler));
   }
-  public savePSAuthorization(params):Observable<any>{
+  public savePSAuthorization(params): Observable<any> {
     this.getUrl();
-    return this.http.post(this.url+'/dashboard/savePSAuthorization',params).pipe(catchError(this.errorHandler));
+    return this.http.post(this.url + '/dashboard/savePSAuthorization', params).pipe(catchError(this.errorHandler));
   }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);
   }
 
-  public getLookupsData2():Observable<any>{
+  public getLookupsData2(): Observable<any> {
     this.getUrl();
-    return this.http.get(this.url+'/common/getLookupsData?lookupNames=referral_source').pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=referral_source').pipe(catchError(this.errorHandler));
+
+
+  }
+  public getLookupsData3(): Observable<any> {
+    this.getUrl();
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=gender,salutation,race,maritial_status,address_type,phone_type,language').pipe(catchError(this.errorHandler));
+
+
+  }
+  public getLookupsData4(): Observable<any> {
+    this.getUrl();
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=gender,salutation,race,maritial_status,address_type,phone_type,relationship,occupation').pipe(catchError(this.errorHandler));
+
+
   }
 }

@@ -19,16 +19,18 @@ export class BasicInfoComponent implements OnInit {
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number=0 ;
+  public officeList: any;
   public basicForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
   public addressTypeList: any;
   public maritalStatusList: any;
+  public LanguageList: any;
   public raceIdList: any;
   public phoneTypeList: any;
   public SaveResponse: any;
   public genderList: any;
-  public Keyword = 'label';
+  public Keyword = 'name';
   public locationName;
   public siteId: number;
   public zipDetails: any;
@@ -65,6 +67,7 @@ export class BasicInfoComponent implements OnInit {
   ngOnInit() {
 
     console.log("basic",this.userMappedOffices.length == 0);
+    this.getUserOfficeList();
     this.basicDetails();
   }
 
@@ -146,6 +149,7 @@ export class BasicInfoComponent implements OnInit {
               this.modelref.hide();
 
             } else {
+              console.log(JSON.stringify(jsonObj));
               sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
               this.router.navigateByUrl('registration-re/child-guarantor');
             }
@@ -161,7 +165,7 @@ export class BasicInfoComponent implements OnInit {
 
       swal.fire({
         title: 'Invalid Form',
-        text: 'Fill the all Required fields',
+        text: 'Fill all the Required fields',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -172,20 +176,29 @@ export class BasicInfoComponent implements OnInit {
 
   }
 
-  private basicDetails(): void {
+  public getUserOfficeList(): void {
     let jsonObj = { 'userId': this.userId };
 
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
-      this.lookupDetails = data;
-      console.log(this.lookupDetails);
-      this.saluationList = this.lookupDetails.salutationList;
-      this.userMappedOffices = this.lookupDetails.userMappedOffices;
-      this.addressTypeList = this.lookupDetails.addressTypeList;
-      this.maritalStatusList = this.lookupDetails.maritalStatusList;
-      this.raceIdList = this.lookupDetails.raceList;
-      this.phoneTypeList = this.lookupDetails.phoneTypeList;
-      this.genderList = this.lookupDetails.genderList;
+      this.officeList = data;
+       console.log(this.officeList);
+      this.userMappedOffices = this.officeList.userMappedOffices;
+     
     });
+  }
+  public basicDetails(){
+    this.service.getLookupsData3().subscribe(data=>{
+      this.lookupDetails=data;
+      console.log(this.lookupDetails)
+      this.LanguageList = this.lookupDetails.language;
+      this.saluationList = this.lookupDetails.salutation;
+      this.addressTypeList = this.lookupDetails.addressType;
+      this.maritalStatusList = this.lookupDetails.maritialStatus;
+      this.raceIdList = this.lookupDetails.race;
+      this.phoneTypeList = this.lookupDetails.phoneType;
+      this.genderList = this.lookupDetails.gender;
+    })
+
   }
 
   public selectChange(event, field, flag: boolean): void {
@@ -229,10 +242,12 @@ export class BasicInfoComponent implements OnInit {
 
   getzip(): void {
     const zip = this.basicForm.get('zipcode').value;
+    console.log(zip);
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
        if(Object.keys(data).length !== 0){
         this.zipDetails = data;
+        console.log(data)
         this.basicForm.get('city').setValue(this.zipDetails.city);
         this.basicForm.get('country').setValue(this.zipDetails.country);
         this.basicForm.get('county').setValue(this.zipDetails.county);
@@ -243,7 +258,7 @@ export class BasicInfoComponent implements OnInit {
        else{
         swal.fire({
           title: 'Invalid pincode',
-          text: 'Please enter valid pincode',
+          text: 'Invalid ZIP code. Please enter a valid ZIP code.',
           icon: 'warning',
           confirmButtonText: 'Ok',
           allowOutsideClick: false

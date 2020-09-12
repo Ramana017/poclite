@@ -56,7 +56,7 @@
                                         <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" (inputCleared)="selectChange('','genderId',false)" (selected)="selectChange($event,'genderId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
+                                            <a [innerHTML]="item.name"></a>
                                         </ng-template>
                                     </div>
 
@@ -76,7 +76,7 @@
                                         <ng-autocomplete #auto [data]="saluationList" (inputCleared)="selectChange('','saluationId',false)" (selected)="selectChange($event,'saluationId',true)" formControlName="saluation" [searchKeyword]="Keyword" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
+                                            <a [innerHTML]="item.name"></a>
                                         </ng-template>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                         <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword" formControlName="race" (inputCleared)="selectChange('','raceId',false)" (selected)="selectChange($event,'raceId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
+                                            <a [innerHTML]="item.name"></a>
                                         </ng-template>
                                     </div>
 
@@ -120,7 +120,7 @@
                                             [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
+                                            <a [innerHTML]="item.name"></a>
                                         </ng-template>
                                     </div>
 
@@ -193,7 +193,7 @@
                                 <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="location" (inputCleared)="selectChange('','addressTypeList',false)" (selected)="selectChange($event,'addressTypeList',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
                                 <ng-template style="width: 100%;" #itemTemplate let-item>
-                                    <a [innerHTML]="item.label"></a>
+                                    <a [innerHTML]="item.name"></a>
                                 </ng-template>
                             </div>
 
@@ -244,7 +244,7 @@
                                         [itemTemplate]="itemTemplate">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate let-item>
-                                        <a [innerHTML]="item.label"></a>
+                                        <a [innerHTML]="item.name"></a>
                                     </ng-template>
                                 </div>
                                 <div class="input-group ">

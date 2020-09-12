@@ -121,6 +121,7 @@ export class AdmissionDetailsComponent implements OnInit {
       res => {
         let data: any = res;
         this.referralSourceList = data.referralSource
+        console.log(res)
 
         console.log("ggggggggg", this.referralSourceList)
       }
