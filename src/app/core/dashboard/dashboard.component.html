@@ -128,25 +128,27 @@
                                         </div>
                                     </div>
                                     <div class="pager d-flex justify-content-between">
-                                        <button type="button" class="btn-create text-white mx-2"  [routerLink]='["/registration-re/child-basic"]'> <i
+                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userFlag" [routerLink]='["/registration-re/child-basic"]'> <i
                                                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
+                                        <div *ngIf="!userFlag" class="text-white mx-2">
+                                        </div>
 
                                         <div class="c">
                                             <span class="mr-2">Per page</span>
-                                        <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
+                                            <select (change)="pspagereset()" [(ngModel)]='psPerPage' class="border-0 mr-2">
                                             <option [ngValue]="5">5</option>
                                             <option [ngValue]="10">10</option>
                                             <option [ngValue]="15">15</option>
                                             <option [ngValue]="20">20</option>
 
                                         </select>
-                                        <span class="mr-2">showing {{pstotalRecordsCount !=0? psLowerBound:0}} to
+                                            <span class="mr-2">showing {{pstotalRecordsCount !=0? psLowerBound:0}} to
                                             {{psUpperBound>=pstotalRecordsCount?pstotalRecordsCount:psUpperBound}} of
                                             {{pstotalRecordsCount}}
                                         </span>
 
-                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
-                                        <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" psLowerBound==1?'psDisabled' :'' " [disabled]='psLowerBound==1' (click)="this.psPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" psUpperBound>=pstotalRecordsCount?'psDisabled' :'' " [disabled]="psUpperBound>=pstotalRecordsCount" (click)="this.psPageNext()">Next</button>
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +255,7 @@
                                             <div></div>
                                             <div class="nav">
                                                 <span class="mr-2">Per page</span>
-                                            <select [(ngModel)]="this.admissionPerPage" class="border-0 mr-2">
+                                                <select [(ngModel)]="this.admissionPerPage" class="border-0 mr-2">
                                                 <option [ngValue]="5">5</option>
                                                 <option [ngValue]="10">10</option>
                                                 <option [ngValue]="15">15</option>
@@ -261,16 +263,16 @@
 
 
                                             </select>
-                                            <span class="mr-2">showing
+                                                <span class="mr-2">showing
                                                 {{ admissiontotalRecordsCount!=0? admissionLowerBound:0}} to
                                                 {{admissionUpperBound>=admissiontotalRecordsCount?admissiontotalRecordsCount:admissionUpperBound}}
                                                 of {{admissiontotalRecordsCount}} </span>
 
 
-                                            <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' " [disabled]="admissionUpperBound>=admissiontotalRecordsCount" (click)="this.admissionPageNext()">Next</button>
+                                                <button type="button" class="btn-common-small mx-2" [ngClass]="admissionLowerBound==1?'psDisabled' :'' " [disabled]='admissionLowerBound==1' (click)="this.admissionPagePrev()">Prev</button>
+                                                <button type="button" class="btn-common-small mx-2" [ngClass]=" admissionUpperBound>=admissiontotalRecordsCount?'psDisabled' :'' " [disabled]="admissionUpperBound>=admissiontotalRecordsCount" (click)="this.admissionPageNext()">Next</button>
                                             </div>
-                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +281,7 @@
 
                         <div class="row m-0">
                             <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
-                                
+
 
 
                                 <div class="widget-block">
@@ -382,20 +384,20 @@
                                             </div>
                                             <div class="nav">
                                                 <span class="mr-2">Per page</span>
-                                            <select [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
+                                                <select [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
                                                 <option [ngValue]="5">5</option>
                                                 <option [ngValue]="10">10</option>
                                                 <option [ngValue]="15">15</option>
                                                 <option [ngValue]="20">20</option>
                                             </select>
-                                            <span class="mr-2">showing
+                                                <span class="mr-2">showing
                                                 {{authorizationtotalRecordsCount!=0 ? authorizationLowerBound:'0'}} to
                                                 {{authorizationUpperBound>=authorizationtotalRecordsCount?authorizationtotalRecordsCount:authorizationUpperBound}}
                                                 of {{authorizationtotalRecordsCount}} </span>
 
 
-                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
-                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' " [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount" (click)="this.authorizationPageNext()">Next</button>
+                                                <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' " [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
+                                                <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' " [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount" (click)="this.authorizationPageNext()">Next</button>
                                             </div>
 
                                         </div>
@@ -404,32 +406,32 @@
                             </div>
 
                             <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-                                
 
-<!-- ============ -->
-<div class="widget-block">
 
-    <div class="widget-header row align-items-center green-bg m-0">
-        <div class="col-md-4"></div>
-        <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
-        <div class="col-md-5 d-flex justify-content-end align-items-center">
-            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
-            </ng-autocomplete>
+                                <!-- ============ -->
+                                <div class="widget-block">
 
-            <ng-template style="width: 100%;" #itemTemplateDcs let-item>
-                <a [innerHTML]="item.dcsName"></a>
-            </ng-template>
+                                    <div class="widget-header row align-items-center green-bg m-0">
+                                        <div class="col-md-4"></div>
+                                        <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
+                                        <div class="col-md-5 d-flex justify-content-end align-items-center">
+                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
+                                            </ng-autocomplete>
 
-            <!-- <button
+                                            <ng-template style="width: 100%;" #itemTemplateDcs let-item>
+                                                <a [innerHTML]="item.dcsName"></a>
+                                            </ng-template>
+
+                                            <!-- <button
                 class="d-flex btn-common widget-header-button align-items-center mr-2">
                 <i class="fas fa-plus-circle mr-2 mt-0"></i>
                 <span>Create</span>
             </button> -->
-            <div class="ico">
-                <i class="fas fa-compress-alt min-1 px-2"></i>
-                <i class="fas fa-expand max-1 px-2"></i>
-            </div>
-            <!-- <select class="mt-1 text-right">
+                                            <div class="ico">
+                                                <i class="fas fa-compress-alt min-1 px-2"></i>
+                                                <i class="fas fa-expand max-1 px-2"></i>
+                                            </div>
+                                            <!-- <select class="mt-1 text-right">
         <option value="1">Widget Choice</option>
         <option value="2">Admissions</option>
         <option value="3">DCS</option>
@@ -437,25 +439,25 @@
         <option value="5">Visits</option>
         <option value="6">Cms</option>
         </select> -->
-        </div>
-    </div>
+                                        </div>
+                                    </div>
 
-    <div class="widget-inner p-2">
-        <div class="table-responsive">
-            <table class="table position-relative">
-                <thead class="thead-light no-wrap">
-                    <tr>
-                        <!-- <th class="align-middle">Info</th> -->
-                        <th class="align-middle"></th>
-                        <th class="align-middle">DCS Name</th>
-                        <th class="align-middle">Home Site</th>
-                        <th class="align-middle">Emp Code</th>
-                    </tr>
-                </thead>
-                <tbody>
+                                    <div class="widget-inner p-2">
+                                        <div class="table-responsive">
+                                            <table class="table position-relative">
+                                                <thead class="thead-light no-wrap">
+                                                    <tr>
+                                                        <!-- <th class="align-middle">Info</th> -->
+                                                        <th class="align-middle"></th>
+                                                        <th class="align-middle">DCS Name</th>
+                                                        <th class="align-middle">Home Site</th>
+                                                        <th class="align-middle">Emp Code</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                    <tr *ngFor='let dcs of dcsList; let i=index;'>
-                        <!-- <td class="position-relative edit-option">
+                                                    <tr *ngFor='let dcs of dcsList; let i=index;'>
+                                                        <!-- <td class="position-relative edit-option">
                             <ul class="m-0 p-0">
                                 <li class="">
                                     <div class="share-button">
@@ -486,26 +488,26 @@
                                 </li>
                             </ul>
                         </td> -->
-                        <td></td>
-                        <td>{{dcs.dcsName}}</td>
-                        <td>{{dcs.homeSite}}</td>
-                        <td>{{''}}</td>
-                        <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
-                    </tr>
+                                                        <td></td>
+                                                        <td>{{dcs.dcsName}}</td>
+                                                        <td>{{dcs.homeSite}}</td>
+                                                        <td>{{''}}</td>
+                                                        <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
+                                                    </tr>
 
-                </tbody>
-            </table>
-            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
+                                                </tbody>
+                                            </table>
+                                            <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
 
-        </div>
-    </div>
-    <div class="pager d-flex justify-content-between">
-        <div> 
-            <!-- <button></button> -->
-        </div>
-        <div class="nav">
-            <span class="mr-2">Per page</span>
-        <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
+                                        </div>
+                                    </div>
+                                    <div class="pager d-flex justify-content-between">
+                                        <div>
+                                            <!-- <button></button> -->
+                                        </div>
+                                        <div class="nav">
+                                            <span class="mr-2">Per page</span>
+                                            <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
             <option [ngValue]="5">5</option>
             <option [ngValue]="10">10</option>
             <option [ngValue]="15">15</option>
@@ -513,18 +515,18 @@
 
 
         </select>
-        <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
+                                            <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
             {{dcsUpperBound>=dcstotalRecordsCount?dcstotalRecordsCount:dcsUpperBound}}
             of
             {{dcstotalRecordsCount}} </span>
 
 
-        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
-        <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1' (click)="this.dcsPagePrev()">Prev</button>
+                                            <button type="button" class="btn-common-small mx-2" [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' " [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
 
-        </div>
-    </div>
-</div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>

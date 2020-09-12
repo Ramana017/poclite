@@ -143,7 +143,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   //method to change previous page
   public prevpage(): void {
-   
+
     if (this.lowerBound !== 1) {
 
       this.lowerBound = this.lowerBound - this.perPage;
@@ -159,7 +159,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
   }
   public pagereset(): void {
-    
+
     console.log(this.perPage);
     this.diagnosisList.length = 0;
     this.lowerBound = 1;
@@ -225,15 +225,15 @@ export class AdmissionDetailsComponent implements OnInit {
           if (ele.id === this.diagnosisList[ind].id) {
             console.log(ele.id === this.diagnosisList[ind].id, 'true')
             this.result.splice(i, 1);
-            ele.flag=false
+            ele.flag = false
             this.showCheckboxData();
           }
         });
       }
-     }
+    }
 
   }
-  showCheckboxData(){
+  showCheckboxData() {
     this.result.forEach(ele => {
       this.z.push(ele)
     });
@@ -251,7 +251,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   addFieldValue(template: TemplateRef<any>) {
     this.showCheckboxData();
-   // console.log('res', this.result, 'dia', this.diagnosisList)
+    // console.log('res', this.result, 'dia', this.diagnosisList)
     // this.result.forEach(ele => {
     //   this.z.push(ele)
     // });
@@ -275,10 +275,10 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   public deleteRow(index): void {
     this.result.forEach((ele, i) => {
-      
+
       if (index === i) {
         console.log(ele)
-      //  ele.flag=false
+        //  ele.flag=false
         this.result.splice(index, 1);
         console.log(this.result);
       }
