@@ -10,8 +10,10 @@
                             Site<span class="text-danger">*</span>
                         </label>
                         <div class="input-group ">
-                            <div class="procedurecode w-100 multiselect-angular " [class.invalid-input]="siteSelectedItems.length == 0 && formError">
-                                <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems" (onDeSelectAll)="siteListDeSelect()" [settings]="dropdownSettings">
+                            <div class="procedurecode w-100 multiselect-angular "
+                                [class.invalid-input]="siteSelectedItems.length == 0 && formError">
+                                <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems"
+                                    (onDeSelectAll)="siteListDeSelect()" [settings]="dropdownSettings">
                                 </angular2-multiselect>
                             </div>
 
@@ -21,39 +23,47 @@
                 <section class="d-flex  justify-content-between  basic-container">
                     <div>
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Basic Details</h4>
-                        <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+                        <form class="d-flex align-items-center nav justify-content-between border-2"
+                            [formGroup]="basicForm" (ngSubmit)="onSubmit()">
 
 
                             <div class=" basic-input-container">
-                                <label class="">
+                                <label class="text-capital">
                                     Last Name<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError" formControlName="lastName" class="form-control lastName">
+                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError"
+                                        formControlName="lastName" class="form-control lastName text-capital">
                                 </div>
                                 <div *ngIf="f.lastName.invalid && formError" class="errors">
                                 </div>
                             </div>
 
                             <div class=" basic-input-container">
-                                <label class="">
+                                <label class="text-capital">
                                     First Name<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.firstName.invalid && formError" formControlName="firstName" class="form-control firstName">
+                                    <input type="text" [class.is-invalid]="f.firstName.invalid && formError"
+                                        formControlName="firstName" class="form-control firstName text-capital">
 
                                 </div>
-                                <div *ngIf="f.firstName.invalid && f.firstName.touched && f.firstName.errors" class="errors">
+                                <div *ngIf="f.firstName.invalid && f.firstName.touched && f.firstName.errors"
+                                    class="errors">
 
                                 </div>
                             </div>
                             <div class=" m-0 basic-input-container ">
                                 <label class="">Gender<span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.gender.invalid && formError)||(f.genderId.invalid && formError)">
-                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" (inputCleared)="selectChange('','genderId',false)" (selected)="selectChange($event,'genderId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                        [class.invalid-input]="(f.gender.invalid && formError)||(f.genderId.invalid && formError)">
+                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword"
+                                            formControlName="gender" (inputCleared)="selectChange('','genderId',false)"
+                                            (selected)="selectChange($event,'genderId',true)"
+                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -72,8 +82,13 @@
                                     Salutation<span class="text-danger">*</span>
                                 </label>
                                 <div class="input-group ">
-                                    <div class="ng-autocomplete" style="width: 100%;" [class.is-invalid]="(f.saluation.invalid && formError)||(f.saluationId.invalid&&formError)">
-                                        <ng-autocomplete #auto [data]="saluationList" (inputCleared)="selectChange('','saluationId',false)" (selected)="selectChange($event,'saluationId',true)" formControlName="saluation" [searchKeyword]="Keyword" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                        [class.invalid-input]="(f.saluation.invalid && formError)||(f.saluationId.invalid&&formError)">
+                                        <ng-autocomplete #auto [data]="saluationList"
+                                            (inputCleared)="selectChange('','saluationId',false)"
+                                            (selected)="selectChange($event,'saluationId',true)"
+                                            formControlName="saluation" [searchKeyword]="Keyword"
+                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -81,27 +96,87 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class=" m-0 basic-input-container  pb-sm-0">
+                            <!-- <div class=" m-0 basic-input-container  pb-sm-0">
                                 <label class="">
                                     Date of Birth<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.dob.invalid && formError" placeholder="mm/dd/yyyy " formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
+                                    <input type="text" [class.is-invalid]="f.dob.invalid && formError"
+                                        placeholder="mm/dd/yyyy " formControlName="dob" class="form-control"
+                                        aria-label="Case Manager" bsDatepicker>
 
                                 </div>
                                 <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
                                 </div>
 
+                            </div> -->
+
+
+
+
+
+                            <div class="basic-input-container pb-sm-0 nav d-flex align-items-center justify-content-between">
+                                <div class="w-48">
+                                    <label class="">
+                                    Date of Birth<span class="text-danger">*</span>
+                                </label>
+                                   <div class="input-group  ">
+                                    <input type="text" [class.is-invalid]="f.dob.invalid && formError" placeholder="mm/dd/yyyy " formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
+
+                                </div>
+                                <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
+                                </div>
+                                </div>
+            
+                                <div class=" w-48 pb-sm-0">
+ <label class="">
+                                    Marital Status<span class="text-danger">*</span>
+                                </label>
+                                    <div class="input-group  ">
+                                      <div class="ng-autocomplete" style="width: 100%;"
+                                        [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
+                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
+                                            formControlName="maritalStatus"
+                                            (inputCleared)="selectChange('','maritalStatusList',false)"
+                                            (selected)="selectChange($event,'maritalStatusList',true)"
+                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                        </ng-autocomplete>
+                                        <ng-template style="width: 100%;" #itemTemplate let-item>
+                                            <a [innerHTML]="item.label"></a>
+                                        </ng-template>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                             <div class=" basic-input-container pb-sm-0">
                                 <label class="">
                                     Race<span class="text-danger">*</span>
                                 </label>
                                 <div class="input-group ">
-                                    <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.race.invalid && formError)||(f.raceId.invalid && formError)">
-                                        <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword" formControlName="race" (inputCleared)="selectChange('','raceId',false)" (selected)="selectChange($event,'raceId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                        [class.invalid-input]="(f.race.invalid && formError)||(f.raceId.invalid && formError)">
+                                        <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword"
+                                            formControlName="race" (inputCleared)="selectChange('','raceId',false)"
+                                            (selected)="selectChange($event,'raceId',true)"
+                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -110,31 +185,37 @@
 
                                 </div>
                             </div>
-                            <div class="basic-input-container pb-sm-0">
-                                <label class="">
-                                    Marital Status<span class="text-danger">*</span>
-                                </label>
-                                <div class="input-group ">
-                                    <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
-                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword" formControlName="maritalStatus" (inputCleared)="selectChange('','maritalStatusList',false)" (selected)="selectChange($event,'maritalStatusList',true)" [notFoundTemplate]="notFoundTemplate"
-                                            [itemTemplate]="itemTemplate">
-                                        </ng-autocomplete>
-                                        <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
-                                        </ng-template>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class=" m-0  basic-input-container pb-sm-0 pr-sm-0">
+                        
+                            <div class=" m-0  basic-input-container pb-sm-0 ">
                                 <label class="">
                                     SSN
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" formControlName='ssn' class="form-control" aria-label="Case Manager">
+                                    <input type="text" formControlName='ssn' class="form-control"
+                                        aria-label="Case Manager">
                                 </div>
 
+                            </div>
+                                <div class="basic-input-container pb-sm-0 pr-sm-0">
+                                <label class="">
+                                    Language<span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group ">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                        [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
+                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
+                                            formControlName="maritalStatus"
+                                            (inputCleared)="selectChange('','maritalStatusList',false)"
+                                            (selected)="selectChange($event,'maritalStatusList',true)"
+                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                        </ng-autocomplete>
+                                        <ng-template style="width: 100%;" #itemTemplate let-item>
+                                            <a [innerHTML]="item.label"></a>
+                                        </ng-template>
+                                    </div>
+
+                                </div>
                             </div>
                             <!-- <div class=" input-container-wrapper"></div>
               <div class=" input-container-wrapper"></div> -->
@@ -149,8 +230,12 @@
 
                             <!-- <textarea rows="2" class="textarea-wrapper form-control"></textarea> -->
                             <div class="textarea-wrapper ">
-                                <div (click)="psIdSelect(i)" class="form-check" *ngFor="let data of siteSelectedItems;let i=index">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios{{i}}" value="option1">
+                                <!-- <input class="form-check-input" type="radio" name="exampleRadios"
+                                 value="option1"> -->
+                                <div (click)="psIdSelect(i)" class="form-check"
+                                    *ngFor="let data of siteSelectedItems;let i=index">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios{{i}}" value="option1">
                                     <label class="form-check-label" for="exampleRadios{{i}}">
                                         {{data.siteName}}
                                     </label>
@@ -182,15 +267,20 @@
 
 
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
-                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm"
+                    (ngSubmit)="onSubmit()">
                     <div class="input-container-wrapper">
                         <label class="">
                             Location<span class="text-danger">*</span>
                         </label>
 
                         <div class="input-group ">
-                            <div class="ng-autocomplete" style="width: 100%;" [class.is-invalid]="(f.location.invalid && formError)||(f.addressTypeList.invalid && formError)">
-                                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword" formControlName="location" (inputCleared)="selectChange('','addressTypeList',false)" (selected)="selectChange($event,'addressTypeList',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                            <div class="ng-autocomplete" style="width: 100%;"
+                                [class.invalid-input]="(f.location.invalid && formError)||(f.addressTypeList.invalid && formError)">
+                                <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword"
+                                    formControlName="location" (inputCleared)="selectChange('','addressTypeList',false)"
+                                    (selected)="selectChange($event,'addressTypeList',true)"
+                                    [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
                                 <ng-template style="width: 100%;" #itemTemplate let-item>
                                     <a [innerHTML]="item.label"></a>
@@ -227,7 +317,8 @@
                         </label>
 
                         <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                            <input type="text" class="form-control " aria-label="date" formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete" type="text" class="form-control">
+                            <input type="text" class="form-control " aria-label="date" formControlName='zipcode'
+                                maxlength='5' (keyup)="getzip()" id="autocomplete" type="text" class="form-control">
 
 
                         </div>
@@ -239,16 +330,21 @@
 
                         <div class="input-group  ">
                             <div class="  date-input  d-flex align-items-center w-100">
-                                <div class="ng-autocomplete phone-select" [class.invalid-input]="(f.phonetype.invalid && formError)||(f.phoneTypeList.invalid && formError)">
-                                    <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword" (inputcleared)="selectChange('', 'phoneTypeList',false)" (selected)="selectChange($event, 'phoneTypeList',true)" formControlName="phonetype" placeHolder="Type" [notFoundTemplate]="notFoundTemplate"
-                                        [itemTemplate]="itemTemplate">
+                                <div class="ng-autocomplete phone-select"
+                                    [class.invalid-input]="(f.phonetype.invalid && formError)||(f.phoneTypeList.invalid && formError)">
+                                    <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
+                                        (inputcleared)="selectChange('', 'phoneTypeList',false)"
+                                        (selected)="selectChange($event, 'phoneTypeList',true)"
+                                        formControlName="phonetype" placeHolder="Type"
+                                        [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate let-item>
                                         <a [innerHTML]="item.label"></a>
                                     </ng-template>
                                 </div>
                                 <div class="input-group ">
-                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10' formControlName="number" class="form-control">
+                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10'
+                                        formControlName="number" class="form-control">
                                 </div>
                             </div>
 
@@ -261,7 +357,8 @@
                     <div class=" m-0  input-container-wrapper pb-sm-0 ">
                         <label class="">City<span class="text-danger">*</span> </label>
                         <div class="input-group">
-                            <input type="text" class="form-control" formControlName="city" aria-label="date" disabled=true>
+                            <input type="text" class="form-control" formControlName="city" aria-label="date"
+                                disabled=true>
 
                         </div>
                     </div>
@@ -270,7 +367,8 @@
                             State <span class="text-danger">*</span>
                         </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " aria-label="date" formControlName="state" disabled="true">
+                            <input type="text" class="form-control " aria-label="date" formControlName="state"
+                                disabled="true">
                         </div>
                     </div>
                     <div class=" input-container-wrapper pb-sm-0">
@@ -278,7 +376,8 @@
                             County<span class="text-danger">*</span>
                         </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " formControlName="county" aria-label="date" disabled="true">
+                            <input type="text" class="form-control " formControlName="county" aria-label="date"
+                                disabled="true">
                         </div>
                     </div>
                     <div class=" m-0  input-container-wrapper pb-sm-0">
@@ -287,7 +386,8 @@
                         </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="timeZone" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" formControlName="timeZone" aria-label="Case Manager"
+                                disabled="true">
                         </div>
 
                     </div>
@@ -297,13 +397,18 @@
                         </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="country" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" formControlName="country" aria-label="Case Manager"
+                                disabled="true">
                         </div>
 
                     </div>
                 </form>
-                <div class="next justify-content-end mt-3">
-                    <button type="button" class="next-step btn-next" (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
+                <div class="next justify-content-between nav mt-3">
+                         <div class="previous">
+                    <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                </div>
+                    <button type="button" class="next-step btn-next"
+                        (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
 
                 </div>
 

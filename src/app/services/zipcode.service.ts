@@ -19,7 +19,7 @@ export class ZipcodeService {
   constructor(private http: HttpClient) { }
   public getLookupDetails(params): Observable<any> {
     this.getUrl()
-    return this.http.get(this.lookUpDetails + "/getLookupDetails?jsonObj=" + params).pipe(catchError(this.errorHandler));
+    return this.http.get(this.lookUpDetails + "/getUserOfficeList?jsonObj=" + params).pipe(catchError(this.errorHandler));
   }
   public getZipcodeDetails(zipCode): Observable<any> {
     this.getUrl()
