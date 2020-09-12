@@ -136,22 +136,22 @@
                         </div>
 
                         <div class=" input-container-wrapper">
-                            <label class="">
+                            <label class="text-capital">
   Last Name<span class="text-danger">*</span>
   </label>
 
                             <div class="input-group ">
-                                <input type="text" formControlName="lastName" class="form-control" [class.is-invalid]="f.lastName.invalid && formError" value="{{checked ? psdata.lastname:''}}" aria-label="Auth">
+                                <input type="text" formControlName="lastName" class="form-control text-capital" [class.is-invalid]="f.lastName.invalid && formError" value="{{checked ? psdata.lastname:''}}" aria-label="Auth">
                             </div>
 
                         </div>
                         <div class=" input-container-wrapper">
-                            <label class="">
+                            <label class="text-capital">
   First Name<span class="text-danger">*</span>
   </label>
 
                             <div class="input-group ">
-                                <input type="text" class="form-control" aria-label="Last Name" formControlName="firstName" [class.is-invalid]="f.firstName.invalid && formError" value="{{checked ? psdata.firstname:''}}">
+                                <input type="text" class="form-control text-capital" aria-label="Last Name" formControlName="firstName" [class.is-invalid]="f.firstName.invalid && formError" value="{{checked ? psdata.firstname:''}}">
 
                             </div>
                         </div>
@@ -344,10 +344,12 @@
   <button type="button" class="btn-info btn-next">Save</button>
   </div>
   </div> -->
-            <div class="d-flex align-items-center justify-content-end mt-3">
+            <div class="d-flex align-items-center justify-content-between mt-3">
                 <!-- <div class="previous">
   <button type="button" class="btn-info btn-next prev-step">Previous</button>
   </div> -->
+  <div class="previous">
+    <button type="button" class="btn-info  btn-next prev-step">Cancel</button></div>
                 <div class="next">
                     <button type="button" class="btn-info btn-next next-step" (click)="onSubmit()">Save & Next</button>
                 </div>

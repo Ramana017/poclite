@@ -131,8 +131,12 @@
                         <input type="text" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag'>
                         <label class="customcheck  w-auto">
               <input type="checkbox" (click)="toggleCheck($event)">
-              <span class="checkmark"></span>
+              <span class="checkmark" title="No Limit"></span>
             </label>
+            <!-- <button [tooltip]="gps" containerClass="customClass" tooltipPlacement="right" *ngIf="this.data.ArrGpsException==1||this.data.DepGpsException==1 " [ngClass]="displayArray[0]?'active':''" type="button" class="btn" (click)="SelectorDisplay(0)">
+                <i class="fas fa-map-marker-alt"></i>
+                  
+            </button> -->
                     </div>
 
                 </div>
@@ -492,10 +496,12 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-end mt-3">
+            <div class="d-flex align-items-center justify-content-between mt-3">
                 <!-- <div class="previous">
                     <button type="button" class="btn-info  btn-next prev-step">Previous</button>
                 </div> -->
+                <div class="previous">
+                    <button type="button" class="btn-info  btn-next prev-step">Cancel</button></div>
                 <div class="next">
                     <button type="button" class="btn-info  btn-next" (click)="savePSAuthorization()">Save</button>
                 </div>
