@@ -163,7 +163,7 @@
                                         <div class="col-md-4"></div>
                                         <h5 class="text-white m-0 text-center col-md-3">Admissions</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [(ngModel)]="AdmissonAutoFill" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -289,7 +289,8 @@
                                         <div class="col-md-4"></div>
                                         <h5 class="text-white m-0 text-center col-md-3">Authorizations</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
+                                            <ng-autocomplete class="w-150" [data]="psList" [(ngModel)]="AuthorizationsFill" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)'
+                                                [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #AuthorizationByPsId let-item>

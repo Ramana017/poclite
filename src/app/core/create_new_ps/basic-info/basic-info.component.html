@@ -53,7 +53,8 @@
                                 <label class="">Gender<span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.gender.invalid && formError)||(f.genderId.invalid && formError)">
-                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" (inputCleared)="selectChange('','genderId',false)" (selected)="selectChange($event,'genderId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                        <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword" formControlName="gender" notFoundText=" Gender Not found" (inputCleared)="selectChange('','genderId',false)" notF (selected)="selectChange($event,'genderId',true)" [notFoundTemplate]="notFoundTemplate"
+                                            [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.label"></a>
@@ -248,7 +249,7 @@
                                     </ng-template>
                                 </div>
                                 <div class="input-group ">
-                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10' formControlName="number" class="form-control">
+                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10' nformControlName='number' class="form-control">
                                 </div>
                             </div>
 
@@ -261,7 +262,7 @@
                     <div class=" m-0  input-container-wrapper pb-sm-0 ">
                         <label class="">City<span class="text-danger">*</span> </label>
                         <div class="input-group">
-                            <input type="text" class="form-control" formControlName="city" aria-label="date" disabled=true>
+                            <input type="text" class="form-control" [class.is-invalid]="f.city.invalid && formError" formControlName="city" aria-label="date" disabled=true>
 
                         </div>
                     </div>
@@ -270,7 +271,7 @@
                             State <span class="text-danger">*</span>
                         </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " aria-label="date" formControlName="state" disabled="true">
+                            <input type="text" class="form-control " [class.is-invalid]="f.state.invalid && formError" aria-label="date" formControlName="state" disabled="true">
                         </div>
                     </div>
                     <div class=" input-container-wrapper pb-sm-0">
@@ -278,7 +279,7 @@
                             County<span class="text-danger">*</span>
                         </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " formControlName="county" aria-label="date" disabled="true">
+                            <input type="text" class="form-control " [class.is-invalid]="f.county.invalid && formError" formControlName="county" aria-label="date" disabled="true">
                         </div>
                     </div>
                     <div class=" m-0  input-container-wrapper pb-sm-0">
@@ -287,7 +288,7 @@
                         </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="timeZone" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" [class.is-invalid]="f.timeZone.invalid && formError" formControlName="timeZone" aria-label="Case Manager" disabled="true">
                         </div>
 
                     </div>
@@ -297,7 +298,7 @@
                         </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="country" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" [class.is-invalid]="f.country.invalid && formError" formControlName="country" aria-label="Case Manager" disabled="true">
                         </div>
 
                     </div>

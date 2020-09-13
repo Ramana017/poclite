@@ -16,12 +16,19 @@ export class DashboardComponent implements OnInit {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId;
     (data.priviledFlag=="ceat")||(data.priviledFlag=="all")?this.userFlag=true:this.userFlag=false;
+    let useraccount=sessionStorage.getItem('useraccount');
+    sessionStorage.clear();
+    sessionStorage.setItem('useraccount',useraccount)
 
   }
   @ViewChild('autops') autops;
   @ViewChild('autodcs') autodcs;
   @ViewChild('autoauth') autoauth;
   @ViewChild('autoadm') autoadm;
+
+
+  public AdmissonAutoFill:string;
+  public AuthorizationsFill:string;
 
 
 
@@ -82,6 +89,8 @@ export class DashboardComponent implements OnInit {
   selectAdmissionListByDcsId(e, flag) {
     flag ? this.admissionId = e.PSId : this.admissionId = 0;
     flag ? '' : this.autoadm.close();
+    flag ? this.AdmissonAutoFill=e.PSName :"";
+
     this.getAdmissionsList();
   }
 
@@ -114,6 +123,7 @@ export class DashboardComponent implements OnInit {
   selectAuthorizationByPsId(e, flag) {
     flag ? this.authorizationId = e.PSId : this.authorizationId = 0;
     flag ? "" : this.autoauth.close();
+    flag ?this.AuthorizationsFill=e.PSName:"";
     this.getAuthorizationList();
 
   }

@@ -17,7 +17,7 @@ import swal from 'sweetalert2';
 export class BasicInfoComponent implements OnInit {
   @Input() popup: boolean;
   modelref: BsModalRef;
-  public psId: number=0 ;
+  public psId: number = 0;
   public basicForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
@@ -46,6 +46,7 @@ export class BasicInfoComponent implements OnInit {
     showCheckbox: true
 
   };
+  public phoneNUmber;
   public formError: boolean = false;
   private userId: number;
   // tslint:disable-next-line: max-line-length
@@ -63,16 +64,16 @@ export class BasicInfoComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("basic",this.userMappedOffices.length == 0);
+    console.log("basic", this.userMappedOffices.length == 0);
     this.basicDetails();
   }
 
   private newForm(): void {
     this.basicForm = this.fb.group({
-      location: ['',Validators.required],
-      phonetype: ['',Validators.required],
-      maritalStatus: ['',Validators.required],
-      race: ['',Validators.required],
+      location: ['', Validators.required],
+      phonetype: ['', Validators.required],
+      maritalStatus: ['', Validators.required],
+      race: ['', Validators.required],
       gender: ['', Validators.required],
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
@@ -82,8 +83,8 @@ export class BasicInfoComponent implements OnInit {
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
-      addressLine2:[''],
-      number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      addressLine2: [''],
+      number: ['', [Validators.required]], //Validators.pattern(/^\d{10}$/)
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -131,8 +132,8 @@ export class BasicInfoComponent implements OnInit {
         "updatedUserId": this.userId,
         "psId": this.psId,
         "mappedOfficeIds": mappedArray.toString(),
-        "addressLine2":this.basicForm.value.addressLine2,
-        "ssn":this.basicForm.value.ssn
+        "addressLine2": this.basicForm.value.addressLine2,
+        "ssn": this.basicForm.value.ssn
       };
       console.log(JSON.stringify(jsonObj));
       let parameters = JSON.stringify(jsonObj)
@@ -158,6 +159,11 @@ export class BasicInfoComponent implements OnInit {
 
     } else {
       // alert('Fill the required fields');
+      if (this.basicForm.get('genderId').value == "") {
+        console.log("ramanaa")
+      }
+
+      console.log("++++++++++", this.basicForm.get('gender').value.type)
 
       swal.fire({
         title: 'Invalid Form',
@@ -191,11 +197,11 @@ export class BasicInfoComponent implements OnInit {
   public selectChange(event, field, flag: boolean): void {
 
     if (field === 'genderId') {
-      if(flag){
+      if (flag) {
         this.basicForm.get('genderId').setValue(event.id);
-      event.label=="MALE" ?this.basicForm.get('saluationId').setValue(403):this.basicForm.get('saluationId').setValue(405);
-      event.label=="MALE" ? this.basicForm.get('saluation').setValue("MR"):this.basicForm.get('saluation').setValue("MS");
-      }else{
+        event.label == "MALE" ? this.basicForm.get('saluationId').setValue(403) : this.basicForm.get('saluationId').setValue(405);
+        event.label == "MALE" ? this.basicForm.get('saluation').setValue("MR") : this.basicForm.get('saluation').setValue("MS");
+      } else {
         this.basicForm.get('genderId').setValue('');
       }
     }
@@ -205,24 +211,24 @@ export class BasicInfoComponent implements OnInit {
       console.log(this.siteId);
     }
     if (field === 'raceId') {
-     flag? this.basicForm.get('raceId').setValue(event.id): this.basicForm.get('raceId').setValue('');;
+      flag ? this.basicForm.get('raceId').setValue(event.id) : this.basicForm.get('raceId').setValue('');;
     }
     if (field === 'maritalStatusList') {
-     flag? this.basicForm.get('maritalStatusList').setValue(event.id): this.basicForm.get('maritalStatusList').setValue('');
+      flag ? this.basicForm.get('maritalStatusList').setValue(event.id) : this.basicForm.get('maritalStatusList').setValue('');
     }
     if (field === 'saluationId') {
-    flag ?  this.basicForm.get('saluationId').setValue(event.id):this.basicForm.get('saluationId').setValue('');
+      flag ? this.basicForm.get('saluationId').setValue(event.id) : this.basicForm.get('saluationId').setValue('');
     }
     if (field === 'addressTypeList') {
-     flag ? this.basicForm.get('addressTypeList').setValue(event.id):this.basicForm.get('addressTypeList').setValue('');
+      flag ? this.basicForm.get('addressTypeList').setValue(event.id) : this.basicForm.get('addressTypeList').setValue('');
       this.locationName = event.label;
 
     }
     if (field === 'phoneTypeList') {
-      flag ? this.basicForm.get('phoneTypeList').setValue(event.id):this.basicForm.get('phoneTypeList').setValue('');
+      flag ? this.basicForm.get('phoneTypeList').setValue(event.id) : this.basicForm.get('phoneTypeList').setValue('');
     }
     if (field === 'state') {
-     flag ? this.basicForm.get('phoneTypeList').setValue(event.id):this.basicForm.get('phoneTypeList').setValue('');
+      flag ? this.basicForm.get('phoneTypeList').setValue(event.id) : this.basicForm.get('phoneTypeList').setValue('');
     }
 
   }
@@ -231,29 +237,30 @@ export class BasicInfoComponent implements OnInit {
     const zip = this.basicForm.get('zipcode').value;
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
-       if(Object.keys(data).length !== 0){
-        this.zipDetails = data;
-        this.basicForm.get('city').setValue(this.zipDetails.city);
-        this.basicForm.get('country').setValue(this.zipDetails.country);
-        this.basicForm.get('county').setValue(this.zipDetails.county);
-        this.basicForm.get('timeZone').setValue(this.zipDetails.timeZone);
-        this.basicForm.get('state').setValue(this.zipDetails.state);
-       }
+        if (Object.keys(data).length !== 0) {
+          this.zipDetails = data;
+          this.basicForm.get('city').setValue(this.zipDetails.city);
+          this.basicForm.get('country').setValue(this.zipDetails.country);
+          this.basicForm.get('county').setValue(this.zipDetails.county);
+          this.basicForm.get('timeZone').setValue(this.zipDetails.timeZone);
+          this.basicForm.get('state').setValue(this.zipDetails.state);
+        }
 
-       else{
-        swal.fire({
-          title: 'Invalid pincode',
-          text: 'Please enter valid pincode',
-          icon: 'warning',
-          confirmButtonText: 'Ok',
-          allowOutsideClick: false
-        })
-        this.basicForm.get('zipcode').setValue('');
-       }
+        else {
+          swal.fire({
+            title: 'Invalid pincode',
+            text: 'Please enter valid pincode',
+            icon: 'warning',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+          this.basicForm.get('zipcode').setValue('');
+        }
 
       });
     }
   }
+  // to update Functionality
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     this.psId = this.previousPsDetails.psId;
@@ -300,6 +307,29 @@ export class BasicInfoComponent implements OnInit {
     this.basicForm.get('site').setValue('');
     this.siteId = null;
     this.basicForm.get('siteName').setValue('');
+  }
+
+  public PhoneNumFormat(event) {
+    console.log("++++++++++", event.target.value)
+    var input2 = event.target.value;
+    var input = input2.replaceAll("[^\\d.]", "");
+    if (input != undefined) {
+      let trimmed = input.replace(/\s+/g, '');
+      console.log(input)
+      if (trimmed.length > 12) {
+        trimmed = trimmed.substr(0, 12);
+      }
+      trimmed = trimmed.replace(/-/g, '');
+      let numbers = [];
+      numbers.push(trimmed.substr(0, 3));
+      if (trimmed.substr(3, 2) !== "")
+        numbers.push(trimmed.substr(3, 3));
+      if (trimmed.substr(5, 4) != "" && trimmed.length >= 7)
+        numbers.push(trimmed.substr(6, 4));
+
+      this.phoneNUmber = numbers.join('-');
+      this.basicForm.get('number').setValue(numbers.join('-'));
+    }
   }
 
 }
