@@ -128,7 +128,7 @@
                                         [itemTemplate]="itemTemplate1">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate1 let-item>
-                                        <a [innerHTML]="item.label"></a>
+                                        <a [innerHTML]="item.name"></a>
                                     </ng-template>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                                         [itemTemplate]="itemTemplate20">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate20 let-item>
-                                        <a [innerHTML]="item.label"></a>
+                                        <a [innerHTML]="item.name"></a>
                                     </ng-template>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                     (selected)="selectChange($event,'addressTypeId')" [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
                                 <ng-template style="width: 100%;" #itemTemplate let-item>
-                                    <a [innerHTML]="item.label"></a>
+                                    <a [innerHTML]="item.name"></a>
                                 </ng-template>
                             </div>
                         </div>
@@ -272,7 +272,7 @@
                                         placeHolder="Type" [itemTemplate]="itemTemplate">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplate let-item>
-                                        <a [innerHTML]="item.label"></a>
+                                        <a [innerHTML]="item.name"></a>
                                     </ng-template>
                                 </div>
                                 <div class="input-group ">
@@ -348,8 +348,8 @@
                 <!-- <div class="previous">
   <button type="button" class="btn-info btn-next prev-step">Previous</button>
   </div> -->
-  <div class="previous">
-    <button type="button" class="btn-info  btn-next prev-step">Cancel</button></div>
+                <div class="previous">
+                    <button type="button" class="btn-info  btn-next prev-step">Cancel</button></div>
                 <div class="next">
                     <button type="button" class="btn-info btn-next next-step" (click)="onSubmit()">Save & Next</button>
                 </div>

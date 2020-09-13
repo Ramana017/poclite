@@ -23,9 +23,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword"
-                                [class.invalid-input]="(f.coordinatorId.invalid && formError)||(f.coordinatorId.invalid && formError)"
-                                formControlName="coordinatorId" [itemTemplate]="itemTemplate">
+                            <ng-autocomplete [data]="coordinatorList" [searchKeyword]="Keyword" [class.invalid-input]="(f.coordinatorId.invalid && formError)||(f.coordinatorId.invalid && formError)" formControlName="coordinatorId" [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate let-item>
                                 <a [innerHTML]="item.userName"></a>
@@ -49,9 +47,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError"
-                                (click)="check($event,i,'frstDate')" placeholder="mm/dd/yyyy " class="form-control"
-                                aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
+                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError" (bsValueChange)="admissionDateChange()" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -79,9 +75,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                [class.is-invalid]="f.firstVisitDate.invalid && formError"
-                                formControlName="firstVisitDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" [class.is-invalid]="f.firstVisitDate.invalid && formError" formControlName="firstVisitDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -91,9 +85,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager"
-                                [class.is-invalid]="f.referredDate.invalid && formError" formControlName="referredDate"
-                                bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" aria-label="Case Manager" [class.is-invalid]="f.referredDate.invalid && formError" formControlName="referredDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -105,10 +97,7 @@
                         <div class="input-group ">
 
                             <!-- <input type="text" placeholder="" value="{{clientType}}" class="form-control"> -->
-                            <ng-autocomplete [data]="referralSourceList"
-                                [class.invalid-input]="(f.referralSource.invalid && formError)||(f.referralSource.invalid && formError)"
-                                [searchKeyword]="Keyword2" formControlName="referralSource"
-                                [itemTemplate]="itemTemplate2">
+                            <ng-autocomplete [data]="referralSourceList" [class.invalid-input]="(f.referralSource.invalid && formError)||(f.referralSource.invalid && formError)" [searchKeyword]="Keyword2" formControlName="referralSource" [itemTemplate]="itemTemplate2">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate2 let-item>
                                 <a [innerHTML]="item.name"></a>
@@ -214,8 +203,7 @@
 <ng-template #template>
     <div class="modal-header py-0 registration-modal-header ">
         <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()"
-            data-dismiss="modal">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -230,8 +218,7 @@
                                     Diagnosis Code
                                 </label>
                                 <div class="input-group ">
-                                    <input type="search" [(ngModel)]="diagnosisCode" (search)="searchCLick()"
-                                        class="form-control search-input">
+                                    <input type="search" [(ngModel)]="diagnosisCode" (search)="searchCLick()" class="form-control search-input">
                                     <span class="right-icon" (click)="searchCLick()"><i
                                             class="fas fa-search"></i></span>
                                     <!-- <span class="right-icon"><i class="fas fa-times"></i></span>-->
@@ -247,8 +234,7 @@
                                     Diagnosis Name
                                 </label>
                                 <div class="input-group ">
-                                    <input type="search" [(ngModel)]="diagnosisName" (search)="searchCLick()"
-                                        class="form-control search-input">
+                                    <input type="search" [(ngModel)]="diagnosisName" (search)="searchCLick()" class="form-control search-input">
                                     <span class="right-icon" (click)="searchCLick()"><i
                                             class="fas fa-search"></i></span>
                                     <!-- <input type="text" class="form-control search-input"><span class="right-icon"><i
@@ -289,8 +275,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between pagination nav  mt-2">
-                            <button type="button " (click)="reset()"
-                            class="pagination-btn btn next-btn primary-button add">Add</button>
+                            <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button add">Add</button>
                             <!-- <div class="col-4 p-0">
                                 <button type="button " (click)="reset()"
                                     class="pagination-btn btn next-btn primary-button">Reset</button>
@@ -305,24 +290,18 @@
 
                                 <div>
                                     <span class="footer-text">Per Page</span>
-                                    <select [(ngModel)]="perPage" (change)="pagereset()"
-                                        class="pagination-select border-0">
+                                    <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
                                         <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
                                             {{page}}
                                         </option>`
                                     </select>
                                     <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to
-                                        <span>
+                                    <span>
                                             {{upperBound>maxCount?maxCount:upperBound}} </span> of
-                                        <span>{{maxCount}}</span></span>
-                                    <button type="button " class="pagination-btn ml-0"
-                                        [disabled]="lowerBound<perPage||diagnosisList.length==0 "
-                                        [ngClass]="lowerBound<=1 ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' "
-                                        id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
-                                    <button type="button " class="pagination-btn ml-0"
-                                        [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
-                                        [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
-                                        id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+                                    <span>{{maxCount}}</span></span>
+                                    <button type="button " class="pagination-btn ml-0" [disabled]="lowerBound<perPage||diagnosisList.length==0 " [ngClass]="lowerBound<=1 ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' " id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                                    <button type="button " class="pagination-btn ml-0" [disabled]="upperBound>= maxCount ||diagnosisList.length==0 " [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'" id="next-btn" (click)="pagenext()"
+                                        class="pagination-btn">Next</button>
 
                                 </div>
 

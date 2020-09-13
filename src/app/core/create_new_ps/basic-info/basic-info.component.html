@@ -7,8 +7,8 @@
                 <div class="d-flex align-items-center  site-form">
                     <div class="site-container d-flex align-items-center">
                         <label class="site-label color-black">
-                            Site<span class="text-danger">*</span>
-                        </label>
+              Site<span class="text-danger">*</span>
+            </label>
                         <div class="input-group ">
                             <div class="procedurecode w-100 multiselect-angular " [class.invalid-input]="siteSelectedItems.length == 0 && formError">
                                 <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems" (onDeSelectAll)="siteListDeSelect()" [settings]="dropdownSettings">
@@ -26,8 +26,8 @@
 
                             <div class=" basic-input-container">
                                 <label class="text-capital">
-                                    Last Name<span class="text-danger">*</span>
-                                </label>
+                  Last Name<span class="text-danger">*</span>
+                </label>
 
                                 <div class="input-group  ">
                                     <input type="text" [class.is-invalid]="f.lastName.invalid && formError" formControlName="lastName" class="form-control lastName text-capital">
@@ -38,8 +38,8 @@
 
                             <div class=" basic-input-container">
                                 <label class="text-capital">
-                                    First Name<span class="text-danger">*</span>
-                                </label>
+                  First Name<span class="text-danger">*</span>
+                </label>
 
                                 <div class="input-group  ">
                                     <input type="text" [class.is-invalid]="f.firstName.invalid && formError" formControlName="firstName" class="form-control firstName text-capital">
@@ -69,8 +69,8 @@
                             </div>
                             <div class="basic-input-container pr-sm-0">
                                 <label class="">
-                                    Salutation<span class="text-danger">*</span>
-                                </label>
+                  Salutation<span class="text-danger">*</span>
+                </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.saluation.invalid && formError)||(f.saluationId.invalid&&formError)">
                                         <ng-autocomplete #auto [data]="saluationList" (inputCleared)="selectChange('','saluationId',false)" (selected)="selectChange($event,'saluationId',true)" formControlName="saluation" [searchKeyword]="Keyword" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
@@ -102,22 +102,10 @@
 
 
                             <div class="basic-input-container pb-sm-0 nav d-flex align-items-center justify-content-between">
-                                <div class="w-48">
-                                    <label class="">
-                                    Date of Birth<span class="text-danger">*</span>
-                                </label>
-                                    <div class="input-group  ">
-                                        <input type="text" [class.is-invalid]="f.dob.invalid && formError" placeholder="mm/dd/yyyy " formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
-
-                                    </div>
-                                    <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
-                                    </div>
-                                </div>
-
                                 <div class=" w-48 pb-sm-0">
                                     <label class="">
-                                    Marital Status<span class="text-danger">*</span>
-                                </label>
+                    Marital Status<span class="text-danger">*</span>
+                  </label>
                                     <div class="input-group  ">
                                         <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
                                             <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword" formControlName="maritalStatus" (inputCleared)="selectChange('','maritalStatusList',false)" (selected)="selectChange($event,'maritalStatusList',true)" [notFoundTemplate]="notFoundTemplate"
@@ -129,28 +117,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="w-48">
+                                    <label class="">
+                    Date of Birth<span class="text-danger">*</span>
+                  </label>
+                                    <div class="input-group  ">
+                                        <input type="text" [class.is-invalid]="f.dob.invalid && formError" placeholder="mm/dd/yyyy " [maxDate]="currentDate" formControlName="dob" class="form-control" aria-label="Case Manager" bsDatepicker>
+
+                                    </div>
+                                    <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
+                                    </div>
+                                </div>
+
+
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class=" basic-input-container pb-sm-0">
                                 <label class="">
-                                    Race<span class="text-danger">*</span>
-                                </label>
+                  Race<span class="text-danger">*</span>
+                </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.race.invalid && formError)||(f.raceId.invalid && formError)">
                                         <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword" formControlName="race" (inputCleared)="selectChange('','raceId',false)" (selected)="selectChange($event,'raceId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
@@ -165,18 +149,18 @@
 
                             <div class=" m-0  basic-input-container pb-sm-0 ">
                                 <label class="">
-                                    SSN
-                                </label>
+                  SSN
+                </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" formControlName='ssn' class="form-control" aria-label="Case Manager">
+                                    <input type="text" formControlName='ssn' [class.invalid-input]="(f.ssn.invalid && formError)" maxlength=9 class="form-control" aria-label="Case Manager">
                                 </div>
 
                             </div>
                             <div class="basic-input-container pb-sm-0 pr-sm-0">
                                 <label class="">
-                                    Language<span class="text-danger">*</span>
-                                </label>
+                  Language<span class="text-danger">*</span>
+                </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.language.invalid && formError)||(f.languageId.invalid && formError)">
                                         <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword" formControlName="language" (inputCleared)="selectChange('','languageId',false)" (selected)="selectChange($event,'languageId',true)" [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
@@ -206,8 +190,8 @@
                                 <div (click)="psIdSelect(i)" class="form-check" *ngFor="let data of siteSelectedItems;let i=index">
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios{{i}}" value="option1">
                                     <label class="form-check-label" for="exampleRadios{{i}}">
-                                        {{data.siteName}}
-                                    </label>
+                    {{data.siteName}}
+                  </label>
                                 </div>
                                 <!-- <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
@@ -236,11 +220,11 @@
 
 
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
-                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm">
                     <div class="input-container-wrapper">
                         <label class="">
-                            Location<span class="text-danger">*</span>
-                        </label>
+              Location<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group ">
                             <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.location.invalid && formError)||(f.addressTypeList.invalid && formError)">
@@ -257,8 +241,8 @@
 
                     <div class=" input-container-wrapper">
                         <label class="">
-                            Address Line #1<span class="text-danger">*</span>
-                        </label>
+              Address Line #1<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group  " [class.invalid-input]="(f.lane.invalid && formError)">
                             <input type="text" formControlName="lane" class="form-control">
@@ -267,8 +251,8 @@
                     </div>
                     <div class=" input-container-wrapper">
                         <label class="">
-                            Address Line #2
-                        </label>
+              Address Line #2
+            </label>
 
                         <div class="input-group  ">
                             <input type="text" formControlName="addressLine2" class="form-control">
@@ -277,8 +261,8 @@
                     </div>
                     <div class=" input-container-wrapper">
                         <label class="">
-                            Zip Code<span class="text-danger">*</span>
-                        </label>
+              Zip Code<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
                             <input type="text" class="form-control " aria-label="date" formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete" type="text" class="form-control">
@@ -288,8 +272,8 @@
                     </div>
                     <div class=" m-0  input-container-wrapper phone-container">
                         <label class="">
-                            Phone<span class="text-danger">*</span>
-                        </label>
+              Phone<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group  ">
                             <div class="  date-input  d-flex align-items-center w-100">
@@ -315,43 +299,43 @@
                     <div class=" m-0  input-container-wrapper pb-sm-0 ">
                         <label class="">City<span class="text-danger">*</span> </label>
                         <div class="input-group">
-                            <input type="text" class="form-control" formControlName="city" aria-label="date" disabled=true>
+                            <input type="text" class="form-control" [class.is-invalid]="f.city.invalid && formError" formControlName="city" aria-label="date" disabled=true>
 
                         </div>
                     </div>
                     <div class=" input-container-wrapper pb-sm-0">
                         <label class="">
-                            State <span class="text-danger">*</span>
-                        </label>
+              State <span class="text-danger">*</span>
+            </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " aria-label="date" formControlName="state" disabled="true">
+                            <input type="text" class="form-control " [class.is-invalid]="f.state.invalid && formError" aria-label="date" formControlName="state" disabled="true">
                         </div>
                     </div>
                     <div class=" input-container-wrapper pb-sm-0">
                         <label class="">
-                            County<span class="text-danger">*</span>
-                        </label>
+              County<span class="text-danger">*</span>
+            </label>
                         <div class="input-group ">
-                            <input type="text" class="form-control " formControlName="county" aria-label="date" disabled="true">
+                            <input type="text" class="form-control " [class.is-invalid]="f.county.invalid && formError" formControlName="county" aria-label="date" disabled="true">
                         </div>
                     </div>
                     <div class=" m-0  input-container-wrapper pb-sm-0">
                         <label class="">
-                            Time Zone<span class="text-danger">*</span>
-                        </label>
+              Time Zone<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="timeZone" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" [class.is-invalid]="f.timeZone.invalid && formError" formControlName="timeZone" aria-label="Case Manager" disabled="true">
                         </div>
 
                     </div>
                     <div class=" m-0  input-container-wrapper pb-sm-0">
                         <label class="">
-                            Country<span class="text-danger">*</span>
-                        </label>
+              Country<span class="text-danger">*</span>
+            </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" formControlName="country" aria-label="Case Manager" disabled="true">
+                            <input type="text" class="form-control" [class.is-invalid]="f.country.invalid && formError" formControlName="country" aria-label="Case Manager" disabled="true">
                         </div>
 
                     </div>

@@ -383,4 +383,10 @@ export class AdmissionDetailsComponent implements OnInit {
     this.getDiagnosisData();
   }
 
+  public admissionDateChange(){
+
+    this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate)
+
+  }
+
 }

@@ -20,17 +20,22 @@ export class GuarantorDetailsComponent implements OnInit {
   public zipDetails: any;
   public occupationList = [];
   public relationshipList = [];
-  public relationId;
+  // public relationId;
   public addressTypeList: any;
   public phoneTypeList: any;
-  public Keyword = 'label';
-  public relationName;
+  public Keyword = 'name';
+  // public relationName;
   public lookupDetails: any;
-  public submitted: boolean = false;
+  public formError: boolean = false;
   public previousPsDetails: any;
   public guarantorResponse: Object;
   public checkBoxAddress: boolean = false;
   public userId: number;
+  private countryId: number;
+  private stateId: number;
+  private countyId: number;
+  private timeZoneId: number;
+  public phoneNUmber;
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
@@ -49,7 +54,7 @@ export class GuarantorDetailsComponent implements OnInit {
   }
   private newForm(): void {
     this.guarantorForm = this.fb.group({
-      saluationId: ['', Validators.required],
+      saluationId: [''],
       relationshipList: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -65,10 +70,11 @@ export class GuarantorDetailsComponent implements OnInit {
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
       lane: ['', Validators.required],
-      location: [''],
-      phoneTypeName: [''],
-      occupationName: ['UNKNOWN'],
-      relationId: [''],
+      lane2:[''],
+      location: ['',Validators.required],
+      phoneTypeName: ['',Validators.required],
+      occupationName: ['UNKNOWN',Validators.required],
+      relationId: ['',Validators.required],
     });
 
   }
@@ -80,9 +86,58 @@ export class GuarantorDetailsComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.submitted = true;
+    this.formError = true;
     console.log(this.guarantorForm.value)
+    let ssnLength = this.guarantorForm.value.ssn.length;
+    this.phoneNUmber = this.guarantorForm.value.number;
+
+
     if (this.guarantorForm.valid) {
+      if (this.phoneNUmber.length == 10) {
+        var phone1areacode = this.phoneNUmber.slice(0, 3);
+        var phone1exchangecode = this.phoneNUmber.slice(3, 6)
+        if (phone1areacode >= 199 && phone1exchangecode >= 199) {
+          console.log("phone number is correct");
+          ssnLength == 0 ? this.gurantorsave() :this.checkSSn();
+        }
+        else {
+          // phone1Flag = true;
+          if (phone1areacode <= 1 || phone1areacode <= 199) {
+            console.log("area code missing")
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
+          }
+          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+            console.log("area exchange code missing")
+
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
+          }
+        }
+        console.log("phone1 flag is")
+
+
+      }
+      else{
+        this.alertbox(" Phone number should be 10 digits ")
+
+      }
+
+    }
+    else {
+      // alert("Fill all the required fields")
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+
+    }
+
+  }
+
+  private gurantorsave(){
+    {
       const jsonObj = {
         "saluationId": (this.guarantorForm.value.saluationId),
         "lastName": this.guarantorForm.value.lastName,
@@ -91,6 +146,7 @@ export class GuarantorDetailsComponent implements OnInit {
         "locationId": (this.guarantorForm.value.addressTypeList),
         "city": this.guarantorForm.value.city,
         "addressLine": this.guarantorForm.value.lane,
+        "addressLine2":this.guarantorForm.value.lane2,
         "zipcode": this.guarantorForm.value.zipcode,
         "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
         "phone": this.guarantorForm.value.number,
@@ -98,10 +154,11 @@ export class GuarantorDetailsComponent implements OnInit {
         "psId": this.previousPsDetails.psId,
         "occupationId": this.guarantorForm.value.occupationList,
         "guarantorId": this.guarantorId,
-        "stateId":33,
-    "countyId":2637,
-   "timeZoneId":2,
-   "countryId":"USA",
+        "stateId":this.stateId,
+        "countyId": this.countyId,
+        "timeZoneId": this.timeZoneId,
+        "countryId": this.countryId,
+        "ssn":this.guarantorForm.value.ssn.replace(/\D/g, '')
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -118,74 +175,82 @@ export class GuarantorDetailsComponent implements OnInit {
         console.log(error)
       }
 
-    } else {
-      // alert("Fill all the required fields")
-      swal.fire({
-        title: 'Invalid Form',
-        text: 'Fill the all Required fields',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-
     }
-
   }
 
   public basicDetails(): void {
     let jsonObj = { 'userId': this.userId };
 
-    this.service.getLookupDetails1(JSON.stringify(jsonObj)).subscribe(data => {
+    this.service.getLookupsDataGurantor().subscribe(data => {
       console.log(data)
       this.lookupDetails = data;
-      this.addressTypeList = this.lookupDetails.addressTypeList;
-      this.phoneTypeList = this.lookupDetails.phoneTypeList;
-      this.relationshipList = this.lookupDetails.relationshipList;
-      this.occupationList = this.lookupDetails.occupationList;
+      this.addressTypeList = this.lookupDetails.addressType;
+      this.phoneTypeList = this.lookupDetails.phoneType;
+      this.relationshipList = this.lookupDetails.relationship;
+      this.occupationList = this.lookupDetails.occupation;
 
     });
   }
-  public selectChange(event, field): void {
+  public selectChange(event, field,flag): void {
     if (field === 'addressTypeList') {
-      this.guarantorForm.get('addressTypeList').setValue(event.id);
+      this.guarantorForm.get('addressTypeList').setValue(flag?event.id:'');
     }
     if (field === 'phoneTypeList') {
-      this.guarantorForm.get('phoneTypeList').setValue(event.id);
+      this.guarantorForm.get('phoneTypeList').setValue(flag?event.id:'');
     }
     if (field === 'relationshipList') {
-      this.guarantorForm.get('relationshipList').setValue(event.id);
-      if(event.id==100){
+      this.guarantorForm.get('relationshipList').setValue(flag?event.id:'');
+      if (event.id == '100'&&flag) {
         // this.selfChecBox=true;
-        this.SelfCheck(null,true);
+        this.SelfCheck(null, true);
       }
-        this.relationName = event.label;
-        this.relationId = event.id;
+      // this.relationName = event.label;
+      // this.relationId = event.id;
     }
     if (field === 'occupationList') {
-      this.guarantorForm.get('occupationList').setValue(event.id);
+      this.guarantorForm.get('occupationList').setValue(flag?event.id:'');
     }
     if (field === 'phoneTypeList') {
-      this.guarantorForm.get('phoneTypeList').setValue(event.id);
+    console.log('inpuet cleared phoneid',flag)
+      this.guarantorForm.get('phoneTypeList').setValue(flag?event.id:'');
     }
   }
 
+
   public getzip(): void {
     const zip = this.guarantorForm.get('zipcode').value;
-    // console.log(zip)
+    console.log(zip);
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
-        this.zipDetails = data;
-        console.log(this.zipDetails)
-        this.guarantorForm.get('city').setValue(this.zipDetails.city)
-        this.guarantorForm.get('country').setValue(this.zipDetails.country)
-        this.guarantorForm.get('county').setValue(this.zipDetails.county)
-        this.guarantorForm.get('timeZone').setValue(this.zipDetails.timeZone)
-        this.guarantorForm.get('state').setValue(this.zipDetails.state)
+        if (Object.keys(data).length !== 0) {
+          this.zipDetails = data;
+          console.log(data)
+          this.stateId = data.stateId
+          this.countyId = data.countyId;
+          this.timeZoneId = data.timeZoneId;
+          this.countryId = data.countryId;
+          console.log()
+          this.guarantorForm.get('city').setValue(this.zipDetails.city);
+          this.guarantorForm.get('country').setValue(this.zipDetails.country);
+          this.guarantorForm.get('county').setValue(this.zipDetails.county);
+          this.guarantorForm.get('timeZone').setValue(this.zipDetails.timeZone);
+          this.guarantorForm.get('state').setValue(this.zipDetails.state);
+        }
+
+        else {
+          swal.fire({
+            title: 'Invalid pincode',
+            text: 'Invalid ZIP code. Please enter a valid ZIP code.',
+            icon: 'warning',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+          this.guarantorForm.get('zipcode').setValue('');
+        }
 
       });
     }
   }
-
 
   private getPsDetails(): void {
     try {
@@ -194,21 +259,21 @@ export class GuarantorDetailsComponent implements OnInit {
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
         console.log(res)
         this.basicPreviousData = res;
-        this.guarantorForm.get('saluationId').setValue(this.basicPreviousData.SALUTATIONId);
       })
     } catch (error) {
       console.log(error)
     }
   }
-  public addressCheck(event?,dropdown?:boolean): void {
+  public addressCheck(event?, dropdown?: boolean): void {
 
     console.log(event)
-    let flag = event!=null? event.target.checked:dropdown
+    let flag = event != null ? event.target.checked : dropdown
 
     console.log("addressCheck")
     this.guarantorForm.get('addressTypeList').setValue(flag ? this.basicPreviousData.locationId : '');
     this.guarantorForm.get('location').setValue(flag ? this.basicPreviousData.locationName : '');
     this.guarantorForm.get('lane').setValue(flag ? this.basicPreviousData.street : "");
+    this.guarantorForm.get('lane2').setValue(flag ? this.basicPreviousData.addressLine2 : "");
     this.guarantorForm.get('zipcode').setValue(flag ? this.basicPreviousData.ZIPCODE : "");
     this.guarantorForm.get('phoneTypeList').setValue(flag ? this.basicPreviousData.PHONETYPEID : "")
     this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
@@ -218,18 +283,23 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('county').setValue(flag ? this.basicPreviousData.county : '');
     this.guarantorForm.get('timeZone').setValue(flag ? this.basicPreviousData.timezone : '');
     this.guarantorForm.get('country').setValue(flag ? this.basicPreviousData.country : '');
+    this.stateId = this.basicPreviousData.stateId
+    this.countyId = this.basicPreviousData.countyId;
+    this.timeZoneId = this.basicPreviousData.TIMEZONEID;
+    this.countryId = this.basicPreviousData.countryId;
   }
-  public SelfCheck(event?,dropdown?:boolean): void {
-    let flag = event!=null? event.target.checked:dropdown;
+  public SelfCheck(event?, dropdown?: boolean): void {
+    let flag = event != null ? event.target.checked : dropdown;
     console.log("selfcheck")
-    this.guarantorForm.get('relationshipList').setValue(flag ? 100 : '');
+    // this.guarantorForm.get('saluationId').setValue(flag?this.basicPreviousData.SALUTATIONId:'');
+    this.guarantorForm.get('relationshipList').setValue(flag ? '100' : '');
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
     this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
     flag ? this.checkBoxAddress = true : this.checkBoxAddress = false;
     // flag ? this.addressCheck(event) : this.addressCheck(event);
-    this.addressCheck(event,dropdown);
+    this.addressCheck(event, dropdown);
   }
   public getPreviousBasic(): void {
     this.router.navigateByUrl('registration-re/child-basic')
@@ -276,7 +346,36 @@ export class GuarantorDetailsComponent implements OnInit {
     }
 
   }
-   public relationshipCleared(event){
-     console.log(event)
-   }
+  public relationshipCleared(event) {
+    console.log(event)
+  }
+  private alertbox(string) {
+    var message = 'Invalid Number'
+    swal.fire(message, string, 'warning')
+  }
+  private checkSSn() {
+    try {
+      let params = { 'ssn': this.guarantorForm.value.ssn }
+      this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
+        console.log(data)
+        if (Object.keys(data).length !== 0) {
+
+          let data2: any = data;
+
+          swal.fire({
+            title: 'Invalid SSN',
+            text: data2.ErrorMsg,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+        }
+        else{
+          this.gurantorsave()
+        }
+      })
+    } catch (error) {
+
+    }
+  }
 }

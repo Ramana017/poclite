@@ -69,6 +69,8 @@ export class DashboardComponent implements OnInit {
   public psId = 0;
   public authorizationId: number = 0;
   public admissionId: number = 0;
+  public psListArray:Array<any>;
+  public dcsListArray:Array<any>;
 
 
   ngOnInit() {
@@ -78,6 +80,8 @@ export class DashboardComponent implements OnInit {
     this.getAdmissionsList();
     this.getAuthorizationList();
     this.getDcsList();
+    this.getPsListFilter();
+    this.getDcsListFilter();
     // this.getVisitsList();
     // this.plotGaugeChat1();
   }
@@ -153,6 +157,25 @@ export class DashboardComponent implements OnInit {
     flag ? this.psId = e.PSId : this.psId = 0;
     flag ? '' : this.autops.close();
     this.getPsList();
+  }
+  public getPsListFilter() {
+    this.psList = [];
+    let parameters = { 'userId': this.userId };
+    console.log(parameters)
+    this.zipcode.getPSListForCEAT(JSON.stringify(parameters)).subscribe((res) => {
+      let data: any = res
+      this.psListArray = data.psList;
+
+    });
+  }
+  public getDcsListFilter() {
+    const userData = { "userId": this.userId }
+    this.dashboardService.getDcsList(JSON.stringify(userData)).subscribe((res) => {
+      let data: any = res;
+      console.log(res)
+      this.dcsListArray = data.dcsList;
+
+    });
   }
 
 

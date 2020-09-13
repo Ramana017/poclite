@@ -37,7 +37,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     siteId;
     raceid;
     payor = 'planname';
-    Keyword = 'label';
+    Keyword = 'name';
     fill;
     city;
     payorName;
@@ -57,7 +57,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     zipDetails;
     country;
     timeZone;
-    userMappedOffices;
+    // userMappedOffices;
     state;
     county;
     regis;
@@ -103,7 +103,7 @@ export class PayorPlanDetailsComponent implements OnInit {
             state: ['', Validators.required],
             timeZone: ['', Validators.required],
             lane: ['', Validators.required],
-            lane1: ['', Validators.required],
+            lane1: ['',],
             dob: ['', Validators.required],
         });
     }
@@ -151,17 +151,17 @@ export class PayorPlanDetailsComponent implements OnInit {
     }
     basicDetails() {
         const jsonObj = { 'userId': '47' };
-        this.service.getLookupDetails1(JSON.stringify(jsonObj)).subscribe(data => {
+        this.service.getLookupsDataGurantor().subscribe(data => {
             this.lookupDetails = data;
             console.log(this.lookupDetails);
             this.saluationId = this.lookupDetails.salutationList;
-            this.userMappedOffices = this.lookupDetails.userMappedOffices;
-            this.addressTypeList = this.lookupDetails.addressTypeList;
-            this.relationshipList = this.lookupDetails.relationshipList;
-            this.maritalStatusList = this.lookupDetails.maritalStatusList;
-            this.raceId = this.lookupDetails.raceList;
-            this.phoneTypeList = this.lookupDetails.phoneTypeList;
-            this.genderList = this.lookupDetails.genderList;
+            // this.userMappedOffices = this.lookupDetails.userMappedOffices;
+            this.addressTypeList = this.lookupDetails.addressType;
+            this.relationshipList = this.lookupDetails.relationship;
+            // this.maritalStatusList = this.lookupDetails.maritalStatusList;
+            // this.raceId = this.lookupDetails.raceList;
+            this.phoneTypeList = this.lookupDetails.phoneType;
+            this.genderList = this.lookupDetails.gender;
             console.log(this.genderList)
             //this.genderId1 = this.lookupDetails.genderId
         });
@@ -297,7 +297,7 @@ export class PayorPlanDetailsComponent implements OnInit {
                 "policyNumber": this.payorPlanForm.value.policyNumber,
                 "rank": +this.payorPlanForm.value.rank,
                 "effectiveFrom": this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
-                "effectiveTo": this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
+                "effectiveTo": this.payorPlanForm.value.effectiveto==''||null? '':this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
                 "psId": this.psId,
                 "relationshipId": this.relation,
                 "firstName": this.payorPlanForm.value.firstName,

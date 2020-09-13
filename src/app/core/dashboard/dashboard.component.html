@@ -14,7 +14,7 @@
                                         <div class="col-md-4 col-0"></div>
                                         <h5 class="text-white m-0 text-center col-md-3 col-12">Person Served</h5>
                                         <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
-                                            <ng-autocomplete class="w-150" [data]="psList" [searchKeyword]="pskeyword" #autops placeHolder="Search PS" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [data]="psListArray" [searchKeyword]="pskeyword" #autops placeHolder="Search PS" (inputCleared)="selectFilterEvent('',false)" (selected)='selectFilterEvent($event,true)' [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                 <a [innerHTML]="item.PSName"></a>
@@ -163,7 +163,8 @@
                                         <div class="col-md-4"></div>
                                         <h5 class="text-white m-0 text-center col-md-3">Admissions</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [(ngModel)]="AdmissonAutoFill" [data]="psList" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)' [itemTemplate]="itemTemplateps">
+                                            <ng-autocomplete class="w-150" [(ngModel)]="AdmissonAutoFill" [data]="psListArray" [searchKeyword]="pskeyword" #autoadm placeHolder="Search PS" (inputCleared)="selectAdmissionListByDcsId('',false)" (selected)='selectAdmissionListByDcsId($event,true)'
+                                                [itemTemplate]="itemTemplateps">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
@@ -289,7 +290,7 @@
                                         <div class="col-md-4"></div>
                                         <h5 class="text-white m-0 text-center col-md-3">Authorizations</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="psList" [(ngModel)]="AuthorizationsFill" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)'
+                                            <ng-autocomplete class="w-150" [data]="psListArray" [(ngModel)]="AuthorizationsFill" [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS " (inputCleared)="selectAuthorizationByPsId('',false)" (selected)='selectAuthorizationByPsId($event,true)'
                                                 [itemTemplate]="AuthorizationByPsId">
                                             </ng-autocomplete>
 
@@ -416,7 +417,7 @@
                                         <div class="col-md-4"></div>
                                         <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
                                         <div class="col-md-5 d-flex justify-content-end align-items-center">
-                                            <ng-autocomplete class="w-150" [data]="dcsList" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
+                                            <ng-autocomplete class="w-150" [data]="dcsListArray" [searchKeyword]="dcskeyword" #autodcs placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)" (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
                                             </ng-autocomplete>
 
                                             <ng-template style="width: 100%;" #itemTemplateDcs let-item>

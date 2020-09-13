@@ -37,7 +37,7 @@ export class ZipcodeService {
 
   }
   public saveGuarantor(params): Observable<any> {
-    return this.http.post(this.lookUpDetails + '/saveGuarantorDetailsNew', params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/saveGuarantorDetails', params).pipe(catchError(this.errorHandler))
 
   }
 
@@ -52,6 +52,8 @@ export class ZipcodeService {
 
     return this.http.get(this.lookUpDetails + '/getGuarantorDetails?jsonObj=' + params).pipe(catchError(this.errorHandler));
   }
+
+
 
   public getPSListForCEAT(params): Observable<any> {
     this.getUrl();
@@ -109,16 +111,22 @@ export class ZipcodeService {
 
 
   }
-  public getLookupsData3(): Observable<any> {
+  //basic lookup details
+  public getLookupsDataBasic(): Observable<any> {
     this.getUrl();
     return this.http.get(this.url + '/common/getLookupsData?lookupNames=gender,salutation,race,maritial_status,address_type,phone_type,language').pipe(catchError(this.errorHandler));
 
 
   }
-  public getLookupsData4(): Observable<any> {
+  // basic gurantor details
+  public getLookupsDataGurantor(): Observable<any> {
     this.getUrl();
-    return this.http.get(this.url + '/common/getLookupsData?lookupNames=gender,salutation,race,maritial_status,address_type,phone_type,relationship,occupation').pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=address_type,phone_type,relationship,occupation,gender').pipe(catchError(this.errorHandler));
+  }
 
+  public validateSSNNumber(params){
+    this.getUrl();
+    return this.http.get(this.url + '/common/validateSSNNumber?jsonObj='+params).pipe(catchError(this.errorHandler));
 
   }
 }
