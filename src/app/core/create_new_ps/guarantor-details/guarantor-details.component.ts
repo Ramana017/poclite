@@ -87,7 +87,7 @@ export class GuarantorDetailsComponent implements OnInit {
         "saluationId": (this.guarantorForm.value.saluationId),
         "lastName": this.guarantorForm.value.lastName,
         "firstName": this.guarantorForm.value.firstName,
-        "iRelationShipId": (this.guarantorForm.value.relationshipList),
+        "relationShipId": (this.guarantorForm.value.relationshipList),
         "locationId": (this.guarantorForm.value.addressTypeList),
         "city": this.guarantorForm.value.city,
         "addressLine": this.guarantorForm.value.lane,
@@ -97,7 +97,11 @@ export class GuarantorDetailsComponent implements OnInit {
         "updatedUserId": this.userId,
         "psId": this.previousPsDetails.psId,
         "occupationId": this.guarantorForm.value.occupationList,
-        "guarantorId": this.guarantorId
+        "guarantorId": this.guarantorId,
+        "stateId":33,
+    "countyId":2637,
+   "timeZoneId":2,
+   "countryId":"USA",
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -131,7 +135,7 @@ export class GuarantorDetailsComponent implements OnInit {
   public basicDetails(): void {
     let jsonObj = { 'userId': this.userId };
 
-    this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
+    this.service.getLookupDetails1(JSON.stringify(jsonObj)).subscribe(data => {
       console.log(data)
       this.lookupDetails = data;
       this.addressTypeList = this.lookupDetails.addressTypeList;

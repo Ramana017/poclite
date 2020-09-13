@@ -203,17 +203,16 @@
                                 </label>
                                 <div class="input-group ">
                                     <div class="ng-autocomplete" style="width: 100%;"
-                                        [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
-                                        <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
-                                            formControlName="maritalStatus"
-                                            (inputCleared)="selectChange('','maritalStatusList',false)"
-                                            (selected)="selectChange($event,'maritalStatusList',true)"
-                                            [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
-                                        </ng-autocomplete>
-                                        <ng-template style="width: 100%;" #itemTemplate let-item>
-                                            <a [innerHTML]="item.label"></a>
-                                        </ng-template>
-                                    </div>
+                                    [class.invalid-input]="(f.language.invalid && formError)||(f.languageId.invalid && formError)">
+                                    <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword"
+                                        formControlName="language" (inputCleared)="selectChange('','languageId',false)"
+                                        (selected)="selectChange($event,'languageId',true)"
+                                        [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
+                                    </ng-autocomplete>
+                                    <ng-template style="width: 100%;" #itemTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                </div>
 
                                 </div>
                             </div>

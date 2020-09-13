@@ -21,6 +21,10 @@ export class ZipcodeService {
     this.getUrl()
     return this.http.get(this.lookUpDetails + "/getUserOfficeList?jsonObj=" + params).pipe(catchError(this.errorHandler));
   }
+  public getLookupDetails1(params): Observable<any> {
+    this.getUrl()
+    return this.http.get(this.lookUpDetails + "/getLookupDetails?jsonObj=" + params).pipe(catchError(this.errorHandler));
+  }
   public getZipcodeDetails(zipCode): Observable<any> {
     this.getUrl()
     this.zip = { 'zipCode': zipCode };
@@ -33,7 +37,7 @@ export class ZipcodeService {
 
   }
   public saveGuarantor(params): Observable<any> {
-    return this.http.post(this.lookUpDetails + '/saveGuarantorDetails', params).pipe(catchError(this.errorHandler))
+    return this.http.post(this.lookUpDetails + '/saveGuarantorDetailsNew', params).pipe(catchError(this.errorHandler))
 
   }
 
