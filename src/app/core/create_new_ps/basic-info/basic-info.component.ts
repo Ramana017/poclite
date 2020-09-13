@@ -18,19 +18,25 @@ export class BasicInfoComponent implements OnInit {
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
+  public officeList: any;
   public basicForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
   public addressTypeList: any;
+  private countryId: any;
   public maritalStatusList: any;
+  public LanguageList: any;
   public raceIdList: any;
   public phoneTypeList: any;
   public SaveResponse: any;
   public genderList: any;
-  public Keyword = 'label';
+  public Keyword = 'name';
   public locationName;
   public siteId: number;
   public zipDetails: any;
+  public stateId;
+  public countyId;
+  public timeZoneId;
   public siteSelectedItems = [];
   public userMappedOffices = [];
   public keyword1 = 'siteName';
@@ -64,7 +70,8 @@ export class BasicInfoComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("basic", this.userMappedOffices.length == 0);
+    console.log("basic", this.userMappedOffices.length === 0);
+    this.getUserOfficeList();
     this.basicDetails();
   }
 
@@ -78,13 +85,15 @@ export class BasicInfoComponent implements OnInit {
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
       site: [''],
+      language:['',Validators.required],
+      languageId:['',Validators.required],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
       addressLine2: [''],
-      number: ['', [Validators.required]], //Validators.pattern(/^\d{10}$/)
+      number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -110,11 +119,14 @@ export class BasicInfoComponent implements OnInit {
     console.log("#########", this.basicForm.get('gender').invalid)
     console.log(this.basicForm.valid)
     console.log(this.basicForm.value)
+    let obj = this.basicForm.value;
+    let stateId = obj
 
     if (this.basicForm.valid) {
       let mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
 
       const jsonObj = {
+        "psId": this.psId,
         "saluationId": (this.basicForm.value.saluationId),
         "genderId": (this.basicForm.value.genderId),
         "lastName": (this.basicForm.value.lastName),
@@ -122,19 +134,24 @@ export class BasicInfoComponent implements OnInit {
         "raceId": (this.basicForm.value.raceId),
         "maritalStatusID": (this.basicForm.value.maritalStatusList),
         "dob": this.date.transform(this.basicForm.value.dob, 'MM/dd/yyyy'),
+        "ssn": this.basicForm.value.ssn,
+        "languageId":+(this.basicForm.value.languageId),
         "locationId": (this.basicForm.value.addressTypeList),
         "city": (this.basicForm.value.city),
         "addressLine": (this.basicForm.value.lane),
+        "addressLine2": this.basicForm.value.addressLine2,
         "zipcode": (this.basicForm.value.zipcode),
         "phoneTypeid": (this.basicForm.value.phoneTypeList),
         "phone": (this.basicForm.value.number),
+        "stateId": this.stateId,
+        "countyId": this.countyId,
+        "timeZoneId": this.timeZoneId,
+        "countryId": this.countryId,
         "officeId": (this.siteId),
-        "updatedUserId": this.userId,
-        "psId": this.psId,
         "mappedOfficeIds": mappedArray.toString(),
-        "addressLine2": this.basicForm.value.addressLine2,
-        "ssn": this.basicForm.value.ssn
-      };
+        "updatedUserId": this.userId,
+
+      }
       console.log(JSON.stringify(jsonObj));
       let parameters = JSON.stringify(jsonObj)
       try {
@@ -147,6 +164,7 @@ export class BasicInfoComponent implements OnInit {
               this.modelref.hide();
 
             } else {
+              console.log(JSON.stringify(jsonObj));
               sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
               this.router.navigateByUrl('registration-re/child-guarantor');
             }
@@ -167,7 +185,7 @@ export class BasicInfoComponent implements OnInit {
 
       swal.fire({
         title: 'Invalid Form',
-        text: 'Fill the all Required fields',
+        text: 'Fill all the Required fields',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -178,20 +196,29 @@ export class BasicInfoComponent implements OnInit {
 
   }
 
-  private basicDetails(): void {
+  public getUserOfficeList(): void {
     let jsonObj = { 'userId': this.userId };
 
     this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
-      this.lookupDetails = data;
-      console.log(this.lookupDetails);
-      this.saluationList = this.lookupDetails.salutationList;
-      this.userMappedOffices = this.lookupDetails.userMappedOffices;
-      this.addressTypeList = this.lookupDetails.addressTypeList;
-      this.maritalStatusList = this.lookupDetails.maritalStatusList;
-      this.raceIdList = this.lookupDetails.raceList;
-      this.phoneTypeList = this.lookupDetails.phoneTypeList;
-      this.genderList = this.lookupDetails.genderList;
+      this.officeList = data;
+      console.log(this.officeList);
+      this.userMappedOffices = this.officeList.userMappedOffices;
+
     });
+  }
+  public basicDetails() {
+    this.service.getLookupsData3().subscribe(data => {
+      this.lookupDetails = data;
+      console.log(this.lookupDetails)
+      this.LanguageList = this.lookupDetails.language;
+      this.saluationList = this.lookupDetails.salutation;
+      this.addressTypeList = this.lookupDetails.addressType;
+      this.maritalStatusList = this.lookupDetails.maritialStatus;
+      this.raceIdList = this.lookupDetails.race;
+      this.phoneTypeList = this.lookupDetails.phoneType;
+      this.genderList = this.lookupDetails.gender;
+    })
+
   }
 
   public selectChange(event, field, flag: boolean): void {
@@ -199,7 +226,7 @@ export class BasicInfoComponent implements OnInit {
     if (field === 'genderId') {
       if (flag) {
         this.basicForm.get('genderId').setValue(event.id);
-        event.label == "MALE" ? this.basicForm.get('saluationId').setValue(403) : this.basicForm.get('saluationId').setValue(405);
+        event.label == "MALE" ? this.basicForm.get('saluationId').setValue("MS") : this.basicForm.get('saluationId').setValue("MR");
         event.label == "MALE" ? this.basicForm.get('saluation').setValue("MR") : this.basicForm.get('saluation').setValue("MS");
       } else {
         this.basicForm.get('genderId').setValue('');
@@ -230,15 +257,25 @@ export class BasicInfoComponent implements OnInit {
     if (field === 'state') {
       flag ? this.basicForm.get('phoneTypeList').setValue(event.id) : this.basicForm.get('phoneTypeList').setValue('');
     }
+    if (field === 'languageId') {
+      flag ? this.basicForm.get('languageId').setValue(event.id) : this.basicForm.get('languageId').setValue('');
+    }
 
   }
 
   getzip(): void {
     const zip = this.basicForm.get('zipcode').value;
+    console.log(zip);
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
         if (Object.keys(data).length !== 0) {
           this.zipDetails = data;
+          console.log(data)
+          this.stateId = data.stateId
+          this.countyId = data.countyId;
+          this.timeZoneId = data.timeZoneId;
+          this.countryId =data.countryId;
+          console.log()
           this.basicForm.get('city').setValue(this.zipDetails.city);
           this.basicForm.get('country').setValue(this.zipDetails.country);
           this.basicForm.get('county').setValue(this.zipDetails.county);
@@ -249,7 +286,7 @@ export class BasicInfoComponent implements OnInit {
         else {
           swal.fire({
             title: 'Invalid pincode',
-            text: 'Please enter valid pincode',
+            text: 'Invalid ZIP code. Please enter a valid ZIP code.',
             icon: 'warning',
             confirmButtonText: 'Ok',
             allowOutsideClick: false
@@ -277,20 +314,26 @@ export class BasicInfoComponent implements OnInit {
         this.basicForm.get('genderId').setValue(this.basicPreviousDetails.genderId);
         this.basicForm.get('gender').setValue(this.basicPreviousDetails.gender);
         this.basicForm.get('raceId').setValue(this.basicPreviousDetails.raceId);
-        this.basicForm.get('race').setValue(this.basicPreviousDetails.race);
+     //   this.basicForm.get('race').setValue(this.basicPreviousDetails.race);
+        this.basicForm.get('language').setValue(this.basicPreviousDetails.language);
+        this.basicForm.get('languageId').setValue(this.basicPreviousDetails.languageId);
         this.basicForm.get('maritalStatus').setValue(this.basicPreviousDetails.MARITIALSTATUS);
         this.basicForm.get('maritalStatusList').setValue(this.basicPreviousDetails.MARITIALSTATUSId);
         this.basicForm.get('city').setValue(this.basicPreviousDetails.county);
         this.basicForm.get('country').setValue(this.basicPreviousDetails.country);
+        this.basicForm.get('countyId').setValue(this.countyId);
         this.basicForm.get('county').setValue(this.basicPreviousDetails.county);
         this.basicForm.get('timeZone').setValue(this.basicPreviousDetails.timezone);
+        this.basicForm.get('timeZoneId').setValue(this.timeZoneId);
         this.basicForm.get('state').setValue(this.basicPreviousDetails.state);
+        this.basicForm.get('stateId').setValue(this.stateId);
         this.basicForm.get('addressTypeList').setValue(this.basicPreviousDetails.locationId);
         this.basicForm.get('phonetype').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicForm.get('phoneTypeList').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicForm.get('number').setValue(this.basicPreviousDetails.PHONE);
         this.basicForm.get('zipcode').setValue(this.basicPreviousDetails.ZIPCODE);
         this.basicForm.get('location').setValue(this.basicPreviousDetails.locationName);
+
       });
     } catch (error) {
       console.log(error);
