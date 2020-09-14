@@ -153,7 +153,7 @@
                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" formControlName='ssn' [class.invalid-input]="(f.ssn.invalid && formError)" maxlength=9 class="form-control" aria-label="Case Manager">
+                                    <input type="text" formControlName='ssn' [class.invalid-input]="(f.ssn.invalid && formError)" (keyup)="PhoneNumFormat($event,'ssn')" maxlength=9 class="form-control" aria-label="Case Manager">
                                 </div>
 
                             </div>
@@ -286,7 +286,7 @@
                                     </ng-template>
                                 </div>
                                 <div class="input-group ">
-                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10' formControlName="number" class="form-control">
+                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10' (keyup)='PhoneNumFormat($event,"phone")' formControlName="number" class="form-control">
                                 </div>
                             </div>
 
@@ -342,7 +342,7 @@
                 </form>
                 <div class="next justify-content-between nav mt-3">
                     <div class="previous">
-                        <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                        <button type="button" class="btn-info  btn-next prev-step" [routerLink]="['/widgets']">Cancel</button>
                     </div>
                     <button type="button" class="next-step btn-next" (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
 
