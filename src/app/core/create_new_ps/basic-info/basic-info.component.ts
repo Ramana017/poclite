@@ -170,8 +170,8 @@ export class BasicInfoComponent implements OnInit {
     }
     else if (!siteFlag) {
       swal.fire({
-        title: 'Invalid MappedSites',
-        text: 'Please select the HomeSite',
+        title: 'Invalid Mapped Sites',
+        text: 'Please select the Home Site',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -435,7 +435,7 @@ export class BasicInfoComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.basicForm.value.ssn }
+      let params = { 'ssn': this.basicForm.value.ssn,"screenFlag":"ps" }
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {

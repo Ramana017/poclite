@@ -13,22 +13,18 @@ import { Router } from '@angular/router';
 })
 export class PayorPlanDetailsComponent implements OnInit {
 
-
-  title = 'Form';
-  payorPlanForm: FormGroup;
-  // salutationid: number;
-  lookupDetails: any;
-  relationshipList;
-  // saluationList: any;
-  addressTypeList: any;
+  public payorPlanForm: FormGroup;
+  public lookupDetails: any;
+  public relationshipList;
+  public addressTypeList: any;
   public payorData: any;
-  phoneTypeList: any;
+  public phoneTypeList: any;
   public psdata;
-  payor = 'planname';
-  Keyword = 'name';
-  guardata;
-  psId;
-  AdmissionId;
+  public payor = 'planname';
+  public Keyword = 'name';
+  public guardata;
+  public psId;
+  public AdmissionId;
   public officeId;
   public genderList: any;
   public savePayorRes;
@@ -48,6 +44,9 @@ export class PayorPlanDetailsComponent implements OnInit {
   public currentDate: Date = new Date();
   public phoneNumber;
   public addressId;
+  private admitDate;
+  private clientTypeId;
+  private clientClassId;
   constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
@@ -73,7 +72,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       gender: ['', Validators.required],
       dob: ['', Validators.required],
       ssn: [''],
-      policyNumber: ['', Validators.required],
+      policyNumber: [''],
       addressTypeList: ['', Validators.required],
       addressTypeListId: ['', Validators.required],
       lane: ['', Validators.required],
@@ -96,11 +95,15 @@ export class PayorPlanDetailsComponent implements OnInit {
   }
   public pvtDuty(event) {
     console.log(event.target.checked)
+
+
     this.pvtDutyFlag = event.target.checked;
+    this.pvtDutyFlag?this.payorPlanForm.controls['policyNumber'].disable():this.payorPlanForm.controls['policyNumber'].enable();
     this.payorPlanForm.get('payorPlanId').setValue('');
     this.payorPlanForm.get('payorPlan').setValue('');
-    this.payorPlanForm.get('payorCode').setValue('')
-    this.payorPlanForm.get('plancode').setValue('')
+    this.payorPlanForm.get('payorCode').setValue('');
+    this.payorPlanForm.get('plancode').setValue('');
+    this.payorPlanForm.get('policyNumber').setValue('')
     this.getPayorPlanData();
 
 
@@ -312,7 +315,6 @@ export class PayorPlanDetailsComponent implements OnInit {
       "payorcode":this.payorPlanForm.value.payorCode,
       "plancode":this.payorPlanForm.value.plancode,
       "privateDuty": this.pvtDutyFlag,
-
     }
     console.log(params1)
     try {
@@ -334,7 +336,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.payorPlanForm.value.ssn }
+      let params = { 'ssn': this.payorPlanForm.value.ssn ,"screenFlag":"subscriber"}
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {
@@ -361,6 +363,33 @@ export class PayorPlanDetailsComponent implements OnInit {
     console.log("++++++++++", event.target.value)
     var input2 = event.target.value.replace(/\D/g, '');
     flag == "ssn" ? this.payorPlanForm.get('ssn').setValue(input2) : this.payorPlanForm.get('number').setValue(input2);
+  }
+  private isPolicyNumRequired(){
+  let params = {"payorCode":this.payorPlanForm.value.payorCode,"planCode":this.payorPlanForm.value.plancode,"admitDate":this.admitDate,"clientTypeId":this.clientTypeId,"clientClassId":this.clientClassId};
+  try {
+    this.service.isPolicyNumRequired(JSON.stringify(params)).subscribe(
+      response=>{
+        console.log(response);
+        let resData:any=response;
+        if(resData.isPolicyNumRequired==1){
+
+        }else{
+          //save function
+          swal.fire({
+            title: 'Invalid Policy Number',
+            text: "Please Enter the PolicyNumber",
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+        }
+      }
+    )
+
+  } catch (error) {
+
+  }
+
   }
 }
 

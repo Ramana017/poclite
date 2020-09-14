@@ -196,9 +196,8 @@
                         </div>
                         <div class=" input-container-wrapper">
                             <label class="">
-  Policy Number<span class="text-danger">*</span>
+  Policy Number<span class="text-danger"></span>
   </label>
-
                             <div class="input-group ">
                                 <input type="text" class="form-control" formControlName="policyNumber" [class.is-invalid]="f.policyNumber.invalid && formError">
                             </div>
@@ -257,7 +256,7 @@
   </label>
 
                         <div class="input-group ">
-                            <input type="text" class="form-control" [class.is-invalid]="f.zipcode.invalid && formError" aria-label="date" formControlName='zipcode' (keyup)="getzip($event)" id="autocomplete" type="text" class="form-control">
+                            <input type="text" class="form-control" [class.is-invalid]="f.zipcode.invalid && formError" aria-label="date" formControlName='zipcode' (keyup)="getzip()" id="autocomplete" type="text" class="form-control">
 
                         </div>
                     </div>

@@ -313,7 +313,7 @@ export class AdmissionDetailsComponent implements OnInit {
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
         "primaryDiagnosisCode": primaryRank,
-        "otherDiagnoses": rank,
+        "otherDiagnoses": rank.toString(),
         "officeId": this.officeId,
         "userId": this.userId,
         "referralSourceId": this.admissionForm.value.referralSource.id,

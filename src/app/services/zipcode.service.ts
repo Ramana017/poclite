@@ -129,4 +129,9 @@ export class ZipcodeService {
     return this.http.get(this.url + '/common/validateSSNNumber?jsonObj='+params).pipe(catchError(this.errorHandler));
 
   }
+  public isPolicyNumRequired(params){
+    this.getUrl();
+    return this.http.get(this.url + '/common/isPolicyNumRequired?jsonObj='+params).pipe(catchError(this.errorHandler));
+
+  }
 }
