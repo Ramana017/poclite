@@ -198,7 +198,7 @@
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th class="align-middle">PS Name</th>
-                                                        <th class="align-middle">Account #</th>
+                                                        <th class="align-middle">Account#</th>
                                                         <th class="align-middle">Admission Date</th>
                                                     </tr>
                                                 </thead>
@@ -241,7 +241,7 @@
                                                             </ul>
                                                         </td>
                                                         <td>{{admission.PSName}}</td>
-                                                        <td>{{admission.accountNumber}}</td>
+                                                        <td>{{admission.accountNumber==0?'':admission.accountNumber}}</td>
                                                         <td>{{admission.admissionDate}}</td>
                                                     </tr>
                                                 </tbody>

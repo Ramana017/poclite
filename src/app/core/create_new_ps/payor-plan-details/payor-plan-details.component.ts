@@ -225,12 +225,13 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.payorPlanForm.get('addressTypeListId').setValue(Flag ? this.psdata.locationId : '');
     this.payorPlanForm.get('addressTypeList').setValue(Flag ? this.psdata.locationName : '');
     this.payorPlanForm.get('lane').setValue(Flag ? this.psdata.street : '');
+    this.payorPlanForm.get('lane1').setValue(Flag ? this.psdata.addressLine2: '');
     this.payorPlanForm.get('zipcode').setValue(Flag ? this.psdata.ZIPCODE : '');
     this.payorPlanForm.get('phoneTypeList').setValue(Flag ? this.psdata.PHONETYPE : '');
     this.payorPlanForm.get('phoneTypeListId').setValue(Flag ? this.psdata.PHONETYPEID : '');
     this.payorPlanForm.get('number').setValue(Flag ? this.psdata.PHONE : '');
     this.payorPlanForm.get('timeZone').setValue(Flag ? this.psdata.timezone : '');
-    this.payorPlanForm.get('city').setValue(Flag ? this.psdata.county : '');
+    this.payorPlanForm.get('city').setValue(Flag ? this.psdata.city : '');
     this.payorPlanForm.get('country').setValue(Flag ? this.psdata.country : '');
     this.payorPlanForm.get('county').setValue(Flag ? this.psdata.county : '');
     this.payorPlanForm.get('state').setValue(Flag ? this.psdata.state : '');
@@ -319,6 +320,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       "stateId": this.stateId,
       "zipCode": this.payorPlanForm.value.zipcode,
       "country": this.payorPlanForm.value.country,
+      "countryId":this.countryId,
       "phoneType1": this.payorPlanForm.value.phoneTypeListId,
       "phone1": this.payorPlanForm.value.number,
       "userId": this.userId,

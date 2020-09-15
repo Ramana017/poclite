@@ -318,8 +318,8 @@ export class BasicInfoComponent implements OnInit {
 
         else {
           swal.fire({
-            title: 'Invalid ZipCode',
-            text: 'Invalid ZIP code. Please enter a valid ZIP code.',
+            title: 'Invalid Zip Code',
+            text: 'Please enter a valid Zip code.',
             icon: 'warning',
             confirmButtonText: 'Ok',
             allowOutsideClick: false

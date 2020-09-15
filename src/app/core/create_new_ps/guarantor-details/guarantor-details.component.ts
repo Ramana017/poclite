@@ -13,6 +13,7 @@ import swal from 'sweetalert2';
 })
 export class GuarantorDetailsComponent implements OnInit {
   public selfChecBox: boolean = false;
+
   public addressCheckBox: boolean = false;
   public guarantorId: number = 0;
   public basicPreviousData: any;
@@ -202,10 +203,10 @@ export class GuarantorDetailsComponent implements OnInit {
     }
     if (field === 'relationshipList') {
       this.guarantorForm.get('relationshipList').setValue(flag?event.id:'');
-      if (event.id == '100'&&flag) {
-        // this.selfChecBox=true;
-        this.SelfCheck(null, true);
+      if (flag) { // this.selfChecBox=true;
+        event.id == '100'? this.SelfCheck(null, true): this.selfChecBox=false;;
       }
+
       // this.relationName = event.label;
       // this.relationId = event.id;
     }
@@ -280,7 +281,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('phoneTypeList').setValue(flag ? this.basicPreviousData.PHONETYPEID : "")
     this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
     this.guarantorForm.get('number').setValue(flag ? this.basicPreviousData.PHONE : "");
-    this.guarantorForm.get('city').setValue(flag ? this.basicPreviousData.county : '');
+    this.guarantorForm.get('city').setValue(flag ? this.basicPreviousData.city : '');
     this.guarantorForm.get('state').setValue(flag ? this.basicPreviousData.state : '');
     this.guarantorForm.get('county').setValue(flag ? this.basicPreviousData.county : '');
     this.guarantorForm.get('timeZone').setValue(flag ? this.basicPreviousData.timezone : '');
@@ -292,6 +293,9 @@ export class GuarantorDetailsComponent implements OnInit {
   }
   public SelfCheck(event?, dropdown?: boolean): void {
     let flag = event != null ? event.target.checked : dropdown;
+
+    this.selfChecBox = event != null ? event.target.checked : '';
+
     console.log("selfcheck")
     // this.guarantorForm.get('saluationId').setValue(flag?this.basicPreviousData.SALUTATIONId:'');
     this.guarantorForm.get('relationshipList').setValue(flag ? '100' : '');

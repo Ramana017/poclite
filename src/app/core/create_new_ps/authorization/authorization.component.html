@@ -228,7 +228,7 @@
                             <div class=" m-0 input-container-wrapper">
                                 <label class="">Per Week</label>
                                 <div class="input-group ">
-                                    <select [(ngModel)]="weeklyPerWeek" class="form-control align-items-center">
+                                    <select (change)="perWeekChange()" [(ngModel)]="weeklyPerWeek" class="form-control align-items-center">
                     <option [ngValue]="'W'">MON-FRI</option>
                     <option [ngValue]="'F'">SUN-SAT</option>
 
@@ -261,7 +261,7 @@
                     SUN
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="dailyFlag ||weeklyPerWeek=='W'?'0':weeklySunUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySunUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -269,7 +269,7 @@
                     MON
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="dailyFlag?0:weeklyMonUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyMonUnits">
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
                     TUE
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="dailyFlag?0:weeklyTueUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyTueUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -287,7 +287,7 @@
                     WED
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="dailyFlag ? 0 :weeklyWedUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyWedUnits">
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@
                     THU
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="dailyFlag?0:weeklyThuUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyThuUnits">
                                     </div>
                                 </div>
                                 <div class=" day-input">
@@ -305,7 +305,7 @@
                     FRI
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="dailyFlag?0:weeklyFriUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyFriUnits">
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +315,7 @@
                     SAT
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="dailyFlag ||weeklyPerWeek=='W'?'0':weeklySatUnits">
+                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySatUnits">
                                     </div>
                                 </div>
                             </div>
@@ -377,7 +377,7 @@
                     </div>
                 </div>
             </div>
-            <div class="procedure-shift-code" *ngIf='privateFlag'>
+            <div class="procedure-shift-code" *ngIf='privateFlag && privateDuty'>
 
                 <div class="d-flex align-items-center justify-content-between row m-0">
                     <div class="col-md-6 col-12 pl-0 pr-0-sm">
@@ -396,19 +396,19 @@
                                     <a [innerHTML]="item.name"></a>
                                 </ng-template>
                             </div>
-                            <div class=" m-0 d-flex align-items-center  pb-8 w-58">
-                                <label class="white-space-nowrap m-0 pr-3 AvenirLTStd-Heavy color-black">
+                            <!-- <div class=" m-0 d-flex align-items-center  pb-8 w-58">
+                <label class="white-space-nowrap m-0 pr-3 AvenirLTStd-Heavy color-black">
                   A Unit is
                 </label>
-                                <span class="AvenirLTStd-Heavy pr-2">Hr:</span>
-                                <div class="input-group width-80 pr-2 form-input">
-                                    <input type="text" class="form-control">
-                                </div>
-                                <span class="AvenirLTStd-Heavy pr-2">Min:</span>
-                                <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
+                <span class="AvenirLTStd-Heavy pr-2">Hr:</span>
+                <div class="input-group width-80 pr-2 form-input">
+                  <input type="text" class="form-control">
+                </div>
+                <span class="AvenirLTStd-Heavy pr-2">Min:</span>
+                <div class="input-group width-80 form-input">
+                  <input type="text" class="form-control">
+                </div>
+              </div> -->
 
                         </div>
                     </div>

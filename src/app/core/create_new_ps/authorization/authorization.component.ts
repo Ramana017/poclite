@@ -64,15 +64,15 @@ export class AuthorizationComponent implements OnInit {
   public weeklyPerWeek: string = "W";
   public weeklyNoOfWeek: number;
   public weeklyDaysPerWeek: number;
-  public weeklySunUnits: number;
+  public weeklySunUnits: number=0;
   public weeklyMonUnits: number;
   public weeklyTueUnits: number;
   public weeklyWedUnits: number;
   public weeklyThuUnits: number;
   public weeklyFriUnits: number;
-  public weeklySatUnits: number;
+  public weeklySatUnits: number=0;
   public monthlyMaxUnits: number;
-  public privateDutyRateType;
+  public privateDutyRateType=null;
   public regularShift1Rate;
   public regularShift2Rate;
   public regularShift3Rate;
@@ -163,7 +163,27 @@ export class AuthorizationComponent implements OnInit {
     this.monthlyFlag = event.target.checked;
   }
   public toggleDisplayDivDaily(event): void {
+    console.log(event.target.checked)
     this.dailyFlag = event.target.checked;
+    if (event.target.checked) {
+      this.weeklySunUnits = 0
+      this.weeklyMonUnits = 0
+      this.weeklyTueUnits = 0
+      this.weeklyWedUnits = 0
+      this.weeklyThuUnits = 0
+      this.weeklyFriUnits = 0
+      this.weeklySatUnits = 0
+    } else {
+      this.weeklySunUnits = null
+      this.weeklyMonUnits = null
+      this.weeklyTueUnits = null
+      this.weeklyWedUnits = null
+      this.weeklyThuUnits = null
+      this.weeklyFriUnits = null
+      this.weeklySatUnits = null
+    }
+
+
   }
   public toggleCheck(event): void {
     console.log(event.target.checked);
@@ -215,12 +235,14 @@ export class AuthorizationComponent implements OnInit {
     let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
     let endDateseconds = Date.parse(this.date.transform(this.endDate, 'MM/dd/yyyy'));
     let ppEffectiveFromSeconds = Date.parse(this.ppEffectiveFrom);
-    let ppEffectiveToSeconds = Date.parse(this.ppEffectiveTo)
+    let ppEffectiveToSeconds = Date.parse(this.ppEffectiveTo);
+    let admissionSeconds = Date.parse(this.admitDate);
     let procedureFlag: boolean;
     let beginDateFlag: boolean;
     let endDateFlag: boolean;
     let tempAuthFlag: boolean;
     let totalunitsFlag: boolean;
+    let admissionFlag: boolean = false;
     if (this.procedureSelctedItems.length == 0) {
       procedureFlag = false;
       swal.fire({
@@ -285,7 +307,7 @@ export class AuthorizationComponent implements OnInit {
       endDateFlag = false;
       swal.fire({
         title: 'Invalid End Date',
-        text: 'End Date should be in After Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
+        text: 'End Date should be  After the   Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -303,79 +325,45 @@ export class AuthorizationComponent implements OnInit {
       })
     }
 
-    if (endDateFlag && procedureFlag && beginDateFlag && tempAuthFlag && totalunitsFlag) {
+
+    if (beginDateseconds >= admissionSeconds) {
+      admissionFlag = true;
+    } else {
+      admissionFlag = false;
+      swal.fire({
+        title: 'Invalid Begin Date',
+        text: 'Begin Date should be After The Admit Date (' + this.admitDate + ')',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    if (endDateFlag && procedureFlag && beginDateFlag && tempAuthFlag && totalunitsFlag && admissionFlag) {
       console.log("all are valid")
       this.privateDuty ? this.privatedutyValidation() : !this.weeklyFlag && !this.dailyFlag && !this.monthlyFlag ? this.savePSAuthorization() : this.delivaryvalidation()
     }
   }
 
-  // public delivaryPlanValidation() {
+  private privatedutyValidation() {
 
-  //   console.log("delivary")
+    if(this.privateFlag){
+    if ( this.privateDutyRateType==null)
+    {
+      swal.fire({
+        title: 'Invalid Rate Type',
+        text: 'Please Select Rate Type',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }else{
+      this.savePSAuthorization();
+    }
+    }else{
+      this.savePSAuthorization();
 
-  //   let weeklyMaxUnitsFlag: boolean;
-  //   let dailyMaxUnitsFlag: boolean;
-  //   let monthlyMaxUnitsFlag: boolean;
-  //   if (this.weeklyFlag || this.dailyFlag || this.monthlyFlag) {
-  //     let effectivFromDateflag: boolean = false;
-  //     let effectiveFromSeconds = Date.parse(this.date.transform(this.ppEffectiveFromDate, 'MM/dd/yyyy'));
-  //     let effectiveFromTo = Date.parse(this.date.transform(this.ppEffectiveToDate, 'MM/dd/yyyy'));
-  //     let authorizationbeginSeconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
-  //     let authorizationendseconds = Date.parse(this.date.transform(this.endDate != undefined || null ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy'));
+    }
 
-  //     if (effectiveFromSeconds >= authorizationbeginSeconds && effectiveFromSeconds <= authorizationendseconds) {
-  //       effectivFromDateflag = true;
-  //       console.log()
-  //     }
-  //     else {
-
-  //     }
-  //     if (this.weeklyFlag) {
-  //       this.weeklyMaxUnits == undefined || null ? swal.fire({
-  //         title: 'Invalid WeeklY Max Units',
-  //         text: "Please Enter Weekly Max Units ",
-  //         icon: 'error',
-  //         confirmButtonText: 'Ok',
-  //         allowOutsideClick: false
-  //       }) : weeklyMaxUnitsFlag = true
-  //     }
-  //     else {
-  //       weeklyMaxUnitsFlag = true
-  //     }
-  //     if (this.monthlyFlag) {
-  //       this.monthlyMaxUnits == undefined || null ? swal.fire({
-  //         title: 'Invalid Monthly Max Units',
-  //         text: "Please Enter Monthly Max Units ",
-  //         icon: 'error',
-  //         confirmButtonText: 'Ok',
-  //         allowOutsideClick: false
-  //       }) : monthlyMaxUnitsFlag = true
-  //     }
-  //     else {
-  //       monthlyMaxUnitsFlag = true
-  //     }
-  //     if (this.dailyFlag) {
-  //       this.dailyMaxUnits == undefined ? swal.fire({
-  //         title: 'Invalid Daily Max Units',
-  //         text: "Please Enter Daily Max Units ",
-  //         icon: 'error',
-  //         confirmButtonText: 'Ok',
-  //         allowOutsideClick: false
-  //       }) : ''
-  //     }
-
-
-
-  //   } else {
-  //     console.log('all are correct')
-  //     this.savePSAuthorization()
-
-  //   }
-  // }
-
-  private privatedutyValidation(){
-
-    this.savePSAuthorization();
   }
 
   private delivaryvalidation() {
@@ -415,7 +403,7 @@ export class AuthorizationComponent implements OnInit {
         allowOutsideClick: false
       })
     } else {
-      effectiveFomFlag = true;
+      effectiveToFlag = true;
     }
     if (effectiveFomFlag && effectiveToFlag) {
 
@@ -429,11 +417,11 @@ export class AuthorizationComponent implements OnInit {
         }) : monthlyMaxUnitsFlag = true
 
         console.log(monthlyMaxUnitsFlag)
-      } else{
+      } else {
         monthlyMaxUnitsFlag = true
       }
       if (this.dailyFlag) {
-        this.dailyMaxUnits == undefined||null ? swal.fire({
+        this.dailyMaxUnits == undefined || null ? swal.fire({
           title: 'Invalid Daily Max Units',
           text: "Please Enter Daily Max Units ",
           icon: 'error',
@@ -442,11 +430,11 @@ export class AuthorizationComponent implements OnInit {
         }) : dailyMaxUnitsFlag = true
         console.log(dailyMaxUnitsFlag)
 
-      } else{
+      } else {
         dailyMaxUnitsFlag = true
       }
       if (this.weeklyFlag) {
-        this.weeklyMaxUnits == undefined ||null? swal.fire({
+        this.weeklyMaxUnits == undefined || null ? swal.fire({
           title: 'Invalid Weekly Max Units',
           text: "Please Enter Weekly Max Units ",
           icon: 'error',
@@ -455,15 +443,100 @@ export class AuthorizationComponent implements OnInit {
         }) : weeklyMaxUnitsFlag = true
         console.log(weeklyMaxUnitsFlag)
       }
-      else{
+      else {
         weeklyMaxUnitsFlag = true
       }
 
-      if(weeklyMaxUnitsFlag&&dailyMaxUnitsFlag&&monthlyMaxUnitsFlag){
+      if (weeklyMaxUnitsFlag && dailyMaxUnitsFlag && monthlyMaxUnitsFlag) {
         console.log("all are correct");
+        this.totalUnitsTally();
+      }
+
+    }
+  }
+  public perWeekChange() {
+    if (this.weeklyPerWeek == "W") {
+      this.weeklySunUnits = 0;
+      this.weeklySatUnits = 0;
+    }
+    else {
+      this.weeklySunUnits = null;
+      this.weeklySatUnits = null;
+    }
+  }
+  public totalUnitsTally() {
+    let monthlytotalUnitsFlag: boolean = false;
+    let dailytotalUnitsFlag: boolean = false;
+    let weeklytotalUnitsFlag: boolean = false;
+    let totalWeekunitsFlag: boolean = false;
+    if (this.monthlyFlag && !this.totalUnitsFlag) {
+
+      this.monthlyMaxUnits >= this.totalUnits ? swal.fire({
+        title: 'Invalid Monthly Max Units',
+        text: "Max Units per Month cannot be  greater than Total Units ",
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      }) : monthlytotalUnitsFlag = true
+
+    } else {
+      monthlytotalUnitsFlag = true;
+    }
+    if (this.dailyFlag && !this.totalUnitsFlag) {
+      this.dailyMaxUnits >= this.totalUnits ? swal.fire({
+        title: 'Invalid Daily Max Units',
+        text: "Max Units per Day cannot be greater than Total Units",
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      }) : dailytotalUnitsFlag = true
+
+    } else {
+      dailytotalUnitsFlag = true
+    }
+    if (this.weeklyFlag && !this.totalUnitsFlag) {
+      this.weeklyMaxUnits >= this.totalUnits ? swal.fire({
+        title: 'Invalid Weekly Max Units',
+        text: "Max Units per Week cannot be greater than Total Units",
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      }) : weeklytotalUnitsFlag = true
+
+    } else {
+      weeklytotalUnitsFlag = true
+    }
+    if (monthlytotalUnitsFlag && dailytotalUnitsFlag && weeklytotalUnitsFlag) {
+
+      if (this.weeklyFlag && !this.dailyFlag) {
+        console.log((+this.weeklyMonUnits) +(+this.weeklyTueUnits))
+        console.log((+this.weeklyWedUnits) +(+this.weeklyThuUnits))
+        console.log((+this.weeklyFriUnits) +(+this.weeklySatUnits))
+        console.log(+this.weeklySunUnits)
+        console.log((+this.weeklySunUnits) + (+this.weeklyMonUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits) + (+this.weeklySatUnits))
+        totalWeekunitsFlag = this.weeklyPerWeek == "F" ?
+          (+this.weeklyMaxUnits >= ((+this.weeklySunUnits) + (+this.weeklyMonUnits) + (+this.weeklyTueUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits) + (+this.weeklySatUnits))) :
+          (+this.weeklyMaxUnits >= ((+this.weeklyMonUnits) + (+this.weeklyTueUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits)))
+
+        console.log(totalWeekunitsFlag);
+        if (totalWeekunitsFlag) {
+          this.savePSAuthorization();
+        } else {
+          swal.fire({
+            title: 'Invalid Weekly Max Units',
+            text: "Sum of All Days units should less than OR equal To total units ",
+            icon: 'error',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false
+          })
+        }
+      } else {
         this.savePSAuthorization();
       }
+
+
     }
+
 
 
   }
@@ -552,7 +625,7 @@ export class AuthorizationComponent implements OnInit {
       "weeklySatUnits": 0,
       "monthlyDP": 0,
       "monthlyMaxUnits": 0,
-      "privateDutyRateType": this.privateDutyRateType,
+      "privateDutyRateType": this.privateDutyRateType!=null?this.privateDutyRateType:'',
       "regularShift1Rate": this.regularShift1Rate != undefined ? +this.regularShift1Rate : 0,
       "regularShift2Rate": this.regularShift2Rate != undefined ? +this.regularShift2Rate : 0,
       "regularShift3Rate": this.regularShift3Rate != undefined ? +this.regularShift3Rate : 0,

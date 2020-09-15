@@ -100,7 +100,7 @@ export class AdmissionDetailsComponent implements OnInit {
     return this.admissionForm.controls;
 
   }
-  // Get lookups data 
+  // Get lookups data
   public getAdmissionLookups(): void {
     let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
@@ -298,7 +298,7 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(this.result);
       }
     });
-    this.result = this.finalList
+    // this.result = this.finalList
   }
   // Code for Saving the whole data
   public savePs() {
@@ -345,7 +345,7 @@ export class AdmissionDetailsComponent implements OnInit {
             console.log(Object.keys(this.admissionRes).length);
             // console.log("datasaved successfully");
             // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-            // sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
+            sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
             // this.router.navigateByUrl('registration-re/child-payorplan');
             if (Object.keys(this.admissionRes).length>0)
             {
@@ -354,7 +354,7 @@ export class AdmissionDetailsComponent implements OnInit {
               this.router.navigateByUrl('registration-re/child-payorplan');
             }
           });
-       
+
       }
 
       catch (error) {
@@ -397,7 +397,7 @@ export class AdmissionDetailsComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-    
+
 
   }
   // Code for Searching option in the popup
@@ -432,7 +432,7 @@ export class AdmissionDetailsComponent implements OnInit {
   //  let frstDate=this.admissionForm.get('firstVisitDate')
   //  let referredDate= this.admissionForm.get('referredDate');
   //  console.log(adminDate.value,'admindate',referredDate.value,"referredDate")
-    
+
   //   if( frstDate!=undefined &&  adminDate.value<frstDate.value){
   //     alert("greater")
   //     false
@@ -441,6 +441,6 @@ export class AdmissionDetailsComponent implements OnInit {
   //     alert('smaller')
   //     false
   //   }
-      
+
   }
 }
