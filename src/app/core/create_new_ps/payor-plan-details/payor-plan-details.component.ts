@@ -43,7 +43,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   public userId: number;
   public currentDate: Date = new Date();
   public phoneNumber;
-  public addressId;
+  public addressId=0;
   private admitDate;
   private clientTypeId;
   private clientClassId;
