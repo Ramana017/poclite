@@ -155,6 +155,9 @@ export class AuthorizationComponent implements OnInit {
     this.weeklyFlag = event.target.checked;
 
   }
+  public toggleDisplayDivPrivate(event){
+
+  }
   public toggleDisplayDivMonthly(event): void {
     this.monthlyFlag = event.target.checked;
   }
@@ -356,7 +359,7 @@ export class AuthorizationComponent implements OnInit {
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
       "endDate": this.tempAuth ? "" :this.endDate==null||undefined?"": this.date.transform(this.endDate, 'MM/dd/yyyy'),
-      "unitDuration": 15,
+      "unitDuration":this.procedureSelctedItems[0].unitDuration,
       "totalUnits": this.totalUnitsFlag ? 0 : +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
       "dpEffectiveFrom": this.privateDuty ? "" :this.effectiveFromDate==null||undefined?'': this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
@@ -434,7 +437,7 @@ export class AuthorizationComponent implements OnInit {
       "holidayShift1Rate": this.holidayShift1Rate != undefined ? +this.holidayShift1Rate : 0,
       "holidayShift2Rate": this.holidayShift2Rate != undefined ? +this.holidayShift2Rate : 0,
       "holidayShift3Rate": this.holidayShift3Rate != undefined ? +this.holidayShift3Rate : 0,
-      "unitDuration": 15,
+      "unitDuration":this.procedureSelctedItems[0].unitDuration,
       "userId": this.userId
     }
     let params = this.privateDuty ? privatePlan : delivaryobject;
