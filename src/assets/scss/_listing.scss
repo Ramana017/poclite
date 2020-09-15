@@ -56,6 +56,7 @@
       left: 3px;
       height: 22px;
       width: 22px;
+      border:2px solid ;
 
       &:after {
 
@@ -318,4 +319,8 @@ i {
     }
   
   }
+}
+
+.customcheck input:checked ~ .checkmark {
+  border: 0;
 }
