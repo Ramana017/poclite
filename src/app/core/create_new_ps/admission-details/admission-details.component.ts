@@ -83,6 +83,7 @@ export class AdmissionDetailsComponent implements OnInit {
     this.getAdmissionLookups();
     this.getDiagnosisData();
   }
+  // Code for formcontrols
   private newForm(): void {
     this.admissionForm = this.fb.group({
 
@@ -99,7 +100,7 @@ export class AdmissionDetailsComponent implements OnInit {
     return this.admissionForm.controls;
 
   }
-
+  // Get lookups data 
   public getAdmissionLookups(): void {
     let guarantorSession: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
     let psSession: any = JSON.parse(sessionStorage.getItem('psDetails'));
@@ -127,6 +128,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
 
   }
+  // Get referral data
   public getLookupsData2() {
 
     try {
@@ -144,6 +146,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
 
   }
+  // Navigate to next page data in popup
   public pagenext(): void {
     if (this.upperBound < this.maxCount) {
       this.lowerBound = this.lowerBound + this.perPage;
@@ -158,7 +161,7 @@ export class AdmissionDetailsComponent implements OnInit {
       // this.listingData();
     }
   }
-  //method to change previous page
+  // Navigate to prev page data in popup
   public prevpage(): void {
 
     if (this.lowerBound !== 1) {
@@ -175,6 +178,7 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     }
   }
+  // Reset the seleted data
   public pagereset(): void {
 
     console.log(this.perPage);
@@ -184,7 +188,7 @@ export class AdmissionDetailsComponent implements OnInit {
     this.getDiagnosisData();
 
   }
-
+  // Get the whole diagnosis data according to lower and upper bound
   public getDiagnosisData(): void {
     let params = { "userId": this.userId, "code": this.diagnosisCode, "name": this.diagnosisName, "lowerBound": this.lowerBound, "upperBound": this.upperBound };
     console.log(params)
@@ -202,7 +206,7 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-
+  // Selecting the diagnosis data in the popup
   public check(event, ind, field) {
 
     if (event.target.checked && !this.finalList.length, field === 'addDiagnosis') {
@@ -250,6 +254,7 @@ export class AdmissionDetailsComponent implements OnInit {
 
 
   }
+  // Add the final Array to the table on clicking add button
   public addList() {
 
     this.tableList = this.finalList;
@@ -262,6 +267,7 @@ export class AdmissionDetailsComponent implements OnInit {
     console.log(this.tableList, "on tablelist")
 
   }
+  // Show the selected data while navigating to prev and next pages
   public showCheckboxData() {
     if (this.finalList.length >= 0) {
 
@@ -276,12 +282,14 @@ export class AdmissionDetailsComponent implements OnInit {
     }
     //this.z.push(this.selectedItems)
   }
+  // Code for the popup
   public addFieldValue(template: TemplateRef<any>) {
     this.showCheckboxData();
 
 
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
   }
+  // Delete unwanted row from the table
   public deleteRow(index): void {
     this.result.forEach((ele, i) => {
 
@@ -293,7 +301,7 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     });
   }
-
+  // Code for Saving the whole data
   public savePs() {
     console.log(this.tableList, "on tablelist")
     this.formError = true;
@@ -380,11 +388,13 @@ export class AdmissionDetailsComponent implements OnInit {
     }
 
   }
+  // Code for Searching option in the popup
   public searchCLick() {
     this.upperBound = this.perPage;
     this.lowerBound = 1;
     this.getDiagnosisData();
   }
+  // Code to reset
   public reset() {
     this.diagnosisName = '';
     this.diagnosisCode = '';
@@ -392,11 +402,11 @@ export class AdmissionDetailsComponent implements OnInit {
     this.lowerBound = 1;
     this.getDiagnosisData();
   }
+  // Code for auto populating the first visit date
+  // Code for setting min and max dates for first and reffered dates
   public admissionDateChange() {
     this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate);
     let z = this.admissionForm.get('admissionDate')
     this.minDate = z.value;
   }
-
-
 }
