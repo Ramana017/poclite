@@ -427,24 +427,36 @@ export class AuthorizationComponent implements OnInit {
           confirmButtonText: 'Ok',
           allowOutsideClick: false
         }) : monthlyMaxUnitsFlag = true
+
+        console.log(monthlyMaxUnitsFlag)
+      } else{
+        monthlyMaxUnitsFlag = true
       }
       if (this.dailyFlag) {
-        this.dailyMaxUnits == undefined ? swal.fire({
+        this.dailyMaxUnits == undefined||null ? swal.fire({
           title: 'Invalid Daily Max Units',
           text: "Please Enter Daily Max Units ",
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
         }) : dailyMaxUnitsFlag = true
+        console.log(dailyMaxUnitsFlag)
+
+      } else{
+        dailyMaxUnitsFlag = true
       }
       if (this.weeklyFlag) {
-        this.weeklyMaxUnits == undefined ? swal.fire({
+        this.weeklyMaxUnits == undefined ||null? swal.fire({
           title: 'Invalid Weekly Max Units',
           text: "Please Enter Weekly Max Units ",
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
         }) : weeklyMaxUnitsFlag = true
+        console.log(weeklyMaxUnitsFlag)
+      }
+      else{
+        weeklyMaxUnitsFlag = true
       }
 
       if(weeklyMaxUnitsFlag&&dailyMaxUnitsFlag&&monthlyMaxUnitsFlag){
@@ -462,7 +474,7 @@ export class AuthorizationComponent implements OnInit {
     let delivaryobject = {
       "psAdmissionid": this.psAdmissionId,
       "caseManagerId": this.caseManagerId != undefined ? +this.caseManagerId : 0,
-      "authorizationNumber": this.tempAuth ? this.authorizationManual : this.authorizationNumber == undefined ? '' : this.authorizationManual,
+      "authorizationNumber": this.tempAuth ? this.authorizationNumber : this.authorizationManual == undefined ? '' : this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
       "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
@@ -509,7 +521,7 @@ export class AuthorizationComponent implements OnInit {
     let privatePlan = {
       "psAdmissionid": this.psAdmissionId,
       "caseManagerId": this.caseManagerId != undefined ? +this.caseManagerId : 0,
-      "authorizationNumber": this.authorizationManual,
+      "authorizationNumber": this.tempAuth ? this.authorizationNumber : this.authorizationManual == undefined ? '' : this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
       "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
@@ -564,7 +576,7 @@ export class AuthorizationComponent implements OnInit {
             confirmButtonText: 'Ok',
             allowOutsideClick: false
           })
-          // this.router.navigateByUrl('widgets')
+          this.router.navigateByUrl('widgets')
         }
       )
 

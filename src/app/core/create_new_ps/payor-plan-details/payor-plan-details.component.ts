@@ -234,6 +234,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.payorPlanForm.get('country').setValue(Flag ? this.psdata.country : '');
     this.payorPlanForm.get('county').setValue(Flag ? this.psdata.county : '');
     this.payorPlanForm.get('state').setValue(Flag ? this.psdata.state : '');
+    this.payorPlanForm.get('ssn').setValue(Flag ? this.psdata.ssn : '');
     this.timeZoneId = Flag ? this.psdata.TIMEZONEID : '';
     this.stateId = Flag ? this.psdata.stateId : '';
     this.countyId = Flag ? this.psdata.countyId : '';
