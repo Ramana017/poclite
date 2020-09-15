@@ -31,7 +31,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public officeId;
   public clientType;
   public coordinatorData;
- // public AdmissionDate: Date = new Date();
+  // public AdmissionDate: Date = new Date();
   public FirstVisitDate: Date;
   public referredDate: Date;
   public isDuplicate: boolean;
@@ -286,22 +286,65 @@ export class AdmissionDetailsComponent implements OnInit {
     this.showCheckboxData();
 
 
-    this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
+    this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable', backdrop: 'static' });
   }
   // Delete unwanted row from the table
   public deleteRow(index): void {
-    this.result.forEach((ele, i) => {
+    this.finalList.forEach((ele, i) => {
       if (index === i) {
         console.log(ele)
-          ele.flag=false
-        this.result.splice(index, 1);
-        console.log(this.result);
+        ele.flag = false
+        this.finalList.splice(index, 1);
       }
+      for (let i = 0; i < this.finalList.length; i++) {
+        console.log(this.finalList[i], "in loop")
+        this.finalList[i].rank = i + 1
+
+        console.log(this.finalList, "on tablelist in for loop")
+      }
+      console.log(this.finalList);
     });
-    // this.result = this.finalList
   }
+  adminDate;
+  frstDate;
   // Code for Saving the whole data
   public savePs() {
+
+
+    let adminDateParse = Date.parse(this.date.transform(this.adminDate, 'MM/dd/yyyy'));
+    let frstDateParse = Date.parse(this.date.transform(this.frstDate, 'MM/dd/yyyy'));
+    let referredDate = Date.parse(this.date.transform(this.frstDate, 'MM/dd/yyyy'));
+
+    let maxDate = new Date();
+    let twoyr = maxDate.setDate(maxDate.getDate() + 365)
+
+    console.log(twoyr)
+    console.log(Date.parse(this.date.transform(maxDate, 'MM/dd/yyyy')))
+    console.log(this.date.transform(twoyr, 'MM/dd/yyyy'))
+
+
+    if (frstDateParse < adminDateParse || referredDate <= adminDateParse || Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate() + 365)) {
+      true
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "true")
+    } else {
+      false
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
+    }
+
+    if (frstDateParse < adminDateParse) {
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse')
+    }
+    if (referredDate <= adminDateParse) {
+      console.log(adminDateParse, 'adminDateParse', referredDate, 'referredDate')
+    }
+    if (Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate() + 365)) {
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
+
+    }
+
+
+
+
     console.log(this.tableList, "on tablelist")
     this.formError = true;
     let temp = [];
@@ -347,10 +390,10 @@ export class AdmissionDetailsComponent implements OnInit {
             // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
             sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
             // this.router.navigateByUrl('registration-re/child-payorplan');
-            if (Object.keys(this.admissionRes).length>0)
-            {
+            if (Object.keys(this.admissionRes).length > 0) {
               console.log("datasaved successfully");
               sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+              sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
               this.router.navigateByUrl('registration-re/child-payorplan');
             }
           });
@@ -378,15 +421,14 @@ export class AdmissionDetailsComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    } else if(this.admissionForm.get('firstVisitDate')<this.admissionForm.get('admissionDate')){
+    } else if (this.admissionForm.get('firstVisitDate') < this.admissionForm.get('admissionDate')) {
       swal.fire({
         title: 'Invalid Form',
         text: 'Your First Visit Date is greater than Admission Date ',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
-      })
-
+      });
     }
     else {
       swal.fire({
@@ -418,29 +460,6 @@ export class AdmissionDetailsComponent implements OnInit {
   // Code for setting min and max dates for first and reffered dates
   public admissionDateChange() {
     this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate);
-   let adminDate= this.admissionForm.get('admissionDate');
-   let referredDate= this.admissionForm.get('referredDate');
-    let z = this.admissionForm.get('admissionDate')
-    this.minDate = z.value;
-    // if(adminDate<adminDate){
-    //   false
-    // }
-    // if(adminDate>referredDate){
-    //   false
-    // }
-     //  let adminDate= this.admissionForm.get('admissionDate');
-  //  let frstDate=this.admissionForm.get('firstVisitDate')
-  //  let referredDate= this.admissionForm.get('referredDate');
-  //  console.log(adminDate.value,'admindate',referredDate.value,"referredDate")
-
-  //   if( frstDate!=undefined &&  adminDate.value<frstDate.value){
-  //     alert("greater")
-  //     false
-  //   }
-  //   if(referredDate!=null && adminDate.value>referredDate.value){
-  //     alert('smaller')
-  //     false
-  //   }
 
   }
 }

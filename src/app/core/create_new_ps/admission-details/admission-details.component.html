@@ -49,7 +49,7 @@
 
                             <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError" 
                            
-                             (bsValueChange)="admissionDateChange()" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
+                             (bsValueChange)="admissionDateChange()" [(ngModel)]="adminDate" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -77,7 +77,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" [minDate]="minDate" aria-label="Case Manager" [class.is-invalid]="f.firstVisitDate.invalid && formError" formControlName="firstVisitDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" [(ngModel)]="frstDate" class="form-control"  aria-label="Case Manager" [class.is-invalid]="f.firstVisitDate.invalid && formError" formControlName="firstVisitDate" bsDatepicker>
                         </div>
 
                     </div>
@@ -87,7 +87,7 @@
                         </label>
 
                         <div class="input-group ">
-                            <input type="text" placeholder="mm/dd/yyyy" class="form-control" [maxDate]="minDate" aria-label="Case Manager" [class.is-invalid]="f.referredDate.invalid && formError" formControlName="referredDate" bsDatepicker>
+                            <input type="text" placeholder="mm/dd/yyyy" [(ngModel)]="referredDate" class="form-control" aria-label="Case Manager" [class.is-invalid]="f.referredDate.invalid && formError" formControlName="referredDate" bsDatepicker>
                         </div>
 
                     </div>
