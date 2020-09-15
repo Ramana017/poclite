@@ -14,6 +14,7 @@ export class AuthorizationComponent implements OnInit {
   public dailyFlag = false;
   public monthlyFlag = false;
   public weeklyFlag = false;
+  public privateFlag = false;
   public psName: string;
   public tempAuth: boolean = false;
   public authHash: string;
@@ -25,7 +26,7 @@ export class AuthorizationComponent implements OnInit {
   public endDate: Date;
   public billingRate: string;
   public totalUnits: number;
-  public totalUnitsFlag: boolean=false;
+  public totalUnitsFlag: boolean = false;
   public effectiveFromDate: Date
   public effectiveToDate: Date;
   public caseManagerId: number;
@@ -155,8 +156,8 @@ export class AuthorizationComponent implements OnInit {
     this.weeklyFlag = event.target.checked;
 
   }
-  public toggleDisplayDivPrivate(event){
-
+  public toggleDisplayDivPrivate(event) {
+    this.privateFlag = event.target.checked;
   }
   public toggleDisplayDivMonthly(event): void {
     this.monthlyFlag = event.target.checked;
@@ -209,8 +210,8 @@ export class AuthorizationComponent implements OnInit {
   }
 
   public authorizationValidations() {
-    console.log(this.totalUnits==undefined||this.totalUnits==null)
-    console.log(typeof(this.totalUnits),this.totalUnitsFlag)
+    console.log(this.totalUnits == undefined || this.totalUnits == null)
+    console.log(typeof (this.totalUnits), this.totalUnitsFlag)
     let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
     let endDateseconds = Date.parse(this.date.transform(this.endDate, 'MM/dd/yyyy'));
     let ppEffectiveFromSeconds = Date.parse(this.ppEffectiveFrom);
@@ -218,8 +219,8 @@ export class AuthorizationComponent implements OnInit {
     let procedureFlag: boolean;
     let beginDateFlag: boolean;
     let endDateFlag: boolean;
-    let tempAuthFlag:boolean;
-    let totalunitsFlag:boolean;
+    let tempAuthFlag: boolean;
+    let totalunitsFlag: boolean;
     if (this.procedureSelctedItems.length == 0) {
       procedureFlag = false;
       swal.fire({
@@ -233,24 +234,24 @@ export class AuthorizationComponent implements OnInit {
     else {
       procedureFlag = true;
     }
-    if(this.tempAuth&&(this.authorizationNumber==undefined||null)){
-            tempAuthFlag=false;
-            swal.fire({
-              title: 'Invalid Authorization',
-              text: 'Please Select Authorization Code',
-              icon: 'error',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false
-            })
+    if (this.tempAuth && (this.authorizationNumber == undefined || null)) {
+      tempAuthFlag = false;
+      swal.fire({
+        title: 'Invalid Authorization',
+        text: 'Please Select Authorization Number',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
     }
-    else{
-      tempAuthFlag=true;
+    else {
+      tempAuthFlag = true;
     }
-    if(this.totalUnitsFlag){
-      totalunitsFlag=true;
+    if (this.totalUnitsFlag) {
+      totalunitsFlag = true;
     }
-    else if(this.totalUnits==undefined||null ||this.totalUnits<=0){
-      totalunitsFlag=false;
+    else if (this.totalUnits == undefined || null || this.totalUnits <= 0) {
+      totalunitsFlag = false;
       swal.fire({
         title: 'Invalid Total Units',
         text: 'Please Enter Total Units',
@@ -259,8 +260,8 @@ export class AuthorizationComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-    else{
-      totalunitsFlag=true;
+    else {
+      totalunitsFlag = true;
     }
     if ((beginDateseconds >= ppEffectiveFromSeconds) && (beginDateseconds <= ppEffectiveToSeconds)) {
       beginDateFlag = true;
@@ -269,7 +270,7 @@ export class AuthorizationComponent implements OnInit {
       beginDateFlag = false;
       swal.fire({
         title: 'Invalid Begin Date',
-        text: 'Begin Date should be in between Payor/Plan Dates ('+this.ppEffectiveFrom +'-'+this.ppEffectiveTo+')',
+        text: 'Begin Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -277,70 +278,182 @@ export class AuthorizationComponent implements OnInit {
     }
     if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || (this.endDate == undefined || null)) {
       endDateFlag = true;
-    } else {
+
+
+    }
+    else if (endDateseconds < beginDateseconds) {
       endDateFlag = false;
       swal.fire({
         title: 'Invalid End Date',
-        text: 'End Date should be Between' + this.ppEffectiveFrom + ' to ' + this.ppEffectiveTo,
+        text: 'End Date should be in After Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    else {
+      endDateFlag = false;
+
+      swal.fire({
+        title: 'Invalid End Date',
+        text: 'End Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
     }
 
-    if (endDateFlag && procedureFlag && beginDateFlag&&tempAuthFlag&&totalunitsFlag) {
+    if (endDateFlag && procedureFlag && beginDateFlag && tempAuthFlag && totalunitsFlag) {
       console.log("all are valid")
-      this.privateDuty?'':this.delivaryPlanValidation()
+      this.privateDuty ? this.privatedutyValidation() : !this.weeklyFlag && !this.dailyFlag && !this.monthlyFlag ? this.savePSAuthorization() : this.delivaryvalidation()
     }
   }
 
-  public delivaryPlanValidation() {
+  // public delivaryPlanValidation() {
 
-    let weeklyMaxUnitsFlag:boolean;
-    let dailyMaxUnitsFlag:boolean;
-    let monthlyMaxUnitsFlag:boolean;
-    if (this.weeklyFlag || this.dailyFlag || this.monthlyFlag) {
-      if(this.weeklyFlag){
-        this.weeklyMaxUnits==undefined||null?swal.fire({
-          title: 'Invalid WeeklY Max Units',
-          text: "Please Enter Weekly Max Units ",
-          icon: 'error',
-          confirmButtonText: 'Ok',
-          allowOutsideClick: false
-        }):weeklyMaxUnitsFlag=true
-      }
-      else{
-        weeklyMaxUnitsFlag=true
-      }
-      if(this.monthlyFlag){
-        this.monthlyMaxUnits==undefined||null?swal.fire({
+  //   console.log("delivary")
+
+  //   let weeklyMaxUnitsFlag: boolean;
+  //   let dailyMaxUnitsFlag: boolean;
+  //   let monthlyMaxUnitsFlag: boolean;
+  //   if (this.weeklyFlag || this.dailyFlag || this.monthlyFlag) {
+  //     let effectivFromDateflag: boolean = false;
+  //     let effectiveFromSeconds = Date.parse(this.date.transform(this.ppEffectiveFromDate, 'MM/dd/yyyy'));
+  //     let effectiveFromTo = Date.parse(this.date.transform(this.ppEffectiveToDate, 'MM/dd/yyyy'));
+  //     let authorizationbeginSeconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
+  //     let authorizationendseconds = Date.parse(this.date.transform(this.endDate != undefined || null ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy'));
+
+  //     if (effectiveFromSeconds >= authorizationbeginSeconds && effectiveFromSeconds <= authorizationendseconds) {
+  //       effectivFromDateflag = true;
+  //       console.log()
+  //     }
+  //     else {
+
+  //     }
+  //     if (this.weeklyFlag) {
+  //       this.weeklyMaxUnits == undefined || null ? swal.fire({
+  //         title: 'Invalid WeeklY Max Units',
+  //         text: "Please Enter Weekly Max Units ",
+  //         icon: 'error',
+  //         confirmButtonText: 'Ok',
+  //         allowOutsideClick: false
+  //       }) : weeklyMaxUnitsFlag = true
+  //     }
+  //     else {
+  //       weeklyMaxUnitsFlag = true
+  //     }
+  //     if (this.monthlyFlag) {
+  //       this.monthlyMaxUnits == undefined || null ? swal.fire({
+  //         title: 'Invalid Monthly Max Units',
+  //         text: "Please Enter Monthly Max Units ",
+  //         icon: 'error',
+  //         confirmButtonText: 'Ok',
+  //         allowOutsideClick: false
+  //       }) : monthlyMaxUnitsFlag = true
+  //     }
+  //     else {
+  //       monthlyMaxUnitsFlag = true
+  //     }
+  //     if (this.dailyFlag) {
+  //       this.dailyMaxUnits == undefined ? swal.fire({
+  //         title: 'Invalid Daily Max Units',
+  //         text: "Please Enter Daily Max Units ",
+  //         icon: 'error',
+  //         confirmButtonText: 'Ok',
+  //         allowOutsideClick: false
+  //       }) : ''
+  //     }
+
+
+
+  //   } else {
+  //     console.log('all are correct')
+  //     this.savePSAuthorization()
+
+  //   }
+  // }
+
+  private privatedutyValidation(){
+
+    this.savePSAuthorization();
+  }
+
+  private delivaryvalidation() {
+    let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
+    let endDateseconds = Date.parse(this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy'));
+    let effectiveFromDateSeconds = Date.parse(this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'));
+    let effectiveToDateSeconds = Date.parse(this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'));
+
+    let effectiveFomFlag: boolean = false;
+    let effectiveToFlag: boolean = false;
+    let monthlyMaxUnitsFlag: boolean = false;
+    let dailyMaxUnitsFlag: boolean = false;
+    let weeklyMaxUnitsFlag: boolean = false;
+
+
+    if (this.effectiveFromDate == undefined || null || (effectiveFromDateSeconds < beginDateseconds || effectiveFromDateSeconds > endDateseconds)) {
+      effectiveFomFlag = false;
+      swal.fire({
+        title: 'Invalid Effective From Date',
+        text: 'Effective Date should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    } else {
+      effectiveFomFlag = true;
+    }
+    if (this.effectiveToDate == undefined || null) {
+      effectiveToFlag = true;
+    } else if ((effectiveToDateSeconds < beginDateseconds || effectiveToDateSeconds > endDateseconds)) {
+      effectiveFomFlag = false;
+      swal.fire({
+        title: 'Invalid Effective To Date',
+        text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    } else {
+      effectiveFomFlag = true;
+    }
+    if (effectiveFomFlag && effectiveToFlag) {
+
+      if (this.monthlyFlag) {
+        this.monthlyMaxUnits == undefined || null ? swal.fire({
           title: 'Invalid Monthly Max Units',
           text: "Please Enter Monthly Max Units ",
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
-        }):monthlyMaxUnitsFlag=true
+        }) : monthlyMaxUnitsFlag = true
       }
-      else{
-        monthlyMaxUnitsFlag=true
-      }
-      if(this.dailyFlag){
-        this.dailyMaxUnits==undefined?swal.fire({
+      if (this.dailyFlag) {
+        this.dailyMaxUnits == undefined ? swal.fire({
           title: 'Invalid Daily Max Units',
           text: "Please Enter Daily Max Units ",
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
-        }):''
+        }) : dailyMaxUnitsFlag = true
+      }
+      if (this.weeklyFlag) {
+        this.weeklyMaxUnits == undefined ? swal.fire({
+          title: 'Invalid Weekly Max Units',
+          text: "Please Enter Weekly Max Units ",
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        }) : weeklyMaxUnitsFlag = true
       }
 
-
-
-    } else
-     {
-     console.log('all are correct')
-
+      if(weeklyMaxUnitsFlag&&dailyMaxUnitsFlag&&monthlyMaxUnitsFlag){
+        console.log("all are correct");
+        this.savePSAuthorization();
+      }
     }
+
+
   }
 
   public savePSAuthorization() {
@@ -349,7 +462,7 @@ export class AuthorizationComponent implements OnInit {
     let delivaryobject = {
       "psAdmissionid": this.psAdmissionId,
       "caseManagerId": this.caseManagerId != undefined ? +this.caseManagerId : 0,
-      "authorizationNumber": this.tempAuth ? this.authorizationManual:this.authorizationNumber==undefined?'':this.authorizationManual,
+      "authorizationNumber": this.tempAuth ? this.authorizationManual : this.authorizationNumber == undefined ? '' : this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
       "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
@@ -358,20 +471,20 @@ export class AuthorizationComponent implements OnInit {
       "billingType": this.procedureSelctedItems[0].billingType != undefined ? this.procedureSelctedItems[0].billingType : '',
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.tempAuth ? "" :this.endDate==null||undefined?"": this.date.transform(this.endDate, 'MM/dd/yyyy'),
-      "unitDuration":this.procedureSelctedItems[0].unitDuration,
+      "endDate": this.tempAuth ? "" : this.endDate == null || undefined ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "unitDuration": this.procedureSelctedItems[0].unitDuration,
       "totalUnits": this.totalUnitsFlag ? 0 : +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
-      "dpEffectiveFrom": this.privateDuty ? "" :this.effectiveFromDate==null||undefined?'': this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
-      "dpEffectiveTo": this.privateDuty ? "" : this.effectiveToDate==null||undefined?'': this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
+      "dpEffectiveFrom": this.privateDuty ? "" : this.effectiveFromDate == null || undefined ? '' : this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
+      "dpEffectiveTo": this.privateDuty ? "" : this.effectiveToDate == null || undefined ? '' : this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
       "dailyDP": this.dailyFlag ? 1 : 0,
       "dailyMaxUnits": this.dailyFlag ? +this.dailyMaxUnits : 0,
       "dailyDays": this.dailyFlag ? this.dailyDays == undefined ? 0 : this.dailyDays : 0,
       "weeklyDP": this.weeklyFlag ? 1 : 0,
       "weeklyMaxUnits": this.weeklyFlag ? +this.weeklyMaxUnits : 0,
-      "weeklyPerWeek": this.weeklyFlag ? this.weeklyPerWeek==null?'':this.weeklyPerWeek : '',
-      "weeklyNoOfWeek": this.weeklyFlag ? this.weeklyNoOfWeek==undefined?0:this.weeklyNoOfWeek : 0,
-      "weeklyDaysPerWeek": this.weeklyFlag ? this.weeklyDaysPerWeek==undefined?0:this.weeklyDaysPerWeek : 0,
+      "weeklyPerWeek": this.weeklyFlag ? this.weeklyPerWeek == null ? '' : this.weeklyPerWeek : '',
+      "weeklyNoOfWeek": this.weeklyFlag ? this.weeklyNoOfWeek == undefined ? 0 : this.weeklyNoOfWeek : 0,
+      "weeklyDaysPerWeek": this.weeklyFlag ? this.weeklyDaysPerWeek == undefined ? 0 : this.weeklyDaysPerWeek : 0,
       "weeklySunUnits": (this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == 'F') ? this.weeklySunUnits == undefined ? 0 : +this.weeklySunUnits : 0,
       "weeklyMonUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyMonUnits == undefined ? 0 : +this.weeklyMonUnits : 0,
       "weeklyTueUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyTueUnits == undefined ? 0 : +this.weeklyTueUnits : 0,
@@ -405,7 +518,7 @@ export class AuthorizationComponent implements OnInit {
       "billingType": this.procedureSelctedItems[0].billingType != undefined ? this.procedureSelctedItems[0].billingType : '',
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.tempAuth ? "" :this.endDate==null||undefined?"": this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "endDate": this.tempAuth ? "" : this.endDate == null || undefined ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "totalUnits": +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
       "dpEffectiveTo": "",
@@ -437,7 +550,7 @@ export class AuthorizationComponent implements OnInit {
       "holidayShift1Rate": this.holidayShift1Rate != undefined ? +this.holidayShift1Rate : 0,
       "holidayShift2Rate": this.holidayShift2Rate != undefined ? +this.holidayShift2Rate : 0,
       "holidayShift3Rate": this.holidayShift3Rate != undefined ? +this.holidayShift3Rate : 0,
-      "unitDuration":this.procedureSelctedItems[0].unitDuration,
+      "unitDuration": this.procedureSelctedItems[0].unitDuration,
       "userId": this.userId
     }
     let params = this.privateDuty ? privatePlan : delivaryobject;
@@ -451,7 +564,7 @@ export class AuthorizationComponent implements OnInit {
             confirmButtonText: 'Ok',
             allowOutsideClick: false
           })
-          this.router.navigateByUrl('widgets')
+          // this.router.navigateByUrl('widgets')
         }
       )
 
