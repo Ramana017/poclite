@@ -25,7 +25,7 @@ export class AuthorizationComponent implements OnInit {
   public endDate: Date;
   public billingRate: string;
   public totalUnits: number;
-  public totalUnitsFlag: boolean;
+  public totalUnitsFlag: boolean=false;
   public effectiveFromDate: Date
   public effectiveToDate: Date;
   public caseManagerId: number;
@@ -165,7 +165,6 @@ export class AuthorizationComponent implements OnInit {
     console.log(event.target.checked);
     event.target.checked == true ? this.totalUnitsFlag = true : this.totalUnitsFlag = false;
     this.totalUnitsFlag == true ? this.totalUnits = 0 : this.totalUnits;
-    console.log(this.tempAuth)
   }
   public tempAuthCheck(event): void {
     this.tempAuth = event.target.checked;
@@ -206,7 +205,9 @@ export class AuthorizationComponent implements OnInit {
     console.log(this.beginDate)
   }
 
-  public validations() {
+  public authorizationValidations() {
+    console.log(this.totalUnits==undefined||this.totalUnits==null)
+    console.log(typeof(this.totalUnits),this.totalUnitsFlag)
     let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
     let endDateseconds = Date.parse(this.date.transform(this.endDate, 'MM/dd/yyyy'));
     let ppEffectiveFromSeconds = Date.parse(this.ppEffectiveFrom);
@@ -214,6 +215,8 @@ export class AuthorizationComponent implements OnInit {
     let procedureFlag: boolean;
     let beginDateFlag: boolean;
     let endDateFlag: boolean;
+    let tempAuthFlag:boolean;
+    let totalunitsFlag:boolean;
     if (this.procedureSelctedItems.length == 0) {
       procedureFlag = false;
       swal.fire({
@@ -227,6 +230,35 @@ export class AuthorizationComponent implements OnInit {
     else {
       procedureFlag = true;
     }
+    if(this.tempAuth&&(this.authorizationNumber==undefined||null)){
+            tempAuthFlag=false;
+            swal.fire({
+              title: 'Invalid Authorization',
+              text: 'Please Select Authorization Code',
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            })
+    }
+    else{
+      tempAuthFlag=true;
+    }
+    if(this.totalUnitsFlag){
+      totalunitsFlag=true;
+    }
+    else if(this.totalUnits==undefined||null ||this.totalUnits<=0){
+      totalunitsFlag=false;
+      swal.fire({
+        title: 'Invalid Total Units',
+        text: 'Please Enter Total Units',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    else{
+      totalunitsFlag=true;
+    }
     if ((beginDateseconds >= ppEffectiveFromSeconds) && (beginDateseconds <= ppEffectiveToSeconds)) {
       beginDateFlag = true;
     }
@@ -234,7 +266,7 @@ export class AuthorizationComponent implements OnInit {
       beginDateFlag = false;
       swal.fire({
         title: 'Invalid Begin Date',
-        text: 'Begin Date should be Between' + this.ppEffectiveFrom + ' to ' + this.ppEffectiveTo,
+        text: 'Begin Date should be in between Payor/Plan Dates ('+this.ppEffectiveFrom +'-'+this.ppEffectiveTo+')',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -253,8 +285,9 @@ export class AuthorizationComponent implements OnInit {
       })
     }
 
-    if (endDateFlag && procedureFlag && beginDateFlag) {
-      // this.savePSAuthorization()
+    if (endDateFlag && procedureFlag && beginDateFlag&&tempAuthFlag&&totalunitsFlag) {
+      console.log("all are valid")
+      this.privateDuty?'':this.delivaryPlanValidation()
     }
   }
 
@@ -265,7 +298,7 @@ export class AuthorizationComponent implements OnInit {
     let monthlyMaxUnitsFlag:boolean;
     if (this.weeklyFlag || this.dailyFlag || this.monthlyFlag) {
       if(this.weeklyFlag){
-        this.weeklyMaxUnits==undefined?swal.fire({
+        this.weeklyMaxUnits==undefined||null?swal.fire({
           title: 'Invalid WeeklY Max Units',
           text: "Please Enter Weekly Max Units ",
           icon: 'error',
@@ -277,9 +310,9 @@ export class AuthorizationComponent implements OnInit {
         weeklyMaxUnitsFlag=true
       }
       if(this.monthlyFlag){
-        this.monthlyMaxUnits==undefined?swal.fire({
-          title: 'Invalid WeeklY Max Units',
-          text: "Please Enter Weekly Max Units ",
+        this.monthlyMaxUnits==undefined||null?swal.fire({
+          title: 'Invalid Monthly Max Units',
+          text: "Please Enter Monthly Max Units ",
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
@@ -300,14 +333,9 @@ export class AuthorizationComponent implements OnInit {
 
 
 
-    } else {
-      swal.fire({
-        title: 'Invalid Delivary Plan',
-        text: "Please select any one Of the Daily ,Monthly OR Weekly plans",
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
+    } else
+     {
+     console.log('all are correct')
 
     }
   }
