@@ -5,6 +5,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { count } from 'rxjs/operators';
 
 
 @Component({
@@ -200,22 +201,19 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-  // itemChecked;
+  finalList = []
+  showList: boolean = false
 
   public check(event, ind, field) {
     //  console.log(event.target.checked)
     //  console.log(ind)
-    if (event.target.value, field === 'frstDate') {
-      this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate, 'MM/dd/yyyy')
-      console.log(event)
-      console.log(event.target.value)
+    if (event.target.checked && !this.finalList.length, field === 'addDiagnosis') {
+      this.selectedItems = this.finalList
 
-    }
-    if (event.target.checked, field === 'addDiagnosis') {
       this.selectedItems.push(this.diagnosisList[ind])
-      // console.log(this.diagnosisList[ind])
-      let itemChecked = event.target.checked
       this.result = [];
+      //  this.result.push(this.diagnosisList[ind])
+
       const map = new Map();
       let count = 0;
 
@@ -232,59 +230,61 @@ export class AdmissionDetailsComponent implements OnInit {
             rank: count
           });
         }
-
+        console.log(this.result, "on checked result")
       }
       if (event.target.checked === false) {
-
-        this.result.map((ele, i) => {
-          if (ele.id === this.diagnosisList[ind].id) {
-            console.log(ele.id === this.diagnosisList[ind].id, 'true')
+        this.selectedItems.forEach((select, i) => {
+          if (select.id === this.diagnosisList[ind].id) {
+            console.log(select.id, i)
+            this.selectedItems.splice(i, 1);
             this.result.splice(i, 1);
-            ele.flag = false
-            this.showCheckboxData();
+          }
+        })
+        this.result.map((result, j) => {
+          if (result.id === this.diagnosisList[ind].id) {
+            result.rank == count--;
+            result.flag = false;
           }
         });
       }
     }
+    this.finalList = this.result;
+    //   this.finalList.push(this.selectedItems)
+
+
+  }
+  tableList = [];
+  addList(event) {
+    alert("Add field")
+    this.showList = true;
+  
+    this.tableList = this.finalList;
+
+    for( let i=0; i<this.tableList.length;i++){
+      console.log(this.tableList[i],"in loop")
+        this.tableList[i].rank =i+1
+        console.log(this.tableList, "on tablelist in for loop")
+    }
+    console.log(this.tableList, "on tablelist")
 
   }
   showCheckboxData() {
-    this.result.forEach(ele => {
-      this.z.push(ele)
-    });
-    if (this.z.length > 0) {
+    if (this.finalList.length >= 0) {
 
       this.diagnosisList.forEach((x, i) => {
-        this.z.forEach((y, i) => {
-          if (x.id === this.z[i].id) {
+        this.finalList.forEach((y, i) => {
+          if (x.id === this.finalList[i].id) {
             x.flag = true;
             console.log(x, "dialog box");
           }
         });
       });
     }
+    //this.z.push(this.selectedItems)
   }
   addFieldValue(template: TemplateRef<any>) {
     this.showCheckboxData();
-    // console.log('res', this.result, 'dia', this.diagnosisList)
-    // this.result.forEach(ele => {
-    //   this.z.push(ele)
-    // });
-    // if (this.z.length > 0) {
 
-    //   this.diagnosisList.forEach((x, i) => {
-    //     this.z.forEach((y, i) => {
-    //       if (x.id === this.z[i].id) {
-    //         x.flag = true;
-    //         console.log(x, "dialog box");
-    //       }
-    //     });
-    //   });
-    // }
-
-    // this.diagnosisList.map(x=>{
-    //   x.
-    // })
 
     this.bsModelRef = this.modalService.show(template, { class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable' });
   }
@@ -301,6 +301,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   savePs() {
+    console.log(this.tableList, "on tablelist")
     this.formError = true;
     let temp = [];
     let rank = [];
@@ -397,10 +398,11 @@ export class AdmissionDetailsComponent implements OnInit {
     this.lowerBound = 1;
     this.getDiagnosisData();
   }
-
+minDate;
   public admissionDateChange() {
 
-    this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate)
+    this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate);
+
 
   }
 

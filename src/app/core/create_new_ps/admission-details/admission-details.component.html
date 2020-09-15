@@ -47,7 +47,9 @@
 
                         <div class="input-group ">
 
-                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError" (bsValueChange)="admissionDateChange()" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
+                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError"
+                            [minDate]="minDate"
+                             (bsValueChange)="admissionDateChange()" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
                         </div>
 
@@ -152,7 +154,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let selected of result; let i = index">
+                            <tr *ngFor="let selected of tableList; let i = index">
                                 <td class="border-right delete-option">
                                     <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
                                         <span class="material-icons material-icon-remove">
@@ -162,8 +164,8 @@
                                 </td>
 
                                 <td class="border-right form-input">
-                                    <select [(ngModel)]="result[i].rank" class="select-input">
-                                        <option *ngFor="let num of result;let j=index" [ngValue]="j+1">{{j+1}}
+                                    <select [(ngModel)]="selected.rank" class="select-input">
+                                        <option *ngFor="let num of tableList;let j=index" [ngValue]="j+1">{{j+1}}
                                         </option>
                                     </select>
                                 </td>
@@ -276,7 +278,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between pagination nav  mt-2">
-                            <!-- <button type="button " (click)="reset()" class="pagination-btn btn next-btn primary-button add">Add</button> -->
+                            <button type="button "  (click)="addList($event)" class="pagination-btn btn next-btn primary-button add">Add</button>
                             <!-- <div class="col-4 p-0">
                                 <button type="button " (click)="reset()"
                                     class="pagination-btn btn next-btn primary-button">Reset</button>
