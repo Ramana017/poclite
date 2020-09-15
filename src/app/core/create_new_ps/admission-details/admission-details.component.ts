@@ -25,9 +25,8 @@ export class AdmissionDetailsComponent implements OnInit {
   public coordinatorValue: string;
   public coordinatorList = [];
   public listingPageData = [];
-  id = 'id';
-  name = 'name';
-  z = [];
+  public id = 'id';
+  public name = 'name';
   public referralSourceList;
   public officeId;
   public clientType;
@@ -47,16 +46,18 @@ export class AdmissionDetailsComponent implements OnInit {
   public upperBound: number;
   public perPage: number = 20;
   public maxCount: number = 100;
-  code = 'code'
-  name1: any;
+  public code = 'code'
+  public name1: any;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
-  rows: any;
-  ds: any;
-  numbers = [];
-  guarantorId: any;
-  psId: number;
-  admissionRes: any;
+  public rows: any;
+  public ds: any;
+  public finalList = [];
+  public tableList = [];
+  public guarantorId: any;
+  public psId: number;
+  public admissionRes: any;
+  public minDate: Date;
   public userId: number;
   public formError: boolean = false;
   public diagnosisCode: string = '';
@@ -65,10 +66,10 @@ export class AdmissionDetailsComponent implements OnInit {
     console.log("basic constructer", this.popup);
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
-    for (this.i = 1; this.i <= 100; this.i++) {
-      this.numbers.push(this.i);
+    // for (this.i = 1; this.i <= 100; this.i++) {
+    //   this.numbers.push(this.i);
 
-    }
+    // }
     this.newAttribute = { rank: 0, name: '', code: '' };
 
     this.newForm();
@@ -105,25 +106,25 @@ export class AdmissionDetailsComponent implements OnInit {
     this.guarantorId = guarantorSession.psGuarantorId;
     this.psId = psSession.psId
     let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
-   try {
-    this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
-      data => {
-        console.log(data);
-        this.coordinatorData = data;
-        this.coordinatorList = data.coordinatorList;
-        this.clientType = data.clientType;
-        this.clientClass = data.clientClass;
-        this.PSName = data.PSName;
-        this.guarantorName = data.guarantorName;
-        this.psId = data.psId;
-        this.officeId = data.officeId
-        this.getLookupsData2();
+    try {
+      this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
+        data => {
+          console.log(data);
+          this.coordinatorData = data;
+          this.coordinatorList = data.coordinatorList;
+          this.clientType = data.clientType;
+          this.clientClass = data.clientClass;
+          this.PSName = data.PSName;
+          this.guarantorName = data.guarantorName;
+          this.psId = data.psId;
+          this.officeId = data.officeId
+          this.getLookupsData2();
 
-      })
-   } catch (error) {
-     console.log(error);
+        })
+    } catch (error) {
+      console.log(error);
 
-   }
+    }
 
   }
   public getLookupsData2() {
@@ -201,18 +202,14 @@ export class AdmissionDetailsComponent implements OnInit {
         console.log(data);
       })
   }
-  finalList = []
-  showList: boolean = false
 
   public check(event, ind, field) {
-    //  console.log(event.target.checked)
-    //  console.log(ind)
+
     if (event.target.checked && !this.finalList.length, field === 'addDiagnosis') {
       this.selectedItems = this.finalList
 
-      this.selectedItems.push(this.diagnosisList[ind])
+      this.selectedItems.push(this.diagnosisList[ind]);
       this.result = [];
-      //  this.result.push(this.diagnosisList[ind])
 
       const map = new Map();
       let count = 0;
@@ -253,22 +250,19 @@ export class AdmissionDetailsComponent implements OnInit {
 
 
   }
-  tableList = [];
-  addList(event) {
-    alert("Add field")
-    this.showList = true;
-  
+  public addList() {
+
     this.tableList = this.finalList;
 
-    for( let i=0; i<this.tableList.length;i++){
-      console.log(this.tableList[i],"in loop")
-        this.tableList[i].rank =i+1
-        console.log(this.tableList, "on tablelist in for loop")
+    for (let i = 0; i < this.tableList.length; i++) {
+      console.log(this.tableList[i], "in loop")
+      this.tableList[i].rank = i + 1
+      console.log(this.tableList, "on tablelist in for loop")
     }
     console.log(this.tableList, "on tablelist")
 
   }
-  showCheckboxData() {
+  public showCheckboxData() {
     if (this.finalList.length >= 0) {
 
       this.diagnosisList.forEach((x, i) => {
@@ -282,7 +276,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
     //this.z.push(this.selectedItems)
   }
-  addFieldValue(template: TemplateRef<any>) {
+  public addFieldValue(template: TemplateRef<any>) {
     this.showCheckboxData();
 
 
@@ -300,7 +294,7 @@ export class AdmissionDetailsComponent implements OnInit {
     });
   }
 
-  savePs() {
+  public savePs() {
     console.log(this.tableList, "on tablelist")
     this.formError = true;
     let temp = [];
@@ -370,7 +364,7 @@ export class AdmissionDetailsComponent implements OnInit {
     } else if (isDuplicate) {
       swal.fire({
         title: 'Invalid Form',
-        text: ' same rank is selected for Different diagnosis',
+        text: ' Same rank is selected for Different diagnosis',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -398,12 +392,11 @@ export class AdmissionDetailsComponent implements OnInit {
     this.lowerBound = 1;
     this.getDiagnosisData();
   }
-minDate;
   public admissionDateChange() {
-
     this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate);
-
-
+    let z = this.admissionForm.get('admissionDate')
+    this.minDate = z.value;
   }
+
 
 }
