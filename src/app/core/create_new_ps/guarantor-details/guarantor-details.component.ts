@@ -298,7 +298,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
-    // this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
+    this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
     flag ? this.checkBoxAddress = true : this.checkBoxAddress = false;
     // flag ? this.addressCheck(event) : this.addressCheck(event);
     this.addressCheck(event, dropdown);

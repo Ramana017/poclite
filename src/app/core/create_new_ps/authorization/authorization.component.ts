@@ -60,7 +60,7 @@ export class AuthorizationComponent implements OnInit {
   public dailyMaxUnits: number;
   public dailyDays: number;
   public weeklyMaxUnits: number;
-  public weeklyPerWeek: string = null;
+  public weeklyPerWeek: string = "W";
   public weeklyNoOfWeek: number;
   public weeklyDaysPerWeek: number;
   public weeklySunUnits: number;
@@ -86,7 +86,7 @@ export class AuthorizationComponent implements OnInit {
   public rateTypeList: Array<any>;
 
 
-  constructor(private _zipService: ZipcodeService, private date: DatePipe,private router:Router) {
+  constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
     this.payorPlanResponse = JSON.parse(sessionStorage.getItem('savePayorRes'));
@@ -95,13 +95,13 @@ export class AuthorizationComponent implements OnInit {
       this.admitDate = this.payorPlanResponse.admitDate;
       this.payorPlan = this.payorPlanResponse.payorPlan;
       this.ppEffectiveFrom = this.payorPlanResponse.ppEffectiveFrom;
-      this.ppEffectiveTo = this.payorPlanResponse.ppEffectiveTo;
+      this.ppEffectiveTo = this.payorPlanResponse.ppEffectiveTo == "" ? '12/31/9999' : this.payorPlanResponse.ppEffectiveTo;
       this.psId = this.payorPlanResponse.psId;
       this.psAdmissionId = this.payorPlanResponse.psAdmissionId;
       this.psAdmitPayorId = this.payorPlanResponse.psAdmitPayorId;
       this.psName = this.payorPlanResponse.psName;
       this.ppEffectiveFromDate = new Date(this.ppEffectiveFrom);
-      this.ppEffectiveToDate = new Date(this.ppEffectiveTo)
+      this.ppEffectiveToDate = new Date(this.ppEffectiveTo == "" ? '12/31/9999' : this.ppEffectiveTo)
 
     }
 
@@ -188,6 +188,7 @@ export class AuthorizationComponent implements OnInit {
     if (templatetype == "tempAuthzDaySpanList") {
 
       this.authorizationNumber = event.id;
+      console.log(this.authorizationNumber)
 
 
     } else if (templatetype == "caseManagerList") {
@@ -205,40 +206,148 @@ export class AuthorizationComponent implements OnInit {
     console.log(this.beginDate)
   }
 
+  public validations() {
+    let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
+    let endDateseconds = Date.parse(this.date.transform(this.endDate, 'MM/dd/yyyy'));
+    let ppEffectiveFromSeconds = Date.parse(this.ppEffectiveFrom);
+    let ppEffectiveToSeconds = Date.parse(this.ppEffectiveTo)
+    let procedureFlag: boolean;
+    let beginDateFlag: boolean;
+    let endDateFlag: boolean;
+    if (this.procedureSelctedItems.length == 0) {
+      procedureFlag = false;
+      swal.fire({
+        title: 'Invalid Procedure',
+        text: 'Please Select Procedure Code',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    else {
+      procedureFlag = true;
+    }
+    if ((beginDateseconds >= ppEffectiveFromSeconds) && (beginDateseconds <= ppEffectiveToSeconds)) {
+      beginDateFlag = true;
+    }
+    else {
+      beginDateFlag = false;
+      swal.fire({
+        title: 'Invalid Begin Date',
+        text: 'Begin Date should be Between' + this.ppEffectiveFrom + ' to ' + this.ppEffectiveTo,
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+    if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || (this.endDate == undefined || null)) {
+      endDateFlag = true;
+    } else {
+      endDateFlag = false;
+      swal.fire({
+        title: 'Invalid End Date',
+        text: 'End Date should be Between' + this.ppEffectiveFrom + ' to ' + this.ppEffectiveTo,
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
+
+    if (endDateFlag && procedureFlag && beginDateFlag) {
+      // this.savePSAuthorization()
+    }
+  }
+
+  public delivaryPlanValidation() {
+
+    let weeklyMaxUnitsFlag:boolean;
+    let dailyMaxUnitsFlag:boolean;
+    let monthlyMaxUnitsFlag:boolean;
+    if (this.weeklyFlag || this.dailyFlag || this.monthlyFlag) {
+      if(this.weeklyFlag){
+        this.weeklyMaxUnits==undefined?swal.fire({
+          title: 'Invalid WeeklY Max Units',
+          text: "Please Enter Weekly Max Units ",
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        }):weeklyMaxUnitsFlag=true
+      }
+      else{
+        weeklyMaxUnitsFlag=true
+      }
+      if(this.monthlyFlag){
+        this.monthlyMaxUnits==undefined?swal.fire({
+          title: 'Invalid WeeklY Max Units',
+          text: "Please Enter Weekly Max Units ",
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        }):monthlyMaxUnitsFlag=true
+      }
+      else{
+        monthlyMaxUnitsFlag=true
+      }
+      if(this.dailyFlag){
+        this.dailyMaxUnits==undefined?swal.fire({
+          title: 'Invalid Daily Max Units',
+          text: "Please Enter Daily Max Units ",
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        }):''
+      }
+
+
+
+    } else {
+      swal.fire({
+        title: 'Invalid Delivary Plan',
+        text: "Please select any one Of the Daily ,Monthly OR Weekly plans",
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+
+    }
+  }
+
   public savePSAuthorization() {
+
+
     let delivaryobject = {
       "psAdmissionid": this.psAdmissionId,
-      "caseManagerId": +this.caseManagerId,
-      "authorizationNumber": this.tempAuth ? this.authorizationNumber : this.authorizationManual,
+      "caseManagerId": this.caseManagerId != undefined ? +this.caseManagerId : 0,
+      "authorizationNumber": this.tempAuth ? this.authorizationManual:this.authorizationNumber==undefined?'':this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
       "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
       "serviceId": this.procedureSelctedItems[0].serviceId,
       "billingRate": this.procedureSelctedItems[0].billingRate,
-      "billingType": this.procedureSelctedItems[0].billingType,
+      "billingType": this.procedureSelctedItems[0].billingType != undefined ? this.procedureSelctedItems[0].billingType : '',
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.tempAuth ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "endDate": this.tempAuth ? "" :this.endDate==null||undefined?"": this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "unitDuration": 15,
       "totalUnits": this.totalUnitsFlag ? 0 : +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
-      "dpEffectiveFrom": this.privateDuty ? "" : this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
-      "dpEffectiveTo": this.privateDuty ? "" : this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
+      "dpEffectiveFrom": this.privateDuty ? "" :this.effectiveFromDate==null||undefined?'': this.date.transform(this.effectiveFromDate, 'MM/dd/yyyy'),
+      "dpEffectiveTo": this.privateDuty ? "" : this.effectiveToDate==null||undefined?'': this.date.transform(this.effectiveToDate, 'MM/dd/yyyy'),
       "dailyDP": this.dailyFlag ? 1 : 0,
       "dailyMaxUnits": this.dailyFlag ? +this.dailyMaxUnits : 0,
-      "dailyDays": this.dailyFlag ? +this.dailyDays : 0,
+      "dailyDays": this.dailyFlag ? this.dailyDays == undefined ? 0 : this.dailyDays : 0,
       "weeklyDP": this.weeklyFlag ? 1 : 0,
       "weeklyMaxUnits": this.weeklyFlag ? +this.weeklyMaxUnits : 0,
-      "weeklyPerWeek": this.weeklyFlag ? this.weeklyPerWeek : '',
-      "weeklyNoOfWeek": this.weeklyFlag ? +this.weeklyNoOfWeek : 0,
-      "weeklyDaysPerWeek": this.weeklyFlag ? +this.weeklyDaysPerWeek : 0,
-      "weeklySunUnits": (this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == 'F') ? +this.weeklySunUnits : 0,
-      "weeklyMonUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyMonUnits : 0,
-      "weeklyTueUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyTueUnits : 0,
-      "weeklyWedUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyWedUnits : 0,
-      "weeklyThuUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyThuUnits : 0,
-      "weeklyFriUnits": this.weeklyFlag && !this.dailyFlag ? +this.weeklyFriUnits : 0,
-      "weeklySatUnits": this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == "F" ? +this.weeklySatUnits : 0,
+      "weeklyPerWeek": this.weeklyFlag ? this.weeklyPerWeek==null?'':this.weeklyPerWeek : '',
+      "weeklyNoOfWeek": this.weeklyFlag ? this.weeklyNoOfWeek==undefined?0:this.weeklyNoOfWeek : 0,
+      "weeklyDaysPerWeek": this.weeklyFlag ? this.weeklyDaysPerWeek==undefined?0:this.weeklyDaysPerWeek : 0,
+      "weeklySunUnits": (this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == 'F') ? this.weeklySunUnits == undefined ? 0 : +this.weeklySunUnits : 0,
+      "weeklyMonUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyMonUnits == undefined ? 0 : +this.weeklyMonUnits : 0,
+      "weeklyTueUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyTueUnits == undefined ? 0 : +this.weeklyTueUnits : 0,
+      "weeklyWedUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyWedUnits == undefined ? 0 : +this.weeklyWedUnits : 0,
+      "weeklyThuUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyThuUnits == undefined ? 0 : +this.weeklyThuUnits : 0,
+      "weeklyFriUnits": this.weeklyFlag && !this.dailyFlag ? this.weeklyFriUnits == undefined ? 0 : +this.weeklyFriUnits : 0,
+      "weeklySatUnits": this.weeklyFlag && !this.dailyFlag && this.weeklyPerWeek == "F" ? this.weeklySatUnits == undefined ? 0 : +this.weeklySatUnits : 0,
       "monthlyDP": this.monthlyFlag ? 1 : 0,
       "monthlyMaxUnits": this.monthlyFlag ? +this.monthlyMaxUnits : 0,
       "privateDutyRateType": "",
@@ -255,17 +364,17 @@ export class AuthorizationComponent implements OnInit {
     }
     let privatePlan = {
       "psAdmissionid": this.psAdmissionId,
-      "caseManagerId": +this.caseManagerId,
+      "caseManagerId": this.caseManagerId != undefined ? +this.caseManagerId : 0,
       "authorizationNumber": this.authorizationManual,
       "psAdmittPayorPlanId": this.psAdmitPayorId,
       "tempAuth": this.tempAuth ? 1 : 0,
       "privateDuty": this.privateDuty ? 1 : 0,
       "serviceId": this.procedureSelctedItems[0].serviceId,
       "billingRate": this.procedureSelctedItems[0].billingRate,
-      "billingType": this.procedureSelctedItems[0].billingType,
+      "billingType": this.procedureSelctedItems[0].billingType != undefined ? this.procedureSelctedItems[0].billingType : '',
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
-      "endDate": this.date.transform(this.endDate, 'MM/dd/yyyy'),
+      "endDate": this.tempAuth ? "" :this.endDate==null||undefined?"": this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "totalUnits": +this.totalUnits,
       "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
       "dpEffectiveTo": "",
@@ -288,15 +397,15 @@ export class AuthorizationComponent implements OnInit {
       "monthlyDP": 0,
       "monthlyMaxUnits": 0,
       "privateDutyRateType": this.privateDutyRateType,
-      "regularShift1Rate": +this.regularShift1Rate,
-      "regularShift2Rate": +this.regularShift2Rate,
-      "regularShift3Rate": +this.regularShift3Rate,
-      "weekendShift1Rate": +this.weekendShift1Rate,
-      "weekendShift2Rate": +this.weekendShift2Rate,
-      "weekendShift3Rate": +this.weekendShift3Rate,
-      "holidayShift1Rate": +this.holidayShift1Rate,
-      "holidayShift2Rate": +this.holidayShift2Rate,
-      "holidayShift3Rate": +this.holidayShift3Rate,
+      "regularShift1Rate": this.regularShift1Rate != undefined ? +this.regularShift1Rate : 0,
+      "regularShift2Rate": this.regularShift2Rate != undefined ? +this.regularShift2Rate : 0,
+      "regularShift3Rate": this.regularShift3Rate != undefined ? +this.regularShift3Rate : 0,
+      "weekendShift1Rate": this.weekendShift1Rate != undefined ? +this.weekendShift1Rate : 0,
+      "weekendShift2Rate": this.weekendShift2Rate != undefined ? +this.weekendShift2Rate : 0,
+      "weekendShift3Rate": this.weekendShift3Rate != undefined ? +this.weekendShift3Rate : 0,
+      "holidayShift1Rate": this.holidayShift1Rate != undefined ? +this.holidayShift1Rate : 0,
+      "holidayShift2Rate": this.holidayShift2Rate != undefined ? +this.holidayShift2Rate : 0,
+      "holidayShift3Rate": this.holidayShift3Rate != undefined ? +this.holidayShift3Rate : 0,
       "unitDuration": 15,
       "userId": this.userId
     }
@@ -325,14 +434,6 @@ export class AuthorizationComponent implements OnInit {
       })
     }
   }
-
-
-
-
-
-
-
-
 }
 
 

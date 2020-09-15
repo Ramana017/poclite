@@ -105,9 +105,9 @@ export class ZipcodeService {
     return throwError(error);
   }
 
-  public getLookupsData2(): Observable<any> {
+  public getLookupsData2(params:number): Observable<any> {
     this.getUrl();
-    return this.http.get(this.url + '/common/getLookupsData?lookupNames=referral_source').pipe(catchError(this.errorHandler));
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=referral_source&officeId='+params).pipe(catchError(this.errorHandler));
 
 
   }

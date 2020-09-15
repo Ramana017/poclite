@@ -118,7 +118,10 @@ export class PayorPlanDetailsComponent implements OnInit {
     console.log(this.officeId);
     const parameters = { 'psId': previousPsDetails.psId };
     this.psId = previousPsDetails.psId
-    this.AdmissionId = AdmissionDetails.psAdmissionId
+    this.AdmissionId = AdmissionDetails.psAdmissionId;
+    this.clientClassId=AdmissionDetails.clientClassId;
+    this.clientTypeId=AdmissionDetails.clientTypeId;
+    this.admitDate=AdmissionDetails.admitDate;
     this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
       this.psdata = res;
       console.log(res)
@@ -146,7 +149,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     });
   }
 
-  selectChange(event, field, flag) {
+  public selectChange(event, field, flag) {
 
     if (field === 'genderId') {
       this.payorPlanForm.get('genderId').setValue(flag ? event.id : '')
@@ -241,8 +244,9 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.formError = true;
     this.payorPlanForm.get('dob').value > this.currentDate ? this.payorPlanForm.get('dob').setValue(this.currentDate) : '';
     this.phoneNumber = this.payorPlanForm.value.number;
-    let ssnLength = this.payorPlanForm.value.ssn.length;
-    console.log(this.payorPlanForm.value)
+    let ssnLength =this.payorPlanForm.value.ssn!=undefined? this.payorPlanForm.value.ssn.length:0;
+    let policyNumberLength = this.payorPlanForm.value.policyNumber!=undefined?this.payorPlanForm.value.policyNumber.length:0;
+    console.log(this.payorPlanForm.value,policyNumberLength)
     console.log(this.payorPlanForm.valid)
     if (this.payorPlanForm.valid) {
 
@@ -251,7 +255,13 @@ export class PayorPlanDetailsComponent implements OnInit {
         var phone1exchangecode = this.phoneNumber.slice(3, 6)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
-          ssnLength == 0 ? this.payorPlanSave() : this.checkSSn();
+          // ssnLength == 0 ? this.payorPlanSave() : this.checkSSn();
+          if(ssnLength==0&&policyNumberLength==0){
+           this.payorPlanSave();
+          }
+          else{
+            policyNumberLength>0 ? this.isPolicyNumRequired(ssnLength,policyNumberLength):this.checkSSn();
+          }
         }
         else {
           if (phone1areacode <= 1 || phone1areacode <= 199) {
@@ -287,7 +297,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       "psAdmissionId": this.AdmissionId,
       "payorPlanId": this.payorPlanForm.value.payorPlanId,
       "psId": this.psId,
-      "policyNumber": this.payorPlanForm.value.policyNumber,
+      "policyNumber": this.payorPlanForm.value.policyNumber!=undefined?this.payorPlanForm.value.policyNumber:'',
       "rank": +this.payorPlanForm.value.rank,
       "effectiveFrom": this.date.transform(this.payorPlanForm.value.effectiveFrom, 'MM/dd/yyyy'),
       "effectiveTo": this.payorPlanForm.value.effectiveto == '' || null ? '' : this.date.transform(this.payorPlanForm.value.effectiveto, 'MM/dd/yyyy'),
@@ -297,7 +307,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       "middleName": "",
       "gender": this.payorPlanForm.value.genderId,
       "dob": this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-      "ssn": this.payorPlanForm.value.ssn,
+      "ssn": this.payorPlanForm.value.ssn!=undefined?this.payorPlanForm.value.ssn:'',
       "addressId": this.addressId,
       "locationName": this.payorPlanForm.value.addressTypeListId,
       "street": this.payorPlanForm.value.lane,
@@ -360,19 +370,19 @@ export class PayorPlanDetailsComponent implements OnInit {
     }
   }
   public PhoneNumFormat(event, flag) {
-    console.log("++++++++++", event.target.value)
+    // console.log("++++++++++", event.target.value)
     var input2 = event.target.value.replace(/\D/g, '');
     flag == "ssn" ? this.payorPlanForm.get('ssn').setValue(input2) : this.payorPlanForm.get('number').setValue(input2);
   }
-  private isPolicyNumRequired(){
+  private isPolicyNumRequired(ssnLength,policyNumberLength){
   let params = {"payorCode":this.payorPlanForm.value.payorCode,"planCode":this.payorPlanForm.value.plancode,"admitDate":this.admitDate,"clientTypeId":this.clientTypeId,"clientClassId":this.clientClassId};
   try {
     this.service.isPolicyNumRequired(JSON.stringify(params)).subscribe(
       response=>{
         console.log(response);
         let resData:any=response;
-        if(resData.isPolicyNumRequired==1){
-
+        if(resData.isPolicyNumRequired==0){
+          ssnLength>0?this.checkSSn():this.payorPlanSave();
         }else{
           //save function
           swal.fire({
