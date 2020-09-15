@@ -47,7 +47,7 @@
 
                         <div class="input-group ">
 
-                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError"
+                            <input type="text" [class.is-invalid]="f.admissionDate.invalid && formError" 
                            
                              (bsValueChange)="admissionDateChange()" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager" formControlName="admissionDate" bsDatepicker>
 
@@ -278,7 +278,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between pagination nav  mt-2">
-                            <button type="button" (click)="bsModelRef.hide()"  (click)="addList()"  class="pagination-btn btn next-btn primary-button add">Add</button>
+                            <button type="button"  (click)="bsModelRef.hide()"  (click)="addList()"  class="pagination-btn btn next-btn primary-button add">Add</button>
                             <!-- <div class="col-4 p-0">
                                 <button type="button " (click)="reset()"
                                     class="pagination-btn btn next-btn primary-button">Reset</button>

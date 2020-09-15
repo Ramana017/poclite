@@ -31,7 +31,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public officeId;
   public clientType;
   public coordinatorData;
-  public AdmissionDate: Date;
+ // public AdmissionDate: Date = new Date();
   public FirstVisitDate: Date;
   public referredDate: Date;
   public isDuplicate: boolean;
@@ -256,7 +256,6 @@ export class AdmissionDetailsComponent implements OnInit {
   }
   // Add the final Array to the table on clicking add button
   public addList() {
-
     this.tableList = this.finalList;
 
     for (let i = 0; i < this.tableList.length; i++) {
@@ -292,14 +291,14 @@ export class AdmissionDetailsComponent implements OnInit {
   // Delete unwanted row from the table
   public deleteRow(index): void {
     this.result.forEach((ele, i) => {
-
       if (index === i) {
         console.log(ele)
-        //  ele.flag=false
+          ele.flag=false
         this.result.splice(index, 1);
         console.log(this.result);
       }
     });
+    this.result = this.finalList
   }
   // Code for Saving the whole data
   public savePs() {
@@ -343,17 +342,19 @@ export class AdmissionDetailsComponent implements OnInit {
           data => {
             console.log("saveadmission", data);
             this.admissionRes = data
-            console.log("datasaved successfully");
-            sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-            sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
-            this.router.navigateByUrl('registration-re/child-payorplan');
-          })
-        // if (Object.keys(this.admissionRes).length !== 0)
-        // {
-        //   console.log("datasaved successfully");
-        //   sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-        //   this.router.navigateByUrl('registration-re/child-payorplan');
-        // }
+            console.log(Object.keys(this.admissionRes).length);
+            // console.log("datasaved successfully");
+            // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+            // sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
+            // this.router.navigateByUrl('registration-re/child-payorplan');
+            if (Object.keys(this.admissionRes).length>0)
+            {
+              console.log("datasaved successfully");
+              sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
+              this.router.navigateByUrl('registration-re/child-payorplan');
+            }
+          });
+       
       }
 
       catch (error) {
@@ -377,7 +378,17 @@ export class AdmissionDetailsComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    } else {
+    } else if(this.admissionForm.get('firstVisitDate')<this.admissionForm.get('admissionDate')){
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Your First Visit Date is greater than Admission Date ',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+
+    }
+    else {
       swal.fire({
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
@@ -386,6 +397,7 @@ export class AdmissionDetailsComponent implements OnInit {
         allowOutsideClick: false
       })
     }
+    
 
   }
   // Code for Searching option in the popup
@@ -406,7 +418,29 @@ export class AdmissionDetailsComponent implements OnInit {
   // Code for setting min and max dates for first and reffered dates
   public admissionDateChange() {
     this.admissionForm.get('firstVisitDate').setValue(this.admissionForm.value.admissionDate);
+   let adminDate= this.admissionForm.get('admissionDate');
+   let referredDate= this.admissionForm.get('referredDate');
     let z = this.admissionForm.get('admissionDate')
     this.minDate = z.value;
+    // if(adminDate<adminDate){
+    //   false
+    // }
+    // if(adminDate>referredDate){
+    //   false
+    // }
+     //  let adminDate= this.admissionForm.get('admissionDate');
+  //  let frstDate=this.admissionForm.get('firstVisitDate')
+  //  let referredDate= this.admissionForm.get('referredDate');
+  //  console.log(adminDate.value,'admindate',referredDate.value,"referredDate")
+    
+  //   if( frstDate!=undefined &&  adminDate.value<frstDate.value){
+  //     alert("greater")
+  //     false
+  //   }
+  //   if(referredDate!=null && adminDate.value>referredDate.value){
+  //     alert('smaller')
+  //     false
+  //   }
+      
   }
 }
