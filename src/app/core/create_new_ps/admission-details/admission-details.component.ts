@@ -63,6 +63,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public formError: boolean = false;
   public diagnosisCode: string = '';
   public diagnosisName: string = '';
+  public dateValidationFlag: boolean = false;
   constructor(private fb: FormBuilder, public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
     console.log("basic constructer", this.popup);
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -309,82 +310,88 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   dateValidation() {
-    // firstVisitDate: ['', Validators.required],
-    //   admissionDate: ['', Validators.required],
-    //   referredDate: ['', Validators.required],
-    console.log(this.admissionForm.value.firstVisitDate)
-    console.log(this.admissionForm.value.admissionDate)
-    console.log(this.admissionForm.value.referredDate)
+    this.formError=true;
+    // console.log(this.admissionForm.value.firstVisitDate)
+    // console.log(this.admissionForm.value.admissionDate)
+    // console.log(this.admissionForm.value.referredDate)
+    if (this.admissionForm.valid) {
 
-    let adminDateParse = Date.parse(this.date.transform(this.admissionForm.value.firstVisitDate, 'MM/dd/yyyy'));
-    let frstDateParse = Date.parse(this.date.transform(this.admissionForm.value.admissionDate, 'MM/dd/yyyy'));
-    let referredDate = Date.parse(this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'));
-    if (adminDateParse > frstDateParse) {
-      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse')
-      console.log(adminDateParse < frstDateParse)
-    } else {
-      swal.fire({
-        title: 'Invalid First Visit',
-        text: 'First Visit Date should not be less than Admission Date',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-    }
-
-    if (referredDate <= adminDateParse) {
-      console.log(adminDateParse, 'adminDateParse', referredDate, 'referredDate')
-    }
-    else {
-      swal.fire({
-        title: 'Invalid Refferred Visit',
-        text: 'Referral Date should be less than or equal to Admission Date.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-    }
-    let admissionPeriodDate : Date=new Date()
-    admissionPeriodDate.setDate(admissionPeriodDate.getDate()-this.admissionPeriod)
-    let admissionDateSeconds = Date.parse(this.date.transform(admissionPeriodDate, 'MM/dd/yyyy'))
-     console.log(admissionPeriodDate)
-
-    if ( admissionDateSeconds >  adminDateParse) {
-
-      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
-
-     }
-    else {
+      let firstDateFlag: boolean = false;
+      let referdateFlag: boolean = false;
+      let admitDateFlag: boolean = false;
+      let adminDateParse = Date.parse(this.date.transform(this.admissionForm.value.firstVisitDate, 'MM/dd/yyyy'));
+      let frstDateParse = Date.parse(this.date.transform(this.admissionForm.value.admissionDate, 'MM/dd/yyyy'));
+      let referredDate = Date.parse(this.date.transform(this.admissionForm.value.referredDate, 'MM/dd/yyyy'));
+      if (adminDateParse >= frstDateParse) {
+        console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse')
+        console.log(adminDateParse < frstDateParse)
+        firstDateFlag=true;
+      } else {
+        firstDateFlag=false;
         swal.fire({
-          title: 'Invalid Admission date',
-          text: 'One yr validation error',
+          title: 'Invalid First Visit',
+          text: 'First Visit Date should not be less than Admission Date',
           icon: 'error',
           confirmButtonText: 'Ok',
           allowOutsideClick: false
         })
       }
-    
+
+      if (referredDate <= adminDateParse) {
+        console.log(adminDateParse, 'adminDateParse', referredDate, 'referredDate')
+        referdateFlag=true
+      }
+      else {
+        referdateFlag=false;
+        swal.fire({
+          title: 'Invalid Refferred Visit',
+          text: 'Referral Date should be less than or equal to Admission Date.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+      }
+      let admissionPeriodDate: Date = new Date()
+      admissionPeriodDate.setDate(admissionPeriodDate.getDate() - this.admissionPeriod)
+      let admissionDateSeconds = Date.parse(this.date.transform(admissionPeriodDate, 'MM/dd/yyyy'))
+      console.log(admissionPeriodDate)
+
+      if (admissionDateSeconds <= adminDateParse) {
+        admitDateFlag=true;
+
+        console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
+
+      }
+      else {
+        admitDateFlag=false;
+        swal.fire({
+          title: 'Invalid Admission date',
+          text: 'The admission date selected is more than ' + this.admissionPeriod + 'day(s) in the past and cannot be entered',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+      }
+      if(firstDateFlag&&referdateFlag&&admitDateFlag)
+      {
+        this.savePs();
+      }
+    } else {
+      swal.fire({
+        title: 'Invalid Form',
+        text: 'Fill the all Required fields',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+    }
   }
   adminDate;
   frstDate;
   // Code for Saving the whole data
   public savePs() {
-
-
-
-
     let maxDate = new Date();
     let twoyr = maxDate.setDate(maxDate.getDate() + 365)
-
-
-
-
-
-
-
-
-
-
     console.log(this.tableList, "on tablelist")
     this.formError = true;
     let temp = [];
