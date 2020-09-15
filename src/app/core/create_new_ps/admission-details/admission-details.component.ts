@@ -311,36 +311,36 @@ export class AdmissionDetailsComponent implements OnInit {
   // Code for Saving the whole data
   public savePs() {
 
-   
+
     let adminDateParse = Date.parse(this.date.transform(this.adminDate, 'MM/dd/yyyy'));
     let frstDateParse = Date.parse(this.date.transform(this.frstDate, 'MM/dd/yyyy'));
     let referredDate = Date.parse(this.date.transform(this.frstDate, 'MM/dd/yyyy'));
 
-    let maxDate =new Date();
-    let twoyr= maxDate.setDate(maxDate.getDate()+365)
+    let maxDate = new Date();
+    let twoyr = maxDate.setDate(maxDate.getDate() + 365)
 
     console.log(twoyr)
     console.log(Date.parse(this.date.transform(maxDate, 'MM/dd/yyyy')))
     console.log(this.date.transform(twoyr, 'MM/dd/yyyy'))
- 
 
-    if (  frstDateParse < adminDateParse||referredDate <= adminDateParse  || Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate()+365)) {
+
+    if (frstDateParse < adminDateParse || referredDate <= adminDateParse || Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate() + 365)) {
       true
-      console.log(adminDateParse,'adminDateParse',frstDateParse,'frstDateParse',referredDate,'referredDate',new Date().setDate(new Date().getDate()+365),"true")
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "true")
     } else {
       false
-      console.log(adminDateParse,'adminDateParse',frstDateParse,'frstDateParse',referredDate,'referredDate',new Date().setDate(new Date().getDate()+365),"false")
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
     }
 
-    if(frstDateParse < adminDateParse){
-      console.log(adminDateParse,'adminDateParse',frstDateParse,'frstDateParse')
+    if (frstDateParse < adminDateParse) {
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse')
     }
-    if(referredDate <= adminDateParse){
-      console.log(adminDateParse,'adminDateParse',referredDate,'referredDate')
+    if (referredDate <= adminDateParse) {
+      console.log(adminDateParse, 'adminDateParse', referredDate, 'referredDate')
     }
-    if( Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate()+365)){
-      console.log(adminDateParse,'adminDateParse',frstDateParse,'frstDateParse',referredDate,'referredDate',new Date().setDate(new Date().getDate()+365),"false")
-    
+    if (Date.parse(this.date.transform(new Date(), 'MM/dd/yyyy')) > new Date().setDate(new Date().getDate() + 365)) {
+      console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
+
     }
 
 
