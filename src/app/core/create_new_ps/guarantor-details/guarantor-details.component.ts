@@ -88,11 +88,12 @@ export class GuarantorDetailsComponent implements OnInit {
   public onSubmit(): void {
     this.formError = true;
     console.log(this.guarantorForm.value)
-    let ssnLength = this.guarantorForm.value.ssn.length;
+    let ssnLength =this.guarantorForm.value.ssn!=undefined? this.guarantorForm.value.ssn.length:0;
+    console.log("SSn length",ssnLength)
     this.phoneNUmber = this.guarantorForm.value.number;
 
 
-    if (this.guarantorForm.valid) {
+  if (this.guarantorForm.valid) {
       if (this.phoneNUmber.length == 10) {
         var phone1areacode = this.phoneNUmber.slice(0, 3);
         var phone1exchangecode = this.phoneNUmber.slice(3, 6)
@@ -137,6 +138,7 @@ export class GuarantorDetailsComponent implements OnInit {
   }
 
   private gurantorsave(){
+    console.log(this.guarantorForm.value.ssn!=undefined,this.guarantorForm)
     {
       const jsonObj = {
         "saluationId": (this.guarantorForm.value.saluationId),
@@ -158,7 +160,7 @@ export class GuarantorDetailsComponent implements OnInit {
         "countyId": this.countyId,
         "timeZoneId": this.timeZoneId,
         "countryId": this.countryId,
-        "ssn":this.guarantorForm.value.ssn.replace(/\D/g, '')
+        "ssn":this.guarantorForm.value.ssn!=undefined?this.guarantorForm.value.ssn.replace(/\D/g, ''):''
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -355,7 +357,7 @@ export class GuarantorDetailsComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.guarantorForm.value.ssn }
+      let params = { 'ssn': this.guarantorForm.value.ssn,"screenFlag":"guarantor" }
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {
@@ -377,5 +379,10 @@ export class GuarantorDetailsComponent implements OnInit {
     } catch (error) {
 
     }
+  }
+  public PhoneNumFormat(event,flag) {
+    // console.log("++++++++++", event.target.value)
+    var input2 = event.target.value.replace(/\D/g, '');
+     flag=='ssn'?this.guarantorForm.get('ssn').setValue(input2):this.guarantorForm.get('number').setValue(input2);
   }
 }

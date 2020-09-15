@@ -156,7 +156,7 @@ export class BasicInfoComponent implements OnInit {
 
 
     }
-    else if(this.basicForm.invalid) {
+    else if(this.basicForm.invalid||this.siteSelectedItems.length==0) {
       // alert('Fill the required fields');
       swal.fire({
         title: 'Invalid Form',
@@ -170,8 +170,8 @@ export class BasicInfoComponent implements OnInit {
     }
     else if (!siteFlag) {
       swal.fire({
-        title: 'Invalid MappedSites',
-        text: 'Please select the HomeSite',
+        title: 'Invalid Mapped Sites',
+        text: 'Please select the Home Site',
         icon: 'error',
         confirmButtonText: 'Ok',
         allowOutsideClick: false
@@ -318,7 +318,7 @@ export class BasicInfoComponent implements OnInit {
 
         else {
           swal.fire({
-            title: 'Invalid pincode',
+            title: 'Invalid ZipCode',
             text: 'Invalid ZIP code. Please enter a valid ZIP code.',
             icon: 'warning',
             confirmButtonText: 'Ok',
@@ -394,28 +394,10 @@ export class BasicInfoComponent implements OnInit {
     this.basicForm.get('siteName').setValue('');
   }
 
-  public PhoneNumFormat(event) {
-    console.log("++++++++++", event.target.value)
+  public PhoneNumFormat(event,flag) {
+    // console.log("++++++++++", event.target.value)
     var input2 = event.target.value.replace(/\D/g, '');
-    // var input = input2.replaceAll("[^\\d.]", "");
-    // if (input != undefined) {
-    //   let trimmed = input.replace(/\s+/g, '');
-    //   console.log(input)
-    //   if (trimmed.length > 12) {
-    //     trimmed = trimmed.substr(0, 12);
-    //   }
-    //   trimmed = trimmed.replace(/-/g, '');
-    //   let numbers = [];
-    //   numbers.push(trimmed.substr(0, 3));
-    //   if (trimmed.substr(3, 2) !== "")
-    //     numbers.push(trimmed.substr(3, 3));
-    //   if (trimmed.substr(5, 4) != "" && trimmed.length >= 7)
-    //     numbers.push(trimmed.substr(6, 4));
-
-    // this.phoneNUmber = numbers.join('-');
-    this.phoneNUmber = input2;
-    this.basicForm.get('number').setValue(input2);
-    // }
+    flag=="ssn"?this.basicForm.get('ssn').setValue(input2):this.basicForm.get('number').setValue(input2);
   }
   public phoneValidation() {
     let phone1Flag
@@ -453,7 +435,7 @@ export class BasicInfoComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.basicForm.value.ssn }
+      let params = { 'ssn': this.basicForm.value.ssn,"screenFlag":"ps" }
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {

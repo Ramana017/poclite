@@ -105,6 +105,7 @@ export class AdmissionDetailsComponent implements OnInit {
     this.guarantorId = guarantorSession.psGuarantorId;
     this.psId = psSession.psId
     let params = { "userId": this.userId, "psId": this.psId, "guarantorId": this.guarantorId };
+   try {
     this.service.getAdmissionLookups(JSON.stringify(params)).subscribe(
       data => {
         console.log(data);
@@ -116,17 +117,31 @@ export class AdmissionDetailsComponent implements OnInit {
         this.guarantorName = data.guarantorName;
         this.psId = data.psId;
         this.officeId = data.officeId
+        this.getLookupsData2();
 
       })
-    this.service.getLookupsData2().subscribe(
-      res => {
-        let data: any = res;
-        this.referralSourceList = data.referralSource
-        console.log(res)
+   } catch (error) {
+     console.log(error);
 
-        console.log("ggggggggg", this.referralSourceList)
-      }
-    )
+   }
+
+  }
+  public getLookupsData2() {
+
+    try {
+      this.service.getLookupsData2(this.officeId).subscribe(
+        res => {
+          let data: any = res;
+          this.referralSourceList = data.referralSource
+          console.log(res)
+
+          console.log("ggggggggg", this.referralSourceList)
+        }
+      )
+    } catch (error) {
+      console.log(error);
+    }
+
   }
   public pagenext(): void {
     if (this.upperBound < this.maxCount) {
@@ -314,7 +329,7 @@ export class AdmissionDetailsComponent implements OnInit {
         "clientTypeId": this.coordinatorData.clientTypeId,
         "clientClassId": this.coordinatorData.clientClassId,
         "primaryDiagnosisCode": primaryRank,
-        "otherDiagnoses": rank,
+        "otherDiagnoses": rank.toString(),
         "officeId": this.officeId,
         "userId": this.userId,
         "referralSourceId": this.admissionForm.value.referralSource.id,
