@@ -130,33 +130,33 @@ export class BasicInfoComponent implements OnInit {
         var phone1exchangecode = this.phoneNUmber.slice(3, 6)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
-          ssnLength == 0 ? this.saveBasic() :this.checkSSn();
+          ssnLength == 0 ? this.saveBasic() : this.checkSSn();
 
         }
         else {
           // phone1Flag = true;
           if (phone1areacode <= 1 || phone1areacode <= 199) {
             console.log("area code missing")
-            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone ")
           }
           if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
             console.log("area exchange code missing")
 
-            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone ")
           }
         }
         console.log("phone1 flag is")
 
 
       }
-      else{
+      else {
         this.alertbox(" Phone number should be 10 digits ")
 
       }
 
 
     }
-    else if(this.basicForm.invalid||this.siteSelectedItems.length==0) {
+    else if (this.basicForm.invalid || this.siteSelectedItems.length == 0) {
       // alert('Fill the required fields');
       swal.fire({
         title: 'Invalid Form',
@@ -260,10 +260,18 @@ export class BasicInfoComponent implements OnInit {
 
     if (field === 'genderId') {
       if (flag) {
+        console.log("Ramana")
         this.basicForm.get('genderId').setValue(event.id);
-        event.name == "FEMALE" ? this.basicForm.get('saluation').setValue(flag ? "MS" : '') : this.basicForm.get('saluationId').setValue(flag ? "MS" : '');
-        event.name == "MALE" ? this.basicForm.get('saluation').setValue(flag ? "MR" : '') : this.basicForm.get('saluationId').setValue(flag ? "MR" : '');
+        if (event.name == "MALE") {
+          this.basicForm.get('saluation').setValue(flag ? "MR" : '');
+          this.basicForm.get('saluationId').setValue(flag ? "MR" : '');
+        } else if (event.name == "FEMALE") {
+          this.basicForm.get('saluation').setValue(flag ? "MS" : '');
+          this.basicForm.get('saluationId').setValue(flag ? "MS" : '');
+        }
       } else {
+        this.basicForm.get('saluation').setValue('');
+        this.basicForm.get('saluationId').setValue('');
         this.basicForm.get('genderId').setValue('');
       }
     }
@@ -395,10 +403,10 @@ export class BasicInfoComponent implements OnInit {
     this.basicForm.get('siteName').setValue('');
   }
 
-  public PhoneNumFormat(event,flag) {
+  public PhoneNumFormat(event, flag) {
     // console.log("++++++++++", event.target.value)
     var input2 = event.target.value.replace(/\D/g, '');
-    flag=="ssn"?this.basicForm.get('ssn').setValue(input2):this.basicForm.get('number').setValue(input2);
+    flag == "ssn" ? this.basicForm.get('ssn').setValue(input2) : this.basicForm.get('number').setValue(input2);
   }
   public phoneValidation() {
     let phone1Flag
@@ -414,7 +422,7 @@ export class BasicInfoComponent implements OnInit {
         else {
           phone1Flag = true;
           if (phone1areacode >= 1 && phone1areacode >= 199) {
-            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  ")
           }
           if (phone1exchangecode >= 1 && phone1exchangecode >= 199) {
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
@@ -435,28 +443,41 @@ export class BasicInfoComponent implements OnInit {
     swal.fire(message, string, 'warning')
   }
   private checkSSn() {
-    try {
-      let params = { 'ssn': this.basicForm.value.ssn,"screenFlag":"ps" }
-      this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
-        console.log(data)
-        if (Object.keys(data).length !== 0) {
+    if (this.basicForm.value.ssn == 999999999) {
 
-          let data2: any = data;
-
-          swal.fire({
-            title: 'Invalid SSN',
-            text: data2.ErrorMsg,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            allowOutsideClick: false
-          })
-        }
-        else{
-          this.saveBasic()
-        }
+      console.log("ssn ERRor")
+      swal.fire({
+        title: 'Invalid SSN',
+        text: "SSN should not contain all 9's",
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
       })
-    } catch (error) {
 
+    } else {
+      try {
+        let params = { 'ssn': this.basicForm.value.ssn, "screenFlag": "ps" }
+        this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
+          console.log(data)
+          if (Object.keys(data).length !== 0) {
+
+            let data2: any = data;
+
+            swal.fire({
+              title: 'Invalid SSN',
+              text: data2.ErrorMsg,
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            })
+          }
+          else {
+            this.saveBasic()
+          }
+        })
+      } catch (error) {
+
+      }
     }
   }
 

@@ -61,7 +61,7 @@ export class GuarantorDetailsComponent implements OnInit {
       firstName: ['', Validators.required],
       ssn: [''],
       number: ['', Validators.required],
-      occupationList: ['28', Validators.required],
+      occupationList: ["UNKNOWN", Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
       city: ['', Validators.required],
