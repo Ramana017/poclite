@@ -104,6 +104,7 @@ export class AuthorizationComponent implements OnInit {
       this.psName = this.payorPlanResponse.psName;
       this.ppEffectiveFromDate = new Date(this.ppEffectiveFrom);
       this.ppEffectiveToDate = new Date(this.ppEffectiveTo == "" ? '12/31/9999' : this.ppEffectiveTo)
+      this.totalUnitsFlag=this.privateDuty
 
     }
 
@@ -612,8 +613,8 @@ export class AuthorizationComponent implements OnInit {
       "psAddressId": this.psAddressId,
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
       "endDate": this.tempAuth ? "" : this.endDate == null || undefined ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
-      "totalUnits": +this.totalUnits,
-      "totalUnitsFlag": this.totalUnitsFlag ? 1 : 0,
+      "totalUnits": 0,
+      "totalUnitsFlag":0,
       "dpEffectiveTo": "",
       "dpEffectiveFrom": "",
       "dailyDP": 0,

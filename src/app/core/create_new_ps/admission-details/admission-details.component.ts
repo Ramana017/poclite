@@ -329,7 +329,7 @@ export class AdmissionDetailsComponent implements OnInit {
       } else {
         firstDateFlag = false;
         swal.fire({
-          title: 'Invalid First Visit',
+          title: 'Invalid First Visit Date',
           text: 'First Visit Date should not be less than Admission Date',
           icon: 'error',
           confirmButtonText: 'Ok',
@@ -344,7 +344,7 @@ export class AdmissionDetailsComponent implements OnInit {
       else {
         referdateFlag = false;
         swal.fire({
-          title: 'Invalid Refferred Visit',
+          title: 'Invalid Referred Date',
           text: 'Referral Date should be less than or equal to Admission Date.',
           icon: 'error',
           confirmButtonText: 'Ok',
@@ -365,7 +365,7 @@ export class AdmissionDetailsComponent implements OnInit {
       else {
         admitDateFlag = false;
         swal.fire({
-          title: 'Invalid Admission date',
+          title: 'Invalid Admission Date',
           text: 'The admission date selected is more than ' + this.admissionPeriod + 'day(s) in the past and cannot be entered',
           icon: 'error',
           confirmButtonText: 'Ok',
@@ -457,7 +457,7 @@ export class AdmissionDetailsComponent implements OnInit {
     }
     else if (!temp.length) {
       swal.fire({
-        title: 'Invalid Entry',
+        title: 'Invalid Diagnosis',
         text: 'No Diagnosis is selected',
         icon: 'error',
         confirmButtonText: 'Ok',
@@ -465,7 +465,7 @@ export class AdmissionDetailsComponent implements OnInit {
       })
     } else if (isDuplicate === true) {
       swal.fire({
-        title: 'Invalid Form',
+        title: 'Invalid Rank',
         text: ' Same rank is selected for Different diagnosis',
         icon: 'error',
         confirmButtonText: 'Ok',
@@ -473,7 +473,7 @@ export class AdmissionDetailsComponent implements OnInit {
       })
     } else if (this.admissionForm.get('firstVisitDate') < this.admissionForm.get('admissionDate')) {
       swal.fire({
-        title: 'Invalid Form',
+        title: 'Invalid First Visit Date',
         text: 'Your First Visit Date is greater than Admission Date ',
         icon: 'error',
         confirmButtonText: 'Ok',

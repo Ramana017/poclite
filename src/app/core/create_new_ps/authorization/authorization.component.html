@@ -130,9 +130,9 @@
             Total Units<span class="text-danger">*</span>
           </label>
                     <div class="input-group  align-items-center">
-                        <input type="number" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag'>
+                        <input type="number" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag||privateDuty'>
                         <label class="customcheck  w-auto">
-              <input type="checkbox" (click)="toggleCheck($event)">
+              <input type="checkbox"  [disabled]="privateDuty" (click)="toggleCheck($event)">
               <span class="checkmark" title="No Limit"></span>
             </label>
                         <!-- <button [tooltip]="gps" containerClass="customClass" tooltipPlacement="right" *ngIf="this.data.ArrGpsException==1||this.data.DepGpsException==1 " [ngClass]="displayArray[0]?'active':''" type="button" class="btn" (click)="SelectorDisplay(0)">
