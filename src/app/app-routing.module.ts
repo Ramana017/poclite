@@ -12,7 +12,8 @@ import { BasicInfoComponent } from './core/create_new_ps/basic-info/basic-info.c
 import { GuarantorDetailsComponent } from './core/create_new_ps/guarantor-details/guarantor-details.component';
 import { AdmissionDetailsComponent } from './core/create_new_ps/admission-details/admission-details.component';
 import { PayorPlanDetailsComponent } from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
-import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component'
+import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component';
+import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 
 
@@ -33,7 +34,9 @@ const routes: Routes = [
       { path: "child-authorization", component: AuthorizationComponent },
     ]
   },
-  { path: '**', redirectTo: "/widgets", pathMatch: 'full' },
+  { path: "page-not-found", component: PageNotFoundComponent }
+  ,
+  { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 ];
 

@@ -336,6 +336,7 @@ export class PayorPlanDetailsComponent implements OnInit {
         console.log(d)
         this.savePayorRes = d
         sessionStorage.setItem('savePayorRes', JSON.stringify(this.savePayorRes));
+        this.service.showSuccess('PayorPlan created Succssfully!');
         this.router.navigateByUrl('registration-re/child-authorization');
       });
     } catch (error) {

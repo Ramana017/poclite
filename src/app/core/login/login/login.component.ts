@@ -22,11 +22,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("working");
-    var accountdetails=sessionStorage.getItem('useraccount')
+    var accountdetails:any=JSON.parse(sessionStorage.getItem('useraccount'));
     if(accountdetails!=null||undefined){
-      this._router.navigateByUrl('summary')
-    }else
-{
+      // this._router.navigateByUrl('summary')
+      console.log("#########$$$$$$$$$", accountdetails.priviledFlag =="all"|| accountdetails.priviledFlag=="schedule")
+      accountdetails.priviledFlag =="all"||accountdetails.priviledFlag=="schedule"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
+
+    }else{
 
 }
       this.loginForm = this._fb.group({
@@ -68,7 +70,7 @@ export class LoginComponent implements OnInit {
               this.loginFailed = false;
               this.appService.setUserLoggedIn(true)
               sessionStorage.setItem('useraccount', JSON.stringify(this.responsedata));
-              this.responsedata.priviledFlag=="all"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
+              this.responsedata.priviledFlag=="all"||this.responsedata.priviledFlag=="schedule"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
 
 
             }

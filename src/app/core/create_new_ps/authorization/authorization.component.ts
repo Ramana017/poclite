@@ -658,17 +658,23 @@ export class AuthorizationComponent implements OnInit {
             allowOutsideClick: false
           })
           this.router.navigateByUrl('widgets')
+        },
+        error=>{
+          console.log("authorization error",error)
+          if(error){
+            swal.fire({
+              title: 'Oops! ',
+              text:'Failed to save Authorization',
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            })          }
         }
       )
 
     } catch (error) {
-      console.log(error)
-      swal.fire({
-        title: 'Failed to save ',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
+      console.log("authorization",error)
+
     }
   }
 

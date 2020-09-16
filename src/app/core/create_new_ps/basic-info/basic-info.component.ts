@@ -230,6 +230,7 @@ export class BasicInfoComponent implements OnInit {
           } else {
             console.log(JSON.stringify(jsonObj));
             sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
+            this.service.showSuccess('PS saved Succssfully!');
             this.router.navigateByUrl('registration-re/child-guarantor');
           }
         }

@@ -44,7 +44,12 @@ import{BasicInfoComponent} from './core/create_new_ps/basic-info/basic-info.comp
 import{GuarantorDetailsComponent}from './core/create_new_ps/guarantor-details/guarantor-details.component';
 import {AdmissionDetailsComponent} from './core/create_new_ps/admission-details/admission-details.component';
 import {PayorPlanDetailsComponent} from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
-import {AuthorizationComponent} from './core/create_new_ps/authorization/authorization.component'
+import {AuthorizationComponent} from './core/create_new_ps/authorization/authorization.component';
+import { ToastrModule } from 'ngx-toastr';
+import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -71,7 +76,8 @@ import {AuthorizationComponent} from './core/create_new_ps/authorization/authori
     GuarantorDetailsComponent,
     AdmissionDetailsComponent,
     PayorPlanDetailsComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    PageNotFoundComponent
 
   ],
   imports: [
@@ -95,6 +101,7 @@ import {AuthorizationComponent} from './core/create_new_ps/authorization/authori
     // NgxGaugeModule,
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe

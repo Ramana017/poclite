@@ -10,13 +10,11 @@
                         </button>
                         <div class="dropdown-menu">
                             <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                            <a routerLinkActive="active" class="dropdown-item" [routerLink]="['/widgets']"> POC
+                            <a routerLinkActive="active" *ngIf="!userFlag" class="dropdown-item" [routerLink]="['/widgets']"> POC
                                 Home </a>
-                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" style="color: black;"
-                                [routerLink]="['/summary']">POC Call
+                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
                                 Management</a>
-                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item"
-                                [routerLink]="['/charts']"> POC
+                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
                                 DashBoard</a>
 
 
@@ -27,19 +25,19 @@
                     </div> -->
                     </div>
                 </a>
-           
-            
+
+
                 <a class="navbar-brand">
                     <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
                 </a>
             </div>
-                <div class="logo-cms ml-negative">
-                    <div class="d-flex">
-                        <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
-                        <h3 class="text-white mt-3">{{heading}}</h3>
-                    </div>
+            <div class="logo-cms ml-negative">
+                <div class="d-flex">
+                    <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
+                    <h3 class="text-white mt-3">{{heading}}</h3>
                 </div>
-          
+            </div>
+
 
 
             <div class="">

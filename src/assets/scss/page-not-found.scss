@@ -1,0 +1,40 @@
+.pageNotFound-wrapper {
+    @include size(null, 100vh);
+    background: url("../images/404.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .pageNotFoundContent {
+        @include position(30%,
+        null,
+        null,
+        50%);
+        @include translate(-50%,
+        -50%);
+        .pageNotFound-title {
+            font-size: 12.7rem;
+            font-weight: 500;
+            -webkit-text-stroke-width: .2rem;
+            -moz-text-stroke-width: .2rem;
+            color: black;
+            -webkit-text-stroke-color: $white;
+            -moz-text-stroke-color: $white;
+        }
+        .pageNotFound-text {
+            font-size: 40px;
+        }
+    }
+}
+
+@media(max-width:$screen-md) {
+    .pageNotFound-wrapper {
+        .pageNotFoundContent {
+            .pageNotFound-title {
+                font-size: 10rem;
+            }
+            .pageNotFound-text {
+                font-size: 30px;
+            }
+        }
+    }
+}

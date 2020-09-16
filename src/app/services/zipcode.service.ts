@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,13 @@ export class ZipcodeService {
   }
   public zip;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private toastr: ToastrService,) {
+   }
+  public showSuccess(message) {
+    this.toastr.success('',message, {
+      timeOut:1500
+    });
+  }
   public getLookupDetails(params): Observable<any> {
     this.getUrl()
     return this.http.get(this.lookUpDetails + "/getUserOfficeList?jsonObj=" + params).pipe(catchError(this.errorHandler));
@@ -100,10 +108,7 @@ export class ZipcodeService {
     this.getUrl();
     return this.http.post(this.url + '/dashboard/savePSAuthorization', params).pipe(catchError(this.errorHandler));
   }
-  private errorHandler(error: HttpErrorResponse): Observable<any> {
-    console.log('error in API service', error);
-    return throwError(error);
-  }
+
 
   public getLookupsData2(params:number): Observable<any> {
     this.getUrl();
@@ -133,5 +138,9 @@ export class ZipcodeService {
     this.getUrl();
     return this.http.get(this.url + '/common/isPolicyNumRequired?jsonObj='+params).pipe(catchError(this.errorHandler));
 
+  }
+  private errorHandler(error: HttpErrorResponse): Observable<any> {
+    console.log('error in API service', error);
+    return throwError(error);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable, ErrorHandler, OnInit } from '@angular/core';
 import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { APIs } from '../../assets/url';
+import { ToastrService } from 'ngx-toastr';
 // import webserviceURL from '../../assets/url.json';
 import { catchError } from 'rxjs/operators';
 //
@@ -28,10 +29,14 @@ export class ApiserviceService {
   public updatePopup = new Subject();
   public updatePopup$ = this.updatePopup.asObservable();
 
-  constructor(private _http: HttpClient,) { console.log("API service") }
+  constructor(private _http: HttpClient,private toastr: ToastrService,) { console.log("API service") }
 
 
-
+ public showSuccess(message) {
+    this.toastr.success('',message, {
+      timeOut:1000
+    });
+  }
   // calling Table APi
   public authenticateUser(jsondata: string): Observable<any> {
     console.log(APIs.webserviceURL)

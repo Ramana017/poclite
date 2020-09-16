@@ -171,6 +171,7 @@ export class GuarantorDetailsComponent implements OnInit {
           console.log(this.guarantorResponse)
           if (Object.keys(this.guarantorResponse).length !== 0) {
             sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
+            this.service.showSuccess('PS Gurantor saved Succssfully!');
             this.router.navigateByUrl('registration-re/child-admission')
           }
         });
