@@ -26,7 +26,9 @@ export class HeaderComponent implements OnInit {
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
     if (this.useraccount == undefined || null) {
+      console.log("headerts called")
       this.router.navigateByUrl('login')
+      window.location.reload();
     } else {
       console.log(this.router.url)
       if (this.router.url == '/charts') {

@@ -36,7 +36,8 @@
 
                     <div class="input-group" *ngIf="tempAuth">
                         <!-- <input type="text" class="form-control"> -->
-                        <ng-autocomplete [data]="tempAuthzDaySpanList" (selected)="autoSelected($event,'tempAuthzDaySpanList')" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="tempAuthzDaySpanKeyword" [itemTemplate]="itemTemplate3">
+                        <ng-autocomplete [data]="tempAuthzDaySpanList" (inputCleared)='autoSelected(null,"tempAuthzDaySpanList",false)' (selected)="autoSelected($event,'tempAuthzDaySpanList',true)" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="tempAuthzDaySpanKeyword"
+                            [itemTemplate]="itemTemplate3">
                         </ng-autocomplete>
                         <ng-template style="width: 100%;" #itemTemplate3 let-item>
                             <a [innerHTML]="item.name"></a>
@@ -57,7 +58,8 @@
           </label>
                     <div class="input-group  ">
                         <!-- <input type="text" class="form-control"> -->
-                        <ng-autocomplete [data]="caseManagerList" [notFoundTemplate]="notFoundTemplate" (selected)="autoSelected($event,'caseManagerList')" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate" style="width: 100%;">
+                        <ng-autocomplete [data]="caseManagerList" [notFoundTemplate]="notFoundTemplate" (inputCleared)='autoSelected(null,"caseManagerList",false)' (selected)="autoSelected($event,'caseManagerList',true)" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate"
+                            style="width: 100%;">
                         </ng-autocomplete>
                         <ng-template style="width: 100%;" #itemTemplate let-item>
                             <a [innerHTML]="item.name"></a>
@@ -128,7 +130,7 @@
             Total Units<span class="text-danger">*</span>
           </label>
                     <div class="input-group  align-items-center">
-                        <input type="text" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag'>
+                        <input type="number" class="form-control mr-2" aria-label="Case Manager" [(ngModel)]="totalUnits" [disabled]='totalUnitsFlag'>
                         <label class="customcheck  w-auto">
               <input type="checkbox" (click)="toggleCheck($event)">
               <span class="checkmark" title="No Limit"></span>
@@ -222,7 +224,7 @@
                   Max Units<span class="text-danger">*</span>
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]="weeklyMaxUnits" aria-label="Max Units" placeholder="">
+                                    <input type="number" class="form-control" [(ngModel)]="weeklyMaxUnits" aria-label="Max Units" placeholder="">
                                 </div>
                             </div>
                             <div class=" m-0 input-container-wrapper">
@@ -242,7 +244,7 @@
                   #Weeks
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]='weeklyNoOfWeek'>
+                                    <input type="number" class="form-control" [(ngModel)]='weeklyNoOfWeek'>
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper">
@@ -250,7 +252,7 @@
                   #Days Per Week
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]="weeklyDaysPerWeek">
+                                    <input type="number" class="form-control" [(ngModel)]="weeklyDaysPerWeek">
                                 </div>
                             </div>
                         </div>
@@ -261,7 +263,7 @@
                     SUN
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySunUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySunUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -269,7 +271,7 @@
                     MON
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyMonUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyMonUnits">
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +281,7 @@
                     TUE
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyTueUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyTueUnits">
                                     </div>
                                 </div>
                                 <div class="day-input">
@@ -287,7 +289,7 @@
                     WED
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyWedUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyWedUnits">
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +299,7 @@
                     THU
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyThuUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyThuUnits">
                                     </div>
                                 </div>
                                 <div class=" day-input">
@@ -305,7 +307,7 @@
                     FRI
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyFriUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag" [(ngModel)]="weeklyFriUnits">
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +317,7 @@
                     SAT
                   </label>
                                     <div class="input-group  ">
-                                        <input type="text" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySatUnits">
+                                        <input type="number" class="form-control" [disabled]="dailyFlag ||weeklyPerWeek=='W'" [(ngModel)]="weeklySatUnits">
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +335,7 @@
                   Max Units Per Day<span class="text-danger">*</span>
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]='dailyMaxUnits'>
+                                    <input type="number" class="form-control" [(ngModel)]='dailyMaxUnits'>
                                 </div>
                             </div>
                             <div class=" m-0  input-container-wrapper pb-sm-0 d-flex w-42">
@@ -341,7 +343,7 @@
                   #Days
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]="dailyDays">
+                                    <input type="number" class="form-control" [(ngModel)]="dailyDays">
                                 </div>
                             </div>
 
@@ -356,7 +358,7 @@
                   Max Units Per Month<span class="text-danger">*</span>
                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" class="form-control" [(ngModel)]="monthlyMaxUnits">
+                                    <input type="number" class="form-control" [(ngModel)]="monthlyMaxUnits">
                                 </div>
                             </div>
 
@@ -390,7 +392,7 @@
                                 <!-- <div class="input-group  form-input">
                                      <input type="text" class="form-control" [(ngModel)]="privateDutyRateType">
                                 </div> -->
-                                <ng-autocomplete [data]="rateTypeList" (selected)="autoSelected($event,'rateTypeList')" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate4">
+                                <ng-autocomplete [data]="rateTypeList" (inputCleared)='autoSelected(null,"rateTypeList",false)' (selected)="autoSelected($event,'rateTypeList',true)" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="casemanagerKeyword" [itemTemplate]="itemTemplate4">
                                 </ng-autocomplete>
                                 <ng-template style="width: 100%;" #itemTemplate4 let-item>
                                     <a [innerHTML]="item.name"></a>
@@ -421,7 +423,7 @@
                   Shift 1
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="regularShift1Rate">
+                                    <input type="number" class="form-control" [(ngModel)]="regularShift1Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -429,7 +431,7 @@
                   Shift 2
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="regularShift2Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="regularShift2Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -437,7 +439,7 @@
                   Shift 3
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="regularShift3Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="regularShift3Rate">
                                 </div>
                             </div>
                         </div>
@@ -453,7 +455,7 @@
                   Shift 1
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="weekendShift1Rate">
+                                    <input type="number" class="form-control" [(ngModel)]="weekendShift1Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -461,7 +463,7 @@
                   Shift 2
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="weekendShift2Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="weekendShift2Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -469,7 +471,7 @@
                   Shift 3
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="weekendShift3Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="weekendShift3Rate">
                                 </div>
                             </div>
                         </div>
@@ -483,7 +485,7 @@
                   Shift 1
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="holidayShift1Rate">
+                                    <input type="number" class="form-control" [(ngModel)]="holidayShift1Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -491,7 +493,7 @@
                   Shift 2
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="holidayShift2Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="holidayShift2Rate">
                                 </div>
                             </div>
                             <div class=" m-0 d-flex align-items-center  pb-8">
@@ -499,7 +501,7 @@
                   Shift 3
                 </label>
                                 <div class="input-group width-80 form-input">
-                                    <input type="text" class="form-control" [(ngModel)]="holidayShift3Rate">
+                                    <input type="number" class="form-control" [disabled]='shiftRateTypeListFlag' [(ngModel)]="holidayShift3Rate">
                                 </div>
                             </div>
                         </div>
@@ -545,7 +547,7 @@
                     </label>
                     <div class="d-flex ">
                         <div class="input-group ">
-                            <input type="text " [disabled]="true " [ngStyle]="{ 'cursor': 'not-allowed'} "
+                            <input type="number " [disabled]="true " [ngStyle]="{ 'cursor': 'not-allowed'} "
                                 [(ngModel)]="psName " class="form-control ">
                         </div>
                     </div>

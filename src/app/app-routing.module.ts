@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: "child-authorization", component: AuthorizationComponent },
     ]
   },
-  { path: '**', redirectTo: "/summary", pathMatch: 'full' },
+  { path: '**', redirectTo: "/widgets", pathMatch: 'full' },
 
 ];
 

@@ -64,15 +64,15 @@ export class AuthorizationComponent implements OnInit {
   public weeklyPerWeek: string = "W";
   public weeklyNoOfWeek: number;
   public weeklyDaysPerWeek: number;
-  public weeklySunUnits: number=0;
+  public weeklySunUnits: number = 0;
   public weeklyMonUnits: number;
   public weeklyTueUnits: number;
   public weeklyWedUnits: number;
   public weeklyThuUnits: number;
   public weeklyFriUnits: number;
-  public weeklySatUnits: number=0;
+  public weeklySatUnits: number = 0;
   public monthlyMaxUnits: number;
-  public privateDutyRateType=null;
+  public privateDutyRateType = null;
   public regularShift1Rate;
   public regularShift2Rate;
   public regularShift3Rate;
@@ -85,6 +85,7 @@ export class AuthorizationComponent implements OnInit {
   private userId;
   private authorizationNumber;
   public rateTypeList: Array<any>;
+  public shiftRateTypeListFlag: Boolean = false;
 
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
@@ -206,20 +207,26 @@ export class AuthorizationComponent implements OnInit {
     console.log(this.procedureSelctedItems)
     this.billingRate = " ";
   }
-  public autoSelected(event, templatetype) {
+  public autoSelected(event, templatetype, flag) {
     templatetype == "tempAuthzDaySpanList";
     if (templatetype == "tempAuthzDaySpanList") {
 
-      this.authorizationNumber = event.id;
+      flag ? this.authorizationNumber = event.id : null;
       console.log(this.authorizationNumber)
 
 
     } else if (templatetype == "caseManagerList") {
-      this.caseManagerId = event.id;
+      flag ? this.caseManagerId = event.id : null;
 
     }
     else if (templatetype == "rateTypeList") {
-      this.privateDutyRateType = event.id;
+      if (flag) {
+        this.privateDutyRateType = event.id;
+        event.id == "F" ? this.shiftRateTypeListFlag = true : false;
+      } else {
+        this.privateDutyRateType = null;
+        this.shiftRateTypeListFlag = false;
+      }
     }
     console.log(event);
 
@@ -346,9 +353,7 @@ export class AuthorizationComponent implements OnInit {
 
   private privatedutyValidation() {
 
-    if(this.privateFlag){
-    if ( this.privateDutyRateType==null)
-    {
+    if (this.privateFlag && this.privateDutyRateType == null) {
       swal.fire({
         title: 'Invalid Rate Type',
         text: 'Please Select Rate Type',
@@ -356,14 +361,9 @@ export class AuthorizationComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    }else{
+    } else {
       this.savePSAuthorization();
     }
-    }else{
-      this.savePSAuthorization();
-
-    }
-
   }
 
   private delivaryvalidation() {
@@ -471,7 +471,7 @@ export class AuthorizationComponent implements OnInit {
     let totalWeekunitsFlag: boolean = false;
     if (this.monthlyFlag && !this.totalUnitsFlag) {
 
-      this.monthlyMaxUnits >= this.totalUnits ? swal.fire({
+      this.monthlyMaxUnits > this.totalUnits ? swal.fire({
         title: 'Invalid Monthly Max Units',
         text: "Max Units per Month cannot be  greater than Total Units ",
         icon: 'error',
@@ -483,7 +483,7 @@ export class AuthorizationComponent implements OnInit {
       monthlytotalUnitsFlag = true;
     }
     if (this.dailyFlag && !this.totalUnitsFlag) {
-      this.dailyMaxUnits >= this.totalUnits ? swal.fire({
+      this.dailyMaxUnits > this.totalUnits ? swal.fire({
         title: 'Invalid Daily Max Units',
         text: "Max Units per Day cannot be greater than Total Units",
         icon: 'error',
@@ -495,7 +495,7 @@ export class AuthorizationComponent implements OnInit {
       dailytotalUnitsFlag = true
     }
     if (this.weeklyFlag && !this.totalUnitsFlag) {
-      this.weeklyMaxUnits >= this.totalUnits ? swal.fire({
+      this.weeklyMaxUnits > this.totalUnits ? swal.fire({
         title: 'Invalid Weekly Max Units',
         text: "Max Units per Week cannot be greater than Total Units",
         icon: 'error',
@@ -509,17 +509,25 @@ export class AuthorizationComponent implements OnInit {
     if (monthlytotalUnitsFlag && dailytotalUnitsFlag && weeklytotalUnitsFlag) {
 
       if (this.weeklyFlag && !this.dailyFlag) {
-        console.log((+this.weeklyMonUnits) +(+this.weeklyTueUnits))
-        console.log((+this.weeklyWedUnits) +(+this.weeklyThuUnits))
-        console.log((+this.weeklyFriUnits) +(+this.weeklySatUnits))
-        console.log(+this.weeklySunUnits)
-        console.log((+this.weeklySunUnits) + (+this.weeklyMonUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits) + (+this.weeklySatUnits))
-        totalWeekunitsFlag = this.weeklyPerWeek == "F" ?
-          (+this.weeklyMaxUnits >= ((+this.weeklySunUnits) + (+this.weeklyMonUnits) + (+this.weeklyTueUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits) + (+this.weeklySatUnits))) :
-          (+this.weeklyMaxUnits >= ((+this.weeklyMonUnits) + (+this.weeklyTueUnits) + (+this.weeklyWedUnits) + (+this.weeklyThuUnits) + (+this.weeklyFriUnits)))
+        // console.log("sunday", this.weeklySunUnits)
+        // console.log("Monday", this.weeklyMonUnits)
+        // console.log("Tueday", this.weeklyTueUnits)
+        // console.log("Wedday", this.weeklyWedUnits)
+        // console.log("Thuday", this.weeklyThuUnits)
+        // console.log("Friday", this.weeklyFriUnits)
+        // console.log("Satday", this.weeklySatUnits)
+        let sunday = this.weeklySunUnits != undefined ? this.weeklySunUnits : 0;
+        let monday = this.weeklyMonUnits != undefined ? this.weeklyMonUnits : 0;
+        let tuesday = this.weeklyTueUnits != undefined ? this.weeklyTueUnits : 0;
+        let wednasday = this.weeklyWedUnits != undefined ? this.weeklyWedUnits : 0;
+        let thursday = this.weeklyThuUnits != undefined ? this.weeklyThuUnits : 0;
+        let friday = this.weeklyFriUnits != undefined ? this.weeklyFriUnits : 0;
+        let saturday = this.weeklySatUnits != undefined ? this.weeklySatUnits : 0;
+        let totalunits = sunday + monday + tuesday + wednasday + thursday + friday + saturday
+        // console.log(totalunits)
 
-        console.log(totalWeekunitsFlag);
-        if (totalWeekunitsFlag) {
+        // console.log(totalunits > this.weeklyMaxUnits);
+        if (totalunits <= this.weeklyMaxUnits) {
           this.savePSAuthorization();
         } else {
           swal.fire({
@@ -625,7 +633,7 @@ export class AuthorizationComponent implements OnInit {
       "weeklySatUnits": 0,
       "monthlyDP": 0,
       "monthlyMaxUnits": 0,
-      "privateDutyRateType": this.privateDutyRateType!=null?this.privateDutyRateType:'',
+      "privateDutyRateType": this.privateDutyRateType != null ? this.privateDutyRateType : '',
       "regularShift1Rate": this.regularShift1Rate != undefined ? +this.regularShift1Rate : 0,
       "regularShift2Rate": this.regularShift2Rate != undefined ? +this.regularShift2Rate : 0,
       "regularShift3Rate": this.regularShift3Rate != undefined ? +this.regularShift3Rate : 0,
@@ -663,6 +671,8 @@ export class AuthorizationComponent implements OnInit {
       })
     }
   }
+
+
 }
 
 

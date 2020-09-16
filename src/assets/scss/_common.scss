@@ -81,21 +81,27 @@
 .f-12 {
     font-size: 12px;
 }
+
 // .width-80{
 //     width: 80px;
 // }
-.w-39{
+.w-39 {
     width: 39% !important;
 }
-.w-58{
+
+.w-58 {
     width: 58% !important;
 }
-.w-48{
-width: 48% !important;
+
+.w-48 {
+    width: 48% !important;
 }
-.mt-31{
+
+.mt-31 {
     margin-top: 31px;
 }
+
+
 /*========Common classes End=======*/
 
 
@@ -276,8 +282,8 @@ button {
             flex-direction: column;
         }
     }
-    .pr-0-sm{
-padding-right: 0 !important;
+    .pr-0-sm {
+        padding-right: 0 !important;
     }
 }
 
@@ -709,12 +715,11 @@ modal-container {
             padding: 8px !important;
         }
     }
-    form{
-        .w-50-sm{
+    form {
+        .w-50-sm {
             width: 50% !important;
-                }
+        }
     }
-   
 }
 
 .timepopup {
@@ -946,13 +951,14 @@ ul {
     justify-content: center;
     cursor: pointer;
 }
-.right-icon-cancel{
+
+.right-icon-cancel {
     position: absolute;
     right: 35px;
     /* top: 5px; */
     z-index: 9;
-   top: 6px;
-  cursor: pointer;
+    top: 6px;
+    cursor: pointer;
 }
 
 // ng-autocomplete code
@@ -961,9 +967,11 @@ ul {
         z-index: 1025;
     }
 }
-.ml-negative{
+
+.ml-negative {
     margin-left: -104px;
 }
+
 .input-container-wrapper,
 .basic-input-container,
 .form-input {
@@ -1002,12 +1010,12 @@ ul {
             padding: 0 5px 0 13px;
         }
     }
- 
-    option{
+    option {
         background: white;
     }
-    .form-control:disabled, .form-control[readonly] {
-        background-color: #d2d2d2 ;
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: #d2d2d2;
         opacity: 1;
     }
 }
@@ -1210,21 +1218,40 @@ ul {
     height: 30px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
-.w-144{
+
+.w-144 {
     width: 144px !important;
 }
-.w-160{
+
+.w-160 {
     width: 160px !important;
 }
-.pb-8{
+
+.pb-8 {
     padding-bottom: 8px;
 }
-.w-50{
+
+.w-50 {
     width: 50% !important;
 }
-.w-42{
+
+.w-42 {
     width: 42% !important;
 }
-.w-auto{
+
+.w-auto {
     width: auto !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
