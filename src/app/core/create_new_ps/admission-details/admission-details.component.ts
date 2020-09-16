@@ -69,7 +69,7 @@ export class AdmissionDetailsComponent implements OnInit {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
     // for (this.i = 1; this.i <= 100; this.i++) {
-    //   this.numbers.push(this.i);
+    // this.numbers.push(this.i);
 
     // }
     this.newAttribute = { rank: 0, name: '', code: '' };
@@ -253,7 +253,7 @@ export class AdmissionDetailsComponent implements OnInit {
       }
     }
     this.finalList = this.result;
-    //   this.finalList.push(this.selectedItems)
+    // this.finalList.push(this.selectedItems)
 
 
   }
@@ -310,7 +310,7 @@ export class AdmissionDetailsComponent implements OnInit {
   }
 
   dateValidation() {
-    this.formError=true;
+    this.formError = true;
     // console.log(this.admissionForm.value.firstVisitDate)
     // console.log(this.admissionForm.value.admissionDate)
     // console.log(this.admissionForm.value.referredDate)
@@ -325,9 +325,9 @@ export class AdmissionDetailsComponent implements OnInit {
       if (adminDateParse >= frstDateParse) {
         console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse')
         console.log(adminDateParse < frstDateParse)
-        firstDateFlag=true;
+        firstDateFlag = true;
       } else {
-        firstDateFlag=false;
+        firstDateFlag = false;
         swal.fire({
           title: 'Invalid First Visit',
           text: 'First Visit Date should not be less than Admission Date',
@@ -339,10 +339,10 @@ export class AdmissionDetailsComponent implements OnInit {
 
       if (referredDate <= adminDateParse) {
         console.log(adminDateParse, 'adminDateParse', referredDate, 'referredDate')
-        referdateFlag=true
+        referdateFlag = true
       }
       else {
-        referdateFlag=false;
+        referdateFlag = false;
         swal.fire({
           title: 'Invalid Refferred Visit',
           text: 'Referral Date should be less than or equal to Admission Date.',
@@ -357,13 +357,13 @@ export class AdmissionDetailsComponent implements OnInit {
       console.log(admissionPeriodDate)
 
       if (admissionDateSeconds <= adminDateParse) {
-        admitDateFlag=true;
+        admitDateFlag = true;
 
         console.log(adminDateParse, 'adminDateParse', frstDateParse, 'frstDateParse', referredDate, 'referredDate', new Date().setDate(new Date().getDate() + 365), "false")
 
       }
       else {
-        admitDateFlag=false;
+        admitDateFlag = false;
         swal.fire({
           title: 'Invalid Admission date',
           text: 'The admission date selected is more than ' + this.admissionPeriod + 'day(s) in the past and cannot be entered',
@@ -372,8 +372,7 @@ export class AdmissionDetailsComponent implements OnInit {
           allowOutsideClick: false
         })
       }
-      if(firstDateFlag&&referdateFlag&&admitDateFlag)
-      {
+      if (firstDateFlag && referdateFlag && admitDateFlag) {
         this.savePs();
       }
     } else {
@@ -386,26 +385,29 @@ export class AdmissionDetailsComponent implements OnInit {
       })
     }
   }
-  adminDate;
-  frstDate;
+
   // Code for Saving the whole data
   public savePs() {
-    let maxDate = new Date();
-    let twoyr = maxDate.setDate(maxDate.getDate() + 365)
+    
     console.log(this.tableList, "on tablelist")
     this.formError = true;
     let temp = [];
     let rank = [];
-    let isDuplicate;
+    //let isDuplicate;
     let primaryRank;
     console.log(this.admissionForm.value);
-    this.result.map((x) => {
+    this.tableList.map((x) => {
       x.rank === +1 ? primaryRank = x.diagnosisCode : rank.push(x.diagnosisCode)
       temp.push(x.diagnosisCode);
-      isDuplicate = rank.some(function (item, idx) {
-        return rank.indexOf(item) !== idx;
-      });
+      // isDuplicate1 = rank.some(function (item, idx) {
+      //   return rank.indexOf(item) !== idx;
+      // });
 
+    });
+    
+    var valueArr = this.finalList.map(function (item) { return item.rank });
+    var isDuplicate = valueArr.some(function (item, idx) {
+      return valueArr.indexOf(item) != idx
     });
     console.log(isDuplicate);
     if (this.admissionForm.valid && temp.length > 0 && isDuplicate === false) {
@@ -435,13 +437,13 @@ export class AdmissionDetailsComponent implements OnInit {
             console.log(Object.keys(this.admissionRes).length);
             // console.log("datasaved successfully");
             // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
-            sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
+          //  sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
             // this.router.navigateByUrl('registration-re/child-payorplan');
             if (Object.keys(this.admissionRes).length > 0) {
               console.log("datasaved successfully");
               sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
               sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
-              this.router.navigateByUrl('registration-re/child-payorplan');
+                this.router.navigateByUrl('registration-re/child-payorplan');
             }
           });
 
@@ -460,7 +462,7 @@ export class AdmissionDetailsComponent implements OnInit {
         confirmButtonText: 'Ok',
         allowOutsideClick: false
       })
-    } else if (isDuplicate) {
+    } else if (isDuplicate === true) {
       swal.fire({
         title: 'Invalid Form',
         text: ' Same rank is selected for Different diagnosis',
