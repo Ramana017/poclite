@@ -86,6 +86,7 @@ export class AuthorizationComponent implements OnInit {
   private authorizationNumber;
   public rateTypeList: Array<any>;
   public shiftRateTypeListFlag: Boolean = false;
+  public pptodateFlag: boolean = false;
 
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
@@ -104,7 +105,9 @@ export class AuthorizationComponent implements OnInit {
       this.psName = this.payorPlanResponse.psName;
       this.ppEffectiveFromDate = new Date(this.ppEffectiveFrom);
       this.ppEffectiveToDate = new Date(this.ppEffectiveTo == "" ? '12/31/9999' : this.ppEffectiveTo)
-      this.totalUnitsFlag=this.privateDuty
+      this.totalUnitsFlag = this.privateDuty;
+      this.payorPlanResponse.ppEffectiveTo.length > 0 ? this.pptodateFlag = false : true;
+      console.log(this.payorPlanResponse.ppEffectiveTo.length, this.pptodateFlag);
 
     }
 
@@ -228,6 +231,15 @@ export class AuthorizationComponent implements OnInit {
         this.privateDutyRateType = null;
         this.shiftRateTypeListFlag = false;
       }
+      this.weekendShift1Rate = null;
+      this.weekendShift2Rate = null;
+      this.weekendShift3Rate = null;
+      this.regularShift1Rate = null;
+      this.regularShift2Rate = null;
+      this.regularShift3Rate = null;
+      this.holidayShift1Rate = null;
+      this.holidayShift2Rate = null;
+      this.holidayShift3Rate = null;
     }
     console.log(event);
 
@@ -306,7 +318,7 @@ export class AuthorizationComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-    if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || (this.endDate == undefined || null)) {
+    if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || (this.pptodateFlag && (this.endDate == undefined || null))) {
       endDateFlag = true;
 
 
@@ -347,8 +359,8 @@ export class AuthorizationComponent implements OnInit {
       })
     }
     if (endDateFlag && procedureFlag && beginDateFlag && tempAuthFlag && totalunitsFlag && admissionFlag) {
-      console.log("all are valid")
-      this.privateDuty ? this.privatedutyValidation() : !this.weeklyFlag && !this.dailyFlag && !this.monthlyFlag ? this.savePSAuthorization() : this.delivaryvalidation()
+      console.log("all are valid",this.effectiveFromDate,this.effectiveToDate)
+      this.privateDuty ? this.privatedutyValidation() : !this.weeklyFlag && !this.dailyFlag && !this.monthlyFlag &&(this.effectiveToDate==null||undefined)&&(this.effectiveFromDate==null||undefined) ? this.savePSAuthorization() : this.delivaryvalidation()
     }
   }
 
@@ -379,8 +391,10 @@ export class AuthorizationComponent implements OnInit {
     let dailyMaxUnitsFlag: boolean = false;
     let weeklyMaxUnitsFlag: boolean = false;
 
+    console.log("effective to date",this.effectiveToDate,this.pptodateFlag && (this.effectiveToDate == undefined || null))
 
-    if (this.effectiveFromDate == undefined || null || (effectiveFromDateSeconds < beginDateseconds || effectiveFromDateSeconds > endDateseconds)) {
+
+    if ((this.pptodateFlag &&this.effectiveFromDate == undefined || null) || (effectiveFromDateSeconds < beginDateseconds || effectiveFromDateSeconds > endDateseconds)) {
       effectiveFomFlag = false;
       swal.fire({
         title: 'Invalid Effective From Date',
@@ -392,8 +406,17 @@ export class AuthorizationComponent implements OnInit {
     } else {
       effectiveFomFlag = true;
     }
-    if (this.effectiveToDate == undefined || null) {
-      effectiveToFlag = true;
+
+    if (!this.pptodateFlag && (this.effectiveToDate == undefined || null)) {
+      effectiveFomFlag = false;
+      swal.fire({
+        title: 'Invalid Effective To Date',
+        text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+
     } else if ((effectiveToDateSeconds < beginDateseconds || effectiveToDateSeconds > endDateseconds)) {
       effectiveFomFlag = false;
       swal.fire({
@@ -614,7 +637,7 @@ export class AuthorizationComponent implements OnInit {
       "beginDate": this.date.transform(this.beginDate, 'MM/dd/yyyy'),
       "endDate": this.tempAuth ? "" : this.endDate == null || undefined ? "" : this.date.transform(this.endDate, 'MM/dd/yyyy'),
       "totalUnits": 0,
-      "totalUnitsFlag":0,
+      "totalUnitsFlag": 0,
       "dpEffectiveTo": "",
       "dpEffectiveFrom": "",
       "dailyDP": 0,
@@ -635,15 +658,15 @@ export class AuthorizationComponent implements OnInit {
       "monthlyDP": 0,
       "monthlyMaxUnits": 0,
       "privateDutyRateType": this.privateDutyRateType != null ? this.privateDutyRateType : '',
-      "regularShift1Rate": this.regularShift1Rate != undefined ? +this.regularShift1Rate : 0,
-      "regularShift2Rate": this.regularShift2Rate != undefined ? +this.regularShift2Rate : 0,
-      "regularShift3Rate": this.regularShift3Rate != undefined ? +this.regularShift3Rate : 0,
-      "weekendShift1Rate": this.weekendShift1Rate != undefined ? +this.weekendShift1Rate : 0,
-      "weekendShift2Rate": this.weekendShift2Rate != undefined ? +this.weekendShift2Rate : 0,
-      "weekendShift3Rate": this.weekendShift3Rate != undefined ? +this.weekendShift3Rate : 0,
-      "holidayShift1Rate": this.holidayShift1Rate != undefined ? +this.holidayShift1Rate : 0,
-      "holidayShift2Rate": this.holidayShift2Rate != undefined ? +this.holidayShift2Rate : 0,
-      "holidayShift3Rate": this.holidayShift3Rate != undefined ? +this.holidayShift3Rate : 0,
+      "regularShift1Rate": this.regularShift1Rate != undefined||null ? +this.regularShift1Rate : 0,
+      "regularShift2Rate": this.regularShift2Rate != undefined||null ? +this.regularShift2Rate : 0,
+      "regularShift3Rate": this.regularShift3Rate != undefined||null ? +this.regularShift3Rate : 0,
+      "weekendShift1Rate": this.weekendShift1Rate != undefined||null ? +this.weekendShift1Rate : 0,
+      "weekendShift2Rate": this.weekendShift2Rate != undefined||null ? +this.weekendShift2Rate : 0,
+      "weekendShift3Rate": this.weekendShift3Rate != undefined||null ? +this.weekendShift3Rate : 0,
+      "holidayShift1Rate": this.holidayShift1Rate != undefined||null ? +this.holidayShift1Rate : 0,
+      "holidayShift2Rate": this.holidayShift2Rate != undefined||null ? +this.holidayShift2Rate : 0,
+      "holidayShift3Rate": this.holidayShift3Rate != undefined||null ? +this.holidayShift3Rate : 0,
       "unitDuration": this.procedureSelctedItems[0].unitDuration,
       "userId": this.userId
     }
@@ -660,21 +683,22 @@ export class AuthorizationComponent implements OnInit {
           })
           this.router.navigateByUrl('widgets')
         },
-        error=>{
-          console.log("authorization error",error)
-          if(error){
+        error => {
+          console.log("authorization error", error)
+          if (error) {
             swal.fire({
               title: 'Oops! ',
-              text:'Failed to save Authorization',
+              text: 'Failed to save Authorization',
               icon: 'error',
               confirmButtonText: 'Ok',
               allowOutsideClick: false
-            })          }
+            })
+          }
         }
       )
 
     } catch (error) {
-      console.log("authorization",error)
+      console.log("authorization", error)
 
     }
   }
