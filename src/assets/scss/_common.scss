@@ -25,6 +25,12 @@
       width: 96%;
       white-space: normal;
     }
+    .dropdown a:hover {
+        background-color: $section-bg !important;
+    }
+    .dropdown a:active {
+        background-color: none !important;
+    }
   }
 /* Font Styles Files Uplodding */
 
