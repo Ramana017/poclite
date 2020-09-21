@@ -79,6 +79,8 @@ export class HeaderComponent implements OnInit {
   public heading: string;
   public  userFlag:boolean;
   public adminFlag:boolean;
+  public showNotifOn = [];
+  public batchLength = 0;
 
   modalRef: BsModalRef;
   IsShowHide: boolean = false;
@@ -114,9 +116,9 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-  ngOnChanges(){
-    this.initialGetNotif();
-  }
+  // ngOnChanges(){
+  //   this.initialGetNotif();
+  // }
   public logout() {
     sessionStorage.removeItem('useraccount');
     setTimeout(() => {
@@ -142,12 +144,10 @@ export class HeaderComponent implements OnInit {
 
   onClick(event) {
 
-    this.IsShowHide = true;
+    this.IsShowHide =! this.IsShowHide ;
 
   }
-  showNotifOn = [];
-  currentCount: number;
-  batchLength = 0;
+  
   showNotif() {
     setInterval(() => {
 
@@ -194,7 +194,7 @@ export class HeaderComponent implements OnInit {
         console.log(delIndex)
         this.service.stopNotifications(delIndex) .subscribe(data => {
           console.log(data)
-          this.notifAfterDismiss();
+          this.initialGetNotif();
         })
       }
       
