@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./authorization.component.scss']
 })
 export class AuthorizationComponent implements OnInit {
+  // variables of Authorization component
   public dailyFlag = false;
   public monthlyFlag = false;
   public weeklyFlag = false;
