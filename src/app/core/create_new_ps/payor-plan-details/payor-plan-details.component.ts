@@ -155,7 +155,8 @@ export class PayorPlanDetailsComponent implements OnInit {
       this.payorPlanForm.get('genderId').setValue(flag ? event.id : '')
     }
     if (field === 'relation') {
-      this.payorPlanForm.get('relationshipListId').setValue(flag ? event.id : '')
+      this.payorPlanForm.get('relationshipListId').setValue(flag ? event.id : '');
+      flag&&event.id=='100'?this.get1(null,true):'';
     }
     if (field === 'addressTypeId') {
       this.payorPlanForm.get('addressTypeListId').setValue(flag ? event.id : '')
@@ -212,9 +213,9 @@ export class PayorPlanDetailsComponent implements OnInit {
       });
     }
   }
-  public get1(event) {
-    console.log(event.target.checked)
-    let Flag = event.target.checked;
+  public get1(event,falg?) {
+    // console.log(event.target.checked)
+    let Flag = event !=null?event.target.checked:falg;
     this.payorPlanForm.get('relationshipListId').setValue(Flag ? '100' : '');
     this.payorPlanForm.get('relationshipList').setValue(Flag ? "SELF" : '');
     this.payorPlanForm.get('firstName').setValue(Flag ? this.psdata.firstname : '');

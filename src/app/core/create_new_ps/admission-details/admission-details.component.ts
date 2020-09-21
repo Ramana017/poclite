@@ -197,6 +197,8 @@ export class AdmissionDetailsComponent implements OnInit {
     console.log(params)
     this.service.getDiagnosisDetails(JSON.stringify(params)).subscribe(
       data => {
+        console.log(data);
+
         let data1: any = data;
         this.diagnosisList = data.daignosisList;
         this.diagnosisList.map(x => {

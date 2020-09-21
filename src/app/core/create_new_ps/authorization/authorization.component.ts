@@ -88,6 +88,8 @@ export class AuthorizationComponent implements OnInit {
   public shiftRateTypeListFlag: Boolean = false;
   public pptodateFlag: boolean = false;
 
+  public zeroShiftFlag:boolean=false;
+
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -224,9 +226,13 @@ export class AuthorizationComponent implements OnInit {
 
     }
     else if (templatetype == "rateTypeList") {
+      this.zeroShiftFlag=false;
       if (flag) {
         this.privateDutyRateType = event.id;
         event.id == "F" ? this.shiftRateTypeListFlag = true : false;
+        if(event.id=="Z"){
+             this.zeroShiftFlag=true;
+        }
       } else {
         this.privateDutyRateType = null;
         this.shiftRateTypeListFlag = false;
@@ -253,7 +259,7 @@ export class AuthorizationComponent implements OnInit {
     console.log(this.totalUnits == undefined || this.totalUnits == null)
     console.log(typeof (this.totalUnits), this.totalUnitsFlag)
     let beginDateseconds = Date.parse(this.date.transform(this.beginDate, 'MM/dd/yyyy'));
-    let endDateseconds = Date.parse(this.date.transform(this.endDate, 'MM/dd/yyyy'));
+    let endDateseconds = Date.parse(this.date.transform(this.endDate!=undefined||null?this.ppEffectiveTo:this.endDate, 'MM/dd/yyyy'));
     let ppEffectiveFromSeconds = Date.parse(this.ppEffectiveFrom);
     let ppEffectiveToSeconds = Date.parse(this.ppEffectiveTo);
     let admissionSeconds = Date.parse(this.admitDate);
@@ -318,32 +324,39 @@ export class AuthorizationComponent implements OnInit {
         allowOutsideClick: false
       })
     }
-    if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || (this.pptodateFlag && (this.endDate == undefined || null))) {
+    if(this.tempAuth){
       endDateFlag = true;
+      console.log("TEMPaurt")
+    }
+    else{
+      if ((endDateseconds >= ppEffectiveFromSeconds) && (endDateseconds <= ppEffectiveToSeconds) || ((this.pptodateFlag||this.ppEffectiveTo=="12/31/9999") && (this.endDate == undefined || null))) {
+        endDateFlag = true;
+
+      }
+      else if (endDateseconds < beginDateseconds) {
+        endDateFlag = false;
+        swal.fire({
+          title: 'Invalid End Date',
+          text: 'End Date should be  After the   Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+      }
+      else {
+        endDateFlag = false;
+        swal.fire({
+          title: 'Invalid End Date',
+          text: 'End Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+      }
+    }
 
 
-    }
-    else if (endDateseconds < beginDateseconds) {
-      endDateFlag = false;
-      swal.fire({
-        title: 'Invalid End Date',
-        text: 'End Date should be  After the   Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-    }
-    else {
-      endDateFlag = false;
 
-      swal.fire({
-        title: 'Invalid End Date',
-        text: 'End Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-    }
 
 
     if (beginDateseconds >= admissionSeconds) {
@@ -394,7 +407,7 @@ export class AuthorizationComponent implements OnInit {
     console.log("effective to date",this.effectiveToDate,this.pptodateFlag && (this.effectiveToDate == undefined || null))
 
 
-    if ((this.pptodateFlag &&this.effectiveFromDate == undefined || null) || (effectiveFromDateSeconds < beginDateseconds || effectiveFromDateSeconds > endDateseconds)) {
+    if ((this.effectiveFromDate == undefined || null) || (effectiveFromDateSeconds < beginDateseconds || effectiveFromDateSeconds > endDateseconds)) {
       effectiveFomFlag = false;
       swal.fire({
         title: 'Invalid Effective From Date',
@@ -407,18 +420,21 @@ export class AuthorizationComponent implements OnInit {
       effectiveFomFlag = true;
     }
 
-    if (!this.pptodateFlag && (this.effectiveToDate == undefined || null)) {
-      effectiveFomFlag = false;
-      swal.fire({
-        title: 'Invalid Effective To Date',
-        text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
+    if ((this.effectiveToDate == undefined || null)) {
+      console.log("12345")
+      effectiveToFlag = true;
+      // swal.fire({
+      //   title: 'Invalid Effective To Date',
+      //   text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
+      //   icon: 'error',
+      //   confirmButtonText: 'Ok',
+      //   allowOutsideClick: false
+      // })
 
     } else if ((effectiveToDateSeconds < beginDateseconds || effectiveToDateSeconds > endDateseconds)) {
-      effectiveFomFlag = false;
+      effectiveToFlag = false;
+      console.log("12345678")
+
       swal.fire({
         title: 'Invalid Effective To Date',
         text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
@@ -429,6 +445,8 @@ export class AuthorizationComponent implements OnInit {
     } else {
       effectiveToFlag = true;
     }
+
+    console.log(effectiveFomFlag,effectiveToFlag)
     if (effectiveFomFlag && effectiveToFlag) {
 
       if (this.monthlyFlag) {
@@ -681,7 +699,7 @@ export class AuthorizationComponent implements OnInit {
             confirmButtonText: 'Ok',
             allowOutsideClick: false
           })
-          this.router.navigateByUrl('widgets')
+          this.router.navigateByUrl('widgets');
         },
         error => {
           console.log("authorization error", error)
