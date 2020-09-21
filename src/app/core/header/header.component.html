@@ -48,17 +48,20 @@
                             <div class="dropdown position-relative">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="ico position-relative" (click)="clearCount()" (click)="onClick($event)">
-                                        <span class="badge badge-danger position-absolute">{{badgeCount}}</span>
+                                    <div class="ico position-relative"  (click)="onClick($event)">
+                                        <span class="badge badge-danger position-absolute">{{batchLength}}</span>
                                         <i class="fas fa-bell px-3 text-white" style="font-size: 20px;"></i>
                                     </div>
                                 </a>
                             </div>
-                            <div class="dropdown-open position-absolute">
-                                <div class="dropdown-item" href="javascript:void(0)" *ngFor="let d of showNotifOn">
+                            <div class="dropdown-open position-absolute" *ngIf="IsShowHide" (click)="onClick($event)"  >
+                                <div class="dropdown-item" href="javascript:void(0)" *ngFor="let d of showNotifOn;let i=index">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h6>{{d.alertSendDate}}</h6>
-                                        <i class="fas fa-times"></i>
+                                        <div (click)="dismissNotif(i)">
+                                            <i class="fas fa-times"></i>
+
+                                        </div>
                                     </div>
                                     <h5>{{d.subject}}</h5>
                                     <p>{{d.message}}</p>
