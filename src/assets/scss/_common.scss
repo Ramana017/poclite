@@ -3,17 +3,17 @@
       display: none;
     }
   
-      .dropdown-menu.show {
-        height: 300px;
-        display: block;
-        width: 500px;
-        position: absolute;
-        overflow-y: auto;
+    .dropdown-menu.show {
+      height: 300px;
+      display: block;
+      width: 500px;
+      position: absolute;
+      overflow-y: auto;
       will-change: transform;
       top: 0px;
       left: -135px !important;
       transform: translate3d(-203px, 23px, 0px);
-    }
+  }
     .badge-danger{
       left: 21px;
       top: -4px;
@@ -52,10 +52,10 @@
         }
     
   }
-/* Font Styles Files Uplodding */
+/* Font Styles Files */
 
 
-/* Font Styles Files Uplodding */
+/* Font Styles Files */
 
 @font-face {
     font-family: "AvenirLTStd-Black";
@@ -118,7 +118,7 @@
 }
 
 
-/*====== Common classes start=======*/
+/*====== Common classes start=====================================*/
 
 .mxw-108 {
     max-width: 108px;
@@ -136,9 +136,6 @@
     font-size: 12px;
 }
 
-// .width-80{
-//     width: 80px;
-// }
 .w-39 {
     width: 39% !important;
 }
@@ -155,6 +152,42 @@
     margin-top: 31px;
 }
 
+.f-size-16 {
+    font-size: 16px !important;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.width-180 {
+    width: 180px !important;
+}
+
+.width-190 {
+    width: 190px;
+}
+
+.padding-left-15 {
+    padding-left: 15px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.height-50 {
+    height: 50px;
+}
+
+.material-icons {
+    cursor: pointer;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
 
 /*========Common classes End=======*/
 
@@ -163,10 +196,6 @@
 
 html {
     font-size: 13px;
-}
-
-.f-18 {
-    font-size: 18px;
 }
 
 body {
@@ -183,6 +212,7 @@ body {
 
 a {
     text-decoration: none !important;
+    cursor: pointer;
 }
 
 button {
@@ -311,8 +341,7 @@ button {
                         @include size(12.625rem,
                         2.5625rem);
                     }
-                    .dropdown {
-                        .button {}
+                    .dropdown {                        
                         .richard-img {
                             img {
                                 @include size(3.125rem,
@@ -523,7 +552,6 @@ label {
     .table-scroll th,
     .table-scroll td {
         padding: 5px 10px;
-        // background: $white;
         vertical-align: top;
     }
     thead {
@@ -543,7 +571,6 @@ label {
 .table-scroll th,
 .table-scroll td {
     padding: 5px 10px;
-    // background: $white;
     vertical-align: top;
 }
 
@@ -600,14 +627,7 @@ select {
         width: 100px !important;
         outline: 0;
         min-height: 30px;
-        span {
-            // margin-top: 3px;
-        }
     }
-}
-
-svg#Capa_1 {
-    // margin-top: -11px;
 }
 
 .table-sm {
@@ -632,34 +652,6 @@ modal-container {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-// timepicker {
-//     table {
-//         @include margin(null,
-//         null,
-//         null,
-//         45px);
-//         tr {
-//             td {
-//                 border: none !important;
-//                 &:nth-child(2) {
-//                     padding-top: 21px !important;
-//                 }
-//                 button {
-//                     margin-left: -15px;
-//                     padding-top: 10px;
-//                 }
-//                 a {
-//                     .bs-chevron-up {
-//                         top: 20px;
-//                     }
-//                     .bs-chevron-down {
-//                         top: -15px;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
 .btn {
     &.disabled,
     &:disabled {
@@ -684,15 +676,12 @@ modal-container {
 }
 
 .table-responsive {
-    // overflow-x: hidden !important;
     overflow: auto;
 }
 
 .correction-heading {
     color: $white;
-    // background-color: #f7fafc;
     .modal-title {
-        // padding-right: 3.3125rem;
         padding-left: 3.3125rem;
         img {
             height: 35px;
@@ -776,6 +765,7 @@ modal-container {
     }
 }
 
+// ==========================sessiontimeoutstyles=====================
 .timepopup {
     .modal-header {
         background-color: #343a40;
@@ -810,11 +800,6 @@ modal-container {
 }
 
 //saichand
-a {
-    text-decoration: none !important;
-    cursor: pointer;
-}
-
 .psDisabled {
     cursor: not-allowed;
 }
@@ -916,60 +901,15 @@ ul {
     color: $white;
 }
 
-// .dropdown-item.active,
-// .dropdown-item:active {
-//   // color: #fff;
-//   // text-decoration: none;
-//   background-color: #ffffff !important;
-// }
-// .dropdown-menu {
-//   width: 100%;
-//   z-index: 99999;
-//   .dropdown-item {
-//     &:focus {
-//       background-color: #ffffff !important;
-//     }
-//   }
-// }
 .tab-list-content {
     cursor: inherit;
-    &:hover {
-        // background-color: rgb(128 128 128 / 0.8);
-        // color: $white;
-    }
+    // &:hover {
+    //     background-color: rgb(128 128 128 / 0.8);
+    //     color: $white;
+    // }
 }
 
-.f-size-16 {
-    font-size: 16px !important;
-}
 
-.width-180 {
-    width: 180px !important;
-}
-
-.width-190 {
-    width: 190px;
-}
-
-.padding-left-15 {
-    padding-left: 15px;
-}
-
-.margin-left-15 {
-    margin-left: 15px;
-}
-
-.visibility-hidden {
-    visibility: hidden;
-}
-
-.height-50 {
-    height: 50px;
-}
-
-.material-icons {
-    cursor: pointer;
-}
 
 .create-ps-button {
     width: 140px;
