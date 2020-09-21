@@ -77,7 +77,8 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
-  public userFlag: boolean;
+  public  userFlag:boolean;
+  public adminFlag:boolean;
 
   modalRef: BsModalRef;
   IsShowHide: boolean = false;
@@ -108,8 +109,8 @@ export class HeaderComponent implements OnInit {
       }
       if (this.useraccount != undefined || null) {
         this.userName = this.useraccount.userName;
-        (this.useraccount.priviledFlag == "schedule") || (this.useraccount.priviledFlag == "all") ? this.userFlag = true : this.userFlag = false;
-
+        (this.useraccount.priviledFlag=="ceat")?this.userFlag=true:this.userFlag=false;
+        this.useraccount.priviledFlag=="all"?this.adminFlag=true:this.adminFlag=false;
       }
     }
   }

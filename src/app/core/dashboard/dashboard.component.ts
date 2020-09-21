@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit {
   public admissionId: number = 0;
   public psListArray:Array<any>;
   public dcsListArray:Array<any>;
+  public widgetArray:Array<boolean>=[false,false,false,false]
 
 
   ngOnInit() {
@@ -312,6 +313,20 @@ export class DashboardComponent implements OnInit {
   scrollDataFun() {
     const str = this.arrayData.join('  |  ');
     this.scrollData = str;
+  }
+
+  // minimize and maximize screens
+  public widgetReSize(flag,widgetName){
+    if(widgetName=='ps'){
+      flag?this.widgetArray=[true,false,false,false]:this.widgetArray=[false,false,false,false]
+    }  if(widgetName=='admissions'){
+      flag?this.widgetArray=[false,true,false,false]:this.widgetArray=[false,false,false,false]
+    }  if(widgetName=='authorization'){
+      flag?this.widgetArray=[false,false,true,false]:this.widgetArray=[false,false,false,false]
+    }  if(widgetName=='dcs'){
+      flag?this.widgetArray=[false,false,false,true]:this.widgetArray=[false,false,false,false]
+    }
+
   }
 
 

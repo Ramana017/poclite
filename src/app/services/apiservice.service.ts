@@ -218,4 +218,8 @@ export class ApiserviceService {
     }
 
   }
+  public loggedIn(): boolean {
+
+    return !!sessionStorage.getItem('useraccount');
+  }
 }
