@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, public service: ZipcodeService, private appService: AppService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
-    this.showNotif()
+    this.initialGetNotif();
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
     if (this.useraccount == undefined || null) {
@@ -142,47 +142,31 @@ export class HeaderComponent implements OnInit {
 
   }
   showNotifOn = [];
-  unsubscribeNotif;
-  count1 = [];
-  // ngOnChange() {
-  //   this.showNotif();
-  // }
+  currentCount: number;
+  batchLength = 0;
   showNotif() {
-    //  const secondsCounter = interval(2000);
-    //  this.unsubscribeNotif = secondsCounter
-    // this.service.getNotifications()
-    //   .subscribe(data => {
-    //     this.showNotifOn = data;
-    //     this.badgeCount = this.showNotifOn.length;
-    //     console.log(data);
-    //   });
-    let count = 0;
-    setTimeout(() => {
-      this.service.getNotifications()
-        .subscribe(data => {
-          this.showNotifOn = data;
-          this.badgeCount = this.showNotifOn.length;
-          console.log(data);
-        });
+    setInterval(() => {
+
+      this.getNotif();
 
     }, 5000);
   }
-  ngOnDestroy() {
-    this.showNotif();
+  getNotif() {
+    this.service.getNotifications()
+      .subscribe(data => {
+        if (this.badgeCount > data.length) {
+          this.showNotifOn = data;
+        }
+      });
   }
-  // showNotif() {
-  //   const secondsCounter = interval(5000);
-  //   this.unsubscribeNotif = secondsCounter
-  //   .subscribe(data => {
-  //     this.showNotifOn=data;
-  //     this.badgeCount = this.showNotifOn.length;
-  //       console.log(data);
-  //   });
-
-
-  // }
-
-
+  initialGetNotif() {
+    this.service.getNotifications()
+      .subscribe(data => {
+        this.showNotifOn = data;
+        this.batchLength = this.showNotifOn.length;
+     //   this.showNotif();
+      });
+  }
 
 
 }
