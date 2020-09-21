@@ -11,13 +11,13 @@ import { ToastrService } from 'ngx-toastr';
 export class ZipcodeService {
   public getbasic = new BehaviorSubject<any>(null);
   public lookUpDetails: string;
-  public url
+  public url;
   public getUrl(): void {
     this.url = localStorage.getItem('webserviceURL');
     this.lookUpDetails = this.url + '/dashboard'
   }
   public zip;
-
+  public dismissId;
   constructor(private http: HttpClient,private toastr: ToastrService,) {
    }
   public showSuccess(message) {
@@ -144,8 +144,9 @@ export class ZipcodeService {
     return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/getNotifications').pipe(catchError(this.errorHandler))
 
   }
-  public stopNotifications() {
-    return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/dismissNotifications?jsonObject={"id":1}').pipe(catchError(this.errorHandler))
+  public stopNotifications(id) {
+    this.dismissId ={ "id" : id}
+    return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/dismissNotifications?jsonObject=' + JSON.stringify(this.dismissId)).pipe(catchError(this.errorHandler))
 
   }
   private errorHandler(error: HttpErrorResponse): Observable<any> {

@@ -77,7 +77,8 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
-  public userFlag: boolean;
+  public  userFlag:boolean;
+  public adminFlag:boolean;
 
   modalRef: BsModalRef;
   IsShowHide: boolean = false;
@@ -108,10 +109,13 @@ export class HeaderComponent implements OnInit {
       }
       if (this.useraccount != undefined || null) {
         this.userName = this.useraccount.userName;
-        (this.useraccount.priviledFlag == "schedule") || (this.useraccount.priviledFlag == "all") ? this.userFlag = true : this.userFlag = false;
-
+        (this.useraccount.priviledFlag=="ceat")?this.userFlag=true:this.userFlag=false;
+        this.useraccount.priviledFlag=="all"?this.adminFlag=true:this.adminFlag=false;
       }
     }
+  }
+  ngOnChanges(){
+    this.initialGetNotif();
   }
   public logout() {
     sessionStorage.removeItem('useraccount');
@@ -149,13 +153,19 @@ export class HeaderComponent implements OnInit {
 
       this.getNotif();
 
-    }, 5000);
+    }, 5000000);
   }
   getNotif() {
+    console.log("get notif inside fun");
     this.service.getNotifications()
       .subscribe(data => {
-        if (this.badgeCount > data.length) {
+        if (this.batchLength == data.length) {
+          console.log("get notif inside if")
+            return;
+        }
+        else if(this.batchLength !== data.length){
           this.showNotifOn = data;
+          console.log("get notif inside else")
         }
       });
   }
@@ -163,10 +173,33 @@ export class HeaderComponent implements OnInit {
     this.service.getNotifications()
       .subscribe(data => {
         this.showNotifOn = data;
+        console.log(data)
         this.batchLength = this.showNotifOn.length;
-     //   this.showNotif();
+        this.showNotif();
       });
   }
+  notifAfterDismiss() {
+    this.service.getNotifications()
+      .subscribe(data => {
+        this.showNotifOn = data;
+        console.log(data)
+      });
+  }
+  dismissNotif(ind){
+    this.showNotifOn.forEach((ele,i) => {
+      if (ind === i) {
+      //  this.showNotifOn.splice(i,1)
+        console.log(ele,ind,i)
+        const delIndex= ele.id
+        console.log(delIndex)
+        this.service.stopNotifications(delIndex) .subscribe(data => {
+          console.log(data)
+          this.notifAfterDismiss();
+        })
+      }
+      
+    });
 
+  }
 
 }

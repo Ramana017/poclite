@@ -24,7 +24,15 @@
       box-shadow: 2px 2px 10px #ccc;
       width: 96%;
       white-space: normal;
+      &:active{
+          background-color: transparent;
+          color:#000;
+      }
     }
+    .dropdown a:hover {
+        background-color: $section-bg !important;
+    }
+    
   }
 /* Font Styles Files Uplodding */
 

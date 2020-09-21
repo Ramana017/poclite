@@ -10,11 +10,11 @@
                         </button>
                         <div class="dropdown-menu">
                             <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                            <a routerLinkActive="active" *ngIf="!userFlag" class="dropdown-item" [routerLink]="['/widgets']"> POC
+                            <a routerLinkActive="active" *ngIf="userFlag||adminFlag" class="dropdown-item" [routerLink]="['/widgets']"> POC
                                 Home </a>
-                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
+                            <a *ngIf="!userFlag||adminFlag" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
                                 Management</a>
-                            <a *ngIf="userFlag" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
+                            <a *ngIf="!userFlag||adminFlag" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
                                 DashBoard</a>
 
 
@@ -42,31 +42,42 @@
 
             <div class="">
                 <a class="navbar-brand">
-                  <div class="right d-flex">
-                    <!-- ======================================================= -->
-                    <div class="notification">
-                      <div class="dropdown">
-                        <a class="dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                          <div class="ico position-relative" (click)="clearCount()"  (click)="onClick($event)" >
-                            <span class="badge badge-danger position-absolute">{{batchLength}}</span>
-                            <i class="fas fa-bell px-3 text-white" style="font-size: 20px;"  ></i>
-                          </div>
-                        </a>
-                        <div class="dropdown-menu" *ngIf="IsShowHide" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item"  *ngFor="let d of showNotifOn">
-                            <h6>{{d.alertSendDate}}</h6>
-                            <h5>{{d.subject}}</h5>
-                            <p>{{d.message}}</p>
-                            <!-- <h4>{{d}}</h4> -->
-                          </a>
+                    <div class="right d-flex">
+                        <!-- ======================================================= -->
+                        <div class="notification">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="ico position-relative"  (click)="onClick($event)">
+                                        <span class="badge badge-danger position-absolute">{{batchLength}}</span>
+                                        <i class="fas fa-bell px-3 text-white" style="font-size: 20px;"></i>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu" *ngIf="IsShowHide" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-item" href="javascript:void(0)" *ngFor="let d of showNotifOn;let i=index">
+                                        <div class="d-flex justify-content-between align-items-center" >
+                                            <h6>{{d.alertSendDate + "index is" + i }}</h6>
+                                            <div  (click)="dismissNotif(i)">
+                                                <i class="fas fa-times"></i>
 
+                                            </div>
+                                            <!-- <div class="bg-whiite remove-item" (click)="dismissNotif($event)" title="remove">
+                                                <span class="material-icons material-icon-remove">
+                                                    delete
+                                                </span>
+                                            </div> -->
+                                        </div>
+                                        <h5>{{d.subject}}</h5>
+                                        <p>{{d.message}}</p>
+                                        <!-- <h4>{{d}}</h4> -->
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
 
 
-                    <!-- <div class="dropdown show">
+                        <!-- <div class="dropdown show">
 
                         <button type="button" class="title-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">administrator, administrator
                                 </button>
@@ -76,22 +87,22 @@
                             <a class="dropdown-item" [routerLink]="['/login']" >Logout</a>
                         </div>
                     </div> -->
-                    <div class="dropdown d-flex profile-dropdown">
-                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                          <!-- {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
+                        <div class="dropdown d-flex profile-dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <!-- {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
              -->{{userName}}
-                      </button>
-                      <div class="dropdown-menu">
-                          <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                          <a class="dropdown-item" (click)="logout()">Logout</a>
-                          <!-- <a class="dropdown-item" >Change Password</a> -->
-                          <!-- <span class="dropdown-item-text">Just Text</span> -->
-                      </div>
-                      <!-- <div class="richard-img">
+                            </button>
+                            <div class="dropdown-menu">
+                                <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
+                                <a class="dropdown-item" (click)="logout()">Logout</a>
+                                <!-- <a class="dropdown-item" >Change Password</a> -->
+                                <!-- <span class="dropdown-item-text">Just Text</span> -->
+                            </div>
+                            <!-- <div class="richard-img">
                           <img src="assets/images/group-13.png" class="img-fluid">
                       </div> -->
-                  </div>
-                  </div>
+                        </div>
+                    </div>
                     <!-- <div class="dropdown d-flex profile-dropdown">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                             {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
