@@ -47,6 +47,12 @@ import {PayorPlanDetailsComponent} from './core/create_new_ps/payor-plan-details
 import {AuthorizationComponent} from './core/create_new_ps/authorization/authorization.component';
 import { ToastrModule } from 'ngx-toastr';
 import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
+import { PsHeaderComponent } from './core/update_ps/ps-header/ps-header.component';
+import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
+import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
+import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
+import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 
 
 
@@ -77,8 +83,13 @@ import {PageNotFoundComponent } from './core/page-not-found/page-not-found.compo
     AdmissionDetailsComponent,
     PayorPlanDetailsComponent,
     AuthorizationComponent,
-    PageNotFoundComponent
-
+    PageNotFoundComponent,
+    PsBasicComponent,
+    PsHeaderComponent,
+    PsGurantorComponent,
+    PsTelephonyComponent,
+    PsAddressComponent,
+    PsContactsComponent,
   ],
   imports: [
     BrowserModule,
