@@ -9,11 +9,6 @@
   @include margin(null, null, 10px, null);
 }
 
-// option {
-//   background: white;
-//   height: 40px;
-// }
-
 .site-form {
   justify-content: flex-end;
 }
@@ -161,8 +156,6 @@ width: 100% !important;
     &::placeholder {
       color: #808080;
     }
-
-
   }
 
   .is-invalid {
@@ -215,14 +208,6 @@ width: 100% !important;
   min-width: 271px;
   margin-left: 10px;
 }
-
-// .zip-icon {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 30px;
-//   cursor: pointer;
-// }
 
 .next {
   display: flex;
@@ -277,13 +262,6 @@ width: 100% !important;
 .address-title {
   padding-left: 15px;
 }
-
-// .diagnosis-code-table {
-
-//   td {
-
-//   }
-// }
 .listing-container{
   
 }
