@@ -144,10 +144,11 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
     // document.getElementsByTagName('body')[0].style.zoom = '80%';
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
-    if (this.useraccount == undefined || null) {
-      this._router.navigateByUrl('login')
+    // if (this.useraccount == undefined || null) {
+    //   this._router.navigateByUrl('login')
 
-    } else {
+    // } else
+    {
 
       this.userId = this.useraccount.userId;
       this.csssId = this.useraccount.userId;

@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {ApiserviceService} from './apiservice.service'
+import { UserdetailsService } from './userdetails.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate,CanActivateChild
  {
-  constructor(private _apiservice: ApiserviceService,
+  constructor(private _userDetails: UserdetailsService,
     private _router: Router,
 ) { }
 
   canActivate(): boolean {
     // console.log("canactivate working");
-    if (this._apiservice.loggedIn()) {
+    if (this._userDetails.loggedIn()) {
       // console.log(this._apiservice);
       return true;
     } else {
@@ -25,7 +26,7 @@ export class AuthGuard implements CanActivate,CanActivateChild
 
   }
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-  if (this._apiservice.checkUser()===true)// it will chexk for user is admin
+  if (this._userDetails.checkAll()===true)// it will chexk for user is admin
      {
       return true; // allowed every route
     }

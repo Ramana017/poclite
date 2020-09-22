@@ -14,18 +14,19 @@ import { AdmissionDetailsComponent } from './core/create_new_ps/admission-detail
 import { PayorPlanDetailsComponent } from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
 import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component';
 import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'summary', component: SummarytableComponent, },
+  { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
 
-  { path: 'charts', component: ChartsComponent },
-  { path: 'widgets', component: DashboardComponent },
+  { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
+  { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
-    path: "registration-re", component: RegistrationComponent,
+    path: "registration-re", canActivate:[AuthGuard], component: RegistrationComponent,
     children: [
       { path: "child-guarantor", component: GuarantorDetailsComponent },
       { path: "child-admission", component: AdmissionDetailsComponent },
