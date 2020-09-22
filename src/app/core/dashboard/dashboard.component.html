@@ -138,9 +138,9 @@
                                         </div>
                                     </div>
                                     <div class="pager d-flex justify-content-between">
-                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userFlag" [routerLink]='["/registration-re/child-basic"]'> <i
+                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userDetailService.checkCeat()" [routerLink]='["/registration-re/child-basic"]'> <i
                                                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
-                                        <div *ngIf="!userFlag" class="text-white mx-2">
+                                        <div *ngIf="!userDetailService.checkCeat()" class="text-white mx-2">
                                         </div>
 
                                         <div class="c">

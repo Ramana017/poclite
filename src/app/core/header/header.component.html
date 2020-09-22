@@ -10,11 +10,11 @@
                         </button>
                         <div class="dropdown-menu">
                             <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                            <a routerLinkActive="active" *ngIf="userFlag||adminFlag" class="dropdown-item" [routerLink]="['/widgets']"> POC
+                            <a routerLinkActive="active" *ngIf="userDetailService.checkAll()||userDetailService.checkCeat()" class="dropdown-item" [routerLink]="['/widgets']"> POC
                                 Home </a>
-                            <a *ngIf="!userFlag||adminFlag" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
+                            <a *ngIf="userDetailService.checkAll()||userDetailService.CheckScheduler()" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
                                 Management</a>
-                            <a *ngIf="!userFlag||adminFlag" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
+                            <a *ngIf="userDetailService.checkAll()||userDetailService.CheckScheduler()" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
                                 DashBoard</a>
 
 
@@ -46,7 +46,7 @@
                     <!-- ======================================================= -->
                     <div class="notification">
                       <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="false">
                           <div class="ico position-relative" (click)="clearCount()"  (click)="onClick($event)" >
                             <span class="badge badge-danger position-absolute">{{badgeCount}}</span>
@@ -54,7 +54,7 @@
                           </div>
                         </a>
                         <div class="dropdown-menu" *ngIf="IsShowHide" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#"  *ngFor="let d of showNotifOn">
+                          <a class="dropdown-item"  *ngFor="let d of showNotifOn">
                             <h6>{{d.alertSendDate}}</h6>
                             <h5>{{d.subject}}</h5>
                             <p>{{d.message}}</p>

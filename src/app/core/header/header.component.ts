@@ -66,6 +66,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/public_api';
 import { AppService } from 'src/app/services/app.service';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { UserdetailsService } from 'src/app/services/userdetails.service';
 
 @Component({
   selector: 'app-header',
@@ -77,25 +78,20 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
-  public  userFlag:boolean;
-  public adminFlag:boolean;
+
 
   modalRef: BsModalRef;
   IsShowHide: boolean = false;
 
   public activeclass: Array<boolean> = []
 
-  constructor(private router: Router, public service: ZipcodeService, private appService: AppService, public apiService: ApiserviceService) { }
+  constructor(private router: Router, public service: ZipcodeService, private appService: AppService,public userDetailService:UserdetailsService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
     this.showNotif()
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
-    if (this.useraccount == undefined || null) {
-      console.log("headerts called")
-      this.router.navigateByUrl('login')
-      window.location.reload();
-    } else {
+
       console.log(this.router.url)
       if (this.router.url == '/charts') {
         this.heading = "POC DashBoard"
@@ -109,10 +105,8 @@ export class HeaderComponent implements OnInit {
       }
       if (this.useraccount != undefined || null) {
         this.userName = this.useraccount.userName;
-        (this.useraccount.priviledFlag=="ceat")?this.userFlag=true:this.userFlag=false;
-        this.useraccount.priviledFlag=="all"?this.adminFlag=true:this.adminFlag=false;
       }
-    }
+
   }
   public logout() {
     sessionStorage.removeItem('useraccount');
