@@ -53,6 +53,7 @@ import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.co
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
+import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 
 
 
@@ -90,6 +91,7 @@ import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.co
     PsTelephonyComponent,
     PsAddressComponent,
     PsContactsComponent,
+    EditPsComponent,
   ],
   imports: [
     BrowserModule,
