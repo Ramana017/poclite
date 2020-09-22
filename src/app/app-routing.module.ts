@@ -15,14 +15,17 @@ import { PayorPlanDetailsComponent } from './core/create_new_ps/payor-plan-detai
 import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component';
 import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AuthGuard } from './services/auth.guard';
+import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
+import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
+  {path: 'edit-ps',component:EditPsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
-
+  
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
@@ -35,9 +38,20 @@ const routes: Routes = [
       { path: "child-authorization", component: AuthorizationComponent },
     ]
   },
+  {
+    path: "edit-ps", canActivate:[AuthGuard], component: EditPsComponent,
+    children: [
+      { path: "child-ps", component: PsBasicComponent },
+      // { path: "child-admission", component: AdmissionDetailsComponent },
+      // { path: "child-payorplan", component: PayorPlanDetailsComponent },
+      // { path: "child-basic", component: BasicInfoComponent },
+      // { path: "child-authorization", component: AuthorizationComponent },
+    ]
+  },
   { path: "page-not-found", component: PageNotFoundComponent }
   ,
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
+  
 
 ];
 
