@@ -202,13 +202,29 @@ width: 100% !important;
     font-size: 12px;
     // padding: 0;
 }
-}
 
+}
+.textarea{
+  resize: none;
+  height: 158px !important;
+  background-color: #e9ecef !important;
+  border: 0 !important;
+  outline: none;
+  box-shadow: none;
+  font-size: 15px;
+  box-shadow: 2px 2px 3px #ccc;
+  color: #808080 !important;
+  overflow: auto;
+  padding: 8px;
+}
 .mapped-site-container {
   min-width: 271px;
   margin-left: 10px;
 }
-
+.direction{
+  min-width: 255px;
+  margin-left: 10px;
+}
 .next {
   display: flex;
   align-items: center;
