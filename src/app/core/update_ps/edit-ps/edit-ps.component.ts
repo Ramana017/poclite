@@ -17,7 +17,7 @@ export class EditPsComponent implements OnInit {
     if(currenturl=='/edit-ps/child-ps'){
       this.activeArray=[true,false,false,false,false]
     
-    }else if(currenturl=='/registration-re/child-guarantor'){
+    }else if(currenturl=='/edit-ps/child-guarantor'){
     this.activeArray=[false,true,false,false,false]
     }
     else if(currenturl=='/registration-re/child-admission'){

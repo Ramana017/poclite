@@ -17,6 +17,7 @@ import {PageNotFoundComponent } from './core/page-not-found/page-not-found.compo
 import { AuthGuard } from './services/auth.guard';
 import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
+import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
 
 
 
@@ -42,7 +43,7 @@ const routes: Routes = [
     path: "edit-ps", canActivate:[AuthGuard], component: EditPsComponent,
     children: [
       { path: "child-ps", component: PsBasicComponent },
-      // { path: "child-admission", component: AdmissionDetailsComponent },
+      { path: "child-guarantor", component: PsGurantorComponent },
       // { path: "child-payorplan", component: PayorPlanDetailsComponent },
       // { path: "child-basic", component: BasicInfoComponent },
       // { path: "child-authorization", component: AuthorizationComponent },
