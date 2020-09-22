@@ -78,7 +78,9 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
-
+  public adminFlag:boolean;
+  public showNotifOn = [];
+  public batchLength = 0;
 
   modalRef: BsModalRef;
   IsShowHide: boolean = false;
@@ -88,7 +90,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, public service: ZipcodeService, private appService: AppService,public userDetailService:UserdetailsService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
-    this.showNotif()
+    this.initialGetNotif();
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
 
@@ -108,6 +110,9 @@ export class HeaderComponent implements OnInit {
       }
 
   }
+  // ngOnChanges(){
+  //   this.initialGetNotif();
+  // }
   public logout() {
     sessionStorage.removeItem('useraccount');
     setTimeout(() => {
@@ -133,51 +138,62 @@ export class HeaderComponent implements OnInit {
 
   onClick(event) {
 
-    this.IsShowHide = true;
+    this.IsShowHide =! this.IsShowHide ;
 
   }
-  showNotifOn = [];
-  unsubscribeNotif;
-  count1 = [];
-  // ngOnChange() {
-  //   this.showNotif();
-  // }
+
   showNotif() {
-    //  const secondsCounter = interval(2000);
-    //  this.unsubscribeNotif = secondsCounter
-    // this.service.getNotifications()
-    //   .subscribe(data => {
-    //     this.showNotifOn = data;
-    //     this.badgeCount = this.showNotifOn.length;
-    //     console.log(data);
-    //   });
-    let count = 0;
-    setTimeout(() => {
-      this.service.getNotifications()
-        .subscribe(data => {
+    setInterval(() => {
+
+      this.getNotif();
+
+    }, 5000000);
+  }
+  getNotif() {
+    console.log("get notif inside fun");
+    this.service.getNotifications()
+      .subscribe(data => {
+        if (this.batchLength == data.length) {
+          console.log("get notif inside if")
+            return;
+        }
+        else if(this.batchLength !== data.length){
           this.showNotifOn = data;
-          this.badgeCount = this.showNotifOn.length;
-          console.log(data);
-        });
-
-    }, 5000);
+          console.log("get notif inside else")
+        }
+      });
   }
-  ngOnDestroy() {
-    this.showNotif();
+  initialGetNotif() {
+    this.service.getNotifications()
+      .subscribe(data => {
+        this.showNotifOn = data;
+        console.log(data)
+        this.batchLength = this.showNotifOn.length;
+        this.showNotif();
+      });
   }
-  // showNotif() {
-  //   const secondsCounter = interval(5000);
-  //   this.unsubscribeNotif = secondsCounter
-  //   .subscribe(data => {
-  //     this.showNotifOn=data;
-  //     this.badgeCount = this.showNotifOn.length;
-  //       console.log(data);
-  //   });
+  notifAfterDismiss() {
+    this.service.getNotifications()
+      .subscribe(data => {
+        this.showNotifOn = data;
+        console.log(data)
+      });
+  }
+  dismissNotif(ind){
+    this.showNotifOn.forEach((ele,i) => {
+      if (ind === i) {
+      //  this.showNotifOn.splice(i,1)
+        console.log(ele,ind,i)
+        const delIndex= ele.id
+        console.log(delIndex)
+        this.service.stopNotifications(delIndex) .subscribe(data => {
+          console.log(data)
+          this.initialGetNotif();
+        })
+      }
 
+    });
 
-  // }
-
-
-
+  }
 
 }
