@@ -128,7 +128,7 @@ export class PsBasicComponent implements OnInit {
   get f() {
     return this.basicEditForm.controls;
 
-  }
+   }
   dob1;
   public onSubmit(): void {
     console.log(this.basicEditForm.value)
