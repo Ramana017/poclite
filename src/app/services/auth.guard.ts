@@ -26,7 +26,12 @@ export class AuthGuard implements CanActivate,CanActivateChild
 
   }
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-  if (this._userDetails.checkAll()===true)// it will chexk for user is admin
+    console.log("in Authgurad file current url",state);
+  let ceatRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
+  let scheduleRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
+
+
+  if (this._userDetails.checkAll()===true||this._userDetails.checkCeat()===true)// it will chexk for user is admin
      {
       return true; // allowed every route
     }
