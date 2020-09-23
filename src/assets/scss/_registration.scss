@@ -7,6 +7,7 @@
 
 .ps-registration-tabs-container {
   @include margin(null, null, 10px, null);
+
 }
 
 .site-form {
@@ -175,6 +176,32 @@ width: 100% !important;
       box-shadow: none !important;
     }
   }
+  .textarea{
+    resize: none;
+    height: 158px !important;
+    background-color: #e9ecef !important;
+    border: 0 !important;
+    outline: none;
+    box-shadow: none;
+    font-size: 15px;
+    box-shadow: 2px 2px 3px #ccc;
+    color: #808080 !important;
+    overflow: auto;
+    padding: 8px;
+  }
+  .note-text-area{
+    resize: none;
+    height: 100px !important;
+    background-color: #e9ecef !important;
+    border: 0 !important;
+    outline: none;
+    box-shadow: none;
+    font-size: 15px;
+    box-shadow: 2px 2px 3px #ccc;
+    color: #808080 !important;
+    overflow: auto;
+    padding: 8px;
+  }
 }
 .site-container{
   .invalid-input{
@@ -204,19 +231,7 @@ width: 100% !important;
 }
 
 }
-.textarea{
-  resize: none;
-  height: 158px !important;
-  background-color: #e9ecef !important;
-  border: 0 !important;
-  outline: none;
-  box-shadow: none;
-  font-size: 15px;
-  box-shadow: 2px 2px 3px #ccc;
-  color: #808080 !important;
-  overflow: auto;
-  padding: 8px;
-}
+
 .mapped-site-container {
   min-width: 271px;
   margin-left: 10px;

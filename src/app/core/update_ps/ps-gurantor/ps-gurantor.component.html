@@ -128,6 +128,17 @@
                     </div>
 
                 </div>
+                <div class=" m-0  input-container-wrapper ">
+                    <label class="">
+                        Salutation
+                    </label>
+
+                    <div class="input-group  ">
+                        <input type="text" class="form-control" maxlength='9' (keyup)="PhoneNumFormat($event,'ssn')"
+                            aria-label="Case Manager" formControlName="ssn">
+                    </div>
+
+                </div>
                 <div class=" m-0  input-container-wrapper pb-sm-0">
                     <label class="">
                         SSN
@@ -616,7 +627,7 @@
 
 
 
-                            <div class="">
+                            <div class="form-input">
 
                                 <textarea rows="2" class="textarea form-control"></textarea>
                             </div>
@@ -644,7 +655,7 @@
                     <button type="button" class="btn-info  btn-next prev-step" (click)="getPreviousBasic()">Previous</button>
                 </div> -->
                 <div class="next">
-                    <button type="button" class="btn-info  btn-next next-step" (click)="onSubmit()">Save & Next</button>
+                    <button type="button" class="btn-info  btn-next next-step" (click)="onSubmit()">Save</button>
                 </div>
                 <!-- <div class="next">
           <button type="button" class="btn-info next-step btn-next" >Next</button>

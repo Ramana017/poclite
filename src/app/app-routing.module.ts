@@ -18,6 +18,7 @@ import { AuthGuard } from './services/auth.guard';
 import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
+import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 
 
 
@@ -44,7 +45,7 @@ const routes: Routes = [
     children: [
       { path: "child-ps", component: PsBasicComponent },
       { path: "child-guarantor", component: PsGurantorComponent },
-      // { path: "child-payorplan", component: PayorPlanDetailsComponent },
+      { path: "child-contact", component: PsContactsComponent },
       // { path: "child-basic", component: BasicInfoComponent },
       // { path: "child-authorization", component: AuthorizationComponent },
     ]
