@@ -312,10 +312,10 @@
 
                 </div>
             </form> -->
-         
+
             <section class="d-flex  justify-content-between  basic-container">
                 <form class="d-flex  justify-content-between border-2"
-                    [formGroup]="basicForm">
+                    [formGroup]="guarantorForm">
                     <div  class="d-flex align-items-center nav justify-content-between">
                         <div class="basic-input-container">
                             <label class="">
@@ -489,7 +489,7 @@
 
                             </div>
                             <div *ngIf="f.number.invalid && f.number.touched && f.number.errors" class="errors">
-                             
+
                             </div>
                         </div>
 
@@ -577,9 +577,9 @@
                             </div>
 
                         </div>
-              
+
                     </div>
-                    <form [formGroup]="basicForm" class="direction">
+                    <form [formGroup]="guarantorForm" class="direction">
                         <label class="color-black">
                            Directions
                         </label>
@@ -596,15 +596,15 @@
                         </div>
                     </form>
                 </form>
-               
+
             </section>
-         
-         
-         
-         
-         
-         
-         
+
+
+
+
+
+
+
             <div class="d-flex align-items-center justify-content-between mt-3">
 
                 <div class="previous">
@@ -625,3 +625,6 @@
         </div>
     </div>
 </div>
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>
