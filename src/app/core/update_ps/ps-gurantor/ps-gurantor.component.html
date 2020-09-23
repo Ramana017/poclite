@@ -14,8 +14,26 @@
                     </label>
                 </div>
             </div>
-            <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="guarantorForm">
-                <!-- <div class="input-container-wrapper pb-sm-0">
+            <form class="d-flex align-items-center nav  border-2" [formGroup]="guarantorForm">
+                <div class="input-container-wrapper ">
+                    <label class="">
+                        Code
+                    </label>
+
+                    <div class="input-group ">
+
+                        <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.relationId.invalid && formError)||(f.relationshipList.invalid && formError)">
+                            <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId" (inputCleared)="selectChange($event,'relationshipList',false)" (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword" [itemTemplate]="itemTemplate1">
+                            </ng-autocomplete>
+                            <ng-template style="width: 100%;" #itemTemplate1 let-item>
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="input-container-wrapper ">
                     <label class="">
                         Relationship<span class="text-danger">*</span>
                     </label>
@@ -31,12 +49,12 @@
                         </div>
                     </div>
 
-                </div> -->
+                </div>
 
 
 
 
-                <div class="input-container-wrapper  nav d-flex align-items-center justify-content-between ">
+                <!-- <div class="input-container-wrapper  nav d-flex align-items-center justify-content-between ">
                     <div class=" w-25 pb-sm-0">
                         <label class="">
                             Code
@@ -64,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -99,7 +117,18 @@
 
                     </div>
                 </div>
-                <!-- <div class=" m-0  input-container-wrapper pb-sm-0">
+                <div class=" m-0  input-container-wrapper ">
+                    <label class="">
+                        Middle Name
+                    </label>
+
+                    <div class="input-group  ">
+                        <input type="text" class="form-control" maxlength='9' (keyup)="PhoneNumFormat($event,'ssn')"
+                            aria-label="Case Manager" formControlName="ssn">
+                    </div>
+
+                </div>
+                <div class=" m-0  input-container-wrapper pb-sm-0">
                     <label class="">
                         SSN
                     </label>
@@ -109,9 +138,9 @@
                             aria-label="Case Manager" formControlName="ssn">
                     </div>
 
-                </div> -->
+                </div>
 
-                <div class="input-container-wrapper  nav d-flex align-items-center justify-content-between">
+                <!-- <div class="input-container-wrapper  nav d-flex align-items-center justify-content-between">
                     <div class=" w-48 pb-sm-0">
                         <label class="">
                             Middle Name
@@ -130,9 +159,9 @@
                                 aria-label="Case Manager" formControlName="ssn">
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class=" m-0  input-container-wrapper ">
+                <div class=" m-0  input-container-wrapper pb-sm-0">
                     <label class="">Occupation<span class="text-danger">*</span></label>
                     <div class="input-group ">
                         <div class="ng-autocomplete" style="width: 100%;"
@@ -373,7 +402,7 @@
                     </div>
                 </div> -->
 
-                        <div class="basic-input-container nav d-flex align-items-center justify-content-between">
+                        <div class="basic-input-container nav d-flex align-items-center justify-content-between pr-sm-0">
                             <div class=" w-48 pb-sm-0">
                                 <label class="">
                                     Zip Code<span class="text-danger">*</span>
@@ -495,7 +524,7 @@
 
 
                         <div
-                            class="basic-input-container nav d-flex align-items-center justify-content-between">
+                            class="basic-input-container nav d-flex align-items-center justify-content-between pr-sm-0">
                             <div class=" w-48 pb-sm-0">
                                 <label class="">City<span class="text-danger">*</span> </label>
                                 <div class="input-group">
@@ -565,7 +594,7 @@
                             </div>
 
                         </div>
-                        <div class=" m-0  basic-input-container pb-sm-0">
+                        <div class=" m-0  basic-input-container pb-sm-0 pr-sm-0">
                             <label class="">
                                 E Mail
                             </label>
