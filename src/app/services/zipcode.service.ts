@@ -140,15 +140,15 @@ export class ZipcodeService {
 
   }
 
-  public getNotifications() {
-    return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/getNotifications').pipe(catchError(this.errorHandler))
+  // public getNotifications() {
+  //   return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/getNotifications').pipe(catchError(this.errorHandler))
 
-  }
-  public stopNotifications(id) {
-    this.dismissId ={ "id" : id}
-    return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/dismissNotifications?jsonObject=' + JSON.stringify(this.dismissId)).pipe(catchError(this.errorHandler))
+  // }
+  // public stopNotifications(id) {
+  //   this.dismissId ={ "id" : id}
+  //   return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/dismissNotifications?jsonObject=' + JSON.stringify(this.dismissId)).pipe(catchError(this.errorHandler))
 
-  }
+  // }
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.log('error in API service', error);
     return throwError(error);

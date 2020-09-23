@@ -10,7 +10,7 @@
                         <label class="site-label color-black">
                             Site<span class="text-danger">*</span>
                         </label>
-                        <div class="input-group ">
+                        <div class="input-group " disabled>
                             <div class="procedurecode w-100 multiselect-angular "
                                 [class.invalid-input]="siteSelectedItems.length == 0 && formError">
                                 <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems"
@@ -25,7 +25,7 @@
                     <div>
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Basic Details</h4>
                         <form class="d-flex align-items-center nav justify-content-between border-2"
-                            [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+                            [formGroup]="basicEditForm" (ngSubmit)="onSubmit()">
 
 
                             <div class=" basic-input-container">
@@ -63,18 +63,9 @@
                                         Middle Name
                                     </label>
                                     <div class="input-group  ">
-                                        <div class="ng-autocomplete" style="width: 100%;"
-                                            [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
-                                            <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
-                                                formControlName="maritalStatus"
-                                                (inputCleared)="selectChange('','maritalStatusList',false)"
-                                                (selected)="selectChange($event,'maritalStatusList',true)"
-                                                [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
-                                            </ng-autocomplete>
-                                            <ng-template style="width: 100%;" #itemTemplate let-item>
-                                                <a [innerHTML]="item.name"></a>
-                                            </ng-template>
-                                        </div>
+                                        <input type="text" [class.is-invalid]="f.middleName.invalid && formError"
+                                        placeholder="" formControlName="middleName"
+                                        class="form-control" aria-label="Case Manager" >
                                     </div>
                                 </div>
                                 <div class="w-48">
@@ -82,13 +73,13 @@
                                         Alias
                                     </label>
                                     <div class="input-group  ">
-                                        <input type="text" [class.is-invalid]="f.dob.invalid && formError"
-                                            placeholder="" [maxDate]="currentDate" formControlName="dob"
-                                            class="form-control" aria-label="Case Manager" bsDatepicker>
+                                        <input type="text" 
+                                            placeholder="" formControlName="alias"
+                                            class="form-control" aria-label="Case Manager" >
 
                                     </div>
-                                    <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
-                                    </div>
+                                    <!-- <div *ngIf="f.alias.invalid && f.dob.touched && f.dob.errors" class="errors">
+                                    </div> -->
                                 </div>
 
 
@@ -278,7 +269,7 @@
 
                         </form>
                     </div>
-                    <form [formGroup]="basicForm" class="mapped-site-container">
+                    <form [formGroup]="basicEditForm" class="mapped-site-container">
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Mapped Sites</h4>
                         <div class=" border-2">
 
@@ -306,7 +297,7 @@
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
                 <section class="d-flex  justify-content-between  basic-container">
                     <form class="d-flex  justify-content-between border-2"
-                        [formGroup]="basicForm">
+                        [formGroup]="basicEditForm">
                         <div  class="d-flex align-items-center nav justify-content-between">
                             <div class="basic-input-container">
                                 <label class="">
@@ -428,11 +419,11 @@
                                 <div class="input-group  ">
                                     <div class="  date-input  d-flex align-items-center w-100">
                                         <div class="ng-autocomplete phone-select"
-                                            [class.invalid-input]="(f.phonetype.invalid && formError)||(f.phoneTypeList.invalid && formError)">
+                                            [class.invalid-input]="(f.phonetype2.invalid && formError)||(f.phoneTypeList2.invalid && formError)">
                                             <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
-                                                (inputcleared)="selectChange('', 'phoneTypeList',false)"
-                                                (selected)="selectChange($event, 'phoneTypeList',true)"
-                                                formControlName="phonetype" placeHolder="Type"
+                                                (inputcleared)="selectChange('', 'phoneTypeList2',false)"
+                                                (selected)="selectChange($event, 'phoneTypeList2',true)"
+                                                formControlName="phonetype2" placeHolder="Type"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -440,14 +431,14 @@
                                             </ng-template>
                                         </div>
                                         <div class="input-group ">
-                                            <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10' (keyup)='PhoneNumFormat($event,"phone")'
-                                                formControlName="number" class="form-control">
+                                            <input type="text" [class.is-invalid]="f.number2.invalid && formError"
+                                                maxlength='10' 
+                                                formControlName="number2" class="form-control">
                                         </div>
                                     </div>
 
                                 </div>
-                                <div *ngIf="f.number.invalid && f.number.touched && f.number.errors" class="errors">
+                                <div *ngIf="f.number2.invalid && f.number2.touched && f.number2.errors" class="errors">
                                     <!-- <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is
                                 required!</small> -->
                                 </div>
@@ -460,11 +451,11 @@
                                 <div class="input-group  ">
                                     <div class="  date-input  d-flex align-items-center w-100">
                                         <div class="ng-autocomplete phone-select"
-                                            [class.invalid-input]="(f.phonetype.invalid && formError)||(f.phoneTypeList.invalid && formError)">
+                                            [class.invalid-input]="(f.phonetype3.invalid && formError)||(f.phoneTypeList.invalid && formError)">
                                             <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
-                                                (inputcleared)="selectChange('', 'phoneTypeList',false)"
-                                                (selected)="selectChange($event, 'phoneTypeList',true)"
-                                                formControlName="phonetype" placeHolder="Type"
+                                                (inputcleared)="selectChange('', 'phoneTypeList3',false)"
+                                                (selected)="selectChange($event, 'phoneTypeList3',true)"
+                                                formControlName="phonetype3" placeHolder="Type"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -472,14 +463,14 @@
                                             </ng-template>
                                         </div>
                                         <div class="input-group ">
-                                            <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10' (keyup)='PhoneNumFormat($event,"phone")'
-                                                formControlName="number" class="form-control">
+                                            <input type="text" [class.is-invalid]="f.number3.invalid && formError"
+                                                maxlength='10' 
+                                                formControlName="number3" class="form-control">
                                         </div>
                                     </div>
 
                                 </div>
-                                <div *ngIf="f.number.invalid && f.number.touched && f.number.errors" class="errors">
+                                <div *ngIf="f.number3.invalid && f.number3.touched && f.number3.errors" class="errors">
                                     <!-- <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is
                                 required!</small> -->
                                 </div>
@@ -533,26 +524,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                             <!-- <div class=" m-0  basic-input-container ">
@@ -610,8 +581,8 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10'
-                                        (keyup)='PhoneNumFormat($event,"phone")' formControlName="number"
+                                    <input type="text"  
+                                         formControlName="fax"
                                         class="form-control">
                                 </div>
 
@@ -622,8 +593,8 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.number.invalid && formError" maxlength='10'
-                                        (keyup)='PhoneNumFormat($event,"phone")' formControlName="number"
+                                    <input type="text"  
+                                         formControlName="email"
                                         class="form-control">
                                 </div>
 
@@ -641,7 +612,7 @@
 
                     </div> -->
                         </div>
-                        <form [formGroup]="basicForm" class="direction">
+                        <form [formGroup]="basicEditForm" class="direction">
                             <label class="color-black">
                                Directions
                             </label>
@@ -665,9 +636,11 @@
     
                             </div>
                         </form>
-                    </form>
                    
-                </section>
+                    </form>
+                
+                   
+                    </section>
                 <div class="next justify-content-between nav mt-3">
                     <div class="previous">
                         <button type="button" class="btn-info  btn-next prev-step"

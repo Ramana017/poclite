@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit {
   public userName;
   public useraccount: any;
   public heading: string;
-  public adminFlag:boolean;
+  public adminFlag: boolean;
   public showNotifOn = [];
   public batchLength = 0;
 
@@ -87,32 +87,29 @@ export class HeaderComponent implements OnInit {
 
   public activeclass: Array<boolean> = []
 
-  constructor(private router: Router, public service: ZipcodeService, private appService: AppService,public userDetailService:UserdetailsService, public apiService: ApiserviceService) { }
+  constructor(private router: Router, public service: ZipcodeService, private appService: AppService, public userDetailService: UserdetailsService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
-    this.initialGetNotif();
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
 
-      console.log(this.router.url)
-      if (this.router.url == '/charts') {
-        this.heading = "POC DashBoard"
-      } else if (this.router.url == '/summary') {
-        this.heading = "POC Call Management"
-      } else if (this.router.url == '/widgets') {
-        this.heading = "POC Home"
-      }
-      else {
-        this.heading = "PS Registration"
-      }
-      if (this.useraccount != undefined || null) {
-        this.userName = this.useraccount.userName;
-      }
+    console.log(this.router.url)
+    if (this.router.url == '/charts') {
+      this.heading = "POC DashBoard"
+    } else if (this.router.url == '/summary') {
+      this.heading = "POC Call Management"
+    } else if (this.router.url == '/widgets') {
+      this.heading = "POC Home"
+    }
+    else {
+      this.heading = "PS Registration"
+    }
+    if (this.useraccount != undefined || null) {
+      this.userName = this.useraccount.userName;
+    }
 
   }
-  // ngOnChanges(){
-  //   this.initialGetNotif();
-  // }
+
   public logout() {
     sessionStorage.removeItem('useraccount');
     setTimeout(() => {
@@ -122,78 +119,67 @@ export class HeaderComponent implements OnInit {
     }, 100);
 
   }
-  // ngOnInit() {
-  //   this.showNotif()
-  // }
-  badgeCount: number;
-
-  clearCount() {
-    this.badgeCount = 0;
 
 
-  }
-  notif;
-  count = 0;
-  notif1 = []
 
   onClick(event) {
 
-    this.IsShowHide =! this.IsShowHide ;
+    this.IsShowHide = !this.IsShowHide;
 
   }
 
-  showNotif() {
-    setInterval(() => {
+  // showNotif() {
+  //   setInterval(() => {
 
-      this.getNotif();
+  //     this.getNotif();
 
-    }, 5000000);
-  }
-  getNotif() {
-    console.log("get notif inside fun");
-    this.service.getNotifications()
-      .subscribe(data => {
-        if (this.batchLength == data.length) {
-          console.log("get notif inside if")
-            return;
-        }
-        else if(this.batchLength !== data.length){
-          this.showNotifOn = data;
-          console.log("get notif inside else")
-        }
-      });
-  }
-  initialGetNotif() {
-    this.service.getNotifications()
-      .subscribe(data => {
-        this.showNotifOn = data;
-        console.log(data)
-        this.batchLength = this.showNotifOn.length;
-        this.showNotif();
-      });
-  }
-  notifAfterDismiss() {
-    this.service.getNotifications()
-      .subscribe(data => {
-        this.showNotifOn = data;
-        console.log(data)
-      });
-  }
-  dismissNotif(ind){
-    this.showNotifOn.forEach((ele,i) => {
-      if (ind === i) {
-      //  this.showNotifOn.splice(i,1)
-        console.log(ele,ind,i)
-        const delIndex= ele.id
-        console.log(delIndex)
-        this.service.stopNotifications(delIndex) .subscribe(data => {
-          console.log(data)
-          this.initialGetNotif();
-        })
-      }
+  //   }, 5000000);
+  // }
+  // getNotif() {
+  //   console.log("get notif inside fun");
+  //   this.service.getNotifications()
+  //     .subscribe(data => {
+  //       if (this.batchLength == data.length) {
+  //         console.log("get notif inside if")
+  //           return;
+  //       }
+  //       else if(this.batchLength !== data.length){
+  //         this.showNotifOn = data;
+  //         console.log("get notif inside else")
+  //       }
+  //     });
+  // }
+  // initialGetNotif() {
+  //   this.service.getNotifications()
+  //     .subscribe(data => {
+  //       this.showNotifOn = data;
+  //       console.log(data)
+  //       this.batchLength = this.showNotifOn.length;
+  //       this.showNotif();
+  //     });
+  // }
+  // notifAfterDismiss() {
+  //   this.service.getNotifications()
+  //     .subscribe(data => {
+  //       this.showNotifOn = data;
+  //       console.log(data)
+  //     });
+  // }
+  // dismissNotif(ind){
+  //   this.showNotifOn.forEach((ele,i) => {
+  //     if (ind === i) {
+  //     //  this.showNotifOn.splice(i,1)
+  //       console.log(ele,ind,i)
+  //       const delIndex= ele.id
+  //       console.log(delIndex)
+  //       this.service.stopNotifications(delIndex) .subscribe(data => {
+  //         console.log(data)
+  //         this.initialGetNotif();
+  //       })
+  //     }
 
-    });
+  //   });
 
-  }
+  // }
 
 }
