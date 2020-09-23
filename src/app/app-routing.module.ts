@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'edit-ps',component:EditPsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
-  
+
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: "page-not-found", component: PageNotFoundComponent }
   ,
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
-  
+
 
 ];
 
