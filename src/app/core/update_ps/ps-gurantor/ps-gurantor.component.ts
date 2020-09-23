@@ -51,6 +51,7 @@ export class PsGurantorComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.getGuarantorDetails();
     console.log("guarantor")
     this.newForm();
     this.basicDetails();
@@ -62,23 +63,37 @@ export class PsGurantorComponent implements OnInit {
       relationshipList: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
+      middleName: [ ],
       ssn: [''],
       number: ['', Validators.required],
+      number2: [''],
+      number3: [''],
       occupationList: ["UNKNOWN", Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
+      phoneTypeList2: ['', Validators.required],
+      phoneTypeList3: ['', Validators.required],
+      // phonetype: ['', Validators.required],
+      // phonetype2: ['', Validators.required],
+      // phonetype3: ['', Validators.required],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
+      zipFourCode : [''],
       country: ['', Validators.required],
       county: ['', Validators.required],
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
-      lane: ['', Validators.required],
-      lane2:[''],
-      location: ['',Validators.required],
-      phoneTypeName: ['',Validators.required],
-      occupationName: ['UNKNOWN',Validators.required],
-      relationId: ['',Validators.required],
+      addressLine1: ['', Validators.required],
+      addressLine2: [''],
+      location: ['', Validators.required],
+    //  phoneTypeName: ['', Validators.required],
+      occupationName: ['UNKNOWN', Validators.required],
+      relationId: ['', Validators.required],
+      email : [''],
+      fax : [''],
+      code:[''],
+      sortOrder: [''],
+      directions: ['']
     });
 
   }
@@ -92,18 +107,18 @@ export class PsGurantorComponent implements OnInit {
   public onSubmit(): void {
     this.formError = true;
     console.log(this.guarantorForm.value)
-    let ssnLength =this.guarantorForm.value.ssn!=undefined? this.guarantorForm.value.ssn.length:0;
-    console.log("SSn length",ssnLength)
+    let ssnLength = this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.length : 0;
+    console.log("SSn length", ssnLength)
     this.phoneNUmber = this.guarantorForm.value.number;
 
 
-  if (this.guarantorForm.valid) {
+    if (this.guarantorForm.valid) {
       if (this.phoneNUmber.length == 10) {
         var phone1areacode = this.phoneNUmber.slice(0, 3);
         var phone1exchangecode = this.phoneNUmber.slice(3, 6)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
-          ssnLength == 0 ? this.gurantorsave() :this.checkSSn();
+          ssnLength == 0 ? this.gurantorsave() : this.checkSSn();
         }
         else {
           // phone1Flag = true;
@@ -121,7 +136,7 @@ export class PsGurantorComponent implements OnInit {
 
 
       }
-      else{
+      else {
         this.alertbox(" Phone number should be 10 digits ")
 
       }
@@ -141,8 +156,8 @@ export class PsGurantorComponent implements OnInit {
 
   }
 
-  private gurantorsave(){
-    console.log(this.guarantorForm.value.ssn!=undefined,this.guarantorForm)
+  private gurantorsave() {
+    console.log(this.guarantorForm.value.ssn != undefined, this.guarantorForm)
     {
       const jsonObj = {
         "saluationId": (this.guarantorForm.value.saluationId),
@@ -152,7 +167,7 @@ export class PsGurantorComponent implements OnInit {
         "locationId": (this.guarantorForm.value.addressTypeList),
         "city": this.guarantorForm.value.city,
         "addressLine": this.guarantorForm.value.lane,
-        "addressLine2":this.guarantorForm.value.lane2,
+        "addressLine2": this.guarantorForm.value.lane2,
         "zipcode": this.guarantorForm.value.zipcode,
         "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
         "phone": this.guarantorForm.value.number,
@@ -160,11 +175,11 @@ export class PsGurantorComponent implements OnInit {
         "psId": this.previousPsDetails.psId,
         "occupationId": this.guarantorForm.value.occupationList,
         "guarantorId": this.guarantorId,
-        "stateId":this.stateId,
+        "stateId": this.stateId,
         "countyId": this.countyId,
         "timeZoneId": this.timeZoneId,
         "countryId": this.countryId,
-        "ssn":this.guarantorForm.value.ssn!=undefined?this.guarantorForm.value.ssn.replace(/\D/g, ''):''
+        "ssn": this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.replace(/\D/g, '') : ''
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -172,17 +187,18 @@ export class PsGurantorComponent implements OnInit {
         this.service.saveGuarantor(param).subscribe(res => {
           this.guarantorResponse = res;
           console.log(this.guarantorResponse)
-          if (Object.keys(this.guarantorResponse).length !== 0) {
-            sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
-            this.service.showSuccess('PS Gurantor saved Succssfully!');
-            this.router.navigateByUrl('registration-re/child-admission')
-          }
+          // if (Object.keys(this.guarantorResponse).length !== 0) {
+          //   sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
+          //   this.service.showSuccess('PS Gurantor saved Succssfully!');
+          //   this.router.navigateByUrl('registration-re/child-admission')
+          // }
         });
       } catch (error) {
         console.log(error)
       }
 
     }
+    console.log(this.guarantorForm.value)
   }
 
   public basicDetails(): void {
@@ -198,28 +214,36 @@ export class PsGurantorComponent implements OnInit {
 
     });
   }
-  public selectChange(event, field,flag): void {
+  public selectChange(event, field, flag): void {
     if (field === 'addressTypeList') {
-      this.guarantorForm.get('addressTypeList').setValue(flag?event.id:'');
+      this.guarantorForm.get('addressTypeList').setValue(flag ? event.id : '');
     }
-    if (field === 'phoneTypeList') {
-      this.guarantorForm.get('phoneTypeList').setValue(flag?event.id:'');
-    }
+    // if (field === 'phoneTypeList') {
+    //   this.guarantorForm.get('phoneTypeList').setValue(flag ? event.id : '');
+    // }
     if (field === 'relationshipList') {
-      this.guarantorForm.get('relationshipList').setValue(flag?event.id:'');
+      this.guarantorForm.get('relationshipList').setValue(flag ? event.id : '');
       if (flag) { // this.selfChecBox=true;
-        event.id == '100'? this.SelfCheck(null, true): this.selfChecBox=false;;
+        event.id == '100' ? this.SelfCheck(null, true) : this.selfChecBox = false;;
       }
 
       // this.relationName = event.label;
       // this.relationId = event.id;
     }
     if (field === 'occupationList') {
-      this.guarantorForm.get('occupationList').setValue(flag?event.id:'');
+      this.guarantorForm.get('occupationList').setValue(flag ? event.id : '');
     }
     if (field === 'phoneTypeList') {
-    console.log('inpuet cleared phoneid',flag)
-      this.guarantorForm.get('phoneTypeList').setValue(flag?event.id:'');
+      console.log('inpuet cleared phoneid', flag)
+      this.guarantorForm.get('phoneTypeList').setValue(flag ? event.id : '');
+    }
+    if (field === 'phoneTypeList2') {
+      console.log('inpuet cleared phoneid', flag)
+      this.guarantorForm.get('phoneTypeList2').setValue(flag ? event.id : '');
+    }
+    if (field === 'phoneTypeList3') {
+      console.log('inpuet cleared phoneid', flag)
+      this.guarantorForm.get('phoneTypeList3').setValue(flag ? event.id : '');
     }
   }
 
@@ -262,7 +286,8 @@ export class PsGurantorComponent implements OnInit {
   private getPsDetails(): void {
     try {
       this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-      let parameters = { 'psId': this.previousPsDetails.psId }
+   //   let parameters = { 'psId': this.previousPsDetails.psId }
+      let parameters = { 'psId': 23448 }
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
         console.log(res)
         this.basicPreviousData = res;
@@ -279,11 +304,11 @@ export class PsGurantorComponent implements OnInit {
     console.log("addressCheck")
     this.guarantorForm.get('addressTypeList').setValue(flag ? this.basicPreviousData.locationId : '');
     this.guarantorForm.get('location').setValue(flag ? this.basicPreviousData.locationName : '');
-    this.guarantorForm.get('lane').setValue(flag ? this.basicPreviousData.street : "");
-    this.guarantorForm.get('lane2').setValue(flag ? this.basicPreviousData.addressLine2 : "");
+    this.guarantorForm.get('addressLine1').setValue(flag ? this.basicPreviousData.street : "");
+    this.guarantorForm.get('addressLine2').setValue(flag ? this.basicPreviousData.addressLine2 : "");
     this.guarantorForm.get('zipcode').setValue(flag ? this.basicPreviousData.ZIPCODE : "");
     this.guarantorForm.get('phoneTypeList').setValue(flag ? this.basicPreviousData.PHONETYPEID : "")
-    this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
+  //  this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
     this.guarantorForm.get('number').setValue(flag ? this.basicPreviousData.PHONE : "");
     this.guarantorForm.get('city').setValue(flag ? this.basicPreviousData.city : '');
     this.guarantorForm.get('state').setValue(flag ? this.basicPreviousData.state : '');
@@ -318,8 +343,10 @@ export class PsGurantorComponent implements OnInit {
   // for update data
   private getGuarantorDetails() {
     let session: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
-    this.guarantorId = session.psGuarId;
-    let params = { 'guarantorId': session.psGuarId }
+    // this.guarantorId = session.psGuarId;
+    // let params = { 'guarantorId': session.psGuarId }
+    this.guarantorId = 23489;
+    let params = { 'guarantorId': 23489}
     try {
       // console.log("$$$$$$$$$$$$$$",params,session)
       this.service.getGuarantorDetails(JSON.stringify(params)).subscribe(
@@ -327,7 +354,7 @@ export class PsGurantorComponent implements OnInit {
           let data: any = response;
           console.log(data)
           this.guarantorForm.get('relationshipList').setValue(data.relationshipId);
-          this.guarantorForm.get('relationId').setValue('SELF');//data.relationshipName
+          this.guarantorForm.get('relationId').setValue(data.relationship);//data.relationshipName
           this.guarantorForm.get('occupationName').setValue('occuptaion');//data.occuptaionname
           this.guarantorForm.get('occupationList').setValue(data.occupationId);//data.occuptaionname
           this.guarantorForm.get('lastName').setValue(data.lastname);
@@ -337,10 +364,11 @@ export class PsGurantorComponent implements OnInit {
           //address
           this.guarantorForm.get('addressTypeList').setValue(data.locationId);
           this.guarantorForm.get('location').setValue(data.locationName);
-          this.guarantorForm.get('lane').setValue(data.street);
+          this.guarantorForm.get('addressLine1').setValue(data.street);
+          this.guarantorForm.get('addressLine2').setValue(data.addressLine2);
           this.guarantorForm.get('zipcode').setValue(data.ZIPCODE);
-          this.guarantorForm.get('phoneTypeList').setValue(data.PHONETYPEID)
-          this.guarantorForm.get('phoneTypeName').setValue(data.PHONETYPE)
+          this.guarantorForm.get('phoneTypeList').setValue(data.PHONETYPE)
+        //  this.guarantorForm.get('phonetype').setValue(data.PHONETYPE)
           this.guarantorForm.get('number').setValue(data.PHONE);
           this.guarantorForm.get('city').setValue(data.county);
           this.guarantorForm.get('state').setValue(data.state);
@@ -365,7 +393,7 @@ export class PsGurantorComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.guarantorForm.value.ssn,"screenFlag":"guarantor" }
+      let params = { 'ssn': this.guarantorForm.value.ssn, "screenFlag": "guarantor" }
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {
@@ -380,7 +408,7 @@ export class PsGurantorComponent implements OnInit {
             allowOutsideClick: false
           })
         }
-        else{
+        else {
           this.gurantorsave()
         }
       })
@@ -388,10 +416,10 @@ export class PsGurantorComponent implements OnInit {
 
     }
   }
-  public PhoneNumFormat(event,flag) {
+  public PhoneNumFormat(event, flag) {
     // console.log("++++++++++", event.target.value)
     var input2 = event.target.value.replace(/\D/g, '');
-     flag=='ssn'?this.guarantorForm.get('ssn').setValue(input2):this.guarantorForm.get('number').setValue(input2);
+    flag == 'ssn' ? this.guarantorForm.get('ssn').setValue(input2) : this.guarantorForm.get('number').setValue(input2);
   }
 
 }
