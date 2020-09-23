@@ -57,6 +57,8 @@ export class PsBasicComponent implements OnInit {
   };
   public currentDate: Date = new Date()
   public phoneNUmber;
+  public phoneNUmber2;
+  public phoneNUmber3;
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
@@ -74,7 +76,7 @@ export class PsBasicComponent implements OnInit {
 
   }
   ngOnInit() {
-
+    this.previousBasicInfo();
     console.log("basic", this.userMappedOffices.length === 0);
     this.getUserOfficeList();
     this.basicDetails();
@@ -84,13 +86,15 @@ export class PsBasicComponent implements OnInit {
     this.basicEditForm = this.fb.group({
       location: ['', Validators.required],
       phonetype: ['', Validators.required],
+      phonetype2: ['', Validators.required],
+      phonetype3: ['', Validators.required],
       maritalStatus: ['', Validators.required],
       race: ['', Validators.required],
       gender: ['', Validators.required],
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
-      middleName : [''],
-      alias : [''],
+      middleName: [''],
+      alias: [''],
       site: [''],
       language: ['', Validators.required],
       languageId: ['', Validators.required],
@@ -101,9 +105,13 @@ export class PsBasicComponent implements OnInit {
       ssn: [''],
       addressLine2: [''],
       number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      number2: [''],
+      number3: [''],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
+      phoneTypeList2: ['', Validators.required],
+      phoneTypeList3: ['', Validators.required],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
       country: ['', Validators.required],
@@ -112,7 +120,9 @@ export class PsBasicComponent implements OnInit {
       timeZone: ['', Validators.required],
       lane: ['', Validators.required],
       dob: ['', Validators.required],
-      siteName: ['']
+      siteName: [''],
+      fax: [''],
+      email: ['']
     });
   }
   get f() {
@@ -126,6 +136,8 @@ export class PsBasicComponent implements OnInit {
     this.mappedArray = [];
     this.formError = true;
     this.phoneNUmber = this.basicEditForm.value.number;
+    this.phoneNUmber2 = this.basicEditForm.value.number2;
+    this.phoneNUmber3 = this.basicEditForm.value.number3;
     this.mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
     let siteFlag = this.mappedArray.includes(this.siteId);
     let ssnLength = this.basicEditForm.value.ssn.length;
@@ -145,6 +157,62 @@ export class PsBasicComponent implements OnInit {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone ")
           }
           if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+            console.log("area exchange code missing")
+
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone ")
+          }
+        }
+        console.log("phone1 flag is")
+
+
+      }
+      else {
+        this.alertbox(" Phone number should be 10 digits ")
+
+      }
+      if (this.phoneNUmber2.length == 10) {
+        var phone1areacode = this.phoneNUmber2.slice(0, 3);
+        var phone1exchangecode = this.phoneNUmber2.slice(3, 6)
+        if (phone1areacode >= 199 && phone1exchangecode >= 199) {
+          console.log("phone number is correct");
+          ssnLength == 0 ? this.saveBasic() : this.checkSSn();
+
+        }
+        else {
+          // phone1Flag = true;
+          if (phone1areacode <= 1 || phone1areacode <= 199) {
+            console.log("area code missing")
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone ")
+          }
+          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+            console.log("area exchange code missing")
+
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone ")
+          }
+        }
+        console.log("phone1 flag is")
+
+
+      }
+      else {
+        this.alertbox(" Phone number should be 10 digits ")
+
+      }
+      if (this.phoneNUmber3.length == 10) {
+        var phone3areacode = this.phoneNUmber3.slice(0, 3);
+        var phone3exchangecode = this.phoneNUmber.slice(3, 6)
+        if (phone3areacode >= 199 && phone3exchangecode >= 199) {
+          console.log("phone number is correct");
+          ssnLength == 0 ? this.saveBasic() : this.checkSSn();
+
+        }
+        else {
+          // phone1Flag = true;
+          if (phone3areacode <= 1 || phone3areacode <= 199) {
+            console.log("area code missing")
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone ")
+          }
+          if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
             console.log("area exchange code missing")
 
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone ")
@@ -302,9 +370,15 @@ export class PsBasicComponent implements OnInit {
     if (field === 'phoneTypeList') {
       flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
     }
-    if (field === 'state') {
-      flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
+    if (field === 'phoneTypeList2') {
+      flag ? this.basicEditForm.get('phoneTypeList2').setValue(event.id) : this.basicEditForm.get('phoneTypeList2').setValue('');
     }
+    if (field === 'phoneTypeList3') {
+      flag ? this.basicEditForm.get('phoneTypeList3').setValue(event.id) : this.basicEditForm.get('phoneTypeList3').setValue('');
+    }
+    // if (field === 'state') {
+    //   flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
+    // }
     if (field === 'languageId') {
       flag ? this.basicEditForm.get('languageId').setValue(event.id) : this.basicEditForm.get('languageId').setValue('');
     }
@@ -356,8 +430,10 @@ export class PsBasicComponent implements OnInit {
   // to update Functionality
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-    this.psId = this.previousPsDetails.psId;
-    let parameters = { 'psId': this.previousPsDetails.psId }
+    // this.psId = this.previousPsDetails.psId;
+    // let parameters = { 'psId': this.previousPsDetails.psId }
+    this.psId = 23448;
+    let parameters = { 'psId': 23448}
     try {
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
         this.basicPreviousDetails = res;
@@ -386,6 +462,10 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm.get('addressTypeList').setValue(this.basicPreviousDetails.locationId);
         this.basicEditForm.get('phonetype').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicEditForm.get('phoneTypeList').setValue(this.basicPreviousDetails.PHONETYPE);
+        this.basicEditForm.get('phonetype2').setValue(this.basicPreviousDetails.PHONETYPE);
+        this.basicEditForm.get('phoneTypeList2').setValue(this.basicPreviousDetails.PHONETYPE);
+        this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
+        this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicEditForm.get('number').setValue(this.basicPreviousDetails.PHONE);
         this.basicEditForm.get('zipcode').setValue(this.basicPreviousDetails.ZIPCODE);
         this.basicEditForm.get('location').setValue(this.basicPreviousDetails.locationName);
@@ -415,6 +495,8 @@ export class PsBasicComponent implements OnInit {
   }
   public phoneValidation() {
     let phone1Flag
+    let phone2Flag
+    let phone3Flag
     if (this.phoneNUmber != undefined && this.phoneNUmber.length > 0) {
 
       console.log("phone1", this.phoneNUmber.length)
@@ -438,6 +520,60 @@ export class PsBasicComponent implements OnInit {
       }
       else {
         phone1Flag = true;
+        this.alertbox('Phone1 should be 10 digits')
+      }
+
+    }
+    if (this.phoneNUmber2 != undefined && this.phoneNUmber2.length > 0) {
+
+      console.log("phone1", this.phoneNUmber2.length)
+      if (this.phoneNUmber2.length == 10) {
+        var phone2areacode = this.phoneNUmber2.slice(0, 3);
+        var phone2exchangecode = this.phoneNUmber2.slice(4, 7)
+        if ((phone2areacode >= 1 && phone2areacode >= 199) && (phone2exchangecode >= 1 && phone2exchangecode >= 199)) {
+          phone2Flag = false;
+        }
+        else {
+          phone2Flag = true;
+          if (phone2areacode >= 1 && phone2areacode >= 199) {
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  ")
+          }
+          if (phone2exchangecode >= 1 && phone2exchangecode >= 199) {
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
+          }
+
+        }
+        console.log("phone1 flag is", phone2Flag)
+      }
+      else {
+        phone2Flag = true;
+        this.alertbox('Phone1 should be 10 digits')
+      }
+
+    }
+    if (this.phoneNUmber3 != undefined && this.phoneNUmber3.length > 0) {
+
+      console.log("phone1", this.phoneNUmber3.length)
+      if (this.phoneNUmber3.length == 10) {
+        var phone3areacode = this.phoneNUmber3.slice(0, 3);
+        var phone3exchangecode = this.phoneNUmber3.slice(4, 7)
+        if ((phone3areacode >= 1 && phone3areacode >= 199) && (phone3exchangecode >= 1 && phone3exchangecode >= 199)) {
+          phone3Flag = false;
+        }
+        else {
+          phone3Flag = true;
+          if (phone3areacode >= 1 && phone3areacode >= 199) {
+            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  ")
+          }
+          if (phone3exchangecode >= 1 && phone3exchangecode >= 199) {
+            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
+          }
+
+        }
+        console.log("phone1 flag is", phone1Flag)
+      }
+      else {
+        phone3Flag = true;
         this.alertbox('Phone1 should be 10 digits')
       }
 

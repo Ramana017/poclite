@@ -55,11 +55,11 @@
                                                         <th class="align-middle">PS Name</th>
                                                         <th class="align-middle">Home Site</th>
                                                         <th class="align-middle">MRN</th>
-                                                        <th *ngIf="widgetArray[0]" class="align-middle">sample data</th>
-                                                        <th *ngIf="widgetArray[0]" class="align-middle">sample data</th>
-                                                        <th *ngIf="widgetArray[0]" class="align-middle">sample data</th>
-                                                        <th *ngIf="widgetArray[0]" class="align-middle">sample data</th>
-                                                        <th *ngIf="widgetArray[0]" class="align-middle">sample data</th>
+                                                        <th *ngIf="widgetArray[0]" class="align-middle">SSN</th>
+                                                        <th *ngIf="widgetArray[0]" class="align-middle">City</th>
+                                                        <th *ngIf="widgetArray[0]" class="align-middle">State</th>
+                                                        <th *ngIf="widgetArray[0]" class="align-middle">Zip code</th>
+                                                        <th *ngIf="widgetArray[0]" class="align-middle">Phone</th>
                                                     </tr>
                                                 </thead>
 
@@ -122,11 +122,11 @@
                                                         <td>{{ps.PSName}}</td>
                                                         <td>{{ps.homeSite}}</td>
                                                         <td>{{ps.mrn}}</td>
-                                                        <td *ngIf="widgetArray[0]">sample data</td>
-                                                        <td *ngIf="widgetArray[0]">sample data</td>
-                                                        <td *ngIf="widgetArray[0]">sample data</td>
-                                                        <td *ngIf="widgetArray[0]">sample data</td>
-                                                        <td *ngIf="widgetArray[0]">sample data</td>
+                                                        <td *ngIf="widgetArray[0]">{{ps.ssn}}</td>
+                                                        <td *ngIf="widgetArray[0]">{{ps.city}}</td>
+                                                        <td *ngIf="widgetArray[0]">{{ps.state}}</td>
+                                                        <td *ngIf="widgetArray[0]">{{ps.zipCode}}</td>
+                                                        <td *ngIf="widgetArray[0]">{{ps.phone}}</td>
                                                         <!-- <td>{{x.name}}</td>
                             <td>{{x.name}}</td>
                             <td>{{x.name}}</td> -->
@@ -210,6 +210,11 @@
                                                         <th class="align-middle">PS Name</th>
                                                         <th class="align-middle">Account#</th>
                                                         <th class="align-middle">Admission Date</th>
+                                                        <th *ngIf="widgetArray[1]" class="align-middle">First Visit Date</th>
+                                                        <th *ngIf="widgetArray[1]" class="align-middle">Case Manager</th>
+                                                        <th *ngIf="widgetArray[1]" class="align-middle">Coordinator</th>
+                                                        <th *ngIf="widgetArray[1]" class="align-middle">PS Discharge Date</th>
+
                                                     </tr>
                                                 </thead>
 
@@ -253,6 +258,11 @@
                                                         <td>{{admission.PSName}}</td>
                                                         <td>{{admission.accountNumber==0?'':admission.accountNumber}}</td>
                                                         <td>{{admission.admissionDate}}</td>
+                                                        <td *ngIf="widgetArray[1]">{{admission.firstVisitDate}}</td>
+                                                        <td *ngIf="widgetArray[1]">{{admission.caseManager}}</td>
+                                                        <td *ngIf="widgetArray[1]">{{admission.coordinator}}</td>
+                                                        <td *ngIf="widgetArray[1]">{{admission.psDischargeDate}}</td>
+
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -342,6 +352,9 @@
                                                         <th class="align-middle">Procedure Code</th>
                                                         <th class="align-middle">Total Units</th>
                                                         <!-- <th class="align-middle">Consumed DP</th> -->
+                                                        <th *ngIf="widgetArray[2]"class="align-middle">Begin Date</th>
+                                                        <th *ngIf="widgetArray[2]"class="align-middle">End Date</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -381,7 +394,10 @@
                                                         <td>{{auth.PSName}}</td>
                                                         <td>{{auth.authorizationNumber}}</td>
                                                         <td>{{auth.procedureCode}}</td>
-                                                        <td>{{auth.totalUnits}}</td>
+                                                        <td >{{auth.totalUnits}}</td>
+                                                        <td *ngIf="widgetArray[2]">{{auth.beginDate}}</td>
+                                                        <td *ngIf="widgetArray[2]">{{auth.endDate}}</td>
+
                                                         <!-- <td>{{auth.consumedUnits}}</td> -->
                                                     </tr>
                                                 </tbody>
@@ -464,6 +480,12 @@
                                                         <th class="align-middle">DCS Name</th>
                                                         <th class="align-middle">Home Site</th>
                                                         <th class="align-middle">Emp Code</th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">SSN</th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">City </th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">State</th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">Zip Code</th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">Phone</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -503,7 +525,13 @@
                                                         <td></td>
                                                         <td>{{dcs.dcsName}}</td>
                                                         <td>{{dcs.homeSite}}</td>
-                                                        <td>{{''}}</td>
+                                                        <td>{{dcs.empCode}}</td>
+                                                        <td>{{dcs.ssn}}</td>
+                                                        <td>{{dcs.city}}</td>
+                                                        <td>{{dcs.state}}</td>
+                                                        <td>{{dcs.zipCode}}</td>
+                                                        <td>{{dcs.phone}}</td>
+
                                                         <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
                                                     </tr>
 
