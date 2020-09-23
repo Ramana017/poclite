@@ -1,37 +1,37 @@
-.custom-tooltip-icon {
-  a {
-    i {
-      color: $text;
-    }
-  }
-}
+// .custom-tooltip-icon {
+//   a {
+//     i {
+//       color: $text;
+//     }
+//   }
+// }
 
 
-.tooltip {
-  font-family: "AvenirLTSTD-Roman", sans-serif !important;
+// .tooltip {
+//   font-family: "AvenirLTSTD-Roman", sans-serif !important;
 
-  .tooltip-arrow {
-    // background-color: #145194; 
-    &::before {
+//   .tooltip-arrow {
+//     // background-color: #145194; 
+//     &::before {
 
-      //   border-width: .4rem .4rem .4rem 0;
-      border-right-color: #145194;
-      border-left-color: #29609d;
-      // border-top-color: #145194;
-    }
-  }
+//       //   border-width: .4rem .4rem .4rem 0;
+//       border-right-color: #145194;
+//       border-left-color: #29609d;
+//       // border-top-color: #145194;
+//     }
+//   }
 
-  .tooltip-inner {
-    /* max-width: 200px; */
-    padding: 5px 10px;
-    font-size: 15px;
-    text-align: center;
-    font-weight: 800;
-    border-radius: .25rem;
-    background-color: #145194;
-    color: #ffffff;
-    // display: flex;
-    // align-items: center;
-    min-width: 120px;
-  }
-}
+//   .tooltip-inner {
+//     /* max-width: 200px; */
+//     padding: 5px 10px;
+//     font-size: 15px;
+//     text-align: center;
+//     font-weight: 800;
+//     border-radius: .25rem;
+//     background-color: #145194;
+//     color: #ffffff;sss
+//     // display: flex;
+//     // align-items: center;
+//     min-width: 120px;
+//   }
+// }
