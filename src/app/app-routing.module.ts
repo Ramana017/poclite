@@ -21,7 +21,7 @@ import { AuthGuard } from './services/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
+  { path: 'summary',data:{title:'POC Call Management'},canActivate:[AuthGuard], component: SummarytableComponent, },
 
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
