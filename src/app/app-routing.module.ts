@@ -19,6 +19,7 @@ import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
+import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
 
 
 
@@ -46,7 +47,7 @@ const routes: Routes = [
       { path: "child-ps", component: PsBasicComponent },
       { path: "child-guarantor", component: PsGurantorComponent },
       { path: "child-contact", component: PsContactsComponent },
-      // { path: "child-basic", component: BasicInfoComponent },
+      { path: "child-addresses", component:PsAddressComponent },
       // { path: "child-authorization", component: AuthorizationComponent },
     ]
   },
