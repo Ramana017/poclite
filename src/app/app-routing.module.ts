@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
-    path: "registration-re", canActivate:[AuthGuard], component: RegistrationComponent,
+    path: "registration-re", canActivate:[AuthGuard],canActivateChild:[AuthGuard], component: RegistrationComponent,
     children: [
       { path: "child-guarantor", component: GuarantorDetailsComponent },
       { path: "child-admission", component: AdmissionDetailsComponent },

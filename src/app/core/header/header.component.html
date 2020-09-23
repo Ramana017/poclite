@@ -10,14 +10,12 @@
                         </button>
                         <div class="dropdown-menu">
                             <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                            <a routerLinkActive="active" *ngIf="userDetailService.checkAll()||userDetailService.checkCeat()" class="dropdown-item" [routerLink]="['/widgets']"> POC
+                            <a routerLinkActive="active" *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item" [routerLink]="['/widgets']"> POC
                                 Home </a>
-                            <a *ngIf="userDetailService.checkAll()||userDetailService.CheckScheduler()" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
+                            <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
                                 Management</a>
-                            <a *ngIf="userDetailService.checkAll()||userDetailService.CheckScheduler()" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
+                            <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
                                 DashBoard</a>
-
-
                             <!-- <span class="dropdown-item-text">Just Text</span> -->
                         </div>
                         <!-- <div class="richard-img">

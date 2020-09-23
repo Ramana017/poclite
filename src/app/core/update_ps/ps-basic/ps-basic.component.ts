@@ -78,7 +78,7 @@ export class PsBasicComponent implements OnInit {
   ngOnInit() {
     this.previousBasicInfo();
     console.log("basic", this.userMappedOffices.length === 0);
-    this.getUserOfficeList();
+  //  this.getUserOfficeList();
     this.basicDetails();
   }
 
@@ -103,6 +103,7 @@ export class PsBasicComponent implements OnInit {
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
+      addressLine1: [''],
       addressLine2: [''],
       number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       number2: [''],
@@ -114,15 +115,16 @@ export class PsBasicComponent implements OnInit {
       phoneTypeList3: ['', Validators.required],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
+      zipFourCode : [''],
       country: ['', Validators.required],
       county: ['', Validators.required],
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
-      lane: ['', Validators.required],
       dob: ['', Validators.required],
       siteName: [''],
       fax: [''],
-      email: ['']
+      email: [''],
+      directions : ['']
     });
   }
   get f() {
@@ -251,16 +253,16 @@ export class PsBasicComponent implements OnInit {
       })
     }
   }
-  public getUserOfficeList(): void {
-    let jsonObj = { 'userId': this.userId };
+  // public getUserOfficeList(): void {
+  //   let jsonObj = { 'userId': this.userId };
 
-    this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
-      this.officeList = data;
-      console.log(this.officeList);
-      this.userMappedOffices = this.officeList.userMappedOffices;
+  //   this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
+  //     this.officeList = data;
+  //     console.log(this.officeList);
+  //     this.userMappedOffices = this.officeList.userMappedOffices;
 
-    });
-  }
+  //   });
+  // }
   private saveBasic() {
 
     const jsonObj = {
@@ -276,7 +278,7 @@ export class PsBasicComponent implements OnInit {
       "languageId": +(this.basicEditForm.value.languageId),
       "locationId": (this.basicEditForm.value.addressTypeList),
       "city": (this.basicEditForm.value.city),
-      "addressLine": (this.basicEditForm.value.lane),
+      "addressLine": (this.basicEditForm.value.addressLine1),
       "addressLine2": this.basicEditForm.value.addressLine2,
       "zipcode": (this.basicEditForm.value.zipcode),
       "phoneTypeid": (this.basicEditForm.value.phoneTypeList),
@@ -446,26 +448,26 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm.get('genderId').setValue(this.basicPreviousDetails.genderId);
         this.basicEditForm.get('gender').setValue(this.basicPreviousDetails.gender);
         this.basicEditForm.get('raceId').setValue(this.basicPreviousDetails.raceId);
-        //   this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
+        this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
         this.basicEditForm.get('language').setValue(this.basicPreviousDetails.language);
         this.basicEditForm.get('languageId').setValue(this.basicPreviousDetails.languageId);
         this.basicEditForm.get('maritalStatus').setValue(this.basicPreviousDetails.MARITIALSTATUS);
         this.basicEditForm.get('maritalStatusList').setValue(this.basicPreviousDetails.MARITIALSTATUSId);
         this.basicEditForm.get('city').setValue(this.basicPreviousDetails.county);
         this.basicEditForm.get('country').setValue(this.basicPreviousDetails.country);
-        this.basicEditForm.get('countyId').setValue(this.countyId);
+       // this.basicEditForm.get('countyId').setValue(this.basicPreviousDetails.countyId);
         this.basicEditForm.get('county').setValue(this.basicPreviousDetails.county);
         this.basicEditForm.get('timeZone').setValue(this.basicPreviousDetails.timezone);
-        this.basicEditForm.get('timeZoneId').setValue(this.timeZoneId);
+       // this.basicEditForm.get('timeZoneId').setValue(this.basicPreviousDetails.TIMEZONEID);
         this.basicEditForm.get('state').setValue(this.basicPreviousDetails.state);
-        this.basicEditForm.get('stateId').setValue(this.stateId);
+      //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
         this.basicEditForm.get('addressTypeList').setValue(this.basicPreviousDetails.locationId);
         this.basicEditForm.get('phonetype').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicEditForm.get('phoneTypeList').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.basicEditForm.get('phonetype2').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.basicEditForm.get('phoneTypeList2').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
+         this.basicEditForm.get('addressLine1').setValue(this.basicPreviousDetails.street);
+         this.basicEditForm.get('addressLine2').setValue(this.basicPreviousDetails.addressLine2);
+        // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
+        // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
         this.basicEditForm.get('number').setValue(this.basicPreviousDetails.PHONE);
         this.basicEditForm.get('zipcode').setValue(this.basicPreviousDetails.ZIPCODE);
         this.basicEditForm.get('location').setValue(this.basicPreviousDetails.locationName);

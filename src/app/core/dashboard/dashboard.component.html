@@ -138,9 +138,9 @@
                                         </div>
                                     </div>
                                     <div class="pager d-flex justify-content-between">
-                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userDetailService.checkCeat()" [routerLink]='["/registration-re/child-basic"]'> <i
+                                        <button type="button" class="btn-create text-white mx-2" *ngIf="userDetailService.checkUser('ceat')" [routerLink]='["/registration-re/child-basic"]'> <i
                                                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
-                                        <div *ngIf="!userDetailService.checkCeat()" class="text-white mx-2">
+                                        <div *ngIf="!userDetailService.checkUser('ceat')" class="text-white mx-2">
                                         </div>
 
                                         <div class="c">
@@ -352,6 +352,7 @@
                                                         <th class="align-middle">Procedure Code</th>
                                                         <th class="align-middle">Total Units</th>
                                                         <!-- <th class="align-middle">Consumed DP</th> -->
+                                                        <th *ngIf="widgetArray[2]"class="align-middle">Site Code</th>
                                                         <th *ngIf="widgetArray[2]"class="align-middle">Begin Date</th>
                                                         <th *ngIf="widgetArray[2]"class="align-middle">End Date</th>
 
@@ -395,6 +396,7 @@
                                                         <td>{{auth.authorizationNumber}}</td>
                                                         <td>{{auth.procedureCode}}</td>
                                                         <td >{{auth.totalUnits}}</td>
+                                                        <td *ngIf="widgetArray[2]">{{auth.siteCode}}</td>
                                                         <td *ngIf="widgetArray[2]">{{auth.beginDate}}</td>
                                                         <td *ngIf="widgetArray[2]">{{auth.endDate}}</td>
 
@@ -480,6 +482,7 @@
                                                         <th class="align-middle">DCS Name</th>
                                                         <th class="align-middle">Home Site</th>
                                                         <th class="align-middle">Emp Code</th>
+                                                        <th *ngIf="widgetArray[3]" class="align-middle">Site Code</th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">SSN</th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">City </th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">State</th>
@@ -526,11 +529,12 @@
                                                         <td>{{dcs.dcsName}}</td>
                                                         <td>{{dcs.homeSite}}</td>
                                                         <td>{{dcs.empCode}}</td>
-                                                        <td>{{dcs.ssn}}</td>
-                                                        <td>{{dcs.city}}</td>
-                                                        <td>{{dcs.state}}</td>
-                                                        <td>{{dcs.zipCode}}</td>
-                                                        <td>{{dcs.phone}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.siteCode}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.ssn}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.city}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.state}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.zipCode}}</td>
+                                                        <td *ngIf="widgetArray[3]" >{{dcs.phone}}</td>
 
                                                         <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
                                                     </tr>
