@@ -6,11 +6,11 @@
         <div class="bg-grey-l p-3">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <div class="d-flex align-items-center  site-form">
-                    <div class="site-container d-flex align-items-center">
+                    <div class="site-container d-flex align-items-center" disabled>
                         <label class="site-label color-black">
                             Site<span class="text-danger">*</span>
                         </label>
-                        <div class="input-group ">
+                        <div class="input-group " disabled>
                             <div class="procedurecode w-100 multiselect-angular "
                                 [class.invalid-input]="siteSelectedItems.length == 0 && formError">
                                 <angular2-multiselect [data]="userMappedOffices" [(ngModel)]="siteSelectedItems"
@@ -25,7 +25,7 @@
                     <div>
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Basic Details</h4>
                         <form class="d-flex align-items-center nav justify-content-between border-2"
-                            [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+                            [formGroup]="basicEditForm" (ngSubmit)="onSubmit()">
 
 
                             <div class=" basic-input-container">
@@ -64,18 +64,9 @@
                                         Middle Name
                                     </label>
                                     <div class="input-group  ">
-                                        <div class="ng-autocomplete" style="width: 100%;"
-                                            [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
-                                            <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
-                                                formControlName="maritalStatus"
-                                                (inputCleared)="selectChange('','maritalStatusList',false)"
-                                                (selected)="selectChange($event,'maritalStatusList',true)"
-                                                [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
-                                            </ng-autocomplete>
-                                            <ng-template style="width: 100%;" #itemTemplate let-item>
-                                                <a [innerHTML]="item.name"></a>
-                                            </ng-template>
-                                        </div>
+                                        <input type="text" [class.is-invalid]="f.middleName.invalid && formError"
+                                        placeholder="" formControlName="middleName"
+                                        class="form-control" aria-label="Case Manager" >
                                     </div>
                                 </div>
                                 <div class="w-48">
@@ -83,13 +74,13 @@
                                         Alias
                                     </label>
                                     <div class="input-group  ">
-                                        <input type="text" [class.is-invalid]="f.dob.invalid && formError"
-                                            placeholder="" [maxDate]="currentDate" formControlName="dob"
-                                            class="form-control" aria-label="Case Manager" bsDatepicker>
+                                        <input type="text" 
+                                            placeholder="" formControlName="alias"
+                                            class="form-control" aria-label="Case Manager" >
 
                                     </div>
-                                    <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
-                                    </div>
+                                    <!-- <div *ngIf="f.alias.invalid && f.dob.touched && f.dob.errors" class="errors">
+                                    </div> -->
                                 </div>
 
 
@@ -279,7 +270,7 @@
               <div class=" input-container-wrapper"></div> -->
                         </form>
                     </div>
-                    <form [formGroup]="basicForm" class="mapped-site-container">
+                    <form [formGroup]="basicEditForm" class="mapped-site-container">
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Mapped Sites</h4>
                         <div class=" border-2">
                             <!-- <label class="site-label">
@@ -325,7 +316,7 @@
 
 
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
-                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicForm">
+                <form class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="basicEditForm">
                     <div class="input-container-wrapper">
                         <label class="">
                             Location<span class="text-danger">*</span>
