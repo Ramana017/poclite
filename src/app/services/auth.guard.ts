@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate,CanActivateChild
 ) { }
 
   canActivate(): boolean {
-    // console.log("canactivate working");
+    console.log("canactivate working")
     if (this._userDetails.loggedIn()) {
       // console.log(this._apiservice);
       return true;
@@ -26,12 +26,12 @@ export class AuthGuard implements CanActivate,CanActivateChild
 
   }
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log("in Authgurad file current url",state);
-  let ceatRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
-  let scheduleRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
-
-
-  if (this._userDetails.checkAll()===true||this._userDetails.checkCeat()===true)// it will chexk for user is admin
+//     console.log("in Authgurad file current url",state);
+//   let ceatRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
+//   let scheduleRoutes=['/widgets','/registration-re/child-basic','/registration-re/child-guarantor','/registration-re/child-admission','/registration-re/child-payorplan','/registration-re/child-authorization'];
+// let currentUrl=state.url;
+// let userType=ceatRoutes.includes(currentUrl)?'ceat':'schedule'
+  if (this._userDetails.checkUser('ceat')===true)// it will chexk for user is admin
      {
       return true; // allowed every route
     }

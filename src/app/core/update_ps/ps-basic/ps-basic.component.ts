@@ -448,7 +448,7 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm.get('genderId').setValue(this.basicPreviousDetails.genderId);
         this.basicEditForm.get('gender').setValue(this.basicPreviousDetails.gender);
         this.basicEditForm.get('raceId').setValue(this.basicPreviousDetails.raceId);
-           this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
+        this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
         this.basicEditForm.get('language').setValue(this.basicPreviousDetails.language);
         this.basicEditForm.get('languageId').setValue(this.basicPreviousDetails.languageId);
         this.basicEditForm.get('maritalStatus').setValue(this.basicPreviousDetails.MARITIALSTATUS);
