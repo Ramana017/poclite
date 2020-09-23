@@ -230,13 +230,15 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.payorPlanForm.get('zipcode').setValue(Flag ? this.psdata.ZIPCODE : '');
     this.payorPlanForm.get('phoneTypeList').setValue(Flag ? this.psdata.PHONETYPE : '');
     this.payorPlanForm.get('phoneTypeListId').setValue(Flag ? this.psdata.PHONETYPEID : '');
-    this.payorPlanForm.get('number').setValue(Flag ? this.psdata.PHONE : '');
+    // this.payorPlanForm.get('number').setValue(Flag ? this.psdata.PHONE : '');
+    this.PhoneNumFormat(null,'phone',this.psdata.PHONE );
     this.payorPlanForm.get('timeZone').setValue(Flag ? this.psdata.timezone : '');
     this.payorPlanForm.get('city').setValue(Flag ? this.psdata.city : '');
     this.payorPlanForm.get('country').setValue(Flag ? this.psdata.country : '');
     this.payorPlanForm.get('county').setValue(Flag ? this.psdata.county : '');
     this.payorPlanForm.get('state').setValue(Flag ? this.psdata.state : '');
-    this.payorPlanForm.get('ssn').setValue(Flag ? this.psdata.ssn : '');
+    // this.payorPlanForm.get('ssn').setValue(Flag ? this.psdata.ssn : '');
+    this.PhoneNumFormat(null,'ssn',this.psdata.ssn );
     this.timeZoneId = Flag ? this.psdata.TIMEZONEID : '';
     this.stateId = Flag ? this.psdata.stateId : '';
     this.countyId = Flag ? this.psdata.countyId : '';
@@ -253,9 +255,9 @@ export class PayorPlanDetailsComponent implements OnInit {
     console.log(this.payorPlanForm.valid)
     if (this.payorPlanForm.valid) {
 
-      if (this.phoneNumber.length == 10) {
+      if (this.phoneNumber.length == 12) {
         var phone1areacode = this.phoneNumber.slice(0, 3);
-        var phone1exchangecode = this.phoneNumber.slice(3, 6)
+        var phone1exchangecode = this.phoneNumber.slice(4, 7)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
           // ssnLength == 0 ? this.payorPlanSave() : this.checkSSn();
@@ -310,7 +312,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       "middleName": "",
       "gender": this.payorPlanForm.value.genderId,
       "dob": this.date.transform(this.payorPlanForm.value.dob, 'MM/dd/yyyy'),
-      "ssn": this.payorPlanForm.value.ssn!=undefined?this.payorPlanForm.value.ssn:'',
+      "ssn": this.payorPlanForm.value.ssn!=undefined?this.payorPlanForm.value.ssn.replace(/-/g, ''):'',
       "addressId": this.addressId,
       "locationName": this.payorPlanForm.value.addressTypeListId,
       "street": this.payorPlanForm.value.lane,
@@ -323,7 +325,7 @@ export class PayorPlanDetailsComponent implements OnInit {
       "country": this.payorPlanForm.value.country,
       "countryId":this.countryId,
       "phoneType1": this.payorPlanForm.value.phoneTypeListId,
-      "phone1": this.payorPlanForm.value.number,
+      "phone1": this.payorPlanForm.value.number.replace(/-/g, ''),
       "userId": this.userId,
       "planname":this.payorPlanForm.value.payorPlan.planname,
       "payorcode":this.payorPlanForm.value.payorCode,
@@ -351,7 +353,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.payorPlanForm.value.ssn ,"screenFlag":"subscriber"}
+      let params = { 'ssn': this.payorPlanForm.value.ssn.replace(/-/g, '') ,"screenFlag":"subscriber"}
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {
@@ -374,10 +376,34 @@ export class PayorPlanDetailsComponent implements OnInit {
 
     }
   }
-  public PhoneNumFormat(event, flag) {
-    // console.log("++++++++++", event.target.value)
-    var input2 = event.target.value.replace(/\D/g, '');
-    flag == "ssn" ? this.payorPlanForm.get('ssn').setValue(input2) : this.payorPlanForm.get('number').setValue(input2);
+  // public PhoneNumFormat(event, flag) {
+  //   // console.log("++++++++++", event.target.value)
+  //   var input2 = event.target.value.replace(/\D/g, '');
+  //   flag == "ssn" ? this.payorPlanForm.get('ssn').setValue(input2) : this.payorPlanForm.get('number').setValue(input2);
+  // }
+  public PhoneNumFormat(event, flag,value?) {
+
+    var input =event!=null? event.target.value:value;
+    if (input != undefined) {
+      let trimmed = input.replace(/\D/g, '');
+      if (trimmed.length > 12) {
+        trimmed = trimmed.substr(0, 12);
+      }
+      trimmed = trimmed.replace(/-/g, '');
+      let numbers = [];
+      numbers.push(trimmed.substr(0, 3));
+      if (trimmed.substr(3, 2) !== "")
+        numbers.push(trimmed.substr(3, 3));
+      if (trimmed.substr(5, 4) != "" && trimmed.length >= 7)
+        numbers.push(trimmed.substr(6, 4));
+
+      if (flag == 'phone') {
+        this.payorPlanForm.get('number').setValue( numbers.join('-'));
+      }else if(flag=="ssn"){
+        this.payorPlanForm.get('ssn').setValue( numbers.join('-'));
+      }
+
+    }
   }
   private isPolicyNumRequired(ssnLength,policyNumberLength){
   let params = {"payorCode":this.payorPlanForm.value.payorCode,"planCode":this.payorPlanForm.value.plancode,"admitDate":this.admitDate,"clientTypeId":this.clientTypeId,"clientClassId":this.clientClassId};

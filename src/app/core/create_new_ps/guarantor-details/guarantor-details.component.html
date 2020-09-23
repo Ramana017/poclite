@@ -59,7 +59,7 @@
                     </label>
 
                     <div class="input-group  ">
-                        <input type="text" class="form-control" maxlength='9' (keyup)="PhoneNumFormat($event,'ssn')" aria-label="Case Manager" formControlName="ssn">
+                        <input type="text" class="form-control" maxlength='11' (keyup)="PhoneNumFormat($event,'ssn')" aria-label="Case Manager" formControlName="ssn">
                     </div>
 
                 </div>
@@ -146,7 +146,7 @@
                                 </ng-template>
                             </div>
                             <div class="input-group ">
-                                <input type="text" formControlName="number" (keyup)="PhoneNumFormat($event,'phone')" [class.is-invalid]="f.number.invalid && formError" maxlength='10' class="form-control" formControlName="number" aria-label="Auth">
+                                <input type="text" formControlName="number" (keyup)="PhoneNumFormat($event,'phone')" [class.is-invalid]="f.number.invalid && formError" maxlength='12' class="form-control" formControlName="number" aria-label="Auth">
                                 <!-- <div *ngIf="f.number.invalid && f.number.touched && f.number.errors">
                             <small class="text-danger" *ngIf="f.number.errors?.required">Mobile number is required!</small>
                           </div> -->

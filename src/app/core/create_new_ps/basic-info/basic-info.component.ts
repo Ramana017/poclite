@@ -95,7 +95,7 @@ export class BasicInfoComponent implements OnInit {
       raceId: ['', Validators.required],
       ssn: [''],
       addressLine2: [''],
-      number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      number: ['', [Validators.required]],
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
@@ -125,9 +125,9 @@ export class BasicInfoComponent implements OnInit {
     let siteFlag = this.mappedArray.includes(this.siteId);
     let ssnLength = this.basicForm.value.ssn.length;
     if (this.basicForm.valid && siteFlag) {
-      if (this.phoneNUmber.length == 10) {
+      if (this.phoneNUmber.length == 12) {
         var phone1areacode = this.phoneNUmber.slice(0, 3);
-        var phone1exchangecode = this.phoneNUmber.slice(3, 6)
+        var phone1exchangecode = this.phoneNUmber.slice(4, 7)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
           ssnLength == 0 ? this.saveBasic() : this.checkSSn();
@@ -199,7 +199,7 @@ export class BasicInfoComponent implements OnInit {
       "raceId": (this.basicForm.value.raceId),
       "maritalStatusID": (this.basicForm.value.maritalStatusList),
       "dob": this.date.transform(this.basicForm.value.dob, 'MM/dd/yyyy'),
-      "ssn": this.basicForm.value.ssn,
+      "ssn": this.basicForm.value.ssn.replace(/-/g, ''),
       "languageId": +(this.basicForm.value.languageId),
       "locationId": (this.basicForm.value.addressTypeList),
       "city": (this.basicForm.value.city),
@@ -207,7 +207,7 @@ export class BasicInfoComponent implements OnInit {
       "addressLine2": this.basicForm.value.addressLine2,
       "zipcode": (this.basicForm.value.zipcode),
       "phoneTypeid": (this.basicForm.value.phoneTypeList),
-      "phone": (this.basicForm.value.number),
+      "phone": (this.basicForm.value.number.replace(/-/g, '')),
       "stateId": this.stateId,
       "countyId": this.countyId,
       "timeZoneId": this.timeZoneId,
@@ -404,9 +404,29 @@ export class BasicInfoComponent implements OnInit {
   }
 
   public PhoneNumFormat(event, flag) {
-    // console.log("++++++++++", event.target.value)
-    var input2 = event.target.value.replace(/\D/g, '');
-    flag == "ssn" ? this.basicForm.get('ssn').setValue(input2) : this.basicForm.get('number').setValue(input2);
+
+    var input = event.target.value;
+    if (input != undefined) {
+      let trimmed = input.replace(/\D/g, '');
+      if (trimmed.length > 12) {
+        trimmed = trimmed.substr(0, 12);
+      }
+      trimmed = trimmed.replace(/-/g, '');
+      let numbers = [];
+      numbers.push(trimmed.substr(0, 3));
+      if (trimmed.substr(3, 2) !== "")
+        numbers.push(trimmed.substr(3, 3));
+      if (trimmed.substr(5, 4) != "" && trimmed.length >= 7)
+        numbers.push(trimmed.substr(6, 4));
+
+      if (flag == 'phone') {
+        this.basicForm.get('number').setValue( numbers.join('-'));
+      }else if(flag=="ssn"){
+        this.basicForm.get('ssn').setValue( numbers.join('-'));
+      }
+      console.log("trimmed",trimmed)
+
+    }
   }
   public phoneValidation() {
     let phone1Flag
@@ -443,7 +463,7 @@ export class BasicInfoComponent implements OnInit {
     swal.fire(message, string, 'warning')
   }
   private checkSSn() {
-    if (this.basicForm.value.ssn == 999999999) {
+    if (this.basicForm.value.ssn.replace(/-/g, '') == 999999999) {
 
       console.log("ssn ERRor")
       swal.fire({
@@ -456,7 +476,7 @@ export class BasicInfoComponent implements OnInit {
 
     } else {
       try {
-        let params = { 'ssn': this.basicForm.value.ssn, "screenFlag": "ps" }
+        let params = { 'ssn': this.basicForm.value.ssn.replace(/-/g, ''), "screenFlag": "ps" }
         this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
           console.log(data)
           if (Object.keys(data).length !== 0) {
