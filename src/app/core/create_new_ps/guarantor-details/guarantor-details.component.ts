@@ -95,11 +95,11 @@ export class GuarantorDetailsComponent implements OnInit {
 
 
   if (this.guarantorForm.valid) {
-      if (this.phoneNUmber.length == 10) {
+      if (this.phoneNUmber.length == 12) {
         var phone1areacode = this.phoneNUmber.slice(0, 3);
-        var phone1exchangecode = this.phoneNUmber.slice(3, 6)
+        var phone1exchangecode = this.phoneNUmber.slice(4, 7)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
-          console.log("phone number is correct");
+          console.log("phone number is correct",phone1areacode,phone1exchangecode );
           ssnLength == 0 ? this.gurantorsave() :this.checkSSn();
         }
         else {
@@ -152,7 +152,7 @@ export class GuarantorDetailsComponent implements OnInit {
         "addressLine2":this.guarantorForm.value.lane2,
         "zipcode": this.guarantorForm.value.zipcode,
         "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
-        "phone": this.guarantorForm.value.number,
+        "phone": this.guarantorForm.value.number.replace(/-/g, ''),
         "updatedUserId": this.userId,
         "psId": this.previousPsDetails.psId,
         "occupationId": this.guarantorForm.value.occupationList,
@@ -161,7 +161,7 @@ export class GuarantorDetailsComponent implements OnInit {
         "countyId": this.countyId,
         "timeZoneId": this.timeZoneId,
         "countryId": this.countryId,
-        "ssn":this.guarantorForm.value.ssn!=undefined?this.guarantorForm.value.ssn.replace(/\D/g, ''):''
+        "ssn":this.guarantorForm.value.ssn!=undefined?this.guarantorForm.value.ssn.replace(/-/g, ''):''
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -281,7 +281,8 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('zipcode').setValue(flag ? this.basicPreviousData.ZIPCODE : "");
     this.guarantorForm.get('phoneTypeList').setValue(flag ? this.basicPreviousData.PHONETYPEID : "")
     this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
-    this.guarantorForm.get('number').setValue(flag ? this.basicPreviousData.PHONE : "");
+    // this.guarantorForm.get('number').setValue(flag ? this.basicPreviousData.PHONE : "");
+    this.PhoneNumFormat(null,'phone', this.basicPreviousData.PHONE )
     this.guarantorForm.get('city').setValue(flag ? this.basicPreviousData.city : '');
     this.guarantorForm.get('state').setValue(flag ? this.basicPreviousData.state : '');
     this.guarantorForm.get('county').setValue(flag ? this.basicPreviousData.county : '');
@@ -303,7 +304,8 @@ export class GuarantorDetailsComponent implements OnInit {
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
     this.guarantorForm.get('firstName').setValue(flag ? this.basicPreviousData.firstname : '');
-    this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
+    // this.guarantorForm.get('ssn').setValue(flag ? this.basicPreviousData.ssn : '');
+    this.PhoneNumFormat(null,'ssn', this.basicPreviousData.ssn )
     flag ? this.checkBoxAddress = true : this.checkBoxAddress = false;
     // flag ? this.addressCheck(event) : this.addressCheck(event);
     this.addressCheck(event, dropdown);
@@ -362,7 +364,7 @@ export class GuarantorDetailsComponent implements OnInit {
   }
   private checkSSn() {
     try {
-      let params = { 'ssn': this.guarantorForm.value.ssn,"screenFlag":"guarantor" }
+      let params = { 'ssn': this.guarantorForm.value.ssn.replace(/-/g, ''),"screenFlag":"guarantor" }
       this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
         console.log(data)
         if (Object.keys(data).length !== 0) {
@@ -385,9 +387,28 @@ export class GuarantorDetailsComponent implements OnInit {
 
     }
   }
-  public PhoneNumFormat(event,flag) {
-    // console.log("++++++++++", event.target.value)
-    var input2 = event.target.value.replace(/\D/g, '');
-     flag=='ssn'?this.guarantorForm.get('ssn').setValue(input2):this.guarantorForm.get('number').setValue(input2);
+  public PhoneNumFormat(event, flag,value?) {
+
+    var input =event!=null? event.target.value:value;
+    if (input != undefined) {
+      let trimmed = input.replace(/\D/g, '');
+      if (trimmed.length > 12) {
+        trimmed = trimmed.substr(0, 12);
+      }
+      trimmed = trimmed.replace(/-/g, '');
+      let numbers = [];
+      numbers.push(trimmed.substr(0, 3));
+      if (trimmed.substr(3, 2) !== "")
+        numbers.push(trimmed.substr(3, 3));
+      if (trimmed.substr(5, 4) != "" && trimmed.length >= 7)
+        numbers.push(trimmed.substr(6, 4));
+
+      if (flag == 'phone') {
+        this.guarantorForm.get('number').setValue( numbers.join('-'));
+      }else if(flag=="ssn"){
+        this.guarantorForm.get('ssn').setValue( numbers.join('-'));
+      }
+
+    }
   }
 }
