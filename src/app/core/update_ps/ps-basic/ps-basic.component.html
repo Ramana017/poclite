@@ -178,7 +178,7 @@
 
                             <div
                                 class="basic-input-container pb-sm-0 nav d-flex align-items-center justify-content-between">
-                                <div class=" w-48 pb-sm-0">
+                                <div class=" w-50 pb-sm-0">
                                     <label class="">
                                         Marital Status<span class="text-danger">*</span>
                                     </label>
@@ -241,7 +241,7 @@
                                 <div class="input-group  ">
                                     <input type="text" formControlName='ssn'
                                         [class.invalid-input]="(f.ssn.invalid && formError)"
-                                        (keyup)="PhoneNumFormat($event,'ssn')" maxlength=9 class="form-control"
+                                        (keyup)="PhoneNumFormat($event,'ssn')" maxlength=11 class="form-control"
                                         aria-label="Case Manager">
                                 </div>
 
@@ -363,7 +363,7 @@
 
                                     <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
                                         <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
+                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()"
                                             type="text" class="form-control">
                                     </div>
                                 </div>
@@ -374,7 +374,7 @@
 
                                     <div class="input-group  " [class.invalid-input]="(f.zipFourCode.invalid && formError)">
                                         <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipFourCode'  id="autocomplete"
+                                            formControlName='zipFourCode'  maxlength='5'
                                             type="text" class="form-control">
                                     </div>
                                 </div>
@@ -402,7 +402,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10' (keyup)='PhoneNumFormat($event,"phone")'
+                                                maxlength='12' (keyup)='PhoneNumFormat($event,"phone")'
                                                 formControlName="number" class="form-control">
                                         </div>
                                     </div>
@@ -432,8 +432,8 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number2.invalid && formError"
-                                                maxlength='10'
-                                                formControlName="number2" class="form-control">
+                                                maxlength='12'
+                                                formControlName="number2" (keyup)='PhoneNumFormat($event,"phone2")' class="form-control">
                                         </div>
                                     </div>
 
@@ -464,8 +464,8 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number3.invalid && formError"
-                                                maxlength='10'
-                                                formControlName="number3" class="form-control">
+                                                maxlength='12'
+                                                formControlName="number3"(keyup)='PhoneNumFormat($event,"phone3")' class="form-control">
                                         </div>
                                     </div>
 
@@ -647,7 +647,7 @@
                             [routerLink]="['/widgets']">Cancel</button>
                     </div>
                     <button type="button" class="next-step btn-next"
-                        (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
+                        (click)="phoneValidation()">save </button>
 
                 </div>
 

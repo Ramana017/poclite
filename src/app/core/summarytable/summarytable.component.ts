@@ -141,19 +141,13 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
     this.tableData = []
     this.selctedItems = [];
     this.exceptionSelected = [];
-    // document.getElementsByTagName('body')[0].style.zoom = '80%';
     var data = sessionStorage.getItem("useraccount");
     this.useraccount = JSON.parse(data);
-    // if (this.useraccount == undefined || null) {
-    //   this._router.navigateByUrl('login')
-
-    // } else
     {
 
       this.userId = this.useraccount.userId;
       this.csssId = this.useraccount.userId;
       this.intialcssvalue = this.useraccount.userName;
-      // console.log(this.todayDate,this.intialStartDate,this.minimumIntialDate)
       this.intialStartDate.setDate(this.todayDate.getDate() - 15);
       this.minimumIntialDate.setDate(this.todayDate.getDate() - 90);
       this.minimumintialdatetwo.setDate(this.todayDate.getDate() - 89);
@@ -246,8 +240,6 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
             needleUpdateSpeed: 1000,
             arcColors: ['green', 'orange', 'red'],
             arcDelimiters: [10, 20],
-            // rangeLabel: ['0', '1323'],
-            // centralLabel: this.gpsExceptionCount.toString(),
           }
           {
             d3.select("#guagecharts").selectAll('svg').remove();
@@ -256,54 +248,46 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.gpsExceptionCount.toString(),
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.gpsExceptionCount);
             GaugeChart.gaugeChart(document.getElementById('invalidGuage'), 150, {
               hasNeedle: true,
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.callerIdExceptionCount.toString(),
+
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.callerIdExceptionCount);
             GaugeChart.gaugeChart(document.getElementById('scheduleGuage'), 150, {
               hasNeedle: true,
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.scheduleVarExceptionCount.toString(),
+
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.scheduleVarExceptionCount);
             GaugeChart.gaugeChart(document.getElementById('clockGuage'), 150, {
               hasNeedle: true,
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.incompleteClockInOutCount.toString(),
+
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.incompleteClockInOutCount);
             GaugeChart.gaugeChart(document.getElementById('travelGuage'), 150, {
               hasNeedle: true,
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.excessiveTtCount.toString(),
+
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.excessiveTtCount);
             GaugeChart.gaugeChart(document.getElementById('mileageGuage'), 150, {
               hasNeedle: true,
               needleColor: 'gray',
               arcColors: ['green', 'orange', 'red'],
               arcDelimiters: [10, 20],
-              // rangeLabel: ['0', '1323'],
-              // centralLabel: this.excessiveMileageCount.toString(),
+
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.excessiveMileageCount);
           }
           console.log(this.tableData.length)
 
         }, error => {
-          // console.log(error);
           if (error) {
             this.datechanger = true;
 
@@ -342,18 +326,14 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
   //method to change previous page
   public prevpage(): void {
     if (this.lowerBound != 1) {
-      // this.previousButton=true;
-      // this.nextButton=true;
       this.lowerBound = this.lowerBound - this.perpage;
       this.upperBound = this.upperBound - this.perpage;
       if (this.lowerBound <= 1) {
         this.lowerBound = 1;
         this.upperBound = this.perpage;
         this.tableData.length = 0;
-        // this.previousButton=false;
         this.tableControl();
       } else {
-        // this.tablelength = 0;
         this.tableControl();
       }
     }
@@ -559,14 +539,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
 
   }
   public exceptionselect() {
-
-    console.log("ramana2")
-
-
     this.pagereset();
-
-
-
   }
   public exceptionDeselect() {
     console.log("ramana1")
@@ -594,11 +567,6 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
     this.selctedItems.length = 0;
     this.dropdownRef.closeDropdown();
     // this.pagereset();
-  }
-
-  public filterchecking() {
-
-    console.log("sssssssssssssssss")
   }
 
 }

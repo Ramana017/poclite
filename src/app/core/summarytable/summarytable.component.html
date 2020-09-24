@@ -1,5 +1,4 @@
 <app-header></app-header>
-<!-- {{tableData.length}} -->
 <div class="summary-wrapper">
     <div class="custum-wrapper">
         <!-- Table start from here   -->
@@ -10,72 +9,34 @@
         <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="gps-box" [ngStyle]="gpsExceptionCount > 5 ?gpsExceptionCount>20?{'background-color':'red'}:{'background-color':'#ff7979'}:{'background-color':'#a1f863'}"> -->
-                    <!-- <h5 class="inner-item-gps">GPS Discrepancy</h5>
-                        <div>
-                            <h6>{{gpsExceptionCount}}</h6>
-                        </div> -->
                     <div id='gpsGuage'></div>
                     <b><p class="f-15 mt-n4">{{gpsExceptionCount}}</p></b>
                     <h5 class="inner-item-gps mt-n3 f-12 ">GPS Discrepancy</h5>
-                    <!-- </div> -->
-
-                    <!-- <ngx-gauge [thresholds]="thressholdConfig" [cap]="round" [aria-label]="gaugeLabel" [thick]=8 [type]="gaugeType" [value]="gpsExceptionCount" [size]=150 [label]="gaugeLabel">
-                    </ngx-gauge> -->
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="gps-box" [ngStyle]="callerIdExceptionCount > 5 ?callerIdExceptionCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
-                        <h5 class="inner-item-id">Invalid Caller ID</h5>
-                        <div>
-                            <h6>{{callerIdExceptionCount}}</h6>
-                        </div> -->
+
                     <div id='invalidGuage'></div>
                     <b><p class="f-12 mt-n4">{{callerIdExceptionCount}}</p></b>
                     <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Caller ID</h5>
-                    <!-- </div> -->
-
 
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="gps-box" [ngStyle]="scheduleVarExceptionCount > 5 ?scheduleVarExceptionCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
-                        <h5 class="inner-item-gps">Schedule Variance</h5>
-                        <div>
-                            <h6>{{scheduleVarExceptionCount}}</h6>
-                        </div>
-                    </div> -->
+
                     <div id='scheduleGuage'></div>
                     <b><p class="f-12 mt-n4">{{scheduleVarExceptionCount}}</p></b>
                     <h5 class="inner-item-gps mt-n3 f-12">Schedule Variance</h5>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="caller-id-box" [ngStyle]="incompleteClockInOutCount > 5 ?incompleteClockInOutCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
-                        <h5 class="inner-item-id pink-box">Missed Clock In/Out</h5>
-                        <div>
-                            <h6>{{incompleteClockInOutCount}}</h6>
-                        </div>
-                    </div> -->
                     <div id='clockGuage'></div>
                     <b><p class="f-15 mt-n4">{{incompleteClockInOutCount}}</p></b>
                     <h5 class="inner-item-gps mt-n3 f-12">Missed Clock In/Out</h5>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="gps-box" [ngStyle]="excessiveTtCount > 5 ?excessiveTtCount>20?{'background-color':'red'}: {'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
-                        <h5 class="inner-item-gps">Excessive TT</h5>
-                        <div>
-                            <h6>{{excessiveTtCount}}</h6>
-                        </div>
-                    </div> -->
                     <div id='travelGuage'></div>
                     <b><p class="f-12 mt-n4"> {{excessiveTtCount}}</p></b>
                     <h5 class="inner-item-gps mt-n3 f-12">Excessive TT</h5>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
-                    <!-- <div class="id-box" [ngStyle]="excessiveMileageCount >5 ? excessiveMileageCount>20?{'background-color':'red'}:{'background-color':'#ff7979'}:{'background-color':'#a1f863'}">
-                        <h5 class="inner-item-id">Excessive Mileage</h5>
-                        <div>
-                            <h6>{{excessiveMileageCount}}</h6>
-                        </div>
-                    </div> -->
 
                     <div id='mileageGuage'></div>
                     <b><p class="f-12 mt-n4">{{excessiveMileageCount}}</p></b>
@@ -96,11 +57,6 @@
                                     <h5 class="mainheading-wrapper">Site</h5>
                                     <div class="input-outter-wrapper dropdown">
                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                                            <!-- <ng-autocomplete [data]="siteList" [searchKeyword]="sitekeyword" placeHolder="code" (inputCleared)="selectFilterEvent('','site')" (selected)='selectFilterEvent($event,"site")' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate">
-                                            </ng-autocomplete>
-                                            <ng-template style="width: 100%;" #itemTemplate let-item>
-                                                <a [innerHTML]="item.siteName"></a>
-                                            </ng-template> -->
                                             <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="selctedItems" (onClose)="siteselect()" (onSelectAll)='siteAllselect()' (onDeSelectAll)="siteDeselect()" (onSelect)="onItemSelect($event)" [settings]="dropdownSettings">
                                             </angular2-multiselect>
 
@@ -194,7 +150,7 @@
                                 <th scope="col " class="sticky-top  table-header-inner-wrapper ">
                                     <h5 class="mainheading-wrapper ">Exception</h5>
                                     <div class="input-outter-wrapper dropdown">
-                                        <angular2-multiselect #ffff [data]="exception" [(ngModel)]="exceptionSelected" (onDeSelect)="exceptionDeselect()" (onClose)="exceptionselect()" (onFilterSelectAll)="filterchecking()" (onSelectAll)="ffff.closeDropdown()" (onDeSelectAll)="this.exceptionDeselectALL()"
+                                        <angular2-multiselect #ffff [data]="exception" [(ngModel)]="exceptionSelected" (onDeSelect)="exceptionDeselect()" (onClose)="exceptionselect()" (onSelectAll)="ffff.closeDropdown()" (onDeSelectAll)="this.exceptionDeselectALL()"
                                             [settings]="exceptiondropdownSettings">
 
                                         </angular2-multiselect>
@@ -236,23 +192,10 @@
                                         </div>
                                         <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 " (click)="correctException(i,4) "><i class="fas fa-tachometer-alt" title="Mileage Exception"></i></div>
                                         <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 " (click)="clockException(i) "><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
-                                        <!-- <div class="icon-wrapper " (click)="correctException(i,5) "><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div> -->
 
                                     </div>
-
-
-                                    <!-- <div class="d-flex ">
-
-                                    </div> -->
                                 </td>
                             </tr>
-                            <!-- <tr *ngIf="tablelength <1 " class="pl-3 no-data-text col-12">
-                                No Data To Display
-
-                                <div >
-                                    No Data To Display
-                                </div>
-                            </tr> -->
                         </tbody>
 
                     </table>
@@ -288,16 +231,3 @@
 
     </div>
 
-    <!-- <button type="button" class="btn btn-primary" (click)="openModalWithClass(template)">Create template modal</button>
-
-    <ng-template #template>
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">Modal</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <app-correctionheader></app-correctionheader>
-        </div>
-    </ng-template> -->
