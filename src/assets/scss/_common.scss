@@ -194,7 +194,9 @@
 .visibility-hidden {
     visibility: hidden;
 }
-
+.min-w-16{
+    min-width: 16% !important;
+}
 
 .color-white {
     color: $white;
@@ -1019,6 +1021,7 @@ select:focus {
 
 .input-container-wrapper,
 .basic-input-container,
+.telephony-input
 .form-input {
     .autocomplete-container {
         box-shadow: none;

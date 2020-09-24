@@ -5,7 +5,6 @@ import { SummarytableComponent } from './core/summarytable/summarytable.componen
 import { ChartsComponent } from './core/charts/charts.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 
-
 import { RegistrationComponent } from './core/create_new_ps/registration/registration.component';
 import { HeaderComponentPS } from './core/create_new_ps/header/header.component';
 import { BasicInfoComponent } from './core/create_new_ps/basic-info/basic-info.component';
@@ -26,7 +25,6 @@ import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony
 
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
-  {path: 'edit-ps',component:EditPsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
 
