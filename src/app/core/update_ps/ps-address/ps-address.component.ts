@@ -174,162 +174,126 @@ public PhoneNumFormat(event, flag, value?) {
   }
 }
 // Code for validating the input for the phone number
-// private phoneValidation() {
-//   let phone1Flag: boolean;
-//   let phone2Flag: boolean;
-//   let phone3Flag: boolean;
-//   if (
-//     (this.psAddressForm.value.number != undefined || null) &&
-//     this.psAddressForm.value.number.length > 0
-//   ) {
-//     console.log('phone1', this.psAddressForm.value.number.length);
-//     if (this.psAddressForm.value.number.length == 12) {
-//       var phone1areacode = this.psAddressForm.value.number.slice(0, 3);
-//       var phone1exchangecode = this.psAddressForm.value.number.slice(4, 7);
-//       if (
-//         phone1areacode >= 1 &&
-//         phone1areacode >= 199 &&
-//         phone1exchangecode >= 1 &&
-//         phone1exchangecode >= 199
-//       ) {
-//         phone1Flag = false;
-//       } else {
-//         // phone1Flag = true;
-//         if (phone1areacode <= 1 || phone1areacode <= 199) {
-//           console.log('area code missing');
-//           this.alertbox(
-//             'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
-//           );
-//         }
-//         if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
-//           console.log('area exchange code missing');
+private phoneValidation() {
+  let phone1Flag: boolean;
+  let phone2Flag: boolean;
+  let phone3Flag: boolean;
+  if (
+    (this.psAddressForm.value.number != undefined || null) &&
+    this.psAddressForm.value.number.length > 0
+  ) {
+    console.log('phone1', this.psAddressForm.value.number.length);
+    if (this.psAddressForm.value.number.length == 12) {
+      var phone1areacode = this.psAddressForm.value.number.slice(0, 3);
+      var phone1exchangecode = this.psAddressForm.value.number.slice(4, 7);
+      if (
+        phone1areacode >= 1 &&
+        phone1areacode >= 199 &&
+        phone1exchangecode >= 1 &&
+        phone1exchangecode >= 199
+      ) {
+        phone1Flag = false;
+      } else {
+        // phone1Flag = true;
+        if (phone1areacode <= 1 || phone1areacode <= 199) {
+          console.log('area code missing');
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
+          );
+        }
+        if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+          console.log('area exchange code missing');
 
-//           this.alertbox(
-//             'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
-//           );
-//         }
-//       }
-//       console.log('phone1 flag is', phone1Flag);
-//     } else {
-//       phone1Flag = true;
-//       this.alertbox('Phone1 should be 10 digits');
-//     }
-//   }
-//   if (
-//     (this.psAddressForm.value.number2 != undefined || null) &&
-//     this.psAddressForm.value.number2.length > 0
-//   ) {
-//     console.log('phone2', this.psAddressForm.value.number2.length);
-//     if (this.psAddressForm.value.number2.length == 12) {
-//       var phone2areacode = this.psAddressForm.value.number2.slice(0, 3);
-//       var phone2exchangecode = this.psAddressForm.value.number2.slice(4, 7);
-//       if (
-//         phone2areacode >= 1 &&
-//         phone2areacode >= 199 &&
-//         phone2exchangecode >= 1 &&
-//         phone2exchangecode >= 199
-//       ) {
-//         phone2Flag = false;
-//       } else {
-//         phone2Flag = true;
-//         if (phone2areacode <= 1 || phone2areacode <= 199) {
-//           this.alertbox(
-//             'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
-//           );
-//         }
-//         if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
-//           this.alertbox(
-//             'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
-//           );
-//         }
-//       }
-//       console.log('phone2 flag is', phone2Flag);
-//     } else {
-//       phone2Flag = true;
-//       this.alertbox('Phone 2 should be 10 digits');
-//     }
-//   }
-//   if (
-//     (this.psAddressForm.value.number3 != undefined || null) &&
-//     this.psAddressForm.value.number3.length > 0
-//   ) {
-//     console.log('phone3', this.psAddressForm.value.number3.length);
-//     if (this.psAddressForm.value.number3.length == 12) {
-//       var phone3areacode = this.psAddressForm.value.number3.slice(0, 3);
-//       var phone3exchangecode = this.psAddressForm.value.number3.slice(4, 7);
-//       if (
-//         phone3areacode >= 1 &&
-//         phone3areacode >= 199 &&
-//         phone3exchangecode >= 1 &&
-//         phone3exchangecode >= 199
-//       ) {
-//         phone3Flag = false;
-//       } else {
-//         phone3Flag = true;
-//         if (phone3areacode <= 1 || phone3areacode <= 199) {
-//           this.alertbox(
-//             'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
-//           );
-//         }
-//         if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
-//           this.alertbox(
-//             'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
-//           );
-//         }
-//       }
-//       console.log('phone1 flag is', phone3Flag);
-//     } else {
-//       phone3Flag = true;
-//       this.alertbox('Phone3 should be 10 digits');
-//     }
-//   }
-//   if (!phone3Flag && !phone2Flag && !phone1Flag) {
-//     let ssnLength = this.psAddressForm.value.ssn.length;
-//     ssnLength == 0 ? this.saveAddressForm() : this.checkSSn();
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+          );
+        }
+      }
+      console.log('phone1 flag is', phone1Flag);
+    } else {
+      phone1Flag = true;
+      this.alertbox('Phone1 should be 10 digits');
+    }
+  }
+  if (
+    (this.psAddressForm.value.number2 != undefined || null) &&
+    this.psAddressForm.value.number2.length > 0
+  ) {
+    console.log('phone2', this.psAddressForm.value.number2.length);
+    if (this.psAddressForm.value.number2.length == 12) {
+      var phone2areacode = this.psAddressForm.value.number2.slice(0, 3);
+      var phone2exchangecode = this.psAddressForm.value.number2.slice(4, 7);
+      if (
+        phone2areacode >= 1 &&
+        phone2areacode >= 199 &&
+        phone2exchangecode >= 1 &&
+        phone2exchangecode >= 199
+      ) {
+        phone2Flag = false;
+      } else {
+        phone2Flag = true;
+        if (phone2areacode <= 1 || phone2areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
+          );
+        }
+        if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+          );
+        }
+      }
+      console.log('phone2 flag is', phone2Flag);
+    } else {
+      phone2Flag = true;
+      this.alertbox('Phone 2 should be 10 digits');
+    }
+  }
+  if (
+    (this.psAddressForm.value.number3 != undefined || null) &&
+    this.psAddressForm.value.number3.length > 0
+  ) {
+    console.log('phone3', this.psAddressForm.value.number3.length);
+    if (this.psAddressForm.value.number3.length == 12) {
+      var phone3areacode = this.psAddressForm.value.number3.slice(0, 3);
+      var phone3exchangecode = this.psAddressForm.value.number3.slice(4, 7);
+      if (
+        phone3areacode >= 1 &&
+        phone3areacode >= 199 &&
+        phone3exchangecode >= 1 &&
+        phone3exchangecode >= 199
+      ) {
+        phone3Flag = false;
+      } else {
+        phone3Flag = true;
+        if (phone3areacode <= 1 || phone3areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
+          );
+        }
+        if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+          );
+        }
+      }
+      console.log('phone1 flag is', phone3Flag);
+    } else {
+      phone3Flag = true;
+      this.alertbox('Phone3 should be 10 digits');
+    }
+  }
+  if (!phone3Flag && !phone2Flag && !phone1Flag) {
 
-//     console.log('all are valid phone nums');
-//   }
-// }
+    console.log('all are valid phone nums');
+  }
+}
  // Code of alert for invalid phone number input
 private alertbox(string) {
   var message = 'Invalid Number';
   swal.fire(message, string, 'warning');
 }
-// Code for validating the ssn
-private checkSSn() {
-  if (this.psAddressForm.value.ssn.replace(/-/g, '') == 999999999) {
-    console.log('ssn ERRor');
-    swal.fire({
-      title: 'Invalid SSN',
-      text: "SSN should not contain all 9's",
-      icon: 'warning',
-      confirmButtonText: 'Ok',
-      allowOutsideClick: false,
-    });
-  } else {
-    try {
-      let params = { ssn: this.psAddressForm.value.ssn, screenFlag: 'ps' };
-      this.service
-        .validateSSNNumber(JSON.stringify(params))
-        .subscribe((data) => {
-          console.log(data);
-          if (Object.keys(data).length !== 0) {
-            let data2: any = data;
 
-            swal.fire({
-              title: 'Invalid SSN',
-              text: data2.ErrorMsg,
-              icon: 'error',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false,
-            });
-          } else {
-            this.saveAddressForm();
-          }
-        });
-    } catch (error) {}
-  }
-}
    // Code for saving the contact form
    private saveAddressForm() {
     const jsonObj = {
