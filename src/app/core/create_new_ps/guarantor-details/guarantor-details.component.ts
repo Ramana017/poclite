@@ -172,7 +172,7 @@ export class GuarantorDetailsComponent implements OnInit {
           if (Object.keys(this.guarantorResponse).length !== 0) {
             sessionStorage.setItem('guarantorDetails', JSON.stringify(this.guarantorResponse));
             this.service.showSuccess('PS Gurantor saved Succssfully!');
-            this.router.navigateByUrl('registration-re/child-admission')
+            this.router.navigateByUrl('registration/admission')
           }
         });
       } catch (error) {
@@ -311,7 +311,7 @@ export class GuarantorDetailsComponent implements OnInit {
     this.addressCheck(event, dropdown);
   }
   public getPreviousBasic(): void {
-    this.router.navigateByUrl('registration-re/child-basic')
+    this.router.navigateByUrl('registration/basic')
   }
 
   // for update data

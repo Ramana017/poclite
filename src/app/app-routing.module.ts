@@ -20,6 +20,7 @@ import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
+import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 
 
 
@@ -32,23 +33,23 @@ const routes: Routes = [
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
-    path: "registration-re", canActivate:[AuthGuard],canActivateChild:[AuthGuard], component: RegistrationComponent,
+    path: "registration", canActivate:[AuthGuard],canActivateChild:[AuthGuard], component: RegistrationComponent,
     children: [
-      { path: "child-guarantor", component: GuarantorDetailsComponent },
-      { path: "child-admission", component: AdmissionDetailsComponent },
-      { path: "child-payorplan", component: PayorPlanDetailsComponent },
-      { path: "child-basic", component: BasicInfoComponent },
-      { path: "child-authorization", component: AuthorizationComponent },
+      { path: "guarantor", component: GuarantorDetailsComponent },
+      { path: "admission", component: AdmissionDetailsComponent },
+      { path: "payorplan", component: PayorPlanDetailsComponent },
+      { path: "basic", component: BasicInfoComponent },
+      { path: "authorization", component: AuthorizationComponent },
     ]
   },
   {
-    path: "edit-ps", canActivate:[AuthGuard], component: EditPsComponent,
+    path: "update", canActivate:[AuthGuard], component: EditPsComponent,
     children: [
-      { path: "child-ps", component: PsBasicComponent },
-      { path: "child-guarantor", component: PsGurantorComponent },
-      { path: "child-contact", component: PsContactsComponent },
-      { path: "child-addresses", component:PsAddressComponent },
-      // { path: "child-authorization", component: AuthorizationComponent },
+      { path: "ps", component: PsBasicComponent },
+      { path: "guarantor", component: PsGurantorComponent },
+      { path: "contact", component: PsContactsComponent },
+      { path: "addresses", component:PsAddressComponent },
+      { path: "telephony", component: PsTelephonyComponent },
     ]
   },
   { path: "page-not-found", component: PageNotFoundComponent }

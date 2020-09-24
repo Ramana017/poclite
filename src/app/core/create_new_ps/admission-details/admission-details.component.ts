@@ -440,13 +440,13 @@ export class AdmissionDetailsComponent implements OnInit {
             // console.log("datasaved successfully");
             // sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
           //  sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
-            // this.router.navigateByUrl('registration-re/child-payorplan');
+            // this.router.navigateByUrl('registration/payorplan');
             if (Object.keys(this.admissionRes).length > 0) {
               console.log("datasaved successfully");
               sessionStorage.setItem('AdmissionDetails', JSON.stringify(this.admissionRes));
               sessionStorage.setItem('officeId', JSON.stringify(this.officeId));
               this.service.showSuccess('Admission created Succssfully!');
-                this.router.navigateByUrl('registration-re/child-payorplan');
+                this.router.navigateByUrl('registration/payorplan');
             }
           });
 

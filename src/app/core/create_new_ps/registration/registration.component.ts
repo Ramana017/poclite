@@ -21,19 +21,19 @@ ngOnInit() {
 }
 activeclass(){
 let currenturl= this._router.routerState.snapshot.url
-if(currenturl=='/registration-re/child-basic'){
+if(currenturl=='/registration/basic'){
   this.activeArray=[true,false,false,false,false]
 
-}else if(currenturl=='/registration-re/child-guarantor'){
+}else if(currenturl=='/registration/guarantor'){
 this.activeArray=[false,true,false,false,false]
 }
-else if(currenturl=='/registration-re/child-admission'){
+else if(currenturl=='/registration/admission'){
 this.activeArray=[false,false,true,false,false]
 }
-else if(currenturl=='/registration-re/child-payorplan'){
+else if(currenturl=='/registration/payorplan'){
  this.activeArray=[false,false,false,true,false]
 }
-else if(currenturl=='/registration-re/child-authorization'){
+else if(currenturl=='/registration/authorization'){
 this.activeArray=[false,false,false,false,true];
 }
 

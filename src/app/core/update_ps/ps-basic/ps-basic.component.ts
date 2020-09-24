@@ -233,12 +233,11 @@ export class PsBasicComponent implements OnInit {
             this.modelref.hide();
           } else {
             console.log(JSON.stringify(jsonObj));
-            sessionStorage.setItem(
-              'psDetails',
-              JSON.stringify(this.SaveResponse)
-            );
-            this.service.showSuccess('PS saved Succssfully!');
-            this.router.navigateByUrl('registration-re/child-guarantor');
+            // sessionStorage.setItem(
+            //   'psDetails',
+            //   JSON.stringify(this.SaveResponse)
+            // );
+            this.service.showSuccess('PS Updated Succssfully!');
           }
         }
       });
@@ -346,21 +345,11 @@ export class PsBasicComponent implements OnInit {
         this.countyId = responseFlag ? data.countyId : null;
         this.timeZoneId = responseFlag ? data.timeZoneId : null;
         this.countryId = responseFlag ? data.countryId : null;
-        this.basicEditForm
-          .get('city')
-          .setValue(responseFlag ? this.zipDetails.city : '');
-        this.basicEditForm
-          .get('country')
-          .setValue(responseFlag ? this.zipDetails.country : '');
-        this.basicEditForm
-          .get('county')
-          .setValue(responseFlag ? this.zipDetails.county : '');
-        this.basicEditForm
-          .get('timeZone')
-          .setValue(responseFlag ? this.zipDetails.timeZone : '');
-        this.basicEditForm
-          .get('state')
-          .setValue(responseFlag ? this.zipDetails.state : '');
+        this.basicEditForm .get('city').setValue(responseFlag ? this.zipDetails.city : '');
+        this.basicEditForm.get('country').setValue(responseFlag ? this.zipDetails.country : '');
+        this.basicEditForm.get('county').setValue(responseFlag ? this.zipDetails.county : '');
+        this.basicEditForm.get('timeZone').setValue(responseFlag ? this.zipDetails.timeZone : '');
+        this.basicEditForm.get('state').setValue(responseFlag ? this.zipDetails.state : '');
       });
     }
   }
