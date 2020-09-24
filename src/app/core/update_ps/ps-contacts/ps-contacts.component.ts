@@ -269,10 +269,10 @@ export class PsContactsComponent implements OnInit {
         this.contactForm.get('genderId').setValue('');
       }
     }
-   
+
     if (field === 'relationshipList') {
       this.contactForm.get('relationshipList').setValue(flag ? event.id : '');
-     
+
 
       // this.relationName = event.label;
       // this.relationId = event.id;
@@ -318,38 +318,36 @@ export class PsContactsComponent implements OnInit {
     const zip = this.contactForm.get('zipcode').value;
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
-        // let responseFlag = Object.keys(data).length !== 0 ? true : false;
-        // responseFlag
-        //   ? (this.zipDetails = data)
-        //   : swal.fire({
-        //       title: 'Invalid Zip Code',
-        //       text: 'Please enter a valid Zip code.',
-        //       icon: 'warning',
-        //       confirmButtonText: 'Ok',
-        //       allowOutsideClick: false,
-        //     });
-        // console.log(data);
-        // this.stateId = responseFlag ? data.stateId : null;
-        // this.countyId = responseFlag ? data.countyId : null;
-        // this.timeZoneId = responseFlag ? data.timeZoneId : null;
-        // this.countryId = responseFlag ? data.countryId : null;
-        // this.contactForm
-        //   .get('city')
-        //   .setValue(responseFlag ? this.zipDetails.city : '');
-        // this.contactForm
-        //   .get('country')
-        //   .setValue(responseFlag ? this.zipDetails.country : '');
-        // this.contactForm
-        //   .get('county')
-        //   .setValue(responseFlag ? this.zipDetails.county : '');
-        // this.contactForm
-        //   .get('timeZone')
-        //   .setValue(responseFlag ? this.zipDetails.timeZone : '');
-        // this.contactForm
-        //   .get('state')
-        //   .setValue(responseFlag ? this.zipDetails.state : '');
-        console.log(data)
-        console.log(zip)
+        let responseFlag = Object.keys(data).length !== 0 ? true : false;
+        responseFlag
+          ? (this.zipDetails = data)
+          : swal.fire({
+              title: 'Invalid Zip Code',
+              text: 'Please enter a valid Zip code.',
+              icon: 'warning',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false,
+            });
+        console.log(data);
+        this.stateId = responseFlag ? data.stateId : null;
+        this.countyId = responseFlag ? data.countyId : null;
+        this.timeZoneId = responseFlag ? data.timeZoneId : null;
+        this.countryId = responseFlag ? data.countryId : null;
+        this.contactForm
+          .get('city')
+          .setValue(responseFlag ? this.zipDetails.city : '');
+        this.contactForm
+          .get('country')
+          .setValue(responseFlag ? this.zipDetails.country : '');
+        this.contactForm
+          .get('county')
+          .setValue(responseFlag ? this.zipDetails.county : '');
+        this.contactForm
+          .get('timeZone')
+          .setValue(responseFlag ? this.zipDetails.timeZone : '');
+        this.contactForm
+          .get('state')
+          .setValue(responseFlag ? this.zipDetails.state : '');
       });
     }
   }
