@@ -13,10 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./ps-basic.component.sass'],
 })
 export class PsBasicComponent implements OnInit {
-  // constructor() { }
 
-  // ngOnInit(): void {
-  // }
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
@@ -54,13 +51,9 @@ export class PsBasicComponent implements OnInit {
     showCheckbox: true,
   };
   public currentDate: Date = new Date();
-  public phoneNUmber;
-  public phoneNUmber2;
-  public phoneNUmber3;
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
-  // tslint:disable-next-line: max-line-length
   constructor(
     private fb: FormBuilder,
     public modalService: BsModalService,
@@ -142,9 +135,6 @@ export class PsBasicComponent implements OnInit {
       : '';
     this.mappedArray = [];
     this.formError = true;
-    this.phoneNUmber = this.basicEditForm.value.number;
-    this.phoneNUmber2 = this.basicEditForm.value.number2;
-    this.phoneNUmber3 = this.basicEditForm.value.number3;
     this.mappedArray =
       this.siteSelectedItems.length > 0
         ? this.siteSelectedItems.map((a) => a.id)
@@ -210,7 +200,7 @@ export class PsBasicComponent implements OnInit {
       officeId: this.siteId,
       mappedOfficeIds: this.mappedArray.toString(),
       updatedUserId: this.userId,
-      middleName:this.basicEditForm.value.middleName,
+      middleName: this.basicEditForm.value.middleName,
       aliasName: this.basicEditForm.value.aliasName,
       zip4Code: this.basicEditForm.value.zip4Code,
       phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
@@ -218,7 +208,7 @@ export class PsBasicComponent implements OnInit {
       phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
       phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
       fax: this.basicEditForm.value.fax,
-      email:this.basicEditForm.value.email,
+      email: this.basicEditForm.value.email,
       directions: this.basicEditForm.value.directions,
     };
     console.log(JSON.stringify(jsonObj));
@@ -345,21 +335,30 @@ export class PsBasicComponent implements OnInit {
         this.countyId = responseFlag ? data.countyId : null;
         this.timeZoneId = responseFlag ? data.timeZoneId : null;
         this.countryId = responseFlag ? data.countryId : null;
-        this.basicEditForm .get('city').setValue(responseFlag ? this.zipDetails.city : '');
-        this.basicEditForm.get('country').setValue(responseFlag ? this.zipDetails.country : '');
-        this.basicEditForm.get('county').setValue(responseFlag ? this.zipDetails.county : '');
-        this.basicEditForm.get('timeZone').setValue(responseFlag ? this.zipDetails.timeZone : '');
-        this.basicEditForm.get('state').setValue(responseFlag ? this.zipDetails.state : '');
+        this.basicEditForm
+          .get('city')
+          .setValue(responseFlag ? this.zipDetails.city : '');
+        this.basicEditForm
+          .get('country')
+          .setValue(responseFlag ? this.zipDetails.country : '');
+        this.basicEditForm
+          .get('county')
+          .setValue(responseFlag ? this.zipDetails.county : '');
+        this.basicEditForm
+          .get('timeZone')
+          .setValue(responseFlag ? this.zipDetails.timeZone : '');
+        this.basicEditForm
+          .get('state')
+          .setValue(responseFlag ? this.zipDetails.state : '');
       });
     }
   }
-  // to update Functionality
+  //   to update Functionality
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     // this.psId = this.previousPsDetails.psId;
     // let parameters = { 'psId': this.previousPsDetails.psId }
-    this.psId = 23448;
-    let parameters = { psId: 23448 };
+    let parameters = { psId: 16245 };
     try {
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe((res) => {
         this.basicPreviousDetails = res;
@@ -434,9 +433,8 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.addressLine2);
         // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
         // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.basicEditForm
-          .get('number')
-          .setValue(this.basicPreviousDetails.PHONE);
+       this.PhoneNumFormat(null,'phone',this.basicPreviousDetails.PHONE);
+       this.PhoneNumFormat(null,'ssn',this.basicPreviousDetails.ssn);
         this.basicEditForm
           .get('zipcode')
           .setValue(this.basicPreviousDetails.ZIPCODE);

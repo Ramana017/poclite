@@ -1,28 +1,27 @@
 <!-- <p>ps-contacts works!</p> -->
 <!-- <p>ps-basic works!</p> -->
-<!-- <app-header></app-header> -->
-<!-- <div class="container-wrapper">
+ <div class="container-wrapper">
     <div class="ps-registration-tabs-container">
 
         <div class="bg-grey-l p-3">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              
+
                 <section class="d-flex  justify-content-between  basic-container">
                     <div>
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Contact Details</h4>
                         <div class="d-flex  border-2">
                             <form class="d-flex align-items-center nav "
-                            [formGroup]="basicEditForm" (ngSubmit)="onSubmit()">
+                            [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                             <div class=" basic-input-container">
                                 <label class="text-capital">
                                     Contact Type<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError"
-                                        formControlName="lastName" class="form-control lastName text-capital">
+                                    <input type="text"
+                                         class="form-control lastName text-capital" formControlName="contactType">
                                 </div>
-                                <div *ngIf="f.lastName.invalid && formError" class="errors">
+                                <div  class="errors">
                                 </div>
                             </div>
                             <div class=" basic-input-container">
@@ -31,10 +30,19 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError"
-                                        formControlName="lastName" class="form-control lastName text-capital">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                   >
+                                    <ng-autocomplete #relationName [data]="relationshipList"
+
+                                        (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword"
+                                        [itemTemplate]="itemTemplate1">
+                                    </ng-autocomplete>
+                                    <ng-template style="width: 100%;" #itemTemplate1 let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
                                 </div>
-                                <div *ngIf="f.lastName.invalid && formError" class="errors">
+                                </div>
+                                <div  class="errors">
                                 </div>
                             </div>
 
@@ -83,12 +91,12 @@
                                         Alias
                                     </label>
                                     <div class="input-group  ">
-                                        <input type="text" 
+                                        <input type="text"
                                             placeholder="" formControlName="alias"
                                             class="form-control" aria-label="Case Manager" >
 
                                     </div>
-                                   
+
                                 </div>
 
 
@@ -117,7 +125,7 @@
                                     </div>
 
                                     <div *ngIf="f.firstName.invalid && formError && f.firstName.errors" class="errors">
-                                       
+
                                     </div>
                                 </div>
                                 <div class="w-48">
@@ -145,11 +153,11 @@
 
 
 
-                           
+
 
                             <div
                                 class="basic-input-container pb-sm-0 nav d-flex align-items-center justify-content-between">
-                            
+
                                 <div class="w-48">
                                     <label class="">
                                         Date of Birth<span class="text-danger">*</span>
@@ -167,7 +175,7 @@
                                     <label class="">
                                         SSN
                                     </label>
-    
+
                                     <div class="input-group  ">
                                         <input type="text" formControlName='ssn'
                                             [class.invalid-input]="(f.ssn.invalid && formError)"
@@ -179,15 +187,15 @@
                             </div>
                             <div
                             class="basic-input-container pb-sm-0 nav d-flex align-items-center justify-content-between">
-                        
+
                             <div class="w-48">
                                 <label class="">
                                     Phone<span class="text-danger">*</span>
                                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.dob.invalid && formError"
-                                       formControlName="dob"
-                                        class="form-control" aria-label="Case Manager" bsDatepicker>
+                                    <input type="text" [class.is-invalid]="f.primaryPhNumber.invalid && formError"
+                                       formControlName="primaryPhNumber"
+                                        class="form-control" aria-label="Case Manager" >
 
                                 </div>
                                 <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
@@ -197,7 +205,7 @@
                                 <label class="">
                                     Active
                                 </label>
-        
+
                                 <div class="check-box-wrapper">
                                     <div class="on-off-toggle">
                                         <input class="on-off-toggle__input" type="checkbox"
@@ -208,31 +216,31 @@
                             </div>
 
                         </div>
-                           
+
 
                         </form>
-                        <form [formGroup]="basicEditForm" class="direction">
+                        <form [formGroup]="contactForm" class="direction">
                             <label class="color-black m-0">
                                Notes
                             </label>
                             <div class="form-input">
                                 <div class="">
-                                    <textarea rows="2" class="textarea form-control note-text-area"></textarea>
+                                    <textarea rows="2" class="textarea form-control note-text-area" formControlName="notes"></textarea>
                                 </div>
                             </div>
                         </form>
                         </div>
-                        
+
                     </div>
-                   
-                  
+
+
                 </section>
 
 
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
                 <section class="d-flex  justify-content-between  basic-container">
                     <form class="d-flex  justify-content-between border-2"
-                        [formGroup]="basicEditForm">
+                        [formGroup]="contactForm">
                         <div  class="d-flex align-items-center nav justify-content-between">
                             <div class="basic-input-container">
                                 <label class="">
@@ -262,8 +270,8 @@
                                     Address Line #1<span class="text-danger">*</span>
                                 </label>
 
-                                <div class="input-group  " [class.invalid-input]="(f.lane.invalid && formError)">
-                                    <input type="text" formControlName="lane" class="form-control">
+                                <div class="input-group  " [class.invalid-input]="(f.addressLine1.invalid && formError)">
+                                    <input type="text" formControlName="addressLine1" class="form-control">
                                 </div>
 
                             </div>
@@ -277,7 +285,7 @@
                                 </div>
 
                             </div>
-                            
+
                             <div class="basic-input-container nav d-flex align-items-center justify-content-between pr-sm-0">
                                 <div class=" w-48 pb-sm-0">
                                     <label class="">
@@ -285,8 +293,8 @@
                                     </label>
 
                                     <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                        <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
+                                        <input  class="form-control "
+                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()"
                                             type="text" class="form-control">
                                     </div>
                                 </div>
@@ -295,10 +303,10 @@
                                         Zip+4 Code
                                     </label>
 
-                                    <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                        <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
-                                            type="text" class="form-control">
+                                    <div class="input-group  " [class.invalid-input]="(f.zipFourCode.invalid && formError)">
+                                        <input  class="form-control "
+                                            formControlName='zipFourCode'
+                                            type="number" class="form-control">
                                     </div>
                                 </div>
 
@@ -325,7 +333,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10' (keyup)='PhoneNumFormat($event,"phone")'
+                                                maxlength='10'
                                                 formControlName="number" class="form-control">
                                         </div>
                                     </div>
@@ -355,14 +363,14 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number2.invalid && formError"
-                                                maxlength='10' 
+                                                maxlength='10'
                                                 formControlName="number2" class="form-control">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div *ngIf="f.number2.invalid && f.number2.touched && f.number2.errors" class="errors">
-                                   
+
                                 </div>
                             </div>
                             <div class=" m-0  basic-input-container phone-container ">
@@ -386,14 +394,14 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number3.invalid && formError"
-                                                maxlength='10' 
+                                                maxlength='10'
                                                 formControlName="number3" class="form-control">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div *ngIf="f.number3.invalid && f.number3.touched && f.number3.errors" class="errors">
-                                  
+
                                 </div>
                             </div>
 
@@ -405,7 +413,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control"
                                             [class.is-invalid]="f.city.invalid && formError" formControlName="city"
-                                            aria-label="date" disabled=true>
+                                             disabled=true>
 
                                     </div>
                                 </div>
@@ -415,7 +423,7 @@
                                     </label>
                                     <div class="input-group ">
                                         <input type="text" class="form-control "
-                                            [class.is-invalid]="f.state.invalid && formError" aria-label="date"
+                                            [class.is-invalid]="f.state.invalid && formError"
                                             formControlName="state" disabled="true">
                                     </div>
                                 </div>
@@ -465,7 +473,7 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text"  
+                                    <input type="text"
                                          formControlName="fax"
                                         class="form-control">
                                 </div>
@@ -477,28 +485,28 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text"  
+                                    <input type="text"
                                          formControlName="email"
                                         class="form-control">
                                 </div>
 
                             </div>
-                           
+
                         </div>
-                        <form [formGroup]="basicEditForm" class="direction">
+                        <form [formGroup]="contactForm" class="direction">
                             <label class="color-black m-0">
                                Directions
                             </label>
                             <div class="">
                                 <div class="form-input">
-                                    <textarea rows="2" class="textarea form-control"></textarea>
+                                    <textarea rows="2" class="textarea form-control" formControlName="directions"></textarea>
                                 </div>
                             </div>
                         </form>
-                   
+
                     </form>
-                
-                   
+
+
                     </section>
                 <div class="next justify-content-between nav mt-3">
                     <div class="previous">
@@ -539,7 +547,7 @@
                 <tbody>
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
@@ -547,7 +555,7 @@
                         </td>
 
                         <td class="border-right form-input border-bottom">
-                           
+
                             aasa
                         </td>
                         <td class="border-right form-input border-bottom">
@@ -566,7 +574,7 @@
 
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
@@ -574,7 +582,7 @@
                         </td>
 
                         <td class="border-right form-input border-bottom">
-                           
+
                             aasa
                         </td>
                         <td class="border-right form-input border-bottom">
@@ -593,7 +601,7 @@
 
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
@@ -601,7 +609,7 @@
                         </td>
 
                         <td class="border-right form-input border-bottom">
-                           
+
                             aasa
                         </td>
                         <td class="border-right form-input border-bottom">
@@ -637,4 +645,4 @@
 
 <ng-template #notFoundTemplate let-notFound>
     <div [innerHTML]="notFound" class="text-dark"></div>
-</ng-template> -->
+</ng-template>
