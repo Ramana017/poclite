@@ -13,10 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./ps-basic.component.sass'],
 })
 export class PsBasicComponent implements OnInit {
-  // constructor() { }
 
-  // ngOnInit(): void {
-  // }
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
@@ -54,13 +51,9 @@ export class PsBasicComponent implements OnInit {
     showCheckbox: true,
   };
   public currentDate: Date = new Date();
-  public phoneNUmber;
-  public phoneNUmber2;
-  public phoneNUmber3;
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
-  // tslint:disable-next-line: max-line-length
   constructor(
     private fb: FormBuilder,
     public modalService: BsModalService,
@@ -142,9 +135,6 @@ export class PsBasicComponent implements OnInit {
       : '';
     this.mappedArray = [];
     this.formError = true;
-    this.phoneNUmber = this.basicEditForm.value.number;
-    this.phoneNUmber2 = this.basicEditForm.value.number2;
-    this.phoneNUmber3 = this.basicEditForm.value.number3;
     this.mappedArray =
       this.siteSelectedItems.length > 0
         ? this.siteSelectedItems.map((a) => a.id)
