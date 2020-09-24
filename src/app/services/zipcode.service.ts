@@ -127,9 +127,13 @@ export class ZipcodeService {
     this.getUrl();
     return this.http.get(this.url + '/common/getLookupsData?lookupNames=address_type,phone_type,relationship,occupation,gender').pipe(catchError(this.errorHandler));
   }
-  public getContactsData(): Observable<any> {
+  public getContactLookups(): Observable<any> {
     this.getUrl();
     return this.http.get(this.url + '/common/getLookupsData?lookupNames=address_type,salutation,maritial_status,phone_type,relationship,occupation,gender').pipe(catchError(this.errorHandler));
+  }
+  public getEditGuarantorLookups(): Observable<any> {
+    this.getUrl();
+    return this.http.get(this.url + '/common/getLookupsData?lookupNames=address_type,salutation,phone_type,relationship,occupation').pipe(catchError(this.errorHandler));
   }
   public validateSSNNumber(params){
     this.getUrl();

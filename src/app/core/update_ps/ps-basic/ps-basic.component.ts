@@ -92,10 +92,11 @@ export class PsBasicComponent implements OnInit {
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
       middleName: [''],
+      primelang: ['',Validators.required],
       alias: [''],
       site: [''],
-      language: ['', Validators.required],
-      languageId: ['', Validators.required],
+      languageList: [''],
+      languageId: ['' ],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -140,7 +141,7 @@ export class PsBasicComponent implements OnInit {
         ? this.siteSelectedItems.map((a) => a.id)
         : [0];
     let siteFlag = this.mappedArray.includes(this.siteId);
-    if (this.basicEditForm.valid && siteFlag) {
+    if (this.basicEditForm.valid ) {
       this.phoneValidation();
     } else if (
       this.basicEditForm.invalid ||
@@ -164,16 +165,7 @@ export class PsBasicComponent implements OnInit {
       });
     }
   }
-  // public getUserOfficeList(): void {
-  //   let jsonObj = { 'userId': this.userId };
 
-  //   this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
-  //     this.officeList = data;
-  //     console.log(this.officeList);
-  //     this.userMappedOffices = this.officeList.userMappedOffices;
-
-  //   });
-  // }
   private saveBasic() {
     const jsonObj = {
       psId: this.psId,
@@ -238,6 +230,10 @@ export class PsBasicComponent implements OnInit {
       this.lookupDetails = data;
       console.log(this.lookupDetails);
       this.LanguageList = this.lookupDetails.language;
+      console.log( this.lookupDetails.language);
+
+      console.log(this.LanguageList);
+
       this.saluationList = this.lookupDetails.salutation;
       this.addressTypeList = this.lookupDetails.addressType;
       this.maritalStatusList = this.lookupDetails.maritialStatus;
@@ -313,6 +309,7 @@ export class PsBasicComponent implements OnInit {
       flag
         ? this.basicEditForm.get('languageId').setValue(event.id)
         : this.basicEditForm.get('languageId').setValue('');
+        console.log(event)
     }
   }
 
@@ -387,7 +384,7 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.raceId);
         this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
         this.basicEditForm
-          .get('language')
+          .get('languageList')
           .setValue(this.basicPreviousDetails.language);
         this.basicEditForm
           .get('languageId')
@@ -460,7 +457,7 @@ export class PsBasicComponent implements OnInit {
     this.siteId = null;
     this.basicEditForm.get('siteName').setValue('');
   }
-
+// Setting a format for phone numbers
   public PhoneNumFormat(event, flag, value?) {
     var input = event != null ? event.target.value : value;
     if (input != undefined) {
@@ -486,7 +483,7 @@ export class PsBasicComponent implements OnInit {
       }
     }
   }
-
+// Code for validating the input for the phone number
   private phoneValidation() {
     let phone1Flag: boolean;
     let phone2Flag: boolean;
@@ -603,10 +600,12 @@ export class PsBasicComponent implements OnInit {
       console.log('all are valid phone nums');
     }
   }
+   // Code of alert for invalid phone number input
   private alertbox(string) {
     var message = 'Invalid Number';
     swal.fire(message, string, 'warning');
   }
+  // Code for validating the ssn
   private checkSSn() {
     if (this.basicEditForm.value.ssn.replace(/-/g, '') == 999999999) {
       console.log('ssn ERRor');

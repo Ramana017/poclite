@@ -14,14 +14,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./ps-contacts.component.sass']
 })
 export class PsContactsComponent implements OnInit {
-
+// Variables used in code 
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
   public officeList: any;
   public contactForm: FormGroup;
   public lookupDetails: any;
-  public saluationList: any;
+  public salutationList: any;
   public addressTypeList: any;
   public maritalStatusList: any;
   public relationshipList: any;
@@ -79,12 +79,10 @@ export class PsContactsComponent implements OnInit {
     // }+6
   }
   ngOnInit() {
-    //this.previousBasicInfo();
-    console.log('basic', this.userMappedOffices.length === 0);
-    //  this.getUserOfficeList();
-    this.basicDetails();
+    console.log('contact form in edit', this.userMappedOffices.length === 0);
+    this.getContactLookups();
   }
-
+// Code for FormGroup and FormControlNames
   private newForm(): void {
     this.contactForm = this.fb.group({
       contactType: ['',Validators.required],
@@ -129,26 +127,18 @@ export class PsContactsComponent implements OnInit {
   get f() {
     return this.contactForm.controls;
   }
+  // Code for submitting the contact form
   public onSubmit(): void {
     console.log(this.contactForm.value);
     this.contactForm.get('dob').value > this.currentDate
       ? this.contactForm.get('dob').setValue(this.currentDate)
       : '';
-    this.mappedArray = [];
     this.formError = true;
-    this.phoneNUmber = this.contactForm.value.number;
-    this.phoneNUmber2 = this.contactForm.value.number2;
-    this.phoneNUmber3 = this.contactForm.value.number3;
-    this.mappedArray =
-      this.siteSelectedItems.length > 0
-        ? this.siteSelectedItems.map((a) => a.id)
-        : [0];
-    let siteFlag = this.mappedArray.includes(this.siteId);
-    if (this.contactForm.valid && siteFlag) {
+    
+    if (this.contactForm.valid ) {
       this.phoneValidation();
     } else if (
-      this.contactForm.invalid ||
-      this.siteSelectedItems.length == 0
+      this.contactForm.invalid 
     ) {
       swal.fire({
         title: 'Invalid Form',
@@ -158,27 +148,11 @@ export class PsContactsComponent implements OnInit {
         allowOutsideClick: false,
       });
       console.log(this.contactForm.value);
-    } else if (!siteFlag) {
-      swal.fire({
-        title: 'Invalid Mapped Sites',
-        text: 'Please select the Home Site',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false,
-      });
-    }
+    } 
+    
   }
-  // public getUserOfficeList(): void {
-  //   let jsonObj = { 'userId': this.userId };
-
-  //   this.service.getLookupDetails(JSON.stringify(jsonObj)).subscribe(data => {
-  //     this.officeList = data;
-  //     console.log(this.officeList);
-  //     this.userMappedOffices = this.officeList.userMappedOffices;
-
-  //   });
-  // }
-  private saveBasic() {
+  // Code for saving the contact form
+  private saveContactForm() {
     const jsonObj = {
       psId: this.psId,
       saluationId: this.contactForm.value.saluationId,
@@ -237,29 +211,29 @@ export class PsContactsComponent implements OnInit {
       });
     } catch (error) {}
   }
-  public basicDetails() {
-    this.service.getContactsData().subscribe((data) => {
+  // Get lookups for the contact form
+  public getContactLookups() {
+    this.service.getContactLookups().subscribe((data) => {
       this.lookupDetails = data;
       console.log(this.lookupDetails);
       this.LanguageList = this.lookupDetails.language;
       this.relationshipList = this.lookupDetails.relationship;
-      this.saluationList = this.lookupDetails.salutation;
+      this.salutationList = this.lookupDetails.salutation;
       this.addressTypeList = this.lookupDetails.addressType;
       this.maritalStatusList = this.lookupDetails.maritialStatus;
       this.phoneTypeList = this.lookupDetails.phoneType;
       this.genderList = this.lookupDetails.gender;
     });
   }
-
-  public selectChange(event, field, flag: boolean): void {
+ // Code for setting the values in contact form for autocomplete fields
+  public setAutocompleteValue(event, field, flag: boolean): void {
     if (field === 'genderId') {
       if (flag) {
-        console.log('Ramana');
         this.contactForm.get('genderId').setValue(event.id);
-        if (event.name == 'MALE') {
+        if (event.name === 'MALE') {
           this.contactForm.get('saluation').setValue(flag ? 'MR' : '');
           this.contactForm.get('saluationId').setValue(flag ? 'MR' : '');
-        } else if (event.name == 'FEMALE') {
+        } else if (event.name === 'FEMALE') {
           this.contactForm.get('saluation').setValue(flag ? 'MS' : '');
           this.contactForm.get('saluationId').setValue(flag ? 'MS' : '');
         }
@@ -304,19 +278,18 @@ export class PsContactsComponent implements OnInit {
         ? this.contactForm.get('phoneTypeList3').setValue(event.id)
         : this.contactForm.get('phoneTypeList3').setValue('');
     }
-    // if (field === 'state') {
-    //   flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
-    // }
+   
     if (field === 'languageId') {
       flag
         ? this.contactForm.get('languageId').setValue(event.id)
         : this.contactForm.get('languageId').setValue('');
     }
   }
-
+  // Get zipcode data
   public getzip(): void {
     const zip = this.contactForm.get('zipcode').value;
-    if (zip.length === 5) {
+
+    if (zip.toString().length === 5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
         let responseFlag = Object.keys(data).length !== 0 ? true : false;
         responseFlag
@@ -352,7 +325,7 @@ export class PsContactsComponent implements OnInit {
     }
   }
 
-
+  // Setting a format for phone numbers
   public PhoneNumFormat(event, flag, value?) {
     var input = event != null ? event.target.value : value;
     if (input != undefined) {
@@ -378,7 +351,7 @@ export class PsContactsComponent implements OnInit {
       }
     }
   }
-
+  // Code for validating the input for the phone number
   private phoneValidation() {
     let phone1Flag: boolean;
     let phone2Flag: boolean;
@@ -490,15 +463,17 @@ export class PsContactsComponent implements OnInit {
     }
     if (!phone3Flag && !phone2Flag && !phone1Flag) {
       let ssnLength = this.contactForm.value.ssn.length;
-      ssnLength == 0 ? this.saveBasic() : this.checkSSn();
+      ssnLength == 0 ? this.saveContactForm() : this.checkSSn();
 
       console.log('all are valid phone nums');
     }
   }
+  // Code of alert for invalid phone number input
   private alertbox(string) {
     var message = 'Invalid Number';
     swal.fire(message, string, 'warning');
   }
+  // Code for validating the ssn
   private checkSSn() {
     if (this.contactForm.value.ssn.replace(/-/g, '') == 999999999) {
       console.log('ssn ERRor');
@@ -527,7 +502,7 @@ export class PsContactsComponent implements OnInit {
                 allowOutsideClick: false,
               });
             } else {
-              this.saveBasic();
+              this.saveContactForm();
             }
           });
       } catch (error) {}
