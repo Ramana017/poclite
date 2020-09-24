@@ -92,7 +92,6 @@ export class PsContactsComponent implements OnInit {
       phonetype: ['', Validators.required],
       phonetype2: ['', Validators.required],
       phonetype3: ['', Validators.required],
-      maritalStatus: ['', Validators.required],
       gender: ['', Validators.required],
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
@@ -319,134 +318,42 @@ export class PsContactsComponent implements OnInit {
     const zip = this.contactForm.get('zipcode').value;
     if (zip.length === 5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
-        let responseFlag = Object.keys(data).length !== 0 ? true : false;
-        responseFlag
-          ? (this.zipDetails = data)
-          : swal.fire({
-              title: 'Invalid Zip Code',
-              text: 'Please enter a valid Zip code.',
-              icon: 'warning',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false,
-            });
-        console.log(data);
-        this.stateId = responseFlag ? data.stateId : null;
-        this.countyId = responseFlag ? data.countyId : null;
-        this.timeZoneId = responseFlag ? data.timeZoneId : null;
-        this.countryId = responseFlag ? data.countryId : null;
-        this.contactForm
-          .get('city')
-          .setValue(responseFlag ? this.zipDetails.city : '');
-        this.contactForm
-          .get('country')
-          .setValue(responseFlag ? this.zipDetails.country : '');
-        this.contactForm
-          .get('county')
-          .setValue(responseFlag ? this.zipDetails.county : '');
-        this.contactForm
-          .get('timeZone')
-          .setValue(responseFlag ? this.zipDetails.timeZone : '');
-        this.contactForm
-          .get('state')
-          .setValue(responseFlag ? this.zipDetails.state : '');
+        // let responseFlag = Object.keys(data).length !== 0 ? true : false;
+        // responseFlag
+        //   ? (this.zipDetails = data)
+        //   : swal.fire({
+        //       title: 'Invalid Zip Code',
+        //       text: 'Please enter a valid Zip code.',
+        //       icon: 'warning',
+        //       confirmButtonText: 'Ok',
+        //       allowOutsideClick: false,
+        //     });
+        // console.log(data);
+        // this.stateId = responseFlag ? data.stateId : null;
+        // this.countyId = responseFlag ? data.countyId : null;
+        // this.timeZoneId = responseFlag ? data.timeZoneId : null;
+        // this.countryId = responseFlag ? data.countryId : null;
+        // this.contactForm
+        //   .get('city')
+        //   .setValue(responseFlag ? this.zipDetails.city : '');
+        // this.contactForm
+        //   .get('country')
+        //   .setValue(responseFlag ? this.zipDetails.country : '');
+        // this.contactForm
+        //   .get('county')
+        //   .setValue(responseFlag ? this.zipDetails.county : '');
+        // this.contactForm
+        //   .get('timeZone')
+        //   .setValue(responseFlag ? this.zipDetails.timeZone : '');
+        // this.contactForm
+        //   .get('state')
+        //   .setValue(responseFlag ? this.zipDetails.state : '');
+        console.log(data)
+        console.log(zip)
       });
     }
   }
-  // to update Functionality
-  // private previousBasicInfo(): void {
-  //   this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-  //   // this.psId = this.previousPsDetails.psId;
-  //   // let parameters = { 'psId': this.previousPsDetails.psId }
-  //   this.psId = 23448;
-  //   let parameters = { psId: 23448 };
-  //   try {
-  //     this.service.getPsDetails(JSON.stringify(parameters)).subscribe((res) => {
-  //       this.basicPreviousDetails = res;
-  //       console.log(this.basicPreviousDetails);
-  //       this.contactForm
-  //         .get('saluationId')
-  //         .setValue(this.basicPreviousDetails.SALUTATIONId);
-  //       this.contactForm
-  //         .get('saluation')
-  //         .setValue(this.basicPreviousDetails.SALUTATION);
-  //       this.contactForm
-  //         .get('firstName')
-  //         .setValue(this.basicPreviousDetails.firstname);
-  //       this.contactForm
-  //         .get('lastName')
-  //         .setValue(this.basicPreviousDetails.lastname);
-  //       this.contactForm.get('dob').setValue(this.basicPreviousDetails.dob);
-  //       this.contactForm
-  //         .get('genderId')
-  //         .setValue(this.basicPreviousDetails.genderId);
-  //       this.contactForm
-  //         .get('gender')
-  //         .setValue(this.basicPreviousDetails.gender);
-        
-       
-  //       this.contactForm
-  //         .get('city')
-  //         .setValue(this.basicPreviousDetails.county);
-  //       this.contactForm
-  //         .get('country')
-  //         .setValue(this.basicPreviousDetails.country);
-  //       // this.basicEditForm.get('countyId').setValue(this.basicPreviousDetails.countyId);
-  //       this.contactForm
-  //         .get('county')
-  //         .setValue(this.basicPreviousDetails.county);
-  //       this.contactForm
-  //         .get('timeZone')
-  //         .setValue(this.basicPreviousDetails.timezone);
-  //       // this.basicEditForm.get('timeZoneId').setValue(this.basicPreviousDetails.TIMEZONEID);
-  //       this.contactForm
-  //         .get('state')
-  //         .setValue(this.basicPreviousDetails.state);
-  //       //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
-  //       this.contactForm
-  //         .get('addressTypeList')
-  //         .setValue(this.basicPreviousDetails.locationId);
-  //       this.contactForm
-  //         .get('phonetype')
-  //         .setValue(this.basicPreviousDetails.PHONETYPE);
-  //       this.contactForm
-  //         .get('phoneTypeList')
-  //         .setValue(this.basicPreviousDetails.PHONETYPE);
-  //       this.contactForm
-  //         .get('addressLine1')
-  //         .setValue(this.basicPreviousDetails.street);
-  //       this.contactForm
-  //         .get('addressLine2')
-  //         .setValue(this.basicPreviousDetails.addressLine2);
-  //       // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
-  //       // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
-  //       this.contactForm
-  //         .get('number')
-  //         .setValue(this.basicPreviousDetails.PHONE);
-  //       this.contactForm
-  //         .get('zipcode')
-  //         .setValue(this.basicPreviousDetails.ZIPCODE);
-  //       this.contactForm
-  //         .get('location')
-  //         .setValue(this.basicPreviousDetails.locationName);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
-  // public psIdSelect(i): void {
-  //   this.contactForm.get('site').setValue(this.siteSelectedItems[i].id);
-  //   this.siteId = this.siteSelectedItems[i].id;
-  //   this.contactForm
-  //     .get('siteName')
-  //     .setValue(this.siteSelectedItems[i].siteName);
-  // }
-  // public siteListDeSelect(): void {
-  //   this.siteSelectedItems.length = 0;
-  //   this.contactForm.get('site').setValue('');
-  //   this.siteId = null;
-  //   this.contactForm.get('siteName').setValue('');
-  // }
 
   public PhoneNumFormat(event, flag, value?) {
     var input = event != null ? event.target.value : value;
