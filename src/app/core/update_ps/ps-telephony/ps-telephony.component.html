@@ -1,1 +1,157 @@
-<p>ps-telephony works!</p>
+<!-- <p>ps-basic works!</p> -->
+<!-- <app-header></app-header> -->
+<div class="container-wrapper">
+    <div class="ps-registration-tabs-container">
+
+        <div class="bg-grey-l p-3">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Telephony</h4>
+                <section class="d-flex    basic-container">
+                    <form class="d-flex  border-2 w-100">
+                        <div class="d-flex nav ">
+
+
+                            <div class=" telephony-input">
+                                <label class="">
+                                    Tel.Code<span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class=" telephony-input">
+                                <label class="">
+                                    TTS Name
+                                </label>
+
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class=" telephony-input pr-sm-0">
+                                <label class="">
+                                    Time Zone<span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="telephony-input nav d-flex  pb-sm-0 justify-content-between">
+                                <div class=" w-48 pb-sm-0">
+                                    <label class="">
+                                        Lead Time<span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group  ">
+                                        <input type="text" class="form-control " type="text">
+                                    </div>
+                                </div>
+                                <div class="w-48">
+                                    <label class="">
+                                        Lag Time<span class="text-danger">*</span>
+                                    </label>
+
+                                    <div class="input-group  ">
+                                        <input type="text" class="form-control " aria-label="date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="telephony-input nav d-flex  pb-sm-0 justify-content-between">
+                                <div class="  pb-sm-0">
+                                    <label class="">
+                                        Show Alerts
+                                    </label>
+
+                                    <div class="check-box-wrapper">
+                                        <div class="on-off-toggle">
+                                            <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+                                            <label for="bopis" class="on-off-toggle__slider"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="">
+                                        Exclude from Visit Linking
+                                    </label>
+
+                                    <div class="check-box-wrapper">
+                                        <div class="on-off-toggle">
+                                            <input class="on-off-toggle__input" type="checkbox" id="bopis-link" />
+                                            <label for="bopis-link" class="on-off-toggle__slider"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" telephony-input pb-sm-0 pr-sm-0">
+                                <label class="">
+                                    Exclusion Reason<span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group  ">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <form class="direction min-w-16">
+                            <div class="w-100">
+                                <label class="color-black m-0">
+                                    Directions
+                                </label>
+
+
+
+
+                                <div class="form-input">
+                                    <textarea rows="2" class="textarea form-control note-text-area"></textarea>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </form>
+                        <form class="direction min-w-16">
+                            <div class="w-100">
+                                <label class="color-black m-0">
+                                    Exclusion Comments
+                                </label>
+
+
+
+
+                                <div class="form-input">
+                                    <textarea rows="2" class="textarea form-control note-text-area"></textarea>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </form>
+                    </form>
+
+
+                </section>
+                <div class="next justify-content-between nav mt-3">
+                    <div class="previous">
+                        <button type="button" class="btn-info  btn-next prev-step"
+                            [routerLink]="['/widgets']">Cancel</button>
+                    </div>
+                    <button type="button" class="next-step btn-next">Save</button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>

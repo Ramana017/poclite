@@ -20,6 +20,7 @@ import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
+import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 
 
 
@@ -48,7 +49,7 @@ const routes: Routes = [
       { path: "child-guarantor", component: PsGurantorComponent },
       { path: "child-contact", component: PsContactsComponent },
       { path: "child-addresses", component:PsAddressComponent },
-      // { path: "child-authorization", component: AuthorizationComponent },
+      { path: "child-telephony", component: PsTelephonyComponent },
     ]
   },
   { path: "page-not-found", component: PageNotFoundComponent }

@@ -26,10 +26,8 @@ export class EditPsComponent implements OnInit {
     else if(currenturl=='/edit-ps/child-addresses'){
      this.activeArray=[false,false,false,true,false]
     }
-    else if(currenturl=='/registration-re/child-authorization'){
+    else if(currenturl=='/edit-ps/child-telephony'){
     this.activeArray=[false,false,false,false,true];
     }
-    
-    
     }
 }
