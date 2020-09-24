@@ -20,10 +20,10 @@ export class EditPsComponent implements OnInit {
     }else if(currenturl=='/edit-ps/child-guarantor'){
     this.activeArray=[false,true,false,false,false]
     }
-    else if(currenturl=='/registration-re/child-admission'){
+    else if(currenturl=='/edit-ps/child-contact'){
     this.activeArray=[false,false,true,false,false]
     }
-    else if(currenturl=='/registration-re/child-payorplan'){
+    else if(currenturl=='/edit-ps/child-addresses'){
      this.activeArray=[false,false,false,true,false]
     }
     else if(currenturl=='/registration-re/child-authorization'){

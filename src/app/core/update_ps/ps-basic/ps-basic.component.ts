@@ -500,7 +500,7 @@ export class PsBasicComponent implements OnInit {
     }
   }
 
-  public phoneValidation() {
+  private phoneValidation() {
     let phone1Flag: boolean;
     let phone2Flag: boolean;
     let phone3Flag: boolean;

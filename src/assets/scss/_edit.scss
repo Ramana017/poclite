@@ -1,0 +1,39 @@
+// table {
+//     display: block;
+//     overflow: auto;    
+// }
+
+// tbody {
+//     display: block;
+//     max-height: 100px;
+
+// }
+
+// thead, tbody tr {
+//     display: table;
+//     width: 100%;
+
+// }
+.edit-options-table-container {
+  margin: 0 auto;
+  height: 16vh;
+
+  .edit-options-table {
+      margin: 0;
+    td {
+      background: #f7fafc;
+    //   text-align: center;
+      padding: 0 10px;
+      vertical-align: middle;
+    }
+
+    .edit-table-th {
+      padding: 6px 20px !important;
+      background: #145194;
+      color: #ffff;
+    }
+  }
+}
+.ps{
+  background: linear-gradient(to bottom right, #ef151f 0%, #9a709a 100%);
+}
