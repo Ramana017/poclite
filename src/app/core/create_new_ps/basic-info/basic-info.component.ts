@@ -53,20 +53,14 @@ export class BasicInfoComponent implements OnInit {
 
   };
   public currentDate: Date = new Date()
-  public phoneNUmber;
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
-  // tslint:disable-next-line: max-line-length
   constructor(private fb: FormBuilder, public modalService: BsModalService, public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
     console.log("basic constructer", this.popup);
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
     this.newForm();
-    // let userExist = sessionStorage.getItem('psDetails');
-    // if (userExist) {
-    //   this.previousBasicInfo();
-    // }+6
 
 
   }
@@ -120,14 +114,13 @@ export class BasicInfoComponent implements OnInit {
     this.basicForm.get('dob').value > this.currentDate ? this.basicForm.get('dob').setValue(this.currentDate) : '';
     this.mappedArray = [];
     this.formError = true;
-    this.phoneNUmber = this.basicForm.value.number;
     this.mappedArray = this.siteSelectedItems.length > 0 ? (this.siteSelectedItems.map(a => a.id)) : [0];
     let siteFlag = this.mappedArray.includes(this.siteId);
     let ssnLength = this.basicForm.value.ssn.length;
     if (this.basicForm.valid && siteFlag) {
-      if (this.phoneNUmber.length == 12) {
-        var phone1areacode = this.phoneNUmber.slice(0, 3);
-        var phone1exchangecode = this.phoneNUmber.slice(4, 7)
+      if (this.basicForm.value.number.length == 12) {
+        var phone1areacode = this.basicForm.value.number.slice(0, 3);
+        var phone1exchangecode = this.basicForm.value.number.slice(4, 7)
         if (phone1areacode >= 199 && phone1exchangecode >= 199) {
           console.log("phone number is correct");
           ssnLength == 0 ? this.saveBasic() : this.checkSSn();
@@ -425,36 +418,6 @@ export class BasicInfoComponent implements OnInit {
         this.basicForm.get('ssn').setValue( numbers.join('-'));
       }
       console.log("trimmed",trimmed)
-
-    }
-  }
-  public phoneValidation() {
-    let phone1Flag
-    if (this.phoneNUmber != undefined && this.phoneNUmber.length > 0) {
-
-      console.log("phone1", this.phoneNUmber.length)
-      if (this.phoneNUmber.length == 10) {
-        var phone1areacode = this.phoneNUmber.slice(0, 3);
-        var phone1exchangecode = this.phoneNUmber.slice(4, 7)
-        if ((phone1areacode >= 1 && phone1areacode >= 199) && (phone1exchangecode >= 1 && phone1exchangecode >= 199)) {
-          phone1Flag = false;
-        }
-        else {
-          phone1Flag = true;
-          if (phone1areacode >= 1 && phone1areacode >= 199) {
-            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  ")
-          }
-          if (phone1exchangecode >= 1 && phone1exchangecode >= 199) {
-            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
-          }
-
-        }
-        console.log("phone1 flag is", phone1Flag)
-      }
-      else {
-        phone1Flag = true;
-        this.alertbox('Phone1 should be 10 digits')
-      }
 
     }
   }

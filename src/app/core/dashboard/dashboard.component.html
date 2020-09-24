@@ -210,6 +210,7 @@
                                                         <th class="align-middle">PS Name</th>
                                                         <th class="align-middle">Account#</th>
                                                         <th class="align-middle">Admission Date</th>
+                                                        <th *ngIf="widgetArray[1]" class="align-middle">Site Code</th>
                                                         <th *ngIf="widgetArray[1]" class="align-middle">First Visit Date</th>
                                                         <th *ngIf="widgetArray[1]" class="align-middle">Case Manager</th>
                                                         <th *ngIf="widgetArray[1]" class="align-middle">Coordinator</th>
@@ -258,6 +259,7 @@
                                                         <td>{{admission.PSName}}</td>
                                                         <td>{{admission.accountNumber==0?'':admission.accountNumber}}</td>
                                                         <td>{{admission.admissionDate}}</td>
+                                                        <td *ngIf="widgetArray[1]" >{{admission.siteCode}}</td>
                                                         <td *ngIf="widgetArray[1]">{{admission.firstVisitDate}}</td>
                                                         <td *ngIf="widgetArray[1]">{{admission.caseManager}}</td>
                                                         <td *ngIf="widgetArray[1]">{{admission.coordinator}}</td>
@@ -482,7 +484,6 @@
                                                         <th class="align-middle">DCS Name</th>
                                                         <th class="align-middle">Home Site</th>
                                                         <th class="align-middle">Emp Code</th>
-                                                        <th *ngIf="widgetArray[3]" class="align-middle">Site Code</th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">SSN</th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">City </th>
                                                         <th *ngIf="widgetArray[3]" class="align-middle">State</th>
@@ -529,7 +530,6 @@
                                                         <td>{{dcs.dcsName}}</td>
                                                         <td>{{dcs.homeSite}}</td>
                                                         <td>{{dcs.empCode}}</td>
-                                                        <td *ngIf="widgetArray[3]" >{{dcs.siteCode}}</td>
                                                         <td *ngIf="widgetArray[3]" >{{dcs.ssn}}</td>
                                                         <td *ngIf="widgetArray[3]" >{{dcs.city}}</td>
                                                         <td *ngIf="widgetArray[3]" >{{dcs.state}}</td>

@@ -7,7 +7,7 @@
 
 .ps-registration-tabs-container {
   @include margin(null, null, 10px, null);
-
+  
 }
 
 .site-form {
@@ -44,6 +44,14 @@
   a {
     padding: 0 !important;
   }
+  .border-radius{
+    border-bottom-left-radius: 20px;
+      border-top-right-radius: 22px !important;
+
+  }
+}
+.tab-list-wrapper{
+  padding: 0 5px !important;
 }
 
 // .form-control {
