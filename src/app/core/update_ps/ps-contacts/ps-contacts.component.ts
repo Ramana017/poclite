@@ -79,7 +79,7 @@ export class PsContactsComponent implements OnInit {
     // }+6
   }
   ngOnInit() {
-    this.previousBasicInfo();
+    //this.previousBasicInfo();
     console.log('basic', this.userMappedOffices.length === 0);
     //  this.getUserOfficeList();
     this.basicDetails();
@@ -87,6 +87,7 @@ export class PsContactsComponent implements OnInit {
 
   private newForm(): void {
     this.contactForm = this.fb.group({
+      contactType: ['',Validators.required],
       location: ['', Validators.required],
       phonetype: ['', Validators.required],
       phonetype2: ['', Validators.required],
@@ -97,19 +98,17 @@ export class PsContactsComponent implements OnInit {
       saluationId: ['', Validators.required],
       middleName: [''],
       alias: [''],
-      site: [''],
-      language: ['', Validators.required],
-      languageId: ['', Validators.required],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
+      primaryPhNumber: ['', Validators.required],
       ssn: [''],
-      addressLine1: [''],
+      addressLine1: ['',Validators.required],
       addressLine2: [''],
       number: ['', [Validators.required]],
       number2: [''],
       number3: [''],
-      maritalStatusList: ['', Validators.required],
+      relationshipList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
       phoneTypeList2: ['', Validators.required],
@@ -121,8 +120,8 @@ export class PsContactsComponent implements OnInit {
       county: ['', Validators.required],
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
+      notes: [ ''],
       dob: ['', Validators.required],
-      siteName: [''],
       fax: [''],
       email: [''],
       directions: [''],
@@ -187,10 +186,10 @@ export class PsContactsComponent implements OnInit {
       genderId: this.contactForm.value.genderId,
       lastName: this.contactForm.value.lastName,
       firstName: this.contactForm.value.firstName,
+      relationShipId: this.contactForm.value.relationshipList,
       maritalStatusID: this.contactForm.value.maritalStatusList,
       dob: this.date.transform(this.contactForm.value.dob, 'MM/dd/yyyy'),
       ssn: this.contactForm.value.ssn.replace(/-/g, ''),
-      languageId: +this.contactForm.value.languageId,
       locationId: this.contactForm.value.addressTypeList,
       city: this.contactForm.value.city,
       addressLine: this.contactForm.value.addressLine1,
@@ -271,17 +270,15 @@ export class PsContactsComponent implements OnInit {
         this.contactForm.get('genderId').setValue('');
       }
     }
-    if (field === 'site') {
-      this.contactForm.get('site').setValue(event.id);
-      this.siteId = event.id;
-      console.log(this.siteId);
+   
+    if (field === 'relationshipList') {
+      this.contactForm.get('relationshipList').setValue(flag ? event.id : '');
+     
+
+      // this.relationName = event.label;
+      // this.relationId = event.id;
     }
-    
-    if (field === 'maritalStatusList') {
-      flag
-        ? this.contactForm.get('maritalStatusList').setValue(event.id)
-        : this.contactForm.get('maritalStatusList').setValue('');
-    }
+
     if (field === 'saluationId') {
       flag
         ? this.contactForm.get('saluationId').setValue(event.id)
@@ -356,110 +353,100 @@ export class PsContactsComponent implements OnInit {
     }
   }
   // to update Functionality
-  private previousBasicInfo(): void {
-    this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-    // this.psId = this.previousPsDetails.psId;
-    // let parameters = { 'psId': this.previousPsDetails.psId }
-    this.psId = 23448;
-    let parameters = { psId: 23448 };
-    try {
-      this.service.getPsDetails(JSON.stringify(parameters)).subscribe((res) => {
-        this.basicPreviousDetails = res;
-        console.log(this.basicPreviousDetails);
-        this.contactForm
-          .get('saluationId')
-          .setValue(this.basicPreviousDetails.SALUTATIONId);
-        this.contactForm
-          .get('saluation')
-          .setValue(this.basicPreviousDetails.SALUTATION);
-        this.contactForm
-          .get('firstName')
-          .setValue(this.basicPreviousDetails.firstname);
-        this.contactForm
-          .get('lastName')
-          .setValue(this.basicPreviousDetails.lastname);
-        this.contactForm.get('dob').setValue(this.basicPreviousDetails.dob);
-        this.contactForm
-          .get('genderId')
-          .setValue(this.basicPreviousDetails.genderId);
-        this.contactForm
-          .get('gender')
-          .setValue(this.basicPreviousDetails.gender);
-        this.contactForm
-          .get('language')
-          .setValue(this.basicPreviousDetails.language);
-        this.contactForm
-          .get('languageId')
-          .setValue(this.basicPreviousDetails.languageId);
-        this.contactForm
-          .get('maritalStatus')
-          .setValue(this.basicPreviousDetails.MARITIALSTATUS);
-        this.contactForm
-          .get('maritalStatusList')
-          .setValue(this.basicPreviousDetails.MARITIALSTATUSId);
-        this.contactForm
-          .get('city')
-          .setValue(this.basicPreviousDetails.county);
-        this.contactForm
-          .get('country')
-          .setValue(this.basicPreviousDetails.country);
-        // this.basicEditForm.get('countyId').setValue(this.basicPreviousDetails.countyId);
-        this.contactForm
-          .get('county')
-          .setValue(this.basicPreviousDetails.county);
-        this.contactForm
-          .get('timeZone')
-          .setValue(this.basicPreviousDetails.timezone);
-        // this.basicEditForm.get('timeZoneId').setValue(this.basicPreviousDetails.TIMEZONEID);
-        this.contactForm
-          .get('state')
-          .setValue(this.basicPreviousDetails.state);
-        //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
-        this.contactForm
-          .get('addressTypeList')
-          .setValue(this.basicPreviousDetails.locationId);
-        this.contactForm
-          .get('phonetype')
-          .setValue(this.basicPreviousDetails.PHONETYPE);
-        this.contactForm
-          .get('phoneTypeList')
-          .setValue(this.basicPreviousDetails.PHONETYPE);
-        this.contactForm
-          .get('addressLine1')
-          .setValue(this.basicPreviousDetails.street);
-        this.contactForm
-          .get('addressLine2')
-          .setValue(this.basicPreviousDetails.addressLine2);
-        // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
-        // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
-        this.contactForm
-          .get('number')
-          .setValue(this.basicPreviousDetails.PHONE);
-        this.contactForm
-          .get('zipcode')
-          .setValue(this.basicPreviousDetails.ZIPCODE);
-        this.contactForm
-          .get('location')
-          .setValue(this.basicPreviousDetails.locationName);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // private previousBasicInfo(): void {
+  //   this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
+  //   // this.psId = this.previousPsDetails.psId;
+  //   // let parameters = { 'psId': this.previousPsDetails.psId }
+  //   this.psId = 23448;
+  //   let parameters = { psId: 23448 };
+  //   try {
+  //     this.service.getPsDetails(JSON.stringify(parameters)).subscribe((res) => {
+  //       this.basicPreviousDetails = res;
+  //       console.log(this.basicPreviousDetails);
+  //       this.contactForm
+  //         .get('saluationId')
+  //         .setValue(this.basicPreviousDetails.SALUTATIONId);
+  //       this.contactForm
+  //         .get('saluation')
+  //         .setValue(this.basicPreviousDetails.SALUTATION);
+  //       this.contactForm
+  //         .get('firstName')
+  //         .setValue(this.basicPreviousDetails.firstname);
+  //       this.contactForm
+  //         .get('lastName')
+  //         .setValue(this.basicPreviousDetails.lastname);
+  //       this.contactForm.get('dob').setValue(this.basicPreviousDetails.dob);
+  //       this.contactForm
+  //         .get('genderId')
+  //         .setValue(this.basicPreviousDetails.genderId);
+  //       this.contactForm
+  //         .get('gender')
+  //         .setValue(this.basicPreviousDetails.gender);
+        
+       
+  //       this.contactForm
+  //         .get('city')
+  //         .setValue(this.basicPreviousDetails.county);
+  //       this.contactForm
+  //         .get('country')
+  //         .setValue(this.basicPreviousDetails.country);
+  //       // this.basicEditForm.get('countyId').setValue(this.basicPreviousDetails.countyId);
+  //       this.contactForm
+  //         .get('county')
+  //         .setValue(this.basicPreviousDetails.county);
+  //       this.contactForm
+  //         .get('timeZone')
+  //         .setValue(this.basicPreviousDetails.timezone);
+  //       // this.basicEditForm.get('timeZoneId').setValue(this.basicPreviousDetails.TIMEZONEID);
+  //       this.contactForm
+  //         .get('state')
+  //         .setValue(this.basicPreviousDetails.state);
+  //       //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
+  //       this.contactForm
+  //         .get('addressTypeList')
+  //         .setValue(this.basicPreviousDetails.locationId);
+  //       this.contactForm
+  //         .get('phonetype')
+  //         .setValue(this.basicPreviousDetails.PHONETYPE);
+  //       this.contactForm
+  //         .get('phoneTypeList')
+  //         .setValue(this.basicPreviousDetails.PHONETYPE);
+  //       this.contactForm
+  //         .get('addressLine1')
+  //         .setValue(this.basicPreviousDetails.street);
+  //       this.contactForm
+  //         .get('addressLine2')
+  //         .setValue(this.basicPreviousDetails.addressLine2);
+  //       // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
+  //       // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
+  //       this.contactForm
+  //         .get('number')
+  //         .setValue(this.basicPreviousDetails.PHONE);
+  //       this.contactForm
+  //         .get('zipcode')
+  //         .setValue(this.basicPreviousDetails.ZIPCODE);
+  //       this.contactForm
+  //         .get('location')
+  //         .setValue(this.basicPreviousDetails.locationName);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-  public psIdSelect(i): void {
-    this.contactForm.get('site').setValue(this.siteSelectedItems[i].id);
-    this.siteId = this.siteSelectedItems[i].id;
-    this.contactForm
-      .get('siteName')
-      .setValue(this.siteSelectedItems[i].siteName);
-  }
-  public siteListDeSelect(): void {
-    this.siteSelectedItems.length = 0;
-    this.contactForm.get('site').setValue('');
-    this.siteId = null;
-    this.contactForm.get('siteName').setValue('');
-  }
+  // public psIdSelect(i): void {
+  //   this.contactForm.get('site').setValue(this.siteSelectedItems[i].id);
+  //   this.siteId = this.siteSelectedItems[i].id;
+  //   this.contactForm
+  //     .get('siteName')
+  //     .setValue(this.siteSelectedItems[i].siteName);
+  // }
+  // public siteListDeSelect(): void {
+  //   this.siteSelectedItems.length = 0;
+  //   this.contactForm.get('site').setValue('');
+  //   this.siteId = null;
+  //   this.contactForm.get('siteName').setValue('');
+  // }
 
   public PhoneNumFormat(event, flag, value?) {
     var input = event != null ? event.target.value : value;

@@ -20,7 +20,7 @@
 
                                 <div class="input-group  ">
                                     <input type="text" 
-                                         class="form-control lastName text-capital">
+                                         class="form-control lastName text-capital" formControlName="contactType">
                                 </div>
                                 <div  class="errors">
                                 </div>
@@ -194,9 +194,9 @@
                                     Phone<span class="text-danger">*</span>
                                 </label>
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.dob.invalid && formError"
-                                       formControlName="dob"
-                                        class="form-control" aria-label="Case Manager" bsDatepicker>
+                                    <input type="text" [class.is-invalid]="f.primaryPhNumber.invalid && formError"
+                                       formControlName="primaryPhNumber"
+                                        class="form-control" aria-label="Case Manager" >
 
                                 </div>
                                 <div *ngIf="f.dob.invalid && f.dob.touched && f.dob.errors" class="errors">
@@ -226,7 +226,7 @@
                             </label>
                             <div class="form-input">
                                 <div class="">
-                                    <textarea rows="2" class="textarea form-control note-text-area"></textarea>
+                                    <textarea rows="2" class="textarea form-control note-text-area" formControlName="notes"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -271,8 +271,8 @@
                                     Address Line #1<span class="text-danger">*</span>
                                 </label>
 
-                                <div class="input-group  " [class.invalid-input]="(f.addressTypeList.invalid && formError)">
-                                    <input type="text" formControlName="addressTypeList" class="form-control">
+                                <div class="input-group  " [class.invalid-input]="(f.addressLine1.invalid && formError)">
+                                    <input type="text" formControlName="addressLine1" class="form-control">
                                 </div>
 
                             </div>
@@ -294,9 +294,9 @@
                                     </label>
 
                                     <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                        <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
-                                            type="text" class="form-control">
+                                        <input  class="form-control " 
+                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()"
+                                            type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="w-48">
@@ -304,10 +304,10 @@
                                         Zip+4 Code
                                     </label>
 
-                                    <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                        <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
-                                            type="text" class="form-control">
+                                    <div class="input-group  " [class.invalid-input]="(f.zipFourCode.invalid && formError)">
+                                        <input  class="form-control "
+                                            formControlName='zipFourCode' 
+                                            type="number" class="form-control">
                                     </div>
                                 </div>
 
@@ -500,7 +500,7 @@
                             </label>
                             <div class="">
                                 <div class="form-input">
-                                    <textarea rows="2" class="textarea form-control"></textarea>
+                                    <textarea rows="2" class="textarea form-control" formControlName="directions"></textarea>
                                 </div>
                             </div>
                         </form>
