@@ -22,8 +22,12 @@
 
                     <div class="input-group ">
 
-                        <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.relationId.invalid && formError)||(f.relationshipList.invalid && formError)">
-                            <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId" (inputCleared)="selectChange($event,'relationshipList',false)" (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword" [itemTemplate]="itemTemplate1">
+                        <div class="ng-autocomplete" style="width: 100%;"
+                            [class.invalid-input]="(f.relationId.invalid && formError)||(f.relationshipList.invalid && formError)">
+                            <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId"
+                                (inputCleared)="selectChange($event,'relationshipList',false)"
+                                (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword"
+                                [itemTemplate]="itemTemplate1">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate1 let-item>
                                 <a [innerHTML]="item.name"></a>
@@ -40,8 +44,12 @@
 
                     <div class="input-group ">
 
-                        <div class="ng-autocomplete" style="width: 100%;" [class.invalid-input]="(f.relationId.invalid && formError)||(f.relationshipList.invalid && formError)">
-                            <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId" (inputCleared)="selectChange($event,'relationshipList',false)" (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword" [itemTemplate]="itemTemplate1">
+                        <div class="ng-autocomplete" style="width: 100%;"
+                            [class.invalid-input]="(f.relationId.invalid && formError)||(f.relationshipList.invalid && formError)">
+                            <ng-autocomplete #relationName [data]="relationshipList" formControlName="relationId"
+                                (inputCleared)="selectChange($event,'relationshipList',false)"
+                                (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword"
+                                [itemTemplate]="itemTemplate1">
                             </ng-autocomplete>
                             <ng-template style="width: 100%;" #itemTemplate1 let-item>
                                 <a [innerHTML]="item.name"></a>
@@ -199,8 +207,7 @@
 
                         <div class="check-box-wrapper">
                             <div class="on-off-toggle">
-                                <input class="on-off-toggle__input" type="checkbox"
-                                    id="bopis" />
+                                <input class="on-off-toggle__input" type="checkbox" id="bopis" />
                                 <label for="bopis" class="on-off-toggle__slider"></label>
                             </div>
                         </div>
@@ -212,8 +219,8 @@
                         </label>
 
                         <div class="input-group  ">
-                            <input type="text" class="form-control" 
-                                aria-label="Case Manager" formControlName="sortOrder">
+                            <input type="text" class="form-control" aria-label="Case Manager"
+                                formControlName="sortOrder">
                         </div>
                     </div>
                 </div>
@@ -354,9 +361,8 @@
             </form> -->
 
             <section class="d-flex  justify-content-between  basic-container">
-                <form class="d-flex  justify-content-between border-2"
-                    [formGroup]="guarantorForm">
-                    <div  class="d-flex align-items-center nav justify-content-between">
+                <form class="d-flex  justify-content-between border-2" [formGroup]="guarantorForm">
+                    <div class="d-flex align-items-center nav justify-content-between">
                         <div class="basic-input-container">
                             <label class="">
                                 Location<span class="text-danger">*</span>
@@ -413,16 +419,17 @@
                     </div>
                 </div> -->
 
-                        <div class="basic-input-container nav d-flex align-items-center justify-content-between pr-sm-0">
+                        <div
+                            class="basic-input-container nav d-flex align-items-center justify-content-between pr-sm-0">
                             <div class=" w-48 pb-sm-0">
                                 <label class="">
                                     Zip Code<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                    <input type="text" class="form-control " aria-label="date"
-                                        formControlName='zipcode' maxlength='5' (keyup)="getzip()" id="autocomplete"
-                                        type="text" class="form-control">
+                                    <input type="text" class="form-control " aria-label="date" formControlName='zipcode'
+                                        maxlength='5' (keyup)="getzip()" id="autocomplete" type="text"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="w-48">
@@ -432,8 +439,8 @@
 
                                 <div class="input-group  " [class.invalid-input]="(f.zipFourCode.invalid && formError)">
                                     <input type="text" class="form-control " aria-label="date"
-                                        formControlName='zipFourCode' maxlength='5'  id="autocomplete"
-                                        type="text" class="form-control">
+                                        formControlName='zipFourCode' maxlength='5' id="autocomplete" type="text"
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -490,8 +497,7 @@
                                     </div>
                                     <div class="input-group ">
                                         <input type="text" [class.is-invalid]="f.number2.invalid && formError"
-                                            maxlength='10' 
-                                            formControlName="number2" class="form-control">
+                                            maxlength='10' formControlName="number2" class="form-control">
                                     </div>
                                 </div>
 
@@ -522,8 +528,7 @@
                                     </div>
                                     <div class="input-group ">
                                         <input type="text" [class.is-invalid]="f.number3.invalid && formError"
-                                            maxlength='10' 
-                                            formControlName="number3" class="form-control">
+                                            maxlength='10' formControlName="number3" class="form-control">
                                     </div>
                                 </div>
 
@@ -576,8 +581,8 @@
 
                                 <div class="input-group  ">
                                     <input type="text" class="form-control"
-                                        [class.is-invalid]="f.timeZone.invalid && formError"
-                                        formControlName="timeZone" aria-label="Case Manager" disabled="true">
+                                        [class.is-invalid]="f.timeZone.invalid && formError" formControlName="timeZone"
+                                        aria-label="Case Manager" disabled="true">
                                 </div>
                             </div>
                         </div>
@@ -599,8 +604,7 @@
                             </label>
 
                             <div class="input-group  ">
-                                <input type="text" [class.is-invalid]="f.fax.invalid && formError"
-                                    formControlName="fax"
+                                <input type="text" [class.is-invalid]="f.fax.invalid && formError" formControlName="fax"
                                     class="form-control">
                             </div>
 
@@ -611,9 +615,8 @@
                             </label>
 
                             <div class="input-group  ">
-                                <input type="text" [class.is-invalid]="f.email.invalid && formError" 
-                                    formControlName="email"
-                                    class="form-control">
+                                <input type="text" [class.is-invalid]="f.email.invalid && formError"
+                                    formControlName="email" class="form-control">
                             </div>
 
                         </div>
@@ -621,7 +624,7 @@
                     </div>
                     <form [formGroup]="guarantorForm" class="direction">
                         <label class="color-black">
-                           Directions
+                            Directions
                         </label>
                         <div class="">
 
@@ -629,7 +632,8 @@
 
                             <div class="form-input">
 
-                                <textarea rows="2" class="textarea form-control" formControlName="directions"></textarea>
+                                <textarea rows="2" class="textarea form-control"
+                                    formControlName="directions"></textarea>
                             </div>
 
 
@@ -666,5 +670,5 @@
     </div>
 </div>
 <ng-template #notFoundTemplate let-notFound>
-  <div [innerHTML]="notFound" class="text-dark"></div>
+    <div [innerHTML]="notFound" class="text-dark"></div>
 </ng-template>

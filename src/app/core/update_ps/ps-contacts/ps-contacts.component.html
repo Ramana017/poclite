@@ -27,17 +27,17 @@
                         <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Basic Details</h4>
                         <div class="d-flex  border-2">
                             <form class="d-flex align-items-center nav "
-                            [formGroup]="basicEditForm" (ngSubmit)="onSubmit()">
+                            [formGroup]="contactForm" (ngSubmit)="onSubmit()">
                             <div class=" basic-input-container">
                                 <label class="text-capital">
                                     Contact Type<span class="text-danger">*</span>
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError"
-                                        formControlName="lastName" class="form-control lastName text-capital">
+                                    <input type="text" 
+                                         class="form-control lastName text-capital">
                                 </div>
-                                <div *ngIf="f.lastName.invalid && formError" class="errors">
+                                <div  class="errors">
                                 </div>
                             </div>
                             <div class=" basic-input-container">
@@ -46,10 +46,19 @@
                                 </label>
 
                                 <div class="input-group  ">
-                                    <input type="text" [class.is-invalid]="f.lastName.invalid && formError"
-                                        formControlName="lastName" class="form-control lastName text-capital">
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                   >
+                                    <ng-autocomplete #relationName [data]="relationshipList" 
+                                        
+                                        (selected)="selectChange($event,'relationshipList',true)" [searchKeyword]="Keyword"
+                                        [itemTemplate]="itemTemplate1">
+                                    </ng-autocomplete>
+                                    <ng-template style="width: 100%;" #itemTemplate1 let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
                                 </div>
-                                <div *ngIf="f.lastName.invalid && formError" class="errors">
+                                </div>
+                                <div  class="errors">
                                 </div>
                             </div>
 
@@ -317,7 +326,7 @@
                             </div> -->
 
                         </form>
-                        <form [formGroup]="basicEditForm" class="direction">
+                        <form [formGroup]="contactForm" class="direction">
                             <label class="color-black m-0">
                                Notes
                             </label>
@@ -359,7 +368,7 @@
                 <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16">Address</h4>
                 <section class="d-flex  justify-content-between  basic-container">
                     <form class="d-flex  justify-content-between border-2"
-                        [formGroup]="basicEditForm">
+                        [formGroup]="contactForm">
                         <div  class="d-flex align-items-center nav justify-content-between">
                             <div class="basic-input-container">
                                 <label class="">
@@ -389,8 +398,8 @@
                                     Address Line #1<span class="text-danger">*</span>
                                 </label>
 
-                                <div class="input-group  " [class.invalid-input]="(f.lane.invalid && formError)">
-                                    <input type="text" formControlName="lane" class="form-control">
+                                <div class="input-group  " [class.invalid-input]="(f.addressTypeList.invalid && formError)">
+                                    <input type="text" formControlName="addressTypeList" class="form-control">
                                 </div>
 
                             </div>
@@ -464,7 +473,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10' (keyup)='PhoneNumFormat($event,"phone")'
+                                                maxlength='10' 
                                                 formControlName="number" class="form-control">
                                         </div>
                                     </div>
@@ -674,7 +683,7 @@
 
                     </div> -->
                         </div>
-                        <form [formGroup]="basicEditForm" class="direction">
+                        <form [formGroup]="contactForm" class="direction">
                             <label class="color-black m-0">
                                Directions
                             </label>
@@ -728,7 +737,7 @@
                 <tbody>
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
@@ -762,7 +771,7 @@
 
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
@@ -796,7 +805,7 @@
 
                     <tr>
                         <td class="border-right delete-option border-bottom">
-                            <div class="bg-whiite remove-item" (click)="deleteRow(i)" title="remove">
+                            <div class="bg-whiite remove-item" title="remove">
                                 <span class="">
                                     <i class="fas fa-user-edit"></i>
                                 </span>
