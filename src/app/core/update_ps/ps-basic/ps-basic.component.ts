@@ -481,6 +481,7 @@ export class PsBasicComponent implements OnInit {
       } else if (flag == 'phone3') {
         this.basicEditForm.get('number3').setValue(numbers.join('-'));
       }
+      
     }
   }
 // Code for validating the input for the phone number
