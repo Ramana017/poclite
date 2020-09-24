@@ -36,7 +36,6 @@ export class ZipcodeService {
   public getZipcodeDetails(zipCode): Observable<any> {
     this.getUrl()
     this.zip = { 'zipCode': zipCode };
-    // return this.http.get('http://poc.aquilasoftware.com/pocextacc-webservices_9.2/telephony/getZipCodeDetails?jsonObj=' + JSON.stringify(this.zip)).pipe(catchError(this.errorHandler))
     return this.http.get(this.lookUpDetails + '/getZipCodeDetails?jsonObj=' + JSON.stringify(this.zip)).pipe(catchError(this.errorHandler));
   }
 

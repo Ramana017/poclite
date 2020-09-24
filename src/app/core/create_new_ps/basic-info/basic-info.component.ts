@@ -224,7 +224,7 @@ export class BasicInfoComponent implements OnInit {
             console.log(JSON.stringify(jsonObj));
             sessionStorage.setItem('psDetails', JSON.stringify(this.SaveResponse));
             this.service.showSuccess('PS saved Succssfully!');
-            this.router.navigateByUrl('registration-re/child-guarantor');
+            this.router.navigateByUrl('registration/guarantor');
           }
         }
       });
