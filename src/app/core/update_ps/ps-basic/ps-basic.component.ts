@@ -14,7 +14,7 @@ import { UserdetailsService } from 'src/app/services/userdetails.service';
   styleUrls: ['./ps-basic.component.sass'],
 })
 export class PsBasicComponent implements OnInit {
-
+ // Variables used in guarantor edit form
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
@@ -73,7 +73,7 @@ export class PsBasicComponent implements OnInit {
     //  this.getUserOfficeList();
     this.basicDetails();
   }
-
+  // Code for FormGroup and FormControlNames
   private newForm(): void {
     this.basicEditForm = this.fb.group({
       location: ['', Validators.required],
@@ -120,9 +120,11 @@ export class PsBasicComponent implements OnInit {
       directions: [''],
     });
   }
+  // Code for submitting the edited ps form
   get f() {
     return this.basicEditForm.controls;
   }
+  // Code for saving the edited ps form
   public onSubmit(): void {
     console.log(this.basicEditForm.value);
     this.basicEditForm.get('dob').value > this.currentDate
@@ -159,7 +161,7 @@ export class PsBasicComponent implements OnInit {
       });
     }
   }
-
+  // Code for saving the edited ps form
   private saveBasic() {
     const jsonObj = {
       psId: this.psId,
@@ -219,6 +221,7 @@ export class PsBasicComponent implements OnInit {
       });
     } catch (error) {}
   }
+  // Get lookups for the ps form
   public basicDetails() {
     this.service.getLookupsDataBasic().subscribe((data) => {
       this.lookupDetails = data;
@@ -236,8 +239,8 @@ export class PsBasicComponent implements OnInit {
       this.genderList = this.lookupDetails.gender;
     });
   }
-
-  public selectChange(event, field, flag: boolean): void {
+ // Code for setting the values in contact form for autocomplete fields
+  public setAutocompleteValue(event, field, flag: boolean): void {
     if (field === 'genderId') {
       if (flag) {
         console.log('Ramana');
@@ -306,7 +309,7 @@ export class PsBasicComponent implements OnInit {
         console.log(event)
     }
   }
-
+// Get zipcode data
   public getzip(): void {
     const zip = this.basicEditForm.get('zipcode').value!=null?this.basicEditForm.get('zipcode').value:0;
     // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
@@ -612,6 +615,7 @@ export class PsBasicComponent implements OnInit {
       } catch (error) {}
     }
   }
+   // Setting a format for phone numbers
   public PhoneNumFormat(event,flag,value?){
     let input = event != null ? event.target.value : value;
     if (flag == 'phone') {

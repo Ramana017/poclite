@@ -51,7 +51,7 @@ export class PsGurantorComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getGuarantorDetails();
+   // this.getGuarantorDetails();
     console.log("guarantor")
     this.newForm();
     this.getEditGuarantorLookups();
@@ -60,7 +60,7 @@ export class PsGurantorComponent implements OnInit {
   // Code for FormGroup and FormControlNames
   private newForm(): void {
     this.guarantorForm = this.fb.group({
-      salutation : [''],
+      salutation: [''],
       salutationId: [''],
       relationshipList: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -255,7 +255,7 @@ export class PsGurantorComponent implements OnInit {
       });
     }
   }
-  // Get the details from the ps 
+  // Get the details from the ps
   private getPsDetails(): void {
     try {
       this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
@@ -301,7 +301,7 @@ export class PsGurantorComponent implements OnInit {
     this.selfChecBox = event != null ? event.target.checked : '';
 
     console.log("selfcheck")
-    this.guarantorForm.get('salutationId').setValue(flag?this.basicPreviousData.SALUTATIONId:'');
+    this.guarantorForm.get('salutationId').setValue(flag ? this.basicPreviousData.SALUTATIONId : '');
     this.guarantorForm.get('relationshipList').setValue(flag ? '100' : '');
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
@@ -363,188 +363,176 @@ export class PsGurantorComponent implements OnInit {
   public relationshipCleared(event) {
     console.log(event)
   }
-// Setting a format for phone numbers
-public PhoneNumFormat(event, flag, value?) {
-  var input = event != null ? event.target.value : value;
-  if (input != undefined) {
-    let trimmed = input.replace(/\D/g, '');
-    if (trimmed.length > 12) {
-      trimmed = trimmed.substr(0, 12);
-    }
-    trimmed = trimmed.replace(/-/g, '');
-    let numbers = [];
-    numbers.push(trimmed.substr(0, 3));
-    if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
-    if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
-      numbers.push(trimmed.substr(6, 4));
+  // Setting a format for phone numbers
+  public PhoneNumFormat(event, flag, value?) {
+    var input = event != null ? event.target.value : value;
 
     if (flag == 'phone') {
-      this.guarantorForm.get('number').setValue(numbers.join('-'));
+      this.guarantorForm.get('number').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'ssn') {
-      this.guarantorForm.get('ssn').setValue(numbers.join('-'));
+      this.guarantorForm.get('ssn').setValue(this.service.PhoneNumFormat(input, 11));
     } else if (flag == 'phone2') {
-      this.guarantorForm.get('number2').setValue(numbers.join('-'));
+      this.guarantorForm.get('number2').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'phone3') {
-      this.guarantorForm.get('number3').setValue(numbers.join('-'));
+      this.guarantorForm.get('number3').setValue(this.service.PhoneNumFormat(input, 12));
     }
   }
-}
-// Code for validating the input for the phone number
-private phoneValidation() {
-  let phone1Flag: boolean;
-  let phone2Flag: boolean;
-  let phone3Flag: boolean;
-  if (
-    (this.guarantorForm.value.number != undefined || null) &&
-    this.guarantorForm.value.number.length > 0
-  ) {
-    console.log('phone1', this.guarantorForm.value.number.length);
-    if (this.guarantorForm.value.number.length == 12) {
-      var phone1areacode = this.guarantorForm.value.number.slice(0, 3);
-      var phone1exchangecode = this.guarantorForm.value.number.slice(4, 7);
-      if (
-        phone1areacode >= 1 &&
-        phone1areacode >= 199 &&
-        phone1exchangecode >= 1 &&
-        phone1exchangecode >= 199
-      ) {
-        phone1Flag = false;
-      } else {
-        // phone1Flag = true;
-        if (phone1areacode <= 1 || phone1areacode <= 199) {
-          console.log('area code missing');
-          this.alertbox(
-            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
-          );
-        }
-        if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
-          console.log('area exchange code missing');
+  // Code for validating the input for the phone number
+  private phoneValidation() {
+    let phone1Flag: boolean;
+    let phone2Flag: boolean;
+    let phone3Flag: boolean;
+    if (
+      (this.guarantorForm.value.number != undefined || null) &&
+      this.guarantorForm.value.number.length > 0
+    ) {
+      console.log('phone1', this.guarantorForm.value.number.length);
+      if (this.guarantorForm.value.number.length == 12) {
+        var phone1areacode = this.guarantorForm.value.number.slice(0, 3);
+        var phone1exchangecode = this.guarantorForm.value.number.slice(4, 7);
+        if (
+          phone1areacode >= 1 &&
+          phone1areacode >= 199 &&
+          phone1exchangecode >= 1 &&
+          phone1exchangecode >= 199
+        ) {
+          phone1Flag = false;
+        } else {
+          // phone1Flag = true;
+          if (phone1areacode <= 1 || phone1areacode <= 199) {
+            console.log('area code missing');
+            this.alertbox(
+              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
+            );
+          }
+          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+            console.log('area exchange code missing');
 
-          this.alertbox(
-            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
-          );
+            this.alertbox(
+              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+            );
+          }
         }
+        console.log('phone1 flag is', phone1Flag);
+      } else {
+        phone1Flag = true;
+        this.alertbox('Phone1 should be 10 digits');
       }
-      console.log('phone1 flag is', phone1Flag);
-    } else {
-      phone1Flag = true;
-      this.alertbox('Phone1 should be 10 digits');
     }
-  }
-  if (
-    (this.guarantorForm.value.number2 != undefined || null) &&
-    this.guarantorForm.value.number2.length > 0
-  ) {
-    console.log('phone2', this.guarantorForm.value.number2.length);
-    if (this.guarantorForm.value.number2.length == 12) {
-      var phone2areacode = this.guarantorForm.value.number2.slice(0, 3);
-      var phone2exchangecode = this.guarantorForm.value.number2.slice(4, 7);
-      if (
-        phone2areacode >= 1 &&
-        phone2areacode >= 199 &&
-        phone2exchangecode >= 1 &&
-        phone2exchangecode >= 199
-      ) {
-        phone2Flag = false;
+    if (
+      (this.guarantorForm.value.number2 != undefined || null) &&
+      this.guarantorForm.value.number2.length > 0
+    ) {
+      console.log('phone2', this.guarantorForm.value.number2.length);
+      if (this.guarantorForm.value.number2.length == 12) {
+        var phone2areacode = this.guarantorForm.value.number2.slice(0, 3);
+        var phone2exchangecode = this.guarantorForm.value.number2.slice(4, 7);
+        if (
+          phone2areacode >= 1 &&
+          phone2areacode >= 199 &&
+          phone2exchangecode >= 1 &&
+          phone2exchangecode >= 199
+        ) {
+          phone2Flag = false;
+        } else {
+          phone2Flag = true;
+          if (phone2areacode <= 1 || phone2areacode <= 199) {
+            this.alertbox(
+              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
+            );
+          }
+          if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
+            this.alertbox(
+              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+            );
+          }
+        }
+        console.log('phone2 flag is', phone2Flag);
       } else {
         phone2Flag = true;
-        if (phone2areacode <= 1 || phone2areacode <= 199) {
-          this.alertbox(
-            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
-          );
-        }
-        if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
-          this.alertbox(
-            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
-          );
-        }
+        this.alertbox('Phone 2 should be 10 digits');
       }
-      console.log('phone2 flag is', phone2Flag);
-    } else {
-      phone2Flag = true;
-      this.alertbox('Phone 2 should be 10 digits');
     }
-  }
-  if (
-    (this.guarantorForm.value.number3 != undefined || null) &&
-    this.guarantorForm.value.number3.length > 0
-  ) {
-    console.log('phone3', this.guarantorForm.value.number3.length);
-    if (this.guarantorForm.value.number3.length == 12) {
-      var phone3areacode = this.guarantorForm.value.number3.slice(0, 3);
-      var phone3exchangecode = this.guarantorForm.value.number3.slice(4, 7);
-      if (
-        phone3areacode >= 1 &&
-        phone3areacode >= 199 &&
-        phone3exchangecode >= 1 &&
-        phone3exchangecode >= 199
-      ) {
-        phone3Flag = false;
+    if (
+      (this.guarantorForm.value.number3 != undefined || null) &&
+      this.guarantorForm.value.number3.length > 0
+    ) {
+      console.log('phone3', this.guarantorForm.value.number3.length);
+      if (this.guarantorForm.value.number3.length == 12) {
+        var phone3areacode = this.guarantorForm.value.number3.slice(0, 3);
+        var phone3exchangecode = this.guarantorForm.value.number3.slice(4, 7);
+        if (
+          phone3areacode >= 1 &&
+          phone3areacode >= 199 &&
+          phone3exchangecode >= 1 &&
+          phone3exchangecode >= 199
+        ) {
+          phone3Flag = false;
+        } else {
+          phone3Flag = true;
+          if (phone3areacode <= 1 || phone3areacode <= 199) {
+            this.alertbox(
+              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
+            );
+          }
+          if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
+            this.alertbox(
+              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+            );
+          }
+        }
+        console.log('phone1 flag is', phone3Flag);
       } else {
         phone3Flag = true;
-        if (phone3areacode <= 1 || phone3areacode <= 199) {
-          this.alertbox(
-            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
-          );
-        }
-        if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
-          this.alertbox(
-            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
-          );
-        }
+        this.alertbox('Phone3 should be 10 digits');
       }
-      console.log('phone1 flag is', phone3Flag);
-    } else {
-      phone3Flag = true;
-      this.alertbox('Phone3 should be 10 digits');
+    }
+    if (!phone3Flag && !phone2Flag && !phone1Flag) {
+      let ssnLength = this.guarantorForm.value.ssn.length;
+      ssnLength == 0 ? this.saveEdittedGuarantor() : this.checkSSn();
+
+      console.log('all are valid phone nums');
     }
   }
-  if (!phone3Flag && !phone2Flag && !phone1Flag) {
-    let ssnLength = this.guarantorForm.value.ssn.length;
-    ssnLength == 0 ? this.saveEdittedGuarantor() : this.checkSSn();
-
-    console.log('all are valid phone nums');
+  // Code of alert for invalid phone number input
+  private alertbox(string) {
+    var message = 'Invalid Number';
+    swal.fire(message, string, 'warning');
   }
-}
- // Code of alert for invalid phone number input
-private alertbox(string) {
-  var message = 'Invalid Number';
-  swal.fire(message, string, 'warning');
-}
-// Code for validating the ssn
-private checkSSn() {
-  if (this.guarantorForm.value.ssn.replace(/-/g, '') == 999999999) {
-    console.log('ssn ERRor');
-    swal.fire({
-      title: 'Invalid SSN',
-      text: "SSN should not contain all 9's",
-      icon: 'warning',
-      confirmButtonText: 'Ok',
-      allowOutsideClick: false,
-    });
-  } else {
-    try {
-      let params = { ssn: this.guarantorForm.value.ssn, screenFlag: 'ps' };
-      this.service
-        .validateSSNNumber(JSON.stringify(params))
-        .subscribe((data) => {
-          console.log(data);
-          if (Object.keys(data).length !== 0) {
-            let data2: any = data;
+  // Code for validating the ssn
+  private checkSSn() {
+    if (this.guarantorForm.value.ssn.replace(/-/g, '') == 999999999) {
+      console.log('ssn ERRor');
+      swal.fire({
+        title: 'Invalid SSN',
+        text: "SSN should not contain all 9's",
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false,
+      });
+    } else {
+      try {
+        let params = { ssn: this.guarantorForm.value.ssn, screenFlag: 'ps' };
+        this.service
+          .validateSSNNumber(JSON.stringify(params))
+          .subscribe((data) => {
+            console.log(data);
+            if (Object.keys(data).length !== 0) {
+              let data2: any = data;
 
-            swal.fire({
-              title: 'Invalid SSN',
-              text: data2.ErrorMsg,
-              icon: 'error',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false,
-            });
-          } else {
-            this.saveEdittedGuarantor();
-          }
-        });
-    } catch (error) {}
+              swal.fire({
+                title: 'Invalid SSN',
+                text: data2.ErrorMsg,
+                icon: 'error',
+                confirmButtonText: 'Ok',
+                allowOutsideClick: false,
+              });
+            } else {
+              this.saveEdittedGuarantor();
+            }
+          });
+      } catch (error) { }
+    }
   }
-}
 
 }
