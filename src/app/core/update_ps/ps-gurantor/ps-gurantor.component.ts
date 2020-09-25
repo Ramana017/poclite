@@ -12,9 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./ps-gurantor.component.sass']
 })
 export class PsGurantorComponent implements OnInit {
-
+  // Variables used in guarantor edit form
   public selfChecBox: boolean = false;
-
   public addressCheckBox: boolean = false;
   public guarantorId: number = 0;
   public basicPreviousData: any;
@@ -27,6 +26,7 @@ export class PsGurantorComponent implements OnInit {
   public phoneTypeList: any;
   public Keyword = 'name';
   // public relationName;
+  public salutationList: any;
   public lookupDetails: any;
   public formError: boolean = false;
   public previousPsDetails: any;
@@ -54,16 +54,18 @@ export class PsGurantorComponent implements OnInit {
     this.getGuarantorDetails();
     console.log("guarantor")
     this.newForm();
-    this.basicDetails();
+    this.getEditGuarantorLookups();
     this.getPsDetails();
   }
+  // Code for FormGroup and FormControlNames
   private newForm(): void {
     this.guarantorForm = this.fb.group({
-      saluationId: [''],
+      salutation : [''],
+      salutationId: [''],
       relationshipList: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
-      middleName: [ ],
+      middleName: [],
       ssn: [''],
       number: ['', Validators.required],
       number2: [''],
@@ -78,7 +80,7 @@ export class PsGurantorComponent implements OnInit {
       // phonetype3: ['', Validators.required],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
-      zipFourCode : [''],
+      zipFourCode: [''],
       country: ['', Validators.required],
       county: ['', Validators.required],
       state: ['', Validators.required],
@@ -86,12 +88,11 @@ export class PsGurantorComponent implements OnInit {
       addressLine1: ['', Validators.required],
       addressLine2: [''],
       location: ['', Validators.required],
-    //  phoneTypeName: ['', Validators.required],
       occupationName: ['UNKNOWN', Validators.required],
       relationId: ['', Validators.required],
-      email : [''],
-      fax : [''],
-      code:[''],
+      email: [''],
+      fax: [''],
+      code: [''],
       sortOrder: [''],
       directions: ['']
     });
@@ -103,64 +104,33 @@ export class PsGurantorComponent implements OnInit {
     return this.guarantorForm.controls;
 
   }
-
+  // Code for submitting the edited guarantor form
   public onSubmit(): void {
-    this.formError = true;
-    console.log(this.guarantorForm.value)
-    let ssnLength = this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.length : 0;
-    console.log("SSn length", ssnLength)
-    this.phoneNUmber = this.guarantorForm.value.number;
+    console.log(this.guarantorForm.value);
 
+    this.formError = true;
 
     if (this.guarantorForm.valid) {
-      if (this.phoneNUmber.length == 10) {
-        var phone1areacode = this.phoneNUmber.slice(0, 3);
-        var phone1exchangecode = this.phoneNUmber.slice(3, 6)
-        if (phone1areacode >= 199 && phone1exchangecode >= 199) {
-          console.log("phone number is correct");
-          ssnLength == 0 ? this.gurantorsave() : this.checkSSn();
-        }
-        else {
-          // phone1Flag = true;
-          if (phone1areacode <= 1 || phone1areacode <= 199) {
-            console.log("area code missing")
-            this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
-          }
-          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
-            console.log("area exchange code missing")
-
-            this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
-          }
-        }
-        console.log("phone1 flag is")
-
-
-      }
-      else {
-        this.alertbox(" Phone number should be 10 digits ")
-
-      }
-
-    }
-    else {
-      // alert("Fill all the required fields")
+      this.phoneValidation();
+    } else if (
+      this.guarantorForm.invalid
+    ) {
       swal.fire({
         title: 'Invalid Form',
-        text: 'Fill the all Required fields',
+        text: 'Fill all the Required fields',
         icon: 'error',
         confirmButtonText: 'Ok',
-        allowOutsideClick: false
-      })
-
+        allowOutsideClick: false,
+      });
+      console.log(this.guarantorForm.value);
     }
-
   }
-
-  private gurantorsave() {
+  // Code for saving the edited guarantor form
+  private saveEdittedGuarantor() {
     console.log(this.guarantorForm.value.ssn != undefined, this.guarantorForm)
     {
       const jsonObj = {
-        "saluationId": (this.guarantorForm.value.saluationId),
+        "saluationId": (this.guarantorForm.value.salutationId),
         "lastName": this.guarantorForm.value.lastName,
         "firstName": this.guarantorForm.value.firstName,
         "relationShipId": (this.guarantorForm.value.relationshipList),
@@ -200,13 +170,14 @@ export class PsGurantorComponent implements OnInit {
     }
     console.log(this.guarantorForm.value)
   }
-
-  public basicDetails(): void {
+  // Get lookups for the guarantor form
+  public getEditGuarantorLookups(): void {
     let jsonObj = { 'userId': this.userId };
 
-    this.service.getLookupsDataGurantor().subscribe(data => {
+    this.service.getEditGuarantorLookups().subscribe(data => {
       console.log(data)
       this.lookupDetails = data;
+      this.salutationList = this.lookupDetails.salutation;
       this.addressTypeList = this.lookupDetails.addressType;
       this.phoneTypeList = this.lookupDetails.phoneType;
       this.relationshipList = this.lookupDetails.relationship;
@@ -214,17 +185,16 @@ export class PsGurantorComponent implements OnInit {
 
     });
   }
-  public selectChange(event, field, flag): void {
+  // Code for setting the values in contact form for autocomplete fields
+  public setAutocompleteValue(event, field, flag): void {
     if (field === 'addressTypeList') {
       this.guarantorForm.get('addressTypeList').setValue(flag ? event.id : '');
     }
-    // if (field === 'phoneTypeList') {
-    //   this.guarantorForm.get('phoneTypeList').setValue(flag ? event.id : '');
-    // }
+
     if (field === 'relationshipList') {
       this.guarantorForm.get('relationshipList').setValue(flag ? event.id : '');
       if (flag) { // this.selfChecBox=true;
-        event.id == '100' ? this.SelfCheck(null, true) : this.selfChecBox = false;;
+        event.id === '100' ? this.SelfCheck(null, true) : this.selfChecBox = false;;
       }
 
       // this.relationName = event.label;
@@ -232,6 +202,9 @@ export class PsGurantorComponent implements OnInit {
     }
     if (field === 'occupationList') {
       this.guarantorForm.get('occupationList').setValue(flag ? event.id : '');
+    }
+    if (field === 'salutationList') {
+      this.guarantorForm.get('salutationList').setValue(flag ? event.id : '');
     }
     if (field === 'phoneTypeList') {
       console.log('inpuet cleared phoneid', flag)
@@ -247,11 +220,11 @@ export class PsGurantorComponent implements OnInit {
     }
   }
 
-
+  // Get zipcode data
   public getzip(): void {
     const zip = this.guarantorForm.get('zipcode').value;
     console.log(zip);
-    if (zip.length === 5) {
+    if (zip.toString().length === 5) {
       this.service.getZipcodeDetails(zip).subscribe(data => {
         if (Object.keys(data).length !== 0) {
           this.zipDetails = data;
@@ -282,11 +255,11 @@ export class PsGurantorComponent implements OnInit {
       });
     }
   }
-
+  // Get the details from the ps 
   private getPsDetails(): void {
     try {
       this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
-   //   let parameters = { 'psId': this.previousPsDetails.psId }
+      //   let parameters = { 'psId': this.previousPsDetails.psId }
       let parameters = { 'psId': 23448 }
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe(res => {
         console.log(res)
@@ -296,6 +269,7 @@ export class PsGurantorComponent implements OnInit {
       console.log(error)
     }
   }
+  // Checked event to get the address details of the ps on checking the address box
   public addressCheck(event?, dropdown?: boolean): void {
 
     console.log(event)
@@ -308,7 +282,7 @@ export class PsGurantorComponent implements OnInit {
     this.guarantorForm.get('addressLine2').setValue(flag ? this.basicPreviousData.addressLine2 : "");
     this.guarantorForm.get('zipcode').setValue(flag ? this.basicPreviousData.ZIPCODE : "");
     this.guarantorForm.get('phoneTypeList').setValue(flag ? this.basicPreviousData.PHONETYPEID : "")
-  //  this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
+    //  this.guarantorForm.get('phoneTypeName').setValue(flag ? this.basicPreviousData.PHONETYPE : "")
     this.guarantorForm.get('number').setValue(flag ? this.basicPreviousData.PHONE : "");
     this.guarantorForm.get('city').setValue(flag ? this.basicPreviousData.city : '');
     this.guarantorForm.get('state').setValue(flag ? this.basicPreviousData.state : '');
@@ -320,13 +294,14 @@ export class PsGurantorComponent implements OnInit {
     this.timeZoneId = this.basicPreviousData.TIMEZONEID;
     this.countryId = this.basicPreviousData.countryId;
   }
+  // Checked event to get the details of both basic  and address details of the ps on checking the self box
   public SelfCheck(event?, dropdown?: boolean): void {
     let flag = event != null ? event.target.checked : dropdown;
 
     this.selfChecBox = event != null ? event.target.checked : '';
 
     console.log("selfcheck")
-    // this.guarantorForm.get('saluationId').setValue(flag?this.basicPreviousData.SALUTATIONId:'');
+    this.guarantorForm.get('salutationId').setValue(flag?this.basicPreviousData.SALUTATIONId:'');
     this.guarantorForm.get('relationshipList').setValue(flag ? '100' : '');
     this.guarantorForm.get('relationId').setValue(flag ? 'SELF' : '');
     this.guarantorForm.get('lastName').setValue(flag ? this.basicPreviousData.lastname : '');
@@ -336,9 +311,9 @@ export class PsGurantorComponent implements OnInit {
     // flag ? this.addressCheck(event) : this.addressCheck(event);
     this.addressCheck(event, dropdown);
   }
-  public getPreviousBasic(): void {
-    this.router.navigateByUrl('registration-re/child-basic')
-  }
+  // public getPreviousBasic(): void {
+  //   this.router.navigateByUrl('registration-re/child-basic')
+  // }
 
   // for update data
   private getGuarantorDetails() {
@@ -346,7 +321,7 @@ export class PsGurantorComponent implements OnInit {
     // this.guarantorId = session.psGuarId;
     // let params = { 'guarantorId': session.psGuarId }
     this.guarantorId = 23489;
-    let params = { 'guarantorId': 23489}
+    let params = { 'guarantorId': 23489 }
     try {
       // console.log("$$$$$$$$$$$$$$",params,session)
       this.service.getGuarantorDetails(JSON.stringify(params)).subscribe(
@@ -368,7 +343,7 @@ export class PsGurantorComponent implements OnInit {
           this.guarantorForm.get('addressLine2').setValue(data.addressLine2);
           this.guarantorForm.get('zipcode').setValue(data.ZIPCODE);
           this.guarantorForm.get('phoneTypeList').setValue(data.PHONETYPE)
-        //  this.guarantorForm.get('phonetype').setValue(data.PHONETYPE)
+          //  this.guarantorForm.get('phonetype').setValue(data.PHONETYPE)
           this.guarantorForm.get('number').setValue(data.PHONE);
           this.guarantorForm.get('city').setValue(data.county);
           this.guarantorForm.get('state').setValue(data.state);
@@ -384,42 +359,192 @@ export class PsGurantorComponent implements OnInit {
     }
 
   }
+  // Code clear the relationship field
   public relationshipCleared(event) {
     console.log(event)
   }
-  private alertbox(string) {
-    var message = 'Invalid Number'
-    swal.fire(message, string, 'warning')
-  }
-  private checkSSn() {
-    try {
-      let params = { 'ssn': this.guarantorForm.value.ssn, "screenFlag": "guarantor" }
-      this.service.validateSSNNumber(JSON.stringify(params)).subscribe(data => {
-        console.log(data)
-        if (Object.keys(data).length !== 0) {
+// Setting a format for phone numbers
+public PhoneNumFormat(event, flag, value?) {
+  var input = event != null ? event.target.value : value;
+  if (input != undefined) {
+    let trimmed = input.replace(/\D/g, '');
+    if (trimmed.length > 12) {
+      trimmed = trimmed.substr(0, 12);
+    }
+    trimmed = trimmed.replace(/-/g, '');
+    let numbers = [];
+    numbers.push(trimmed.substr(0, 3));
+    if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
+    if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
+      numbers.push(trimmed.substr(6, 4));
 
-          let data2: any = data;
-
-          swal.fire({
-            title: 'Invalid SSN',
-            text: data2.ErrorMsg,
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            allowOutsideClick: false
-          })
-        }
-        else {
-          this.gurantorsave()
-        }
-      })
-    } catch (error) {
-
+    if (flag == 'phone') {
+      this.guarantorForm.get('number').setValue(numbers.join('-'));
+    } else if (flag == 'ssn') {
+      this.guarantorForm.get('ssn').setValue(numbers.join('-'));
+    } else if (flag == 'phone2') {
+      this.guarantorForm.get('number2').setValue(numbers.join('-'));
+    } else if (flag == 'phone3') {
+      this.guarantorForm.get('number3').setValue(numbers.join('-'));
     }
   }
-  public PhoneNumFormat(event, flag) {
-    // console.log("++++++++++", event.target.value)
-    var input2 = event.target.value.replace(/\D/g, '');
-    flag == 'ssn' ? this.guarantorForm.get('ssn').setValue(input2) : this.guarantorForm.get('number').setValue(input2);
+}
+// Code for validating the input for the phone number
+private phoneValidation() {
+  let phone1Flag: boolean;
+  let phone2Flag: boolean;
+  let phone3Flag: boolean;
+  if (
+    (this.guarantorForm.value.number != undefined || null) &&
+    this.guarantorForm.value.number.length > 0
+  ) {
+    console.log('phone1', this.guarantorForm.value.number.length);
+    if (this.guarantorForm.value.number.length == 12) {
+      var phone1areacode = this.guarantorForm.value.number.slice(0, 3);
+      var phone1exchangecode = this.guarantorForm.value.number.slice(4, 7);
+      if (
+        phone1areacode >= 1 &&
+        phone1areacode >= 199 &&
+        phone1exchangecode >= 1 &&
+        phone1exchangecode >= 199
+      ) {
+        phone1Flag = false;
+      } else {
+        // phone1Flag = true;
+        if (phone1areacode <= 1 || phone1areacode <= 199) {
+          console.log('area code missing');
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
+          );
+        }
+        if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+          console.log('area exchange code missing');
+
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+          );
+        }
+      }
+      console.log('phone1 flag is', phone1Flag);
+    } else {
+      phone1Flag = true;
+      this.alertbox('Phone1 should be 10 digits');
+    }
   }
+  if (
+    (this.guarantorForm.value.number2 != undefined || null) &&
+    this.guarantorForm.value.number2.length > 0
+  ) {
+    console.log('phone2', this.guarantorForm.value.number2.length);
+    if (this.guarantorForm.value.number2.length == 12) {
+      var phone2areacode = this.guarantorForm.value.number2.slice(0, 3);
+      var phone2exchangecode = this.guarantorForm.value.number2.slice(4, 7);
+      if (
+        phone2areacode >= 1 &&
+        phone2areacode >= 199 &&
+        phone2exchangecode >= 1 &&
+        phone2exchangecode >= 199
+      ) {
+        phone2Flag = false;
+      } else {
+        phone2Flag = true;
+        if (phone2areacode <= 1 || phone2areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
+          );
+        }
+        if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+          );
+        }
+      }
+      console.log('phone2 flag is', phone2Flag);
+    } else {
+      phone2Flag = true;
+      this.alertbox('Phone 2 should be 10 digits');
+    }
+  }
+  if (
+    (this.guarantorForm.value.number3 != undefined || null) &&
+    this.guarantorForm.value.number3.length > 0
+  ) {
+    console.log('phone3', this.guarantorForm.value.number3.length);
+    if (this.guarantorForm.value.number3.length == 12) {
+      var phone3areacode = this.guarantorForm.value.number3.slice(0, 3);
+      var phone3exchangecode = this.guarantorForm.value.number3.slice(4, 7);
+      if (
+        phone3areacode >= 1 &&
+        phone3areacode >= 199 &&
+        phone3exchangecode >= 1 &&
+        phone3exchangecode >= 199
+      ) {
+        phone3Flag = false;
+      } else {
+        phone3Flag = true;
+        if (phone3areacode <= 1 || phone3areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
+          );
+        }
+        if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+          );
+        }
+      }
+      console.log('phone1 flag is', phone3Flag);
+    } else {
+      phone3Flag = true;
+      this.alertbox('Phone3 should be 10 digits');
+    }
+  }
+  if (!phone3Flag && !phone2Flag && !phone1Flag) {
+    let ssnLength = this.guarantorForm.value.ssn.length;
+    ssnLength == 0 ? this.saveEdittedGuarantor() : this.checkSSn();
+
+    console.log('all are valid phone nums');
+  }
+}
+ // Code of alert for invalid phone number input
+private alertbox(string) {
+  var message = 'Invalid Number';
+  swal.fire(message, string, 'warning');
+}
+// Code for validating the ssn
+private checkSSn() {
+  if (this.guarantorForm.value.ssn.replace(/-/g, '') == 999999999) {
+    console.log('ssn ERRor');
+    swal.fire({
+      title: 'Invalid SSN',
+      text: "SSN should not contain all 9's",
+      icon: 'warning',
+      confirmButtonText: 'Ok',
+      allowOutsideClick: false,
+    });
+  } else {
+    try {
+      let params = { ssn: this.guarantorForm.value.ssn, screenFlag: 'ps' };
+      this.service
+        .validateSSNNumber(JSON.stringify(params))
+        .subscribe((data) => {
+          console.log(data);
+          if (Object.keys(data).length !== 0) {
+            let data2: any = data;
+
+            swal.fire({
+              title: 'Invalid SSN',
+              text: data2.ErrorMsg,
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false,
+            });
+          } else {
+            this.saveEdittedGuarantor();
+          }
+        });
+    } catch (error) {}
+  }
+}
 
 }

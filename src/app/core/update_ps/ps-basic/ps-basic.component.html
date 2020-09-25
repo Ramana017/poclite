@@ -251,7 +251,7 @@
                                     Primary Language<span class="text-danger">*</span>
                                 </label>
                                 <div class="input-group ">
-                                    <div class="ng-autocomplete" style="width: 100%;"
+                                    <!-- <div class="ng-autocomplete" style="width: 100%;"
                                         [class.invalid-input]="(f.language.invalid && formError)||(f.languageId.invalid && formError)">
                                         <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword"
                                             formControlName="language"
@@ -262,7 +262,18 @@
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
                                             <a [innerHTML]="item.name"></a>
                                         </ng-template>
-                                    </div>
+                                    </div> -->
+                                    <div class="ng-autocomplete" style="width: 100%;"
+                                    [class.invalid-input]="(f.languageList.invalid && formError)||(f.languageId.invalid && formError)">
+                                    <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword"
+                                        formControlName="primelang" (inputCleared)="selectChange('','languageId',false)"
+                                        (selected)="selectChange($event,'languageId',true)"
+                                        [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplateLang">
+                                    </ng-autocomplete>
+                                    <ng-template style="width: 100%;" #itemTemplateLang let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                </div>
 
                                 </div>
                             </div>
