@@ -66,13 +66,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public dateValidationFlag: boolean = false;
   constructor(private fb: FormBuilder, public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
     console.log("basic constructer", this.popup);
-    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId = data.userId
-    // for (this.i = 1; this.i <= 100; this.i++) {
-    // this.numbers.push(this.i);
-
-    // }
-    this.newAttribute = { rank: 0, name: '', code: '' };
+    this.userId = this.service.getUserId();
 
     this.newForm();
   }

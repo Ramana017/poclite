@@ -145,6 +145,26 @@ export class ZipcodeService {
     return this.http.get(this.url + '/common/isPolicyNumRequired?jsonObj='+params).pipe(catchError(this.errorHandler));
 
   }
+  public getUserId(){
+    var token = JSON.parse(sessionStorage.getItem('useraccount'));
+    return token.userId;
+  }
+  public PhoneNumFormat(input, length) {
+    if (input != undefined) {
+      let trimmed = input.replace(/\D/g, '');
+      if (trimmed.length > length) {
+        trimmed = trimmed.substr(0, length);
+      }
+      trimmed = trimmed.replace(/-/g, '');
+      let numbers = [];
+      numbers.push(trimmed.substr(0, 3));
+      if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
+      if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
+        numbers.push(trimmed.substr(6, 4));
+
+        return numbers.join('-');
+    }
+  }
 
   // public getNotifications() {
   //   return this.http.get('http://poc.aquilasoftware.com/pocextacc-notiwebservices/telephony/getNotifications').pipe(catchError(this.errorHandler))

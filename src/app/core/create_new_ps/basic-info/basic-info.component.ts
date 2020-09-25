@@ -58,8 +58,7 @@ export class BasicInfoComponent implements OnInit {
   public mappedArray: Array<any>;
   constructor(private fb: FormBuilder, public modalService: BsModalService, public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
     console.log("basic constructer", this.popup);
-    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId = data.userId
+    this.userId = this.service.getUserId()
     this.newForm();
 
 

@@ -38,14 +38,7 @@ export class GuarantorDetailsComponent implements OnInit {
   private timeZoneId: number;
   public phoneNUmber;
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
-    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId = data.userId
-    // let session = sessionStorage.getItem('guarantorDetails');
-    // if (session) {
-    //   console.log('guranter present')
-    //   this.getGuarantorDetails();
-    // }
-
+    this.userId = this.service.getUserId();
   }
   ngOnInit() {
     console.log("guarantor")

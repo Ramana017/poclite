@@ -48,8 +48,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   private clientTypeId;
   private clientClassId;
   constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) {
-    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId = data.userId
+    this.userId = this.service.getUserId();
   }
   ngOnInit() {
     this.psGuarData();
