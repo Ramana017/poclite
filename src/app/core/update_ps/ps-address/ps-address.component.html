@@ -130,9 +130,9 @@
                                         </ng-template>
                                     </div>
                                     <div class="input-group ">
-                                        <input type="number" [class.is-invalid]="f.number.invalid && formError"
-                                        (keyup)='PhoneNumFormat($event,"phone")'
-                                            maxlength='10' formControlName="number" class="form-control">
+                                        <input type="text" [class.is-invalid]="f.number.invalid && formError"
+                                        (keyup)='PhoneNumFormat($event,"phone")' maxlength='12'
+                                             formControlName="number" class="form-control">
                                     </div>
                                 </div>
 
@@ -162,8 +162,8 @@
                                     </div>
                                     <div class="input-group ">
                                         <input type="text" [class.is-invalid]="f.number2.invalid && formError"
-                                        (keyup)='PhoneNumFormat($event,"phone2")'
-                                            maxlength='10' formControlName="number2" class="form-control">
+                                        (keyup)='PhoneNumFormat($event,"phone2")' maxlength='12'
+                                          formControlName="number2" class="form-control">
                                     </div>
                                 </div>
 
@@ -193,8 +193,8 @@
                                     </div>
                                     <div class="input-group ">
                                         <input type="text" [class.is-invalid]="f.number3.invalid && formError"
-                                        (keyup)='PhoneNumFormat($event,"phone3")'
-                                            maxlength='10' formControlName="number3" class="form-control">
+                                        (keyup)='PhoneNumFormat($event,"phone3")' maxlength='12'
+                                             formControlName="number3" class="form-control">
                                     </div>
                                 </div>
 

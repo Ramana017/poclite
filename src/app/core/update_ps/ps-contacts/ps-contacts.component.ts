@@ -160,7 +160,6 @@ export class PsContactsComponent implements OnInit {
       lastName: this.contactForm.value.lastName,
       firstName: this.contactForm.value.firstName,
       relationShipId: this.contactForm.value.relationshipList,
-      maritalStatusID: this.contactForm.value.maritalStatusList,
       dob: this.date.transform(this.contactForm.value.dob, 'MM/dd/yyyy'),
       ssn: this.contactForm.value.ssn.replace(/-/g, ''),
       locationId: this.contactForm.value.addressTypeList,
@@ -175,8 +174,6 @@ export class PsContactsComponent implements OnInit {
       timeZoneId: this.timeZoneId,
       countryId: this.countryId,
       officeId: this.siteId,
-      mappedOfficeIds: this.mappedArray.toString(),
-      updatedUserId: this.userId,
       middleName:this.contactForm.value.middleName,
       aliasName: this.contactForm.value.aliasName,
       zip4Code: this.contactForm.value.zip4Code,
@@ -325,187 +322,225 @@ export class PsContactsComponent implements OnInit {
     }
   }
 
-  // Setting a format for phone numbers
-  public PhoneNumFormat(event, flag, value?) {
-    var input = event != null ? event.target.value : value;
-    if (input != undefined) {
-      let trimmed = input.replace(/\D/g, '');
-      if (trimmed.length > 12) {
-        trimmed = trimmed.substr(0, 12);
-      }
-      trimmed = trimmed.replace(/-/g, '');
-      let numbers = [];
-      numbers.push(trimmed.substr(0, 3));
-      if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
-      if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
-        numbers.push(trimmed.substr(6, 4));
+// Setting a format for phone numbers
+public PhoneNumFormat(event, flag, value?) {
+  var input = event != null ? event.target.value : value;
+  if (input != undefined) {
+    let trimmed = input.replace(/\D/g, '');
+    if (trimmed.length > 12) {
+      trimmed = trimmed.substr(0, 12);
+    }
+    trimmed = trimmed.replace(/-/g, '');
+    let numbers = [];
+    numbers.push(trimmed.substr(0, 3));
+    if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
+    if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
+      numbers.push(trimmed.substr(6, 4));
 
-      if (flag == 'phone') {
-        this.contactForm.get('number').setValue(numbers.join('-'));
-      } else if (flag == 'ssn') {
-        this.contactForm.get('ssn').setValue(numbers.join('-'));
-      } else if (flag == 'phone2') {
-        this.contactForm.get('number2').setValue(numbers.join('-'));
-      } else if (flag == 'phone3') {
-        this.contactForm.get('number3').setValue(numbers.join('-'));
-      }
+    if (flag == 'phone') {
+      this.contactForm.get('number').setValue(numbers.join('-'));
+    } else if (flag == 'ssn') {
+      this.contactForm.get('ssn').setValue(numbers.join('-'));
+    } else if (flag == 'phone2') {
+      this.contactForm.get('number2').setValue(numbers.join('-'));
+    } else if (flag == 'phone3') {
+      this.contactForm.get('number3').setValue(numbers.join('-'));
+    }
+    else if (flag == 'primaryPhone') {
+      this.contactForm.get('primaryPhNumber').setValue(numbers.join('-'));
     }
   }
-  // Code for validating the input for the phone number
-  private phoneValidation() {
-    let phone1Flag: boolean;
-    let phone2Flag: boolean;
-    let phone3Flag: boolean;
-    if (
-      (this.contactForm.value.number != undefined || null) &&
-      this.contactForm.value.number.length > 0
-    ) {
-      console.log('phone1', this.contactForm.value.number.length);
-      if (this.contactForm.value.number.length == 12) {
-        var phone1areacode = this.contactForm.value.number.slice(0, 3);
-        var phone1exchangecode = this.contactForm.value.number.slice(4, 7);
-        if (
-          phone1areacode >= 1 &&
-          phone1areacode >= 199 &&
-          phone1exchangecode >= 1 &&
-          phone1exchangecode >= 199
-        ) {
-          phone1Flag = false;
-        } else {
-          // phone1Flag = true;
-          if (phone1areacode <= 1 || phone1areacode <= 199) {
-            console.log('area code missing');
-            this.alertbox(
-              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
-            );
-          }
-          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
-            console.log('area exchange code missing');
-
-            this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
-            );
-          }
-        }
-        console.log('phone1 flag is', phone1Flag);
+}
+// Code for validating the input for the phone number
+private phoneValidation() {
+  let phone1Flag: boolean;
+  let phone2Flag: boolean;
+  let phone3Flag: boolean;
+  let phone4Flag: boolean;
+  if (
+    (this.contactForm.value.number != undefined || null) &&
+    this.contactForm.value.number.length > 0
+  ) {
+    console.log('phone1', this.contactForm.value.number.length);
+    if (this.contactForm.value.number.length == 12) {
+      var phone1areacode = this.contactForm.value.number.slice(0, 3);
+      var phone1exchangecode = this.contactForm.value.number.slice(4, 7);
+      if (
+        phone1areacode >= 1 &&
+        phone1areacode >= 199 &&
+        phone1exchangecode >= 1 &&
+        phone1exchangecode >= 199
+      ) {
+        phone1Flag = false;
       } else {
-        phone1Flag = true;
-        this.alertbox('Phone1 should be 10 digits');
-      }
-    }
-    if (
-      (this.contactForm.value.number2 != undefined || null) &&
-      this.contactForm.value.number2.length > 0
-    ) {
-      console.log('phone2', this.contactForm.value.number2.length);
-      if (this.contactForm.value.number2.length == 12) {
-        var phone2areacode = this.contactForm.value.number2.slice(0, 3);
-        var phone2exchangecode = this.contactForm.value.number2.slice(4, 7);
-        if (
-          phone2areacode >= 1 &&
-          phone2areacode >= 199 &&
-          phone2exchangecode >= 1 &&
-          phone2exchangecode >= 199
-        ) {
-          phone2Flag = false;
-        } else {
-          phone2Flag = true;
-          if (phone2areacode <= 1 || phone2areacode <= 199) {
-            this.alertbox(
-              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
-            );
-          }
-          if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
-            this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
-            );
-          }
+        // phone1Flag = true;
+        if (phone1areacode <= 1 || phone1areacode <= 199) {
+          console.log('area code missing');
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone '
+          );
         }
-        console.log('phone2 flag is', phone2Flag);
+        if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
+          console.log('area exchange code missing');
+
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+          );
+        }
+      }
+      console.log('phone1 flag is', phone1Flag);
+    } else {
+      phone1Flag = true;
+      this.alertbox('Phone1 should be 10 digits');
+    }
+  }
+  if (
+    (this.contactForm.value.number2 != undefined || null) &&
+    this.contactForm.value.number2.length > 0
+  ) {
+    console.log('phone2', this.contactForm.value.number2.length);
+    if (this.contactForm.value.number2.length == 12) {
+      var phone2areacode = this.contactForm.value.number2.slice(0, 3);
+      var phone2exchangecode = this.contactForm.value.number2.slice(4, 7);
+      if (
+        phone2areacode >= 1 &&
+        phone2areacode >= 199 &&
+        phone2exchangecode >= 1 &&
+        phone2exchangecode >= 199
+      ) {
+        phone2Flag = false;
       } else {
         phone2Flag = true;
-        this.alertbox('Phone 2 should be 10 digits');
-      }
-    }
-    if (
-      (this.contactForm.value.number3 != undefined || null) &&
-      this.contactForm.value.number3.length > 0
-    ) {
-      console.log('phone3', this.contactForm.value.number3.length);
-      if (this.contactForm.value.number3.length == 12) {
-        var phone3areacode = this.contactForm.value.number3.slice(0, 3);
-        var phone3exchangecode = this.contactForm.value.number3.slice(4, 7);
-        if (
-          phone3areacode >= 1 &&
-          phone3areacode >= 199 &&
-          phone3exchangecode >= 1 &&
-          phone3exchangecode >= 199
-        ) {
-          phone3Flag = false;
-        } else {
-          phone3Flag = true;
-          if (phone3areacode <= 1 || phone3areacode <= 199) {
-            this.alertbox(
-              'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
-            );
-          }
-          if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
-            this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
-            );
-          }
+        if (phone2areacode <= 1 || phone2areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 2'
+          );
         }
-        console.log('phone1 flag is', phone3Flag);
+        if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+          );
+        }
+      }
+      console.log('phone2 flag is', phone2Flag);
+    } else {
+      phone2Flag = true;
+      this.alertbox('Phone 2 should be 10 digits');
+    }
+  }
+  if (
+    (this.contactForm.value.number3 != undefined || null) &&
+    this.contactForm.value.number3.length > 0
+  ) {
+    console.log('phone3', this.contactForm.value.number3.length);
+    if (this.contactForm.value.number3.length == 12) {
+      var phone3areacode = this.contactForm.value.number3.slice(0, 3);
+      var phone3exchangecode = this.contactForm.value.number3.slice(4, 7);
+      if (
+        phone3areacode >= 1 &&
+        phone3areacode >= 199 &&
+        phone3exchangecode >= 1 &&
+        phone3exchangecode >= 199
+      ) {
+        phone3Flag = false;
       } else {
         phone3Flag = true;
-        this.alertbox('Phone3 should be 10 digits');
+        if (phone3areacode <= 1 || phone3areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3 '
+          );
+        }
+        if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+          );
+        }
       }
-    }
-    if (!phone3Flag && !phone2Flag && !phone1Flag) {
-      let ssnLength = this.contactForm.value.ssn.length;
-      ssnLength == 0 ? this.saveContactForm() : this.checkSSn();
-
-      console.log('all are valid phone nums');
-    }
-  }
-  // Code of alert for invalid phone number input
-  private alertbox(string) {
-    var message = 'Invalid Number';
-    swal.fire(message, string, 'warning');
-  }
-  // Code for validating the ssn
-  private checkSSn() {
-    if (this.contactForm.value.ssn.replace(/-/g, '') == 999999999) {
-      console.log('ssn ERRor');
-      swal.fire({
-        title: 'Invalid SSN',
-        text: "SSN should not contain all 9's",
-        icon: 'warning',
-        confirmButtonText: 'Ok',
-        allowOutsideClick: false,
-      });
+      console.log('phone1 flag is', phone3Flag);
     } else {
-      try {
-        let params = { ssn: this.contactForm.value.ssn, screenFlag: 'ps' };
-        this.service
-          .validateSSNNumber(JSON.stringify(params))
-          .subscribe((data) => {
-            console.log(data);
-            if (Object.keys(data).length !== 0) {
-              let data2: any = data;
-
-              swal.fire({
-                title: 'Invalid SSN',
-                text: data2.ErrorMsg,
-                icon: 'error',
-                confirmButtonText: 'Ok',
-                allowOutsideClick: false,
-              });
-            } else {
-              this.saveContactForm();
-            }
-          });
-      } catch (error) {}
+      phone3Flag = true;
+      this.alertbox('Phone3 should be 10 digits');
     }
   }
+  if (
+    (this.contactForm.value.primaryPhNumber != undefined || null) &&
+    this.contactForm.value.primaryPhNumber.length > 0
+  ) {
+    console.log('phone3', this.contactForm.value.primaryPhNumber.length);
+    if (this.contactForm.value.primaryPhNumber.length == 12) {
+      var phone4areacode = this.contactForm.value.primaryPhNumber.slice(0, 3);
+      var phone4exchangecode = this.contactForm.value.primaryPhNumber.slice(4, 7);
+      if (
+        phone4areacode >= 1 &&
+        phone4areacode >= 199 &&
+        phone4exchangecode >= 1 &&
+        phone4exchangecode >= 199
+      ) {
+        phone4Flag = false;
+      } else {
+        phone4Flag = true;
+        if (phone4areacode <= 1 || phone4areacode <= 199) {
+          this.alertbox(
+            'Area Code (first 3 digits) should not be in between 001 and 199 for Phone 4 '
+          );
+        }
+        if (phone4exchangecode <= 1 || phone4exchangecode <= 199) {
+          this.alertbox(
+            'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 4'
+          );
+        }
+      }
+      console.log('phone1 flag is', phone4Flag);
+    } else {
+      phone4Flag = true;
+      this.alertbox('Phone3 should be 10 digits');
+    }
+  }
+  if (!phone3Flag && !phone2Flag && !phone1Flag && phone4Flag ) {
+    let ssnLength = this.contactForm.value.ssn.length;
+    ssnLength == 0 ? this.saveContactForm() : this.checkSSn();
+
+    console.log('all are valid phone nums');
+  }
+}
+ // Code of alert for invalid phone number input
+private alertbox(string) {
+  var message = 'Invalid Number';
+  swal.fire(message, string, 'warning');
+}
+// Code for validating the ssn
+private checkSSn() {
+  if (this.contactForm.value.ssn.replace(/-/g, '') == 999999999) {
+    console.log('ssn ERRor');
+    swal.fire({
+      title: 'Invalid SSN',
+      text: "SSN should not contain all 9's",
+      icon: 'warning',
+      confirmButtonText: 'Ok',
+      allowOutsideClick: false,
+    });
+  } else {
+    try {
+      let params = { ssn: this.contactForm.value.ssn, screenFlag: 'ps' };
+      this.service
+        .validateSSNNumber(JSON.stringify(params))
+        .subscribe((data) => {
+          console.log(data);
+          if (Object.keys(data).length !== 0) {
+            let data2: any = data;
+
+            swal.fire({
+              title: 'Invalid SSN',
+              text: data2.ErrorMsg,
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false,
+            });
+          } else {
+            this.saveContactForm();
+          }
+        });
+    } catch (error) {}
+  }
+}
 }

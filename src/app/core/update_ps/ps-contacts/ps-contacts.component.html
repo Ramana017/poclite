@@ -194,7 +194,7 @@
                                 </label>
                                 <div class="input-group  ">
                                     <input type="text" [class.is-invalid]="f.primaryPhNumber.invalid && formError"
-                                       formControlName="primaryPhNumber"
+                                       formControlName="primaryPhNumber" (keyup)='PhoneNumFormat($event,"primaryPhone")' maxlength="12"
                                         class="form-control" aria-label="Case Manager" >
 
                                 </div>
@@ -333,7 +333,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number.invalid && formError"
-                                                maxlength='10'
+                                                maxlength='12' (keyup)="PhoneNumFormat($event,'phone')"
                                                 formControlName="number" class="form-control">
                                         </div>
                                     </div>
@@ -363,7 +363,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number2.invalid && formError"
-                                                maxlength='10'
+                                                maxlength='12'  (keyup)="PhoneNumFormat($event,'phone2')"
                                                 formControlName="number2" class="form-control">
                                         </div>
                                     </div>
@@ -394,7 +394,7 @@
                                         </div>
                                         <div class="input-group ">
                                             <input type="text" [class.is-invalid]="f.number3.invalid && formError"
-                                                maxlength='10'
+                                                maxlength='12'  (keyup)="PhoneNumFormat($event,'phone3')"
                                                 formControlName="number3" class="form-control">
                                         </div>
                                     </div>

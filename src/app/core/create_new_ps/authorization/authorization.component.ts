@@ -93,8 +93,7 @@ export class AuthorizationComponent implements OnInit {
 
 
   constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
-    let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
-    this.userId = data.userId
+    this.userId = this._zipService.getUserId();
     this.payorPlanResponse = JSON.parse(sessionStorage.getItem('savePayorRes'));
     if (this.payorPlanResponse != undefined || null) {
       this.payorPlanResponse.privateDuty == "true" ? this.privateDuty = true : this.privateDuty = false;

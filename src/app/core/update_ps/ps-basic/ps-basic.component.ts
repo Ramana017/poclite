@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
+import { UserdetailsService } from 'src/app/services/userdetails.service';
 @Component({
   selector: 'app-ps-basic',
   templateUrl: './ps-basic.component.html',
@@ -55,6 +56,7 @@ export class PsBasicComponent implements OnInit {
   private userId: number;
   public mappedArray: Array<any>;
   constructor(
+    private userDetails:UserdetailsService,
     private fb: FormBuilder,
     public modalService: BsModalService,
     public service: ZipcodeService,
@@ -62,16 +64,8 @@ export class PsBasicComponent implements OnInit {
     private router: Router,
     private http: HttpClient
   ) {
-    console.log('basic constructer', this.popup);
-    let data: any = (this.userId = JSON.parse(
-      sessionStorage.getItem('useraccount')
-    ));
-    this.userId = data.userId;
+   this.userId=this.userDetails.getUserId();
     this.newForm();
-    // let userExist = sessionStorage.getItem('psDetails');
-    // if (userExist) {
-    //   this.previousBasicInfo();
-    // }+6
   }
   ngOnInit() {
     this.previousBasicInfo();
@@ -314,8 +308,10 @@ export class PsBasicComponent implements OnInit {
   }
 
   public getzip(): void {
-    const zip = this.basicEditForm.get('zipcode').value;
-    if (zip.length === 5) {
+    const zip = this.basicEditForm.get('zipcode').value!=null?this.basicEditForm.get('zipcode').value:0;
+    // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
+    console.log(zip)
+    if (zip.toString().length==5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
         let responseFlag = Object.keys(data).length !== 0 ? true : false;
         responseFlag
@@ -457,32 +453,8 @@ export class PsBasicComponent implements OnInit {
     this.siteId = null;
     this.basicEditForm.get('siteName').setValue('');
   }
-// Setting a format for phone numbers
-  public PhoneNumFormat(event, flag, value?) {
-    var input = event != null ? event.target.value : value;
-    if (input != undefined) {
-      let trimmed = input.replace(/\D/g, '');
-      if (trimmed.length > 12) {
-        trimmed = trimmed.substr(0, 12);
-      }
-      trimmed = trimmed.replace(/-/g, '');
-      let numbers = [];
-      numbers.push(trimmed.substr(0, 3));
-      if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
-      if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
-        numbers.push(trimmed.substr(6, 4));
 
-      if (flag == 'phone') {
-        this.basicEditForm.get('number').setValue(numbers.join('-'));
-      } else if (flag == 'ssn') {
-        this.basicEditForm.get('ssn').setValue(numbers.join('-'));
-      } else if (flag == 'phone2') {
-        this.basicEditForm.get('number2').setValue(numbers.join('-'));
-      } else if (flag == 'phone3') {
-        this.basicEditForm.get('number3').setValue(numbers.join('-'));
-      }
-    }
-  }
+
 // Code for validating the input for the phone number
   private phoneValidation() {
     let phone1Flag: boolean;
@@ -639,5 +611,19 @@ export class PsBasicComponent implements OnInit {
           });
       } catch (error) {}
     }
+  }
+  public PhoneNumFormat(event,flag,value?){
+    let input = event != null ? event.target.value : value;
+    if (flag == 'phone') {
+      this.basicEditForm.get('number').setValue(this.service.PhoneNumFormat(input,12));
+    } else if (flag == 'ssn') {
+      this.basicEditForm.get('ssn').setValue(this.service.PhoneNumFormat(input,11));
+    } else if (flag == 'phone2') {
+      this.basicEditForm.get('number2').setValue(this.service.PhoneNumFormat(input,12));
+    } else if (flag == 'phone3') {
+      this.basicEditForm.get('number3').setValue(this.service.PhoneNumFormat(input,12));
+    }
+
+
   }
 }
