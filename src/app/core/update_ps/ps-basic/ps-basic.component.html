@@ -362,9 +362,9 @@
                                     </label>
 
                                     <div class="input-group  " [class.invalid-input]="(f.zipcode.invalid && formError)">
-                                        <input type="text" class="form-control " aria-label="date"
-                                            formControlName='zipcode' maxlength='5' (keyup)="getzip()"
-                                            type="text" class="form-control">
+                                        <input type="number" class="form-control " aria-label="date"
+                                            formControlName='zipcode' min="1" max="999" (keyup)="getzip()"
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="w-48">

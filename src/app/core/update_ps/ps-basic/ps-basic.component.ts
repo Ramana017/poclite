@@ -317,8 +317,10 @@ export class PsBasicComponent implements OnInit {
   }
 
   public getzip(): void {
-    const zip = this.basicEditForm.get('zipcode').value;
-    if (zip.length === 5) {
+    const zip = this.basicEditForm.get('zipcode').value!=null?this.basicEditForm.get('zipcode').value:0;
+    // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
+    console.log(zip)
+    if (zip.toString().length==5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
         let responseFlag = Object.keys(data).length !== 0 ? true : false;
         responseFlag
