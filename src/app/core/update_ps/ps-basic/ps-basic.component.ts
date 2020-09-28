@@ -7,18 +7,17 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
-import { UserdetailsService } from 'src/app/services/userdetails.service';
 @Component({
   selector: 'app-ps-basic',
   templateUrl: './ps-basic.component.html',
   styleUrls: ['./ps-basic.component.sass'],
 })
 export class PsBasicComponent implements OnInit {
- // Variables used in guarantor edit form
+  // Variables used in guarantor edit form
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
-  public officeList: any;
+  // public officeList: any;
   public basicEditForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
@@ -56,7 +55,6 @@ export class PsBasicComponent implements OnInit {
   private userId: number;
   public mappedArray: Array<any>;
   constructor(
-    private userDetails:UserdetailsService,
     private fb: FormBuilder,
     public modalService: BsModalService,
     public service: ZipcodeService,
@@ -64,13 +62,12 @@ export class PsBasicComponent implements OnInit {
     private router: Router,
     private http: HttpClient
   ) {
-   this.userId=this.service.getUserId();
+    this.userId = this.service.getUserId();
+    this.mappedArray = this.service.getUserId(true);
     this.newForm();
   }
   ngOnInit() {
     this.previousBasicInfo();
-    console.log('basic', this.userMappedOffices.length === 0);
-    //  this.getUserOfficeList();
     this.basicDetails();
   }
   // Code for FormGroup and FormControlNames
@@ -86,11 +83,11 @@ export class PsBasicComponent implements OnInit {
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
       middleName: [''],
-      primelang: ['',Validators.required],
+      primelang: ['', Validators.required],
       alias: [''],
       site: [''],
       languageList: [''],
-      languageId: ['' ],
+      languageId: [''],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -137,7 +134,7 @@ export class PsBasicComponent implements OnInit {
         ? this.siteSelectedItems.map((a) => a.id)
         : [0];
     let siteFlag = this.mappedArray.includes(this.siteId);
-    if (this.basicEditForm.valid ) {
+    if (this.basicEditForm.valid) {
       this.phoneValidation();
     } else if (
       this.basicEditForm.invalid ||
@@ -212,14 +209,14 @@ export class PsBasicComponent implements OnInit {
           } else {
             console.log(JSON.stringify(jsonObj));
             // sessionStorage.setItem(
-            //   'psDetails',
-            //   JSON.stringify(this.SaveResponse)
+            // 'psDetails',
+            // JSON.stringify(this.SaveResponse)
             // );
             this.service.showSuccess('PS Updated Succssfully!');
           }
         }
       });
-    } catch (error) {}
+    } catch (error) { }
   }
   // Get lookups for the ps form
   public basicDetails() {
@@ -227,7 +224,7 @@ export class PsBasicComponent implements OnInit {
       this.lookupDetails = data;
       console.log(this.lookupDetails);
       this.LanguageList = this.lookupDetails.language;
-      console.log( this.lookupDetails.language);
+      console.log(this.lookupDetails.language);
 
       console.log(this.LanguageList);
 
@@ -239,7 +236,7 @@ export class PsBasicComponent implements OnInit {
       this.genderList = this.lookupDetails.gender;
     });
   }
- // Code for setting the values in contact form for autocomplete fields
+  // Code for setting the values in contact form for autocomplete fields
   public setAutocompleteValue(event, field, flag: boolean): void {
     if (field === 'genderId') {
       if (flag) {
@@ -300,32 +297,32 @@ export class PsBasicComponent implements OnInit {
         : this.basicEditForm.get('phoneTypeList3').setValue('');
     }
     // if (field === 'state') {
-    //   flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
+    // flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
     // }
     if (field === 'languageId') {
       flag
         ? this.basicEditForm.get('languageId').setValue(event.id)
         : this.basicEditForm.get('languageId').setValue('');
-        console.log(event)
+      console.log(event)
     }
   }
-// Get zipcode data
+  // Get zipcode data
   public getzip(): void {
-    const zip = this.basicEditForm.get('zipcode').value!=null?this.basicEditForm.get('zipcode').value:0;
+    const zip = this.basicEditForm.get('zipcode').value != null ? this.basicEditForm.get('zipcode').value : 0;
     // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
     console.log(zip)
-    if (zip.toString().length==5) {
+    if (zip.toString().length == 5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
         let responseFlag = Object.keys(data).length !== 0 ? true : false;
         responseFlag
           ? (this.zipDetails = data)
           : swal.fire({
-              title: 'Invalid Zip Code',
-              text: 'Please enter a valid Zip code.',
-              icon: 'warning',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false,
-            });
+            title: 'Invalid Zip Code',
+            text: 'Please enter a valid Zip code.',
+            icon: 'warning',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false,
+          });
         console.log(data);
         this.stateId = responseFlag ? data.stateId : null;
         this.countyId = responseFlag ? data.countyId : null;
@@ -349,7 +346,7 @@ export class PsBasicComponent implements OnInit {
       });
     }
   }
-  //   to update Functionality
+  // to update Functionality
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     // this.psId = this.previousPsDetails.psId;
@@ -411,7 +408,7 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm
           .get('state')
           .setValue(this.basicPreviousDetails.state);
-        //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
+        // this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
         this.basicEditForm
           .get('addressTypeList')
           .setValue(this.basicPreviousDetails.locationId);
@@ -429,18 +426,24 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.addressLine2);
         // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
         // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
-       this.PhoneNumFormat(null,'phone',this.basicPreviousDetails.PHONE);
-       this.PhoneNumFormat(null,'ssn',this.basicPreviousDetails.ssn);
+        this.PhoneNumFormat(null, 'phone', this.basicPreviousDetails.PHONE);
+        this.PhoneNumFormat(null, 'ssn', this.basicPreviousDetails.ssn);
         this.basicEditForm
           .get('zipcode')
           .setValue(this.basicPreviousDetails.ZIPCODE);
         this.basicEditForm
           .get('location')
           .setValue(this.basicPreviousDetails.locationName);
+        //sitelist
+        let siteList = JSON.parse("[" + this.basicPreviousDetails.mappedOfficeIds + "]");
+        this.siteSelectedItems = this.mappedArray.filter(item => siteList.includes(item.siteId))
+        this.siteId = this.basicPreviousDetails.officeId;
+
       });
     } catch (error) {
       console.log(error);
     }
+
   }
 
   public psIdSelect(i): void {
@@ -458,7 +461,7 @@ export class PsBasicComponent implements OnInit {
   }
 
 
-// Code for validating the input for the phone number
+  // Code for validating the input for the phone number
   private phoneValidation() {
     let phone1Flag: boolean;
     let phone2Flag: boolean;
@@ -490,7 +493,7 @@ export class PsBasicComponent implements OnInit {
             console.log('area exchange code missing');
 
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone '
             );
           }
         }
@@ -524,7 +527,7 @@ export class PsBasicComponent implements OnInit {
           }
           if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone 2'
             );
           }
         }
@@ -558,7 +561,7 @@ export class PsBasicComponent implements OnInit {
           }
           if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone 3'
             );
           }
         }
@@ -575,7 +578,7 @@ export class PsBasicComponent implements OnInit {
       console.log('all are valid phone nums');
     }
   }
-   // Code of alert for invalid phone number input
+  // Code of alert for invalid phone number input
   private alertbox(string) {
     var message = 'Invalid Number';
     swal.fire(message, string, 'warning');
@@ -612,22 +615,23 @@ export class PsBasicComponent implements OnInit {
               this.saveBasic();
             }
           });
-      } catch (error) {}
+      } catch (error) { }
     }
   }
-   // Setting a format for phone numbers
-  public PhoneNumFormat(event,flag,value?){
+  // Setting a format for phone numbers
+  public PhoneNumFormat(event, flag, value?) {
     let input = event != null ? event.target.value : value;
     if (flag == 'phone') {
-      this.basicEditForm.get('number').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'ssn') {
-      this.basicEditForm.get('ssn').setValue(this.service.PhoneNumFormat(input,11));
+      this.basicEditForm.get('ssn').setValue(this.service.PhoneNumFormat(input, 11));
     } else if (flag == 'phone2') {
-      this.basicEditForm.get('number2').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number2').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'phone3') {
-      this.basicEditForm.get('number3').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number3').setValue(this.service.PhoneNumFormat(input, 12));
     }
 
 
   }
+
 }
