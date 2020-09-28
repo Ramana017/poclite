@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./ps-address.component.sass']
 })
 export class PsAddressComponent implements OnInit {
-// Variables used in code 
+// Variables used in code
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psAddressForm: FormGroup;
@@ -37,7 +37,7 @@ export class PsAddressComponent implements OnInit {
     public date: DatePipe,
     private router: Router,
     private http: HttpClient
-  ) { 
+  ) {
     this.newForm();
   }
 
@@ -49,7 +49,7 @@ export class PsAddressComponent implements OnInit {
     this.psAddressForm = this.fb.group({
       addressType: ['',Validators.required],
       location: ['', Validators.required],
-   
+
       addressLine1: ['',Validators.required],
       addressLine2: [''],
       number: ['', [Validators.required]],
@@ -121,11 +121,11 @@ export class PsAddressComponent implements OnInit {
           .setValue(responseFlag ? this.zipDetails.state : '');
       });
     }
-    
+
   }
    // Code for setting the values in contact form for autocomplete fields
    public setAutocompleteValue(event, field, flag: boolean): void {
-  
+
     if (field === 'addressTypeList') {
       flag
         ? this.psAddressForm.get('addressTypeList').setValue(event.id)
@@ -152,26 +152,14 @@ export class PsAddressComponent implements OnInit {
 // Setting a format for phone numbers
 public PhoneNumFormat(event, flag, value?) {
   var input = event != null ? event.target.value : value;
-  if (input != undefined) {
-    let trimmed = input.replace(/\D/g, '');
-    if (trimmed.length > 12) {
-      trimmed = trimmed.substr(0, 12);
-    }
-    trimmed = trimmed.replace(/-/g, '');
-    let numbers = [];
-    numbers.push(trimmed.substr(0, 3));
-    if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
-    if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
-      numbers.push(trimmed.substr(6, 4));
 
     if (flag == 'phone') {
-      this.psAddressForm.get('number').setValue(numbers.join('-'));
+      this.psAddressForm.get('number').setValue(this.service.PhoneNumFormat(input,12));
     } else if (flag == 'phone2') {
-      this.psAddressForm.get('number2').setValue(numbers.join('-'));
+      this.psAddressForm.get('number2').setValue(this.service.PhoneNumFormat(input,12));
     } else if (flag == 'phone3') {
-      this.psAddressForm.get('number3').setValue(numbers.join('-'));
+      this.psAddressForm.get('number3').setValue(this.service.PhoneNumFormat(input,12));
     }
-  }
 }
 // Code for validating the input for the phone number
 private phoneValidation() {
@@ -345,13 +333,13 @@ private alertbox(string) {
   // Code for submitting the contact form
   public onSubmit(): void {
     console.log(this.psAddressForm.value);
-   
+
     this.formError = true;
-    
+
     if (this.psAddressForm.valid ) {
      // this.phoneValidation();
     } else if (
-      this.psAddressForm.invalid 
+      this.psAddressForm.invalid
     ) {
       swal.fire({
         title: 'Invalid Form',
@@ -361,8 +349,8 @@ private alertbox(string) {
         allowOutsideClick: false,
       });
       console.log(this.psAddressForm.value);
-    } 
-    
+    }
+
   }
 
 }

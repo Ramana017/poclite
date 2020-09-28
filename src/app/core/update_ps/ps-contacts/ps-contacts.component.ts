@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./ps-contacts.component.sass']
 })
 export class PsContactsComponent implements OnInit {
-// Variables used in code 
+// Variables used in code
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
@@ -134,11 +134,11 @@ export class PsContactsComponent implements OnInit {
       ? this.contactForm.get('dob').setValue(this.currentDate)
       : '';
     this.formError = true;
-    
+
     if (this.contactForm.valid ) {
       this.phoneValidation();
     } else if (
-      this.contactForm.invalid 
+      this.contactForm.invalid
     ) {
       swal.fire({
         title: 'Invalid Form',
@@ -148,8 +148,8 @@ export class PsContactsComponent implements OnInit {
         allowOutsideClick: false,
       });
       console.log(this.contactForm.value);
-    } 
-    
+    }
+
   }
   // Code for saving the contact form
   private saveContactForm() {
@@ -275,7 +275,7 @@ export class PsContactsComponent implements OnInit {
         ? this.contactForm.get('phoneTypeList3').setValue(event.id)
         : this.contactForm.get('phoneTypeList3').setValue('');
     }
-   
+
     if (field === 'languageId') {
       flag
         ? this.contactForm.get('languageId').setValue(event.id)
@@ -325,31 +325,20 @@ export class PsContactsComponent implements OnInit {
 // Setting a format for phone numbers
 public PhoneNumFormat(event, flag, value?) {
   var input = event != null ? event.target.value : value;
-  if (input != undefined) {
-    let trimmed = input.replace(/\D/g, '');
-    if (trimmed.length > 12) {
-      trimmed = trimmed.substr(0, 12);
-    }
-    trimmed = trimmed.replace(/-/g, '');
-    let numbers = [];
-    numbers.push(trimmed.substr(0, 3));
-    if (trimmed.substr(3, 2) !== '') numbers.push(trimmed.substr(3, 3));
-    if (trimmed.substr(5, 4) != '' && trimmed.length >= 7)
-      numbers.push(trimmed.substr(6, 4));
+
 
     if (flag == 'phone') {
-      this.contactForm.get('number').setValue(numbers.join('-'));
+      this.contactForm.get('number').setValue(this.service.PhoneNumFormat(input,12));
     } else if (flag == 'ssn') {
-      this.contactForm.get('ssn').setValue(numbers.join('-'));
+      this.contactForm.get('ssn').setValue(this.service.PhoneNumFormat(input,11));
     } else if (flag == 'phone2') {
-      this.contactForm.get('number2').setValue(numbers.join('-'));
+      this.contactForm.get('number2').setValue(this.service.PhoneNumFormat(input,12));
     } else if (flag == 'phone3') {
-      this.contactForm.get('number3').setValue(numbers.join('-'));
+      this.contactForm.get('number3').setValue(this.service.PhoneNumFormat(input,12));
     }
     else if (flag == 'primaryPhone') {
-      this.contactForm.get('primaryPhNumber').setValue(numbers.join('-'));
+      this.contactForm.get('primaryPhNumber').setValue(this.service.PhoneNumFormat(input,12));
     }
-  }
 }
 // Code for validating the input for the phone number
 private phoneValidation() {

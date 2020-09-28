@@ -96,8 +96,8 @@
                                             [class.invalid-input]="(f.gender.invalid && formError)||(f.genderId.invalid && formError)">
                                             <ng-autocomplete [data]="genderList" [searchKeyword]="Keyword"
                                                 formControlName="gender"
-                                                (inputCleared)="selectChange('','genderId',false)"
-                                                (selected)="selectChange($event,'genderId',true)"
+                                                (inputCleared)="setAutocompleteValue('','genderId',false)"
+                                                (selected)="setAutocompleteValue($event,'genderId',true)"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -120,8 +120,8 @@
                                         <div class="ng-autocomplete" style="width: 100%;"
                                             [class.invalid-input]="(f.saluation.invalid && formError)||(f.saluationId.invalid&&formError)">
                                             <ng-autocomplete #auto [data]="saluationList"
-                                                (inputCleared)="selectChange('','saluationId',false)"
-                                                (selected)="selectChange($event,'saluationId',true)"
+                                                (inputCleared)="setAutocompleteValue('','saluationId',false)"
+                                                (selected)="setAutocompleteValue($event,'saluationId',true)"
                                                 formControlName="saluation" [searchKeyword]="Keyword"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
@@ -187,8 +187,8 @@
                                             [class.invalid-input]="(f.maritalStatus.invalid && formError)||(f.maritalStatusList.invalid && formError)">
                                             <ng-autocomplete [data]="maritalStatusList" [searchKeyword]="Keyword"
                                                 formControlName="maritalStatus"
-                                                (inputCleared)="selectChange('','maritalStatusList',false)"
-                                                (selected)="selectChange($event,'maritalStatusList',true)"
+                                                (inputCleared)="setAutocompleteValue('','maritalStatusList',false)"
+                                                (selected)="setAutocompleteValue($event,'maritalStatusList',true)"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
                                             <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -221,8 +221,8 @@
                                     <div class="ng-autocomplete" style="width: 100%;"
                                         [class.invalid-input]="(f.race.invalid && formError)||(f.raceId.invalid && formError)">
                                         <ng-autocomplete [data]="raceIdList" [searchKeyword]="Keyword"
-                                            formControlName="race" (inputCleared)="selectChange('','raceId',false)"
-                                            (selected)="selectChange($event,'raceId',true)"
+                                            formControlName="race" (inputCleared)="setAutocompleteValue('','raceId',false)"
+                                            (selected)="setAutocompleteValue($event,'raceId',true)"
                                             [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -266,8 +266,8 @@
                                     <div class="ng-autocomplete" style="width: 100%;"
                                     [class.invalid-input]="(f.languageList.invalid && formError)||(f.languageId.invalid && formError)">
                                     <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword"
-                                        formControlName="primelang" (inputCleared)="selectChange('','languageId',false)"
-                                        (selected)="selectChange($event,'languageId',true)"
+                                        formControlName="primelang" (inputCleared)="setAutocompleteValue('','languageId',false)"
+                                        (selected)="setAutocompleteValue($event,'languageId',true)"
                                         [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplateLang">
                                     </ng-autocomplete>
                                     <ng-template style="width: 100%;" #itemTemplateLang let-item>
@@ -320,8 +320,8 @@
                                         [class.invalid-input]="(f.location.invalid && formError)||(f.addressTypeList.invalid && formError)">
                                         <ng-autocomplete [data]="addressTypeList" [searchKeyword]="Keyword"
                                             formControlName="location"
-                                            (inputCleared)="selectChange('','addressTypeList',false)"
-                                            (selected)="selectChange($event,'addressTypeList',true)"
+                                            (inputCleared)="setAutocompleteValue('','addressTypeList',false)"
+                                            (selected)="setAutocompleteValue($event,'addressTypeList',true)"
                                             [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                         </ng-autocomplete>
                                         <ng-template style="width: 100%;" #itemTemplate let-item>
@@ -402,8 +402,8 @@
                                         <div class="ng-autocomplete phone-select"
                                             [class.invalid-input]="(f.phonetype.invalid && formError)||(f.phoneTypeList.invalid && formError)">
                                             <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
-                                                (inputcleared)="selectChange('', 'phoneTypeList',false)"
-                                                (selected)="selectChange($event, 'phoneTypeList',true)"
+                                                (inputcleared)="setAutocompleteValue('', 'phoneTypeList',false)"
+                                                (selected)="setAutocompleteValue($event, 'phoneTypeList',true)"
                                                 formControlName="phonetype" placeHolder="Type"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
@@ -432,8 +432,8 @@
                                         <div class="ng-autocomplete phone-select"
                                             [class.invalid-input]="(f.phonetype2.invalid && formError)||(f.phoneTypeList2.invalid && formError)">
                                             <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
-                                                (inputcleared)="selectChange('', 'phoneTypeList2',false)"
-                                                (selected)="selectChange($event, 'phoneTypeList2',true)"
+                                                (inputcleared)="setAutocompleteValue('', 'phoneTypeList2',false)"
+                                                (selected)="setAutocompleteValue($event, 'phoneTypeList2',true)"
                                                 formControlName="phonetype2" placeHolder="Type"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
@@ -464,8 +464,8 @@
                                         <div class="ng-autocomplete phone-select"
                                             [class.invalid-input]="(f.phonetype3.invalid && formError)||(f.phoneTypeList.invalid && formError)">
                                             <ng-autocomplete [data]="phoneTypeList" [searchKeyword]="Keyword"
-                                                (inputcleared)="selectChange('', 'phoneTypeList3',false)"
-                                                (selected)="selectChange($event, 'phoneTypeList3',true)"
+                                                (inputcleared)="setAutocompleteValue('', 'phoneTypeList3',false)"
+                                                (selected)="setAutocompleteValue($event, 'phoneTypeList3',true)"
                                                 formControlName="phonetype3" placeHolder="Type"
                                                 [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplate">
                                             </ng-autocomplete>
