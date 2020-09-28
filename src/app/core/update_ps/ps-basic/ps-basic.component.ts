@@ -434,7 +434,7 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm
           .get('location')
           .setValue(this.basicPreviousDetails.locationName);
-
+//sitelist
         let siteList=JSON.parse("["+this.basicPreviousDetails.mappedOfficeIds+"]") ;
         this.siteSelectedItems=this.mappedArray.filter(item=>siteList.includes(item.siteId))
         this.siteId=this.basicPreviousDetails.officeId;
@@ -443,6 +443,7 @@ export class PsBasicComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+
   }
 
   public psIdSelect(i): void {
