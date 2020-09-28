@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
+import { UserdetailsService } from 'src/app/services/userdetails.service';
 @Component({
   selector: 'app-ps-basic',
   templateUrl: './ps-basic.component.html',
@@ -17,7 +18,7 @@ export class PsBasicComponent implements OnInit {
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
-  // public officeList: any;
+  public officeList: any;
   public basicEditForm: FormGroup;
   public lookupDetails: any;
   public saluationList: any;
@@ -55,6 +56,7 @@ export class PsBasicComponent implements OnInit {
   private userId: number;
   public mappedArray: Array<any>;
   constructor(
+    private userDetails:UserdetailsService,
     private fb: FormBuilder,
     public modalService: BsModalService,
     public service: ZipcodeService,
@@ -63,11 +65,12 @@ export class PsBasicComponent implements OnInit {
     private http: HttpClient
   ) {
    this.userId=this.service.getUserId();
-   this.mappedArray=this.service.getUserId(true);
     this.newForm();
   }
   ngOnInit() {
     this.previousBasicInfo();
+    console.log('basic', this.userMappedOffices.length === 0);
+    //  this.getUserOfficeList();
     this.basicDetails();
   }
   // Code for FormGroup and FormControlNames
@@ -434,11 +437,6 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm
           .get('location')
           .setValue(this.basicPreviousDetails.locationName);
-
-        let siteList=JSON.parse("["+this.basicPreviousDetails.mappedOfficeIds+"]") ;
-        this.siteSelectedItems=this.mappedArray.filter(item=>siteList.includes(item.siteId))
-        this.siteId=this.basicPreviousDetails.officeId;
-
       });
     } catch (error) {
       console.log(error);
@@ -632,5 +630,4 @@ export class PsBasicComponent implements OnInit {
 
 
   }
-
 }
