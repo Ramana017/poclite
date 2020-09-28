@@ -145,8 +145,11 @@ export class ZipcodeService {
     return this.http.get(this.url + '/common/isPolicyNumRequired?jsonObj='+params).pipe(catchError(this.errorHandler));
 
   }
-  public getUserId(){
+  public getUserId(mappedsites?){
     var token = JSON.parse(sessionStorage.getItem('useraccount'));
+    if(mappedsites){
+        return token.siteList;
+    }else
     return token.userId;
   }
   public PhoneNumFormat(input, length) {

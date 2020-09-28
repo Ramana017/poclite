@@ -23,9 +23,6 @@ export class UserdetailsService {
       }
     }
   }
-  public getUserId(){
-    var token = JSON.parse(sessionStorage.getItem('useraccount'));
-    return token.userId;
-  }
+
 }
 

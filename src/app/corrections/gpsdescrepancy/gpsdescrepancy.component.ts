@@ -275,7 +275,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     var parameters = JSON.stringify(jsonObj);
     console.log(parameters);
     try {
-      this.apiservice.saveFormatAddress(parameters).subscribe(
+      this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
         response => {
           console.log(response);
           var response2 = JSON.stringify(response);
