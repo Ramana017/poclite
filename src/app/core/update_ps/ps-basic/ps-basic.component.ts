@@ -75,8 +75,8 @@ export class PsBasicComponent implements OnInit {
     this.basicEditForm = this.fb.group({
       location: ['', Validators.required],
       phonetype: ['', Validators.required],
-      phonetype2: ['', Validators.required],
-      phonetype3: ['', Validators.required],
+      phonetype2: [''],
+      phonetype3: [''],
       maritalStatus: ['', Validators.required],
       race: ['', Validators.required],
       gender: ['', Validators.required],
@@ -84,7 +84,6 @@ export class PsBasicComponent implements OnInit {
       saluationId: ['', Validators.required],
       middleName: [''],
       primelang: ['', Validators.required],
-      alias: [''],
       site: [''],
       languageList: [''],
       languageId: [''],
@@ -101,8 +100,8 @@ export class PsBasicComponent implements OnInit {
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
-      phoneTypeList2: ['', Validators.required],
-      phoneTypeList3: ['', Validators.required],
+      phoneTypeList2: [''],
+      phoneTypeList3: [''],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
       zipFourCode: [''],
@@ -111,6 +110,8 @@ export class PsBasicComponent implements OnInit {
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
       dob: ['', Validators.required],
+      officeId: [ '', Validators.required],
+      aliasName: [''],
       siteName: [''],
       fax: [''],
       email: [''],
@@ -128,11 +129,13 @@ export class PsBasicComponent implements OnInit {
       ? this.basicEditForm.get('dob').setValue(this.currentDate)
       : '';
     this.mappedArray = [];
+    console.log(this.siteSelectedItems)
     this.formError = true;
     this.mappedArray =
       this.siteSelectedItems.length > 0
-        ? this.siteSelectedItems.map((a) => a.id)
+        ? this.siteSelectedItems.map((a) => a.siteName)
         : [0];
+    console.log(this.mappedArray)
     let siteFlag = this.mappedArray.includes(this.siteId);
     if (this.basicEditForm.valid) {
       this.phoneValidation();
@@ -160,8 +163,44 @@ export class PsBasicComponent implements OnInit {
   }
   // Code for saving the edited ps form
   private saveBasic() {
+    // const jsonObj = {
+    //   psId: this.psId,
+    //   saluationId: this.basicEditForm.value.saluationId,
+    //   genderId: this.basicEditForm.value.genderId,
+    //   lastName: this.basicEditForm.value.lastName,
+    //   firstName: this.basicEditForm.value.firstName,
+    //   raceId: this.basicEditForm.value.raceId,
+    //   maritalStatusID: this.basicEditForm.value.maritalStatusList,
+    //   dob: this.date.transform(this.basicEditForm.value.dob, 'MM/dd/yyyy'),
+    //   ssn: this.basicEditForm.value.ssn.replace(/-/g, ''),
+    //   languageId: +this.basicEditForm.value.languageId,
+    //   locationId: this.basicEditForm.value.addressTypeList,
+    //   city: this.basicEditForm.value.city,
+    //   addressLine: this.basicEditForm.value.addressLine1,
+    //   addressLine2: this.basicEditForm.value.addressLine2,
+    //   zipcode: this.basicEditForm.value.zipcode,
+    //   phoneTypeid: this.basicEditForm.value.phoneTypeList,
+    //   phone: this.basicEditForm.value.number.replace(/-/g, ''),
+    //   stateId: this.stateId,
+    //   countyId: this.countyId,
+    //   timeZoneId: this.timeZoneId,
+    //   countryId: this.countryId,
+    //   officeId: this.siteId,
+    //   mappedOfficeIds: this.mappedArray.toString(),
+    //   updatedUserId: this.userId,
+    //   middleName: this.basicEditForm.value.middleName,
+    //   aliasName: this.basicEditForm.value.aliasName,
+    //   zip4Code: this.basicEditForm.value.zip4Code,
+    //   phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
+    //   phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
+    //   phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
+    //   phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+    //   fax: this.basicEditForm.value.fax,
+    //   email: this.basicEditForm.value.email,
+    //   directions: this.basicEditForm.value.directions,
+    // };
     const jsonObj = {
-      psId: this.psId,
+      psId: 22854,
       saluationId: this.basicEditForm.value.saluationId,
       genderId: this.basicEditForm.value.genderId,
       lastName: this.basicEditForm.value.lastName,
@@ -170,6 +209,7 @@ export class PsBasicComponent implements OnInit {
       maritalStatusID: this.basicEditForm.value.maritalStatusList,
       dob: this.date.transform(this.basicEditForm.value.dob, 'MM/dd/yyyy'),
       ssn: this.basicEditForm.value.ssn.replace(/-/g, ''),
+
       languageId: +this.basicEditForm.value.languageId,
       locationId: this.basicEditForm.value.addressTypeList,
       city: this.basicEditForm.value.city,
@@ -178,26 +218,41 @@ export class PsBasicComponent implements OnInit {
       zipcode: this.basicEditForm.value.zipcode,
       phoneTypeid: this.basicEditForm.value.phoneTypeList,
       phone: this.basicEditForm.value.number.replace(/-/g, ''),
-      stateId: this.stateId,
-      countyId: this.countyId,
-      timeZoneId: this.timeZoneId,
-      countryId: this.countryId,
-      officeId: this.siteId,
+      stateId:this.zipFlag ? this.stateId : this.basicPreviousDetails.stateId,
+    //  stateId: this.stateId,
+      countyId: this.zipFlag ? this.countyId : this.basicPreviousDetails.countyId ,
+      timeZoneId: this.zipFlag ? this.timeZoneId : this.basicPreviousDetails.TIMEZONEID,
+      countryId: this.zipFlag ? this.countryId : this.basicPreviousDetails.countryId,
+      //   officeId: this.siteId,
       mappedOfficeIds: this.mappedArray.toString(),
       updatedUserId: this.userId,
+      // middleName: this.basicEditForm.value.middleName,
+      // aliasName: this.basicEditForm.value.aliasName,
+      // zip4Code: this.basicEditForm.value.zip4Code,
+      // phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
+      // phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
+      // phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
+      // phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      // fax: this.basicEditForm.value.fax,
+      // email: this.basicEditForm.value.email,
+      // directions: this.basicEditForm.value.directions,
       middleName: this.basicEditForm.value.middleName,
       aliasName: this.basicEditForm.value.aliasName,
-      zip4Code: this.basicEditForm.value.zip4Code,
-      phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
-      phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
-      phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
-      phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      zip4Code: this.basicEditForm.value.zipFourCode,
+      PHONETYPEID2: this.basicEditForm.value.phoneTypeid2,
+      PHONETYPE2: this.basicEditForm.value.number2.replace(/-/g, ''),
+      //PHONE2:
+      PHONETYPEID3: this.basicEditForm.value.phoneTypeid3,
+      PHONETYPE3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      //PHONE3:
       fax: this.basicEditForm.value.fax,
       email: this.basicEditForm.value.email,
       directions: this.basicEditForm.value.directions,
+      officeId: this.basicEditForm.value.officeId
     };
     console.log(JSON.stringify(jsonObj));
     let parameters = JSON.stringify(jsonObj);
+    localStorage.setItem('editPs', parameters);
     try {
       this.service.savePs(parameters).subscribe((res) => {
         this.SaveResponse = res;
@@ -303,11 +358,17 @@ export class PsBasicComponent implements OnInit {
       flag
         ? this.basicEditForm.get('languageId').setValue(event.id)
         : this.basicEditForm.get('languageId').setValue('');
+        // flag
+        // ? this.basicEditForm.get('primelang').setValue(event.name)
+        // : this.basicEditForm.get('primelang').setValue('');
       console.log(event)
     }
   }
+  zipFlag: boolean;
   // Get zipcode data
   public getzip(): void {
+    this.zipFlag= true;
+
     const zip = this.basicEditForm.get('zipcode').value != null ? this.basicEditForm.get('zipcode').value : 0;
     // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
     console.log(zip)
@@ -380,7 +441,7 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.raceId);
         this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
         this.basicEditForm
-          .get('languageList')
+          .get('primelang')
           .setValue(this.basicPreviousDetails.language);
         this.basicEditForm
           .get('languageId')
@@ -443,15 +504,18 @@ export class PsBasicComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-
   }
 
   public psIdSelect(i): void {
     this.basicEditForm.get('site').setValue(this.siteSelectedItems[i].id);
-    this.siteId = this.siteSelectedItems[i].id;
+    this.siteId = this.siteSelectedItems[i].siteId;
+    console.log(this.siteSelectedItems[i])
     this.basicEditForm
       .get('siteName')
       .setValue(this.siteSelectedItems[i].siteName);
+    this.basicEditForm
+      .get('officeId')
+      .setValue(this.siteSelectedItems[i].siteId);
   }
   public siteListDeSelect(): void {
     this.siteSelectedItems.length = 0;

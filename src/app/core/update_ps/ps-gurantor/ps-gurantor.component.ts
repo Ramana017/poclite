@@ -19,6 +19,7 @@ export class PsGurantorComponent implements OnInit {
   public basicPreviousData: any;
   public guarantorForm: FormGroup;
   public zipDetails: any;
+  public editGuarantor: any;
   public occupationList = [];
   public relationshipList = [];
   // public relationId;
@@ -38,6 +39,7 @@ export class PsGurantorComponent implements OnInit {
   private countyId: number;
   private timeZoneId: number;
   public phoneNUmber;
+  public editPs;
 
 
   constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
@@ -51,7 +53,9 @@ export class PsGurantorComponent implements OnInit {
 
   }
   ngOnInit() {
-   // this.getGuarantorDetails();
+    // this.getGuarantorDetails();
+    this.editPs = JSON.parse(sessionStorage.getItem('editPs'));
+    console.log(this.editPs)
     console.log("guarantor")
     this.newForm();
     this.getEditGuarantorLookups();
@@ -70,11 +74,11 @@ export class PsGurantorComponent implements OnInit {
       number: ['', Validators.required],
       number2: [''],
       number3: [''],
-      occupationList: ["UNKNOWN", Validators.required],
+      occupationList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
-      phoneTypeList2: ['', Validators.required],
-      phoneTypeList3: ['', Validators.required],
+      phoneTypeList2: [''],
+      phoneTypeList3: [''],
       // phonetype: ['', Validators.required],
       // phonetype2: ['', Validators.required],
       // phonetype3: ['', Validators.required],
@@ -88,7 +92,7 @@ export class PsGurantorComponent implements OnInit {
       addressLine1: ['', Validators.required],
       addressLine2: [''],
       location: ['', Validators.required],
-      occupationName: ['UNKNOWN', Validators.required],
+      occupationName: ['', Validators.required],
       relationId: ['', Validators.required],
       email: [''],
       fax: [''],
@@ -104,6 +108,7 @@ export class PsGurantorComponent implements OnInit {
     return this.guarantorForm.controls;
 
   }
+
   // Code for submitting the edited guarantor form
   public onSubmit(): void {
     console.log(this.guarantorForm.value);
@@ -128,28 +133,66 @@ export class PsGurantorComponent implements OnInit {
   // Code for saving the edited guarantor form
   private saveEdittedGuarantor() {
     console.log(this.guarantorForm.value.ssn != undefined, this.guarantorForm)
+    // {
+    //   const jsonObj = {
+    //     "saluationId": (this.guarantorForm.value.salutationId),
+    //     "lastName": this.guarantorForm.value.lastName,
+    //     "firstName": this.guarantorForm.value.firstName,
+    //     "relationShipId": (this.guarantorForm.value.relationshipList),
+    //     "locationId": (this.guarantorForm.value.addressTypeList),
+    //     "city": this.guarantorForm.value.city,
+    //     "addressLine": this.guarantorForm.value.lane,
+    //     "addressLine2": this.guarantorForm.value.lane2,
+    //     "zipcode": this.guarantorForm.value.zipcode,
+    //     "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
+    //     "phone": this.guarantorForm.value.number,
+    //     "updatedUserId": this.userId,
+    //     "psId": this.previousPsDetails.psId,
+    //     "occupationId": this.guarantorForm.value.occupationList,
+    //     "guarantorId": this.guarantorId,
+    //     "stateId": this.stateId,
+    //     "countyId": this.countyId,
+    //     "timeZoneId": this.timeZoneId,
+    //     "countryId": this.countryId,
+    //     "ssn": this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.replace(/\D/g, '') : ''
+    //   }
     {
       const jsonObj = {
-        "saluationId": (this.guarantorForm.value.salutationId),
-        "lastName": this.guarantorForm.value.lastName,
-        "firstName": this.guarantorForm.value.firstName,
-        "relationShipId": (this.guarantorForm.value.relationshipList),
-        "locationId": (this.guarantorForm.value.addressTypeList),
-        "city": this.guarantorForm.value.city,
-        "addressLine": this.guarantorForm.value.lane,
-        "addressLine2": this.guarantorForm.value.lane2,
-        "zipcode": this.guarantorForm.value.zipcode,
-        "phoneTypeid": (this.guarantorForm.value.phoneTypeList),
-        "phone": this.guarantorForm.value.number,
-        "updatedUserId": this.userId,
-        "psId": this.previousPsDetails.psId,
-        "occupationId": this.guarantorForm.value.occupationList,
-        "guarantorId": this.guarantorId,
-        "stateId": this.stateId,
-        "countyId": this.countyId,
-        "timeZoneId": this.timeZoneId,
-        "countryId": this.countryId,
-        "ssn": this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.replace(/\D/g, '') : ''
+        active: '',
+        sortOrder: this.guarantorForm.value.sortOrder,
+        code: this.guarantorForm.value.code,
+        middleName: this.guarantorForm.value.middleName,
+        zip4Code: this.guarantorForm.value.zipFourCode,
+        PHONETYPEID2: this.guarantorForm.value.phoneTypeList1,
+        PHONETYPE2: this.guarantorForm.value.number2.replace(/-/g, ''),
+        //PHONE2:
+        PHONETYPEID3: this.guarantorForm.value.phoneTypeList2,
+        PHONETYPE3: this.guarantorForm.value.number3.replace(/-/g, ''),
+        //PHONE3:
+        fax: this.guarantorForm.value.fax,
+        email: this.guarantorForm.value.email,
+        directions: this.guarantorForm.value.directions,
+        officeId: this.guarantorForm.value.officeId,
+        saluationId: (this.guarantorForm.value.salutationId),
+        lastName: this.guarantorForm.value.lastName,
+        firstName: this.guarantorForm.value.firstName,
+        relationShipId: (this.guarantorForm.value.relationshipList),
+        locationId: (this.guarantorForm.value.addressTypeList),
+        city: this.guarantorForm.value.city,
+        addressLine: this.guarantorForm.value.lane,
+        addressLine2: this.guarantorForm.value.lane2,
+        zipcode: this.guarantorForm.value.zipcode,
+        phoneTypeid: (this.guarantorForm.value.phoneTypeList),
+        phone: this.guarantorForm.value.number,
+        // updatedUserId: this.userId,
+        // psId: this.previousPsDetails.psId,
+        occupationId: this.guarantorForm.value.occupationList,
+        guarantorId: this.guarantorId,
+        stateId: this.stateId,
+        countyId: this.countyId,
+        timeZoneId: this.timeZoneId,
+        countryId: this.countryId,
+        ssn: this.guarantorForm.value.ssn != undefined ? this.guarantorForm.value.ssn.replace(/\D/g, '') : ''
       }
       let param = JSON.stringify(jsonObj);
       try {
@@ -169,6 +212,7 @@ export class PsGurantorComponent implements OnInit {
 
     }
     console.log(this.guarantorForm.value)
+
   }
   // Get lookups for the guarantor form
   public getEditGuarantorLookups(): void {
@@ -318,6 +362,8 @@ export class PsGurantorComponent implements OnInit {
   // for update data
   private getGuarantorDetails() {
     let session: any = JSON.parse(sessionStorage.getItem('guarantorDetails'));
+    let editPs: any = JSON.parse(sessionStorage.getItem('editPs'));
+    console.log(editPs)
     // this.guarantorId = session.psGuarId;
     // let params = { 'guarantorId': session.psGuarId }
     this.guarantorId = 23489;
