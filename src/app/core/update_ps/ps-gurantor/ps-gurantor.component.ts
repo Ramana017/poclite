@@ -375,9 +375,9 @@ export class PsGurantorComponent implements OnInit {
           let data: any = response;
           console.log(data)
           this.guarantorForm.get('relationshipList').setValue(data.relationshipId);
-          this.guarantorForm.get('relationId').setValue(data.relationship);//data.relationshipName
-          this.guarantorForm.get('occupationName').setValue('occuptaion');//data.occuptaionname
-          this.guarantorForm.get('occupationList').setValue(data.occupationId);//data.occuptaionname
+          this.guarantorForm.get('relationId').setValue(data.relationship);// data.relationshipName
+          this.guarantorForm.get('occupationName').setValue('occuptaion');// data.occuptaionname
+          this.guarantorForm.get('occupationList').setValue(data.occupationId);// data.occuptaionname
           this.guarantorForm.get('lastName').setValue(data.lastname);
           this.guarantorForm.get('firstName').setValue(data.firstname);
           this.guarantorForm.get('ssn').setValue(data.ssn);
