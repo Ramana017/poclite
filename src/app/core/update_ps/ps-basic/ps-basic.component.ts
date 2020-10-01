@@ -13,7 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./ps-basic.component.sass'],
 })
 export class PsBasicComponent implements OnInit {
- // Variables used in guarantor edit form
+  // Variables used in guarantor edit form
   @Input() popup: boolean;
   modelref: BsModalRef;
   public psId: number = 0;
@@ -63,8 +63,8 @@ export class PsBasicComponent implements OnInit {
     private router: Router,
     private http: HttpClient
   ) {
-   this.userId=this.service.getUserId();
-   this.mappedArray=this.service.getUserId(true);
+    this.userId = this.service.getUserId();
+    this.mappedArray = this.service.getUserId(true);
     this.newForm();
   }
   ngOnInit() {
@@ -84,10 +84,10 @@ export class PsBasicComponent implements OnInit {
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
       middleName: [''],
-      alias: [''],
+      primelang: ['', Validators.required],
       site: [''],
       languageList: [''],
-      languageId: ['' ],
+      languageId: [''],
       genderId: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -111,6 +111,8 @@ export class PsBasicComponent implements OnInit {
       state: ['', Validators.required],
       timeZone: ['', Validators.required],
       dob: ['', Validators.required],
+      officeId: [ '', Validators.required],
+      aliasName: [''],
       siteName: [''],
       fax: [''],
       email: [''],
@@ -128,13 +130,15 @@ export class PsBasicComponent implements OnInit {
       ? this.basicEditForm.get('dob').setValue(this.currentDate)
       : '';
     this.mappedArray = [];
+    console.log(this.siteSelectedItems)
     this.formError = true;
     this.mappedArray =
       this.siteSelectedItems.length > 0
-        ? this.siteSelectedItems.map((a) => a.id)
+        ? this.siteSelectedItems.map((a) => a.siteName)
         : [0];
+    console.log(this.mappedArray)
     let siteFlag = this.mappedArray.includes(this.siteId);
-    if (this.basicEditForm.valid ) {
+    if (this.basicEditForm.valid) {
       this.phoneValidation();
     } else if (
       this.basicEditForm.invalid ||
@@ -160,8 +164,44 @@ export class PsBasicComponent implements OnInit {
   }
   // Code for saving the edited ps form
   private saveBasic() {
+    // const jsonObj = {
+    //   psId: this.psId,
+    //   saluationId: this.basicEditForm.value.saluationId,
+    //   genderId: this.basicEditForm.value.genderId,
+    //   lastName: this.basicEditForm.value.lastName,
+    //   firstName: this.basicEditForm.value.firstName,
+    //   raceId: this.basicEditForm.value.raceId,
+    //   maritalStatusID: this.basicEditForm.value.maritalStatusList,
+    //   dob: this.date.transform(this.basicEditForm.value.dob, 'MM/dd/yyyy'),
+    //   ssn: this.basicEditForm.value.ssn.replace(/-/g, ''),
+    //   languageId: +this.basicEditForm.value.languageId,
+    //   locationId: this.basicEditForm.value.addressTypeList,
+    //   city: this.basicEditForm.value.city,
+    //   addressLine: this.basicEditForm.value.addressLine1,
+    //   addressLine2: this.basicEditForm.value.addressLine2,
+    //   zipcode: this.basicEditForm.value.zipcode,
+    //   phoneTypeid: this.basicEditForm.value.phoneTypeList,
+    //   phone: this.basicEditForm.value.number.replace(/-/g, ''),
+    //   stateId: this.stateId,
+    //   countyId: this.countyId,
+    //   timeZoneId: this.timeZoneId,
+    //   countryId: this.countryId,
+    //   officeId: this.siteId,
+    //   mappedOfficeIds: this.mappedArray.toString(),
+    //   updatedUserId: this.userId,
+    //   middleName: this.basicEditForm.value.middleName,
+    //   aliasName: this.basicEditForm.value.aliasName,
+    //   zip4Code: this.basicEditForm.value.zip4Code,
+    //   phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
+    //   phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
+    //   phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
+    //   phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+    //   fax: this.basicEditForm.value.fax,
+    //   email: this.basicEditForm.value.email,
+    //   directions: this.basicEditForm.value.directions,
+    // };
     const jsonObj = {
-      psId: this.psId,
+      psId: 22854,
       saluationId: this.basicEditForm.value.saluationId,
       genderId: this.basicEditForm.value.genderId,
       lastName: this.basicEditForm.value.lastName,
@@ -170,6 +210,7 @@ export class PsBasicComponent implements OnInit {
       maritalStatusID: this.basicEditForm.value.maritalStatusList,
       dob: this.date.transform(this.basicEditForm.value.dob, 'MM/dd/yyyy'),
       ssn: this.basicEditForm.value.ssn.replace(/-/g, ''),
+
       languageId: +this.basicEditForm.value.languageId,
       locationId: this.basicEditForm.value.addressTypeList,
       city: this.basicEditForm.value.city,
@@ -178,26 +219,41 @@ export class PsBasicComponent implements OnInit {
       zipcode: this.basicEditForm.value.zipcode,
       phoneTypeid: this.basicEditForm.value.phoneTypeList,
       phone: this.basicEditForm.value.number.replace(/-/g, ''),
-      stateId: this.stateId,
-      countyId: this.countyId,
-      timeZoneId: this.timeZoneId,
-      countryId: this.countryId,
-      officeId: 6,
-      mappedOfficeIds: this.siteList.toString(),
+      stateId:this.zipFlag ? this.stateId : this.basicPreviousDetails.stateId,
+    //  stateId: this.stateId,
+      countyId: this.zipFlag ? this.countyId : this.basicPreviousDetails.countyId ,
+      timeZoneId: this.zipFlag ? this.timeZoneId : this.basicPreviousDetails.TIMEZONEID,
+      countryId: this.zipFlag ? this.countryId : this.basicPreviousDetails.countryId,
+      //   officeId: this.siteId,
+      mappedOfficeIds: this.mappedArray.toString(),
       updatedUserId: this.userId,
+      // middleName: this.basicEditForm.value.middleName,
+      // aliasName: this.basicEditForm.value.aliasName,
+      // zip4Code: this.basicEditForm.value.zip4Code,
+      // phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
+      // phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
+      // phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
+      // phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      // fax: this.basicEditForm.value.fax,
+      // email: this.basicEditForm.value.email,
+      // directions: this.basicEditForm.value.directions,
       middleName: this.basicEditForm.value.middleName,
       aliasName: this.basicEditForm.value.aliasName,
-      zip4Code: this.basicEditForm.value.zip4Code,
-      phoneTypeid2: this.basicEditForm.value.phoneTypeid2,
-      phone2: this.basicEditForm.value.number2.replace(/-/g, ''),
-      phoneTypeid3: this.basicEditForm.value.phoneTypeid3,
-      phone3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      zip4Code: this.basicEditForm.value.zipFourCode,
+      PHONETYPEID2: this.basicEditForm.value.phoneTypeid2,
+      PHONETYPE2: this.basicEditForm.value.number2.replace(/-/g, ''),
+      //PHONE2:
+      PHONETYPEID3: this.basicEditForm.value.phoneTypeid3,
+      PHONETYPE3: this.basicEditForm.value.number3.replace(/-/g, ''),
+      //PHONE3:
       fax: this.basicEditForm.value.fax,
       email: this.basicEditForm.value.email,
       directions: this.basicEditForm.value.directions,
+      officeId: this.basicEditForm.value.officeId
     };
     console.log(JSON.stringify(jsonObj));
     let parameters = JSON.stringify(jsonObj);
+    localStorage.setItem('editPs', parameters);
     try {
       this.service.savePs(parameters).subscribe((res) => {
         this.SaveResponse = res;
@@ -209,14 +265,14 @@ export class PsBasicComponent implements OnInit {
           } else {
             console.log(JSON.stringify(jsonObj));
             // sessionStorage.setItem(
-            //   'psDetails',
-            //   JSON.stringify(this.SaveResponse)
+            // 'psDetails',
+            // JSON.stringify(this.SaveResponse)
             // );
             this.service.showSuccess('PS Updated Succssfully!');
           }
         }
       });
-    } catch (error) {}
+    } catch (error) { }
   }
   // Get lookups for the ps form
   public basicDetails() {
@@ -224,7 +280,7 @@ export class PsBasicComponent implements OnInit {
       this.lookupDetails = data;
       console.log(this.lookupDetails);
       this.LanguageList = this.lookupDetails.language;
-      console.log( this.lookupDetails.language);
+      console.log(this.lookupDetails.language);
 
       console.log(this.LanguageList);
 
@@ -236,7 +292,7 @@ export class PsBasicComponent implements OnInit {
       this.genderList = this.lookupDetails.gender;
     });
   }
- // Code for setting the values in contact form for autocomplete fields
+  // Code for setting the values in contact form for autocomplete fields
   public setAutocompleteValue(event, field, flag: boolean): void {
     if (field === 'genderId') {
       if (flag) {
@@ -297,32 +353,38 @@ export class PsBasicComponent implements OnInit {
         : this.basicEditForm.get('phoneTypeList3').setValue('');
     }
     // if (field === 'state') {
-    //   flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
+    // flag ? this.basicEditForm.get('phoneTypeList').setValue(event.id) : this.basicEditForm.get('phoneTypeList').setValue('');
     // }
     if (field === 'languageId') {
       flag
         ? this.basicEditForm.get('languageId').setValue(event.id)
         : this.basicEditForm.get('languageId').setValue('');
-        console.log(event)
+        // flag
+        // ? this.basicEditForm.get('primelang').setValue(event.name)
+        // : this.basicEditForm.get('primelang').setValue('');
+      console.log(event)
     }
   }
-// Get zipcode data
+  zipFlag: boolean;
+  // Get zipcode data
   public getzip(): void {
-    const zip = this.basicEditForm.get('zipcode').value!=null?this.basicEditForm.get('zipcode').value:0;
+    this.zipFlag= true;
+
+    const zip = this.basicEditForm.get('zipcode').value != null ? this.basicEditForm.get('zipcode').value : 0;
     // this.basicEditForm.get('zipcode').setValue(this.basicEditForm.get('zipcode').value.toString().slice(0,5))
     console.log(zip)
-    if (zip.toString().length==5) {
+    if (zip.toString().length == 5) {
       this.service.getZipcodeDetails(zip).subscribe((data) => {
         let responseFlag = Object.keys(data).length !== 0 ? true : false;
         responseFlag
           ? (this.zipDetails = data)
           : swal.fire({
-              title: 'Invalid Zip Code',
-              text: 'Please enter a valid Zip code.',
-              icon: 'warning',
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false,
-            });
+            title: 'Invalid Zip Code',
+            text: 'Please enter a valid Zip code.',
+            icon: 'warning',
+            confirmButtonText: 'Ok',
+            allowOutsideClick: false,
+          });
         console.log(data);
         this.stateId = responseFlag ? data.stateId : null;
         this.countyId = responseFlag ? data.countyId : null;
@@ -346,7 +408,7 @@ export class PsBasicComponent implements OnInit {
       });
     }
   }
-  //   to update Functionality
+  // to update Functionality
   private previousBasicInfo(): void {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     // this.psId = this.previousPsDetails.psId;
@@ -381,7 +443,7 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.raceId);
         this.basicEditForm.get('race').setValue(this.basicPreviousDetails.race);
         this.basicEditForm
-          .get('languageList')
+          .get('primelang')
           .setValue(this.basicPreviousDetails.language);
         this.basicEditForm
           .get('languageId')
@@ -409,7 +471,7 @@ export class PsBasicComponent implements OnInit {
         this.basicEditForm
           .get('state')
           .setValue(this.basicPreviousDetails.state);
-        //  this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
+        // this.basicEditForm.get('stateId').setValue(this.basicPreviousDetails.stateId);
         this.basicEditForm
           .get('addressTypeList')
           .setValue(this.basicPreviousDetails.locationId);
@@ -427,32 +489,35 @@ export class PsBasicComponent implements OnInit {
           .setValue(this.basicPreviousDetails.addressLine2);
         // this.basicEditForm.get('phonetype3').setValue(this.basicPreviousDetails.PHONETYPE);
         // this.basicEditForm.get('phoneTypeList3').setValue(this.basicPreviousDetails.PHONETYPE);
-       this.PhoneNumFormat(null,'phone',this.basicPreviousDetails.PHONE);
-       this.PhoneNumFormat(null,'ssn',this.basicPreviousDetails.ssn);
+        this.PhoneNumFormat(null, 'phone', this.basicPreviousDetails.PHONE);
+        this.PhoneNumFormat(null, 'ssn', this.basicPreviousDetails.ssn);
         this.basicEditForm
           .get('zipcode')
           .setValue(this.basicPreviousDetails.ZIPCODE);
         this.basicEditForm
           .get('location')
           .setValue(this.basicPreviousDetails.locationName);
-//sitelist
-         this.siteList=JSON.parse("["+this.basicPreviousDetails.mappedOfficeIds+"]") ;
-        this.siteSelectedItems=this.mappedArray.filter(item=>this.siteList.includes(item.siteId))
-        this.siteId=this.basicPreviousDetails.officeId;
+        //sitelist
+        let siteList = JSON.parse("[" + this.basicPreviousDetails.mappedOfficeIds + "]");
+        this.siteSelectedItems = this.mappedArray.filter(item => siteList.includes(item.siteId))
+        this.siteId = this.basicPreviousDetails.officeId;
 
       });
     } catch (error) {
       console.log(error);
     }
-
   }
 
   public psIdSelect(i): void {
     this.basicEditForm.get('site').setValue(this.siteSelectedItems[i].id);
-    this.siteId = this.siteSelectedItems[i].id;
+    this.siteId = this.siteSelectedItems[i].siteId;
+    console.log(this.siteSelectedItems[i])
     this.basicEditForm
       .get('siteName')
       .setValue(this.siteSelectedItems[i].siteName);
+    this.basicEditForm
+      .get('officeId')
+      .setValue(this.siteSelectedItems[i].siteId);
   }
   public siteListDeSelect(): void {
     this.siteSelectedItems.length = 0;
@@ -462,7 +527,7 @@ export class PsBasicComponent implements OnInit {
   }
 
 
-// Code for validating the input for the phone number
+  // Code for validating the input for the phone number
   private phoneValidation() {
     let phone1Flag: boolean;
     let phone2Flag: boolean;
@@ -494,7 +559,7 @@ export class PsBasicComponent implements OnInit {
             console.log('area exchange code missing');
 
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone '
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone '
             );
           }
         }
@@ -528,7 +593,7 @@ export class PsBasicComponent implements OnInit {
           }
           if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 2'
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone 2'
             );
           }
         }
@@ -562,7 +627,7 @@ export class PsBasicComponent implements OnInit {
           }
           if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
             this.alertbox(
-              'Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3'
+              'Exchange (middle 3 digits) should not be in between 001 and 199 for Phone 3'
             );
           }
         }
@@ -579,7 +644,7 @@ export class PsBasicComponent implements OnInit {
       console.log('all are valid phone nums');
     }
   }
-   // Code of alert for invalid phone number input
+  // Code of alert for invalid phone number input
   private alertbox(string) {
     var message = 'Invalid Number';
     swal.fire(message, string, 'warning');
@@ -616,20 +681,20 @@ export class PsBasicComponent implements OnInit {
               this.saveBasic();
             }
           });
-      } catch (error) {}
+      } catch (error) { }
     }
   }
-   // Setting a format for phone numbers
-  public PhoneNumFormat(event,flag,value?){
+  // Setting a format for phone numbers
+  public PhoneNumFormat(event, flag, value?) {
     let input = event != null ? event.target.value : value;
     if (flag == 'phone') {
-      this.basicEditForm.get('number').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'ssn') {
-      this.basicEditForm.get('ssn').setValue(this.service.PhoneNumFormat(input,11));
+      this.basicEditForm.get('ssn').setValue(this.service.PhoneNumFormat(input, 11));
     } else if (flag == 'phone2') {
-      this.basicEditForm.get('number2').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number2').setValue(this.service.PhoneNumFormat(input, 12));
     } else if (flag == 'phone3') {
-      this.basicEditForm.get('number3').setValue(this.service.PhoneNumFormat(input,12));
+      this.basicEditForm.get('number3').setValue(this.service.PhoneNumFormat(input, 12));
     }
 
 
