@@ -43,6 +43,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
   public callerIdExceptionCount: number;
   public scheduleVarExceptionCount: number;
   public incompleteClockInOutCount: number;
+  public invalidTokenCodeCount:number;
   public excessiveTtCount: number;
   public excessiveMileageCount: number;
   public currentDate: Date = new Date();
@@ -203,6 +204,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
           this.incompleteClockInOutCount = this.responsedata.callMgmtExceptionsCounts.incompleteClockInOutCount;
           this.excessiveTtCount = this.responsedata.callMgmtExceptionsCounts.excessiveTtCount;
           this.excessiveMileageCount = this.responsedata.callMgmtExceptionsCounts.excessiveMileageCount;
+          this.invalidTokenCodeCount=this.responsedata.callMgmtExceptionsCounts.invalidTokenCodeCount;
           this.tableData = this.responsedata.callMgmtExceptionsList;
 
           //------popup screen update-------------------------------------------------------------------------------
@@ -284,7 +286,16 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
               arcDelimiters: [10, 20],
 
             }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.excessiveMileageCount);
+            GaugeChart.gaugeChart(document.getElementById('invalidToken'), 150, {
+              hasNeedle: true,
+              needleColor: 'gray',
+              arcColors: ['green', 'orange', 'red'],
+              arcDelimiters: [10, 20],
+
+            }).updateNeedle(this.responsedata.callMgmtExceptionsCounts.invalidTokenCodeCount);
+
           }
+
           console.log(this.tableData.length)
 
         }, error => {

@@ -222,4 +222,13 @@ export class ApiserviceService {
 
     return !!sessionStorage.getItem('useraccount');
   }
+
+  //To check exceptions is their or not
+  public checkException(data){
+console.log(data)
+if(data.ArrGpsException==1||data.DepGpsException==1 ||data.scheduleVarException==1 ||data.arrCallerIdException==1||data.arrTravelTimeException==1 ||data.depMileageException==1||data.arrMileageException==1 )
+{
+
+}
+  }
 }

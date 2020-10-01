@@ -143,6 +143,12 @@ export class ScheduledvarianceComponent implements OnInit {
       this._apiService.acceptScheduleVarException(parameters).subscribe(
         response => {
           console.log(response)
+          console.log("jsonData",this.jsonData)
+           let merged = {...this.jsonData, ...response};
+           this._apiService.checkException(merged);
+           console.log("merged",merged)
+           console.log("jsonData2",this.jsonData)
+
           if (response) {
             swal.fire({
               text: "Accepted successfully",
