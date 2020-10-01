@@ -266,7 +266,7 @@
                                     <div class="ng-autocomplete" style="width: 100%;"
                                     [class.invalid-input]="(f.languageList.invalid && formError)||(f.languageId.invalid && formError)">
                                     <ng-autocomplete [data]="LanguageList" [searchKeyword]="Keyword"
-                                        formControlName="primelang" (inputCleared)="setAutocompleteValue('','languageId',false)"
+                                        formControlName="languageList" (inputCleared)="setAutocompleteValue('','languageId',false)"
                                         (selected)="setAutocompleteValue($event,'languageId',true)"
                                         [notFoundTemplate]="notFoundTemplate" [itemTemplate]="itemTemplateLang">
                                     </ng-autocomplete>

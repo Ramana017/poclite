@@ -54,6 +54,7 @@ export class PsBasicComponent implements OnInit {
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
+  public siteList=[];
   constructor(
     private fb: FormBuilder,
     public modalService: BsModalService,
@@ -75,15 +76,14 @@ export class PsBasicComponent implements OnInit {
     this.basicEditForm = this.fb.group({
       location: ['', Validators.required],
       phonetype: ['', Validators.required],
-      phonetype2: ['', Validators.required],
-      phonetype3: ['', Validators.required],
+      phonetype2: [''],
+      phonetype3: [''],
       maritalStatus: ['', Validators.required],
       race: ['', Validators.required],
       gender: ['', Validators.required],
       saluation: ['', Validators.required],
       saluationId: ['', Validators.required],
       middleName: [''],
-      primelang: ['',Validators.required],
       alias: [''],
       site: [''],
       languageList: [''],
@@ -93,7 +93,7 @@ export class PsBasicComponent implements OnInit {
       firstName: ['', Validators.required],
       raceId: ['', Validators.required],
       ssn: [''],
-      addressLine1: [''],
+      addressLine1: ['',Validators.required],
       addressLine2: [''],
       number: ['', [Validators.required]],
       number2: [''],
@@ -101,8 +101,8 @@ export class PsBasicComponent implements OnInit {
       maritalStatusList: ['', Validators.required],
       addressTypeList: ['', Validators.required],
       phoneTypeList: ['', Validators.required],
-      phoneTypeList2: ['', Validators.required],
-      phoneTypeList3: ['', Validators.required],
+      phoneTypeList2: [''],
+      phoneTypeList3: [''],
       city: ['', Validators.required],
       zipcode: ['', Validators.required],
       zipFourCode: [''],
@@ -123,7 +123,7 @@ export class PsBasicComponent implements OnInit {
   }
   // Code for saving the edited ps form
   public onSubmit(): void {
-    console.log(this.basicEditForm.value);
+    console.log(this.basicEditForm.valid,this.basicEditForm.value);
     this.basicEditForm.get('dob').value > this.currentDate
       ? this.basicEditForm.get('dob').setValue(this.currentDate)
       : '';
@@ -182,8 +182,8 @@ export class PsBasicComponent implements OnInit {
       countyId: this.countyId,
       timeZoneId: this.timeZoneId,
       countryId: this.countryId,
-      officeId: this.siteId,
-      mappedOfficeIds: this.mappedArray.toString(),
+      officeId: 6,
+      mappedOfficeIds: this.siteList.toString(),
       updatedUserId: this.userId,
       middleName: this.basicEditForm.value.middleName,
       aliasName: this.basicEditForm.value.aliasName,
@@ -351,7 +351,8 @@ export class PsBasicComponent implements OnInit {
     this.previousPsDetails = JSON.parse(sessionStorage.getItem('psDetails'));
     // this.psId = this.previousPsDetails.psId;
     // let parameters = { 'psId': this.previousPsDetails.psId }
-    let parameters = { psId: 22854 };
+    this.psId=22854
+    let parameters = { psId: this.psId };
     try {
       this.service.getPsDetails(JSON.stringify(parameters)).subscribe((res) => {
         this.basicPreviousDetails = res;
@@ -435,8 +436,8 @@ export class PsBasicComponent implements OnInit {
           .get('location')
           .setValue(this.basicPreviousDetails.locationName);
 //sitelist
-        let siteList=JSON.parse("["+this.basicPreviousDetails.mappedOfficeIds+"]") ;
-        this.siteSelectedItems=this.mappedArray.filter(item=>siteList.includes(item.siteId))
+         this.siteList=JSON.parse("["+this.basicPreviousDetails.mappedOfficeIds+"]") ;
+        this.siteSelectedItems=this.mappedArray.filter(item=>this.siteList.includes(item.siteId))
         this.siteId=this.basicPreviousDetails.officeId;
 
       });
