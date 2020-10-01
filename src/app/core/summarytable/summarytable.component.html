@@ -7,15 +7,15 @@
     </div>
 
     <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
-      <div class="row">
-        <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="row seven-cols pl-4">
+        <div class="col-lg-1 col-md-1 col-sm-6">
           <div id='gpsGuage'></div>
           <b>
             <p class="f-15 mt-n4">{{gpsExceptionCount}}</p>
           </b>
           <h5 class="inner-item-gps mt-n3 f-12 ">GPS Discrepancy</h5>
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
 
           <div id='invalidGuage'></div>
           <b>
@@ -24,7 +24,7 @@
           <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Caller ID</h5>
 
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
 
           <div id='scheduleGuage'></div>
           <b>
@@ -32,21 +32,21 @@
           </b>
           <h5 class="inner-item-gps mt-n3 f-12">Schedule Variance</h5>
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
           <div id='clockGuage'></div>
           <b>
             <p class="f-15 mt-n4">{{incompleteClockInOutCount}}</p>
           </b>
           <h5 class="inner-item-gps mt-n3 f-12">Missed Clock In/Out</h5>
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
           <div id='travelGuage'></div>
           <b>
             <p class="f-12 mt-n4"> {{excessiveTtCount}}</p>
           </b>
           <h5 class="inner-item-gps mt-n3 f-12">Excessive TT</h5>
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
 
           <div id='mileageGuage'></div>
           <b>
@@ -56,7 +56,7 @@
 
 
         </div>
-        <div class="col-lg-2 col-md-4 col-sm-6">
+        <div class="col-lg-1 col-md-4 col-sm-6">
           <div id='invalidToken'></div>
           <b>
             <p class="f-15 mt-n4">{{invalidTokenCodeCount}}</p>
@@ -234,7 +234,7 @@
                       (click)="correctException(i,4) "><i class="fas fa-tachometer-alt" title="Mileage Exception"></i>
                     </div>
                     <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 ||true "
-                    (click)="correctException(i,5) "><i class="fas fa-tachometer-alt" title="Invalid Token"></i>
+                    (click)="correctException(i,5) "><i class="fas fa-exclamation-triangle" title="Invalid Token"></i>
                   </div>
                     <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
                       (click)="clockException(i) "><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>

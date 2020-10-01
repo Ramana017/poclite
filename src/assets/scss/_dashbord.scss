@@ -121,6 +121,11 @@
                 }
             }
         }
+        .seven-cols{
+            .col-lg-1{
+                max-width: fit-content;
+            }
+        }
     }
     .list-filter{
       input{
