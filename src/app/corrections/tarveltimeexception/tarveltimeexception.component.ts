@@ -134,8 +134,13 @@ export class TarveltimeexceptionComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this.apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged= {...this.JsonData ,...response}
+              if(this.apiService.checkException(merged)){
+                  this.popupUpdate.emit();
+              }else {
+                this.apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
           else {

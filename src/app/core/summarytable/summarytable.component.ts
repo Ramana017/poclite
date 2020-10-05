@@ -182,7 +182,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
   //method to call table data
 
   public tableControl(): void {
-    console.log(this.exceptionSelected)
+    // console.log(this.exceptionSelected)
     var scheBeginDate = this.datepipe.transform(this.intialStartDate, 'MM/dd/yyyy');
     var scheEndDate = this.datepipe.transform(this.currentDate, 'MM/dd/yyyy');
     {

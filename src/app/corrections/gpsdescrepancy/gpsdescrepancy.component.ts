@@ -74,8 +74,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public clockinDone: boolean = true;
   public clockOutDone: boolean = true;
-  public clockInComments: string;
-  public clockOutComments: string;
+  public clockInComments: string=" ";
+  public clockOutComments: string=" ";
 
 
   public ngOnInit(): void {
@@ -199,6 +199,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public acceptGpsException(event: string) {
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
+    let commentLength=clockinflag==1?this.clockInComments.trim().length:this.clockInComments.trim().length;
+    if(commentLength>0){
     var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag ==1? this.clockInComments : '', "clockOutComments": clockOutFlag ==1? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     var parameters = JSON.stringify(jsonObj)
     try {
@@ -231,6 +233,15 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     catch (error) {
       console.log(error);
     }
+  }else{
+    let data= event=="clockin"?" Clock In":" Clock Out";
+    swal.fire({
+      title: "Invalid Comments",
+      text:"Please Enter"+ data +" comments before Accept",
+      icon: "warning",
+      confirmButtonText: 'Ok',
+    })
+  }
 
 
   }
@@ -251,8 +262,13 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(OK => {
-              this.apiservice.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = {...this.jsonData, ...response};
+              if(this.apiservice.checkException(merged)){
+                this.popupUpdate.emit();
+              }else{
+                this.apiservice.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
           else {

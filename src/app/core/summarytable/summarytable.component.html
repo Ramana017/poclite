@@ -7,7 +7,7 @@
     </div>
 
     <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
-      <div class="d-flex justify-content-between nav">
+      <div class="d-flex justify-content-between">
         <div class="">
           <div id='gpsGuage'></div>
           <b>
@@ -225,7 +225,7 @@
                     <div class="icon-wrapper " *ngIf="data.scheduleVarException==1 "><i class="fas fa-calendar-alt"
                         (click)="correctException(i,1)" title="Scheduled Variance"></i>
                     </div>
-                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 ||true"
+                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 "
                       (click)="correctException(i,2)"><i class="fas fa-phone-slash" title="Invalid Caller ID"></i></div>
                     <div class="icon-wrapper " *ngIf="data.arrTravelTimeException==1 " (click)="correctException(i,3) ">
                       <i class="fas fa-stopwatch" title="Travel Time Exception"></i>
@@ -233,7 +233,7 @@
                     <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 "
                       (click)="correctException(i,4) "><i class="fas fa-tachometer-alt" title="Mileage Exception"></i>
                     </div>
-                    <div class="icon-wrapper " *ngIf="data.clockOutTokenCodeException==1||data.clockInTokenCodeException==1    "
+                    <div class="icon-wrapper " *ngIf="data.arrTokenCodeException==1||data.depTokenCodeException==1  "
                     (click)="correctException(i,5) "><i class="fas fa-exclamation-triangle" title="Invalid Token"></i>
                   </div>
                     <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "

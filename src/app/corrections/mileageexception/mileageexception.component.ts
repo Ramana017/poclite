@@ -200,10 +200,8 @@ export class MileageexceptionComponent implements OnInit {
               this.clockInExceptionUpdate = false;
             }
             if (clocktype == "clockout") {
-              console.log('++++++')
               this.clockOutExceptionUpdate = false;
             }
-          // }
           console.log(this.clockInExceptionUpdate,this.clockOutExceptionUpdate)
           if (this.clockInExceptionUpdate == false && this.clockOutExceptionUpdate == false) {
             if (this.updateResponseData.validateFlag == 0) {
@@ -213,8 +211,15 @@ export class MileageexceptionComponent implements OnInit {
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
               }).then(ok => {
-                this._apiService.updateTable.next(true);
-                this.bsmodelRef.hide();
+                let merged={...this.JsonData,...response}
+                if(this._apiService.checkException(merged))
+                {
+                   this.popupUpdate.emit();
+                }else{
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
+
               })
 
             } else {

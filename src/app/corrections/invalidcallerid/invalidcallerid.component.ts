@@ -41,6 +41,8 @@ export class InvalidcalleridComponent implements OnInit {
   public arrInvalidErrView: boolean = false;
   public depInvalidErrView: boolean = false;
   public useraccount: any;
+  public clockInComments:string=" ";
+  public clockOutComments:String=" ";
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -121,7 +123,9 @@ export class InvalidcalleridComponent implements OnInit {
   public acceptCallerIdException(event) {
     let clockInFlag = event == 'clockin' ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+    let commentLength=event=='clockin'?this.clockInComments.trim().length:this.clockOutComments.trim().length;
+    if(commentLength>0){
+    let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId,"clockInComments":event=='clockin'?this.clockInComments:'',"clockOutComments":event == "clockout"?this.clockOutComments:"", "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     let parameters = JSON.stringify(JsonData);
     console.log(JsonData)
     try {
@@ -158,6 +162,15 @@ export class InvalidcalleridComponent implements OnInit {
 
       console.log(error);
     }
+  }else{
+    let data= event=="clockin"?" Clock In":" Clock Out";
+    swal.fire({
+      title: "Invalid Comments",
+      text:"Please Enter"+ data +" comments before Accept",
+      icon: "warning",
+      confirmButtonText: 'Ok',
+    })
+  }
   }
 
   public updatePSPhone() {
@@ -191,8 +204,13 @@ export class InvalidcalleridComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this._apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = { ...this.JsonData, ...response }
+              if (this._apiService.checkException(merged)) {
+                    this.popupUpdate.emit();
+              } else {
+                this._apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
           else {

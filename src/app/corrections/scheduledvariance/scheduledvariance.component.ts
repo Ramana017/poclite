@@ -197,8 +197,13 @@ export class ScheduledvarianceComponent implements OnInit {
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
               }).then(ok => {
-                this._apiService.updateTable.next(true);
-                this.bsmodelRef.hide();
+                let merged = { ...this.jsonData, ...response }
+                if (this._apiService.checkException(merged)) {
+                      this.popupUpdate.emit();
+                } else {
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
               })
             }
             else {

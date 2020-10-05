@@ -70,7 +70,7 @@
         </div>
 
         <div class="row m-0">
-            <div class="col-md-6 col-sm-12" *ngIf='arrInvalidErrView||true'>
+            <div class="col-md-6 col-sm-12" *ngIf='arrInvalidErrView'>
                 <div class="clock-detail-wrapper ml-0">
                     <!-- <h3>Issue</h3>
                     <p>The Caller ID from the <b>Clock In  </b> call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
@@ -79,8 +79,8 @@
                         <p class="text-white">Caller ID: {{clockInCallerID}}</p>
                     </div>
                     <div class="form-group mx-2">
-                        <p class="text-dark mb-0 pt-0 pb-1 px-2">ClockIn Comments</p>
-                        <textarea class="form-control" id="exampleForm" ></textarea>
+                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
+                        <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments" ></textarea>
                       </div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!arrInvalidErr" (click)="acceptCallerIdException('clockin')">Accept</button>
@@ -134,7 +134,7 @@
                     </div>
                 </div> -->
             </div>
-            <div class="col-md-6 col-sm-12" *ngIf='depInvalidErrView||true'>
+            <div class="col-md-6 col-sm-12" *ngIf='depInvalidErrView'>
                 <div class="clock-detail-wrapper ml-0">
                     <!-- <h3>Issue</h3>
                     <p>The Caller ID from the <b> Clock out </b>call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
@@ -143,8 +143,8 @@
                         <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
                     </div>
                       <div class="form-group mx-2">
-                        <p class="text-dark mb-0 pt-0 pb-1 px-2">ClockOut Comments</p>
-                        <textarea class="form-control" id="exampleForm" ></textarea>
+                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
+                        <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm" ></textarea>
                       </div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!depInvalidErr" (click)="acceptCallerIdException('clockout')">Accept</button>
@@ -209,7 +209,7 @@
                         </table>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
