@@ -24,7 +24,6 @@ export class CorrectionheaderComponent implements OnInit {
   public currentexceptionName: string;
 
   public displayArray :Array<boolean>= [false, false, false, false, false,false];
-  public userId:number;
   public exceptionCount;
 
 
@@ -39,7 +38,6 @@ export class CorrectionheaderComponent implements OnInit {
     var data = localStorage.getItem('userlist');
     if (data) {
       this.data = JSON.parse(data);
-      this.userId=this.data
       console.log("data came in heder", this.data.depMileageException)
       if (this.data.ArrGpsException == 1 || this.data.DepGpsException == 1) {
         this.gps == true;
@@ -69,7 +67,35 @@ export class CorrectionheaderComponent implements OnInit {
 
 
 
+public parentChild(){
+  console.log("parent component called");
+  var data = JSON.parse(localStorage.getItem('userlist'));
+  if (data) {
+    console.log("data came in heder", data.depMileageException)
+    if (data.ArrGpsException == 1 || data.DepGpsException == 1) {
+      this.display=0;
+    }
+    else if (data.arrCallerIdException == 1 || data.depCallerIdException == 1) {
+      this.display=2;
+    }
+    else if (data.scheduleVarException == 1) {
+      this.display=1;
+    }
+    else if (data.arrTravelTimeException == 1) {
+      this.display=3;
+    }
+    else if (data.depMileageException == 1 || data.arrMileageException == 1) {
+      // console.log("mileage verified")
+      this.display=4;
+    }else{
+      this.display=5;
+    }
+    this.ngOnInit();
 
+  }
+
+
+}
   public SelectorDisplay(i) {
     this.displayArray.length = 0;
     this.display = null;

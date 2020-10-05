@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { getLocaleDateFormat, DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -11,8 +11,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./scheduledvariance.component.sass']
 })
 export class ScheduledvarianceComponent implements OnInit {
-
-
+  @Output()
+  popupupdate: EventEmitter<any> = new EventEmitter<any>();
   public psName: string;
   public DcsName: string;
   public procedureCode: string;
@@ -55,8 +55,8 @@ export class ScheduledvarianceComponent implements OnInit {
   public clockoutHours: any;
   public clockoutMinutes: any;
   public ClockoutMeridian: any;
-  public orginalStartDate:string;
-  public OrginalEndDate:string;
+  public orginalStartDate: string;
+  public OrginalEndDate: string;
 
   minTime: Date = new Date();
   maxTime: Date = new Date();
@@ -112,9 +112,9 @@ export class ScheduledvarianceComponent implements OnInit {
           this.clockoutMinutes = this.datepipe.transform(this.clockOutDateAndTime, 'mm')
           this.ClockoutMeridian = this.datepipe.transform(this.clockOutDateAndTime, 'a')
 
-          this.orginalStartDate=this.getResponsedata.originalSchBeginDateTime;
-          this.OrginalEndDate=this.getResponsedata.originalSchEndDateTime;
-          console.log("ramana",this.getResponsedata.originalSchEndDateTime)
+          this.orginalStartDate = this.getResponsedata.originalSchBeginDateTime;
+          this.OrginalEndDate = this.getResponsedata.originalSchEndDateTime;
+          console.log("ramana", this.getResponsedata.originalSchEndDateTime)
 
           // this.datepipe.transform(this.clockInDateAndTime,'a')
 
@@ -142,24 +142,24 @@ export class ScheduledvarianceComponent implements OnInit {
     try {
       this._apiService.acceptScheduleVarException(parameters).subscribe(
         response => {
-          console.log(response)
-          console.log("jsonData",this.jsonData)
-           let merged = {...this.jsonData, ...response};
-           this._apiService.checkException(merged);
-           console.log("merged",merged)
-           console.log("jsonData2",this.jsonData)
-
           if (response) {
-            swal.fire({
-              text: "Accepted successfully",
-              icon: "success",
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false
-            }).then(ok => {
-              this._apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+            //  let merged = {...this.jsonData, ...response};
+            if (this._apiService.checkException(response)) {
+              console.log("exception is there");
+              this.popupupdate.emit();
+            } else {
+              console.log("exception not there")
+              swal.fire({
+                text: "Accepted successfully",
+                icon: "success",
+                confirmButtonText: 'Ok',
+                allowOutsideClick: false
+              }).then(ok => {
+                this._apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
 
-            })
+              })
+            }
           }
 
         },
@@ -200,7 +200,7 @@ export class ScheduledvarianceComponent implements OnInit {
             else {
               swal.fire({
                 title: "Updated failed",
-                text:"You cannot update this record since it's already adjusted by some one",
+                text: "You cannot update this record since it's already adjusted by some one",
                 icon: "error",
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
@@ -232,18 +232,18 @@ export class ScheduledvarianceComponent implements OnInit {
       // let clockinschedule = "'" + this.datepipe.transform(this.clockinDateview, 'MM/dd/yyyy') + " " + this.clockinHours + ":" + this.clockinMinutes + " " + this.ClockinMeridian + "'"
       // let clockoutschedule = "'" + this.datepipe.transform(this.clockOutDateview, 'MM/dd/yyyy') + " " + this.clockoutHours + ":" + this.clockoutMinutes + " " + this.ClockoutMeridian + "'"
 
-      let clockinyear:any=this.datepipe.transform(this.clockinDateview,'yyyy');
-      let clockinmonth:any=this.datepipe.transform(this.clockinDateview,'MM');
-      let clockindays:any=this.datepipe.transform(this.clockinDateview, 'dd');
-      let clockinhours=this.ClockinMeridian=="PM"?parseInt(this.clockinHours)+12:this.clockinHours;
-      this.clockInDate = new Date(clockinyear,clockinmonth-1,clockindays,clockinhours,this.clockinMinutes)
-      let clockoutyear:any=this.datepipe.transform(this.clockOutDateview,'yyyy');
-      let clockoutmonth:any=this.datepipe.transform(this.clockOutDateview,'MM');
-      let clockoutdays:any=this.datepipe.transform(this.clockOutDateview, 'dd');
-      let clockouthours=this.ClockoutMeridian=="PM"?parseInt(this.clockoutHours)+12:this.clockoutHours;
-      this.clockOutDate = new Date(clockoutyear,clockoutmonth-1,clockoutdays,clockouthours,this.clockoutMinutes)
+      let clockinyear: any = this.datepipe.transform(this.clockinDateview, 'yyyy');
+      let clockinmonth: any = this.datepipe.transform(this.clockinDateview, 'MM');
+      let clockindays: any = this.datepipe.transform(this.clockinDateview, 'dd');
+      let clockinhours = this.ClockinMeridian == "PM" ? parseInt(this.clockinHours) + 12 : this.clockinHours;
+      this.clockInDate = new Date(clockinyear, clockinmonth - 1, clockindays, clockinhours, this.clockinMinutes)
+      let clockoutyear: any = this.datepipe.transform(this.clockOutDateview, 'yyyy');
+      let clockoutmonth: any = this.datepipe.transform(this.clockOutDateview, 'MM');
+      let clockoutdays: any = this.datepipe.transform(this.clockOutDateview, 'dd');
+      let clockouthours = this.ClockoutMeridian == "PM" ? parseInt(this.clockoutHours) + 12 : this.clockoutHours;
+      this.clockOutDate = new Date(clockoutyear, clockoutmonth - 1, clockoutdays, clockouthours, this.clockoutMinutes)
       // let ieDate=new Date( year,month-1,days,clockinhours,this.clockinMinutes);
-      console.log("clockin schedule",this.clockInDate, 'clockout schedule',this.clockOutDate,)
+      console.log("clockin schedule", this.clockInDate, 'clockout schedule', this.clockOutDate,)
       var differnce = (((this.clockOutDate - this.clockInDate) / 1000) / 60) / 60;
       if ((this.datepipe.transform(this.clockInDate, 'MM/dd/yyyy') == this.datepipe.transform(this.clockInDateAndTime, 'MM/dd/yyyy')) && this.datepipe.transform(this.clockInDate, 'HH:mm') == this.datepipe.transform(this.clockInDateAndTime, 'HH:mm')) {
         this.clockinChangeFlag = false;

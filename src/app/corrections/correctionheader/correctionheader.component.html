@@ -57,11 +57,11 @@
     <!-- {{title}} -->
 
     <app-gpsdescrepancy *ngIf="displayArray[0]"></app-gpsdescrepancy>
-    <app-scheduledvariance *ngIf="displayArray[1]"></app-scheduledvariance>
+    <app-scheduledvariance (popupupdate)="parentChild()" *ngIf="displayArray[1]"></app-scheduledvariance>
     <app-invalidcallerid *ngIf="displayArray[2]"></app-invalidcallerid>
     <app-tarveltimeexception *ngIf="displayArray[3]"></app-tarveltimeexception>
     <app-mileageexception *ngIf="displayArray[4]"></app-mileageexception>
-    <app-invalid-token *ngIf="displayArray[5]"> </app-invalid-token>
+    <app-invalid-token  *ngIf="displayArray[5]"> </app-invalid-token>
 
 
 </div>

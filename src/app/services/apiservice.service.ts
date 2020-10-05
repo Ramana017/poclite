@@ -29,12 +29,12 @@ export class ApiserviceService {
   public updatePopup = new Subject();
   public updatePopup$ = this.updatePopup.asObservable();
 
-  constructor(private _http: HttpClient,private toastr: ToastrService,) { console.log("API service") }
+  constructor(private _http: HttpClient, private toastr: ToastrService,) { console.log("API service") }
 
 
- public showSuccess(message) {
-    this.toastr.success('',message, {
-      timeOut:1000
+  public showSuccess(message) {
+    this.toastr.success('', message, {
+      timeOut: 1000
     });
   }
   // calling Table APi
@@ -196,13 +196,13 @@ export class ApiserviceService {
     var data = sessionStorage.getItem('useraccount');
     var token = JSON.parse(data);
     if (token != undefined) {
-        // return false;
-        if (token.priviledFlag == 'schedule') {
-          return true;
-        }
-        else {
-          return false;
-        }
+      // return false;
+      if (token.priviledFlag == 'schedule') {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
   }
@@ -224,11 +224,14 @@ export class ApiserviceService {
   }
 
   //To check exceptions is their or not
-  public checkException(data){
-console.log(data)
-if(data.ArrGpsException==1||data.DepGpsException==1 ||data.scheduleVarException==1 ||data.arrCallerIdException==1||data.arrTravelTimeException==1 ||data.depMileageException==1||data.arrMileageException==1 )
-{
-
-}
+  public checkException(data): boolean {
+    console.log(data)
+    if (data.clockInGpsException == 1 || data.clockOutGpsException == 1 || data.scheduleVarException == 1 || data.clockInCallerIdException == 1 || data.clockOutCallerIdException == 1 || data.clockOutMileageException == 1 || data.clockInMileageException == 1||data.clockOutTokenCodeException==1||data.clockInTokenCodeException==1||data.travelTimeException==1 ) {
+      let useraccount=JSON.parse(localStorage.getItem('userlist'))
+      console.log(useraccount.procedureCode);
+      return true;
+    } else {
+      return false;
+    }
   }
 }

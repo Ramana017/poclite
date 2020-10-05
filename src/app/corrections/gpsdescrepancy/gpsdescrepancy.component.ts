@@ -70,8 +70,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   private exceptionCount: number;
 
-  public clockinDone:boolean=true;
-  public clockOutDone:boolean=true;
+  public clockinDone: boolean = true;
+  public clockOutDone: boolean = true;
+  public clockInComments: string;
+  public clockOutComments: string;
 
 
   public ngOnInit(): void {
@@ -111,8 +113,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       this.arrivalgpsErrview = true;
     }
     else {
-      if(this.jsonData.ArrGpsException == 3){
-       this.clockinDone=false;
+      if (this.jsonData.ArrGpsException == 3) {
+        this.clockinDone = false;
       }
       this.arrivalgpsErr = false;
       this.arrivalgpsErrview = false;
@@ -123,8 +125,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       this.depgpserrview = true;
     }
     else {
-      if(this.jsonData.DepGpsException == 3){
-        this.clockOutDone=false;
+      if (this.jsonData.DepGpsException == 3) {
+        this.clockOutDone = false;
       }
       this.depgpsErr = false;
       this.depgpserrview = false;
@@ -193,10 +195,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
 
   public acceptGpsException(event: string) {
-    // {"id":10366,"visitDetailsId":4636570,"clockInFlag":1,"clockOutFlag":0,"userId":1}
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    var jsonObj = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+    var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag ==1? this.clockInComments : '', "clockOutComments": clockOutFlag ==1? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     var parameters = JSON.stringify(jsonObj)
     try {
       this.apiservice.acceptGpsException(parameters).subscribe(
@@ -350,10 +351,6 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.fomatAddressManualInput = true;
   }
 
-  public markerclick() :void{
-    // console.log("marker click working")
-  }
-
   public psAddressClick(): void {
     console.log("psaddressclock")
     this.centerlatitude = +this.psLatitude;
@@ -363,15 +360,15 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockInAddressClick(): void {
     console.log("clockin address")
 
-    this.centerlatitude =  this.clockInLatitude;
-    this.centerlangutide =  this.clockInLongitude;
+    this.centerlatitude = this.clockInLatitude;
+    this.centerlangutide = this.clockInLongitude;
     this.map.centerChange;
 
   }
 
-  public clockOutAddressClick():void{
-   this.centerlatitude =  this.clockOutLatitude;
-    this.centerlangutide =  this.clockOutLongitude;
+  public clockOutAddressClick(): void {
+    this.centerlatitude = this.clockOutLatitude;
+    this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
   }
 
