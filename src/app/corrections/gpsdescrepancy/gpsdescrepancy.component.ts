@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,6 +12,8 @@ import { AgmMap } from '@agm/core';
 })
 export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   @ViewChild(AgmMap, { static: true }) map: AgmMap;
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -212,8 +214,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this.apiservice.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = {...this.jsonData, ...response};
+              if(this.apiservice.checkException(merged)){
+                this.popupUpdate.emit();
+              }else{
+                this.apiservice.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
+
             })
           }
 

@@ -226,11 +226,12 @@ export class ApiserviceService {
   //To check exceptions is their or not
   public checkException(data): boolean {
     console.log(data)
-    if (data.clockInGpsException == 1 || data.clockOutGpsException == 1 || data.scheduleVarException == 1 || data.clockInCallerIdException == 1 || data.clockOutCallerIdException == 1 || data.clockOutMileageException == 1 || data.clockInMileageException == 1||data.clockOutTokenCodeException==1||data.clockInTokenCodeException==1||data.travelTimeException==1 ) {
-      let useraccount=JSON.parse(localStorage.getItem('userlist'))
-      console.log(useraccount.procedureCode);
+    if (data.ArrGpsException == 1 || data.DepGpsException == 1 || data.scheduleVarException == 1 || data.arrCallerIdException == 1 || data.depCallerIdException == 1 || data.depMileageException == 1 || data.arrMileageException == 1||data.depTokenCodeException==1||data.arrTokenCodeException==1||data.arrTravelTimeException==1 ) {
+      localStorage.setItem("userlist",JSON.stringify(data))
       return true;
     } else {
+      localStorage.removeItem("userlist")
+      console.log("exceptions are not more than one")
       return false;
     }
   }

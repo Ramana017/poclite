@@ -24,14 +24,12 @@ export class CorrectionheaderComponent implements OnInit {
   public currentexceptionName: string;
 
   public displayArray :Array<boolean>= [false, false, false, false, false,false];
-  public exceptionCount;
 
 
   constructor(private router: Router, public modalRef: BsModalRef, private _apiService: ApiserviceService, public modalService: BsModalService
   ) { }
 
   ngOnInit(): void {
-    this.exceptionCount=0;
     this.displayArray[this.display] = true;
     this.currentexceptionName = this.exceptionnames[this.display];
     console.log("correctionHeader")
@@ -57,7 +55,6 @@ export class CorrectionheaderComponent implements OnInit {
       }
 
     }
-    this.exceptionCount=this.data.exceptionCount;
 
 
   }
@@ -69,7 +66,7 @@ export class CorrectionheaderComponent implements OnInit {
 
 public parentChild(){
   console.log("parent component called");
-  var data = JSON.parse(localStorage.getItem('userlist'));
+  var data:any = JSON.parse(localStorage.getItem('userlist'));
   if (data) {
     console.log("data came in heder", data.depMileageException)
     if (data.ArrGpsException == 1 || data.DepGpsException == 1) {
@@ -90,8 +87,9 @@ public parentChild(){
     }else{
       this.display=5;
     }
-    this.ngOnInit();
+    this.displayArray = [false, false, false, false, false,false];
 
+    this.ngOnInit();
   }
 
 

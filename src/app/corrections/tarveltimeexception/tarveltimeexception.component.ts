@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -11,7 +11,8 @@ import swal from 'sweetalert2';
 })
 export class TarveltimeexceptionComponent implements OnInit {
 
-
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
   public JsonData: any;
   public psName: string;
   public DcsName: string;
@@ -92,9 +93,13 @@ export class TarveltimeexceptionComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this.apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
-
+              let merged= {...this.JsonData ,...response}
+              if(this.apiService.checkException(merged)){
+                  this.popupUpdate.emit();
+              }else {
+                this.apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
 

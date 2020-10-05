@@ -12,7 +12,7 @@ import swal from 'sweetalert2';
 })
 export class ScheduledvarianceComponent implements OnInit {
   @Output()
-  popupupdate: EventEmitter<any> = new EventEmitter<any>();
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
   public psName: string;
   public DcsName: string;
   public procedureCode: string;
@@ -143,10 +143,10 @@ export class ScheduledvarianceComponent implements OnInit {
       this._apiService.acceptScheduleVarException(parameters).subscribe(
         response => {
           if (response) {
-            //  let merged = {...this.jsonData, ...response};
-            if (this._apiService.checkException(response)) {
+            let merged = { ...this.jsonData, ...response };
+            if (this._apiService.checkException(merged)) {
               console.log("exception is there");
-              this.popupupdate.emit();
+              this.popupUpdate.emit();
             } else {
               console.log("exception not there")
               swal.fire({
@@ -155,9 +155,13 @@ export class ScheduledvarianceComponent implements OnInit {
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
               }).then(ok => {
-                this._apiService.updateTable.next(true);
-                this.bsmodelRef.hide();
-
+                let merged = { ...this.jsonData, ...response }
+                if (this._apiService.checkException(merged)) {
+                      this.popupUpdate.emit();
+                } else {
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
               })
             }
           }
