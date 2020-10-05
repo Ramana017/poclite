@@ -225,7 +225,7 @@
                     <div class="icon-wrapper " *ngIf="data.scheduleVarException==1 "><i class="fas fa-calendar-alt"
                         (click)="correctException(i,1)" title="Scheduled Variance"></i>
                     </div>
-                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 "
+                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 ||true"
                       (click)="correctException(i,2)"><i class="fas fa-phone-slash" title="Invalid Caller ID"></i></div>
                     <div class="icon-wrapper " *ngIf="data.arrTravelTimeException==1 " (click)="correctException(i,3) ">
                       <i class="fas fa-stopwatch" title="Travel Time Exception"></i>

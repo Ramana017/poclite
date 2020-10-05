@@ -106,13 +106,13 @@
                         </p>
                     </div>
                     <div class="form-group mx-2">
-                        <h3 class="f-15">ClockIn Comments</h3>
+                        <h3 class="f-15">Clock In Comments</h3>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                       </div>
                     <div class="button-wrapper mb-2">
                         <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
                         <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr" (click)="acceptGpsException('clockin')">Accept</button>
-                    </div>                  
+                    </div>
                 </div>
 
 
@@ -134,19 +134,19 @@
                             </a>
                         </h3>
                     </div>
-                    
+
                     <div [ngStyle]="depgpsErr ?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}" class="address-wrapper pr-2">
                         <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}}, Longitude:{{clockOutLongitude}} </p>
                     </div>
                     <div class="form-group mx-2">
-                        <h3 class="f-15">ClockOut Comments</h3>
+                        <h3 class="f-15">Clock Out Comments</h3>
                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                        </div>
                     <div class="button-wrapper d-flex justify-content-between">
                         <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
                         <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto" (click)="acceptGpsException('clockout')">Accept</button>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -241,7 +241,7 @@
                 <div class="map-wrapper">
                     <!-- <div #map style="width:100%; height:500px"></div> -->
                     <agm-map [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
-                        <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" (markerClick)="markerclick()">
+                        <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" >
                             <agm-info-window [disableAutoPan]="false">
                                 <strong>{{i[2]}}</strong>
                             </agm-info-window>
