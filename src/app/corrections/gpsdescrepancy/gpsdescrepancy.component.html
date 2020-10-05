@@ -12,38 +12,7 @@
         <div class="row m-0">
             <div class="col-md-12 p-0">
                 <div class="table-responsive">
-                    <!-- <table class="table table-borderless mt-0 gps-table">
-                        <thead>
-                            <tr>
-                                <th class="pb-0">PS</th>
-                                <th class="pb-0">DCS</th>
-                                <th class="pb-0">Procedure Code</th>
-                                <th class="pb-0">Scheduled Start </th>
-                                <th class="pb-0">Scheduled End </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input [disabled]='true' type="text" name="psName" [(ngModel)]="psName" placeholder="PsName" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' type="text" name="DcsName" [(ngModel)]="DcsName" placeholder="DCSName" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' type="text" name="procedureCode" [ngModel]="procedureCode" placeholder="SOURPS" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' class="input-field" type="text" name="scheduleStartDate" [(ngModel)]="scheduleStartDate" placeholder="DD/MM/YYYY" pattern=""> -->
-                    <!-- <input [disabled]='true' class="input-field" type="text" name="scheduleStartTime" [(ngModel)]="scheduleStartTime" placeholder="HH:MM" pattern=""> -->
-                    <!-- </td>
-                                <td>
-                                    <input [disabled]='true' class="input-field" type="text" name="scheduleEndDate" [(ngModel)]="scheduleEndDate" placeholder="DD/MM/YYYY" pattern=""> -->
-                    <!-- <input [disabled]='true' class="input-field" type="text" name="scheduleEndTime" [(ngModel)]="scheduleEndTime" placeholder="HH:MM" pattern=""> -->
-                    <!-- </td>
-                            </tr>
-                        </tbody>
-                    </table> -->
+
                     <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
                         <li class="mt-1">
                             <label for="" class="m-0">PS</label>
@@ -107,7 +76,7 @@
                     </div>
                     <div class="form-group mx-2">
                         <h3 class="f-15">Clock In Comments</h3>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" [(ngModel)]="clockInComments" id="exampleFormControlTextarea1" rows="3"></textarea>
                       </div>
                     <div class="button-wrapper mb-2">
                         <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
@@ -140,7 +109,7 @@
                     </div>
                     <div class="form-group mx-2">
                         <h3 class="f-15">Clock Out Comments</h3>
-                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                         <textarea class="form-control"[(ngModel)]="clockOutComments"  id="exampleFormControlTextarea1" rows="3"></textarea>
                        </div>
                     <div class="button-wrapper d-flex justify-content-between">
                         <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
