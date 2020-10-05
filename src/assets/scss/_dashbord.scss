@@ -221,7 +221,7 @@
     }
     .outer-wrapper {
         @include padding(0rem, 3.3125rem, null, 3.3125rem);
-        @include margin(5px, null, 8px, null);
+        @include margin(5px, null, 6px, null);
         .no-data-text {
             font-size: 18px;
             border: 1px solid #eee;
