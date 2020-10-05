@@ -9,7 +9,7 @@
     .custum-wrapper {
         @include size(100%, null);
         background-color: #e0e1e2;
-        height: 90vh;
+        height: 89vh;
         // SUMMARY HEADING
         .summary-heading {
             @include padding(0.6rem, 3.3125rem, 1rem, 3.3125rem);
@@ -223,7 +223,7 @@
     }
     .outer-wrapper {
         @include padding(0rem, 3.3125rem, null, 3.3125rem);
-        @include margin(5px, null, 35px, null);
+        @include margin(5px, null, 6px, null);
         .no-data-text {
             font-size: 18px;
             border: 1px solid #eee;

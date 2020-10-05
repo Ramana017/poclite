@@ -83,7 +83,7 @@
         </div> -->
         <!-- map section start  -->
         <div class="row m-0">
-            <div class="col-md-6 col-sm-12 p-0" *ngIf="clockinDone">
+            <div class="col-md-6 col-sm-12 px-0 pb-2" *ngIf="clockinDone">
                 <div class="clock-detail">
                     <div class="issue-wrapper">
                         <!-- <h3 class="custom-tooltip-icon mb-3">Issue
@@ -105,10 +105,14 @@
                         <p><strong>Address:</strong> <br> {{clockInAddress}} <br> Latitude: {{clockInLatitude}}, Longitude: {{clockInLongitude}}
                         </p>
                     </div>
-                    <div class="button-wrapper">
+                    <div class="form-group mx-2">
+                        <h3 class="f-15">ClockIn Comments</h3>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    <div class="button-wrapper mb-2">
                         <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
                         <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr" (click)="acceptGpsException('clockin')">Accept</button>
-                    </div>
+                    </div>                  
                 </div>
 
 
@@ -130,13 +134,19 @@
                             </a>
                         </h3>
                     </div>
+                    
                     <div [ngStyle]="depgpsErr ?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}" class="address-wrapper pr-2">
                         <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}}, Longitude:{{clockOutLongitude}} </p>
                     </div>
-                    <div class="button-wrapper">
+                    <div class="form-group mx-2">
+                        <h3 class="f-15">ClockOut Comments</h3>
+                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                       </div>
+                    <div class="button-wrapper d-flex justify-content-between">
                         <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
                         <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto" (click)="acceptGpsException('clockout')">Accept</button>
                     </div>
+                    
                 </div>
             </div>
         </div>
