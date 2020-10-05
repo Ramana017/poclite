@@ -46,9 +46,7 @@
                     <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
                         <li class="mt-1">
                             <label for="" class="m-0">PS</label>
-
                             <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
-
                         </li>
                         <li class="mt-1">
                             <label for="">DCS</label>
@@ -80,6 +78,10 @@
                     <div class="caller-id">
                         <p class="text-white">Caller ID: {{clockInCallerID}}</p>
                     </div>
+                    <div class="form-group mx-2">
+                        <h3 class="f-12">ClockIn Comments</h3>
+                        <textarea class="form-control" id="exampleForm" ></textarea>
+                      </div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!arrInvalidErr" (click)="acceptCallerIdException('clockin')">Accept</button>
                     </div>
@@ -140,6 +142,10 @@
                     <div class="caller-id">
                         <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
                     </div>
+                    <div class="form-group mx-2">
+                        <h3 class="f-12">ClockOut Comments</h3>
+                        <textarea class="form-control" id="exampleForm" ></textarea>
+                      </div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!depInvalidErr" (click)="acceptCallerIdException('clockout')">Accept</button>
                     </div>
