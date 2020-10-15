@@ -84,8 +84,6 @@ public parentChild(){
     else if (data.depMileageException == 1 || data.arrMileageException == 1) {
       // console.log("mileage verified")
       this.display=4;
-    }else{
-      this.display=5;
     }
     this.displayArray = [false, false, false, false, false,false];
 

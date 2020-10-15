@@ -143,7 +143,6 @@ export class InvalidcalleridComponent implements OnInit {
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
                 if (this._apiService.checkException(merged)) {
-                      this.popupUpdate.emit();
                 } else {
                   this._apiService.updateTable.next(true);
                   this.bsmodelRef.hide();

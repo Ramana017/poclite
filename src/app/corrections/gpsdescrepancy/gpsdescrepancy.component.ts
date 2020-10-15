@@ -199,7 +199,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public acceptGpsException(event: string) {
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    let commentLength=clockinflag==1?this.clockInComments.trim().length:this.clockInComments.trim().length;
+    let commentLength=clockinflag==1?this.clockInComments.trim().length:this.clockOutComments.trim().length;
     if(commentLength>0){
     var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag ==1? this.clockInComments : '', "clockOutComments": clockOutFlag ==1? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     var parameters = JSON.stringify(jsonObj)
@@ -217,7 +217,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               allowOutsideClick: false
             }).then(ok => {
               let merged = {...this.jsonData, ...response};
-              if(this.apiservice.checkException(merged)){
+               if(this.apiservice.checkException(merged)){
                 this.popupUpdate.emit();
               }else{
                 this.apiservice.updateTable.next(true);

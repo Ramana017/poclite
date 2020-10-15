@@ -184,6 +184,18 @@ export class ApiserviceService {
     this.geturl();
     return this._http.get(this.baseURL + "/getVisitsDashboardDetails?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
+  public getInvalidTokenCodeExceptionData(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/getInvalidTokenCodeExceptionData?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
+  public acceptInvalidTokenCodeException(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/acceptInvalidTokenCodeException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
+  public updateTokenCode(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/updateTokenCode?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
   // method for error handling
 
   private errorHandler(error: HttpErrorResponse) {

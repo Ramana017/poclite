@@ -78,7 +78,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
   public minimumIntialDate: Date = new Date();
   public minimumintialdatetwo = new Date();
   public exception = [{ id: 1, name: 'GPS Discrepancy' }, { id: 2, name: 'Invalid CallerID' }, { id: 3, name: 'Schedule Variance' }, { id: 4, name: 'Missed ClockIn/Out' }
-    , { id: 5, name: 'Excessive TT' }, { id: 6, name: 'Excessive Mileage' },{ id: 0, name: 'Invalid Token'}];
+    , { id: 5, name: 'Excessive TT' }, { id: 6, name: 'Excessive Mileage' },{ id: 7, name: 'Invalid Token'}];
   public currentSelected: {};
   public parameterstartdate;
   public parameterenddate;
