@@ -41,8 +41,10 @@ export class InvalidcalleridComponent implements OnInit {
   public arrInvalidErrView: boolean = false;
   public depInvalidErrView: boolean = false;
   public useraccount: any;
-  public clockInComments:string=" ";
-  public clockOutComments:String=" ";
+  public clockInComments:string="";
+  public clockOutComments:String="";
+  public  clockInDCSPhoneType:string=null;
+  public clockOutDCSPhoneType:string=null;
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -108,6 +110,8 @@ export class InvalidcalleridComponent implements OnInit {
           this.phone1!==undefined?this.PhoneNumFormat(this.phone1,'phone1'):undefined;
           this.phone2!==undefined?this.PhoneNumFormat(this.phone2,'phone2'):undefined;
           this.phone3!==undefined?this.PhoneNumFormat(this.phone3,'phone3'):undefined;
+          this.clockInDCSPhoneType=this.responseData.clockInDCSPhoneType;
+          this.clockOutDCSPhoneType=this.responseData.clockOutDCSPhoneType;
         }
       ), error => {
 
@@ -143,6 +147,7 @@ export class InvalidcalleridComponent implements OnInit {
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
                 if (this._apiService.checkException(merged)) {
+                  this.popupUpdate.emit();
                 } else {
                   this._apiService.updateTable.next(true);
                   this.bsmodelRef.hide();

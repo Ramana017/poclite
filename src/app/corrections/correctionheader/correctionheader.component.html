@@ -29,7 +29,7 @@
             <!-- ppp -->
         </button>
         <!-- <p>455</p> -->
-        <button [tooltip]="invalid" tooltipPlacement="right" tool *ngIf="this.data.arrCallerIdException==1||this.data.depCallerIdException==1 " [ngClass]="displayArray[2]?'active':''" type="button" class="btn" (click)="SelectorDisplay(2)"><i class="fas fa-phone-slash"></i>
+        <button [tooltip]="invalid" tooltipPlacement="right" tool *ngIf="this.data.arrCallerIdException==1||this.data.depCallerIdException==1   " [ngClass]="displayArray[2]?'active':''" type="button" class="btn" (click)="SelectorDisplay(2)"><i class="fas fa-phone-slash"></i>
           <ng-template #invalid>Invalid Caller Id</ng-template>
 
         </button>
@@ -41,7 +41,7 @@
           <ng-template #Mileage>Mileage Exception</ng-template>
 
         </button>
-        <button [tooltip]="invalidtoken" tooltipPlacement="right" [ngClass]="displayArray[5]?'active':''" type="button" class="btn" (click)="SelectorDisplay(5)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <button [tooltip]="invalidtoken" tooltipPlacement="right" *ngIf="this.data.arrTokenCodeException==1||this.data.depTokenCodeException==1"[ngClass]="displayArray[5]?'active':''" type="button" class="btn" (click)="SelectorDisplay(5)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
           <ng-template #invalidtoken>Invalid Token</ng-template></button>
 
     </div>
@@ -58,10 +58,10 @@
 
     <app-gpsdescrepancy  (popupUpdate)="parentChild()" *ngIf="displayArray[0]"></app-gpsdescrepancy>
     <app-scheduledvariance (popupUpdate)="parentChild()" *ngIf="displayArray[1]"></app-scheduledvariance>
-    <app-invalidcallerid *ngIf="displayArray[2]"></app-invalidcallerid>
+    <app-invalidcallerid (popupUpdate)="parentChild()" *ngIf="displayArray[2]"></app-invalidcallerid>
     <app-tarveltimeexception (popupUpdate)="parentChild()"  *ngIf="displayArray[3]"></app-tarveltimeexception>
-    <app-mileageexception *ngIf="displayArray[4]"></app-mileageexception>
-    <app-invalid-token  *ngIf="displayArray[5]"> </app-invalid-token>
+    <app-mileageexception (popupUpdate)="parentChild()" *ngIf="displayArray[4]"></app-mileageexception>
+    <app-invalid-token (popupUpdate)="parentChild()" *ngIf="displayArray[5]"> </app-invalid-token>
 
 
 </div>

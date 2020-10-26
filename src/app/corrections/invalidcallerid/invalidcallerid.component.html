@@ -82,7 +82,9 @@
                         <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
                         <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments" ></textarea>
                       </div>
-                    <div class="button-wrapper">
+                      <div class="" >The Phone number used matches the DCS {{clockInDCSPhoneType}}  Phone number.</div>
+
+                    <div class="button-wrapper ">
                         <button type="button" class="btn" [disabled]="!arrInvalidErr" (click)="acceptCallerIdException('clockin')">Accept</button>
                     </div>
                 </div>
@@ -146,6 +148,7 @@
                         <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
                         <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm" ></textarea>
                       </div>
+                      <div class="" >The Phone number used matches the DCS {{clockOutDCSPhoneType}}  Phone number.</div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!depInvalidErr" (click)="acceptCallerIdException('clockout')">Accept</button>
                     </div>

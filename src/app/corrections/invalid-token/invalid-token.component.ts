@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-invalid-token',
@@ -7,7 +9,8 @@ import { ApiserviceService } from 'src/app/services/apiservice.service';
   styleUrls: ['./invalid-token.component.sass']
 })
 export class InvalidTokenComponent implements OnInit {
-
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
   public psName: string;
   public DcsName: string;
   public procedureCode: string;
@@ -19,9 +22,13 @@ export class InvalidTokenComponent implements OnInit {
   public useraccount: any;
   public clockOutTokenCode:number;
   public clockInTokenCode:number;
+  public clockoutOtp:number;
+  public clockinOtp:number;
 
+  public clockInException:boolean=true;
+  public clockOutException:boolean=true;
 
-  constructor(public _apiService:ApiserviceService) { }
+  constructor(public _apiService:ApiserviceService, public bsmodelRef: BsModalRef) { }
 
   ngOnInit(): void {
     this.displayData();
@@ -41,6 +48,12 @@ export class InvalidTokenComponent implements OnInit {
     this.procedureCode = this.JsonData.procedureCode;
     this.scheduleStartDate=this.JsonData.scheduledBeginDateTime;
     this.scheduleEndDate=this.JsonData.scheduledEndDateTime;
+    if (this.JsonData.arrTokenCodeException == 1) {
+      this.clockInException = true;
+    }
+    if (this.JsonData.depTokenCodeException == 1) {
+      this.clockOutException = true;
+    }
 
   }
 
@@ -65,14 +78,36 @@ export class InvalidTokenComponent implements OnInit {
       console.log(error);
     }
   }
-  public acceptInvalidTokenCodeException() {
-    let jsonObj={"id":this.JsonData.id,"visitDetailsId":this.JsonData.visitDetailsId,"clockInFlag":1,"clockOutFlag":1,"userId":this.userId}
+  public acceptInvalidTokenCodeException(eventFlag) {
+
+    let jsonObj={"id":this.JsonData.id,"visitDetailsId":this.JsonData.visitDetailsId,"clockInFlag":eventFlag=='clockin'?1:0,"clockOutFlag":eventFlag=='clockout'?1:0,"userId":this.userId}
     let parameters = JSON.stringify(jsonObj);
+    console.log(parameters)
     try {
       this._apiService.acceptInvalidTokenCodeException(parameters).subscribe(
         response => {
           let data:any=response;
           console.log(response)
+          this.clockInException = eventFlag == "clockin" ? false : this.clockInException;
+          this.clockOutException = eventFlag == "clockout" ? false : this.clockOutException;
+          console.log(this.clockInException,this.clockOutException)
+          if (this.clockInException == false && this.clockOutException == false) {
+            swal.fire({
+              text: "Accepted successfully",
+              icon: "success",
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            }).then(ok => {
+              let merged = { ...this.JsonData, ...response }
+                if (this._apiService.checkException(merged)) {
+                  this.popupUpdate.emit();
+                } else {
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
+            })
+
+          }
         }
       ), error => {
 
@@ -85,20 +120,43 @@ export class InvalidTokenComponent implements OnInit {
     }
   }
 
-  public updateTokenCode() {
-    let jsonObj={"id":this.JsonData.id,"visitDetailsId":this.JsonData.visitDetailsId,"psId":this.JsonData.psId,"arrivalTokenCode":this.clockInTokenCode,"departureTokenCode":this.clockOutTokenCode,"userId":this.userId}
+  public updateTokenCode(eventFlag) {
+    let jsonObj={"id":this.JsonData.id,"visitDetailsId":this.JsonData.visitDetailsId,"psId":this.JsonData.psId,"arrivalTokenCode":eventFlag=='clockin'?this.clockinOtp:'',"departureTokenCode":eventFlag=="clockout"?this.clockoutOtp:'',"userId":this.userId}
     let parameters = JSON.stringify(jsonObj);
     try {
       this._apiService.updateTokenCode(parameters).subscribe(
         response => {
-          let data:any=response;
-          console.log(response)
+          console.log(response);
+          let data:any = response;
+          if (data.validateFlag == 0) {
+            swal.fire({
+              text: "Updated successfully",
+              icon: "success",
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            }).then(ok => {
+              let merged = { ...this.JsonData, ...response }
+              if (this._apiService.checkException(merged)) {
+                    this.popupUpdate.emit();
+              } else {
+                this._apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
+            })
+          }
+          else {
+            swal.fire({
+              title: "Updated failed",
+              text: data.result,
+              icon: "error",
+              confirmButtonText: 'Ok',
+              allowOutsideClick: false
+            })
+          }
+        }, error => {
+          console.log(error);
         }
-      ), error => {
-
-        console.log(error);
-      }
-
+      )
     } catch (error) {
 
       console.log(error);
