@@ -3,7 +3,9 @@ import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
-import { AgmMap } from '@agm/core';
+import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapTypeControlOptions, MapTypeId } from '@agm/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-gpsdescrepancy',
@@ -76,6 +78,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockOutDone: boolean = true;
   public clockInComments: string=" ";
   public clockOutComments: string=" ";
+
 
 
   public ngOnInit(): void {
@@ -160,6 +163,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.defaultpsdetails();
+
           if (this.arrivalgpsErr == true) {
             let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress, this.redicon]
             this.locations.push(obj)
@@ -395,6 +399,13 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
   }
-
+  public agmConfigFactory1(value,config?: LazyMapsAPILoaderConfigLiteral){
+    config.apiKey = value;
+  }
 
 }
+export function agmConfigFactory(value,config?: LazyMapsAPILoaderConfigLiteral){
+  config.apiKey = value;
+}
+
+

@@ -24,9 +24,9 @@ export class CorrectionheaderComponent implements OnInit {
   public currentexceptionName: string;
 
   public displayArray :Array<boolean>= [false, false, false, false, false,false];
+  public modalRef: BsModalRef;
 
-
-  constructor(private router: Router, public modalRef: BsModalRef, private _apiService: ApiserviceService, public modalService: BsModalService
+  constructor(private router: Router, private _apiService: ApiserviceService, public modalService: BsModalService,public bsmodelRef: BsModalRef
   ) { }
 
   ngOnInit(): void {
@@ -112,7 +112,6 @@ public parentChild(){
   }
 
   public closeModel() {
-    this.modalRef.hide();
-    this._apiService.updateTable.next(true);
+    this.bsmodelRef.hide();    this._apiService.updateTable.next(true);
   }
 }

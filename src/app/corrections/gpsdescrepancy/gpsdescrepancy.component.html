@@ -209,7 +209,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="map-wrapper">
                     <!-- <div #map style="width:100%; height:500px"></div> -->
-                    <agm-map [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
+                    <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
                         <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" >
                             <agm-info-window [disableAutoPan]="false">
                                 <strong>{{i[2]}}</strong>

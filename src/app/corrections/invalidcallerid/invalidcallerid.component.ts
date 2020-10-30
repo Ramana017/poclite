@@ -43,8 +43,8 @@ export class InvalidcalleridComponent implements OnInit {
   public useraccount: any;
   public clockInComments:string="";
   public clockOutComments:String="";
-  public  clockInDCSPhoneType:string=null;
-  public clockOutDCSPhoneType:string=null;
+  public  clockInDCSPhoneType:string="";
+  public clockOutDCSPhoneType:string='';
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -282,11 +282,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone1Flag = true;
-          if(phone1areacode >= 1 && phone1areacode >= 199)
+          if(phone1areacode <= 1 || phone1areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
           }
-          if(phone1exchangecode >= 1 && phone1exchangecode >= 199){
+          if(phone1exchangecode <= 1 || phone1exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
           }
 
@@ -323,11 +323,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone2Flag = true;
-          if(phone2areacode >= 1 && phone2areacode >= 199)
+          if(phone2areacode <= 1 ||phone2areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone2 ")
           }
-          if(phone2exchangecode >= 1 && phone2exchangecode >= 199){
+          if(phone2exchangecode <= 1 || phone2exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone2  ")
           }
         }
@@ -355,11 +355,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone3Flag = true;
-          if(phone3areacode >= 1 && phone3areacode >= 199)
+          if(phone3areacode <= 1 ||phone3areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3")
           }
-          if(phone3exchangecode >= 1 && phone3exchangecode >= 199){
+          if(phone3exchangecode <= 1 || phone3exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3")
           }
         }

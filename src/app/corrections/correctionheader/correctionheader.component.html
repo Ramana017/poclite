@@ -41,8 +41,8 @@
           <ng-template #Mileage>Mileage Exception</ng-template>
 
         </button>
-        <button [tooltip]="invalidtoken" tooltipPlacement="right" *ngIf="this.data.arrTokenCodeException==1||this.data.depTokenCodeException==1"[ngClass]="displayArray[5]?'active':''" type="button" class="btn" (click)="SelectorDisplay(5)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          <ng-template #invalidtoken>Invalid Token</ng-template></button>
+        <!-- <button [tooltip]="invalidtoken" tooltipPlacement="right" *ngIf="this.data.arrTokenCodeException==1||this.data.depTokenCodeException==1"[ngClass]="displayArray[5]?'active':''" type="button" class="btn" (click)="SelectorDisplay(5)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <ng-template #invalidtoken>Invalid Token</ng-template></button> -->
 
     </div>
     <!-- <div class="input-group ">
@@ -61,7 +61,7 @@
     <app-invalidcallerid (popupUpdate)="parentChild()" *ngIf="displayArray[2]"></app-invalidcallerid>
     <app-tarveltimeexception (popupUpdate)="parentChild()"  *ngIf="displayArray[3]"></app-tarveltimeexception>
     <app-mileageexception (popupUpdate)="parentChild()" *ngIf="displayArray[4]"></app-mileageexception>
-    <app-invalid-token (popupUpdate)="parentChild()" *ngIf="displayArray[5]"> </app-invalid-token>
+    <!-- <app-invalid-token (popupUpdate)="parentChild()" *ngIf="displayArray[5]"> </app-invalid-token> -->
 
 
 </div>
