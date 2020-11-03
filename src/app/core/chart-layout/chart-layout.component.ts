@@ -9,17 +9,17 @@ export class ChartLayoutComponent implements OnInit {
   single: any[];
   multi: any[];
 
-  view: any[] = [700, 400];
+  view: any[] = [500, 300];
 
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
+  showLegend = false;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Date';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'count';
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#bbbbbbbb']
@@ -45,27 +45,43 @@ export class ChartLayoutComponent implements OnInit {
 }
 export var single = [
   {
-    "name": "Germany",
-    "value": 8940000
+    "name": "10/28/2020",
+    "value": 894
   },
   {
-    "name": "USA",
-    "value": 5000000
+    "name": "10/29/2020",
+    "value": 500
   },
   {
-    "name": "France",
-    "value": 7200000
+    "name": "10/30/2020",
+    "value": 720
   },
   {
-    "name": "Germany2",
-    "value": 8940000
+    "name": "11/01/2020",
+    "value": 894
   },
   {
-    "name": "USA2",
-    "value": 5000000
+    "name": "11/02/2020",
+    "value": 500
   },
   {
-    "name": "France2",
-    "value": 7200000
+    "name": "11/03/2020",
+    "value": 720
+  },
+  {
+    "name": "11/04/2020",
+    "value": 720
+  },
+  {
+    "name": "11/05/2020",
+    "value": 894
+  },
+  {
+    "name": "11/06/2020",
+    "value": 500
+  },
+  {
+    "name": "11/07/2020",
+    "value": 720
   }
 ];
