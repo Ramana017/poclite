@@ -55,6 +55,7 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { map } from 'rxjs/operators';
+import { BarcComponent } from './barc/barc.component';
 // import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
@@ -91,6 +92,7 @@ import { map } from 'rxjs/operators';
     PsAddressComponent,
     PsContactsComponent,
     EditPsComponent,
+    BarcComponent,
   ],
   imports: [
     BrowserModule,

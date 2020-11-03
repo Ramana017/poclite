@@ -1,9 +1,7 @@
 import { Injectable, ErrorHandler, OnInit } from '@angular/core';
 import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { APIs } from '../../assets/url';
 import { ToastrService } from 'ngx-toastr';
-// import webserviceURL from '../../assets/url.json';
 import { catchError, map } from 'rxjs/operators';
 import { LazyMapsAPILoaderConfigLiteral } from '@agm/core';
 //
@@ -20,8 +18,8 @@ export class ApiserviceService {
   public webserviceurl: string;
   // settingObservable$: any;
   public geturl() {
-    let data = localStorage.getItem('webserviceURL');
-    this.baseURL = data + '/callmanagement'
+  this.webserviceurl = localStorage.getItem('webserviceURL');
+    this.baseURL = this.webserviceurl + '/callmanagement'
   }
 
   public updateTable = new Subject();
@@ -42,7 +40,6 @@ export class ApiserviceService {
   }
   // calling Table APi
   public authenticateUser(jsondata: string): Observable<any> {
-    console.log(APIs.webserviceURL)
     this.geturl()
     return this._http.post(this.baseURL + "/authenticateUser", jsondata).pipe(catchError(this.errorHandler));
   }
@@ -84,12 +81,11 @@ export class ApiserviceService {
     this.geturl();
     // return this._http.post("http://poc.aquilasoftware.com/poclite" + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
 
-    return this._http.post(this.baseURL + "/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.webserviceurl + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
   }
 
   public updatePSPhone(jsondata: string): Observable<any> {
     this.geturl();
-
     return this._http.get(this.baseURL + "/updatePSPhone?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
 
