@@ -12,7 +12,7 @@ import { GuarantorDetailsComponent } from './core/create_new_ps/guarantor-detail
 import { AdmissionDetailsComponent } from './core/create_new_ps/admission-details/admission-details.component';
 import { PayorPlanDetailsComponent } from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
 import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component';
-import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AuthGuard } from './services/auth.guard';
 import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
@@ -27,13 +27,13 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
 const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
+  { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
 
-  { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
+  { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
-  { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
+  { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
   {
-    path: "registration", canActivate:[AuthGuard],canActivateChild:[AuthGuard], component: RegistrationComponent,
+    path: "registration", canActivate: [AuthGuard], canActivateChild: [AuthGuard], component: RegistrationComponent,
     children: [
       { path: "guarantor", component: GuarantorDetailsComponent },
       { path: "admission", component: AdmissionDetailsComponent },
@@ -43,12 +43,12 @@ const routes: Routes = [
     ]
   },
   {
-    path: "update", canActivate:[AuthGuard], component: EditPsComponent,
+    path: "update", canActivate: [AuthGuard], component: EditPsComponent,
     children: [
       { path: "ps", component: PsBasicComponent },
       { path: "guarantor", component: PsGurantorComponent },
       { path: "contact", component: PsContactsComponent },
-      { path: "addresses", component:PsAddressComponent },
+      { path: "addresses", component: PsAddressComponent },
       { path: "telephony", component: PsTelephonyComponent },
     ]
   },

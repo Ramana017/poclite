@@ -55,6 +55,7 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -119,7 +120,7 @@ import { map } from 'rxjs/operators';
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     ToastrModule.forRoot(),
-
+    NgxChartsModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

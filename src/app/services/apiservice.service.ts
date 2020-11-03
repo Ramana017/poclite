@@ -81,7 +81,7 @@ export class ApiserviceService {
     this.geturl();
     // return this._http.post("http://poc.aquilasoftware.com/poclite" + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
 
-    return this._http.post(this.webserviceurl + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
   }
 
   public updatePSPhone(jsondata: string): Observable<any> {
