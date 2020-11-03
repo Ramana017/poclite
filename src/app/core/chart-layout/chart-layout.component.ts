@@ -22,7 +22,7 @@ export class ChartLayoutComponent implements OnInit {
   yAxisLabel = 'Population';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#bbbbbbbb']
   };
 
 
@@ -54,6 +54,18 @@ export var single = [
   },
   {
     "name": "France",
+    "value": 7200000
+  },
+  {
+    "name": "Germany2",
+    "value": 8940000
+  },
+  {
+    "name": "USA2",
+    "value": 5000000
+  },
+  {
+    "name": "France2",
     "value": 7200000
   }
 ];
