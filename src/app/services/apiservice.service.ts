@@ -30,7 +30,9 @@ export class ApiserviceService {
   public updatePopup = new Subject();
   public updatePopup$ = this.updatePopup.asObservable();
 
-  constructor(private _http: HttpClient, private toastr: ToastrService,) { console.log("API service") }
+  constructor(private _http: HttpClient, private toastr: ToastrService,) {
+    this.geturl();
+     console.log("API service") }
 
 
   public showSuccess(message) {
@@ -80,8 +82,9 @@ export class ApiserviceService {
   }
   public acceptCallerIdException(jsondata: string): Observable<any> {
     this.geturl();
+    // return this._http.post("http://poc.aquilasoftware.com/poclite" + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
 
-    return this._http.get(this.baseURL + "/acceptCallerIdException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
   }
 
   public updatePSPhone(jsondata: string): Observable<any> {
