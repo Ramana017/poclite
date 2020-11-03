@@ -54,8 +54,11 @@ import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
+import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
+
+
+
 import { map } from 'rxjs/operators';
-import { BarcComponent } from './barc/barc.component';
 // import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
@@ -92,7 +95,7 @@ import { BarcComponent } from './barc/barc.component';
     PsAddressComponent,
     PsContactsComponent,
     EditPsComponent,
-    BarcComponent,
+    ChartLayoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,79 @@
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .card-container {
+    width: 150px;
+    height: 150px;
+    background: #009ccc;
+    /* display: grid; */
+    /* place-content: center; */
+    padding: 10px 10px 10px 10px;
+
+    .count {
+      font-size: 40px;
+      margin-top: 30px;
+      margin-left: 20px;
+      font-weight: 900;
+    }
+
+    .info {
+      float: right;
+      font-size: 20px;
+    }
+  }
+}
+
+.bar-graph-container {
+  .card-container {
+    // width: 150px;
+    // height: 50px;
+    background: #009ccc;
+    /* display: grid; */
+    /* place-content: center; */
+    padding: 10px 10px 10px 10px;
+    width: 120px;
+    height: 103px;
+
+    .count {
+      font-size: 30px;
+      margin-top: 5px;
+      margin-left: 20px;
+      font-weight: 900;
+    }
+
+    .info {
+      float: right;
+      font-size: 20px;
+    }
+
+    .header-text {
+      font-size: 13px;
+    }
+  }
+}
+
+.card-selected-container {
+  width: 150px;
+  height: 150px;
+  background:#2b78e4;
+  /* display: grid; */
+  /* place-content: center; */
+  padding: 10px 10px 10px 10px;
+
+  .count {
+    font-size: 40px;
+    margin-top: 30px;
+    margin-left: 20px;
+    font-weight: 900;
+  }
+
+  .info {
+    float: right;
+    font-size: 20px;
+  }
+}
+.bar-graph{
+    width:450px;
+}

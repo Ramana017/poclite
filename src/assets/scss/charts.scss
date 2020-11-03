@@ -1,6 +1,6 @@
 .side-bar {
     left: 0;
-    height: 91vh;
+   min-height: 91vh;
     background: #444444;
     color: white;
     header {
@@ -21,8 +21,10 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.4s;
             text-align: center;
+            color: #3371d8;
+            font-size: 20px;
             &:hover {
-                padding-left: 20px;
+                color: #3371d8 !important;
             }
         }
     }

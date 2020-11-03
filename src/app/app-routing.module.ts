@@ -20,6 +20,7 @@ import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.co
 import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.component';
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
+import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'summary',canActivate:[AuthGuard], component: SummarytableComponent, },
 
   { path: 'charts',canActivate:[AuthGuard], component: ChartsComponent },
+  { path: 'chart-layout', component: ChartLayoutComponent },
   { path: 'widgets',canActivate:[AuthGuard], component: DashboardComponent },
   {
     path: "registration", canActivate:[AuthGuard],canActivateChild:[AuthGuard], component: RegistrationComponent,

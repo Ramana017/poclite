@@ -1,0 +1,349 @@
+<!-- <p>chart-layout works!</p> -->
+<app-header></app-header>
+<div class="charts-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 p-0 side-bar">
+
+        <ul>
+          <li><a>Visits</a></li>
+          <li><a>Clients</a></li>
+        </ul>
+
+      </div>
+      <div class="col-md-10 chart-content p-0 col-xs-12">
+
+        <div class="chart-content-header d-flex py-2  mb-2 justify-content-center">
+          <div class="site-dropdown text-center px-2">
+            <p class="m-0">Site </p>
+            <angular2-multiselect>
+
+            </angular2-multiselect>
+          </div>
+          <div class="start-date text-center px-2">
+            <p class="m-0">Scheduled Start </p>
+            <input type="text" maxlength=10 bsDatepicker placeholder="MM/DD/YYYY">
+          </div>
+          <div class="end-date text-center px-2">
+            <p class="m-0">Scheduled End </p>
+            <input type="text" maxlength=10 bsDatepicker placeholder="MM/DD/YYYY">
+          </div>
+          <!-- <div class="category-dropdown text-center px-2">
+                        <p class="m-0">Category</p>
+                        <angular2-multiselect [data]="categorylist" [(ngModel)]="selectecatogery" [settings]="dropdownSettings2">
+
+                        </angular2-multiselect>
+                    </div> -->
+          <div class="category-dropdown text-center px-2">
+            <div class="page-item "><button type="button"
+                class="btn common-table-btn chart-topbar-button mt-4">Reset</button>
+            </div>
+
+          </div>
+          <div class="category-dropdown text-center px-2">
+            <div class="page-item "><button type="button"
+                class="btn common-table-btn chart-topbar-button mt-4">Refresh</button></div>
+
+          </div>
+        </div>
+
+        <!-- <div class="chart-container col-md-12">
+                    <div class="card-container mr-5">
+                        <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
+                        <h1 class="AvenirLTStd-Heavy" class="count">15</h1>
+                        <span class="info"><i class="fas fa-info-circle"></i></span>
+                    </div>
+                    <div class="card-container mr-5">
+                        <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Missed Visits</h5>
+                        <h1 class="AvenirLTStd-Heavy" class="count">30</h1>
+                        <span class="info"><i class="fas fa-info-circle"></i></span>
+                    </div>
+                    <div class="card-container mr-5">
+                        <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Open Visits</h5>
+                        <h1 class="AvenirLTStd-Heavy" class="count">10</h1>
+                        <span class="info"><i class="fas fa-info-circle"></i></span>
+                    </div>
+                </div> -->
+        <div class="bar-graph-container col-md-12">
+          <div class="row m-0">
+            <div class="col-md-5 pl-0">
+              <!-- cards/ -->
+              <div class="d-flex">
+                <div class="card-container mr-2">
+                  <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
+                  <h1 class="count mb-0">15</h1>
+                  <span class="info"><i class="fas fa-info-circle"></i></span>
+                </div>
+                <div class="card-container mr-2">
+                  <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Missed Visits</h5>
+                  <h1 class="count mb-0">15</h1>
+                  <span class="info"><i class="fas fa-info-circle"></i></span>
+                </div>
+              </div>
+              <div class="card-selected-container mr-5 ml-auto mt-5">
+                <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Cancelled Visits</h5>
+                <h1 class="count mb-0">15</h1>
+                <span class="info"><i class="fas fa-info-circle"></i></span>
+              </div>
+            </div>
+            <!-- bargraph -->
+            <div class="col-md-6 p-0">
+              <div class="mt-3 bar-graph">
+                <img src="assets/images/map@2x.png" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <!-- <table></table> -->
+
+
+
+          <div class="summary-wrapper">
+            <div class="outer-wrapper">
+              <div id="table-scroll" class="table-scroll">
+                <div class="table-width-scroll">
+                  <table id="main-table" class="main-table" cellpadding="0">
+                    <thead class="thead-row">
+                      <tr class="pb-0">
+                        <th scope="col" class="sticky-top table-header-inner">
+                          <h5 class="mainheading-wrapper">Site</h5>
+                          <div class="input-outter-wrapper dropdown">
+                            <div class="ng-autocomplete code-dropdown" style="width: 100%;">
+                              <angular2-multiselect  >
+                              </angular2-multiselect>
+
+                            </div>
+
+                          </div>
+                        </th>
+                        <th scope="col" class="sticky-top table-header-wrapper">
+                          <h5 class="mainheading-wrapper">PS</h5>
+                          <div class="input-outter-wrapper dropdown">
+                            <div class="ng-autocomplete" style="width: 100%;">
+                              <ng-autocomplete placeHolder="PS"
+                                [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+                              </ng-autocomplete>
+                              <ng-template style="width: 100%;" #itemTemplateps let-item>
+                                <a [innerHTML]="item.psName"></a>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </th>
+                        <th scope="col" class="sticky-top table-header-wrapper">
+                          <h5 class="mainheading-wrapper">DCS</h5>
+                          <div class="input-outter-wrapper dropdown">
+                            <div class="ng-autocomplete" style="width: 100%;">
+                              <ng-autocomplete >
+                              </ng-autocomplete>
+                              <ng-template style="width: 100%;" #itemTemplatedcs let-item>
+                                <a [innerHTML]="item.dcsName"></a>
+                              </ng-template>
+                              <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound" class="text-dark"></div>
+                              </ng-template>
+                            </div>
+
+
+                          </div>
+                        </th>
+                        <th scope="col" class="sticky-top table-header-wrapper">
+                          <h5 class="mainheading-wrapper">CSS</h5>
+                          <div class="input-outter-wrapper dropdown">
+                            <ng-autocomplete>
+                            </ng-autocomplete>
+                            <ng-template style="width: 100%;" #itemTemplatecss let-item>
+                              <a [innerHTML]="item.cssName"></a>
+                            </ng-template>
+                          </div>
+                        </th>
+                        <th scope="col" class="sticky-top table-header-inner">
+                          <h5 class="mainheading-wrapper">Service </h5>
+                          <div class="input-outter-wrapper dropdown">
+                            <ng-autocomplete [data]="" #autoservice [searchKeyword]=""
+                              #autoservice placeHolder="Service"
+                             [itemTemplate]="itemTemplateservice"
+                              [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                            <ng-template style="width: 100%;" #itemTemplateservice let-item>
+                              <a [innerHTML]="item.serviceName"></a>
+                            </ng-template>
+                          </div>
+                        </th>
+                        <th scope="col" class="sticky-top table-header-inner-wrapper">
+                          <h5 class="mainheading-wrapper">Scheduled Start </h5>
+                          <div class="input-outter-wrapper dropdown">
+
+                            <input type="text" placeholder="Start Time" maxlength=10
+                               class="date-input">
+                          </div>
+                        </th>
+                        <th scope="col " class="sticky-top table-header-inner-wrapper">
+                          <h5 class="mainheading-wrapper ">Scheduled End </h5>
+                          <div class="input-outter-wrapper dropdown ">
+
+                            <input type="text" placeholder="Start Time" maxlength=10  bsDatepicker class="date-input">
+
+                          </div>
+                        </th>
+                        <!-- <th scope="col " class="sticky-top table-header-inner-wrapper">
+                                                    <h5 class="mainheading-wrapper ">Clock In</h5>
+                                                    <div class="input-outter-wrapper dropdown ">
+
+                                                        <input type="text" maxlength="0" placeholder=""
+                                                            class="date-input">
+
+                                                    </div>
+                                                </th> -->
+                        <!-- <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                                                    <h5 class="mainheading-wrapper ">Clock Out </h5>
+                                                    <div class="input-outter-wrapper dropdown ">
+
+                                                        <input type="text" maxlength=0 placeholder=""
+                                                            class="date-input">
+
+                                                    </div>
+                                                </th>
+                                                <th scope="col " class="sticky-top  table-header-inner-wrapper ">
+                                                    <h5 class="mainheading-wrapper ">Exception</h5>
+                                                    <div class="input-outter-wrapper dropdown">
+                                                        <angular2-multiselect #ffff [data]="exception"
+                                                            [(ngModel)]="exceptionSelected"
+                                                            (onDeSelect)="exceptionDeselect()"
+                                                            (onClose)="exceptionselect()"
+                                                            (onSelectAll)="ffff.closeDropdown()"
+                                                            (onDeSelectAll)="this.exceptionDeselectALL()"
+                                                            [settings]="exceptiondropdownSettings">
+
+                                                        </angular2-multiselect>
+
+                                                    </div>
+                                                </th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr *ngFor="let data of tableData let i=index " class="table-border ">
+                        <td class="body-cell col2 text-color sitecodeinner">
+                          <div [tooltip]="sitecontent" tooltipPlacement="right">
+                            {{data.siteCode}}
+                            <ng-template #sitecontent>{{data.siteName}}</ng-template>
+                          </div>
+                        </td>
+                        <td class="body-cell col2 ">{{data.psName}}</td>
+                        <td class="body-cell col3 ">{{data.dcsName}}</td>
+                        <td class="body-cell col4 ">{{data.css}}</td>
+                        <td class="body-cell text-color col4 Serviceprocedurecode">
+                          <div [tooltip]="tipContent">
+                            {{data.procedureCode}}
+                            <ng-template #tipContent><b>{{data.serviceName}}</b>
+                            </ng-template>
+                          </div>
+
+                        </td>
+                        <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
+                        <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
+                        <!-- <td class="body-cell col4 ">{{data.arrivalDateTime}}</td> -->
+                        <!-- <td class="body-cell col4 ">{{data.departureDateTime}}</td> -->
+                        <!-- <td class="body-cell col4 ml-0 pl-0 ">
+                                                    <div class="d-flex">
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.ArrGpsException==1||data.DepGpsException==1 "
+                                                            (click)="correctException(i,0)"><i
+                                                                class="fas fa-map-marker-alt"
+                                                                title="GPS Discrepancy"></i>
+                                                        </div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.scheduleVarException==1 "><i
+                                                                class="fas fa-calendar-alt"
+                                                                (click)="correctException(i,1)"
+                                                                title="Scheduled Variance"></i>
+                                                        </div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 "
+                                                            (click)="correctException(i,2)"><i
+                                                                class="fas fa-phone-slash"
+                                                                title="Invalid Caller ID"></i></div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.arrTravelTimeException==1 "
+                                                            (click)="correctException(i,3) ">
+                                                            <i class="fas fa-stopwatch"
+                                                                title="Travel Time Exception"></i>
+                                                        </div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.depMileageException==1||data.arrMileageException==1 "
+                                                            (click)="correctException(i,4) "><i
+                                                                class="fas fa-tachometer-alt"
+                                                                title="Mileage Exception"></i>
+                                                        </div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.depMileageException==1||data.arrMileageException==1 ||true "
+                                                            (click)="correctException(i,5) "><i
+                                                                class="fas fa-exclamation-triangle"
+                                                                title="Invalid Token"></i>
+                                                        </div>
+                                                        <div class="icon-wrapper "
+                                                            *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
+                                                            (click)="clockException(i) "><i class="fas fa-clock"
+                                                                title="Missed Clock In/Out"></i></div>
+
+                                                    </div>
+                                                </td> -->
+                      </tr>
+                    </tbody>
+
+                  </table>
+                </div>
+                <div class="text-center no-data-text">
+                  No Data To Display
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

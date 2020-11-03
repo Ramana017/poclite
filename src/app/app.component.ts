@@ -17,17 +17,8 @@ declare var $: any;
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  public chartData: Array<any>;
 
-  generateData() {
-    this.chartData = [];
-    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-      this.chartData.push([
-        `Index ${i}`,
-        Math.floor(Math.random() * 100)
-      ]);
-    }
-  }
+
 
 
 
@@ -119,45 +110,38 @@ export class AppComponent implements OnInit {
 
   }
 
-  // ngOnInit() {
-  //   console.log("app is loading")
-  //   let data = sessionStorage.getItem('useraccount');
-  //   if (data != null || undefined) {
-  //     console.log("Not firsttime")
-  //     this.appService.setUserLoggedIn(true);
-  //   }
-  //   try {
-  //     this._http.get(this.urljson).subscribe(
-  //       response => {
-  //         this.responseData = response;
-  //         let webserviceURL = this.responseData.webserviceURL;
-  //         let sessiontime = this.responseData.sessionTimeOut;
-  //         localStorage.setItem("webserviceURL", webserviceURL);
-  //         // localStorage.setItem("sessiontime", sessiontime);
-  //         this.apiservice.geturl();
-  //         console.log(sessiontime);
-  //         this.idle.setIdle(sessiontime * 60)
-  //         this.idle.setTimeout(10);
+  ngOnInit() {
+    console.log("app is loading")
+    let data = sessionStorage.getItem('useraccount');
+    if (data != null || undefined) {
+      console.log("Not firsttime")
+      this.appService.setUserLoggedIn(true);
+    }
+    try {
+      this._http.get(this.urljson).subscribe(
+        response => {
+          this.responseData = response;
+          let webserviceURL = this.responseData.webserviceURL;
+          let sessiontime = this.responseData.sessionTimeOut;
+          localStorage.setItem("webserviceURL", webserviceURL);
+          // localStorage.setItem("sessiontime", sessiontime);
+          this.apiservice.geturl();
+          console.log(sessiontime);
+          this.idle.setIdle(sessiontime * 60)
+          this.idle.setTimeout(10);
 
-  //       }
-  //     )
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
+        }
+      )
+    }
+    catch (error) {
+      console.log(error);
+    }
 
-  // }
+  }
 
   //---------------------- session timeout-------------------------------------
 
-ngOnInit(){
-  setTimeout(() => {
-    this.generateData();
 
-    // change the data periodically
-    setInterval(() => this.generateData(), 3000);
-  }, 1000);
-}
 
   public reset() {
     this.idle.watch();
