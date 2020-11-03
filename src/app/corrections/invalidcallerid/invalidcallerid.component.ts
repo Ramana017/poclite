@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,8 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./invalidcallerid.component.sass']
 })
 export class InvalidcalleridComponent implements OnInit {
-
-
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
   public psName: string;
   public DcsName: string;
   public procedureCode: string;
@@ -41,6 +41,10 @@ export class InvalidcalleridComponent implements OnInit {
   public arrInvalidErrView: boolean = false;
   public depInvalidErrView: boolean = false;
   public useraccount: any;
+  public clockInComments:string="";
+  public clockOutComments:String="";
+  public  clockInDCSPhoneType:string="";
+  public clockOutDCSPhoneType:string='';
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -106,6 +110,8 @@ export class InvalidcalleridComponent implements OnInit {
           this.phone1!==undefined?this.PhoneNumFormat(this.phone1,'phone1'):undefined;
           this.phone2!==undefined?this.PhoneNumFormat(this.phone2,'phone2'):undefined;
           this.phone3!==undefined?this.PhoneNumFormat(this.phone3,'phone3'):undefined;
+          this.clockInDCSPhoneType=this.responseData.clockInDCSPhoneType;
+          this.clockOutDCSPhoneType=this.responseData.clockOutDCSPhoneType;
         }
       ), error => {
 
@@ -121,7 +127,9 @@ export class InvalidcalleridComponent implements OnInit {
   public acceptCallerIdException(event) {
     let clockInFlag = event == 'clockin' ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+    let commentLength=event=='clockin'?this.clockInComments.trim().length:this.clockOutComments.trim().length;
+    if(commentLength>0){
+    let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId,"clockInComments":event=='clockin'?this.clockInComments:'',"clockOutComments":event == "clockout"?this.clockOutComments:"", "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     let parameters = JSON.stringify(JsonData);
     console.log(JsonData)
     try {
@@ -137,8 +145,13 @@ export class InvalidcalleridComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this._apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = { ...this.JsonData, ...response }
+                if (this._apiService.checkException(merged)) {
+                  this.popupUpdate.emit();
+                } else {
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
             })
 
           }
@@ -153,6 +166,15 @@ export class InvalidcalleridComponent implements OnInit {
 
       console.log(error);
     }
+  }else{
+    let data= event=="clockin"?" Clock In":" Clock Out";
+    swal.fire({
+      title: "Invalid Comments",
+      text:"Please Enter"+ data +" comments before Accept",
+      icon: "warning",
+      confirmButtonText: 'Ok',
+    })
+  }
   }
 
   public updatePSPhone() {
@@ -186,8 +208,13 @@ export class InvalidcalleridComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this._apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = { ...this.JsonData, ...response }
+              if (this._apiService.checkException(merged)) {
+                    this.popupUpdate.emit();
+              } else {
+                this._apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
           else {
@@ -255,11 +282,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone1Flag = true;
-          if(phone1areacode >= 1 && phone1areacode >= 199)
+          if(phone1areacode <= 1 || phone1areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
           }
-          if(phone1exchangecode >= 1 && phone1exchangecode >= 199){
+          if(phone1exchangecode <= 1 || phone1exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
           }
 
@@ -296,11 +323,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone2Flag = true;
-          if(phone2areacode >= 1 && phone2areacode >= 199)
+          if(phone2areacode <= 1 ||phone2areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone2 ")
           }
-          if(phone2exchangecode >= 1 && phone2exchangecode >= 199){
+          if(phone2exchangecode <= 1 || phone2exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone2  ")
           }
         }
@@ -328,11 +355,11 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone3Flag = true;
-          if(phone3areacode >= 1 && phone3areacode >= 199)
+          if(phone3areacode <= 1 ||phone3areacode <= 199)
           {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3")
           }
-          if(phone3exchangecode >= 1 && phone3exchangecode >= 199){
+          if(phone3exchangecode <= 1 || phone3exchangecode <= 199){
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3")
           }
         }

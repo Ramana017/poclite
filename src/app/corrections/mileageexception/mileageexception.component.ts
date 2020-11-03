@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { getLocaleDateFormat, DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 // import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
@@ -12,7 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./mileageexception.component.sass']
 })
 export class MileageexceptionComponent implements OnInit {
-
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
   // Display variables
   public JsonData;
 
@@ -140,8 +141,16 @@ export class MileageexceptionComponent implements OnInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this._apiService.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged={...this.JsonData,...response}
+              if(this._apiService.checkException(merged))
+              {
+                 this.popupUpdate.emit();
+              }else{
+                console.log("accept in mileage")
+                this._apiService.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
+
             })
           }
 
@@ -191,10 +200,8 @@ export class MileageexceptionComponent implements OnInit {
               this.clockInExceptionUpdate = false;
             }
             if (clocktype == "clockout") {
-              console.log('++++++')
               this.clockOutExceptionUpdate = false;
             }
-          // }
           console.log(this.clockInExceptionUpdate,this.clockOutExceptionUpdate)
           if (this.clockInExceptionUpdate == false && this.clockOutExceptionUpdate == false) {
             if (this.updateResponseData.validateFlag == 0) {
@@ -204,8 +211,15 @@ export class MileageexceptionComponent implements OnInit {
                 confirmButtonText: 'Ok',
                 allowOutsideClick: false
               }).then(ok => {
-                this._apiService.updateTable.next(true);
-                this.bsmodelRef.hide();
+                let merged={...this.JsonData,...response}
+                if(this._apiService.checkException(merged))
+                {
+                   this.popupUpdate.emit();
+                }else{
+                  this._apiService.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
+
               })
 
             } else {

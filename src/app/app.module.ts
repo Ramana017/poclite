@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injectable, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login/login.component';
@@ -14,7 +14,7 @@ import { TarveltimeexceptionComponent } from './corrections/tarveltimeexception/
 import { GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
 import { ClockinComponent } from './corrections/clockin/clockin.component';
 import { ClockoutComponent } from './corrections/clockout/clockout.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './core/header/header.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -27,7 +27,7 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ClockInAndOutComponent } from './corrections/clock-in-and-out/clock-in-and-out.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {APIs } from '../assets/url';
 import { ChartsComponent } from './core/charts/charts.component';
@@ -58,6 +58,8 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
 
 
 
+import { map } from 'rxjs/operators';
+// import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
   declarations: [
@@ -110,7 +112,7 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
     AngularMultiSelectModule,
     TimepickerModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: APIs.mapApiKey,
+      // apiKey: "initialKey",
     }),
     NgbModule,
     // NgxGaugeModule,
@@ -128,10 +130,34 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
     {
       provide: APP_BASE_HREF,
       useValue: window['base-href']
-    }
+    },
+      {
+        provide: APP_INITIALIZER,
+        useFactory: agmConfigFactory,
+        deps: [HttpClient, LAZY_MAPS_API_CONFIG],
+        multi: true}
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [CorrectionheaderComponent, MileageexceptionComponent, LoginComponent, AppComponent]
 })
 export class AppModule { }
+export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
+  return () => http.get('assets/url.json').pipe(
+    map(response => {
+      console.log(response)
+      let data:any=response
+      let obj={ "loginId": 'rtentu2020', "password": 'rtentu12#' }
+      http.get(data.webserviceURL+'/callmanagement/getGoogleApiKey').pipe(
+        map(response2=>{
+          console.log(response2)
+          let data2:any=response;
+          config.apiKey = data2.googleAPIKey;
+          return response;
+        })
+      ).toPromise()
+
+    })
+  ).toPromise();
+}
+

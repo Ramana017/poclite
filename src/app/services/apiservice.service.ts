@@ -4,7 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { APIs } from '../../assets/url';
 import { ToastrService } from 'ngx-toastr';
 // import webserviceURL from '../../assets/url.json';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { LazyMapsAPILoaderConfigLiteral } from '@agm/core';
 //
 
 @Injectable({
@@ -29,12 +30,14 @@ export class ApiserviceService {
   public updatePopup = new Subject();
   public updatePopup$ = this.updatePopup.asObservable();
 
-  constructor(private _http: HttpClient,private toastr: ToastrService,) { console.log("API service") }
+  constructor(private _http: HttpClient, private toastr: ToastrService,) {
+    this.geturl();
+     console.log("API service") }
 
 
- public showSuccess(message) {
-    this.toastr.success('',message, {
-      timeOut:1000
+  public showSuccess(message) {
+    this.toastr.success('', message, {
+      timeOut: 1000
     });
   }
   // calling Table APi
@@ -79,8 +82,9 @@ export class ApiserviceService {
   }
   public acceptCallerIdException(jsondata: string): Observable<any> {
     this.geturl();
+    // return this._http.post("http://poc.aquilasoftware.com/poclite" + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
 
-    return this._http.get(this.baseURL + "/acceptCallerIdException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
   }
 
   public updatePSPhone(jsondata: string): Observable<any> {
@@ -184,6 +188,18 @@ export class ApiserviceService {
     this.geturl();
     return this._http.get(this.baseURL + "/getVisitsDashboardDetails?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
+  public getInvalidTokenCodeExceptionData(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/getInvalidTokenCodeExceptionData?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
+  public acceptInvalidTokenCodeException(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/acceptInvalidTokenCodeException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
+  public updateTokenCode(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/updateTokenCode?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
   // method for error handling
 
   private errorHandler(error: HttpErrorResponse) {
@@ -196,13 +212,13 @@ export class ApiserviceService {
     var data = sessionStorage.getItem('useraccount');
     var token = JSON.parse(data);
     if (token != undefined) {
-        // return false;
-        if (token.priviledFlag == 'schedule') {
-          return true;
-        }
-        else {
-          return false;
-        }
+      // return false;
+      if (token.priviledFlag == 'schedule') {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
   }
@@ -224,11 +240,34 @@ export class ApiserviceService {
   }
 
   //To check exceptions is their or not
-  public checkException(data){
-console.log(data)
-if(data.ArrGpsException==1||data.DepGpsException==1 ||data.scheduleVarException==1 ||data.arrCallerIdException==1||data.arrTravelTimeException==1 ||data.depMileageException==1||data.arrMileageException==1 )
-{
+  public checkException(data): boolean {
+    console.log(data)
+    if (data.ArrGpsException == 1 || data.DepGpsException == 1 || data.scheduleVarException == 1 || data.arrCallerIdException == 1 || data.depCallerIdException == 1 || data.depMileageException == 1 || data.arrMileageException == 1||data.depTokenCodeException==1||data.arrTokenCodeException==1||data.arrTravelTimeException==1 ) {
+      localStorage.setItem("userlist",JSON.stringify(data))
+      return true;
+    } else {
+      localStorage.removeItem("userlist")
+      console.log("exceptions are not more than one")
+      return false;
+    }
+  }
 
 }
-  }
+export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
+  return () => http.get('assets/url.json').pipe(
+    map(response => {
+      console.log(response)
+      let data:any=response
+      let obj={ "loginId": 'rtentu2020', "password": 'rtentu12#' }
+      http.get(data.webserviceURL+'/callmanagement/getGoogleApiKey').pipe(
+        map(response2=>{
+          console.log(response2)
+          let data2:any=response;
+          config.apiKey = data2.googleAPIKey;
+          return response;
+        })
+      ).toPromise()
+
+    })
+  ).toPromise();
 }

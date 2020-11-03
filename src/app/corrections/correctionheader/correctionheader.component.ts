@@ -24,22 +24,18 @@ export class CorrectionheaderComponent implements OnInit {
   public currentexceptionName: string;
 
   public displayArray :Array<boolean>= [false, false, false, false, false,false];
-  public userId:number;
-  public exceptionCount;
+  public modalRef: BsModalRef;
 
-
-  constructor(private router: Router, public modalRef: BsModalRef, private _apiService: ApiserviceService, public modalService: BsModalService
+  constructor(private router: Router, private _apiService: ApiserviceService, public modalService: BsModalService,public bsmodelRef: BsModalRef
   ) { }
 
   ngOnInit(): void {
-    this.exceptionCount=0;
     this.displayArray[this.display] = true;
     this.currentexceptionName = this.exceptionnames[this.display];
     console.log("correctionHeader")
     var data = localStorage.getItem('userlist');
     if (data) {
       this.data = JSON.parse(data);
-      this.userId=this.data
       console.log("data came in heder", this.data.depMileageException)
       if (this.data.ArrGpsException == 1 || this.data.DepGpsException == 1) {
         this.gps == true;
@@ -59,7 +55,6 @@ export class CorrectionheaderComponent implements OnInit {
       }
 
     }
-    this.exceptionCount=this.data.exceptionCount;
 
 
   }
@@ -69,7 +64,34 @@ export class CorrectionheaderComponent implements OnInit {
 
 
 
+public parentChild(){
+  console.log("parent component called");
+  var data:any = JSON.parse(localStorage.getItem('userlist'));
+  if (data) {
+    console.log("data came in heder", data.depMileageException)
+    if (data.ArrGpsException == 1 || data.DepGpsException == 1) {
+      this.display=0;
+    }
+    else if (data.arrCallerIdException == 1 || data.depCallerIdException == 1) {
+      this.display=2;
+    }
+    else if (data.scheduleVarException == 1) {
+      this.display=1;
+    }
+    else if (data.arrTravelTimeException == 1) {
+      this.display=3;
+    }
+    else if (data.depMileageException == 1 || data.arrMileageException == 1) {
+      // console.log("mileage verified")
+      this.display=4;
+    }
+    this.displayArray = [false, false, false, false, false,false];
 
+    this.ngOnInit();
+  }
+
+
+}
   public SelectorDisplay(i) {
     this.displayArray.length = 0;
     this.display = null;
@@ -90,7 +112,6 @@ export class CorrectionheaderComponent implements OnInit {
   }
 
   public closeModel() {
-    this.modalRef.hide();
-    this._apiService.updateTable.next(true);
+    this.bsmodelRef.hide();    this._apiService.updateTable.next(true);
   }
 }

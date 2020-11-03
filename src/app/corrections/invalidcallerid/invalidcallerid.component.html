@@ -46,9 +46,7 @@
                     <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
                         <li class="mt-1">
                             <label for="" class="m-0">PS</label>
-
                             <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
-
                         </li>
                         <li class="mt-1">
                             <label for="">DCS</label>
@@ -80,7 +78,13 @@
                     <div class="caller-id">
                         <p class="text-white">Caller ID: {{clockInCallerID}}</p>
                     </div>
-                    <div class="button-wrapper">
+                    <div class="form-group mx-2" >
+                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
+                        <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments" ></textarea>
+                      </div>
+                      <div *ngIf="clockInDCSPhoneType.length>0" class="" >The Phone number used matches the DCS {{clockInDCSPhoneType}}  Phone number.</div>
+
+                    <div class="button-wrapper ">
                         <button type="button" class="btn" [disabled]="!arrInvalidErr" (click)="acceptCallerIdException('clockin')">Accept</button>
                     </div>
                 </div>
@@ -140,6 +144,11 @@
                     <div class="caller-id">
                         <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
                     </div>
+                      <div class="form-group mx-2" >
+                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
+                        <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm" ></textarea>
+                      </div>
+                      <div *ngIf="clockOutDCSPhoneType.length>0" class="" >The Phone number used matches the DCS {{clockOutDCSPhoneType}}  Phone number.</div>
                     <div class="button-wrapper">
                         <button type="button" class="btn" [disabled]="!depInvalidErr" (click)="acceptCallerIdException('clockout')">Accept</button>
                     </div>
@@ -175,9 +184,11 @@
                                     <th>
                                         <select [(ngModel)]="phoneType3" class="bg-light border-0 outline-0 p-2 ">
                                         <option [ngValue]="null||undefined">Select Type</option>
+                                        <option  *ngFor="let phone of phoneTypelist"[ngValue]="phone.value" >{{phone.label}}</option>
 
                                       </select>
                                     </th>
+                                    <th></th>
                                 </tr>
 
                             </thead>
@@ -192,14 +203,17 @@
                                     <td>
                                         <input type="text" (change)="PhoneNumFormat(phone3,'phone3')" maxlength=12 style="font-size: 14px;" [(ngModel)]="phone3" placeholder="Phone3" id="user">
                                     </td>
+                                    <td>
+                                        <div class="btn-wrapper">
+                                            <button type="button" class="btn" (click)="validation()">Update</button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="btn-wrapper">
-                        <button type="button" class="btn" (click)="validation()">Update</button>
-                    </div>
+
                 </div>
             </div>
         </div>

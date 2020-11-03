@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
-import { AgmMap } from '@agm/core';
+import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapTypeControlOptions, MapTypeId } from '@agm/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-gpsdescrepancy',
@@ -12,6 +14,8 @@ import { AgmMap } from '@agm/core';
 })
 export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   @ViewChild(AgmMap, { static: true }) map: AgmMap;
+  @Output()
+  popupUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -70,8 +74,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   private exceptionCount: number;
 
-  public clockinDone:boolean=true;
-  public clockOutDone:boolean=true;
+  public clockinDone: boolean = true;
+  public clockOutDone: boolean = true;
+  public clockInComments: string=" ";
+  public clockOutComments: string=" ";
+
 
 
   public ngOnInit(): void {
@@ -111,8 +118,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       this.arrivalgpsErrview = true;
     }
     else {
-      if(this.jsonData.ArrGpsException == 3){
-       this.clockinDone=false;
+      if (this.jsonData.ArrGpsException == 3) {
+        this.clockinDone = false;
       }
       this.arrivalgpsErr = false;
       this.arrivalgpsErrview = false;
@@ -123,8 +130,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       this.depgpserrview = true;
     }
     else {
-      if(this.jsonData.DepGpsException == 3){
-        this.clockOutDone=false;
+      if (this.jsonData.DepGpsException == 3) {
+        this.clockOutDone = false;
       }
       this.depgpsErr = false;
       this.depgpserrview = false;
@@ -156,6 +163,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.defaultpsdetails();
+
           if (this.arrivalgpsErr == true) {
             let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress, this.redicon]
             this.locations.push(obj)
@@ -193,10 +201,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
 
   public acceptGpsException(event: string) {
-    // {"id":10366,"visitDetailsId":4636570,"clockInFlag":1,"clockOutFlag":0,"userId":1}
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    var jsonObj = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+    let commentLength=clockinflag==1?this.clockInComments.trim().length:this.clockOutComments.trim().length;
+    if(commentLength>0){
+    var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag ==1? this.clockInComments : '', "clockOutComments": clockOutFlag ==1? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
     var parameters = JSON.stringify(jsonObj)
     try {
       this.apiservice.acceptGpsException(parameters).subscribe(
@@ -211,8 +220,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(ok => {
-              this.apiservice.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = {...this.jsonData, ...response};
+               if(this.apiservice.checkException(merged)){
+                this.popupUpdate.emit();
+              }else{
+                this.apiservice.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
+
             })
           }
 
@@ -222,6 +237,15 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     catch (error) {
       console.log(error);
     }
+  }else{
+    let data= event=="clockin"?" Clock In":" Clock Out";
+    swal.fire({
+      title: "Invalid Comments",
+      text:"Please Enter"+ data +" comments before Accept",
+      icon: "warning",
+      confirmButtonText: 'Ok',
+    })
+  }
 
 
   }
@@ -242,8 +266,13 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(OK => {
-              this.apiservice.updateTable.next(true);
-              this.bsmodelRef.hide();
+              let merged = {...this.jsonData, ...response};
+              if(this.apiservice.checkException(merged)){
+                this.popupUpdate.emit();
+              }else{
+                this.apiservice.updateTable.next(true);
+                this.bsmodelRef.hide();
+              }
             })
           }
           else {
@@ -350,10 +379,6 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.fomatAddressManualInput = true;
   }
 
-  public markerclick() :void{
-    // console.log("marker click working")
-  }
-
   public psAddressClick(): void {
     console.log("psaddressclock")
     this.centerlatitude = +this.psLatitude;
@@ -363,17 +388,24 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockInAddressClick(): void {
     console.log("clockin address")
 
-    this.centerlatitude =  this.clockInLatitude;
-    this.centerlangutide =  this.clockInLongitude;
+    this.centerlatitude = this.clockInLatitude;
+    this.centerlangutide = this.clockInLongitude;
     this.map.centerChange;
 
   }
 
-  public clockOutAddressClick():void{
-   this.centerlatitude =  this.clockOutLatitude;
-    this.centerlangutide =  this.clockOutLongitude;
+  public clockOutAddressClick(): void {
+    this.centerlatitude = this.clockOutLatitude;
+    this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
   }
-
+  public agmConfigFactory1(value,config?: LazyMapsAPILoaderConfigLiteral){
+    config.apiKey = value;
+  }
 
 }
+export function agmConfigFactory(value,config?: LazyMapsAPILoaderConfigLiteral){
+  config.apiKey = value;
+}
+
+

@@ -12,38 +12,7 @@
         <div class="row m-0">
             <div class="col-md-12 p-0">
                 <div class="table-responsive">
-                    <!-- <table class="table table-borderless mt-0 gps-table">
-                        <thead>
-                            <tr>
-                                <th class="pb-0">PS</th>
-                                <th class="pb-0">DCS</th>
-                                <th class="pb-0">Procedure Code</th>
-                                <th class="pb-0">Scheduled Start </th>
-                                <th class="pb-0">Scheduled End </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input [disabled]='true' type="text" name="psName" [(ngModel)]="psName" placeholder="PsName" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' type="text" name="DcsName" [(ngModel)]="DcsName" placeholder="DCSName" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' type="text" name="procedureCode" [ngModel]="procedureCode" placeholder="SOURPS" pattern="">
-                                </td>
-                                <td>
-                                    <input [disabled]='true' class="input-field" type="text" name="scheduleStartDate" [(ngModel)]="scheduleStartDate" placeholder="DD/MM/YYYY" pattern=""> -->
-                    <!-- <input [disabled]='true' class="input-field" type="text" name="scheduleStartTime" [(ngModel)]="scheduleStartTime" placeholder="HH:MM" pattern=""> -->
-                    <!-- </td>
-                                <td>
-                                    <input [disabled]='true' class="input-field" type="text" name="scheduleEndDate" [(ngModel)]="scheduleEndDate" placeholder="DD/MM/YYYY" pattern=""> -->
-                    <!-- <input [disabled]='true' class="input-field" type="text" name="scheduleEndTime" [(ngModel)]="scheduleEndTime" placeholder="HH:MM" pattern=""> -->
-                    <!-- </td>
-                            </tr>
-                        </tbody>
-                    </table> -->
+
                     <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
                         <li class="mt-1">
                             <label for="" class="m-0">PS</label>
@@ -83,7 +52,7 @@
         </div> -->
         <!-- map section start  -->
         <div class="row m-0">
-            <div class="col-md-6 col-sm-12 p-0" *ngIf="clockinDone">
+            <div class="col-md-6 col-sm-12 px-0 pb-2" *ngIf="clockinDone">
                 <div class="clock-detail">
                     <div class="issue-wrapper">
                         <!-- <h3 class="custom-tooltip-icon mb-3">Issue
@@ -105,7 +74,11 @@
                         <p><strong>Address:</strong> <br> {{clockInAddress}} <br> Latitude: {{clockInLatitude}}, Longitude: {{clockInLongitude}}
                         </p>
                     </div>
-                    <div class="button-wrapper">
+                    <div  *ngIf="arrivalgpsErr" class="form-group mx-2">
+                        <h3 class="f-15">Clock In Comments</h3>
+                        <textarea class="form-control" [(ngModel)]="clockInComments"  rows="3"></textarea>
+                      </div>
+                    <div class="button-wrapper mb-2">
                         <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
                         <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr" (click)="acceptGpsException('clockin')">Accept</button>
                     </div>
@@ -130,13 +103,19 @@
                             </a>
                         </h3>
                     </div>
+
                     <div [ngStyle]="depgpsErr ?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}" class="address-wrapper pr-2">
                         <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}}, Longitude:{{clockOutLongitude}} </p>
                     </div>
-                    <div class="button-wrapper">
+                    <div *ngIf="depgpsErr" class="form-group mx-2">
+                        <h3 class="f-15">Clock Out Comments</h3>
+                         <textarea class="form-control"[(ngModel)]="clockOutComments"   rows="3"></textarea>
+                       </div>
+                    <div class="button-wrapper d-flex justify-content-between">
                         <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
                         <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto" (click)="acceptGpsException('clockout')">Accept</button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -230,8 +209,8 @@
             <div class="col-md-12 col-sm-12">
                 <div class="map-wrapper">
                     <!-- <div #map style="width:100%; height:500px"></div> -->
-                    <agm-map [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
-                        <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" (markerClick)="markerclick()">
+                    <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
+                        <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" >
                             <agm-info-window [disableAutoPan]="false">
                                 <strong>{{i[2]}}</strong>
                             </agm-info-window>
