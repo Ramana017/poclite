@@ -59,6 +59,7 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
 
 
 import { map } from 'rxjs/operators';
+import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 // import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
@@ -96,6 +97,7 @@ import { map } from 'rxjs/operators';
     PsContactsComponent,
     EditPsComponent,
     ChartLayoutComponent,
+    VisitReviewComponent,
   ],
   imports: [
     BrowserModule,
