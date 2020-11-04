@@ -9,7 +9,7 @@ export class ChartLayoutComponent implements OnInit {
   single: any[];
   multi: any[];
 
-  view: any[] = [400, 400];
+  view: any[] = [700, 400];
 
   // options
   showXAxis = true;
@@ -46,7 +46,7 @@ export class ChartLayoutComponent implements OnInit {
 export var single = [
   {
     "name": "10/28/2020",
-    "value": 894
+    "value": 89
   },
   {
     "name": "10/29/2020",
