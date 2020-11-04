@@ -9,7 +9,7 @@ export class ChartLayoutComponent implements OnInit {
   single: any[];
   multi: any[];
 
-  view: any[] = [700, 400];
+  view: any[] = [400, 400];
 
   // options
   showXAxis = true;
@@ -22,7 +22,7 @@ export class ChartLayoutComponent implements OnInit {
   yAxisLabel = 'count';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#bbbbbbbb']
+    domain: ['#4472c3']
   };
 
 
