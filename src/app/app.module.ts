@@ -60,6 +60,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 import { map } from 'rxjs/operators';
+import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 // import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
@@ -97,6 +98,7 @@ import { map } from 'rxjs/operators';
     PsContactsComponent,
     EditPsComponent,
     ChartLayoutComponent,
+    VisitReviewComponent,
   ],
   imports: [
     BrowserModule,
