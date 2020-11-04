@@ -22,7 +22,7 @@ export class ChartLayoutComponent implements OnInit {
   yAxisLabel = 'count';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#bbbbbbbb']
+    domain: ['#4472c3']
   };
 
 
@@ -46,7 +46,7 @@ export class ChartLayoutComponent implements OnInit {
 export var single = [
   {
     "name": "10/28/2020",
-    "value": 894
+    "value": 89
   },
   {
     "name": "10/29/2020",
