@@ -21,6 +21,7 @@ import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.co
 import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.component';
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
+import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
+  { path: 'visitreview', component: VisitReviewComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
