@@ -35,7 +35,7 @@ import { ChartsComponent } from './core/charts/charts.component';
 
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment';
-import { InvalidTokenComponent } from './corrections/invalid-token/invalid-token.component'; // optional, provides moment-style pipes for date formatting
+import { InvalidTokenComponent } from './corrections/invalid-token/invalid-token.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 
 import {RegistrationComponent} from './core/create_new_ps/registration/registration.component';
@@ -61,7 +61,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { map } from 'rxjs/operators';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
-// import { agmConfigFactory} from '../app/services/apiservice.service'
 
 @NgModule({
   declarations: [
@@ -114,8 +113,8 @@ import { VisitReviewComponent } from './core/visit-review/visit-review.component
     ModalModule.forRoot(),
     AngularMultiSelectModule,
     TimepickerModule.forRoot(),
-    AgmCoreModule.forRoot({
-      // apiKey: "initialKey",
+    AgmCoreModule.forRoot(
+      {
     }),
     NgbModule,
     // NgxGaugeModule,
@@ -147,16 +146,15 @@ import { VisitReviewComponent } from './core/visit-review/visit-review.component
 export class AppModule { }
 export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
   return () => http.get('assets/url.json').pipe(
-    map(response => {
-      console.log(response)
-      let data:any=response
-      let obj={ "loginId": 'rtentu2020', "password": 'rtentu12#' }
+    map(urlresponse => {
+      console.log(urlresponse)
+      let data:any=urlresponse
       http.get(data.webserviceURL+'/callmanagement/getGoogleApiKey').pipe(
-        map(response2=>{
-          console.log(response2)
-          let data2:any=response;
+        map(mapresponse=>{
+          console.log(mapresponse)
+          let data2:any=mapresponse;
           config.apiKey = data2.googleAPIKey;
-          return response;
+          return mapresponse;
         })
       ).toPromise()
 

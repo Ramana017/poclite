@@ -249,21 +249,3 @@ export class ApiserviceService {
   }
 
 }
-export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
-  return () => http.get('assets/url.json').pipe(
-    map(response => {
-      console.log(response)
-      let data:any=response
-      let obj={ "loginId": 'rtentu2020', "password": 'rtentu12#' }
-      http.get(data.webserviceURL+'/callmanagement/getGoogleApiKey').pipe(
-        map(response2=>{
-          console.log(response2)
-          let data2:any=response;
-          config.apiKey = data2.googleAPIKey;
-          return response;
-        })
-      ).toPromise()
-
-    })
-  ).toPromise();
-}

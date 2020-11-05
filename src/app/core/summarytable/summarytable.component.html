@@ -236,16 +236,16 @@
                     <!-- <div class="icon-wrapper " *ngIf="data.arrTokenCodeException==1||data.depTokenCodeException==1"
                     (click)="correctException(i,5) "><i class="fas fa-exclamation-triangle" title="Invalid Token"></i>
                   </div> -->
-                    <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
+                    <div class="icon-wrapper " *ngIf="(data.missedArrException==1 ||data.missedDepException==1) "
                       (click)="clockException(i) "><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
 
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
+                      <div class="icon-wrapper " *ngIf="(data.missedArrException==1 ||data.missedDepException==1) &&false"
                       (click)="clockException(i) "><i class="fas fa-clipboard" title="Missed Clock In/Out"></i></div>
 
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
+                      <div class="icon-wrapper " *ngIf="(data.missedArrException==1 ||data.missedDepException==1) &&false"
                       (click)="clockException(i) "><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
 
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
+                      <div class="icon-wrapper " *ngIf="(data.missedArrException==1 ||data.missedDepException==1)&&false "
                       (click)="clockException(i) "><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
                   </div>
                 </td>
