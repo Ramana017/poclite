@@ -97,7 +97,7 @@ export class ApiserviceService {
 
   public acceptGpsException(jsondata: string): Observable<any> {
     this.geturl();
-    return this._http.get(this.baseURL + "/acceptGpsException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptGpsException" , jsondata).pipe(catchError(this.errorHandler));
   }
   public updateGpsException(jsondata: string): Observable<any> {
     this.geturl();

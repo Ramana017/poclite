@@ -22,7 +22,7 @@ export class ChartLayoutComponent implements OnInit {
   yAxisLabel = 'count';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#bbbbbbbb']
+    domain: ['#5AA454']
   };
 
 
