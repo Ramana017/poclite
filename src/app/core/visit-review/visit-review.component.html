@@ -1,71 +1,8 @@
 <app-header></app-header>
-<div class="summary-wrapper">
+<!-- <div class="summary-wrapper">
   <div class="custum-wrapper">
-    <!-- Table start from here   -->
     <div class="summary-heading">
-      <!-- <h6>Summary</h6> -->
     </div>
-
-    <!-- <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
-      <div class="d-flex justify-content-between">
-        <div class="">
-          <div id='gpsGuage'></div>
-          <b>
-            <p class="f-15 mt-n4">{{gpsExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">GPS Discrepancy</h5>
-        </div>
-        <div class="">
-
-          <div id='invalidGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{callerIdExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Caller ID</h5>
-
-        </div>
-        <div class="">
-
-          <div id='scheduleGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{scheduleVarExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Schedule Variance</h5>
-        </div>
-        <div class="">
-          <div id='clockGuage'></div>
-          <b>
-            <p class="f-15 mt-n4">{{incompleteClockInOutCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Missed Clock In/Out</h5>
-        </div>
-        <div class="">
-          <div id='travelGuage'></div>
-          <b>
-            <p class="f-12 mt-n4"> {{excessiveTtCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Excessive TT</h5>
-        </div>
-        <div class="">
-
-          <div id='mileageGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{excessiveMileageCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Excessive Mileage</h5>
-
-
-        </div>
-         <div class="">
-          <div id='invalidToken'></div>
-          <b>
-            <p class="f-15 mt-n4">{{invalidTokenCodeCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Token</h5>
-        </div>
-    </div>
-    </div> -->
-    <!-- **************  -->
     <div class="outer-wrapper">
       <div id="table-scroll" class="table-scroll">
         <div class="table-width-scroll">
@@ -163,6 +100,62 @@
 
                   </div>
                 </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
+                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
+                  <h5 class="mainheading-wrapper ">Clock Out </h5>
+                  <div class="input-outter-wrapper dropdown ">
+
+                    <input type="text" maxlength=0 placeholder="" class="date-input">
+
+                  </div>
+                </th>
                 <th scope="col " class="sticky-top  table-header-inner-wrapper ">
                   <h5 class="mainheading-wrapper ">Exception</h5>
                   <div class="input-outter-wrapper dropdown">
@@ -211,10 +204,7 @@
                     </div>
                     <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 "
                       ><i class="fas fa-tachometer-alt" title="Mileage Exception"></i>
-                    </div>
-                    <!-- <div class="icon-wrapper " *ngIf="data.arrTokenCodeException==1||data.depTokenCodeException==1"
-                    "><i class="fas fa-exclamation-triangle" title="Invalid Token"></i>
-                  </div> -->
+                    </div>                    
                     <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
                       ><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
 
@@ -238,35 +228,210 @@
         </div>
       </div>
     </div>
-    <!-- **************  -->
-    <!-- Table end  -->
-    <!-- <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-n1 ">
-      <div class="pagination  justify-content-end pagination-button">
-        <div class="page-item">
-          <button type="button"
-            class=" btn common-table-btn reset-button mb-2">Refresh</button>
-          <button type="button" (click)='resetall()' class="btn common-table-btn reset-button mb-2">Reset</button>
-        </div>
-        <div class="page-item">
-          <h3>Per page</h3>
-        </div>
-        <select [(ngModel)]="perpage " (change)="pagereset()" class="bg-white border-0 outline-0 ">
-          <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}</option>
-        </select>
-        <div class="page-item ">
-          <h3>Showing {{ tablelength==0 ? 0 : lowerBound}} to
-            {{tablelength==0 ? 0:upperBound>maxCount?maxCount:upperBound}} of {{maxCount}}</h3>
-        </div>
-        <div class="page-item "><button type="button " [disabled]="lowerBound<perpage||tablelength==0 "
-            [ngClass]="lowerBound<=1||tablelength==0  ? 'btn prev-btn primary-button': 'btn next-btn primary-button ' "
-            id="prev-btn " (click)="prevpage() ">Prev</button></div>
-        <div class="page-item "><button type="button " [disabled]="upperBound>= maxCount ||tablelength==0 "
-            [ngClass]="upperBound>= maxCount ||tablelength==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
-            id="next-btn" (click)="pagenext()">Next</button>
-        </div>
-      </div>
-    </div>
-          Pagination end  -->
-
-
   </div>
+</div> -->
+
+<div class="visit-review-wrapper p-5">
+  <div class="table-responsive box-shadow">
+    <table class="table text-center mb-0">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">
+            Site
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>         
+          <th class="text-center">
+            PS
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            PS Phone#
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            DCS
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            DCS Phone#
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            CSS
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Service
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Scheduled Start
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Scheduled End
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Actual Scheduled Start
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Actual Scheduled End
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Original Reported Start
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Original Reported End
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Adjusted Reported Start
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Adjusted Reported End
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Arrival Adjust Reason
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Departure Adjust Reason
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Tasks
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Signature Details
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+          <th class="text-center">
+            Exception Details
+            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE</td>
+          <td>555-555-1111</td>
+          <td>BANKS, LYNDA</td>
+          <td>666-555-1111</td>
+          <td>Sisson, Kimberley</td>
+          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            10:00 AM</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            11:00 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:20 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:25 AM</td>
+            <td>Add Mileage</td>
+            <td></td>
+            <td>10  - Clean Bathroom 
+              12  - Laundry</td>
+            <td></td>
+            <td class="d-flex">
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            </td>
+        </tr>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE</td>
+          <td>555-555-1111</td>
+          <td>BANKS, LYNDA</td>
+          <td>666-555-1111</td>
+          <td>Sisson, Kimberley</td>
+          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            10:00 AM</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            11:00 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:20 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:25 AM</td>
+            <td>Add Mileage</td>
+            <td></td>
+            <td>10  - Clean Bathroom 
+              12  - Laundry</td>
+            <td></td>
+            <td class="d-flex">
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            </td>
+        </tr>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE</td>
+          <td>555-555-1111</td>
+          <td>BANKS, LYNDA</td>
+          <td>666-555-1111</td>
+          <td>Sisson, Kimberley</td>
+          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            10:00 AM</td>
+          <td>10-06-2020  
+            08:00 AM</td>
+          <td>10-06-2020  
+            11:00 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:20 AM</td>
+          <td>10-06-2020  
+            08:10 AM</td>
+          <td>10-06-2020  
+            10:25 AM</td>
+            <td>Add Mileage</td>
+            <td></td>
+            <td>10  - Clean Bathroom 
+              12  - Laundry</td>
+            <td></td>
+            <td class="d-flex">
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  
