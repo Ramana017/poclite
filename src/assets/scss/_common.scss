@@ -137,7 +137,9 @@
 .w-39 {
     width: 39% !important;
 }
-
+.f-25{
+    font-size: 25px;
+}
 .w-58 {
     width: 58% !important;
 }
@@ -169,7 +171,9 @@
 .width-180 {
     width: 180px !important;
 }
-
+.w-80px{
+    width: 80px !important;
+}
 .width-190 {
     width: 190px;
 }
@@ -273,7 +277,9 @@
 .w-160 {
     width: 160px !important;
 }
-
+.min-w-160{
+    min-width: 160px !important;
+}
 .pb-8 {
     padding-bottom: 8px;
 }
@@ -999,7 +1005,9 @@ select:focus {
     align-items: center;
     cursor: pointer;
 }
-
+.bg-none{
+    background: none;
+}
 .right-icon {
     position: absolute;
     right: 0;
@@ -1023,7 +1031,31 @@ select:focus {
     top: 6px;
     cursor: pointer;
 }
-
+.top-0 {
+    top: 0 !important;
+  }
+  .filter-menu {
+    width: 950px;
+    padding: 10px;
+    // right: 0 !important;
+    top: 31px;
+    left: -135%;
+    box-shadow: 2px 2px 20px #908f8f;
+    border: 0;
+  }
+// .right {
+//     position: absolute;
+//     right: 0;
+//     top: 3px;
+//     background: #76bd43;
+//     width: 30px;
+//     height: 30px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     color: #ffffff;
+//     z-index: 5;
+//   }
 // ng-autocomplete code
 .co-ordinator {
     .ng-autocomplete {
@@ -1235,4 +1267,18 @@ input[type=number] {
     .box-shadow{
         box-shadow: 2px 2px 10px #737373;
     }
+}
+
+.header-input{
+    width: 250px;
+    .form-control{
+        border-radius: 20px 20px 20px 20px !important;
+
+    }
+    .right-icon{
+        border-radius: 0px 20px 20px 0;
+    }
+}
+th{
+    white-space: nowrap;
 }

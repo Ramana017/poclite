@@ -171,7 +171,7 @@
 
               <tr *ngFor="let data of tableData let i=index " class="table-border ">
                 <td class="body-cell col2 text-color sitecodeinner">
-                  <div [tooltip]="sitecontent" tooltipPlacement="right">{{data.siteCode}}
+                  <div [tooltip]="sitecontent" tooltipPlacement="right-icon">{{data.siteCode}}
                     <ng-template #sitecontent>{{data.siteName}}</ng-template>
                   </div>
                 </td>
@@ -232,89 +232,285 @@
 </div> -->
 
 <div class="visit-review-wrapper p-5">
+  <div class=" bg-blue w-100 px-4 py-2">
+
+    <!-- <div class="position-relative form-input w-250">
+      <input type="text" class="form-control " placeholder="Search....">
+
+      <i class="fas fa-chevron-down right-icon top-0" (click)="filtermenu()"></i>
+      <div class="dropdown-menu  filter-menu">
+        <table class="payor-plan w-100">
+          <tr>
+            <td class="pr-3 pb-2">Site
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+            <td class="pr-3 pb-2">PS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+            <td class="pr-3 pb-2">PS Phone#<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">DCS <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class=" pb-2">DCS Phone#
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+          </tr>
+          <tr>
+
+            <td class="pr-3 pb-2">CSS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Service<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Scheduled Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Scheduled End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class=" pb-2">Actual Scheduled Start<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          </tr>
+          <tr>
+
+        
+            <td class="pr-3 pb-2">Actual Scheduled End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Original Reported Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+          
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Original Reported End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Adjusted Reported Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class=" pb-2">Adjusted Reported End<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            </div>
+          </td>
+          </tr>
+          <tr>
+       
+          <td class="pr-3 pb-2">Arrival Adjust Reason<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+           
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          <td class="pr-3 pb-2">Departure Adjust Reason<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            </div>
+          </td>
+          <td class="pr-3 pb-2">Exception Details<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+      
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          </tr>
+
+        </table>
+        
+        <div class="d-flex align-items-center justify-content-between pt-2 inner-header">
+          <button class="btn-common height-30 btn-blue  d-flex align-items-center justify-content-center"><span
+              class=" mr-2">
+              <i class="fas fa-times"></i>
+            </span>Cancel</button>
+         
+          <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center"><span
+              class=" mr-2">
+              <i class="fas fa-search"></i>
+            </span>Search</button>
+        </div>
+
+      </div>
+
+
+
+    </div> -->
+
+<div class="d-flex align-items-center justify-content-between">
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="Site">
+    <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+  </div>
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="PS">
+    <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+  </div>
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="DCS">
+    <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+    <i class="fas fa-user-md ml-2 right-icon"></i>
+  </div>
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="CSS">
+    <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+  </div>
+</div>
+<div class="d-flex align-items-center justify-content-between mt-2">
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="Service">
+    <!-- <i class="fad fa-users-medical"></i> -->
+    <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+    <i class="fas fa-notes-medical ml-2 right-icon"></i>
+  </div>
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="Scheduled Start">
+    <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+    <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+  </div>
+  <div class="input-group form-input align-items-center header-input">
+    <input type="text" class="form-control" placeholder="Scheduled End">
+    <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+    <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+  </div>
+  <div class="header-input">
+    <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center w-80px mx-auto"><span
+      class=" mr-2">
+      <i class="fas fa-search"></i>
+    </span>Search</button>
+  </div>
+
+</div>
+
+
+  </div>
   <div class="table-responsive box-shadow">
     <table class="table text-center mb-0">
       <thead class="thead-dark">
         <tr>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Site
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
-          </th>         
-          <th class="text-center">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center" scope="col">
             PS
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             PS Phone#
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             DCS
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             DCS Phone#
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             CSS
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th scope="col" class="text-center min-w-160">
             Service
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th scope="col" class="text-center">
             Scheduled Start
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Scheduled End
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Actual Scheduled Start
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Actual Scheduled End
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Original Reported Start
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Original Reported End
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Adjusted Reported Start
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Adjusted Reported End
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Arrival Adjust Reason
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Departure Adjust Reason
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Tasks
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Signature Details
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center">
+          <th class="text-center" scope="col">
             Exception Details
-            <input type="text" placeholder="DCS" class="form-control w-150 m-auto">
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
         </tr>
       </thead>
@@ -327,34 +523,39 @@
           <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
           <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             11:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:20 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:25 AM</td>
-            <td>Add Mileage</td>
-            <td></td>
-            <td>10  - Clean Bathroom 
-              12  - Laundry</td>
-            <td></td>
-            <td class="d-flex">
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            </td>
+          <td>Add Mileage</td>
+          <td></td>
+          <td>
+            <span class="" data-toggle="modal" data-target="#exampleModal">
+              <i class="fas fa-list f-size-16 blue "></i>
+            </span>
+          </td>
+          <td><span data-target="#signature" data-toggle="modal"><i
+                class="fas fa-file-signature f-size-16 blue"></i></span></td>
+          <td>
+            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            <!-- <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i> -->
+
+          </td>
         </tr>
         <tr>
           <td>1723</td>
@@ -364,34 +565,31 @@
           <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
           <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             11:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:20 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:25 AM</td>
-            <td>Add Mileage</td>
-            <td></td>
-            <td>10  - Clean Bathroom 
-              12  - Laundry</td>
-            <td></td>
-            <td class="d-flex">
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            </td>
+          <td>Add Mileage</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <i class="fas fa-stopwatch mx-2 f-size-16 blue"></i>
+            <i class="fas fa-clipboard mx-2 f-size-16 blue"></i>
+            <i class="fas fa-edit mx-2 f-size-16 blue"></i>
+          </td>
         </tr>
         <tr>
           <td>1723</td>
@@ -401,37 +599,153 @@
           <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
           <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             11:00 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:20 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             08:10 AM</td>
-          <td>10-06-2020  
+          <td>10-06-2020
             10:25 AM</td>
-            <td>Add Mileage</td>
-            <td></td>
-            <td>10  - Clean Bathroom 
-              12  - Laundry</td>
-            <td></td>
-            <td class="d-flex">
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-              <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            </td>
+          <td>Add Mileage</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+
+            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
+            <i class="fas fa-clipboard mx-2 f-size-16 blue"></i>
+            <i class="fas fa-edit mx-2 f-size-16 blue"></i>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-  
+
+
+
+
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered task-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Task List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+          <!-- <div class="d-flex align-items-center ">
+
+            <div class="d-flex py-2 input-group form-input position-relative">
+
+              <input type="text" class="modal-box-input form-control position-relative" placeholder="Search">
+              <span class="right-icon-icon bg-none"><i class="fas fa-search "></i></span>
+            </div>
+            <button class="btn-common btn-green ml-3 w-auto h-auto py-1"> Go</button>
+          </div> -->
+
+
+
+          <table class="table table-bordered mt-2 box-shadow">
+            <thead>
+              <tr>
+                <!-- <th scope="col" class="text-center bg-dark text-white"></th> -->
+                <!-- <th scope="col" class="text-center bg-dark text-white"></th> -->
+                <th scope="col" class=" bg-dark text-white">Task Codes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!-- <td class="edit-option">
+                  <div class="position-relative d-flex  align-items-center justify-content-center">
+                    <label class="customcheck margin-left-15 m-0">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                </td> -->
+                <!-- <td class="edit-option p-0 text-center "><i class="fas fa-info-circle text-dark f-25"></i></td> -->
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <!-- <td class="edit-option">
+                  <div class="position-relative d-flex  align-items-center justify-content-center">
+                    <label class="customcheck margin-left-15 m-0">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                </td> -->
+                <!-- <td class="edit-option p-0 text-center"><i class="fas fa-info-circle text-dark f-25"></i></td> -->
+                <td>Thornton</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <div class="d-flex justify-content-between py-2">
+            <button class="btn-common btn-blue">Close</button>
+            <button class="btn-common btn-green">Add</button>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered task-list" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header ">
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body ">
+        .....
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
