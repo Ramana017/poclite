@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'visitreview', component: VisitReviewComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
-  // { path: 'chart-layout', component: ChartLayoutComponent },
+  { path: 'chart-layout', component: ChartLayoutComponent },
   { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
   {
     path: "registration", canActivate: [AuthGuard], canActivateChild: [AuthGuard], component: RegistrationComponent,

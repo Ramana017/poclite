@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $:any;
 
 @Component({
   selector: 'app-visit-review',
@@ -12,5 +13,7 @@ export class VisitReviewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  filtermenu(){
+    $(".filter-menu").toggleClass("show");
+  }
 }
