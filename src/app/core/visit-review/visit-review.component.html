@@ -1,237 +1,6 @@
 <app-header></app-header>
-<!-- <div class="summary-wrapper">
-  <div class="custum-wrapper">
-    <div class="summary-heading">
-    </div>
-    <div class="outer-wrapper">
-      <div id="table-scroll" class="table-scroll">
-        <div class="table-width-scroll">
-          <table id="main-table" class="main-table" cellpadding="0">
-            <thead class="thead-row">
-              <tr class="pb-0">
-                <th scope="col" class="sticky-top table-header-inner">
-                  <h5 class="mainheading-wrapper">Site</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                      <angular2-multiselect >
-                      </angular2-multiselect>
 
-                    </div>
-
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">PS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete" style="width: 100%;">
-                      <ng-autocomplete >
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;" #itemTemplateps let-item>
-                        <a [innerHTML]="item.psName"></a>
-                      </ng-template>
-                    </div>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">DCS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete" style="width: 100%;">
-                      <ng-autocomplete >
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;" #itemTemplatedcs let-item>
-                        <a [innerHTML]="item.dcsName"></a>
-                      </ng-template>
-                      <ng-template #notFoundTemplate let-notFound>
-                        <div [innerHTML]="notFound" class="text-dark"></div>
-                      </ng-template>
-                    </div>
-
-
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">CSS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete >
-                    </ng-autocomplete>
-                    <ng-template style="width: 100%;" #itemTemplatecss let-item>
-                      <a [innerHTML]="item.cssName"></a>
-                    </ng-template>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-inner">
-                  <h5 class="mainheading-wrapper">Service </h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete >
-                    </ng-autocomplete>
-                    <ng-template style="width: 100%;" #itemTemplateservice let-item>
-                      <a [innerHTML]="item.serviceName"></a>
-                    </ng-template>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper">Scheduled Start </h5>
-                  <div class="input-outter-wrapper dropdown">
-
-                    <input type="text" placeholder="start Time" maxlength=10  class="date-input">
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Scheduled End </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" placeholder="start Time" maxlength=10  bsDatepicker class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock In</h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength="0" placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
-
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
-
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top  table-header-inner-wrapper ">
-                  <h5 class="mainheading-wrapper ">Exception</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <angular2-multiselect>
-
-                    </angular2-multiselect>
-
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr *ngFor="let data of tableData let i=index " class="table-border ">
-                <td class="body-cell col2 text-color sitecodeinner">
-                  <div [tooltip]="sitecontent" tooltipPlacement="right-icon">{{data.siteCode}}
-                    <ng-template #sitecontent>{{data.siteName}}</ng-template>
-                  </div>
-                </td>
-                <td class="body-cell col2 ">{{data.psName}}</td>
-                <td class="body-cell col3 ">{{data.dcsName}}</td>
-                <td class="body-cell col4 ">{{data.css}}</td>
-                <td class="body-cell text-color col4 Serviceprocedurecode">
-                  <div [tooltip]="tipContent">
-                    {{data.procedureCode}}
-                    <ng-template #tipContent><b>{{data.serviceName}}</b></ng-template>
-                  </div>
-
-                </td>
-                <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
-                <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
-                <td class="body-cell col4 ">{{data.arrivalDateTime}}</td>
-                <td class="body-cell col4 ">{{data.departureDateTime}}</td>
-                <td class="body-cell col4 ml-0 pl-0 ">
-                  <div class="d-flex">
-                    <div class="icon-wrapper " *ngIf="data.ArrGpsException==1||data.DepGpsException==1 "
-                      ><i class="fas fa-map-marker-alt" title="GPS Discrepancy"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.scheduleVarException==1 "><i class="fas fa-calendar-alt"
-                         title="Scheduled Variance"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 "
-                      ><i class="fas fa-phone-slash" title="Invalid Caller ID"></i></div>
-                    <div class="icon-wrapper " *ngIf="data.arrTravelTimeException==1 " >
-                      <i class="fas fa-stopwatch" title="Travel Time Exception"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 "
-                      ><i class="fas fa-tachometer-alt" title="Mileage Exception"></i>
-                    </div>                    
-                    <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-clipboard" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-        <div *ngIf="true" class="text-center no-data-text">
-          No Data To Display
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="visit-review-wrapper p-5">
+<div class="visit-review-wrapper p-2">
   <div class=" bg-blue w-100 px-4 py-2">
 
     <!-- <div class="position-relative form-input w-250">
@@ -378,70 +147,131 @@
 
     </div> -->
 
-<div class="d-flex align-items-center justify-content-between">
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="Site">
-    <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+    <div class="d-flex align-items-center justify-content-between">
 
-  </div>
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="PS">
-    <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+      <div>
+        <div class="d-flex justify-content-center  mb-2">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
+            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No PS Signature</label>
+          </div>
+        </div>
 
-  </div>
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="DCS">
-    <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
-    <i class="fas fa-user-md ml-2 right-icon"></i>
-  </div>
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="CSS">
-    <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Site">
+          <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+      </div>
 
-  </div>
-</div>
-<div class="d-flex align-items-center justify-content-between mt-2">
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="Service">
-    <!-- <i class="fad fa-users-medical"></i> -->
-    <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
-    <i class="fas fa-notes-medical ml-2 right-icon"></i>
-  </div>
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="Scheduled Start">
-    <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-    <i class="fas fa-calendar-week  ml-2 right-icon"></i>
-  </div>
-  <div class="input-group form-input align-items-center header-input">
-    <input type="text" class="form-control" placeholder="Scheduled End">
-    <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-    <i class="fas fa-calendar-week  ml-2 right-icon"></i>
-  </div>
-  <div class="header-input">
-    <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center w-80px mx-auto"><span
-      class=" mr-2">
-      <i class="fas fa-search"></i>
-    </span>Search</button>
+      <div>
+        <div class="d-flex justify-content-center  mb-2">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
+            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No DCS Signature</label>
+          </div>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="PS">
+          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="d-flex justify-content-center  mb-2">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
+            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No Tasks</label>
+          </div>
+
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="DCS">
+          <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-user-md ml-2 right-icon"></i>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="d-flex justify-content-center  mb-2">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
+            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No Progress Notes</label>
+          </div>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="CSS">
+          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mt-2">
+      <div class="input-group form-input align-items-center header-input">
+        <input type="text" class="form-control" placeholder="Service">
+        <!-- <i class="fad fa-users-medical"></i> -->
+        <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+        <i class="fas fa-notes-medical ml-2 right-icon"></i>
+      </div>
+
+      <div>
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Scheduled Start">
+          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Scheduled End">
+          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="header-input">
+          <button
+            class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-80px ml-auto"><span
+              class=" mr-2">
+              <i class="fas fa-search"></i>
+            </span>Search</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-</div>
-
-
-  </div>
-  <div class="table-responsive box-shadow">
-    <table class="table text-center mb-0">
+  <div class="table-responsive box-shadow ">
+    <table class="table text-center mb-0 visit-table">
       <thead class="thead-dark">
+        <tr>
+          <th colspan="5" class="bg-secondary border-right">
+            Client Details
+          </th>
+          <th colspan="8" class="bg-secondary border-right">
+            Service Details
+          </th>
+          <th colspan="7" class="bg-secondary border-right">
+            Documentation Details
+          </th>
+        </tr>
         <tr>
           <th class="text-center" scope="col">
             Site
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
-            PS
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            PS Phone#
+            PS / Account Number
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
@@ -449,55 +279,24 @@
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
-            DCS Phone#
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
             CSS
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th scope="col" class="text-center min-w-160">
-            Service
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th scope="col" class="text-center">
-            Scheduled Start
+          <th scope="col" class="text-center ">
+            Payor/Plan
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
-            Scheduled End
+            Procedure Code
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
-            Actual Scheduled Start
+          <th></th>
+          <th class="text-center" scope="col" colspan="2">
+            Scheduled Times
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
-            Actual Scheduled End
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Original Reported Start
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Original Reported End
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Adjusted Reported Start
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Adjusted Reported End
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Arrival Adjust Reason
-            <!-- <input type="text" class="form-control w-150 m-auto"> -->
-          </th>
-          <th class="text-center" scope="col">
-            Departure Adjust Reason
+          <th class="text-center" scope="col" colspan="2">
+            Reported Times
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
@@ -505,11 +304,23 @@
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
-            Signature Details
+            PS <i class="fas fa-file-signature ml-2"></i>
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
           <th class="text-center" scope="col">
-            Exception Details
+            DCS <i class="fas fa-file-signature ml-2"></i>
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center" scope="col">
+            Progress Notes
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center" scope="col">
+            Exceptions
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center" scope="col">
+            Approved
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
         </tr>
@@ -517,144 +328,99 @@
       <tbody>
         <tr>
           <td>1723</td>
-          <td>ALFORD, TOMMIE</td>
-          <td>555-555-1111</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
           <td>BANKS, LYNDA</td>
-          <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
-          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            10:00 AM</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            11:00 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:20 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:25 AM</td>
-          <td>Add Mileage</td>
-          <td></td>
+          <td>13/10</td>
+          <td>CCRN</td>
           <td>
-            <span class="" data-toggle="modal" data-target="#exampleModal">
-              <i class="fas fa-list f-size-16 blue "></i>
-            </span>
+            <i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i>
           </td>
-          <td><span data-target="#signature" data-toggle="modal"><i
-                class="fas fa-file-signature f-size-16 blue"></i></span></td>
           <td>
-            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            <!-- <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i> -->
-
+            8:10 AM
           </td>
+          <td>10:25 AM</td>
+          <td>8:10 AM</td>
+          <td>10:25 AM</td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">6</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue" data-toggle="modal" data-target="#signModal">Yes</span>
+          </td>
+          <td class="DCS Sign">
+            No
+          </td>
+          <td class="Progress Notes blue">Yes</td>
+          <td class="Exception blue">
+            2/5
+          </td>
+          <td class="Approved">No</td>
         </tr>
         <tr>
           <td>1723</td>
-          <td>ALFORD, TOMMIE</td>
-          <td>555-555-1111</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
           <td>BANKS, LYNDA</td>
-          <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
-          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            10:00 AM</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            11:00 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:20 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:25 AM</td>
-          <td>Add Mileage</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>13/10</td>
+          <td>CCRN</td>
+          <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td>
           <td>
-            <i class="fas fa-stopwatch mx-2 f-size-16 blue"></i>
-            <i class="fas fa-clipboard mx-2 f-size-16 blue"></i>
-            <i class="fas fa-edit mx-2 f-size-16 blue"></i>
+            8:10 AM
           </td>
+          <td>10:25 AM</td>
+          <td>8:10 AM</td>
+          <td>10:25 AM</td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">4</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue">No</span>
+          </td>
+          <td class="DCS Sign">
+            No
+          </td>
+          <td class="Progress Notes blue">Yes</td>
+          <td class="Exception blue">
+            3/5
+          </td>
+          <td class="Approved">No</td>
         </tr>
         <tr>
           <td>1723</td>
-          <td>ALFORD, TOMMIE</td>
-          <td>555-555-1111</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
           <td>BANKS, LYNDA</td>
-          <td>666-555-1111</td>
           <td>Sisson, Kimberley</td>
-          <td>[CCRN] CCRN - CCRN REGISTERED NURSE</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            10:00 AM</td>
-          <td>10-06-2020
-            08:00 AM</td>
-          <td>10-06-2020
-            11:00 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:20 AM</td>
-          <td>10-06-2020
-            08:10 AM</td>
-          <td>10-06-2020
-            10:25 AM</td>
-          <td>Add Mileage</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>13/10</td>
+          <td>CCRN</td>
+          <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td>
           <td>
-
-            <i class="fas fa-tachometer-alt mx-2 f-size-16 blue"></i>
-            <i class="fas fa-clipboard mx-2 f-size-16 blue"></i>
-            <i class="fas fa-edit mx-2 f-size-16 blue"></i>
+            8:10 AM
           </td>
+          <td>10:25 AM</td>
+          <td>8:10 AM</td>
+          <td>10:25 AM</td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">2</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue">Yes</span>
+          </td>
+          <td class="DCS Sign">
+            Yes
+          </td>
+          <td class="Progress Notes">No</td>
+          <td class="Exception d-flex align-items-center">
+
+          </td>
+          <td class="Approved">Yes</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-
-
-
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="">
+<div class="task-list">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered task-list" role="document">
@@ -665,69 +431,196 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ">
-          <!-- <div class="d-flex align-items-center ">
 
-            <div class="d-flex py-2 input-group form-input position-relative">
-
-              <input type="text" class="modal-box-input form-control position-relative" placeholder="Search">
-              <span class="right-icon-icon bg-none"><i class="fas fa-search "></i></span>
+        <div class="modal-body">
+          <div class="task-wrapper">
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Dishes
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
             </div>
-            <button class="btn-common btn-green ml-3 w-auto h-auto py-1"> Go</button>
-          </div> -->
 
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Housework,Clean Appliances
+                <i class="fas fa-times-circle f-18 text-danger"></i>
+              </span>
+            </div>
 
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Housework,Surface
+                <i class="fas fa-times-circle f-18  text-danger"></i>
+              </span>
+            </div>
 
-          <table class="table table-bordered mt-2 box-shadow">
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Shower
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
+            </div>
+
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Tub Bath
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
+            </div>
+          </div>
+          <!-- <table class="table table-bordered mt-2 box-shadow">
             <thead>
               <tr>
-                <!-- <th scope="col" class="text-center bg-dark text-white"></th> -->
-                <!-- <th scope="col" class="text-center bg-dark text-white"></th> -->
                 <th scope="col" class=" bg-dark text-white">Task Codes</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <!-- <td class="edit-option">
-                  <div class="position-relative d-flex  align-items-center justify-content-center">
-                    <label class="customcheck margin-left-15 m-0">
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-
-                </td> -->
-                <!-- <td class="edit-option p-0 text-center "><i class="fas fa-info-circle text-dark f-25"></i></td> -->
                 <td>Thornton</td>
-
               </tr>
               <tr>
-                <!-- <td class="edit-option">
-                  <div class="position-relative d-flex  align-items-center justify-content-center">
-                    <label class="customcheck margin-left-15 m-0">
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-
-                </td> -->
-                <!-- <td class="edit-option p-0 text-center"><i class="fas fa-info-circle text-dark f-25"></i></td> -->
                 <td>Thornton</td>
-
               </tr>
             </tbody>
-          </table>
-
-          <!-- <div class="d-flex justify-content-between py-2">
-            <button class="btn-common btn-blue">Close</button>
-            <button class="btn-common btn-green">Add</button>
-          </div> -->
-
+          </table> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<div class="times">
+  <div class="modal fade" id="timesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Timings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="times-wrapper box-shadow">
+            <table class="table table-responsive">
+              <thead class="thead-dark">
+                <tr>
+                  <th colspan="2" class="text-center">Original Scheduled Times</th>
+                  <th colspan="2" class="text-center">Original Reported Times</th>
+                  <th colspan="2" class="text-center">Adjusted Reported Times</th>
+                  <th colspan="2" class="text-center">Bill Times (Adjusted Scheduled Times)</th>
+                  <th colspan="2" class="text-center">Pay Times</th>
+                  <th colspan="" class="text-center">Linked Time</th>
+                  <th colspan="" class="text-center">Linked By</th>
+                </tr>
+                <tr>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>11/24/2020 <br> 07:45 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:30 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/27/2020 <br> 04:18 AM </td>
+                  <td>Hortman Merri Jo</td>
+                </tr>
+                <tr>
+                  <td>11/24/2020 <br> 07:45 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:30 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/27/2020 <br> 04:18 AM </td>
+                  <td>Hortman Merri Jo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sign">
+  <div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Signature</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <h5>PS Signature</h5>
+          <div class="bg-white sign-portion">
+            <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i>
+          </div>
+
+          <h5 class="mt-4">DCS Signature</h5>
+          <div class="bg-white sign-portion">
+            <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
