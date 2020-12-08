@@ -150,11 +150,16 @@
     <div class="d-flex align-items-center justify-content-between">
 
       <div>
-        <div class="d-flex justify-content-center  mb-2">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
-            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No PS Signature</label>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis" name='active' type="checkbox" value=1 />
+              <label for="bopis" class="on-off-toggle__slider"></label>
+            </div>
           </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            PS Signature
+          </label>
         </div>
 
         <div class="input-group form-input align-items-center header-input">
@@ -164,11 +169,16 @@
       </div>
 
       <div>
-        <div class="d-flex justify-content-center  mb-2">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
-            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No DCS Signature</label>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis1" name='active' type="checkbox" value=1 />
+              <label for="bopis1" class="on-off-toggle__slider"></label>
+            </div>
           </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            DCS Signature
+          </label>
         </div>
 
         <div class="input-group form-input align-items-center header-input">
@@ -179,12 +189,16 @@
       </div>
 
       <div>
-        <div class="d-flex justify-content-center  mb-2">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
-            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No Tasks</label>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis2" name='active' type="checkbox" value=1 />
+              <label for="bopis2" class="on-off-toggle__slider"></label>
+            </div>
           </div>
-
+          <label class="m-0 pl-3 font-size-15 text-white">
+            Tasks
+          </label>
         </div>
 
         <div class="input-group form-input align-items-center header-input">
@@ -192,15 +206,19 @@
           <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
           <i class="fas fa-user-md ml-2 right-icon"></i>
         </div>
-
       </div>
 
       <div>
-        <div class="d-flex justify-content-center  mb-2">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input " id="exampleCheck1" style="height:18px; width:18px;">
-            <label class="form-check-label text-white ml-2 mt-2" for="exampleCheck1">No Progress Notes</label>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis3" name='active' type="checkbox" value=1 />
+              <label for="bopis3" class="on-off-toggle__slider"></label>
+            </div>
           </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            Progress Notes
+          </label>
         </div>
 
         <div class="input-group form-input align-items-center header-input">
@@ -224,7 +242,7 @@
         <div class="input-group form-input align-items-center header-input">
           <input type="text" class="form-control" placeholder="Scheduled Start">
           <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-          <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
         </div>
 
       </div>
@@ -233,7 +251,7 @@
         <div class="input-group form-input align-items-center header-input">
           <input type="text" class="form-control" placeholder="Scheduled End">
           <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-          <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
         </div>
 
       </div>
@@ -258,7 +276,7 @@
           <th colspan="5" class="bg-secondary border-right">
             Client Details
           </th>
-          <th colspan="8" class="bg-secondary border-right">
+          <th colspan="6" class="bg-secondary border-right">
             Service Details
           </th>
           <th colspan="7" class="bg-secondary border-right">
@@ -266,60 +284,59 @@
           </th>
         </tr>
         <tr>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Site
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             PS / Account Number
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             DCS
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             CSS
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th scope="col" class="text-center ">
+          <th scope="col" class="text-center border-right">
             Payor/Plan
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Procedure Code
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th></th>
-          <th class="text-center" scope="col" colspan="2">
+          <th class="text-center border-right" scope="col">
             Scheduled Times
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col" colspan="2">
+          <th class="text-center border-right" scope="col">
             Reported Times
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Tasks
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             PS <i class="fas fa-file-signature ml-2"></i>
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             DCS <i class="fas fa-file-signature ml-2"></i>
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Progress Notes
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Exceptions
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
-          <th class="text-center" scope="col">
+          <th class="text-center border-right" scope="col">
             Approved
             <!-- <input type="text" class="form-control w-150 m-auto"> -->
           </th>
@@ -333,15 +350,16 @@
           <td>Sisson, Kimberley</td>
           <td>13/10</td>
           <td>CCRN</td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
-            <i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i>
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
           </td>
           <td>
-            8:10 AM
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
           </td>
-          <td>10:25 AM</td>
-          <td>8:10 AM</td>
-          <td>10:25 AM</td>
           <td class="Tasks blue">
             <span data-toggle="modal" data-target="#exampleModal">6</span>
           </td>
@@ -351,7 +369,9 @@
           <td class="DCS Sign">
             No
           </td>
-          <td class="Progress Notes blue">Yes</td>
+          <td class="Progress Notes blue">
+            <span data-toggle="modal" data-target="#progress">Yes</span>
+          </td>
           <td class="Exception blue">
             2/5
           </td>
@@ -364,13 +384,16 @@
           <td>Sisson, Kimberley</td>
           <td>13/10</td>
           <td>CCRN</td>
-          <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
-            8:10 AM
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
           </td>
-          <td>10:25 AM</td>
-          <td>8:10 AM</td>
-          <td>10:25 AM</td>
+          <td>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
           <td class="Tasks blue">
             <span data-toggle="modal" data-target="#exampleModal">4</span>
           </td>
@@ -380,7 +403,9 @@
           <td class="DCS Sign">
             No
           </td>
-          <td class="Progress Notes blue">Yes</td>
+          <td class="Progress Notes blue">
+            <span data-toggle="modal" data-target="#Progress">Yes</span>
+          </td>
           <td class="Exception blue">
             3/5
           </td>
@@ -393,27 +418,29 @@
           <td>Sisson, Kimberley</td>
           <td>13/10</td>
           <td>CCRN</td>
-          <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
-            8:10 AM
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
           </td>
-          <td>10:25 AM</td>
-          <td>8:10 AM</td>
-          <td>10:25 AM</td>
+          <td>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
           <td class="Tasks blue">
             <span data-toggle="modal" data-target="#exampleModal">2</span>
           </td>
           <td class="PS Sign">
             <span class=" blue">Yes</span>
           </td>
-          <td class="DCS Sign">
+          <td class="DCS Sign blue">
             Yes
           </td>
           <td class="Progress Notes">No</td>
           <td class="Exception d-flex align-items-center">
-
           </td>
-          <td class="Approved">Yes</td>
+          <td class="Approved blue">Yes</td>
         </tr>
       </tbody>
     </table>
@@ -490,7 +517,6 @@
   </div>
 </div>
 
-
 <div class="times">
   <div class="modal fade" id="timesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -508,25 +534,25 @@
             <table class="table table-responsive">
               <thead class="thead-dark">
                 <tr>
-                  <th colspan="2" class="text-center">Original Scheduled Times</th>
-                  <th colspan="2" class="text-center">Original Reported Times</th>
-                  <th colspan="2" class="text-center">Adjusted Reported Times</th>
-                  <th colspan="2" class="text-center">Bill Times (Adjusted Scheduled Times)</th>
-                  <th colspan="2" class="text-center">Pay Times</th>
-                  <th colspan="" class="text-center">Linked Time</th>
-                  <th colspan="" class="text-center">Linked By</th>
+                  <th colspan="2" class="text-center border-right">Original Scheduled Times</th>
+                  <th colspan="2" class="text-center border-right">Original Reported Times</th>
+                  <th colspan="2" class="text-center border-right">Adjusted Reported Times</th>
+                  <th colspan="2" class="text-center border-right">Bill Times (Adjusted Scheduled Times)</th>
+                  <th colspan="2" class="text-center border-right">Pay Times</th>
+                  <th colspan="" class="text-center border-right">Linked Time</th>
+                  <th colspan="" class="text-center border-right">Linked By</th>
                 </tr>
                 <tr>
-                  <th scope="col">Start Time</th>
-                  <th scope="col">End Time</th>
-                  <th scope="col">Start Time</th>
-                  <th scope="col">End Time</th>
-                  <th scope="col">Start Time</th>
-                  <th scope="col">End Time</th>
-                  <th scope="col">Start Time</th>
-                  <th scope="col">End Time</th>
-                  <th scope="col">Start Time</th>
-                  <th scope="col">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -584,7 +610,8 @@
         <div class="modal-body">
           <h5>PS Signature</h5>
           <div class="bg-white sign-portion">
-            <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i>
+            <i class="fas fa-signature d-flex justify-content-center align-items-center "
+              style="font-size: 100px; margin-top: 25px;"></i>
           </div>
 
           <h5 class="mt-4">DCS Signature</h5>
@@ -597,47 +624,59 @@
   </div>
 </div>
 
+<div class="progress">
+  <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="modal fade" id="signature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered task-list" role="document">
-    <div class="modal-content">
-      <!-- <div class="modal-header ">
-       
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> -->
-      <div class="modal-body ">
-        .....
-
-
-
-
+        <div class="modal-body text-dark p-0">
+          <div class="d-flex justify-content-between progress-title text-white">
+            <h5>WILLIAM ADAMS</h5>
+            <h5>CCXP15</h5>
+          </div>
+          <div class="p-3">
+            <p>1.Please select the PPE used during the visit:</p>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Mask</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gloves</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Face Sheild</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gown</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Eye Sheild</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Shoe Covers</label>
+          </div>
+          <div class="bottom-input pt-2">
+            <p class="m-0 p-0">2.Please select the PPE used during the visit:</p>
+            <input type="text" />
+          </div>
+          <div class="bottom-input pt-2">
+            <p class="m-0 p-0">3.Please select the PPE used during the visit:</p>
+            <input type="text" />
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
