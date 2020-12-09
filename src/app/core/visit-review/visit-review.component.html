@@ -1,272 +1,683 @@
 <app-header></app-header>
-<div class="summary-wrapper">
-  <div class="custum-wrapper">
-    <!-- Table start from here   -->
-    <div class="summary-heading">
-      <!-- <h6>Summary</h6> -->
-    </div>
 
-    <!-- <div class="summary-info-boxes mt-n4 text-center" id="guagecharts">
-      <div class="d-flex justify-content-between">
-        <div class="">
-          <div id='gpsGuage'></div>
-          <b>
-            <p class="f-15 mt-n4">{{gpsExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">GPS Discrepancy</h5>
-        </div>
-        <div class="">
+<div class="visit-review-wrapper p-2">
+  <div class=" bg-blue w-100 px-4 py-2">
 
-          <div id='invalidGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{callerIdExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Caller ID</h5>
+    <!-- <div class="position-relative form-input w-250">
+      <input type="text" class="form-control " placeholder="Search....">
 
-        </div>
-        <div class="">
+      <i class="fas fa-chevron-down right-icon top-0" (click)="filtermenu()"></i>
+      <div class="dropdown-menu  filter-menu">
+        <table class="payor-plan w-100">
+          <tr>
+            <td class="pr-3 pb-2">Site
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
 
-          <div id='scheduleGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{scheduleVarExceptionCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Schedule Variance</h5>
-        </div>
-        <div class="">
-          <div id='clockGuage'></div>
-          <b>
-            <p class="f-15 mt-n4">{{incompleteClockInOutCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Missed Clock In/Out</h5>
-        </div>
-        <div class="">
-          <div id='travelGuage'></div>
-          <b>
-            <p class="f-12 mt-n4"> {{excessiveTtCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Excessive TT</h5>
-        </div>
-        <div class="">
+              </div>
+            </td>
+            <td class="pr-3 pb-2">PS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
 
-          <div id='mileageGuage'></div>
-          <b>
-            <p class="f-12 mt-n4">{{excessiveMileageCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12">Excessive Mileage</h5>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">PS Phone#<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">DCS <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class=" pb-2">DCS Phone#
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+          </tr>
+          <tr>
+
+            <td class="pr-3 pb-2">CSS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Service<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Scheduled Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Scheduled End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class=" pb-2">Actual Scheduled Start<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          </tr>
+          <tr>
+
+        
+            <td class="pr-3 pb-2">Actual Scheduled End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Original Reported Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+          
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Original Reported End<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-3 pb-2">Adjusted Reported Start<div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+             
+                <i class="fas fa-user ml-2 right-icon"></i>
+              </div>
+            </td>
+            <td class=" pb-2">Adjusted Reported End<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            </div>
+          </td>
+          </tr>
+          <tr>
+       
+          <td class="pr-3 pb-2">Arrival Adjust Reason<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+           
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          <td class="pr-3 pb-2">Departure Adjust Reason<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            </div>
+          </td>
+          <td class="pr-3 pb-2">Exception Details<div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+      
+              <i class="fas fa-user ml-2 right-icon"></i>
+            </div>
+          </td>
+          </tr>
+
+        </table>
+        
+        <div class="d-flex align-items-center justify-content-between pt-2 inner-header">
+          <button class="btn-common height-30 btn-blue  d-flex align-items-center justify-content-center"><span
+              class=" mr-2">
+              <i class="fas fa-times"></i>
+            </span>Cancel</button>
+         
+          <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center"><span
+              class=" mr-2">
+              <i class="fas fa-search"></i>
+            </span>Search</button>
+        </div>
+
+      </div>
 
 
-        </div>
-         <div class="">
-          <div id='invalidToken'></div>
-          <b>
-            <p class="f-15 mt-n4">{{invalidTokenCodeCount}}</p>
-          </b>
-          <h5 class="inner-item-gps mt-n3 f-12 ">Invalid Token</h5>
-        </div>
-    </div>
+
     </div> -->
-    <!-- **************  -->
-    <div class="outer-wrapper">
-      <div id="table-scroll" class="table-scroll">
-        <div class="table-width-scroll">
-          <table id="main-table" class="main-table" cellpadding="0">
-            <thead class="thead-row">
-              <tr class="pb-0">
-                <th scope="col" class="sticky-top table-header-inner">
-                  <h5 class="mainheading-wrapper">Site</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                      <angular2-multiselect >
-                      </angular2-multiselect>
 
-                    </div>
+    <div class="d-flex align-items-center justify-content-between">
 
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">PS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete" style="width: 100%;">
-                      <ng-autocomplete >
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;" #itemTemplateps let-item>
-                        <a [innerHTML]="item.psName"></a>
-                      </ng-template>
-                    </div>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">DCS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <div class="ng-autocomplete" style="width: 100%;">
-                      <ng-autocomplete >
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;" #itemTemplatedcs let-item>
-                        <a [innerHTML]="item.dcsName"></a>
-                      </ng-template>
-                      <ng-template #notFoundTemplate let-notFound>
-                        <div [innerHTML]="notFound" class="text-dark"></div>
-                      </ng-template>
-                    </div>
+      <div>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis" name='active' type="checkbox" value=1 />
+              <label for="bopis" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            PS Signature
+          </label>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Site">
+          <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+      </div>
+
+      <div>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis1" name='active' type="checkbox" value=1 />
+              <label for="bopis1" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            DCS Signature
+          </label>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="PS">
+          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis2" name='active' type="checkbox" value=1 />
+              <label for="bopis2" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            Tasks
+          </label>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="DCS">
+          <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-user-md ml-2 right-icon"></i>
+        </div>
+      </div>
+
+      <div>
+        <div class="d-flex justify-content-start  mb-2">
+          <div class="check-box-wrapper">
+            <div class="on-off-toggle">
+              <input class="on-off-toggle__input" id="bopis3" name='active' type="checkbox" value=1 />
+              <label for="bopis3" class="on-off-toggle__slider"></label>
+            </div>
+          </div>
+          <label class="m-0 pl-3 font-size-15 text-white">
+            Progress Notes
+          </label>
+        </div>
+
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="CSS">
+          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+        </div>
+      </div>
 
 
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-wrapper">
-                  <h5 class="mainheading-wrapper">CSS</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete >
-                    </ng-autocomplete>
-                    <ng-template style="width: 100%;" #itemTemplatecss let-item>
-                      <a [innerHTML]="item.cssName"></a>
-                    </ng-template>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-inner">
-                  <h5 class="mainheading-wrapper">Service </h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete >
-                    </ng-autocomplete>
-                    <ng-template style="width: 100%;" #itemTemplateservice let-item>
-                      <a [innerHTML]="item.serviceName"></a>
-                    </ng-template>
-                  </div>
-                </th>
-                <th scope="col" class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper">Scheduled Start </h5>
-                  <div class="input-outter-wrapper dropdown">
+    </div>
 
-                    <input type="text" placeholder="start Time" maxlength=10  class="date-input">
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Scheduled End </h5>
-                  <div class="input-outter-wrapper dropdown ">
+    <div class="d-flex align-items-center justify-content-between mt-2">
+      <div class="input-group form-input align-items-center header-input">
+        <input type="text" class="form-control" placeholder="Service">
+        <!-- <i class="fad fa-users-medical"></i> -->
+        <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+        <i class="fas fa-notes-medical ml-2 right-icon"></i>
+      </div>
 
-                    <input type="text" placeholder="start Time" maxlength=10  bsDatepicker class="date-input">
+      <div>
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Scheduled Start">
+          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
+        </div>
 
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock In</h5>
-                  <div class="input-outter-wrapper dropdown ">
+      </div>
 
-                    <input type="text" maxlength="0" placeholder="" class="date-input">
+      <div>
+        <div class="input-group form-input align-items-center header-input">
+          <input type="text" class="form-control" placeholder="Scheduled End">
+          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
+        </div>
 
-                  </div>
-                </th>
-                <th scope="col " class="mr-4 sticky-top table-header-inner-wrapper">
-                  <h5 class="mainheading-wrapper ">Clock Out </h5>
-                  <div class="input-outter-wrapper dropdown ">
+      </div>
 
-                    <input type="text" maxlength=0 placeholder="" class="date-input">
+      <div>
+        <div class="header-input">
+          <button
+            class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-80px ml-auto"><span
+              class=" mr-2">
+              <i class="fas fa-search"></i>
+            </span>Search</button>
+        </div>
+      </div>
 
-                  </div>
-                </th>
-                <th scope="col " class="sticky-top  table-header-inner-wrapper ">
-                  <h5 class="mainheading-wrapper ">Exception</h5>
-                  <div class="input-outter-wrapper dropdown">
-                    <angular2-multiselect>
+    </div>
+  </div>
 
-                    </angular2-multiselect>
+  <div class="table-responsive box-shadow ">
+    <table class="table text-center mb-0 visit-table">
+      <thead class="thead-dark">
+        <tr>
+          <th colspan="5" class="bg-secondary border-right">
+            Client Details
+          </th>
+          <th colspan="6" class="bg-secondary border-right">
+            Service Details
+          </th>
+          <th colspan="7" class="bg-secondary border-right">
+            Documentation Details
+          </th>
+        </tr>
+        <tr>
+          <th class="text-center border-right" scope="col">
+            Site
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            PS / Account Number
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            DCS
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            CSS
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th scope="col" class="text-center border-right">
+            Payor/Plan
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Procedure Code
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Scheduled Times
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Reported Times
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Tasks
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            PS <i class="fas fa-file-signature ml-2"></i>
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            DCS <i class="fas fa-file-signature ml-2"></i>
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Progress Notes
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Exceptions
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+          <th class="text-center border-right" scope="col">
+            Approved
+            <!-- <input type="text" class="form-control w-150 m-auto"> -->
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
+          <td>BANKS, LYNDA</td>
+          <td>Sisson, Kimberley</td>
+          <td>13/10</td>
+          <td>CCRN</td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
+          <td>
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">6</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue" data-toggle="modal" data-target="#signModal">Yes</span>
+          </td>
+          <td class="DCS Sign">
+            No
+          </td>
+          <td class="Progress Notes blue">
+            <span data-toggle="modal" data-target="#progress">Yes</span>
+          </td>
+          <td class="Exception blue">
+            2/5
+          </td>
+          <td class="Approved">No</td>
+        </tr>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
+          <td>BANKS, LYNDA</td>
+          <td>Sisson, Kimberley</td>
+          <td>13/10</td>
+          <td>CCRN</td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
+          <td>
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">4</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue">No</span>
+          </td>
+          <td class="DCS Sign">
+            No
+          </td>
+          <td class="Progress Notes blue">
+            <span data-toggle="modal" data-target="#Progress">Yes</span>
+          </td>
+          <td class="Exception blue">
+            3/5
+          </td>
+          <td class="Approved">No</td>
+        </tr>
+        <tr>
+          <td>1723</td>
+          <td>ALFORD, TOMMIE <br> 1723000122</td>
+          <td>BANKS, LYNDA</td>
+          <td>Sisson, Kimberley</td>
+          <td>13/10</td>
+          <td>CCRN</td>
+          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
+          <td>
+            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td>
+            <span class="text-center">12/08/2020</span><br>
+            8:10 AM - 10:25 AM
+          </td>
+          <td class="Tasks blue">
+            <span data-toggle="modal" data-target="#exampleModal">2</span>
+          </td>
+          <td class="PS Sign">
+            <span class=" blue">Yes</span>
+          </td>
+          <td class="DCS Sign blue">
+            Yes
+          </td>
+          <td class="Progress Notes">No</td>
+          <td class="Exception d-flex align-items-center">
+          </td>
+          <td class="Approved blue">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-                  </div>
-                </th>
+<div class="task-list">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered task-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Task List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="task-wrapper">
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Dishes
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
+            </div>
+
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Housework,Clean Appliances
+                <i class="fas fa-times-circle f-18 text-danger"></i>
+              </span>
+            </div>
+
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Housework,Surface
+                <i class="fas fa-times-circle f-18  text-danger"></i>
+              </span>
+            </div>
+
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Shower
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
+            </div>
+
+            <div class="card p-3 mb-2 box-shadow">
+              <span class="d-flex justify-content-between align-items-center">
+                Tub Bath
+                <i class="fas fa-check-circle f-18 text-success"></i>
+              </span>
+            </div>
+          </div>
+          <!-- <table class="table table-bordered mt-2 box-shadow">
+            <thead>
+              <tr>
+                <th scope="col" class=" bg-dark text-white">Task Codes</th>
               </tr>
             </thead>
             <tbody>
-
-              <tr *ngFor="let data of tableData let i=index " class="table-border ">
-                <td class="body-cell col2 text-color sitecodeinner">
-                  <div [tooltip]="sitecontent" tooltipPlacement="right">{{data.siteCode}}
-                    <ng-template #sitecontent>{{data.siteName}}</ng-template>
-                  </div>
-                </td>
-                <td class="body-cell col2 ">{{data.psName}}</td>
-                <td class="body-cell col3 ">{{data.dcsName}}</td>
-                <td class="body-cell col4 ">{{data.css}}</td>
-                <td class="body-cell text-color col4 Serviceprocedurecode">
-                  <div [tooltip]="tipContent">
-                    {{data.procedureCode}}
-                    <ng-template #tipContent><b>{{data.serviceName}}</b></ng-template>
-                  </div>
-
-                </td>
-                <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
-                <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
-                <td class="body-cell col4 ">{{data.arrivalDateTime}}</td>
-                <td class="body-cell col4 ">{{data.departureDateTime}}</td>
-                <td class="body-cell col4 ml-0 pl-0 ">
-                  <div class="d-flex">
-                    <div class="icon-wrapper " *ngIf="data.ArrGpsException==1||data.DepGpsException==1 "
-                      ><i class="fas fa-map-marker-alt" title="GPS Discrepancy"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.scheduleVarException==1 "><i class="fas fa-calendar-alt"
-                         title="Scheduled Variance"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.arrCallerIdException==1||data.depCallerIdException==1 "
-                      ><i class="fas fa-phone-slash" title="Invalid Caller ID"></i></div>
-                    <div class="icon-wrapper " *ngIf="data.arrTravelTimeException==1 " >
-                      <i class="fas fa-stopwatch" title="Travel Time Exception"></i>
-                    </div>
-                    <div class="icon-wrapper " *ngIf="data.depMileageException==1||data.arrMileageException==1 "
-                      ><i class="fas fa-tachometer-alt" title="Mileage Exception"></i>
-                    </div>
-                    <!-- <div class="icon-wrapper " *ngIf="data.arrTokenCodeException==1||data.depTokenCodeException==1"
-                    "><i class="fas fa-exclamation-triangle" title="Invalid Token"></i>
-                  </div> -->
-                    <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-clock" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-clipboard" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
-
-                      <div class="icon-wrapper " *ngIf="data.missedArrException==1 ||data.missedDepException==1 "
-                      ><i class="fas fa-edit" title="Missed Clock In/Out"></i></div>
-                  </div>
-                </td>
+              <tr>
+                <td>Thornton</td>
+              </tr>
+              <tr>
+                <td>Thornton</td>
               </tr>
             </tbody>
-
-          </table>
-        </div>
-        <div *ngIf="true" class="text-center no-data-text">
-          No Data To Display
+          </table> -->
         </div>
       </div>
     </div>
-    <!-- **************  -->
-    <!-- Table end  -->
-    <!-- <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-n1 ">
-      <div class="pagination  justify-content-end pagination-button">
-        <div class="page-item">
-          <button type="button"
-            class=" btn common-table-btn reset-button mb-2">Refresh</button>
-          <button type="button" (click)='resetall()' class="btn common-table-btn reset-button mb-2">Reset</button>
-        </div>
-        <div class="page-item">
-          <h3>Per page</h3>
-        </div>
-        <select [(ngModel)]="perpage " (change)="pagereset()" class="bg-white border-0 outline-0 ">
-          <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">{{page}}</option>
-        </select>
-        <div class="page-item ">
-          <h3>Showing {{ tablelength==0 ? 0 : lowerBound}} to
-            {{tablelength==0 ? 0:upperBound>maxCount?maxCount:upperBound}} of {{maxCount}}</h3>
-        </div>
-        <div class="page-item "><button type="button " [disabled]="lowerBound<perpage||tablelength==0 "
-            [ngClass]="lowerBound<=1||tablelength==0  ? 'btn prev-btn primary-button': 'btn next-btn primary-button ' "
-            id="prev-btn " (click)="prevpage() ">Prev</button></div>
-        <div class="page-item "><button type="button " [disabled]="upperBound>= maxCount ||tablelength==0 "
-            [ngClass]="upperBound>= maxCount ||tablelength==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
-            id="next-btn" (click)="pagenext()">Next</button>
-        </div>
-      </div>
-    </div>
-          Pagination end  -->
-
-
   </div>
+</div>
+
+<div class="times">
+  <div class="modal fade" id="timesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Timings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="times-wrapper box-shadow">
+            <table class="table table-responsive">
+              <thead class="thead-dark">
+                <tr>
+                  <th colspan="2" class="text-center border-right">Original Scheduled Times</th>
+                  <th colspan="2" class="text-center border-right">Original Reported Times</th>
+                  <th colspan="2" class="text-center border-right">Adjusted Reported Times</th>
+                  <th colspan="2" class="text-center border-right">Bill Times (Adjusted Scheduled Times)</th>
+                  <th colspan="2" class="text-center border-right">Pay Times</th>
+                  <th colspan="" class="text-center border-right">Linked Time</th>
+                  <th colspan="" class="text-center border-right">Linked By</th>
+                </tr>
+                <tr>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th scope="col" class="border-right">Start Time</th>
+                  <th scope="col" class="border-right">End Time</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>11/24/2020 <br> 07:45 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:30 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/27/2020 <br> 04:18 AM </td>
+                  <td>Hortman Merri Jo</td>
+                </tr>
+                <tr>
+                  <td>11/24/2020 <br> 07:45 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:30 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/24/2020 <br> 07:36 AM </td>
+                  <td>11/24/2020 <br> 11:15 AM </td>
+                  <td>11/27/2020 <br> 04:18 AM </td>
+                  <td>Hortman Merri Jo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sign">
+  <div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Signature</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <h5>PS Signature</h5>
+          <div class="bg-white sign-portion">
+            <i class="fas fa-signature d-flex justify-content-center align-items-center "
+              style="font-size: 100px; margin-top: 25px;"></i>
+          </div>
+
+          <h5 class="mt-4">DCS Signature</h5>
+          <div class="bg-white sign-portion">
+            <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="progress">
+  <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered times-list" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-dark p-0">
+          <div class="d-flex justify-content-between progress-title text-white">
+            <h5>WILLIAM ADAMS</h5>
+            <h5>CCXP15</h5>
+          </div>
+          <div class="p-3">
+            <p>1.Please select the PPE used during the visit:</p>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Mask</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gloves</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Face Sheild</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gown</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Eye Sheild</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Shoe Covers</label>
+          </div>
+          <div class="bottom-input pt-2">
+            <p class="m-0 p-0">2.Please select the PPE used during the visit:</p>
+            <input type="text" />
+          </div>
+          <div class="bottom-input pt-2">
+            <p class="m-0 p-0">3.Please select the PPE used during the visit:</p>
+            <input type="text" />
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
