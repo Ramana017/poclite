@@ -5,7 +5,6 @@ import { AngularMultiSelect } from 'angular2-multiselect-dropdown';
 import * as d3 from 'd3';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 // import { Observable, forkJoin, observable } from 'rxjs';
-import { APIs } from '../../../assets/url'
 // import { treemap, schemeSet3 } from 'd3';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -28,7 +27,6 @@ export class ChartsComponent implements OnInit {
   @ViewChild('template') template
   modalRef: BsModalRef;
   constructor(private apiservice: ApiserviceService, private tiltlecase: TitleCasePipe, private date: DatePipe, private modalService: BsModalService) { }
-  public baseurl = APIs.webserviceURL;
   public startdate: Date = new Date();
   public endDate: Date = new Date();
   private defaultstartdate: Date = new Date();

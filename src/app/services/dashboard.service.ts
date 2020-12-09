@@ -1,7 +1,6 @@
 import { Injectable, ErrorHandler, OnInit } from '@angular/core';
 import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-// import baseUrl from '../../assets/url.json';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',

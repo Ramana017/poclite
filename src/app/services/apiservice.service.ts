@@ -3,8 +3,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map } from 'rxjs/operators';
-import { LazyMapsAPILoaderConfigLiteral } from '@agm/core';
-//
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,6 @@ import { LazyMapsAPILoaderConfigLiteral } from '@agm/core';
 export class ApiserviceService {
 
 
-  public urljson = "assets/url.json";
   public responseData: any;
   public baseURL: string;
   public webserviceurl: string;

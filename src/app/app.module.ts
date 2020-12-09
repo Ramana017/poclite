@@ -29,7 +29,6 @@ import { ClockInAndOutComponent } from './corrections/clock-in-and-out/clock-in-
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {APIs } from '../assets/url';
 import { ChartsComponent } from './core/charts/charts.component';
 // import { NgxGaugeModule } from 'ngx-gauge';
 
