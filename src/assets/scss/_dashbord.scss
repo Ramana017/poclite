@@ -443,6 +443,10 @@
     .list-area {
         width: 147px
     }
+    .tooltip {
+        left: -35px !important;
+        top: 0px !important;
+    }
 }
 
 // *** inputDropdown code start from here***
@@ -576,10 +580,7 @@
     @include padding(3px, 8px, 3px, 8px);
 }
 
-.tooltip {
-    left: -35px !important;
-    top: 0px !important;
-}
+
 
 tr {
     .Serviceprocedurecode {

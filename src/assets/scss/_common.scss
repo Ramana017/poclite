@@ -1198,7 +1198,7 @@ input[type="number"] {
     }
     .table-responsive {
         overflow: auto;
-        height: 64vh;
+        height: 62vh;
     }
     th {
         position: -webkit-sticky;
@@ -1334,4 +1334,33 @@ th {
     width: 242px;
     height: 150px;
     border: 1px solid #acacac;
+}
+.btn-border{
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 8px;
+}
+.tooltip {
+    left: 3px !important;
+    .tooltip-arrow {
+        &::before {
+            right: 0;
+            border-width: .4rem .4rem .4rem 0;
+            border-right-color: #145194;
+        }
+    }
+    .tooltip-inner {
+        /* max-width: 200px; */
+        padding: 5px 10px;
+        font-size: 15px;
+        text-align: center;
+        font-weight: 800;
+        border-radius: .25rem;
+        background-color: #145194;
+        color: $white;
+        display: flex;
+        align-items: center;
+    }
+    
 }
