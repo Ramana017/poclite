@@ -16,7 +16,7 @@ export class ApiserviceService {
   public webserviceurl: string;
   // settingObservable$: any;
   public geturl() {
-  this.webserviceurl = localStorage.getItem('webserviceURL');
+    this.webserviceurl = localStorage.getItem('webserviceURL');
     this.baseURL = this.webserviceurl + '/callmanagement'
   }
 
@@ -28,7 +28,8 @@ export class ApiserviceService {
 
   constructor(private _http: HttpClient, private toastr: ToastrService,) {
     this.geturl();
-     console.log("API service") }
+    console.log("API service")
+  }
 
 
   public showSuccess(message) {
@@ -79,7 +80,7 @@ export class ApiserviceService {
     this.geturl();
     // return this._http.post("http://poc.aquilasoftware.com/poclite" + "_test/callmanagement/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
 
-    return this._http.post(this.baseURL + "/acceptCallerIdException" , jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptCallerIdException", jsondata).pipe(catchError(this.errorHandler));
   }
 
   public updatePSPhone(jsondata: string): Observable<any> {
@@ -95,7 +96,7 @@ export class ApiserviceService {
 
   public acceptGpsException(jsondata: string): Observable<any> {
     this.geturl();
-    return this._http.post(this.baseURL + "/acceptGpsException" , jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/acceptGpsException", jsondata).pipe(catchError(this.errorHandler));
   }
   public updateGpsException(jsondata: string): Observable<any> {
     this.geturl();
@@ -194,6 +195,19 @@ export class ApiserviceService {
     this.geturl();
     return this._http.get(this.baseURL + "/updateTokenCode?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
+  public getVisitReviewList(params) {
+    return this._http.get(this.webserviceurl + "/supervisory/getVisitReviewList?jsonObj=" + params).pipe(catchError(this.errorHandler));
+  }
+
+  public getVisitTimes(params) {
+    return this._http.get(this.webserviceurl+"/supervisory/getVisitTimes?jsonObj="+params).pipe(catchError(this.errorHandler));
+  }
+  public getTaskList(params) {
+    return this._http.get(this.webserviceurl+"/supervisory/getTaskList?jsonObj="+params).pipe(catchError(this.errorHandler));
+  }
+  public getSignatures(params) {
+    return this._http.get(this.webserviceurl+"/supervisory/getSignatures?jsonObj="+params).pipe(catchError(this.errorHandler));
+  }
   // method for error handling
 
   private errorHandler(error: HttpErrorResponse) {
@@ -236,8 +250,8 @@ export class ApiserviceService {
   //To check exceptions is their or not
   public checkException(data): boolean {
     console.log(data)
-    if (data.ArrGpsException == 1 || data.DepGpsException == 1 || data.scheduleVarException == 1 || data.arrCallerIdException == 1 || data.depCallerIdException == 1 || data.depMileageException == 1 || data.arrMileageException == 1||data.depTokenCodeException==1||data.arrTokenCodeException==1||data.arrTravelTimeException==1 ) {
-      localStorage.setItem("userlist",JSON.stringify(data))
+    if (data.ArrGpsException == 1 || data.DepGpsException == 1 || data.scheduleVarException == 1 || data.arrCallerIdException == 1 || data.depCallerIdException == 1 || data.depMileageException == 1 || data.arrMileageException == 1 || data.depTokenCodeException == 1 || data.arrTokenCodeException == 1 || data.arrTravelTimeException == 1) {
+      localStorage.setItem("userlist", JSON.stringify(data))
       return true;
     } else {
       localStorage.removeItem("userlist")

@@ -139,7 +139,7 @@
                 </div>
                 <div class="ps-detail-wrapper">
                     <!-- <p>Washington, LA 70589, USA Latitude: 30.6163087, Longitude: -84.8461837</p> -->
-                    <p>{{psdetailsSelectedAddress}}, <br> Latitude: {{psdetailsSelectedLatitude}}, Longitude: {{psdetailsSelectedLongitude}}
+                    <p>{{psdetailsSelectedAddress}},<br>Formatted Address: {{googleFormattedAddress}} <br> Latitude: {{psdetailsSelectedLatitude}}, Longitude: {{psdetailsSelectedLongitude}}
                     </p>
                 </div>
                 <div class="update-button">
@@ -168,7 +168,7 @@
                             <tbody>
                                 <tr class="table-bordered" *ngFor="let address of psFormatAddressList ;let i=index " (change)="fomataddresschange(address)">
                                     <td class="m-0 p-0">
-                                        <input type="radio" name="formate-add-wrapper" id="format{{i+1}}" class="ml-2 mt-3" />
+                                        <input [ngModel]="geoCoordResultsIdRadio" [value]='address.geoCoordResultsId' type="radio" name="formate-add-wrapper" id="format{{i+1}}" class="ml-2 mt-3" />
                                         <label for="format{{i+1}}" class="ml-2 mt-3"></label>
                                     </td>
                                     <td>{{address.formattedAddress}}</td>

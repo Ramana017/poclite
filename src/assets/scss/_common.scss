@@ -12,7 +12,7 @@
     .dropdown-toggle::after{
       display: none;
     }
-  
+
     .dropdown-menu.show {
       height: 300px;
       display: block;
@@ -60,7 +60,7 @@
     border-color: transparent transparent #fff transparent;
 }
         }
-    
+
   }
 /* Font Styles Files */
 
@@ -331,6 +331,8 @@ body {
 }
 .blue{
     color:$blue;
+    cursor: pointer;
+
 }
 
 a {
@@ -464,7 +466,7 @@ button {
                         @include size(12.625rem,
                         2.5625rem);
                     }
-                    .dropdown {                        
+                    .dropdown {
                         .richard-img {
                             img {
                                 @include size(3.125rem,
@@ -665,7 +667,7 @@ label {
                 color: $white;
                 // position: -webkit-sticky;
                 // position: sticky;
-               
+
             }
         }
     }
@@ -682,7 +684,7 @@ label {
             color: $white;
             // position: -webkit-sticky;
             // position: sticky;
-            
+
         }
     }
 }
@@ -963,7 +965,7 @@ select:focus {
     background: rgb(128 128 128 / 0.8) !important;
     color: $white;
     position: relative;
-   
+
 }
 .edit-ps-container{
     .nav-tabs .nav-item.show .nav-link,
@@ -983,12 +985,12 @@ select:focus {
           border-right: solid 13px transparent;
           transform: rotate(180deg);
         }
-    }  
+    }
 }
 .tab-list-content {
     cursor: inherit;
     &:hover {
-    
+
     }
 }
 
@@ -1322,14 +1324,14 @@ th{
 .visit-review-wrapper{
 .check-box-wrapper {
     cursor: pointer;
-    
+
     .on-off-toggle {
     width: 40px;
     height: 23px;
     position: relative;
     display: inline-block;
     }
-    
+
     .on-off-toggle__slider {
     width: 42px;
     height: 22px;
@@ -1338,12 +1340,12 @@ th{
     background-color:#5a5a5a;
     transition: background-color 0.4s;
     cursor: pointer;
-    
+
     &:before {
     content: "";
     display: block;
     background-color: #fff;
-    // box-shadow: 0 0 0 1px #949494; 
+    // box-shadow: 0 0 0 1px #949494;
     bottom: 4px;
     height: 16px;
     left: 4px;
@@ -1353,7 +1355,7 @@ th{
     z-index: 5;
     border-radius: 100%;
     }
-    
+
     &:after {
     display: block;
     line-height: 22px;
@@ -1365,21 +1367,21 @@ th{
     padding-left: 23px;
     transition: all 0.4s;
     }
-    
+
     }
-    
+
     .on-off-toggle__input {
     position: absolute;
     opacity: 0;
     }
-    
+
     .on-off-toggle__input:checked+.on-off-toggle__slider {
     background-color: #76bd43;
-    
+
     &:before {
     transform: translateX(20px);
     }
-    
+
     &:after {
     content: 'Yes';
     color: #FFFFFF;

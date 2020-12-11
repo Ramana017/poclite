@@ -1,0 +1,77 @@
+<!-- <app-header></app-header> -->
+
+<div class="component-wrapperreview">
+
+    <!-- Correction start  -->
+    <div class="correction-heading pr-0">
+        <div class="d-flex align-items-center">
+            <img src="assets/images/Icon.svg" style="height:40px; width:40px;" alt="logo" class="pr-2">
+            <h4 class="text-white py-1 m-0">POC Call Management- {{currentexceptionName}} Corrections</h4>
+        </div>
+        <button type="button" class="close pull-right d-block" aria-label="Close" (click)="closeModel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+    <!-- Correction  end -->
+    <!-- Input group button start  -->
+    <div class="input-group d-block">
+        <div class="d-flex font-icons">
+            <button [tooltip]="gps" containerClass="customClass" tooltipPlacement="right" *ngIf="this.data.ArrGpsException==1||this.data.DepGpsException==1 " [ngClass]="displayArray[0]?'active':''" type="button" class="btn" (click)="SelectorDisplay(0)">
+                <i class="fas fa-map-marker-alt"></i>
+                  <ng-template #gps>GPS Discrepancy </ng-template>
+            </button>
+        </div>
+
+        <button [tooltip]="schedule" tooltipPlacement="right" *ngIf="this.data.scheduleVarException==1 " [ngClass]="displayArray[1]?'active':''" type="button" class="btn" (click)="SelectorDisplay(1)">
+            <i class="fas fa-calendar-alt "></i>
+            <ng-template #schedule>Schedule Variance</ng-template>
+
+            <!-- ppp -->
+        </button>
+        <!-- <p>455</p> -->
+        <button [tooltip]="invalid" tooltipPlacement="right" tool *ngIf="this.data.arrCallerIdException==1||this.data.depCallerIdException==1   " [ngClass]="displayArray[2]?'active':''" type="button" class="btn" (click)="SelectorDisplay(2)"><i class="fas fa-phone-slash"></i>
+          <ng-template #invalid>Invalid Caller Id</ng-template>
+
+        </button>
+        <button [tooltip]="travel" tooltipPlacement="right" *ngIf="this.data.arrTravelTimeException==1  " [ngClass]="displayArray[3]?'active':''" type="button" class="btn" (click)="SelectorDisplay(3)"><i class="far fa-clock"></i>
+          <ng-template #travel>Travel Time Exception</ng-template>
+
+        </button>
+        <button [tooltip]="Mileage" tooltipPlacement="right" *ngIf="this.data.depMileageException==1||this.data.arrMileageException==1" [ngClass]="displayArray[4]?'active':''" type="button" class="btn" (click)="SelectorDisplay(4)"><i class="fas fa-tachometer-alt"></i>
+          <ng-template #Mileage>Mileage Exception</ng-template>
+
+        </button>
+        <!-- <button [tooltip]="invalidtoken" tooltipPlacement="right" *ngIf="this.data.arrTokenCodeException==1||this.data.depTokenCodeException==1"[ngClass]="displayArray[5]?'active':''" type="button" class="btn" (click)="SelectorDisplay(5)"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <ng-template #invalidtoken>Invalid Token</ng-template></button> -->
+
+    </div>
+    <!-- <div class="input-group ">
+        <button [ngClass]="displayArray[0]?'active':''" type="button" class="btn" (click)="SelectorDisplay(0)"><i class="fas fa-map-marker-alt pr-2"></i>GPS Descrepancy</button>
+        <button [ngClass]="displayArray[1]?'active':''" type="button" class="btn" (click)="SelectorDisplay(1)"><i class="fas fa-calendar-alt pr-2"></i>Scheduled Variance</button>
+        <button [ngClass]="displayArray[2]?'active':''" type="button" class="btn" (click)="SelectorDisplay(2)"><i class="fas fa-phone-slash pr-2"></i>Invalid Caller ID</button>
+        <button [ngClass]="displayArray[3]?'active':''" type="button" class="btn" (click)="SelectorDisplay(3)"><i class="far fa-clock pr-2"></i>Travel Time Exception</button>
+        <button [ngClass]="displayArray[4]?'active':''" type="button" class="btn" (click)="SelectorDisplay(4)"><i class="fas fa-tachometer-alt pr-2"></i>Mileage Exception</button>
+    </div> -->
+    <!-- Input group button end -->
+    <!-- <router-outlet></router-outlet> -->
+    <!-- {{title}} -->
+
+    <app-gpsdescrepancy  (popupUpdate)="parentChild()" *ngIf="displayArray[0]"></app-gpsdescrepancy>
+    <app-scheduledvariance (popupUpdate)="parentChild()" *ngIf="displayArray[1]"></app-scheduledvariance>
+    <app-invalidcallerid (popupUpdate)="parentChild()" *ngIf="displayArray[2]"></app-invalidcallerid>
+    <app-tarveltimeexception (popupUpdate)="parentChild()"  *ngIf="displayArray[3]"></app-tarveltimeexception>
+    <app-mileageexception (popupUpdate)="parentChild()" *ngIf="displayArray[4]"></app-mileageexception>
+    <!-- <app-invalid-token (popupUpdate)="parentChild()" *ngIf="displayArray[5]"> </app-invalid-token> -->
+
+
+</div>
+<style>
+  button{
+    display: none;
+  }
+</style>
+<!-- <script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script> -->

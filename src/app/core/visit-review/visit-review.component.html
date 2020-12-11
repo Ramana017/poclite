@@ -31,7 +31,7 @@
             </td>
             <td class="pr-3 pb-2">DCS <div class="input-group form-input align-items-center">
                 <input type="text" class="form-control">
-             
+
                 <i class="fas fa-user ml-2 right-icon"></i>
               </div>
             </td>
@@ -59,7 +59,7 @@
             </td>
             <td class="pr-3 pb-2">Scheduled Start<div class="input-group form-input align-items-center">
                 <input type="text" class="form-control">
-             
+
                 <i class="fas fa-user ml-2 right-icon"></i>
               </div>
             </td>
@@ -70,14 +70,14 @@
             </td>
             <td class=" pb-2">Actual Scheduled Start<div class="input-group form-input align-items-center">
               <input type="text" class="form-control">
-              
+
               <i class="fas fa-user ml-2 right-icon"></i>
             </div>
           </td>
           </tr>
           <tr>
 
-        
+
             <td class="pr-3 pb-2">Actual Scheduled End<div class="input-group form-input align-items-center">
                 <input type="text" class="form-control">
                 <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
@@ -85,7 +85,7 @@
             </td>
             <td class="pr-3 pb-2">Original Reported Start<div class="input-group form-input align-items-center">
                 <input type="text" class="form-control">
-          
+
                 <i class="fas fa-user ml-2 right-icon"></i>
               </div>
             </td>
@@ -96,7 +96,7 @@
             </td>
             <td class="pr-3 pb-2">Adjusted Reported Start<div class="input-group form-input align-items-center">
                 <input type="text" class="form-control">
-             
+
                 <i class="fas fa-user ml-2 right-icon"></i>
               </div>
             </td>
@@ -107,10 +107,10 @@
           </td>
           </tr>
           <tr>
-       
+
           <td class="pr-3 pb-2">Arrival Adjust Reason<div class="input-group form-input align-items-center">
               <input type="text" class="form-control">
-           
+
               <i class="fas fa-user ml-2 right-icon"></i>
             </div>
           </td>
@@ -121,20 +121,20 @@
           </td>
           <td class="pr-3 pb-2">Exception Details<div class="input-group form-input align-items-center">
               <input type="text" class="form-control">
-      
+
               <i class="fas fa-user ml-2 right-icon"></i>
             </div>
           </td>
           </tr>
 
         </table>
-        
+
         <div class="d-flex align-items-center justify-content-between pt-2 inner-header">
           <button class="btn-common height-30 btn-blue  d-flex align-items-center justify-content-center"><span
               class=" mr-2">
               <i class="fas fa-times"></i>
             </span>Cancel</button>
-         
+
           <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center"><span
               class=" mr-2">
               <i class="fas fa-search"></i>
@@ -153,7 +153,8 @@
         <div class="d-flex justify-content-start  mb-2">
           <div class="check-box-wrapper">
             <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis" name='active' type="checkbox" value=1 />
+              <input class="on-off-toggle__input" (click)="filtertoggles('ps',$event)" id="bopis" name='active'
+                type="checkbox" value=1 />
               <label for="bopis" class="on-off-toggle__slider"></label>
             </div>
           </div>
@@ -163,7 +164,10 @@
         </div>
 
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="Site">
+          <!-- <input type="text" [typeahead]="siteList" [(ngModel)]="psSelected" [typeaheadMinLength]='0'
+            typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
+          <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officelist" [settings]="dropdownSettings">
+          </angular2-multiselect>
           <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
         </div>
       </div>
@@ -172,7 +176,8 @@
         <div class="d-flex justify-content-start  mb-2">
           <div class="check-box-wrapper">
             <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis1" name='active' type="checkbox" value=1 />
+              <input class="on-off-toggle__input" id="bopis1" (click)="filtertoggles('dcs',$event)" name='active'
+                type="checkbox" value=1 />
               <label for="bopis1" class="on-off-toggle__slider"></label>
             </div>
           </div>
@@ -182,7 +187,14 @@
         </div>
 
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="PS">
+          <!-- <input type="text" class="form-control" placeholder="PS"> -->
+          <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
+            (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
+            [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+          <ng-template style="width: 100%;" #itemTemplateps let-item>
+            <a [innerHTML]="item.psName"></a>
+          </ng-template>
           <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
         </div>
 
@@ -192,7 +204,8 @@
         <div class="d-flex justify-content-start  mb-2">
           <div class="check-box-wrapper">
             <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis2" name='active' type="checkbox" value=1 />
+              <input class="on-off-toggle__input" (click)="filtertoggles('task',$event)" id="bopis2" name='active'
+                type="checkbox" value=1 />
               <label for="bopis2" class="on-off-toggle__slider"></label>
             </div>
           </div>
@@ -202,7 +215,14 @@
         </div>
 
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="DCS">
+          <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'" #autodcs placeHolder="DCS"
+            (inputCleared)="selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")'
+            [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+          <ng-template style="width: 100%;" #itemTemplatedcs let-item>
+            <a [innerHTML]="item.dcsName"></a>
+          </ng-template>
+          <!-- <input type="text" class="form-control" [(ngModel)]="dcsSelected" [typeahead]="dcsList" [typeaheadMinLength]='0' typeaheadOptionField="dcsName" placeholder="DCS"> -->
           <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
           <i class="fas fa-user-md ml-2 right-icon"></i>
         </div>
@@ -212,7 +232,8 @@
         <div class="d-flex justify-content-start  mb-2">
           <div class="check-box-wrapper">
             <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis3" name='active' type="checkbox" value=1 />
+              <input class="on-off-toggle__input" id="bopis3" (click)="filtertoggles('progress',$event)" name='active'
+                type="checkbox" value=1 />
               <label for="bopis3" class="on-off-toggle__slider"></label>
             </div>
           </div>
@@ -222,7 +243,15 @@
         </div>
 
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="CSS">
+          <!-- <input type="text" class="form-control" placeholder="CSS"> -->
+          <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
+            (inputCleared)="selectFilterEvent('','css')"
+            (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+            [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+          <ng-template style="width: 100%;" #itemTemplatecss let-item>
+            <a [innerHTML]="item.cssName"></a>
+          </ng-template>
           <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
         </div>
       </div>
@@ -232,7 +261,16 @@
 
     <div class="d-flex align-items-center justify-content-between mt-2">
       <div class="input-group form-input align-items-center header-input">
-        <input type="text" class="form-control" placeholder="Service">
+        <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'" #autoservice
+          placeHolder="Service" (inputCleared)="selectFilterEvent('','service')"
+          (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
+          [notFoundTemplate]="notFoundTemplate">
+        </ng-autocomplete>
+
+        <ng-template style="width: 100%;" #itemTemplateservice let-item>
+          <a [innerHTML]="item.serviceName"></a>
+        </ng-template>
+        <!-- <input type="text" class="form-control" placeholder="Service"> -->
         <!-- <i class="fad fa-users-medical"></i> -->
         <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
         <i class="fas fa-notes-medical ml-2 right-icon"></i>
@@ -240,7 +278,8 @@
 
       <div>
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="Scheduled Start">
+          <input type="text" class="form-control" bsDatepicker [maxDate]="scheEndDate" (ngModelChange)="datchange()"
+            [(ngModel)]=" scheBeginDate" placeholder="Scheduled Start">
           <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
           <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
         </div>
@@ -249,7 +288,8 @@
 
       <div>
         <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" placeholder="Scheduled End">
+          <input type="text" class="form-control" bsDatepicker [minDate]="scheBeginDate" [maxDate]="systemDate"
+            (ngModelChange)="datchange()" [(ngModel)]="scheEndDate" placeholder="Scheduled End">
           <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
           <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
         </div>
@@ -258,7 +298,7 @@
 
       <div>
         <div class="header-input">
-          <button
+          <button (click)="getVisitReviewList()"
             class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-80px ml-auto"><span
               class=" mr-2">
               <i class="fas fa-search"></i>
@@ -343,82 +383,51 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1723</td>
-          <td>ALFORD, TOMMIE <br> 1723000122</td>
-          <td>BANKS, LYNDA</td>
-          <td>Sisson, Kimberley</td>
-          <td>13/10</td>
-          <td>CCRN</td>
+        <tr *ngFor="let visit of visitReviewListList;let i=index">
+          <td>{{visit.siteCode}}</td>
+          <td>{{visit.psName}} <br> {{visit.accountNumber}}</td>
+          <td>{{visit.dcsName}}</td>
+          <td>{{visit.cssName}}</td>
+          <td>{{visit.payorCode}}/{{visit.planCode}}</td>
+          <td>{{visit.procedureCode}}</td>
           <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
-            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
-            <span class="text-center">12/08/2020</span><br>
-            8:10 AM - 10:25 AM
+            <!-- data-toggle="modal" data-target="#timesModal" -->
+            <i class="fas fa-clock f-15 mx-2" (click)="getVisitTimes('#timesModal',visit.visitDetailsId)"></i>
+            <span class="text-center">{{visit.scheduledBeginDateTime|date:'MM/dd/yyyy'}}</span><br>
+            {{visit.scheduledBeginDateTime|date:'hh:mm a'}} - {{visit.scheduledEndDateTime|date:'hh:mm a'}}
           </td>
           <td>
-            <span class="text-center">12/08/2020</span><br>
-            8:10 AM - 10:25 AM
+            <span class="text-center">{{visit.reportedDate}}</span><br>
+            {{visit.reportedStartTime}} - {{visit.reportedEndTime}}
           </td>
           <td class="Tasks blue">
-            <span data-toggle="modal" data-target="#exampleModal">6</span>
+            <!-- data-toggle="modal"data-target="#exampleModal" -->
+            <span (click)="getTaskList('#exampleModal',visit.departureInfoId)">{{visit.taskCount}}</span>
           </td>
           <td class="PS Sign">
-            <span class=" blue" data-toggle="modal" data-target="#signModal">Yes</span>
+            <span [ngClass]=" visit.psSignatureAval=='Yes'?'blue':''"
+                (click)="visit.psSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.psSignatureAval}}</span>
           </td>
           <td class="DCS Sign">
-            No
+            <span [ngClass]=" visit.dcsSignatureAval=='Yes'?'blue':''"
+              (click)="visit.dcsSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.dcsSignatureAval}}</span>
           </td>
           <td class="Progress Notes blue">
-            <span data-toggle="modal" data-target="#progress">Yes</span>
+            <span data-toggle="modal" data-target="#progress">{{visit.progressNotesAval}}</span>
           </td>
-          <td class="Exception blue">
-            2/5
+          <td class="Exception " [ngClass]="visit.exceptionCount>0?'blue':''" (click)="visit.exceptionCount>0?correctException(i):''" >
+            {{visit.exceptionCount}}/5
           </td>
-          <td class="Approved">No</td>
+          <td class="Approved">{{visit.isApproved }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>1723</td>
           <td>ALFORD, TOMMIE <br> 1723000122</td>
           <td>BANKS, LYNDA</td>
           <td>Sisson, Kimberley</td>
           <td>13/10</td>
           <td>CCRN</td>
-          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
-          <td>
-            <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
-            <span class="text-center">12/08/2020</span><br>
-            8:10 AM - 10:25 AM
-          </td>
-          <td>
-            <span class="text-center">12/08/2020</span><br>
-            8:10 AM - 10:25 AM
-          </td>
-          <td class="Tasks blue">
-            <span data-toggle="modal" data-target="#exampleModal">4</span>
-          </td>
-          <td class="PS Sign">
-            <span class=" blue">No</span>
-          </td>
-          <td class="DCS Sign">
-            No
-          </td>
-          <td class="Progress Notes blue">
-            <span data-toggle="modal" data-target="#Progress">Yes</span>
-          </td>
-          <td class="Exception blue">
-            3/5
-          </td>
-          <td class="Approved">No</td>
-        </tr>
-        <tr>
-          <td>1723</td>
-          <td>ALFORD, TOMMIE <br> 1723000122</td>
-          <td>BANKS, LYNDA</td>
-          <td>Sisson, Kimberley</td>
-          <td>13/10</td>
-          <td>CCRN</td>
-          <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
             <i class="fas fa-clock f-15 mx-2" data-toggle="modal" data-target="#timesModal"></i>
             <span class="text-center">12/08/2020</span><br>
@@ -441,11 +450,38 @@
           <td class="Exception d-flex align-items-center">
           </td>
           <td class="Approved blue">Yes</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
+    <p *ngIf="visitReviewListList.length==0" class="no-records text-center">No Records Found</p>
+
+  </div>
+  <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-2">
+    <div class="pagination  justify-content-end pagination-button">
+      <div class="d-flex align-items-center">
+        <h6 class="mx-3">Per page</h6>
+        <select (change)="pageChange()" [(ngModel)]="perpage" class="border-0 box-shadow mr-3">
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="20">20</option>
+          <option [ngValue]="30">30</option>
+          <option [ngValue]="40">40</option>
+          <option [ngValue]="50">50</option>
+
+        </select>
+      </div>
+      Showing {{visitReviewListList.length>0?lowerBound:'0'}} to
+      {{upperBound >totalRecordsCount?totalRecordsCount:upperBound}} of {{totalRecordsCount}}
+      <div class="page-item "><button [disabled]="lowerBound==1" type="button" (click)="prevpage()"
+          class="btn-green btn-border text-white mx-2">Prev</button>
+      </div>
+      <div class="page-item "><button type="button" (click)="nextPage()" [disabled]="upperBound>totalRecordsCount"
+          class="btn-green btn-border text-white mx-2">Next</button>
+      </div>
+    </div>
+    <!-- Pagination end  -->
   </div>
 </div>
+
 
 <div class="task-list">
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -461,38 +497,12 @@
 
         <div class="modal-body">
           <div class="task-wrapper">
-            <div class="card p-3 mb-2 box-shadow">
+            <div *ngFor="let data of getTaskListresponse" class="card p-3 mb-2 box-shadow">
               <span class="d-flex justify-content-between align-items-center">
-                Dishes
-                <i class="fas fa-check-circle f-18 text-success"></i>
-              </span>
-            </div>
+                {{data.taskName}}
+                <i *ngIf="data.taskAcceptFlag==1" class="fas fa-check-circle f-18 text-success"></i>
+                <i *ngIf="data.taskAcceptFlag==0" class="fas fa-times-circle f-18 text-danger"></i>
 
-            <div class="card p-3 mb-2 box-shadow">
-              <span class="d-flex justify-content-between align-items-center">
-                Housework,Clean Appliances
-                <i class="fas fa-times-circle f-18 text-danger"></i>
-              </span>
-            </div>
-
-            <div class="card p-3 mb-2 box-shadow">
-              <span class="d-flex justify-content-between align-items-center">
-                Housework,Surface
-                <i class="fas fa-times-circle f-18  text-danger"></i>
-              </span>
-            </div>
-
-            <div class="card p-3 mb-2 box-shadow">
-              <span class="d-flex justify-content-between align-items-center">
-                Shower
-                <i class="fas fa-check-circle f-18 text-success"></i>
-              </span>
-            </div>
-
-            <div class="card p-3 mb-2 box-shadow">
-              <span class="d-flex justify-content-between align-items-center">
-                Tub Bath
-                <i class="fas fa-check-circle f-18 text-success"></i>
               </span>
             </div>
           </div>
@@ -559,33 +569,43 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>11/24/2020 <br> 07:45 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:30 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/27/2020 <br> 04:18 AM </td>
-                  <td>Hortman Merri Jo</td>
+                  <td>
+                    {{getVisitTimesresponse.originalScheduledBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledBeginDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.originalScheduledEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledEndDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.originalReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedBeginDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.originalReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedEndDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.adjustedReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedBeginDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.adjustedReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedEndDate|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.billStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billStartTime|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.billEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billEndTime|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.payStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payStartTime|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.payEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payEndTime|date:'hh:mm a'}}
+                  </td>
+                  <td>
+                    {{getVisitTimesresponse.visitLinkedTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.visitLinkedTime|date:'hh:mm a'}}
+                  </td>
+                  <td>{{getVisitTimesresponse.visitLinkedBy}}</td>
                 </tr>
-                <tr>
-                  <td>11/24/2020 <br> 07:45 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:30 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/24/2020 <br> 07:36 AM </td>
-                  <td>11/24/2020 <br> 11:15 AM </td>
-                  <td>11/27/2020 <br> 04:18 AM </td>
-                  <td>Hortman Merri Jo</td>
-                </tr>
+
+
               </tbody>
             </table>
           </div>
@@ -610,12 +630,17 @@
         <div class="modal-body">
           <h5>PS Signature</h5>
           <div class="bg-white sign-portion">
-            <i class="fas fa-signature d-flex justify-content-center align-items-center "
-              style="font-size: 100px; margin-top: 25px;"></i>
+            <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center "
+              style="font-size: 100px; margin-top: 25px;"></i> -->
+              <img  getSignaturesresponse.psSignature [src]="('data:image/JPEG;base64,' +getSignaturesresponse.psSignature) | domsanitize"
+              alt="ps" class="img-fluid d-block m-auto">
+
           </div>
 
           <h5 class="mt-4">DCS Signature</h5>
           <div class="bg-white sign-portion">
+            <img  getSignaturesresponse.dcsSignature [src]="('data:image/JPEG;base64,' +getSignaturesresponse.dcsSignature) | domsanitize"
+              alt="dcs" class="img-fluid d-block m-auto">
             <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i> -->
           </div>
         </div>
@@ -643,41 +668,44 @@
           </div>
           <div class="p-3">
             <p>1.Please select the PPE used during the visit:</p>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Mask</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gloves</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Face Sheild</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gown</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Eye Sheild</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label text-dark mx-2" for="exampleCheck1">Shoe Covers</label>
-          </div>
-          <div class="bottom-input pt-2">
-            <p class="m-0 p-0">2.Please select the PPE used during the visit:</p>
-            <input type="text" />
-          </div>
-          <div class="bottom-input pt-2">
-            <p class="m-0 p-0">3.Please select the PPE used during the visit:</p>
-            <input type="text" />
-          </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Mask</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gloves</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Face Sheild</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gown</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Eye Sheild</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Shoe Covers</label>
+            </div>
+            <div class="bottom-input pt-2">
+              <p class="m-0 p-0">2.Please select the PPE used during the visit:</p>
+              <input type="text" />
+            </div>
+            <div class="bottom-input pt-2">
+              <p class="m-0 p-0">3.Please select the PPE used during the visit:</p>
+              <input type="text" />
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>

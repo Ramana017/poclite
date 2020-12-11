@@ -55,11 +55,14 @@ import { PsContactsComponent } from './core/update_ps/ps-contacts/ps-contacts.co
 import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import {DomsanitizePipe} from '../app/pipes/domsanitize.pipe'
 
 
 
 import { map } from 'rxjs/operators';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
+import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +100,8 @@ import { VisitReviewComponent } from './core/visit-review/visit-review.component
     EditPsComponent,
     ChartLayoutComponent,
     VisitReviewComponent,
+    DomsanitizePipe,
+    ReviewExceptionpopupComponent
   ],
   imports: [
     BrowserModule,
@@ -120,7 +125,8 @@ import { VisitReviewComponent } from './core/visit-review/visit-review.component
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     ToastrModule.forRoot(),
-    NgxChartsModule
+    NgxChartsModule,
+    TypeaheadModule.forRoot()
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

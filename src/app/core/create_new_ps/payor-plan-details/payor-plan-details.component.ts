@@ -92,7 +92,7 @@ export class PayorPlanDetailsComponent implements OnInit {
     return this.payorPlanForm.controls;
 
   }
-  public pvtDuty(event) {
+    public pvtDuty(event) {
     console.log(event.target.checked)
 
 

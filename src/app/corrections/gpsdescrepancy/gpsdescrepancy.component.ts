@@ -78,6 +78,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockOutDone: boolean = true;
   public clockInComments: string=" ";
   public clockOutComments: string=" ";
+  public geoCoordResultsIdRadio:number;
+  public googleFormattedAddress:string='';
 
 
 
@@ -162,6 +164,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.psFormatAddressList = this.getResponseData.psFormatAddressList;
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
+          this.geoCoordResultsIdRadio=this.getResponseData.geoCoordResultsId;
           this.defaultpsdetails();
 
           if (this.arrivalgpsErr == true) {
@@ -360,6 +363,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         this.psdetailsSelectedAddress = this.psAddressList[i].address;
         this.psdetailsSelectedLatitude = this.psAddressList[i].latitude;
         this.psdetailsSelectedLongitude = this.psAddressList[i].longitude;
+        this.googleFormattedAddress=this.psAddressList[i].googleFormattedAddress;
       }
     }
   }

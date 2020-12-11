@@ -522,7 +522,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
   public dateenter(startdate?, enddate?) {
 
     // console.log(enddate, startdate, startdate > this.minimumIntialDate)
-    if (startdate <= this.todayDate && enddate <= this.todayDate && startdate >= this.minimumIntialDate) {
+    if (startdate <= this.todayDate && enddate <= this.todayDate ) {
       {
 
         let startdateopt = Date.parse(this.datepipe.transform(startdate, 'MM/dd/yyyy'));

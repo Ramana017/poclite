@@ -1,0 +1,82 @@
+// GLOBAL HEADER START
+.component-wrapperreview {
+  button{
+    display: none;
+  }
+  // position: fixed;
+  @include size(100%, null);
+  background-color: $table-body;
+  // GLOBAL BUTTUNS STARTS
+  position: relative;
+  .correction-heading {
+      @include padding(null, 3.3125rem, null, 3.3125rem);
+      @include margin(null, null, 0.5rem, null);
+      // position: sticky;
+      background-color: #343a40;
+      // top: 0;
+      // z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      //  background: red;
+      z-index: 9;
+      h3 {
+          font-size: 24px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: $black-heading;
+      }
+  }
+  .input-group {
+      @include padding(null, null, null, 7px);
+      // padding-left: 7px;
+      position: fixed;
+      z-index: 99;
+      button {
+          // width: 200px;
+          width: 30px;
+          @include size(null, 30px);
+          font-size: 15px;
+          border-radius: 2px;
+          background-color: $button-bg-color;
+          color: $text;
+          // @include margin(null, null, 18px, null);
+          // @include padding(10px, 0px, 10px, 0px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+              cursor: pointer;
+              background-color: $blue;
+              color: $white;
+          }
+          &.active {
+              cursor: pointer;
+              background-color: $blue;
+              color: $white;
+          }
+      }
+  }
+  // GLOBAL BUTTUNS ENDS
+}
+
+// GLOBAL HEADER WRAPPER END
+// MEDIA QUERY STARTS
+@media (max-width: $screen-size-xs) {
+  .component-wrapper {
+      .header-wrapper {
+          .navbar {
+              @include size(100%, 8.375rem);
+              .navbar-brand {
+                  @include margin(0rem, auto, 0rem, auto);
+              }
+          }
+      }
+  }
+}
+// MEDIA QUERY END
