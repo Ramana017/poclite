@@ -656,7 +656,7 @@
   </div>
 </div>
 
-<div class="progress d-none">
+<div class="progress ">
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
@@ -674,38 +674,50 @@
             <h5>CCXP15</h5>
           </div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
-            <div *ngIf="data.displayType=='checkbox'">
+            <div *ngIf="data.displayType=='checkbox'||true">
               <p>{{i+1}}.{{data.question}}</p>
               <div class="form-check" *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="form-check-input"
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="t"
                   id="exampleCheck{{i}}{{j}}">
-                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class="form-check-label text-dark mx-2"
+                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
               </div>
             </div>
-            <div *ngIf="data.displayType=='checkbox'">
+            <div *ngIf="data.displayType=='radio'||true">
               <p>{{i+1}}.{{data.question}}</p>
               <div class="form-check" *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'"type="radio" id="other{{i}}{{j}}"  class="form-check-input" name="gender" value="other{{i}}{{j}}">
-                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2" for="other{{i}}{{j}}">{{option.displayName}}</label>
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="radio" id="other{{i}}{{j}}" class=""
+                  name="gender" value="other{{i}}{{j}}">
+                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                  for="other{{i}}{{j}}">{{option.displayName}}</label>
               </div>
             </div>
 
-            <div *ngIf="data.displayType=='textbox'">
+            <div *ngIf="data.displayType=='textbox'||true">
               <div class="bottom-input pt-2">
                 <p>{{i+1}}.{{data.question}}</p>
                 <input type="text" />
               </div>
             </div>
-            <div *ngIf="data.displayType=='textarea'">
+            <div *ngIf="data.displayType=='textarea'||true">
               <div class="pt-2">
-                <p class="m-0 p-0">{{i+1}}.Please select the PPE used during the visit:</p>
-                <p>{{i+1}}.{{data.question}}</p>
+                <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
 
                 <textarea rows="3" cols="35">
                   </textarea>
               </div>
             </div>
+            <div *ngIf="data.displayType=='selectbox'||true">
+              <div class="pt-2">
+                <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
+                <select class="form-control">
+                  <option>select</option>
+                  <option [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                    *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
+                </select>
+              </div>
+            </div>
+
 
           </div>
         </div>
