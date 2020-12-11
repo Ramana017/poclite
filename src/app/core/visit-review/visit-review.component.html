@@ -163,7 +163,7 @@
               PS Signature
             </label>
           </div>
-  
+
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" [typeahead]="siteList" [(ngModel)]="psSelected" [typeaheadMinLength]='0'
               typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
@@ -172,7 +172,7 @@
             <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
           </div>
         </div>
-  
+
         <div class="mx-5">
           <div class="d-flex justify-content-start  mb-2">
             <div class="check-box-wrapper">
@@ -186,7 +186,7 @@
               DCS Signature
             </label>
           </div>
-  
+
           <div class="input-group form-input align-items-center header-input ml-2">
             <!-- <input type="text" class="form-control" placeholder="PS"> -->
             <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
@@ -198,9 +198,9 @@
             </ng-template>
             <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
           </div>
-  
+
         </div>
-  
+
         <div class="mx-5">
           <div class="d-flex justify-content-start  mb-2">
             <div class="check-box-wrapper">
@@ -214,7 +214,7 @@
               Tasks
             </label>
           </div>
-  
+
           <div class="input-group form-input align-items-center header-input">
             <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'" #autodcs placeHolder="DCS"
               (inputCleared)="selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")'
@@ -228,7 +228,7 @@
             <i class="fas fa-user-md ml-2 right-icon"></i>
           </div>
         </div >
-  
+
         <div class="mx-5">
           <div class="d-flex justify-content-start  mb-2">
             <div class="check-box-wrapper">
@@ -242,7 +242,7 @@
               Progress Notes
             </label>
           </div>
-  
+
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
             <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
@@ -256,9 +256,9 @@
             <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
           </div>
         </div>
-  
+
       </div>
-  
+
       <div class="d-flex align-items-center justify-content-between mt-2">
         <div class="mr-5">
           <div class="input-group form-input align-items-center header-input mr-2">
@@ -267,7 +267,7 @@
               (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
               [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
-    
+
             <ng-template style="width: 100%;" #itemTemplateservice let-item>
               <a [innerHTML]="item.serviceName"></a>
             </ng-template>
@@ -277,8 +277,8 @@
             <i class="fas fa-notes-medical ml-2 right-icon"></i>
           </div>
         </div>
-        
-  
+
+
         <div class="mx-5">
           <div class="input-group form-input align-items-center header-input">
             <input type="text" class="form-control" bsDatepicker [maxDate]="scheEndDate" (ngModelChange)="datchange()"
@@ -286,9 +286,9 @@
             <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
             <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
           </div>
-  
+
         </div>
-  
+
         <div class="mx-5">
           <div class="input-group form-input align-items-center header-input">
             <input type="text" class="form-control" bsDatepicker [minDate]="scheBeginDate" [maxDate]="systemDate"
@@ -297,19 +297,19 @@
             <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
           </div>
         </div>
-  
+
         <div class="input-group form-input align-items-center header-input mx-5">
           <!-- <input type="text" class="form-control" placeholder="CSS"> -->
-          <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="Payor"
-            (inputCleared)="selectFilterEvent('','css')"
-            (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+          <ng-autocomplete [data]="payorPlanList" #autopayor [searchKeyword]="'planName'" #autocss placeHolder="Payor/Plan"
+          (inputCleared)="selectFilterEvent('','payor')"
+          (selected)='selectFilterEvent($event,"payor")' [itemTemplate]="itemTemplatecss"
             [notFoundTemplate]="notFoundTemplate">
           </ng-autocomplete>
           <ng-template style="width: 100%;" #itemTemplatecss let-item>
             <a [innerHTML]="item.cssName"></a>
           </ng-template>
           <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
-  
+
         </div>
       </div>
     </div>
@@ -400,12 +400,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let visit of visitReviewListList;let i=index">
-          <td>{{visit.siteCode}}</td>
+          <td> <div [tooltip]="sitecontent" tooltipPlacement="right">{{visit.siteCode}}
+            <ng-template #sitecontent>{{visit.siteName}}</ng-template>
+          </div></td>
           <td>{{visit.psName}} <br> {{visit.accountNumber}}</td>
           <td>{{visit.dcsName}}</td>
           <td>{{visit.cssName}}</td>
-          <td>{{visit.payorCode}}/{{visit.planCode}}</td>
-          <td>{{visit.procedureCode}}</td>
+          <td><div [tooltip]="tipContent">{{visit.payorCode}}/{{visit.planCode}}<ng-template #tipContent><b>{{visit.plan}}</b></ng-template></div></td>
+          <td><div [tooltip]="tipContent">
+            {{visit.procedureCode}}
+            <ng-template #tipContent><b>{{visit.serviceName}}</b></ng-template>
+          </div></td>
           <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
             <!-- data-toggle="modal" data-target="#timesModal" -->
@@ -520,7 +525,7 @@
                 <i *ngIf="data.taskAcceptFlag==0" class="fas fa-times-circle f-18 text-danger"></i>
 
               </span>
-              <div class="alert alert-danger mt-2" role="alert">
+              <div *ngIf="data.taskAcceptFlag==0" class="alert alert-danger mt-2" role="alert">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, vitae harum id error molestias
               </div>
             </div>
