@@ -260,7 +260,22 @@
       </div>
 
       <div class="d-flex align-items-center justify-content-between mt-2">
-        <div class="mr-5">
+        <div class="mr-0">
+          <div class="input-group form-input align-items-center header-input">
+            <!-- <input type="text" class="form-control" placeholder="CSS"> -->
+            <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="Payor"
+              (inputCleared)="selectFilterEvent('','css')"
+              (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+              [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+            <ng-template style="width: 100%;" #itemTemplatecss let-item>
+              <a [innerHTML]="item.cssName"></a>
+            </ng-template>
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+          </div>
+        </div>
+        <div class="mr-0 ml-1">
           <div class="input-group form-input align-items-center header-input mr-2">
             <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'" #autoservice
               placeHolder="Service" (inputCleared)="selectFilterEvent('','service')"
@@ -278,8 +293,7 @@
           </div>
         </div>
 
-
-        <div class="mx-5">
+        <div class="mr-0">
           <div class="input-group form-input align-items-center header-input">
             <input type="text" class="form-control" bsDatepicker [maxDate]="scheEndDate" (ngModelChange)="datchange()"
               [(ngModel)]=" scheBeginDate" placeholder="Scheduled Start">
@@ -289,7 +303,7 @@
 
         </div>
 
-        <div class="mx-5">
+        <div class="mr-5">
           <div class="input-group form-input align-items-center header-input">
             <input type="text" class="form-control" bsDatepicker [minDate]="scheBeginDate" [maxDate]="systemDate"
               (ngModelChange)="datchange()" [(ngModel)]="scheEndDate" placeholder="Scheduled End">
@@ -298,19 +312,7 @@
           </div>
         </div>
 
-        <div class="input-group form-input align-items-center header-input mx-5">
-          <!-- <input type="text" class="form-control" placeholder="CSS"> -->
-          <ng-autocomplete [data]="payorPlanList" #autopayor [searchKeyword]="'planName'" #autocss placeHolder="Payor/Plan"
-          (inputCleared)="selectFilterEvent('','payor')"
-          (selected)='selectFilterEvent($event,"payor")' [itemTemplate]="itemTemplatecss"
-            [notFoundTemplate]="notFoundTemplate">
-          </ng-autocomplete>
-          <ng-template style="width: 100%;" #itemTemplatecss let-item>
-            <a [innerHTML]="item.cssName"></a>
-          </ng-template>
-          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
 
-        </div>
       </div>
     </div>
 
@@ -319,6 +321,7 @@
         <button (click)="getVisitReviewList()"
           class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-40 ml-auto">
             <i class="fas fa-search mr-2"></i>
+            Go
         </button>
       </div>
     </div>
