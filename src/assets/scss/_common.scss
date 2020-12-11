@@ -944,7 +944,7 @@ select:focus {
     z-index: 9;
     color: #f7fafc;
     width: 30px;
-    height: 30px;
+    height: 32px;
     background: #145194;
     display: flex;
     align-items: center;
@@ -1216,6 +1216,29 @@ input[type="number"] {
 
       .ng-autocomplete {
         width: 88%;
+    }
+    .autocomplete-container .input-container input {
+        font-size: 12px !important;
+        height: 30px !important;
+        padding: 0 10px !important;
+        text-transform: capitalize;
+        -webkit-border-top-left-radius: 30px;
+        -webkit-border-bottom-left-radius: 30px;
+        -moz-border-radius-topleft: 30px;
+        -moz-border-radius-bottomleft: 30px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+    .autocomplete-container{
+        -webkit-border-top-left-radius: 30px;
+        -webkit-border-bottom-left-radius: 30px;
+        -moz-border-radius-topleft: 30px;
+        -moz-border-radius-bottomleft: 30px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+    .form-input .form-control{
+        background-color: #fff;
     }
 }
 
