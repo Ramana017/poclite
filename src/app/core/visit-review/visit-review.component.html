@@ -683,7 +683,7 @@
               <p>{{i+1}}.{{data.question}}</p>
               <div class="form-check" *ngFor="let option of formLovList;let j=index;">
                 <input [ngClass]="data.lovId==option.lovId?'':'d-none'"type="radio" id="other{{i}}{{j}}"  class="form-check-input" name="gender" value="other{{i}}{{j}}">
-                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class="form-check-label text-dark mx-2" for="other{{i}}{{j}}">{{option.displayName}}</label>
+                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2" for="other{{i}}{{j}}">{{option.displayName}}</label>
               </div>
             </div>
 

@@ -1,247 +1,276 @@
 <!-- <app-correctionheader></app-correctionheader> -->
 
 <div class="custom-class">
-    <div class="item-wrapper">
-        <!-- <div class="row">
+  <div class="item-wrapper">
+    <!-- <div class="row">
             <div class="col-md-12">
                 <div class="heading-wrapper">
                     <p>Visit Information</p>
                 </div>
             </div>
         </div> -->
-        <div class="row m-0">
-            <div class="col-md-12 p-0">
-                <div class="table-responsive">
+    <div class="row m-0">
+      <div class="col-md-12 p-0">
+        <div class="table-responsive">
 
-                    <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
-                        <li class="mt-1">
-                            <label for="" class="m-0">PS</label>
+          <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+            <li class="mt-1">
+              <label for="" class="m-0">PS</label>
 
-                            <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
+              <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern=""
+                tabindex="1">
 
-                        </li>
-                        <li class="mt-1">
-                            <label for="">DCS</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Procedure Code</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="Procedure" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Scheduled Start</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Scheduled End</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- <div class="row">
+            </li>
+            <li class="mt-1">
+              <label for="">DCS</label>
+              <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1"
+                [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+            </li>
+            <li class="mt-1">
+              <label for="">Procedure Code</label>
+              <input type="text" class="form-control modal-box-input" aria-label="Procedure"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone"
+                placeholder="SOURPS" pattern="" tabindex="3">
+            </li>
+            <li class="mt-1">
+              <label for="">Scheduled Start</label>
+              <input type="text" class="form-control modal-box-input" aria-label="Schedule Start"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate"
+                placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+            </li>
+            <li class="mt-1">
+              <label for="">Scheduled End</label>
+              <input type="text" class="form-control modal-box-input" aria-label="End date"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY"
+                name="enddate" tabindex="5">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="row">
                 <div class="custom-wrapper">
                     <p>Site Level Preferences: {{gpsSystemPref}} Miles</p>
                 </div>
             </div> -->
-        </div>
-        <!-- <div class="row">
+    </div>
+    <!-- <div class="row">
             <div class="custom-wrapper">
                 <p>Site Level Preferences: 0.5 Miles</p>
             </div>
         </div> -->
-        <!-- map section start  -->
-        <div class="row m-0">
-            <div class="col-md-6 col-sm-12 px-0 pb-2" *ngIf="clockinDone">
-                <div class="clock-detail">
-                    <div class="issue-wrapper">
-                        <!-- <h3 class="custom-tooltip-icon mb-3">Issue
+    <!-- map section start  -->
+    <div class="row m-0">
+      <div class="col-md-6 col-sm-12 px-0 pb-2" *ngIf="clockinDone">
+        <div class="clock-detail">
+          <div class="issue-wrapper">
+            <!-- <h3 class="custom-tooltip-icon mb-3">Issue
                             <an data-toggle="tooltip" data-placement="right"
                                 title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
                                 class="p-3"><i class="fas fa-question-circle ml-2"></i>
                             </a>
                         </h3> -->
-                    </div>
-                    <!-- <p class="mb-0">The Clock In Address does not match the PS Address</p> -->
-                    <div class="clock-heading-wrapper ps-heading-wrapper">
-                        <h3 class="m-0">Clock In Details
-                            <a data-toggle="tooltip" data-placement="right" title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
-                                class="p-3"><i class="fas fa-question-circle ml-2"></i>
-                            </a>
-                        </h3>
-                    </div>
-                    <div [ngStyle]="arrivalgpsErr?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}" class="address-wrapper pr-2">
-                        <p><strong>Address:</strong> <br> {{clockInAddress}} <br> Latitude: {{clockInLatitude}}, Longitude: {{clockInLongitude}}
-                        </p>
-                    </div>
-                    <div  *ngIf="arrivalgpsErr" class="form-group mx-2">
-                        <h3 class="f-15">Clock In Comments</h3>
-                        <textarea class="form-control" [(ngModel)]="clockInComments"  rows="3"></textarea>
-                      </div>
-                    <div class="button-wrapper mb-2">
-                        <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
-                        <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr" (click)="acceptGpsException('clockin')">Accept</button>
-                    </div>
-                </div>
+          </div>
+          <!-- <p class="mb-0">The Clock In Address does not match the PS Address</p> -->
+          <div class="clock-heading-wrapper ps-heading-wrapper">
+            <h3 class="m-0">Clock In Details
+              <a data-toggle="tooltip" data-placement="right"
+                title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
+                class="p-3"><i class="fas fa-question-circle ml-2"></i>
+              </a>
+            </h3>
+          </div>
+          <div [ngStyle]="arrivalgpsErr?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}"
+            class="address-wrapper pr-2">
+            <p><strong>Address:</strong> <br> {{clockInAddress}} <br> Latitude: {{clockInLatitude}}, Longitude:
+              {{clockInLongitude}}
+            </p>
+          </div>
+          <div *ngIf="arrivalgpsErr" class="form-group mx-2">
+            <h3 class="f-15">Clock In Comments</h3>
+            <textarea class="form-control" [(ngModel)]="clockInComments" rows="3"></textarea>
+          </div>
+          <div class="button-wrapper mb-2">
+            <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
+            <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr"
+              (click)="acceptGpsException('clockin')">Accept</button>
+          </div>
+        </div>
 
 
-            </div>
-            <div class="col-md-6 col-12 p-0" *ngIf="clockOutDone">
-                <div class="clock-detail">
-                    <div class="issue-wrapper">
-                        <!-- <h3 class="custom-tooltip-icon mb-3">Issue
+      </div>
+      <div class="col-md-6 col-12 p-0" *ngIf="clockOutDone">
+        <div class="clock-detail">
+          <div class="issue-wrapper">
+            <!-- <h3 class="custom-tooltip-icon mb-3">Issue
                             <a  data-toggle="tooltip" data-placement="right"
                                 title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
                                 class="p-3"><i class="fas fa-question-circle ml-2"></i></a>
                         </h3> -->
-                    </div>
-                    <!-- <p class="mb-0">The Clock Out Address does not match the PS Address</p> -->
-                    <div class="clock-heading-wrapper ps-heading-wrapper">
-                        <h3 class="m-0">Clock Out Details
-                            <a data-toggle="tooltip" data-placement="right" title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
-                                class="p-3"><i class="fas fa-question-circle ml-2"></i>
-                            </a>
-                        </h3>
-                    </div>
+          </div>
+          <!-- <p class="mb-0">The Clock Out Address does not match the PS Address</p> -->
+          <div class="clock-heading-wrapper ps-heading-wrapper">
+            <h3 class="m-0">Clock Out Details
+              <a data-toggle="tooltip" data-placement="right"
+                title="Accept the Captured address and coordinates or Update the Service address to one of the available Addresses of the Client or Resolve the Address issue by choosing an address returned by google or manually entering the address and coordinates"
+                class="p-3"><i class="fas fa-question-circle ml-2"></i>
+              </a>
+            </h3>
+          </div>
 
-                    <div [ngStyle]="depgpsErr ?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}" class="address-wrapper pr-2">
-                        <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}}, Longitude:{{clockOutLongitude}} </p>
-                    </div>
-                    <div *ngIf="depgpsErr" class="form-group mx-2">
-                        <h3 class="f-15">Clock Out Comments</h3>
-                         <textarea class="form-control"[(ngModel)]="clockOutComments"   rows="3"></textarea>
-                       </div>
-                    <div class="button-wrapper d-flex justify-content-between">
-                        <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
-                        <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto" (click)="acceptGpsException('clockout')">Accept</button>
-                    </div>
+          <div [ngStyle]="depgpsErr ?{'background-color': '#ff7979'}:{'background-color': '#76bd43'}"
+            class="address-wrapper pr-2">
+            <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}},
+              Longitude:{{clockOutLongitude}} </p>
+          </div>
+          <div *ngIf="depgpsErr" class="form-group mx-2">
+            <h3 class="f-15">Clock Out Comments</h3>
+            <textarea class="form-control" [(ngModel)]="clockOutComments" rows="3"></textarea>
+          </div>
+          <div class="button-wrapper d-flex justify-content-between">
+            <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
+            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto"
+              (click)="acceptGpsException('clockout')">Accept</button>
+          </div>
 
-                </div>
-            </div>
         </div>
-        <div class="row m-0">
-            <div class="col-md-4 col-12 pr-0">
-                <div class="ps-heading-wrapper">
-                    <h3>PS Details
-                        <a data-toggle="tooltip" data-placement="right" title="Update the Service address for the visit to one
-                            of the available locations for the client!" class="p-3"><i
-                                class="fas fa-question-circle ml-2"></i></a>
-                    </h3>
-                    <div class="d-flex">
-                        <div *ngFor="let address of psAddressList ;let i =index">
-                            <input [ngModel]="psAddressId" [value]="address.psAddressId" (change)="psdetails(address)" type="radio" name="radio" id="radio{{i}}" />
-                            <label for="radio{{i}}">{{address.addressLocation}}</label>
-                        </div>
-
-                        <!-- <input type="radio" name="radio" id="radio2" />
-                          <label for="radio2">Work</label> -->
-                    </div>
-                </div>
-                <div class="ps-detail-wrapper">
-                    <!-- <p>Washington, LA 70589, USA Latitude: 30.6163087, Longitude: -84.8461837</p> -->
-                    <p>{{psdetailsSelectedAddress}},<br>Formatted Address: {{googleFormattedAddress}} <br> Latitude: {{psdetailsSelectedLatitude}}, Longitude: {{psdetailsSelectedLongitude}}
-                    </p>
-                </div>
-                <div class="update-button">
-                    <button type="button" class="btn" (click)="updateGpsException()">Update</button>
-                </div>
-
-            </div>
-            <div class="col-md-8 col-12 p-0">
-                <div class="resolution-heading">
-                    <h3 class="custom-tooltip-icon">Resolution
-                        <a data-toggle="tooltip" data-placement="right" title="Select the correct address returned by Google or manually enter the address and coordinates" class="p-3"><i class="fas fa-question-circle ml-2"></i></a>
-                    </h3>
-                </div>
-                <div class="formate-add-wrapper">
-
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Formatted Address</th>
-                                    <th scope="col">Latitude</th>
-                                    <th scope="col">Longitude</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="table-bordered" *ngFor="let address of psFormatAddressList ;let i=index " (change)="fomataddresschange(address)">
-                                    <td class="m-0 p-0">
-                                        <input [ngModel]="geoCoordResultsIdRadio" [value]='address.geoCoordResultsId' type="radio" name="formate-add-wrapper" id="format{{i+1}}" class="ml-2 mt-3" />
-                                        <label for="format{{i+1}}" class="ml-2 mt-3"></label>
-                                    </td>
-                                    <td>{{address.formattedAddress}}</td>
-                                    <td>{{address.latitude}}</td>
-                                    <td>{{address.longitude}}</td>
-                                </tr>
-                                <tr class="table-bordered" (change)="manualFormatAddress()">
-                                    <td class="m-0 p-0">
-                                        <input type="radio" name="formate-add-wrapper" id="format0" class="ml-2 mt-4" />
-                                        <label for="format0" class="ml-2 mt-4"></label>
-                                    </td>
-                                    <td>
-                                        <div class="input-btn">
-                                            <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder="" [(ngModel)]="manualAddress" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-btn">
-                                            <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder="" [(ngModel)]="manualLatitude" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-btn">
-                                            <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder="" [(ngModel)]="manualLongitude" />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="save-btn-wrapper d-flex justify-content-end mt-2">
-                    <button type="button" class="btn" [disabled]="savebutton" (click)="saveFormatAddress()">Save</button>
-                </div>
-            </div>
-        </div>
-        <div class="row m-0">
-            <div class="col-md-12 col-sm-12">
-                <div class="map-wrapper">
-                    <!-- <div #map style="width:100%; height:500px"></div> -->
-                    <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude" [longitude]="centerlangutide">
-                        <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]" >
-                            <agm-info-window [disableAutoPan]="false">
-                                <strong>{{i[2]}}</strong>
-                            </agm-info-window>
-                        </agm-marker>
-                    </agm-map>
-                    <!-- </div> -->
-                    <!--Google map-->
-                    <!-- <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px"> -->
-                    <!-- <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVho8dJnKRyVJ_T_XXplKeock2uKJnlT4&callback=myMap" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-                    <!-- </div> -->
-                    <!--Google Maps-->
-                </div>
-
-                <div class="add-holder d-flex justify-content-end mt-3">
-                    <div class="d-flex pointermaps " (click)="psAddressClick()">
-                        <i class="fas fa-map-marker-alt text-success mr-2 ml-2"></i>
-                        <p>PS Address</p>
-                    </div>
-                    <div *ngIf="clockInLatitude!=0 || clockInLongitude!=0 " class="d-flex pointermaps " (click)="clockInAddressClick()">
-                        <i class="fas fa-map-marker-alt text-danger mr-2 ml-2"></i>
-                        <p>Clock In Address</p>
-                    </div>
-                    <div *ngIf="clockOutLatitude!=0 || clockOutLongitude!=0" class="d-flex pointermaps " (click)="clockOutAddressClick()">
-                        <i class="fas fa-map-marker-alt text-danger mr-2 ml-2"></i>
-                        <p>Clock Out Address</p>
-                    </div>
-                </div>
-            </div>
-            <!-- </div> -->
-            <!-- map ends  -->
-        </div>
-
+      </div>
     </div>
+    <div class="row m-0">
+      <div class="col-md-4 col-12 pr-0">
+        <div class="ps-heading-wrapper">
+          <h3>PS Details
+            <a data-toggle="tooltip" data-placement="right" title="Update the Service address for the visit to one
+                            of the available locations for the client!" class="p-3"><i
+                class="fas fa-question-circle ml-2"></i></a>
+          </h3>
+          <div class="d-flex">
+            <div *ngFor="let address of psAddressList ;let i =index">
+              <input [ngModel]="psAddressId" [value]="address.psAddressId" (change)="psdetails(address)" type="radio"
+                name="radio" id="radio{{i}}" />
+              <label for="radio{{i}}">{{address.addressLocation}}</label>
+            </div>
+
+            <!-- <input type="radio" name="radio" id="radio2" />
+                          <label for="radio2">Work</label> -->
+          </div>
+        </div>
+        <div class="ps-detail-wrapper">
+          <!-- <p>Washington, LA 70589, USA Latitude: 30.6163087, Longitude: -84.8461837</p> -->
+          <p>{{psdetailsSelectedAddress}} <br><br> <b>Formatted Address: {{googleFormattedAddress}}</b> <br> Latitude:
+            {{psdetailsSelectedLatitude}}, Longitude: {{psdetailsSelectedLongitude}}
+          </p>
+        </div>
+        <div class="update-button">
+          <button type="button" class="btn" (click)="updateGpsException()">Update</button>
+        </div>
+
+      </div>
+      <div class="col-md-8 col-12 p-0">
+        <div class="resolution-heading">
+          <h3 class="custom-tooltip-icon">Resolution
+            <a data-toggle="tooltip" data-placement="right"
+              title="Select the correct address returned by Google or manually enter the address and coordinates"
+              class="p-3"><i class="fas fa-question-circle ml-2"></i></a>
+          </h3>
+        </div>
+        <div class="formate-add-wrapper">
+
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Formatted Address</th>
+                  <th scope="col">Latitude</th>
+                  <th scope="col">Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-bordered" *ngFor="let address of psFormatAddressList ;let i=index "
+                  (change)="fomataddresschange(address)">
+                  <td class="m-0 p-0">
+                    <input [ngModel]="geoCoordResultsIdRadio" [value]='address.geoCoordResultsId' type="radio"
+                      name="formate-add-wrapper" id="format{{i+1}}" class="ml-2 mt-3" />
+                    <label for="format{{i+1}}" class="ml-2 mt-3"></label>
+                  </td>
+                  <td>{{address.formattedAddress}}</td>
+                  <td>{{address.latitude}}</td>
+                  <td>{{address.longitude}}</td>
+                </tr>
+                <tr class="table-bordered" (change)="manualFormatAddress()">
+                  <td class="m-0 p-0">
+                    <input type="radio" name="formate-add-wrapper" id="format0" class="ml-2 mt-4" />
+                    <label for="format0" class="ml-2 mt-4"></label>
+                  </td>
+                  <td>
+                    <div class="input-btn">
+                      <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder=""
+                        [(ngModel)]="manualAddress" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-btn">
+                      <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder=""
+                        [(ngModel)]="manualLatitude" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-btn">
+                      <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder=""
+                        [(ngModel)]="manualLongitude" />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="save-btn-wrapper d-flex justify-content-end mt-2">
+          <button type="button" class="btn" [disabled]="savebutton" (click)="saveFormatAddress()">Save</button>
+        </div>
+      </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-md-12 col-sm-12">
+        <div class="map-wrapper">
+          <!-- <div #map style="width:100%; height:500px"></div> -->
+          <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude"
+            [longitude]="centerlangutide">
+            <agm-marker *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]">
+              <agm-info-window [disableAutoPan]="false">
+                <strong>{{i[2]}}</strong>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+          <!-- </div> -->
+          <!--Google map-->
+          <!-- <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px"> -->
+          <!-- <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVho8dJnKRyVJ_T_XXplKeock2uKJnlT4&callback=myMap" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+          <!-- </div> -->
+          <!--Google Maps-->
+        </div>
+
+        <div class="add-holder d-flex justify-content-end mt-3">
+          <div class="d-flex pointermaps " (click)="psAddressClick()">
+            <i class="fas fa-map-marker-alt text-success mr-2 ml-2"></i>
+            <p>PS Address</p>
+          </div>
+          <div *ngIf="clockInLatitude!=0 || clockInLongitude!=0 " class="d-flex pointermaps "
+            (click)="clockInAddressClick()">
+            <i class="fas fa-map-marker-alt text-danger mr-2 ml-2"></i>
+            <p>Clock In Address</p>
+          </div>
+          <div *ngIf="clockOutLatitude!=0 || clockOutLongitude!=0" class="d-flex pointermaps "
+            (click)="clockOutAddressClick()">
+            <i class="fas fa-map-marker-alt text-danger mr-2 ml-2"></i>
+            <p>Clock Out Address</p>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- map ends  -->
+    </div>
+
+  </div>
 </div>
