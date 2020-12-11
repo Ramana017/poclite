@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CorrectionheaderComponent } from 'src/app/corrections/correctionheader/correctionheader.component';
@@ -339,7 +339,8 @@ export class VisitReviewComponent implements OnInit {
   }
   public getFilterData() {
     try {
-      this.apiservice.tableFilterData(this.userId).subscribe(res => {
+      let obj={"userId":this.userId,"payorPlanRequired":1}
+      this.apiservice.tableFilterData(JSON.stringify(this.userId)).subscribe(res => {
         console.log(res);
         let data: any = res;
         this.psList = data.psList;
