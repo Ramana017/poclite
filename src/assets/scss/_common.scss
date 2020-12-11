@@ -1205,16 +1205,16 @@ input[type="number"] {
         position: sticky;
         top: 0;
         z-index: 2;
-      }
-      
-      th[scope=row] {
+    }
+
+    th[scope="row"] {
         position: -webkit-sticky;
         position: sticky;
         left: 0;
         z-index: 1;
-      }
+    }
 
-      .ng-autocomplete {
+    .ng-autocomplete {
         width: 88%;
     }
     .autocomplete-container .input-container input {
@@ -1229,7 +1229,7 @@ input[type="number"] {
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
     }
-    .autocomplete-container{
+    .autocomplete-container {
         -webkit-border-top-left-radius: 30px;
         -webkit-border-bottom-left-radius: 30px;
         -moz-border-radius-topleft: 30px;
@@ -1237,7 +1237,7 @@ input[type="number"] {
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
     }
-    .form-input .form-control{
+    .form-input .form-control {
         background-color: #fff;
     }
 }
@@ -1312,6 +1312,20 @@ input[type="number"] {
     }
     .selected-list .c-btn {
         width: 220px !important;
+        -webkit-border-top-left-radius: 50px !important;
+        -webkit-border-bottom-left-radius: 50px !important;
+        -moz-border-radius-topleft: 50px !important;
+        -moz-border-radius-bottomleft: 50px !important;
+        border-top-left-radius: 50px !important;
+        border-bottom-left-radius: 50px !important;
+    }
+    angular2-multiselect.custom-class {
+        -webkit-border-top-left-radius: 50px !important;
+        -webkit-border-bottom-left-radius: 50px !important;
+        -moz-border-radius-topleft: 50px !important;
+        -moz-border-radius-bottomleft: 50px !important;
+        border-top-left-radius: 50px !important;
+        border-bottom-left-radius: 50px !important;
     }
 }
 
@@ -1335,7 +1349,7 @@ th {
     height: 150px;
     border: 1px solid #acacac;
 }
-.btn-border{
+.btn-border {
     -webkit-border-top-left-radius: 0px;
     -webkit-border-top-right-radius: 8px;
     -webkit-border-bottom-right-radius: 0px;
@@ -1346,7 +1360,7 @@ th {
     .tooltip-arrow {
         &::before {
             right: 0;
-            border-width: .4rem .4rem .4rem 0;
+            border-width: 0.4rem 0.4rem 0.4rem 0;
             border-right-color: #145194;
         }
     }
@@ -1356,15 +1370,14 @@ th {
         font-size: 15px;
         text-align: center;
         font-weight: 800;
-        border-radius: .25rem;
+        border-radius: 0.25rem;
         background-color: #145194;
         color: $white;
         display: flex;
         align-items: center;
     }
-    
 }
 
-.w-40{
+.w-40 {
     width: 40px !important;
-   }
+}

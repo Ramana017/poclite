@@ -187,7 +187,7 @@
             </label>
           </div>
   
-          <div class="input-group form-input align-items-center header-input">
+          <div class="input-group form-input align-items-center header-input ml-2">
             <!-- <input type="text" class="form-control" placeholder="PS"> -->
             <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
               (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
