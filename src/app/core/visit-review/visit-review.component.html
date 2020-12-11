@@ -457,9 +457,9 @@
     <p *ngIf="visitReviewListList.length==0" class="no-records text-center">No Records Found</p>
   </div>
 
-  <!-- <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-2">
+  <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-2">
     <div class="pagination  justify-content-end pagination-button">
-      <div class="d-flex align-items-center">
+      <div class="d-flex">
         <h6 class="mx-3">Per page</h6>
         <select (change)="pageChange()" [(ngModel)]="perpage" class="border-0 box-shadow mr-3">
           <option [ngValue]="10">10</option>
@@ -467,11 +467,12 @@
           <option [ngValue]="30">30</option>
           <option [ngValue]="40">40</option>
           <option [ngValue]="50">50</option>
-
         </select>
       </div>
-      Showing {{visitReviewListList.length>0?lowerBound:'0'}} to
-      {{upperBound >totalRecordsCount?totalRecordsCount:upperBound}} of {{totalRecordsCount}}
+      <div>
+        <p>Showing {{visitReviewListList.length>0?lowerBound:'0'}} to
+          {{upperBound >totalRecordsCount?totalRecordsCount:upperBound}} of {{totalRecordsCount}}</p>
+      </div>
       <div class="page-item "><button [disabled]="lowerBound==1" type="button" (click)="prevpage()"
           class="btn-green btn-border text-white mx-2">Prev</button>
       </div>
@@ -479,8 +480,11 @@
           class="btn-green btn-border text-white mx-2">Next</button>
       </div>
     </div>
-  </div> -->
-  
+  </div>
+</div>
+
+<div class="d-flex">
+
 </div>
 
 
@@ -652,7 +656,7 @@
   </div>
 </div>
 
-<div class="progress">
+<div class="progress d-none">
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
