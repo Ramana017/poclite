@@ -634,14 +634,14 @@
   </div>
 </div>
 
-<div class="progress ">
+<div class="progress" *ngIf="progressmodel">
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
       <div class="modal-content">
         <div class="modal-header bg-dark">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -652,7 +652,7 @@
             <h5>CCXP15</h5>
           </div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
-            <div *ngIf="data.displayType=='checkbox'||true">
+            <div *ngIf="data.displayType=='checkbox'">
               <p>{{i+1}}.{{data.question}}</p>
               <div class="form-check" *ngFor="let option of formLovList;let j=index;">
                 <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="t"
@@ -661,7 +661,7 @@
                   for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
               </div>
             </div>
-            <div *ngIf="data.displayType=='radio'||true">
+            <div *ngIf="data.displayType=='radio'">
               <p>{{i+1}}.{{data.question}}</p>
               <div class="form-check" *ngFor="let option of formLovList;let j=index;">
                 <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="radio" id="other{{i}}{{j}}" class=""
@@ -671,13 +671,13 @@
               </div>
             </div>
 
-            <div *ngIf="data.displayType=='textbox'||true">
+            <div *ngIf="data.displayType=='textbox'">
               <div class="bottom-input pt-2">
                 <p>{{i+1}}.{{data.question}}</p>
                 <input type="text" />
               </div>
             </div>
-            <div *ngIf="data.displayType=='textarea'||true">
+            <div *ngIf="data.displayType=='textarea'">
               <div class="pt-2">
                 <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
 
@@ -685,7 +685,7 @@
                   </textarea>
               </div>
             </div>
-            <div *ngIf="data.displayType=='selectbox'||true">
+            <div *ngIf="data.displayType=='selectbox'">
               <div class="pt-2">
                 <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
                 <select class="form-control">
@@ -702,7 +702,8 @@
       </div>
     </div>
   </div>
-  <ng-template #notFoundTemplate let-notFound>
-    <div [innerHTML]="notFound" class="text-dark"></div>
-  </ng-template>
+
 </div>
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>
