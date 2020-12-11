@@ -407,16 +407,17 @@
           </td>
           <td class="PS Sign">
             <span [ngClass]=" visit.psSignatureAval=='Yes'?'blue':''"
-                (click)="visit.psSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.psSignatureAval}}</span>
+              (click)="visit.psSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.psSignatureAval}}</span>
           </td>
           <td class="DCS Sign">
             <span [ngClass]=" visit.dcsSignatureAval=='Yes'?'blue':''"
               (click)="visit.dcsSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.dcsSignatureAval}}</span>
           </td>
           <td class="Progress Notes blue">
-            <span data-toggle="modal" data-target="#progress">{{visit.progressNotesAval}}</span>
+            <span (click)="getProgressNotes('#progress',visit.departureInfoId)">{{visit.progressNotesAval}}</span>
           </td>
-          <td class="Exception " [ngClass]="visit.exceptionCount>0?'blue':''" (click)="visit.exceptionCount>0?correctException(i):''" >
+          <td class="Exception " [ngClass]="visit.exceptionCount>0?'blue':''"
+            (click)="visit.exceptionCount>0?correctException(i):''">
             {{visit.exceptionCount}}/5
           </td>
           <td class="Approved">{{visit.isApproved }}</td>
@@ -632,15 +633,17 @@
           <div class="bg-white sign-portion">
             <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center "
               style="font-size: 100px; margin-top: 25px;"></i> -->
-              <img  getSignaturesresponse.psSignature [src]="('data:image/JPEG;base64,' +getSignaturesresponse.psSignature) | domsanitize"
-              alt="ps" class="img-fluid d-block m-auto">
+            <img getSignaturesresponse.psSignature
+              [src]="('data:image/JPEG;base64,' +getSignaturesresponse.psSignature) | domsanitize" alt="ps"
+              class="img-fluid d-block m-auto">
 
           </div>
 
           <h5 class="mt-4">DCS Signature</h5>
           <div class="bg-white sign-portion">
-            <img  getSignaturesresponse.dcsSignature [src]="('data:image/JPEG;base64,' +getSignaturesresponse.dcsSignature) | domsanitize"
-              alt="dcs" class="img-fluid d-block m-auto">
+            <img getSignaturesresponse.dcsSignature
+              [src]="('data:image/JPEG;base64,' +getSignaturesresponse.dcsSignature) | domsanitize" alt="dcs"
+              class="img-fluid d-block m-auto">
             <!-- <i class="fas fa-signature d-flex justify-content-center align-items-center " style="font-size: 100px; margin-top: 25px;"></i> -->
           </div>
         </div>
@@ -666,46 +669,45 @@
             <h5>WILLIAM ADAMS</h5>
             <h5>CCXP15</h5>
           </div>
-          <div class="p-3">
-            <p>1.Please select the PPE used during the visit:</p>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Mask</label>
+          <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
+            <div *ngIf="data.displayType=='checkbox'">
+              <p>{{i+1}}.{{data.question}}</p>
+              <div class="form-check" *ngFor="let option of formLovList;let j=index;">
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="form-check-input"
+                  id="exampleCheck{{i}}{{j}}">
+                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class="form-check-label text-dark mx-2"
+                  for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
+              </div>
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gloves</label>
+            <div *ngIf="data.displayType=='checkbox'">
+              <p>{{i+1}}.{{data.question}}</p>
+              <div class="form-check" *ngFor="let option of formLovList;let j=index;">
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'"type="radio" id="other{{i}}{{j}}" name="gender" value="other{{i}}{{j}}">
+                <label [ngClass]="data.lovId==option.lovId?'':'d-none'" for="other{{i}}{{j}}">{{option.displayName}}</label>
+              </div>
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Face Sheild</label>
+
+            <div *ngIf="data.displayType=='textbox'">
+              <div class="bottom-input pt-2">
+                <p>{{i+1}}.{{data.question}}</p>
+                <input type="text" />
+              </div>
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Gown</label>
+            <div *ngIf="data.displayType=='textarea'">
+              <div class="pt-2">
+                <p class="m-0 p-0">{{i+1}}.Please select the PPE used during the visit:</p>
+                <p>{{i+1}}.{{data.question}}</p>
+
+                <textarea rows="3" cols="35">
+                  </textarea>
+              </div>
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Eye Sheild</label>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label text-dark mx-2" for="exampleCheck1">Shoe Covers</label>
-            </div>
-            <div class="bottom-input pt-2">
-              <p class="m-0 p-0">2.Please select the PPE used during the visit:</p>
-              <input type="text" />
-            </div>
-            <div class="bottom-input pt-2">
-              <p class="m-0 p-0">3.Please select the PPE used during the visit:</p>
-              <input type="text" />
-            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<ng-template #notFoundTemplate let-notFound>
-  <div [innerHTML]="notFound" class="text-dark"></div>
-</ng-template>
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound" class="text-dark"></div>
+  </ng-template>

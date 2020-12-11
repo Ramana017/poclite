@@ -51,6 +51,9 @@ export class VisitReviewComponent implements OnInit {
   public getVisitTimesresponse: any = {};
   public getTaskListresponse: Array<any>;
   public getSignaturesresponse: any = {psSignature:'',dcsSignature:''}
+  public progressNotes;
+  public formLovList:Array<any>=[]
+  public progressNotesList:Array<any>=[]
 
   constructor(public apiservice: ApiserviceService, public modalService: BsModalService, public datepipe: DatePipe) {
     var data = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -138,7 +141,7 @@ export class VisitReviewComponent implements OnInit {
 
 
   }
-
+  // http://poc.aquilasoftware.com/poclite/supervisory/getProgressNotes?jsonObj={%22departureInfoId%22:1753646}
   public getVisitTimes(modalId, visitDetailsId) {
     try {
       let obj = { "visitDetailId": visitDetailsId }
@@ -177,6 +180,22 @@ export class VisitReviewComponent implements OnInit {
     } catch (error) {
 
     }
+  }
+  public getProgressNotes(modalId, departureInfoId) {
+    try {
+      let obj = { "departureInfoId": departureInfoId }
+      this.apiservice.getProgressNotes(JSON.stringify(obj)).subscribe(res => {
+        console.log(res)
+        let data: any = res;
+        this.progressNotes = data.progressNotes;
+        this.formLovList=data.formLovList;
+        this.progressNotesList=data.progressNotesList;
+        $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
+      })
+    } catch (error) {
+
+    }
+
   }
 
   public filtertoggles(flag, event) {

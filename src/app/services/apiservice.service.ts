@@ -208,6 +208,9 @@ export class ApiserviceService {
   public getSignatures(params) {
     return this._http.get(this.webserviceurl+"/supervisory/getSignatures?jsonObj="+params).pipe(catchError(this.errorHandler));
   }
+  public getProgressNotes(params) {
+    return this._http.get(this.webserviceurl+"/supervisory/getProgressNotes?jsonObj="+params).pipe(catchError(this.errorHandler));
+  }
   // method for error handling
 
   private errorHandler(error: HttpErrorResponse) {
