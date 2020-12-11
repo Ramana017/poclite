@@ -652,18 +652,18 @@
             <h5>CCXP15</h5>
           </div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
-            <div *ngIf="data.displayType=='checkbox'">
-              <p>{{i+1}}.{{data.question}}</p>
-              <div class="form-check" *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="t"
+            <div *ngIf="data.displayType=='checkbox'" class="ml-2">
+              <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
+              <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="mt-1"
                   id="exampleCheck{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
               </div>
             </div>
             <div *ngIf="data.displayType=='radio'">
-              <p>{{i+1}}.{{data.question}}</p>
-              <div class="form-check" *ngFor="let option of formLovList;let j=index;">
+              <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
+              <div class="" *ngFor="let option of formLovList;let j=index;">
                 <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="radio" id="other{{i}}{{j}}" class=""
                   name="gender" value="other{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
@@ -673,13 +673,13 @@
 
             <div *ngIf="data.displayType=='textbox'">
               <div class="bottom-input pt-2">
-                <p>{{i+1}}.{{data.question}}</p>
+                <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
                 <input type="text" />
               </div>
             </div>
             <div *ngIf="data.displayType=='textarea'">
               <div class="pt-2">
-                <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
+                <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
                 <textarea rows="3" cols="35">
                   </textarea>
@@ -687,7 +687,7 @@
             </div>
             <div *ngIf="data.displayType=='selectbox'">
               <div class="pt-2">
-                <p class="m-0 p-0">{{i+1}}.{{data.question}}</p>
+                <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
                 <select class="form-control">
                   <option>select</option>
                   <option [ngClass]="data.lovId==option.lovId?'':'d-none'"
