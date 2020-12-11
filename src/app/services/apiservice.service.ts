@@ -49,7 +49,7 @@ export class ApiserviceService {
   public tableFilterData(userid): Observable<object> {
     // console.log("+++++++++",this.baseURL);
     this.geturl()
-    return this._http.get(this.baseURL + "/getFilterData?jsonObj={" + "userId:" + userid + "}").pipe(catchError(this.errorHandler))
+    return this._http.get(this.baseURL + "/getFilterData?jsonObj="+userid).pipe(catchError(this.errorHandler))
   }
 
   // mileage exception Api

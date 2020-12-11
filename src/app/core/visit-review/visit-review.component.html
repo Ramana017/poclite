@@ -247,7 +247,7 @@
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
             <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
               (inputCleared)="selectFilterEvent('','css')"
-              (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+              (selected)='selectFilterEvent($event,"css")' [itemTemplate]="itemTemplatecss"
               [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
             <ng-template style="width: 100%;" #itemTemplatecss let-item>
@@ -263,13 +263,13 @@
         <div class="mr-0">
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
-            <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="Payor"
-              (inputCleared)="selectFilterEvent('','css')"
-              (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+            <ng-autocomplete [data]="payorPlanList"  [searchKeyword]="'displayName'" #autopayor placeHolder="Payor/Plan"
+              (inputCleared)="selectFilterEvent('','payor')"
+              (selected)='selectFilterEvent($event,"payor")' [itemTemplate]="itemTemplatepayor"
               [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
-            <ng-template style="width: 100%;" #itemTemplatecss let-item>
-              <a [innerHTML]="item.cssName"></a>
+            <ng-template style="width: 100%;" #itemTemplatepayor let-item>
+              <a [innerHTML]="item.displayName"></a>
             </ng-template>
             <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
 

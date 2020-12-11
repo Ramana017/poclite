@@ -353,7 +353,8 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
     console.log("calling filter api")
     try {
       console.log(this.userId)
-      this._apiservice.tableFilterData(this.userId).subscribe(response => {
+      let obj={"userId":this.userId}
+      this._apiservice.tableFilterData(JSON.stringify(obj)).subscribe(response => {
         console.log(response);
         this.filterResponseData = response;
         this.siteList = this.filterResponseData.siteList;

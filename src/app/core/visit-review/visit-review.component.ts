@@ -308,11 +308,11 @@ export class VisitReviewComponent implements OnInit {
     noDataLabel: "No Data Available",
     classes: "myclass custom-class",
     showCheckbox: true,
-    labelKey: "siteCode",
+    labelKey: "displayName",
     // limitSelection: 3,
     primaryKey: 'siteCode',
     escapeToClose: false,
-    searchBy: ['siteCode'],
+    searchBy: ['displayName'],
     position: 'top'
 
   };
@@ -340,7 +340,7 @@ export class VisitReviewComponent implements OnInit {
   public getFilterData() {
     try {
       let obj={"userId":this.userId,"payorPlanRequired":1}
-      this.apiservice.tableFilterData(JSON.stringify(this.userId)).subscribe(res => {
+      this.apiservice.tableFilterData(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         let data: any = res;
         this.psList = data.psList;
@@ -349,7 +349,13 @@ export class VisitReviewComponent implements OnInit {
         this.serviceList = data.serviceList;
         this.siteList = data.siteList;
         this.payorPlanList=data.payorPlanList;
-
+         this.siteList.map(x=>{
+           x.displayName=x.siteName+'('+x.siteCode+')'
+         })
+        this.payorPlanList.map(x=>{
+          x.displayName=x.planName+'('+x.payorCode+'/'+x.planCode+')'
+        })
+console.log(this.payorPlanList)
       })
     } catch (error) {
 
