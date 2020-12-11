@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="visit-review-wrapper p-2">
-  <div class=" bg-blue w-100 px-4 py-2">
+  <div class="bg-blue w-100 px-4 py-2">
 
     <!-- <div class="position-relative form-input w-250">
       <input type="text" class="form-control " placeholder="Search....">
@@ -455,9 +455,9 @@
       </tbody>
     </table>
     <p *ngIf="visitReviewListList.length==0" class="no-records text-center">No Records Found</p>
-
   </div>
-  <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-2">
+
+  <!-- <div class="pagination-wrapper table-responsive justify-content-lg-end d-flex mt-2">
     <div class="pagination  justify-content-end pagination-button">
       <div class="d-flex align-items-center">
         <h6 class="mx-3">Per page</h6>
@@ -479,8 +479,8 @@
           class="btn-green btn-border text-white mx-2">Next</button>
       </div>
     </div>
-    <!-- Pagination end  -->
-  </div>
+  </div> -->
+  
 </div>
 
 
@@ -711,3 +711,4 @@
   <ng-template #notFoundTemplate let-notFound>
     <div [innerHTML]="notFound" class="text-dark"></div>
   </ng-template>
+</div>
