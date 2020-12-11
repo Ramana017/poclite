@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="visit-review-wrapper p-2">
-  <div class="bg-blue w-100 px-4 py-2">
+  <div class="bg-blue w-100 px-4 py-2 d-flex justify-content-between align-items-end">
 
     <!-- <div class="position-relative form-input w-250">
       <input type="text" class="form-control " placeholder="Search....">
@@ -147,102 +147,158 @@
 
     </div> -->
 
-    <div class="d-flex align-items-center justify-content-between">
+    <div>
+      <div class="d-flex align-items-center justify-content-between">
 
-      <div>
-        <div class="d-flex justify-content-start  mb-2">
-          <div class="check-box-wrapper">
-            <div class="on-off-toggle">
-              <input class="on-off-toggle__input" (click)="filtertoggles('ps',$event)" id="bopis" name='active'
-                type="checkbox" value=1 />
-              <label for="bopis" class="on-off-toggle__slider"></label>
+        <div class="mr-5">
+          <div class="d-flex justify-content-start  mb-2">
+            <div class="check-box-wrapper">
+              <div class="on-off-toggle">
+                <input class="on-off-toggle__input" (click)="filtertoggles('ps',$event)" id="bopis" name='active'
+                  type="checkbox" value=1 />
+                <label for="bopis" class="on-off-toggle__slider"></label>
+              </div>
             </div>
+            <label class="m-0 pl-3 font-size-15 text-white">
+              PS Signature
+            </label>
           </div>
-          <label class="m-0 pl-3 font-size-15 text-white">
-            PS Signature
-          </label>
+  
+          <div class="input-group form-input align-items-center header-input">
+            <!-- <input type="text" [typeahead]="siteList" [(ngModel)]="psSelected" [typeaheadMinLength]='0'
+              typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
+            <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officelist" [settings]="dropdownSettings">
+            </angular2-multiselect>
+            <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+          </div>
         </div>
-
-        <div class="input-group form-input align-items-center header-input">
-          <!-- <input type="text" [typeahead]="siteList" [(ngModel)]="psSelected" [typeaheadMinLength]='0'
-            typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
-          <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officelist" [settings]="dropdownSettings">
-          </angular2-multiselect>
-          <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+  
+        <div class="mx-5">
+          <div class="d-flex justify-content-start  mb-2">
+            <div class="check-box-wrapper">
+              <div class="on-off-toggle">
+                <input class="on-off-toggle__input" id="bopis1" (click)="filtertoggles('dcs',$event)" name='active'
+                  type="checkbox" value=1 />
+                <label for="bopis1" class="on-off-toggle__slider"></label>
+              </div>
+            </div>
+            <label class="m-0 pl-3 font-size-15 text-white">
+              DCS Signature
+            </label>
+          </div>
+  
+          <div class="input-group form-input align-items-center header-input">
+            <!-- <input type="text" class="form-control" placeholder="PS"> -->
+            <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
+              (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
+              [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+            <ng-template style="width: 100%;" #itemTemplateps let-item>
+              <a [innerHTML]="item.psName"></a>
+            </ng-template>
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+          </div>
+  
         </div>
+  
+        <div class="mx-5">
+          <div class="d-flex justify-content-start  mb-2">
+            <div class="check-box-wrapper">
+              <div class="on-off-toggle">
+                <input class="on-off-toggle__input" (click)="filtertoggles('task',$event)" id="bopis2" name='active'
+                  type="checkbox" value=1 />
+                <label for="bopis2" class="on-off-toggle__slider"></label>
+              </div>
+            </div>
+            <label class="m-0 pl-3 font-size-15 text-white">
+              Tasks
+            </label>
+          </div>
+  
+          <div class="input-group form-input align-items-center header-input">
+            <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'" #autodcs placeHolder="DCS"
+              (inputCleared)="selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")'
+              [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+            <ng-template style="width: 100%;" #itemTemplatedcs let-item>
+              <a [innerHTML]="item.dcsName"></a>
+            </ng-template>
+            <!-- <input type="text" class="form-control" [(ngModel)]="dcsSelected" [typeahead]="dcsList" [typeaheadMinLength]='0' typeaheadOptionField="dcsName" placeholder="DCS"> -->
+            <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-user-md ml-2 right-icon"></i>
+          </div>
+        </div >
+  
+        <div class="mx-5">
+          <div class="d-flex justify-content-start  mb-2">
+            <div class="check-box-wrapper">
+              <div class="on-off-toggle">
+                <input class="on-off-toggle__input" id="bopis3" (click)="filtertoggles('progress',$event)" name='active'
+                  type="checkbox" value=1 />
+                <label for="bopis3" class="on-off-toggle__slider"></label>
+              </div>
+            </div>
+            <label class="m-0 pl-3 font-size-15 text-white">
+              Progress Notes
+            </label>
+          </div>
+  
+          <div class="input-group form-input align-items-center header-input">
+            <!-- <input type="text" class="form-control" placeholder="CSS"> -->
+            <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
+              (inputCleared)="selectFilterEvent('','css')"
+              (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""' [itemTemplate]="itemTemplatecss"
+              [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+            <ng-template style="width: 100%;" #itemTemplatecss let-item>
+              <a [innerHTML]="item.cssName"></a>
+            </ng-template>
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+          </div>
+        </div>
+  
       </div>
-
-      <div>
-        <div class="d-flex justify-content-start  mb-2">
-          <div class="check-box-wrapper">
-            <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis1" (click)="filtertoggles('dcs',$event)" name='active'
-                type="checkbox" value=1 />
-              <label for="bopis1" class="on-off-toggle__slider"></label>
-            </div>
+  
+      <div class="d-flex align-items-center justify-content-between mt-2">
+        <div class="mr-5">
+          <div class="input-group form-input align-items-center header-input mr-2">
+            <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'" #autoservice
+              placeHolder="Service" (inputCleared)="selectFilterEvent('','service')"
+              (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
+              [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+    
+            <ng-template style="width: 100%;" #itemTemplateservice let-item>
+              <a [innerHTML]="item.serviceName"></a>
+            </ng-template>
+            <!-- <input type="text" class="form-control" placeholder="Service"> -->
+            <!-- <i class="fad fa-users-medical"></i> -->
+            <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-notes-medical ml-2 right-icon"></i>
           </div>
-          <label class="m-0 pl-3 font-size-15 text-white">
-            DCS Signature
-          </label>
         </div>
-
-        <div class="input-group form-input align-items-center header-input">
-          <!-- <input type="text" class="form-control" placeholder="PS"> -->
-          <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
-            (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
-            [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
-          </ng-autocomplete>
-          <ng-template style="width: 100%;" #itemTemplateps let-item>
-            <a [innerHTML]="item.psName"></a>
-          </ng-template>
-          <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
-        </div>
-
-      </div>
-
-      <div>
-        <div class="d-flex justify-content-start  mb-2">
-          <div class="check-box-wrapper">
-            <div class="on-off-toggle">
-              <input class="on-off-toggle__input" (click)="filtertoggles('task',$event)" id="bopis2" name='active'
-                type="checkbox" value=1 />
-              <label for="bopis2" class="on-off-toggle__slider"></label>
-            </div>
+        
+  
+        <div class="mx-5">
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" bsDatepicker [maxDate]="scheEndDate" (ngModelChange)="datchange()"
+              [(ngModel)]=" scheBeginDate" placeholder="Scheduled Start">
+            <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
           </div>
-          <label class="m-0 pl-3 font-size-15 text-white">
-            Tasks
-          </label>
+  
         </div>
-
-        <div class="input-group form-input align-items-center header-input">
-          <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'" #autodcs placeHolder="DCS"
-            (inputCleared)="selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")'
-            [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate">
-          </ng-autocomplete>
-          <ng-template style="width: 100%;" #itemTemplatedcs let-item>
-            <a [innerHTML]="item.dcsName"></a>
-          </ng-template>
-          <!-- <input type="text" class="form-control" [(ngModel)]="dcsSelected" [typeahead]="dcsList" [typeaheadMinLength]='0' typeaheadOptionField="dcsName" placeholder="DCS"> -->
-          <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
-          <i class="fas fa-user-md ml-2 right-icon"></i>
-        </div>
-      </div>
-
-      <div>
-        <div class="d-flex justify-content-start  mb-2">
-          <div class="check-box-wrapper">
-            <div class="on-off-toggle">
-              <input class="on-off-toggle__input" id="bopis3" (click)="filtertoggles('progress',$event)" name='active'
-                type="checkbox" value=1 />
-              <label for="bopis3" class="on-off-toggle__slider"></label>
-            </div>
+  
+        <div class="mx-5">
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" bsDatepicker [minDate]="scheBeginDate" [maxDate]="systemDate"
+              (ngModelChange)="datchange()" [(ngModel)]="scheEndDate" placeholder="Scheduled End">
+            <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
           </div>
-          <label class="m-0 pl-3 font-size-15 text-white">
-            Progress Notes
-          </label>
         </div>
-
-        <div class="input-group form-input align-items-center header-input">
+  
+        <div class="input-group form-input align-items-center header-input mx-5">
           <!-- <input type="text" class="form-control" placeholder="CSS"> -->
           <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
             (inputCleared)="selectFilterEvent('','css')"
@@ -253,60 +309,20 @@
             <a [innerHTML]="item.cssName"></a>
           </ng-template>
           <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+  
         </div>
       </div>
-
-
     </div>
 
-    <div class="d-flex align-items-center justify-content-between mt-2">
-      <div class="input-group form-input align-items-center header-input">
-        <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'" #autoservice
-          placeHolder="Service" (inputCleared)="selectFilterEvent('','service')"
-          (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
-          [notFoundTemplate]="notFoundTemplate">
-        </ng-autocomplete>
-
-        <ng-template style="width: 100%;" #itemTemplateservice let-item>
-          <a [innerHTML]="item.serviceName"></a>
-        </ng-template>
-        <!-- <input type="text" class="form-control" placeholder="Service"> -->
-        <!-- <i class="fad fa-users-medical"></i> -->
-        <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
-        <i class="fas fa-notes-medical ml-2 right-icon"></i>
+    <div>
+      <div class="">
+        <button (click)="getVisitReviewList()"
+          class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-40 ml-auto">
+            <i class="fas fa-search mr-2"></i>
+        </button>
       </div>
-
-      <div>
-        <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" bsDatepicker [maxDate]="scheEndDate" (ngModelChange)="datchange()"
-            [(ngModel)]=" scheBeginDate" placeholder="Scheduled Start">
-          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
-        </div>
-
-      </div>
-
-      <div>
-        <div class="input-group form-input align-items-center header-input">
-          <input type="text" class="form-control" bsDatepicker [minDate]="scheBeginDate" [maxDate]="systemDate"
-            (ngModelChange)="datchange()" [(ngModel)]="scheEndDate" placeholder="Scheduled End">
-          <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
-          <i class="fas fa-calendar-week  ml-2 right-icon-danger "></i>
-        </div>
-
-      </div>
-
-      <div>
-        <div class="header-input">
-          <button (click)="getVisitReviewList()"
-            class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-80px ml-auto"><span
-              class=" mr-2">
-              <i class="fas fa-search"></i>
-            </span>Search</button>
-        </div>
-      </div>
-
     </div>
+
   </div>
 
   <div class="table-responsive box-shadow ">
@@ -504,6 +520,9 @@
                 <i *ngIf="data.taskAcceptFlag==0" class="fas fa-times-circle f-18 text-danger"></i>
 
               </span>
+              <div class="alert alert-danger mt-2" role="alert">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, vitae harum id error molestias
+              </div>
             </div>
           </div>
         </div>
