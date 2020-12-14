@@ -188,7 +188,7 @@ export class SummarytableComponent implements OnInit, AfterViewInit {
     {
 
       let siteList = this.selctedItems.length > 0 ? this.selctedItems.map(a => a.siteId) : [0];
-      let exceptionArray = this.exceptionSelected.length > 0 ? (this.exceptionSelected.map(a => a.id)) : [0];
+      let exceptionArray = this.exceptionSelected.length > 0 ? (this.exceptionSelected.map(a => a.id)) : [1];
       this.apiParameters = { "userId": this.userId, "officeId": siteList, "psId": this.psId, "dcsId": this.dcsId, "cssId": this.csssId, "serviceId": this.serviceId, "scheBeginDate": scheBeginDate, "scheEndDate": scheEndDate, "lowerBound": this.lowerBound, "upperBound": this.upperBound, 'exceptionFlag': exceptionArray };
       let jsondatastring = JSON.stringify(this.apiParameters)
       console.log(jsondatastring)

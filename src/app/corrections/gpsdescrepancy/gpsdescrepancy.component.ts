@@ -6,6 +6,8 @@ import swal from 'sweetalert2';
 import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapTypeControlOptions, MapTypeId } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+declare var $: any;
+
 
 @Component({
   selector: 'app-gpsdescrepancy',
@@ -76,10 +78,13 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public clockinDone: boolean = true;
   public clockOutDone: boolean = true;
-  public clockInComments: string=" ";
-  public clockOutComments: string=" ";
-  public geoCoordResultsIdRadio:number;
-  public googleFormattedAddress:string='';
+  public clockInComments: string = " ";
+  public clockOutComments: string = " ";
+  public geoCoordResultsIdRadio: number;
+  public googleFormattedAddress: string = '';
+
+  public geoCoordinatesRange: any = {};
+  public psAddress: any = {};
 
 
 
@@ -164,7 +169,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.psFormatAddressList = this.getResponseData.psFormatAddressList;
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
-          this.geoCoordResultsIdRadio=this.getResponseData.geoCoordResultsId;
+          this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
           this.defaultpsdetails();
 
           if (this.arrivalgpsErr == true) {
@@ -206,49 +211,49 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public acceptGpsException(event: string) {
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    let commentLength=clockinflag==1?this.clockInComments.trim().length:this.clockOutComments.trim().length;
-    if(commentLength>0){
-    var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag ==1? this.clockInComments : '', "clockOutComments": clockOutFlag ==1? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
-    var parameters = JSON.stringify(jsonObj)
-    try {
-      this.apiservice.acceptGpsException(parameters).subscribe(
-        response => {
-          console.log(response);
-          this.arrivalgpsErr = event == "clockin" ? false : this.arrivalgpsErr;
-          this.depgpsErr = event == "clockout" ? false : this.depgpsErr;
-          if (this.arrivalgpsErr == false && this.depgpsErr == false) {
-            swal.fire({
-              text: "Accepted successfully",
-              icon: "success",
-              confirmButtonText: 'Ok',
-              allowOutsideClick: false
-            }).then(ok => {
-              let merged = {...this.jsonData, ...response};
-               if(this.apiservice.checkException(merged)){
-                this.popupUpdate.emit();
-              }else{
-                this.apiservice.updateTable.next(true);
-                this.bsmodelRef.hide();
-              }
+    let commentLength = clockinflag == 1 ? this.clockInComments.trim().length : this.clockOutComments.trim().length;
+    if (commentLength > 0) {
+      var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag == 1 ? this.clockInComments : '', "clockOutComments": clockOutFlag == 1 ? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+      var parameters = JSON.stringify(jsonObj)
+      try {
+        this.apiservice.acceptGpsException(parameters).subscribe(
+          response => {
+            console.log(response);
+            this.arrivalgpsErr = event == "clockin" ? false : this.arrivalgpsErr;
+            this.depgpsErr = event == "clockout" ? false : this.depgpsErr;
+            if (this.arrivalgpsErr == false && this.depgpsErr == false) {
+              swal.fire({
+                text: "Accepted successfully",
+                icon: "success",
+                confirmButtonText: 'Ok',
+                allowOutsideClick: false
+              }).then(ok => {
+                let merged = { ...this.jsonData, ...response };
+                if (this.apiservice.checkException(merged)) {
+                  this.popupUpdate.emit();
+                } else {
+                  this.apiservice.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                }
 
-            })
+              })
+            }
+
           }
-
-        }
-      )
+        )
+      }
+      catch (error) {
+        console.log(error);
+      }
+    } else {
+      let data = event == "clockin" ? " Clock In" : " Clock Out";
+      swal.fire({
+        title: "Invalid Comments",
+        text: "Please Enter" + data + " comments before Accept",
+        icon: "warning",
+        confirmButtonText: 'Ok',
+      })
     }
-    catch (error) {
-      console.log(error);
-    }
-  }else{
-    let data= event=="clockin"?" Clock In":" Clock Out";
-    swal.fire({
-      title: "Invalid Comments",
-      text:"Please Enter"+ data +" comments before Accept",
-      icon: "warning",
-      confirmButtonText: 'Ok',
-    })
-  }
 
 
   }
@@ -269,10 +274,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               confirmButtonText: 'Ok',
               allowOutsideClick: false
             }).then(OK => {
-              let merged = {...this.jsonData, ...response};
-              if(this.apiservice.checkException(merged)){
+              let merged = { ...this.jsonData, ...response };
+              if (this.apiservice.checkException(merged)) {
                 this.popupUpdate.emit();
-              }else{
+              } else {
                 this.apiservice.updateTable.next(true);
                 this.bsmodelRef.hide();
               }
@@ -363,7 +368,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         this.psdetailsSelectedAddress = this.psAddressList[i].address;
         this.psdetailsSelectedLatitude = this.psAddressList[i].latitude;
         this.psdetailsSelectedLongitude = this.psAddressList[i].longitude;
-        this.googleFormattedAddress=this.psAddressList[i].googleFormattedAddress;
+        this.googleFormattedAddress = this.psAddressList[i].googleFormattedAddress;
       }
     }
   }
@@ -403,12 +408,34 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
   }
-  public agmConfigFactory1(value,config?: LazyMapsAPILoaderConfigLiteral){
+  public agmConfigFactory1(value, config?: LazyMapsAPILoaderConfigLiteral) {
     config.apiKey = value;
   }
+  public openmodal(modaId) {
+    this.savebutton = false
+    this.fomatAddressManualInput = true;
+    let obj = { "psAddressId": this.psAddressId }
+    this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
+      console.log(res);
+      this.geoCoordinatesRange = res.geoCoordinatesRange;
+      this.psAddress = res.psAddress
+      $(modaId).modal('show')
+    })
+  }
 
+  public zipCode(event) {
+    console.log(event)
+    let trimmed = event.target.value.replace(/\D/g, '');
+
+    let value: string =trimmed
+    if (value.length == 5) {
+      this.apiservice.getZipcodeDetails(value).subscribe(res => {
+        console.log(res);
+      })
+    }
+  }
 }
-export function agmConfigFactory(value,config?: LazyMapsAPILoaderConfigLiteral){
+export function agmConfigFactory(value, config?: LazyMapsAPILoaderConfigLiteral) {
   config.apiKey = value;
 }
 

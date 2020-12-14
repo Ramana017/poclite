@@ -106,7 +106,15 @@ export class ApiserviceService {
     this.geturl();
     return this._http.get(this.baseURL + "/saveFormatAddress?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
-
+   public getPSAddressData(jsondata: string): Observable<any> {
+    this.geturl();
+    return this._http.get(this.baseURL + "/getPSAddressData?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+  }
+  public getZipcodeDetails(zipCode): Observable<any> {
+    this.geturl()
+    let zip = { 'zipCode': zipCode };
+    return this._http.get(this.webserviceurl + '/dashboard/getZipCodeDetails?jsonObj=' + JSON.stringify(zip)).pipe(catchError(this.errorHandler));
+  }
 
 
   //public schedule variance

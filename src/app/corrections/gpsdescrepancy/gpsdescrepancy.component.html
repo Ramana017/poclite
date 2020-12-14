@@ -157,7 +157,7 @@
         </div>
         <div class="ps-detail-wrapper">
           <!-- <p>Washington, LA 70589, USA Latitude: 30.6163087, Longitude: -84.8461837</p> -->
-          <p>{{psdetailsSelectedAddress}} <br><br> <b>Formatted Address: </b>{{googleFormattedAddress}} <br> Latitude:
+          <p><b>Base Address:</b>{{psdetailsSelectedAddress}} <br><br> <b>Formatted Address: </b>{{googleFormattedAddress}} <br> Latitude:
             {{psdetailsSelectedLatitude}}, Longitude: {{psdetailsSelectedLongitude}}
           </p>
         </div>
@@ -205,7 +205,7 @@
                   </td>
                   <td>
                     <div class="input-btn d-flex">
-                      <i class="fas fa-map-marker-alt mt-2 mr-2 ml-2" data-toggle="modal" data-target="#exampleModalCenter"></i>
+                      <i class="fas fa-map-marker-alt mt-2 mr-2 ml-2" (click)="openmodal('#exampleModalCenter')" ></i>
                       <input type="text" [disabled]="!fomatAddressManualInput" name="" placeholder=""
                         [(ngModel)]="manualAddress" class="mr-2" />
                     </div>
@@ -297,50 +297,50 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <div>
           <div class="form-group d-flex">
             <label for="staticEmail" class="col-sm-4 col-form-label m-0">Address Line #1</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text"  class="form-control" [(ngModel)]="psAddress.street" id="staticEmail" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" class="col-sm-4 col-form-label m-0">Address Line #2</label>
+            <label for="staticEmail1" class="col-sm-4 col-form-label m-0">Address Line #2</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text"  class="form-control"[(ngModel)]="psAddress.suite" id="staticEmail1" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" readonly class="col-sm-4 col-form-label m-0">City</label>
+            <label for="staticEmail2" readonly class="col-sm-4 col-form-label m-0">City</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text" readonly class="form-control" [(ngModel)]="psAddress.city" id="staticEmail2" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" readonly class="col-sm-4 col-form-label m-0">State</label>
+            <label for="staticEmail3" readonly class="col-sm-4 col-form-label m-0">State</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text" readonly [(ngModel)]="psAddress.stateName" class="form-control" id="staticEmail3" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" class="col-sm-4 col-form-label m-0">Zip Code</label>
+            <label for="staticEmail4"  class="col-sm-4 col-form-label m-0">Zip Code</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text" maxlength="5" (keyup)="zipCode($event)" [(ngModel)]="psAddress.zipCode"  class="form-control" id="staticEmail4" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" class="col-sm-4 col-form-label m-0">Latitude</label>
+            <label for="staticEmail5" class="col-sm-4 col-form-label m-0">Latitude</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text"  class="form-control" id="staticEmail5" value="">
             </div>
           </div>
           <div class="form-group d-flex">
-            <label for="staticEmail" class="col-sm-4 col-form-label m-0">Longitude</label>
+            <label for="staticEmail6" class="col-sm-4 col-form-label m-0">Longitude</label>
             <div class="mx-4">
-              <input type="text"  class="form-control" id="staticEmail" value="">
+              <input type="text"  class="form-control" id="staticEmail6" value="">
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary btn-common" data-dismiss="modal">Close</button>
