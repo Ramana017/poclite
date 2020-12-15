@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CorrectionheaderComponent } from 'src/app/corrections/correctionheader/correctionheader.component';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
+import Swal from 'sweetalert2';
 import { ReviewExceptionpopupComponent } from '../review-exceptionpopup/review-exceptionpopup.component';
 declare var $: any;
 
@@ -27,7 +28,7 @@ export class VisitReviewComponent implements OnInit {
   public dcsId: number = 0;
   public cssId: number = 0;
   public serviceId: number = 0;
-  public payorPlanId:number=0;
+  public payorPlanId: number = 0;
   public officelist: Array<any> = [];
   public noProgressNotesFlag: boolean = false;
   public noPSSignatureFlag: boolean = false;
@@ -41,7 +42,7 @@ export class VisitReviewComponent implements OnInit {
   public cssList: Array<any> = [];
   public dcsList: Array<any> = [];
   public psList: Array<any> = [];
-  public payorPlanList:Array<any>=[];
+  public payorPlanList: Array<any> = [];
   public serviceList: Array<any> = [];
   public siteList: Array<any> = [];
   public scheBeginDate: Date = new Date();
@@ -53,9 +54,9 @@ export class VisitReviewComponent implements OnInit {
   public dcsSelected;
   public getVisitTimesresponse: any = {};
   public getTaskListresponse: Array<any>;
-  public getSignaturesresponse: any = {psSignature:'',dcsSignature:''}
+  public getSignaturesresponse: any = { psSignature: '', dcsSignature: '' }
   public progressNotes;
-  public formLovList:Array<any>=[];
+  public formLovList: Array<any> = [];
   // [{
   //   "lovValueId": 2,
   //   "displayName": "Female",
@@ -217,7 +218,7 @@ export class VisitReviewComponent implements OnInit {
   //   "lovActive": 1,
   //   "value": "Strongly Disagree"
   // }]
-  public progressNotesList:Array<any>=[];
+  public progressNotesList: Array<any> = [];
   // [{
   //   "surveyDetailsId": 2,
   //   "displayType": "textarea",
@@ -289,7 +290,7 @@ export class VisitReviewComponent implements OnInit {
   //   "lovId": 0,
   //   "active": 1
   // }];
-  public progressmodel:boolean=false;
+  public progressmodel: boolean = false;
 
   constructor(public apiservice: ApiserviceService, public modalService: BsModalService, public datepipe: DatePipe) {
     var data = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -322,7 +323,7 @@ export class VisitReviewComponent implements OnInit {
     this.getVisitReviewList();
   }
   public getVisitReviewList() {
-    let obj = { "userId": this.userId, "officeIds": this.officelist.length > 0 ? this.officelist.map(x => x.siteId) : [], "psId": this.psId, "dcsId": this.dcsId, "cssId": this.cssId,"payorPlanId":this.payorPlanId, "serviceId": this.serviceId, "scheBeginDate": this.datepipe.transform(this.scheBeginDate, 'MM/dd/yyyy'), "scheEndDate": this.datepipe.transform(this.scheEndDate, 'MM/dd/yyyy'), "noPSSignatureFlag": this.noPSSignatureFlag ? 1 : 0, "noDCSSignatureFlag": this.noDCSSignatureFlag ? 1 : 0, "noTaskFlag": this.noTaskFlag ? 1 : 0, "noProgressNotesFlag": this.noProgressNotesFlag ? 1 : 0, "lowerBound": this.lowerBound, "upperBound": this.upperBound }
+    let obj = { "userId": this.userId, "officeIds": this.officelist.length > 0 ? this.officelist.map(x => x.siteId) : [], "psId": this.psId, "dcsId": this.dcsId, "cssId": this.cssId, "payorPlanId": this.payorPlanId, "serviceId": this.serviceId, "scheBeginDate": this.datepipe.transform(this.scheBeginDate, 'MM/dd/yyyy'), "scheEndDate": this.datepipe.transform(this.scheEndDate, 'MM/dd/yyyy'), "noPSSignatureFlag": this.noPSSignatureFlag ? 1 : 0, "noDCSSignatureFlag": this.noDCSSignatureFlag ? 1 : 0, "noTaskFlag": this.noTaskFlag ? 1 : 0, "noProgressNotesFlag": this.noProgressNotesFlag ? 1 : 0, "lowerBound": this.lowerBound, "upperBound": this.upperBound }
     try {
       this.apiservice.getVisitReviewList(JSON.stringify(obj)).subscribe(
         res => {
@@ -337,9 +338,22 @@ export class VisitReviewComponent implements OnInit {
 
     }
   }
+  public applyFilters() {
+    if (this.scheBeginDate == null || this.scheEndDate == null) {
+      Swal.fire({
+        title: "Invalid Dates",
+        text: 'Scheduled Start and Scheduled End are Mandatory Fields',
+        icon: "warning",
+        confirmButtonText: 'ok',
+
+      })
+    }else{
+      this.getVisitReviewList()
+    }
+  }
   public getFilterData() {
     try {
-      let obj={"userId":this.userId,"payorPlanRequired":1}
+      let obj = { "userId": this.userId, "payorPlanRequired": 1 }
       this.apiservice.tableFilterData(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         let data: any = res;
@@ -348,14 +362,14 @@ export class VisitReviewComponent implements OnInit {
         this.cssList = data.CSSList;
         this.serviceList = data.serviceList;
         this.siteList = data.siteList;
-        this.payorPlanList=data.payorPlanList;
-         this.siteList.map(x=>{
-           x.displayName=x.siteName+'('+x.siteCode+')'
-         })
-        this.payorPlanList.map(x=>{
-          x.displayName=x.planName+'('+x.payorCode+'/'+x.planCode+')'
+        this.payorPlanList = data.payorPlanList;
+        this.siteList.map(x => {
+          x.displayName = x.siteName + '(' + x.siteCode + ')'
         })
-console.log(this.payorPlanList)
+        this.payorPlanList.map(x => {
+          x.displayName = x.planName + '(' + x.payorCode + '/' + x.planCode + ')'
+        })
+        console.log(this.payorPlanList)
       })
     } catch (error) {
 
@@ -417,9 +431,9 @@ console.log(this.payorPlanList)
     }
 
   }
-  public getSignatures(modalId, arrivalInfoId,departureInfoId) {
+  public getSignatures(modalId, arrivalInfoId, departureInfoId) {
     try {
-      let obj = {"arrivalInfoId":arrivalInfoId,"departureInfoId":departureInfoId}
+      let obj = { "arrivalInfoId": arrivalInfoId, "departureInfoId": departureInfoId }
       this.apiservice.getSignatures(JSON.stringify(obj)).subscribe(res => {
         console.log(res)
         this.getSignaturesresponse = res;
@@ -430,7 +444,7 @@ console.log(this.payorPlanList)
     }
   }
   public getProgressNotes(modalId, departureInfoId) {
-    this.progressmodel=true;
+    this.progressmodel = true;
 
     try {
       let obj = { "departureInfoId": departureInfoId }
@@ -438,8 +452,8 @@ console.log(this.payorPlanList)
         console.log(res)
         let data: any = res;
         this.progressNotes = data.progressNotes;
-        this.formLovList=data.formLovList;
-        this.progressNotesList=data.progressNotesList;
+        this.formLovList = data.formLovList;
+        this.progressNotesList = data.progressNotesList;
         $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
       })
     } catch (error) {
@@ -447,19 +461,19 @@ console.log(this.payorPlanList)
     }
 
   }
-  modelhide(){
-    this.progressmodel=false;
+  modelhide() {
+    this.progressmodel = false;
   }
 
   public filtertoggles(flag, event) {
-    console.log(event.target.checked);
-    if (flag = "ps") {
+    console.log(event.target.checked, flag);
+    if (flag == "ps") {
       this.noPSSignatureFlag = event.target.checked
-    } else if (flag = "task") {
+    } else if (flag == "task") {
       this.noTaskFlag = event.target.checked
-    } else if (flag = "dcs") {
+    } else if (flag == "dcs") {
       this.noDCSSignatureFlag = event.target.checked
-    } else if (flag = "progress") {
+    } else if (flag == "progress") {
       this.noProgressNotesFlag = event.target.checked
     }
   }
@@ -502,30 +516,30 @@ console.log(this.payorPlanList)
     this.getVisitReviewList();
   }
 
-  public correctException(i: number) :void{
+  public correctException(i: number): void {
     // this.exceptionCount = 0;
-let disp;
+    let disp;
     console.log("++++", this.visitReviewListList[i])
-    this.visitReviewListList[i].ArrGpsException=this.visitReviewListList[i].arrGpsException
-    this.visitReviewListList[i].DepGpsException=this.visitReviewListList[i].depGpsException
-    this.visitReviewListList[i].id=this.visitReviewListList[i].callMgmtExceptionsId
+    this.visitReviewListList[i].ArrGpsException = this.visitReviewListList[i].arrGpsException
+    this.visitReviewListList[i].DepGpsException = this.visitReviewListList[i].depGpsException
+    this.visitReviewListList[i].id = this.visitReviewListList[i].callMgmtExceptionsId
 
     //checking exception counts -----------------------------------------------------------------------------
     if (this.visitReviewListList[i].arrGpsException == 1 || this.visitReviewListList[i].depGpsException == 1) {
-      disp=0;
-    }else
-    if (this.visitReviewListList[i].arrCallerIdException == 1 || this.visitReviewListList[i].depCallerIdException == 1) {
-      disp=2;
-    }else
-    if (this.visitReviewListList[i].scheduleVarException == 1) {
-      disp=1;
-    }else
-    if (this.visitReviewListList[i].arrTravelTimeException == 1) {
-      disp=3;
-    }else
-    if (this.visitReviewListList[i].depMileageException == 1 || this.visitReviewListList[i].arrMileageException == 1) {
-      disp=4;
-    }
+      disp = 0;
+    } else
+      if (this.visitReviewListList[i].arrCallerIdException == 1 || this.visitReviewListList[i].depCallerIdException == 1) {
+        disp = 2;
+      } else
+        if (this.visitReviewListList[i].scheduleVarException == 1) {
+          disp = 1;
+        } else
+          if (this.visitReviewListList[i].arrTravelTimeException == 1) {
+            disp = 3;
+          } else
+            if (this.visitReviewListList[i].depMileageException == 1 || this.visitReviewListList[i].arrMileageException == 1) {
+              disp = 4;
+            }
 
     //----------------------------------------------------------------------------------------------------
     var userData = JSON.stringify(this.visitReviewListList[i])
@@ -598,8 +612,8 @@ interface visitReviewList {
   isApproved: string,
   arrivalInfoId: number,
   departureInfoId: number,
-  ArrGpsException:number,
-  DepGpsException:number,
-  id:number
+  ArrGpsException: number,
+  DepGpsException: number,
+  id: number
 
 }

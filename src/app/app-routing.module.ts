@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
-  { path: 'visitreview', component: VisitReviewComponent },
+  { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },

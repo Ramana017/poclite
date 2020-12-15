@@ -152,7 +152,7 @@
 
         <div class="mr-5">
           <div class="d-flex justify-content-start  mb-2">
-            <input class="form-check-input ml-2" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input ml-2" (click)="filtertoggles('ps',$event)" type="checkbox" value="" id="defaultCheck4">
             <!-- <div class="check-box-wrapper">
               <div class="on-off-toggle">
                 <input class="on-off-toggle__input" (click)="filtertoggles('ps',$event)" id="bopis" name='active'
@@ -183,7 +183,7 @@
                 <label for="bopis1" class="on-off-toggle__slider"></label>
               </div>
             </div> -->
-            <input class="form-check-input ml-2" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input ml-2" (click)="filtertoggles('dcs',$event)" type="checkbox" value="" id="defaultCheck2">
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
              No DCS Signature
             </label>
@@ -212,7 +212,7 @@
                 <label for="bopis2" class="on-off-toggle__slider"></label>
               </div>
             </div> -->
-            <input class="form-check-input ml-2" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input ml-2"  (click)="filtertoggles('task',$event)" type="checkbox" value="" id="defaultCheck1">
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
               No Tasks
             </label>
@@ -234,7 +234,7 @@
 
         <div class="mx-5">
           <div class="d-flex justify-content-start  mb-2">
-            <input class="form-check-input ml-2" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input ml-2" type="checkbox" (click)="filtertoggles('progress',$event)" value="" id="defaultCheck3">
             <!-- <div class="check-box-wrapper">
               <div class="on-off-toggle">
                 <input class="on-off-toggle__input" id="bopis3" (click)="filtertoggles('progress',$event)" name='active'
@@ -322,7 +322,7 @@
 
     <div>
       <div class="">
-        <button (click)="getVisitReviewList()"
+        <button (click)="applyFilters()"
           class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-40 ml-auto">
             <i class="fas fa-search mr-2"></i>
             Go

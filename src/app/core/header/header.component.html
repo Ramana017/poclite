@@ -1,119 +1,70 @@
 <div class="component-wrapper">
-    <div class="header-wrapper">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
-            <div class="user-profile">
-                <a class="navbar-brand">
-                    <div class="dropdown d-flex">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list" aria-hidden="true" style="font-size: 20px;"></i>
-                            <!-- {{userName==undefined ||null?'--':userName}} -->
-                        </button>
-                        <div class="dropdown-menu">
-                            <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                            <a routerLinkActive="active" *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item" [routerLink]="['/widgets']"> POC
-                                Home </a>
-                            <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item" style="color: black;" [routerLink]="['/summary']">POC Call
-                                Management</a>
-                            <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item" [routerLink]="['/charts']"> POC
-                                DashBoard</a>
-                            <a  routerLinkActive="active" class="dropdown-item" [routerLink]="['/visitreview']"> Visit-Review </a>
-
-
-                            <!-- <span class="dropdown-item-text">Just Text</span> -->
-                        </div>
-                        <!-- <div class="richard-img">
-                        <img src="assets/images/group-13.pngcommented code if gege" class="img-fluid">
-                    </div> -->
-                    </div>
-                </a>
-
-
-                <a class="navbar-brand">
-                    <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
-                </a>
-            </div>
-            <div class="logo-cms ml-negetive">
-                <div class="d-flex ml-5 mr-n5">
-                    <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
-                    <h3 class="text-white mt-3">{{heading}}</h3>
-                </div>
-
+  <div class="header-wrapper">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+      <div class="user-profile">
+        <a class="navbar-brand">
+          <div class="dropdown d-flex">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-list" aria-hidden="true" style="font-size: 20px;"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a routerLinkActive="active" *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item"
+                [routerLink]="['/widgets']"> POC
+                Home </a>
+              <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item"
+                style="color: black;" [routerLink]="['/summary']">POC Call
+                Management</a>
+              <a *ngIf="userDetailService.checkUser('schedule')" routerLinkActive="active" class="dropdown-item"
+                [routerLink]="['/charts']"> POC
+                DashBoard</a>
+              <a routerLinkActive="active" class="dropdown-item" [routerLink]="['/visitreview']"> Visit-Review </a>
             </div>
 
-
-            <div class=" d-flex align-items-center nav ">
-                <a class="navbar-brand">
-                    <div class="right d-flex">
-                        <!-- ======================================================= -->
-                        <!-- <div class="notification">
-                            <div class="dropdown position-relative">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="ico position-relative"  (click)="onClick($event)">
-                                        <span class="badge badge-danger position-absolute">{{batchLength}}</span>
-                                        <i class="fas fa-bell px-3 text-white" style="font-size: 20px;"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dropdown-open position-absolute" *ngIf="IsShowHide" (click)="onClick($event)"  >
-                                <div class="dropdown-item" href="javascript:void(0)" *ngFor="let d of showNotifOn;let i=index">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h6>{{d.alertSendDate}}</h6>
-                                        <div (click)="dismissNotif(i)">
-                                            <i class="fas fa-times"></i>
-
-                                        </div>
-                                    </div>
-                                    <h5>{{d.subject}}</h5>
-                                    <p>{{d.message}}</p>
-                                </div>
-                            </div>
-                        </div> -->
+          </div>
+        </a>
 
 
-                        <!-- <div class="dropdown show">
+        <a class="navbar-brand">
+          <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
+        </a>
+      </div>
+      <div class="logo-cms ml-negetive">
+        <div class="d-flex ml-5 mr-n5">
+          <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
+          <h3 class="text-white mt-3">
+            <span routerLink="/charts" routerLinkActive #activity="routerLinkActive">
+              {{activity.isActive ? "POC DashBoard" : ''}}
+            </span>
+            <span routerLink="/summary" routerLinkActive #dashboard="routerLinkActive">
+              {{dashboard.isActive ? "POC Call Management" : ''}}
+            </span>
+            <span routerLink="/widgets" routerLinkActive #errorlog="routerLinkActive">
+              {{errorlog.isActive ? "POC Home" : ''}}
+            </span>
+            <span routerLink="/visitreview" routerLinkActive #interface="routerLinkActive">
+              {{interface.isActive ? 'Visit Review' : ''}}
+            </span>
+          </h3>
+        </div>
 
-                        <button type="button" class="title-button dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">administrator, administrator
-                                </button>
+      </div>
 
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" [routerLink]="['/login']" >Logout</a>
-                        </div>
-                    </div> -->
-                        <div class="dropdown d-flex profile-dropdown">
-                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <!-- {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
-             -->{{userName}}
-                            </button>
-                            <div class="dropdown-menu">
-                                <!-- <a class="dropdown-item" (click)="logout()">Log Out</a> -->
-                                <a class="dropdown-item" (click)="logout()">Logout</a>
-                                <!-- <a class="dropdown-item" >Change Password</a> -->
-                                <!-- <span class="dropdown-item-text">Just Text</span> -->
-                            </div>
-                            <!-- <div class="richard-img">
-                          <img src="assets/images/group-13.png" class="img-fluid">
-                      </div> -->
-                        </div>
-                    </div>
-                    <!-- <div class="dropdown d-flex profile-dropdown">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            {{userName==undefined ||null?'--':userName.length > 12?(userName|titlecase |slice:0:12)+'..' :userName|titlecase}}
-               {{userName}}
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" (click)="logout()">Log Out</a>
-                            <a class="dropdown-item" (click)="logout()">Logout</a>
-                            <a class="dropdown-item" >Change Password</a>
-                            <span class="dropdown-item-text">Just Text</span>
-                        </div>
-                        <div class="richard-img">
-                            <img src="assets/images/group-13.png" class="img-fluid">
-                        </div>
-                    </div> -->
-                </a>
+      <div class=" d-flex align-items-center nav ">
+        <a class="navbar-brand">
+          <div class="right d-flex">
+            <div class="dropdown d-flex profile-dropdown">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                {{userName}}
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+              </div>
+
             </div>
-        </nav>
-    </div>
+          </div>
+        </a>
+      </div>
+    </nav>
+  </div>
 </div>

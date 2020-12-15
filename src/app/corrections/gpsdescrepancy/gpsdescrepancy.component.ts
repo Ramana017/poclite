@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapTypeControlOptions, MapTypeId } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 declare var $: any;
 
 
@@ -19,7 +20,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   @Output()
   popupUpdate: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef) { }
+  constructor(private _fb: FormBuilder, public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
   public psName: string;
   public DcsName: string;
@@ -84,7 +85,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public googleFormattedAddress: string = '';
 
   public geoCoordinatesRange: any = {};
-  public psAddress: any = {};
+  public psAddress: any = { Longitude: '', Latitude: '', zipCode: '', };
 
 
 
@@ -304,11 +305,21 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   }
   public saveFormatAddress() {
+    //  addressId
+    // street
+    // suite
+    // city
+    // stateId
+    // zipCode
+
 
     var formattedAddress = this.fomatAddressManualInput ? this.manualAddress != undefined || null ? this.manualAddress : " " : this.selectedAddress;
     var latitude = this.fomatAddressManualInput ? this.manualLatitude != undefined || null ? this.manualLatitude : " " : this.selectedLatitude;
     var longitude = this.fomatAddressManualInput ? this.manualLongitude != undefined || null ? this.manualLongitude : " " : this.selectedLongitude;
-    var jsonObj = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": formattedAddress, "latitude": latitude, "longitude": longitude, "userId": this.userId };
+    var jsonObj = {
+      "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": formattedAddress, "latitude": latitude, "longitude": longitude, "userId": this.userId, "street": this.fomatAddressManualInput ? this.psAddress.street : '', "suite":
+        this.fomatAddressManualInput ? this.psAddress.suite : '', "city": this.fomatAddressManualInput ? this.psAddress.city : '', "stateId": this.fomatAddressManualInput ? this.psAddress.stateId : '', "zipCode": this.fomatAddressManualInput ? this.psAddress.zipCode : '', "addressId": this.fomatAddressManualInput ? this.psAddress.id : ''
+    };
     var parameters = JSON.stringify(jsonObj);
     console.log(parameters);
     try {
@@ -386,7 +397,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public manualFormatAddress(): void {
     this.savebutton = false
     this.fomatAddressManualInput = true;
-  }
+  } stateId
 
   public psAddressClick(): void {
     console.log("psaddressclock")
@@ -419,21 +430,119 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       console.log(res);
       this.geoCoordinatesRange = res.geoCoordinatesRange;
       this.psAddress = res.psAddress
+      this.zipCode(false,this.psAddress.zipCode)
       $(modaId).modal('show')
     })
   }
 
-  public zipCode(event) {
-    console.log(event)
-    let trimmed = event.target.value.replace(/\D/g, '');
+  public popupForm: FormGroup;
+  createform() {
+    this._fb.group({
+      address: new FormControl(null, [Validators.required]),
+      address2: new FormControl(null),
+      zipCode: new FormControl(null, [Validators.required]),
+      stateName: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      latitude: new FormControl(null, [Validators.required]),
+      longitude: new FormControl(null, [Validators.required])
 
-    let value: string =trimmed
-    if (value.length == 5) {
-      this.apiservice.getZipcodeDetails(value).subscribe(res => {
-        console.log(res);
+
+
+    })
+  }
+
+  public zipCode(event,autoValue?) {
+    // console.log(event)
+    let trimmed =event? event.target.value.replace(/\D/g, ''):autoValue;
+    this.psAddress.zipCode = trimmed
+
+    let value: string = trimmed
+    // if (value.length == 5) {
+    this.apiservice.getZipcodeDetails(value).subscribe(res => {
+      console.log(res, Object.keys(res).length);
+
+      if (Object.keys(res).length > 0) {
+        this.psAddress.city = res.city;
+        this.psAddress.stateName = res.state;
+        this.psAddress.stateId = res.stateId;
+        this.psAddress.zipCode = value;
+      } else {
+        swal.fire({
+          title: "Invalid Zipcode",
+          text: "Please Enter valid Zipcode",
+          icon: "warning",
+          confirmButtonText: 'Ok',
+
+        })
+        this.psAddress.zipCode = ''
+      }
+    })
+    // }
+  }
+  savepopulate() {
+    let latitudeFlag = false;
+    let longitudeFlag = false;
+    console.log(this.psAddress.zipCode.length > 1)
+    console.log(this.psAddress.Latitude)
+    console.log(this.psAddress.Longitude)
+    if (this.psAddress.Latitude == undefined || this.psAddress.Longitude == undefined) {
+      swal.fire({
+        title: "Invalid Details",
+        text: "Please Enter all Mandatory Feilds",
+        icon: "warning",
+        confirmButtonText: 'Ok',
+
       })
     }
+    else {
+      let latitutde: string = this.psAddress.Latitude.trim();
+      let longitude: string = this.psAddress.Longitude.trim();
+      if (latitutde.length == 0 || longitude.length == 0) {
+        swal.fire({
+          title: "Invalid Details",
+          text: "Please Enter all Mandatory Feilds",
+          icon: "warning",
+          confirmButtonText: 'Ok',
+
+        })
+      }
+      if ((+latitutde) > (+this.geoCoordinatesRange.minLatitude) && (+latitutde) < (+this.geoCoordinatesRange.maxLatitude)) {
+        latitudeFlag = true;
+      } else {
+        swal.fire({
+          title: "Invalid Latitude",
+          text: "Latitude should between" + this.geoCoordinatesRange.minLatitude + 'and' + this.geoCoordinatesRange.maxLatitude,
+          icon: "warning",
+          confirmButtonText: 'Ok',
+
+        })
+      }
+      if ((+longitude) > (+this.geoCoordinatesRange.minLongitude) && (+longitude) < (+this.geoCoordinatesRange.maxLongitude)) {
+        longitudeFlag = true;
+      } else {
+        swal.fire({
+          title: "Invalid Longitude",
+          text: "Longitude should between" + this.geoCoordinatesRange.minLongitude + 'and' + this.geoCoordinatesRange.maxLongitude,
+          icon: "warning",
+          confirmButtonText: 'Ok',
+
+        })
+      }
+      console.log(this.psAddress.suite)
+      if (latitudeFlag && longitudeFlag) {
+        this.manualAddress = this.psAddress.street + ',' + this.psAddress.suite + (this.psAddress.suite.length > 0 ? ',' : '') + this.psAddress.city + ',' + this.psAddress.stateName + ',' + this.psAddress.zipCode;
+        this.manualLatitude = latitutde;
+        this.manualLongitude = longitude;
+
+        $('#exampleModalCenter').modal('hide')
+
+      }
+
+    }
+
+    console.log(this.psAddress)
   }
+
 }
 export function agmConfigFactory(value, config?: LazyMapsAPILoaderConfigLiteral) {
   config.apiKey = value;
