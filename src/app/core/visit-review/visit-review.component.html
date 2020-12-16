@@ -170,7 +170,7 @@
               typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
             <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officelist" [settings]="dropdownSettings">
             </angular2-multiselect>
-            <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            <i class="fas fa-sitemap  ml-2 right-icon" (click)="openpopup('#ddd')" data-toggle="modal" data-target="#service_popup"></i>
           </div>
         </div>
 
@@ -191,14 +191,14 @@
 
           <div class="input-group form-input align-items-center header-input ml-2">
             <!-- <input type="text" class="form-control" placeholder="PS"> -->
-            <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
+            <ng-autocomplete [data]="psList" [searchKeyword]="'psName'"  #autops placeHolder="PS"
               (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
               [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
             <ng-template style="width: 100%;" #itemTemplateps let-item>
               <a [innerHTML]="item.psName"></a>
             </ng-template>
-            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+            <i class="fas fa-user ml-2 right-icon" (click)="openpopup('#autops')"data-toggle="modal" data-target="#service_popup"></i>
           </div>
 
         </div>
@@ -414,9 +414,9 @@
           <td>{{visit.dcsName}}</td>
           <td>{{visit.cssName}}</td>
           <td><div [tooltip]="tipContent">{{visit.payorCode}}/{{visit.planCode}}<ng-template #tipContent><b>{{visit.plan}}</b></ng-template></div></td>
-          <td><div [tooltip]="tipContent">
+          <td><div [tooltip]="tipContent2">
             {{visit.procedureCode}}
-            <ng-template #tipContent><b>{{visit.serviceName}}</b></ng-template>
+            <ng-template #tipContent2><b>{{visit.serviceName}}</b></ng-template>
           </div></td>
           <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>

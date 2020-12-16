@@ -395,9 +395,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     console.log(event)
   }
   public manualFormatAddress(): void {
+    console.log("dddddd")
     this.savebutton = false
     this.fomatAddressManualInput = true;
-  } stateId
+  }
 
   public psAddressClick(): void {
     console.log("psaddressclock")
@@ -422,15 +423,18 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public agmConfigFactory1(value, config?: LazyMapsAPILoaderConfigLiteral) {
     config.apiKey = value;
   }
+  public radiobuttonactive() {
+    document.getElementById('format0').click()
+  }
   public openmodal(modaId) {
-    this.savebutton = false
-    this.fomatAddressManualInput = true;
+    this.savebutton = true;
+    this.fomatAddressManualInput = false;
     let obj = { "psAddressId": this.psAddressId }
     this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
       console.log(res);
       this.geoCoordinatesRange = res.geoCoordinatesRange;
       this.psAddress = res.psAddress
-      this.zipCode(false,this.psAddress.zipCode)
+      this.zipCode(false, this.psAddress.zipCode)
       $(modaId).modal('show')
     })
   }
@@ -451,9 +455,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     })
   }
 
-  public zipCode(event,autoValue?) {
+  public zipCode(event, autoValue?) {
     // console.log(event)
-    let trimmed =event? event.target.value.replace(/\D/g, ''):autoValue;
+    let trimmed = event ? event.target.value.replace(/\D/g, '') : autoValue;
     this.psAddress.zipCode = trimmed
 
     let value: string = trimmed
@@ -506,23 +510,23 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
         })
       }
-      if ((+latitutde) > (+this.geoCoordinatesRange.minLatitude) && (+latitutde) < (+this.geoCoordinatesRange.maxLatitude)) {
+      if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
         latitudeFlag = true;
       } else {
         swal.fire({
           title: "Invalid Latitude",
-          text: "Latitude should between" + this.geoCoordinatesRange.minLatitude + 'and' + this.geoCoordinatesRange.maxLatitude,
+          text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
           icon: "warning",
           confirmButtonText: 'Ok',
 
         })
       }
-      if ((+longitude) > (+this.geoCoordinatesRange.minLongitude) && (+longitude) < (+this.geoCoordinatesRange.maxLongitude)) {
+      if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
         longitudeFlag = true;
       } else {
         swal.fire({
           title: "Invalid Longitude",
-          text: "Longitude should between" + this.geoCoordinatesRange.minLongitude + 'and' + this.geoCoordinatesRange.maxLongitude,
+          text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
           icon: "warning",
           confirmButtonText: 'Ok',
 
@@ -530,10 +534,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       }
       console.log(this.psAddress.suite)
       if (latitudeFlag && longitudeFlag) {
-        this.manualAddress = this.psAddress.street + ',' + this.psAddress.suite + (this.psAddress.suite.length > 0 ? ',' : '') + this.psAddress.city + ',' + this.psAddress.stateName + ',' + this.psAddress.zipCode;
+        this.manualAddress = this.psAddress.street + ','  + this.psAddress.city + ',' + this.psAddress.stateName + ',' + this.psAddress.zipCode;
         this.manualLatitude = latitutde;
         this.manualLongitude = longitude;
-
+        this.savebutton = false
+        this.fomatAddressManualInput = true;
         $('#exampleModalCenter').modal('hide')
 
       }

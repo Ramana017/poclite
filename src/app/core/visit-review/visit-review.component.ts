@@ -13,9 +13,6 @@ declare var $: any;
   styleUrls: ['./visit-review.component.sass']
 })
 export class VisitReviewComponent implements OnInit {
-  @ViewChild('autocss') autocss;
-  @ViewChild('autodcs') autodcs;
-  @ViewChild('autops') autops;
   @ViewChild('autoservice') autoservice;
   @ViewChild('autocss') itemTemplatecss;
   @ViewChild('autodcs') itemTemplatedcs;
@@ -338,6 +335,12 @@ export class VisitReviewComponent implements OnInit {
 
     }
   }
+  public openpopup(id) {
+    //   console.log("dfff")
+    // if(id=="#autops"){
+    //   document.getElementById('ram').click()
+    // }
+  }
   public applyFilters() {
     if (this.scheBeginDate == null || this.scheEndDate == null) {
       Swal.fire({
@@ -347,7 +350,7 @@ export class VisitReviewComponent implements OnInit {
         confirmButtonText: 'ok',
 
       })
-    }else{
+    } else {
       this.getVisitReviewList()
     }
   }
@@ -380,25 +383,25 @@ export class VisitReviewComponent implements OnInit {
     console.log("+++++++", eventpresent, event)
     if (filter == "ps") {
       this.psId = eventpresent ? event.psId : 0;
-      this.itemTemplateps.close();
+       this.itemTemplateps.close();
     }
     if (filter == "dcs") {
       this.dcsId = eventpresent ? event.dcsId : 0;
-      this.itemTemplatedcs.close();
+      eventpresent ? '' : this.itemTemplatedcs.close();
       console.log(this.dcsId)
     }
     if (filter == "css") {
       this.cssId = eventpresent ? event.cssId : 0;
-      this.itemTemplatecss.close();
+      eventpresent ? '' : this.itemTemplatecss.close();
 
     }
     if (filter == "service") {
       this.serviceId = eventpresent ? event.serviceId : 0;
-      this.itemTemplateservice.close();
+      eventpresent ? '' : this.itemTemplateservice.close();
     }
     if (filter == "payor") {
       this.payorPlanId = eventpresent ? event.payorPlanId : 0;
-      this.itemTemplatepayor.close();
+      eventpresent ? '' : this.itemTemplatepayor.close();
     }
 
 
