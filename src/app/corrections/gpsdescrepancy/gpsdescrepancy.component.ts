@@ -199,7 +199,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
             title: 'Error',
             text: 'Failed to load',
             icon: "error",
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
           })
         }
       )
@@ -226,7 +226,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               swal.fire({
                 text: "Accepted successfully",
                 icon: "success",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               }).then(ok => {
                 let merged = { ...this.jsonData, ...response };
@@ -252,7 +252,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         title: "Invalid Comments",
         text: "Please Enter" + data + " comments before Accept",
         icon: "warning",
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
       })
     }
 
@@ -272,7 +272,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
             swal.fire({
               text: "Updated successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(OK => {
               let merged = { ...this.jsonData, ...response };
@@ -288,7 +288,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
             swal.fire({
               text: "Updated failed",
               icon: "error",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }
@@ -333,7 +333,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
             swal.fire({
               text: "Data saved successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               this.apiservice.updateTable.next(true);
@@ -343,7 +343,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
             swal.fire({
               text: "Data saved failed",
               icon: "error",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }
@@ -475,7 +475,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           title: "Invalid Zipcode",
           text: "Please Enter valid Zipcode",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
 
         })
         this.psAddress.zipCode = ''
@@ -494,7 +494,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         title: "Invalid Details",
         text: "Please Enter all Feilds",
         icon: "warning",
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
 
       })
     }
@@ -506,7 +506,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           title: "Invalid Details",
           text: "Please Enter all Feilds",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
 
         })
       }
@@ -517,7 +517,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           title: "Invalid Latitude",
           text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
 
         })
       }
@@ -528,7 +528,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           title: "Invalid Longitude",
           text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
 
         })
       }

@@ -152,7 +152,7 @@ export class ScheduledvarianceComponent implements OnInit {
               swal.fire({
                 text: "Accepted successfully",
                 icon: "success",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               }).then(ok => {
                 let merged = { ...this.jsonData, ...response }
@@ -194,7 +194,7 @@ export class ScheduledvarianceComponent implements OnInit {
               swal.fire({
                 text: "Updated successfully",
                 icon: "success",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               }).then(ok => {
                 let merged = { ...this.jsonData, ...response }
@@ -211,7 +211,7 @@ export class ScheduledvarianceComponent implements OnInit {
                 title: "Updated failed",
                 text: "You cannot update this record since it's already adjusted by some one",
                 icon: "error",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               })
             }
@@ -264,7 +264,7 @@ export class ScheduledvarianceComponent implements OnInit {
           swal.fire({
             text: "There is a change in the Clock In, please select the adjust reason",
             icon: "warning",
-            confirmButtonText: 'ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: true
           })
         }
@@ -280,7 +280,7 @@ export class ScheduledvarianceComponent implements OnInit {
           swal.fire({
             text: "There is a change in the Clock Out, please select the adjust reason",
             icon: "warning",
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: true
           })
         }
@@ -293,7 +293,7 @@ export class ScheduledvarianceComponent implements OnInit {
             swal.fire({
               text: " Duration Between ClockIn and clock Out should not more than 24 hrs",
               icon: "warning",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: true
             })
           } else {
@@ -308,7 +308,7 @@ export class ScheduledvarianceComponent implements OnInit {
           swal.fire({
             text: " Clock In Date Time should be before Clock Out Date Time",
             icon: "warning",
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: true
           })
         }
@@ -323,7 +323,7 @@ export class ScheduledvarianceComponent implements OnInit {
         swal.fire({
           text: " clockIn Date Should valid",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       }
@@ -331,35 +331,35 @@ export class ScheduledvarianceComponent implements OnInit {
         swal.fire({
           text: " clockIn Date Should valid",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       } if (this.clockinMinutes == undefined) {
         swal.fire({
           text: " clockIn Minutes Should be Select",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       } if (this.clockoutMinutes == undefined) {
         swal.fire({
           text: " clockOut Minutes Should be Select",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       } if (this.clockinHours == undefined) {
         swal.fire({
           text: " clockIn Hours Should be Select",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       } if (this.clockoutHours == undefined) {
         swal.fire({
           text: " clockOut Minute Should be Select",
           icon: "warning",
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: true
         })
       }

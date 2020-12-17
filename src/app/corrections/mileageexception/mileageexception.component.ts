@@ -138,7 +138,7 @@ export class MileageexceptionComponent implements OnInit {
             swal.fire({
               text: "Accepted successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged={...this.JsonData,...response}
@@ -208,7 +208,7 @@ export class MileageexceptionComponent implements OnInit {
               swal.fire({
                 title: "Updated successfully",
                 icon: "success",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               }).then(ok => {
                 let merged={...this.JsonData,...response}
@@ -227,7 +227,7 @@ export class MileageexceptionComponent implements OnInit {
                 title: "Updated failed",
                 text:"You cannot update this record since it's already adjusted by some one.",
                 icon: "error",
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false
               })
             }
@@ -255,7 +255,7 @@ export class MileageexceptionComponent implements OnInit {
       swal.fire({
         text:"The Mileage should between 0 to 999.99",
         icon: "warning",
-        confirmButtonText: 'ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
 

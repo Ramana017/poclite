@@ -133,7 +133,7 @@ export class ClockoutComponent implements OnInit {
             swal.fire({
               title: 'Data Saved Successfully',
               icon: 'success',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(Ok => {
               this.apiservice.updateTable.next(true);
@@ -146,7 +146,7 @@ export class ClockoutComponent implements OnInit {
               title: 'Invalid attempt',
               text: 'This Visit is already Reported',
               icon: 'error',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }

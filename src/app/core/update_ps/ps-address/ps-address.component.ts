@@ -96,7 +96,7 @@ export class PsAddressComponent implements OnInit {
               title: 'Invalid Zip Code',
               text: 'Please enter a valid Zip code.',
               icon: 'warning',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false,
             });
         console.log(data);
@@ -345,7 +345,7 @@ private alertbox(string) {
         title: 'Invalid Form',
         text: 'Fill all the Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
       console.log(this.psAddressForm.value);

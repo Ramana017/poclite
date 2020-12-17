@@ -124,7 +124,7 @@ export class PsGurantorComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill all the Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
       console.log(this.guarantorForm.value);
@@ -290,7 +290,7 @@ export class PsGurantorComponent implements OnInit {
             title: 'Invalid pincode',
             text: 'Invalid ZIP code. Please enter a valid ZIP code.',
             icon: 'warning',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false
           })
           this.guarantorForm.get('zipcode').setValue('');
@@ -553,7 +553,7 @@ export class PsGurantorComponent implements OnInit {
         title: 'Invalid SSN',
         text: "SSN should not contain all 9's",
         icon: 'warning',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
     } else {
@@ -570,7 +570,7 @@ export class PsGurantorComponent implements OnInit {
                 title: 'Invalid SSN',
                 text: data2.ErrorMsg,
                 icon: 'error',
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false,
               });
             } else {

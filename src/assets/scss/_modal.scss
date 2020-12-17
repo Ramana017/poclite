@@ -78,13 +78,21 @@
 
 .progress{
   .modal-content {
-    width: 30%;
+
+    width: 80%;
+    height: calc(100vh - 52px)!important;
+    overflow-y: auto;
+   }
+   .modal-body{
+    height: calc(100vh - 48px)!important;
+    overflow-y: auto;
    }
    font-size: 16px;
 }
 .progress-title{
   background-color: #1690d1;
   padding: 5px 5px 5px 5px;
+
 }
 .task-list{
   max-width: 500px !important;

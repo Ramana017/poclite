@@ -123,7 +123,7 @@ export class GuarantorDetailsComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
 
@@ -239,7 +239,7 @@ export class GuarantorDetailsComponent implements OnInit {
             title: 'Invalid pincode',
             text: 'Invalid ZIP code. Please enter a valid ZIP code.',
             icon: 'warning',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false
           })
           this.guarantorForm.get('zipcode').setValue('');
@@ -368,7 +368,7 @@ export class GuarantorDetailsComponent implements OnInit {
             title: 'Invalid SSN',
             text: data2.ErrorMsg,
             icon: 'error',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false
           })
         }

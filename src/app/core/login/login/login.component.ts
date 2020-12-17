@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
                 title:"Login failed",
                 html:errormessage,
                 icon: "error",
-                confirmButtonText: 'ok',
+                confirmButtonText: 'OK',
 
               })
 

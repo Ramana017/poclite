@@ -95,7 +95,7 @@ export class InvalidTokenComponent implements OnInit {
             swal.fire({
               text: "Accepted successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
@@ -132,7 +132,7 @@ export class InvalidTokenComponent implements OnInit {
             swal.fire({
               text: "Updated successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
@@ -149,7 +149,7 @@ export class InvalidTokenComponent implements OnInit {
               title: "Updated failed",
               text: data.result,
               icon: "error",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }

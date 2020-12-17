@@ -328,7 +328,7 @@ export class AdmissionDetailsComponent implements OnInit {
           title: 'Invalid First Visit Date',
           text: 'First Visit Date should not be less than Admission Date',
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         })
       }
@@ -343,7 +343,7 @@ export class AdmissionDetailsComponent implements OnInit {
           title: 'Invalid Referred Date',
           text: 'Referral Date should be less than or equal to Admission Date.',
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         })
       }
@@ -364,7 +364,7 @@ export class AdmissionDetailsComponent implements OnInit {
           title: 'Invalid Admission Date',
           text: 'The admission date selected is more than ' + this.admissionPeriod + 'day(s) in the past and cannot be entered',
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         })
       }
@@ -376,7 +376,7 @@ export class AdmissionDetailsComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -456,7 +456,7 @@ export class AdmissionDetailsComponent implements OnInit {
         title: 'Invalid Diagnosis',
         text: 'No Diagnosis is selected',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     } else if (isDuplicate === true) {
@@ -464,7 +464,7 @@ export class AdmissionDetailsComponent implements OnInit {
         title: 'Invalid Rank',
         text: ' Same rank is selected for Different diagnosis',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     } else if (this.admissionForm.get('firstVisitDate') < this.admissionForm.get('admissionDate')) {
@@ -472,7 +472,7 @@ export class AdmissionDetailsComponent implements OnInit {
         title: 'Invalid First Visit Date',
         text: 'Your First Visit Date is greater than Admission Date ',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       });
     }
@@ -481,7 +481,7 @@ export class AdmissionDetailsComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill the all Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }

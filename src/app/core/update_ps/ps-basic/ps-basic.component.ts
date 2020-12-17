@@ -148,7 +148,7 @@ export class PsBasicComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill all the Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
       console.log(this.basicEditForm.value);
@@ -157,7 +157,7 @@ export class PsBasicComponent implements OnInit {
         title: 'Invalid Mapped Sites',
         text: 'Please select the Home Site',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
     }
@@ -382,7 +382,7 @@ export class PsBasicComponent implements OnInit {
             title: 'Invalid Zip Code',
             text: 'Please enter a valid Zip code.',
             icon: 'warning',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false,
           });
         console.log(data);
@@ -657,7 +657,7 @@ export class PsBasicComponent implements OnInit {
         title: 'Invalid SSN',
         text: "SSN should not contain all 9's",
         icon: 'warning',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
     } else {
@@ -674,7 +674,7 @@ export class PsBasicComponent implements OnInit {
                 title: 'Invalid SSN',
                 text: data2.ErrorMsg,
                 icon: 'error',
-                confirmButtonText: 'Ok',
+                confirmButtonText: 'OK',
                 allowOutsideClick: false,
               });
             } else {

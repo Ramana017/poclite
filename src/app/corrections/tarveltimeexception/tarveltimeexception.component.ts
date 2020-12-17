@@ -90,7 +90,7 @@ export class TarveltimeexceptionComponent implements OnInit {
             swal.fire({
               text: "Accepted successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged= {...this.JsonData ,...response}
@@ -131,7 +131,7 @@ export class TarveltimeexceptionComponent implements OnInit {
             swal.fire({
               text: "Updated successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged= {...this.JsonData ,...response}
@@ -148,7 +148,7 @@ export class TarveltimeexceptionComponent implements OnInit {
               title:'Update Failed',
               text: "You cannot update this record since it's already adjusted by some one",
               icon: "error",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }
@@ -173,7 +173,7 @@ export class TarveltimeexceptionComponent implements OnInit {
       swal.fire({
         text:"The Travel should be Numeric and not Less then 0",
         icon: "warning",
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
 

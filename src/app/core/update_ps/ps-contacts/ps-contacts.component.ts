@@ -144,7 +144,7 @@ export class PsContactsComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Fill all the Required fields',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false,
       });
       console.log(this.contactForm.value);
@@ -295,7 +295,7 @@ export class PsContactsComponent implements OnInit {
               title: 'Invalid Zip Code',
               text: 'Please enter a valid Zip code.',
               icon: 'warning',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false,
             });
         console.log(data);
@@ -505,7 +505,7 @@ private checkSSn() {
       title: 'Invalid SSN',
       text: "SSN should not contain all 9's",
       icon: 'warning',
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'OK',
       allowOutsideClick: false,
     });
   } else {
@@ -522,7 +522,7 @@ private checkSSn() {
               title: 'Invalid SSN',
               text: data2.ErrorMsg,
               icon: 'error',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false,
             });
           } else {

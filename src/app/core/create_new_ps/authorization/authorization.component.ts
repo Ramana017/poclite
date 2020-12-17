@@ -275,7 +275,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Procedure',
         text: 'Please Select Procedure Code',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -288,7 +288,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Authorization',
         text: 'Please Select Authorization Number',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -304,7 +304,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Total Units',
         text: 'Please Enter Total Units',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -320,7 +320,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Begin Date',
         text: 'Begin Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -339,7 +339,7 @@ export class AuthorizationComponent implements OnInit {
           title: 'Invalid End Date',
           text: 'End Date should be  After the   Begin Date (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + ')',
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         })
       }
@@ -349,7 +349,7 @@ export class AuthorizationComponent implements OnInit {
           title: 'Invalid End Date',
           text: 'End Date should be in between Payor/Plan Dates (' + this.ppEffectiveFrom + '-' + this.ppEffectiveTo + ')',
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         })
       }
@@ -367,7 +367,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Begin Date',
         text: 'Begin Date should be After The Admit Date (' + this.admitDate + ')',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     }
@@ -384,7 +384,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Rate Type',
         text: 'Please Select Rate Type',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     } else {
@@ -413,7 +413,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Effective From Date',
         text: 'Effective Date should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     } else {
@@ -427,7 +427,7 @@ export class AuthorizationComponent implements OnInit {
       //   title: 'Invalid Effective To Date',
       //   text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
       //   icon: 'error',
-      //   confirmButtonText: 'Ok',
+      //   confirmButtonText: 'OK',
       //   allowOutsideClick: false
       // })
 
@@ -439,7 +439,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Effective To Date',
         text: 'Effective To should be in between Authorization Dates (' + this.date.transform(this.beginDate, 'MM/dd/yyyy') + '-' + this.date.transform(this.endDate != undefined ? this.endDate : this.ppEffectiveToDate, 'MM/dd/yyyy') + ')',
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       })
     } else {
@@ -454,7 +454,7 @@ export class AuthorizationComponent implements OnInit {
           title: 'Invalid Monthly Max Units',
           text: "Please Enter Monthly Max Units ",
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         }) : monthlyMaxUnitsFlag = true
 
@@ -467,7 +467,7 @@ export class AuthorizationComponent implements OnInit {
           title: 'Invalid Daily Max Units',
           text: "Please Enter Daily Max Units ",
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         }) : dailyMaxUnitsFlag = true
         console.log(dailyMaxUnitsFlag)
@@ -480,7 +480,7 @@ export class AuthorizationComponent implements OnInit {
           title: 'Invalid Weekly Max Units',
           text: "Please Enter Weekly Max Units ",
           icon: 'error',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
           allowOutsideClick: false
         }) : weeklyMaxUnitsFlag = true
         console.log(weeklyMaxUnitsFlag)
@@ -517,7 +517,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Monthly Max Units',
         text: "Max Units per Month cannot be  greater than Total Units ",
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       }) : monthlytotalUnitsFlag = true
 
@@ -529,7 +529,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Daily Max Units',
         text: "Max Units per Day cannot be greater than Total Units",
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       }) : dailytotalUnitsFlag = true
 
@@ -541,7 +541,7 @@ export class AuthorizationComponent implements OnInit {
         title: 'Invalid Weekly Max Units',
         text: "Max Units per Week cannot be greater than Total Units",
         icon: 'error',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         allowOutsideClick: false
       }) : weeklytotalUnitsFlag = true
 
@@ -576,7 +576,7 @@ export class AuthorizationComponent implements OnInit {
             title: 'Invalid Weekly Max Units',
             text: "Sum of All Days units should less than OR equal To total units ",
             icon: 'error',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false
           })
         }
@@ -696,7 +696,7 @@ export class AuthorizationComponent implements OnInit {
           swal.fire({
             title: 'Authorization Created successfully ',
             icon: 'success',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             allowOutsideClick: false
           })
           this.router.navigateByUrl('widgets');
@@ -708,7 +708,7 @@ export class AuthorizationComponent implements OnInit {
               title: 'Oops! ',
               text: 'Failed to save Authorization',
               icon: 'error',
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }

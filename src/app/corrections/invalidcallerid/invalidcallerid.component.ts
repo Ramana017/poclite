@@ -142,7 +142,7 @@ export class InvalidcalleridComponent implements OnInit {
             swal.fire({
               text: "Accepted successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
@@ -172,7 +172,7 @@ export class InvalidcalleridComponent implements OnInit {
       title: "Invalid Comments",
       text:"Please Enter"+ data +" comments before Accept",
       icon: "warning",
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'OK',
     })
   }
   }
@@ -205,7 +205,7 @@ export class InvalidcalleridComponent implements OnInit {
             swal.fire({
               text: "Updated successfully",
               icon: "success",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
@@ -221,7 +221,7 @@ export class InvalidcalleridComponent implements OnInit {
             swal.fire({
               text: "Updated failed",
               icon: "error",
-              confirmButtonText: 'Ok',
+              confirmButtonText: 'OK',
               allowOutsideClick: false
             })
           }
