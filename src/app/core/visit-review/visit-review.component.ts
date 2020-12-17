@@ -54,239 +54,83 @@ export class VisitReviewComponent implements OnInit {
   public getSignaturesresponse: any = { psSignature: '', dcsSignature: '' }
   public progressNotes;
   public formLovList: Array<any> = [];
-  // [{
-  //   "lovValueId": 2,
-  //   "displayName": "Female",
-  //   "lovId": 1,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "Female"
-  // }, {
-  //   "lovValueId": 1,
-  //   "displayName": "Male",
-  //   "lovId": 1,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "Male"
-  // }, {
-  //   "lovValueId": 3,
-  //   "displayName": "Active",
-  //   "lovId": 2,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 0,
-  //   "value": "Active"
-  // }, {
-  //   "lovValueId": 4,
-  //   "displayName": "Inactive",
-  //   "lovId": 2,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 0,
-  //   "value": "Inactive"
-  // }, {
-  //   "lovValueId": 5,
-  //   "displayName": "AP",
-  //   "lovId": 3,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "AP"
-  // }, {
-  //   "lovValueId": 6,
-  //   "displayName": "TS",
-  //   "lovId": 3,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "TS"
-  // }, {
-  //   "lovValueId": 7,
-  //   "displayName": "India",
-  //   "lovId": 4,
-  //   "active": 1,
-  //   "sortorder": 1,
-  //   "lovActive": 1,
-  //   "value": "India"
-  // }, {
-  //   "lovValueId": 8,
-  //   "displayName": "US",
-  //   "lovId": 4,
-  //   "active": 0,
-  //   "sortorder": 2,
-  //   "lovActive": 1,
-  //   "value": "US"
-  // }, {
-  //   "lovValueId": 11,
-  //   "displayName": "I am still having Issues",
-  //   "lovId": 6,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "I am still having Issues"
-  // }, {
-  //   "lovValueId": 10,
-  //   "displayName": "I like what I'm seeing so far",
-  //   "lovId": 6,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "I like what I'm seeing so far"
-  // }, {
-  //   "lovValueId": 12,
-  //   "displayName": "What Enhancements",
-  //   "lovId": 6,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "What Enhancements"
-  // }, {
-  //   "lovValueId": 9,
-  //   "displayName": "You're crushing it",
-  //   "lovId": 6,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "You're crushing it"
-  // }, {
-  //   "lovValueId": 13,
-  //   "displayName": "Whether you are a human resources professiona",
-  //   "lovId": 7,
-  //   "active": 0,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "Whether you are a human resources professiona"
-  // }, {
-  //   "lovValueId": 14,
-  //   "displayName": "Whether you are a human resources professional",
-  //   "lovId": 7,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "Whether you are a human resources professional"
-  // }, {
-  //   "lovValueId": 15,
-  //   "displayName": "You will also want to be specific and concrete",
-  //   "lovId": 7,
-  //   "active": 1,
-  //   "sortorder": 0,
-  //   "lovActive": 1,
-  //   "value": "You will also want to be specific and concrete"
-  // }, {
-  //   "lovValueId": 16,
-  //   "displayName": "Strongly Agree",
-  //   "lovId": 8,
-  //   "active": 1,
-  //   "sortorder": 1,
-  //   "lovActive": 1,
-  //   "value": "Strongly Agree"
-  // }, {
-  //   "lovValueId": 17,
-  //   "displayName": "Agree",
-  //   "lovId": 8,
-  //   "active": 1,
-  //   "sortorder": 2,
-  //   "lovActive": 1,
-  //   "value": "Agree"
-  // }, {
-  //   "lovValueId": 18,
-  //   "displayName": "Neither agree or disagree",
-  //   "lovId": 8,
-  //   "active": 1,
-  //   "sortorder": 3,
-  //   "lovActive": 1,
-  //   "value": "Neither agree or disagree"
-  // }, {
-  //   "lovValueId": 19,
-  //   "displayName": "Disagree",
-  //   "lovId": 8,
-  //   "active": 1,
-  //   "sortorder": 4,
-  //   "lovActive": 1,
-  //   "value": "Disagree"
-  // }, {
-  //   "lovValueId": 20,
-  //   "displayName": "Strongly Disagree",
-  //   "lovId": 8,
-  //   "active": 1,
-  //   "sortorder": 5,
-  //   "lovActive": 1,
-  //   "value": "Strongly Disagree"
-  // }]
-  public progressNotesList: Array<any> = [];
-  // [{
-  //   "surveyDetailsId": 2,
-  //   "displayType": "textarea",
-  //   "question": "Comments",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 6,
-  //   "displayTypeId": 2,
-  //   "sortOrder": 0,
-  //   "lovId": 0,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "selectbox",
-  //   "question": "Country",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 7,
-  //   "displayTypeId": 5,
-  //   "sortOrder": 0,
-  //   "lovId": 4,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "textbox",
-  //   "question": "Enter Your Name",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 3,
-  //   "displayTypeId": 1,
-  //   "sortOrder": 0,
-  //   "lovId": 0,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "radio",
-  //   "question": "Gender",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 4,
-  //   "displayTypeId": 4,
-  //   "sortOrder": 0,
-  //   "lovId": 1,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "checkbox",
-  //   "question": "States",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 5,
-  //   "displayTypeId": 3,
-  //   "sortOrder": 0,
-  //   "lovId": 3,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "textbox",
-  //   "question": "Test1",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 11,
-  //   "displayTypeId": 1,
-  //   "sortOrder": 0,
-  //   "lovId": 0,
-  //   "active": 1
-  // }, {
-  //   "surveyDetailsId": 2,
-  //   "displayType": "textbox",
-  //   "question": "Test3",
-  //   "formMappingId": 2,
-  //   "questionAttributeId": 13,
-  //   "displayTypeId": 1,
-  //   "sortOrder": 0,
-  //   "lovId": 0,
-  //   "active": 1
-  // }];
+    // {
+    //     "lovValueId": 1,
+    //     "displayName": "Mask",
+    //     "sortOrder": 0,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Mask"
+    // },
+    // {
+    //     "lovValueId": 2,
+    //     "displayName": "Gloves",
+    //     "sortOrder": 1,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Gloves"
+    // },
+    // {
+    //     "lovValueId": 3,
+    //     "displayName": "Face Shield",
+    //     "sortOrder": 2,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Face Shield"
+    // },
+    // {
+    //     "lovValueId": 4,
+    //     "displayName": "Gown",
+    //     "sortOrder": 3,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Gown"
+    // },
+    // {
+    //     "lovValueId": 5,
+    //     "displayName": "Eye Shield",
+    //     "sortOrder": 4,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Eye Shield"
+    // },
+    // {
+    //     "lovValueId": 6,
+    //     "displayName": "Shoe Covers",
+    //     "sortOrder": 5,
+    //     "lovId": 1,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Shoe Covers"
+    // },
+    // {
+    //     "lovValueId": 8,
+    //     "displayName": "No",
+    //     "sortOrder": 0,
+    //     "lovId": 2,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "No"
+    // },
+    // {
+    //     "lovValueId": 7,
+    //     "displayName": "Yes",
+    //     "sortOrder": 0,
+    //     "lovId": 2,
+    //     "lovValueActive": 1,
+    //     "lovActive": 1,
+    //     "value": "Yes"
+    // }
+
+
+  public progressNotesList: Array<progressNotesList> =[]
+
+
   public progressmodel: boolean = false;
 
   constructor(public apiservice: ApiserviceService, public modalService: BsModalService, public datepipe: DatePipe) {
@@ -298,7 +142,7 @@ export class VisitReviewComponent implements OnInit {
   }
   public dropdownSettings = {
     singleSelection: false,
-    text: "Code",
+    text: "Site",
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
@@ -306,7 +150,7 @@ export class VisitReviewComponent implements OnInit {
     noDataLabel: "No Data Available",
     classes: "myclass custom-class",
     showCheckbox: true,
-    labelKey: "displayName",
+    labelKey:"displayName",
     // limitSelection: 3,
     primaryKey: 'siteCode',
     escapeToClose: false,
@@ -314,7 +158,13 @@ export class VisitReviewComponent implements OnInit {
     position: 'top'
 
   };
-
+  public siteDeselect() {
+    console.log(this.officelist)
+    this.officelist.length = 0;
+    console.log("DDD,",this.officelist  )
+    // this.dropdownRef.closeDropdown();
+    // this.pagereset();
+  }
   ngOnInit(): void {
     this.getFilterData();
     this.getVisitReviewList();
@@ -351,7 +201,7 @@ export class VisitReviewComponent implements OnInit {
 
       })
     } else {
-      this.getVisitReviewList()
+      this.pageChange()
     }
   }
   public getFilterData() {
@@ -446,7 +296,11 @@ export class VisitReviewComponent implements OnInit {
 
     }
   }
-  public getProgressNotes(modalId, departureInfoId) {
+  progressmodelLabel;
+  progressmodelprocedureLabel;
+  public getProgressNotes(modalId, departureInfoId,i) {
+    this.progressmodelLabel=this.visitReviewListList[i].psName;
+    this.progressmodelprocedureLabel=this.visitReviewListList[i].procedureCode
     this.progressmodel = true;
 
     try {
@@ -457,6 +311,13 @@ export class VisitReviewComponent implements OnInit {
         this.progressNotes = data.progressNotes;
         this.formLovList = data.formLovList;
         this.progressNotesList = data.progressNotesList;
+        this.progressNotesList.map(x=>{
+          if(x.displayType=="checkbox"){
+          x.answerArray=x.answer.split(',');
+          console.log(x.answerArray);
+          }
+        })
+        console.log(this.progressNotesList)
         $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
       })
     } catch (error) {
@@ -619,4 +480,17 @@ interface visitReviewList {
   DepGpsException: number,
   id: number
 
+}
+interface progressNotesList{
+  "displayType": string,
+  "questionTemplateId": number,
+  "question": string,
+  "answer": string,
+  "questionAttributeId": number,
+  "displayTypeId":number,
+  "lovId":number,
+  "questionActive":number,
+  "questionOrder":number,
+  "surveyAnswersId":number,
+  "answerArray"?:Array<any>
 }

@@ -492,7 +492,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     if (this.psAddress.Latitude == undefined || this.psAddress.Longitude == undefined) {
       swal.fire({
         title: "Invalid Details",
-        text: "Please Enter all Mandatory Feilds",
+        text: "Please Enter all Feilds",
         icon: "warning",
         confirmButtonText: 'Ok',
 
@@ -504,7 +504,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       if (latitutde.length == 0 || longitude.length == 0) {
         swal.fire({
           title: "Invalid Details",
-          text: "Please Enter all Mandatory Feilds",
+          text: "Please Enter all Feilds",
           icon: "warning",
           confirmButtonText: 'Ok',
 

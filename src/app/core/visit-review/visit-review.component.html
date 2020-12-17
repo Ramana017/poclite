@@ -152,7 +152,8 @@
 
         <div class="mr-5">
           <div class="d-flex justify-content-start  mb-2">
-            <input class="form-check-input ml-2" (click)="filtertoggles('ps',$event)" type="checkbox" value="" id="defaultCheck4">
+            <input class="form-check-input ml-2" (click)="filtertoggles('ps',$event)" type="checkbox" value=""
+              id="defaultCheck4">
             <!-- <div class="check-box-wrapper">
               <div class="on-off-toggle">
                 <input class="on-off-toggle__input" (click)="filtertoggles('ps',$event)" id="bopis" name='active'
@@ -161,16 +162,17 @@
               </div>
             </div> -->
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
-             No PS Signature
+              No PS Signature
             </label>
           </div>
 
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" [typeahead]="siteList" [(ngModel)]="psSelected" [typeaheadMinLength]='0'
               typeaheadOptionField="siteName" class="form-control" placeholder="Site"> -->
-            <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officelist" [settings]="dropdownSettings">
+            <angular2-multiselect [data]="siteList" #ddd (onDeSelectAll)="siteDeselect()" [(ngModel)]="officelist"
+              [settings]="dropdownSettings">
             </angular2-multiselect>
-            <i class="fas fa-sitemap  ml-2 right-icon" (click)="openpopup('#ddd')" data-toggle="modal" data-target="#service_popup"></i>
+            <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
           </div>
         </div>
 
@@ -183,22 +185,24 @@
                 <label for="bopis1" class="on-off-toggle__slider"></label>
               </div>
             </div> -->
-            <input class="form-check-input ml-2" (click)="filtertoggles('dcs',$event)" type="checkbox" value="" id="defaultCheck2">
+            <input class="form-check-input ml-2" (click)="filtertoggles('dcs',$event)" type="checkbox" value=""
+              id="defaultCheck2">
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
-             No DCS Signature
+              No DCS Signature
             </label>
           </div>
 
           <div class="input-group form-input align-items-center header-input ml-2">
             <!-- <input type="text" class="form-control" placeholder="PS"> -->
-            <ng-autocomplete [data]="psList" [searchKeyword]="'psName'"  #autops placeHolder="PS"
+            <ng-autocomplete [data]="psList" [searchKeyword]="'psName'" #autops placeHolder="PS"
               (inputCleared)="selectFilterEvent('','ps')" (selected)='selectFilterEvent($event,"ps")'
               [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
             <ng-template style="width: 100%;" #itemTemplateps let-item>
               <a [innerHTML]="item.psName"></a>
             </ng-template>
-            <i class="fas fa-user ml-2 right-icon" (click)="openpopup('#autops')"data-toggle="modal" data-target="#service_popup"></i>
+            <i class="fas fa-user ml-2 right-icon" (click)="openpopup('#autops')" data-toggle="modal"
+              data-target="#service_popup"></i>
           </div>
 
         </div>
@@ -212,7 +216,8 @@
                 <label for="bopis2" class="on-off-toggle__slider"></label>
               </div>
             </div> -->
-            <input class="form-check-input ml-2"  (click)="filtertoggles('task',$event)" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input ml-2" (click)="filtertoggles('task',$event)" type="checkbox" value=""
+              id="defaultCheck1">
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
               No Tasks
             </label>
@@ -230,11 +235,12 @@
             <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
             <i class="fas fa-user-md ml-2 right-icon"></i>
           </div>
-        </div >
+        </div>
 
         <div class="mx-5">
           <div class="d-flex justify-content-start  mb-2">
-            <input class="form-check-input ml-2" type="checkbox" (click)="filtertoggles('progress',$event)" value="" id="defaultCheck3">
+            <input class="form-check-input ml-2" type="checkbox" (click)="filtertoggles('progress',$event)" value=""
+              id="defaultCheck3">
             <!-- <div class="check-box-wrapper">
               <div class="on-off-toggle">
                 <input class="on-off-toggle__input" id="bopis3" (click)="filtertoggles('progress',$event)" name='active'
@@ -243,16 +249,15 @@
               </div>
             </div> -->
             <label class="m-0 font-size-15 text-white" style="padding-left: 25px; margin-top: 1px;">
-             No Progress Notes
+              No Progress Notes
             </label>
           </div>
 
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
             <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
-              (inputCleared)="selectFilterEvent('','css')"
-              (selected)='selectFilterEvent($event,"css")' [itemTemplate]="itemTemplatecss"
-              [notFoundTemplate]="notFoundTemplate">
+              (inputCleared)="selectFilterEvent('','css')" (selected)='selectFilterEvent($event,"css")'
+              [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
             <ng-template style="width: 100%;" #itemTemplatecss let-item>
               <a [innerHTML]="item.cssName"></a>
@@ -267,10 +272,9 @@
         <div class="mr-0">
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
-            <ng-autocomplete [data]="payorPlanList"  [searchKeyword]="'displayName'" #autopayor placeHolder="Payor/Plan"
-              (inputCleared)="selectFilterEvent('','payor')"
-              (selected)='selectFilterEvent($event,"payor")' [itemTemplate]="itemTemplatepayor"
-              [notFoundTemplate]="notFoundTemplate">
+            <ng-autocomplete [data]="payorPlanList" [searchKeyword]="'displayName'" #autopayor placeHolder="Payor/Plan"
+              (inputCleared)="selectFilterEvent('','payor')" (selected)='selectFilterEvent($event,"payor")'
+              [itemTemplate]="itemTemplatepayor" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
             <ng-template style="width: 100%;" #itemTemplatepayor let-item>
               <a [innerHTML]="item.displayName"></a>
@@ -324,8 +328,8 @@
       <div class="">
         <button (click)="applyFilters()"
           class="btn-common height-30 btn-green  d-flex align-items-center justify-content-end w-40 ml-auto">
-            <i class="fas fa-search mr-2"></i>
-            Go
+          <i class="fas fa-search mr-2"></i>
+          Go
         </button>
       </div>
     </div>
@@ -407,17 +411,26 @@
       </thead>
       <tbody>
         <tr *ngFor="let visit of visitReviewListList;let i=index">
-          <td> <div [tooltip]="sitecontent" tooltipPlacement="right">{{visit.siteCode}}
-            <ng-template #sitecontent>{{visit.siteName}}</ng-template>
-          </div></td>
+          <td>
+            <div [tooltip]="sitecontent" tooltipPlacement="right">{{visit.siteCode}}
+              <ng-template #sitecontent>{{visit.siteName}}</ng-template>
+            </div>
+          </td>
           <td>{{visit.psName}} <br> {{visit.accountNumber}}</td>
           <td>{{visit.dcsName}}</td>
           <td>{{visit.cssName}}</td>
-          <td><div [tooltip]="tipContent">{{visit.payorCode}}/{{visit.planCode}}<ng-template #tipContent><b>{{visit.plan}}</b></ng-template></div></td>
-          <td><div [tooltip]="tipContent2">
-            {{visit.procedureCode}}
-            <ng-template #tipContent2><b>{{visit.serviceName}}</b></ng-template>
-          </div></td>
+          <td>
+            <div [tooltip]="tipContent">{{visit.payorCode}}/{{visit.planCode}}<ng-template #tipContent>
+                <b>{{visit.plan}}</b>
+              </ng-template>
+            </div>
+          </td>
+          <td>
+            <div [tooltip]="tipContent2">
+              {{visit.procedureCode}}
+              <ng-template #tipContent2><b>{{visit.serviceName}}</b></ng-template>
+            </div>
+          </td>
           <!-- <td><i class="fas fa-clock f-18" data-toggle="modal" data-target="#timesModal"></i></td> -->
           <td>
             <!-- data-toggle="modal" data-target="#timesModal" -->
@@ -441,8 +454,9 @@
             <span [ngClass]=" visit.dcsSignatureAval=='Yes'?'blue':''"
               (click)="visit.dcsSignatureAval=='Yes'?getSignatures('#signModal',visit.arrivalInfoId,visit.departureInfoId):''">{{visit.dcsSignatureAval}}</span>
           </td>
-          <td class="Progress Notes blue">
-            <span (click)="getProgressNotes('#progress',visit.departureInfoId)">{{visit.progressNotesAval}}</span>
+          <td class="Progress Notes " [ngClass]="visit.progressNotesAval=='Yes'?'blue':''">
+            <span
+              (click)="visit.progressNotesAval=='Yes'?getProgressNotes('#progress',visit.departureInfoId,i):''">{{visit.progressNotesAval}}</span>
           </td>
           <td class="Exception " [ngClass]="visit.exceptionCount>0?'blue':''"
             (click)="visit.exceptionCount>0?correctException(i):''">
@@ -586,37 +600,48 @@
               <tbody>
                 <tr>
                   <td>
-                    {{getVisitTimesresponse.originalScheduledBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledBeginDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.originalScheduledBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledBeginDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalScheduledEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledEndDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.originalScheduledEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledEndDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedBeginDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.originalReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedBeginDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedEndDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.originalReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedEndDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.adjustedReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedBeginDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.adjustedReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedBeginDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.adjustedReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedEndDate|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.adjustedReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedEndDate|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.billStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billStartTime|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.billStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billStartTime|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.billEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billEndTime|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.billEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billEndTime|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.payStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payStartTime|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.payStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payStartTime|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.payEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payEndTime|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.payEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payEndTime|date:'hh:mm
+                    a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.visitLinkedTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.visitLinkedTime|date:'hh:mm a'}}
+                    {{getVisitTimesresponse.visitLinkedTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.visitLinkedTime|date:'hh:mm
+                    a'}}
                   </td>
                   <td>{{getVisitTimesresponse.visitLinkedBy}}</td>
                 </tr>
@@ -636,29 +661,37 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-dark">
+        <div class="modal-header bg-dark ">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Signature</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
-        <div class="modal-body">
-          <h5>PS Signature</h5>
-          <div class="bg-white sign-portion">
+        <div class="modal-body d-flex">
+          <div>
+            <h5 class="mb-2 ml-2"><b>PS Signature</b></h5>
 
-            <img getSignaturesresponse.psSignature
-              [src]="('data:image/JPEG;base64,' +getSignaturesresponse.psSignature) | domsanitize" alt="ps"
-              class="img-fluid d-block m-auto">
+            <div class="bg-white sign-portion">
+              <div *ngIf="(getSignaturesresponse.psSignature).trim().length>0">
+                <img getSignaturesresponse.psSignature
+                  [src]="('data:image/JPEG;base64,' +getSignaturesresponse.psSignature) | domsanitize"
+                  class="img-fluid d-block m-auto">
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5 class=" mb-2 ml-2"><b>DCS Signature</b></h5>
+            <div class="bg-white sign-portion">
+              <div *ngIf="(getSignaturesresponse.dcsSignature).trim().length>0">
 
+                <img getSignaturesresponse.dcsSignature
+                  [src]="('data:image/JPEG;base64,' +getSignaturesresponse.dcsSignature) | domsanitize"
+                  class="img-fluid d-block m-auto">
+              </div>
+            </div>
           </div>
 
-          <h5 class="mt-4">DCS Signature</h5>
-          <div class="bg-white sign-portion">
-            <img getSignaturesresponse.dcsSignature
-              [src]="('data:image/JPEG;base64,' +getSignaturesresponse.dcsSignature) | domsanitize" alt="dcs"
-              class="img-fluid d-block m-auto">
-          </div>
         </div>
       </div>
     </div>
@@ -669,7 +702,7 @@
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
-      <div class="modal-content">
+      <div class="modal-content" style="width: 80%;margin-bottom: 16%;">
         <div class="modal-header bg-dark">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress</h5>
           <button type="button" class="close" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
@@ -679,14 +712,15 @@
 
         <div class="modal-body text-dark p-0">
           <div class="d-flex justify-content-between progress-title text-white">
-            <h5>WILLIAM ADAMS</h5>
-            <h5>CCXP15</h5>
+            <h5>{{progressmodelLabel}}</h5>
+            <h5>{{progressmodelprocedureLabel}}</h5>
           </div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
-            <div *ngIf="data.displayType=='checkbox'" class="ml-2">
+            <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
               <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
               <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="checkbox" class="mt-1"
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                  [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox" class="mt-1"
                   id="exampleCheck{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
@@ -695,7 +729,7 @@
             <div *ngIf="data.displayType=='radio'">
               <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
               <div class="" *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" type="radio" id="other{{i}}{{j}}" class=""
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"[value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class=""
                   name="gender" value="other{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="other{{i}}{{j}}">{{option.displayName}}</label>
@@ -705,23 +739,23 @@
             <div *ngIf="data.displayType=='textbox'">
               <div class="bottom-input pt-2">
                 <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-                <input type="text" />
+                <input type="text" value="{{data.answer}}" />
               </div>
             </div>
             <div *ngIf="data.displayType=='textarea'">
               <div class="pt-2">
                 <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
-                <textarea rows="3" cols="35">
+                <textarea rows="3" cols="35"value="{{data.answer}}">
                   </textarea>
               </div>
             </div>
             <div *ngIf="data.displayType=='selectbox'">
               <div class="pt-2">
                 <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-                <select class="form-control">
+                <select [ngModel]="+(data.answer)"class="form-control">
                   <option>select</option>
-                  <option [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                  <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
                     *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
                 </select>
               </div>
