@@ -52,9 +52,9 @@ export class VisitReviewComponent implements OnInit {
   public getVisitTimesresponse: any = {};
   public getTaskListresponse: Array<any>;
   public getSignaturesresponse: any = { psSignature: '', dcsSignature: '' }
-  public progressNotes
+  public progressNotes:string='';
   public formLovList: Array<any> =[];
-  public progressNotesList: Array<progressNotesList> ;
+  public progressNotesList: Array<progressNotesList>=[] ;
   // [{"displayType":"textbox","questionTemplateId":2,"question":"What application you like most in POC?","answer":"Test ","questionAttributeId":4,"displayTypeId":1,"lovId":0,"questionActive":1,"questionOrder":1,"surveyAnswersId":688807},{"displayType":"radio","questionTemplateId":2,"question":"Is POC Lite UI good?","answer":"7","questionAttributeId":5,"displayTypeId":4,"lovId":2,"questionActive":1,"questionOrder":2,"surveyAnswersId":688808},{"displayType":"checkbox","questionTemplateId":2,"question":"Please select the PPE used during the visit","answer":"1,2,3,4","questionAttributeId":6,"displayTypeId":3,"lovId":1,"questionActive":1,"questionOrder":3,"surveyAnswersId":688809},{"displayType":"textarea","questionTemplateId":2,"question":"Describe in brief about the application","answer":"test your hair and your body ","questionAttributeId":7,"displayTypeId":2,"lovId":0,"questionActive":1,"questionOrder":4,"surveyAnswersId":688810}]
 
 

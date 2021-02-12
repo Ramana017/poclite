@@ -704,7 +704,7 @@
     <div class="modal-dialog modal-dialog-centered times-list" role="document">
       <div class=" sticky modal-content" >
         <div class="modal-header bg-dark">
-          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress</h5>
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress Notes</h5>
           <button type="button" class="close" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -715,6 +715,8 @@
             <h5>{{progressmodelLabel}}</h5>
             <h5>{{progressmodelprocedureLabel}}</h5>
           </div>
+          <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
+          </textarea></div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
             <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
               <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -729,8 +731,8 @@
             <div *ngIf="data.displayType=='radio'">
               <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
               <div class="" *ngFor="let option of formLovList;let j=index;">
-                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"[value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class=""
-                  name="gender" value="other{{i}}{{j}}">
+                <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
+                  [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="other{{i}}{{j}}">{{option.displayName}}</label>
               </div>
