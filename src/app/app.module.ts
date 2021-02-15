@@ -63,6 +63,7 @@ import {DomsanitizePipe} from '../app/pipes/domsanitize.pipe'
 import { map } from 'rxjs/operators';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
+import { AnalyticsComponent } from './core/analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/revi
     ChartLayoutComponent,
     VisitReviewComponent,
     DomsanitizePipe,
-    ReviewExceptionpopupComponent
+    ReviewExceptionpopupComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
+import { AnalyticsComponent } from './core/analytics/analytics.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
+  { path: 'analytics', component: AnalyticsComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
@@ -44,6 +46,7 @@ const routes: Routes = [
       { path: "authorization", component: AuthorizationComponent },
     ]
   },
+
   {
     path: "update", canActivate: [AuthGuard], component: EditPsComponent,
     children: [
