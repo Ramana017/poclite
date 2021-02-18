@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./analytics.component.sass']
 })
 export class AnalyticsComponent implements OnInit {
-
+ public MangmentScreens:Array<Boolean>=[true,false,false,false]
   constructor() { }
 
   ngOnInit(): void {
