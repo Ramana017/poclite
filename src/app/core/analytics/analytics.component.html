@@ -17,44 +17,37 @@
         <div class="px-5 pt-3">
           <div class="navigation d-flex justify-content-center">
             <ul class="nav nav-pills mb-3">
-              <li class="nav-item mx-3"  >
-                <a class="nav-link " (click)="MangmentScreens=[true,false,false,false]"[ngClass]="MangmentScreens[0]?'active':''">1</a>
+              <li class="nav-item mx-3">
+                <a class="nav-link " (click)="MangmentScreens=[true,false,false,false]"
+                  [ngClass]="MangmentScreens[0]?'active':''">1</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link " (click)="MangmentScreens=[false,true,false,false]"[ngClass]="MangmentScreens[1]?'active':''">2</a>
+                <a class="nav-link " (click)="MangmentScreens=[false,true,false,false]"
+                   [ngClass]="MangmentScreens[0]?'disabled':MangmentScreens[1]?'active':''">2</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" (click)="MangmentScreens=[false,false,true,false]"[ngClass]="MangmentScreens[2]?'active':''">3</a>
+                <a class="nav-link" (click)="MangmentScreens=[false,false,true,false]"
+                  [ngClass]="MangmentScreens[0]||MangmentScreens[1]?'disabled': MangmentScreens[2]?'active':''">3</a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link "(click)="MangmentScreens=[false,false,false,true]"[ngClass]="MangmentScreens[3]?'active':''">4</a>
+                <a class="nav-link " (click)="MangmentScreens=[false,false,false,true]"
+                  [ngClass]="MangmentScreens[0]||MangmentScreens[1]||MangmentScreens[2]?'disabled':MangmentScreens[3]?'active':''">4</a>
               </li>
             </ul>
           </div>
 
           <div class="compliance-content-wrapper">
-            <div class="screen-name" style="width: auto;" >Site#1244- # of templates using schedule criteria(7.86)</div>
+            <div class="screen-name" style="width: auto;">{{headerString}}</div>
 
-             <div  class="radio-wrapper d-flex justify-content-center mb-3">
+            <div class="radio-wrapper d-flex justify-content-center mb-3">
               <div *ngIf="MangmentScreens[0]" class="form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
                 <label class="form-check-label" for="flexRadioDefault1">
                   Management
                 </label>
               </div>
               <div *ngIf="MangmentScreens[0]" class="form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
                 <label class="form-check-label" for="flexRadioDefault2">
                   Parameter
                 </label>
@@ -62,7 +55,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[0]">
+              <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[0]">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">S.No</th>
@@ -72,111 +65,23 @@
                     <th scope="col">Percentage</th>
                   </tr>
                 </thead>
-                <tbody >
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
+                <tbody>
+                  <tr *ngFor="let item of measures">
+                    <th scope="row">{{item.sno}}</th>
+                    <td>{{item.process}}</td>
                     <td>
-                      <div class="percentage-pill bg-primary">
-                        Otto
+                      <div (click)="onMeasurelevelChange(1,item.process)" class="percentage-pill"
+                        [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                        {{item.percentage}}{{'%'}}
                       </div>
                     </td>
 
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">
-                        Otto
-                      </div>
-                    </td>
 
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-secondary">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-primary">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-primary">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
                 </tbody>
               </table>
 
-               <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[1]">
+              <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[1]">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Site
@@ -185,46 +90,16 @@
                     <th scope="col">Percentage</th>
                   </tr>
                 </thead>
-                <tbody >
-                  <tr>
-                    <th scope="row">1</th>
+                <tbody>
+                  <tr *ngFor="let item of measures2">
+                    <td scope="row">{{item.site}}</td>
 
                     <td>
-                      <div class="percentage-pill bg-primary">
-                        Otto
+                      <div class="percentage-pill"(click)="onMeasurelevelChange(2,item.site)"
+                        [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                        {{item.percentage}}
                       </div>
                     </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-
-                    <td>
-                      <div class="percentage-pill bg-danger">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-
-                    <td>
-                      <div class="percentage-pill bg-secondary">
-                        Otto
-                      </div>
-                    </td>
-
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-
-                    <td>
-                      <div class="percentage-pill bg-danger">
-                        Otto
-                      </div>
-                    </td>
-
                   </tr>
                 </tbody>
               </table>
@@ -241,80 +116,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td># of templates using scheduled area</td>
+                  <tr *ngFor="let item of measures3">
+                    <th scope="row">{{item.sno}}</th>
+                    <td>{{item.description}}</td>
                     <td>
-                      <div class="percentage-pill bg-primary">Otto</div>
+                      <div class="percentage-pill"(click)="onMeasurelevelChange(3,headerString)"
+                        [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                        {{item.percentage}}
+                      </div>
                     </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td># of templates using no overridden pay rate</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-secondary">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-primary">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-primary">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-danger">Otto</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="percentage-pill bg-success">Otto</div>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
 
-            <table class="table box-shadow text-center"*ngIf="MangmentScreens[3]">
+              <table class="table box-shadow text-center" *ngIf="MangmentScreens[3]">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">S.No</th>
@@ -326,28 +140,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td># of templates using scheduled area</td>
+                  <tr *ngFor="let item of measures4">
+                    <th scope="row">{{item.sno}}</th>
+                    <td>{{item.description}}</td>
                     <td>
-                      <div class="">980</div>
+                      <div class="">{{item.totals}}</div>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td># of templates using no overridden pay rate</td>
-                    <td>
-                      <div class="">580</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>
-                      <div class="">47</div>
-                    </td>
-                  </tr>
-
                 </tbody>
               </table>
 
@@ -359,7 +158,8 @@
   </div>
 </div>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark">
