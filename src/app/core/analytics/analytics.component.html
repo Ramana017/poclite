@@ -23,7 +23,7 @@
               </li>
               <li class="nav-item mx-3">
                 <a class="nav-link " (click)="MangmentScreens=[false,true,false,false]"
-                   [ngClass]="MangmentScreens[0]?'disabled':MangmentScreens[1]?'active':''">2</a>
+                  [ngClass]="MangmentScreens[0]?'disabled':MangmentScreens[1]?'active':''">2</a>
               </li>
               <li class="nav-item mx-3">
                 <a class="nav-link" (click)="MangmentScreens=[false,false,true,false]"
@@ -60,7 +60,7 @@
                   <tr>
                     <th scope="col">S.No</th>
                     <th scope="col ">Process
-                      <i class="fas fa-filter ml-2"></i>
+                      <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
                     <th scope="col">Percentage</th>
                   </tr>
@@ -85,7 +85,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Site
-                      <i class="fas fa-filter ml-2"></i>
+                      <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
                     <th scope="col">Percentage</th>
                   </tr>
@@ -95,7 +95,7 @@
                     <td scope="row">{{item.site}}</td>
 
                     <td>
-                      <div class="percentage-pill"(click)="onMeasurelevelChange(2,item.site)"
+                      <div class="percentage-pill" (click)="onMeasurelevelChange(2,item.site)"
                         [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
                         {{item.percentage}}
                       </div>
@@ -110,7 +110,7 @@
                     <th scope="col">S.No</th>
                     <th scope="col ">
                       Description
-                      <i class="fas fa-filter ml-2"></i>
+                      <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
                     <th scope="col">Percentage</th>
                   </tr>
@@ -120,7 +120,7 @@
                     <th scope="row">{{item.sno}}</th>
                     <td>{{item.description}}</td>
                     <td>
-                      <div class="percentage-pill"(click)="onMeasurelevelChange(3,headerString)"
+                      <div class="percentage-pill" (click)="onMeasurelevelChange(3,headerString)"
                         [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
                         {{item.percentage}}
                       </div>
@@ -134,16 +134,7 @@
                     <th scope="col">S.No</th>
                     <th scope="col ">
                       Description
-                      <i
-                        class="fas fa-filter ml-2"
-                        data-toggle="modal"
-                        data-target=".bd-example-modal-lg"
-                      ></i>
-                      <i
-                        class="fas fa-filter ml-2"
-                        data-toggle="modal"
-                        data-target=".measures-filter"
-                      ></i>
+                      <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".bd-example-modal-lg"></i>
                     </th>
                     <th scope="col">Totals</th>
                   </tr>
@@ -166,25 +157,15 @@
   </div>
 </div>
 
-<div
-  class="modal fade bd-example-modal-lg"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="exampleModalLabel">
           Template Details
         </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -301,29 +282,27 @@
   </div>
 </div>
 
-<div
-  class="modal fade measures-filter"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade measures-filter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="exampleModalLabel">
           Measures-filter
         </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <div class="row  measures-wrapper ">
+          <div class=" col-md-6 card bg-light mb-3 box-shadow">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="m-0">Selecte Date</h5>
+              <input type="text" bsDatepicker placeholder="MM/DD/YYYY">
+            </div>
+          </div>
+        </div>
         <div class="row p-3 measures-wrapper">
           <div class="col-md-6">
             <div class="card bg-light mb-3 box-shadow">
@@ -331,12 +310,13 @@
                 <h5 class="m-0">Selected RVP's</h5>
                 <div class="d-flex mr-3 align-items-center" style="width:55%;">
                   <label class="site-label color-black">
-                   <h5 class="mb-0 text-white"> RVP's</h5>
+                    <h5 class="mb-0 text-white"> RVP's</h5>
                     <!-- <span class="text-danger">*</span> -->
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect> </angular2-multiselect>
+                      <angular2-multiselect [data]="measures2" [settings]="dropdownSettings">
+                      </angular2-multiselect>
                     </div>
                   </div>
                 </div>
@@ -359,12 +339,13 @@
                 <h5 class="m-0">Selected ED's</h5>
                 <div class="d-flex mr-3 align-items-center" style="width:55%;">
                   <label class="site-label color-black">
-                   <h5 class="mb-0 text-white"> ED's</h5>
+                    <h5 class="mb-0 text-white"> ED's</h5>
                     <!-- <span class="text-danger">*</span> -->
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect> </angular2-multiselect>
+                      <angular2-multiselect [data]="measures2" [settings]="dropdownSettings">
+                      </angular2-multiselect>
                     </div>
                   </div>
                 </div>
@@ -389,12 +370,13 @@
                 <h5 class="m-0">Selected Branches</h5>
                 <div class="d-flex mr-3 align-items-center" style="width:55%;">
                   <label class="site-label color-black">
-                   <h5 class="mb-0 text-white"> Branches</h5>
+                    <h5 class="mb-0 text-white"> Branches</h5>
                     <!-- <span class="text-danger">*</span> -->
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect> </angular2-multiselect>
+                      <angular2-multiselect [data]="measures2" [settings]="dropdownSettings">
+                      </angular2-multiselect>
                     </div>
                   </div>
                 </div>
@@ -417,12 +399,13 @@
                 <h5 class="m-0">Selected Sites</h5>
                 <div class="d-flex mr-3 align-items-center" style="width:55%;">
                   <label class="site-label color-black">
-                   <h5 class="mb-0 text-white"> Sites</h5>
+                    <h5 class="mb-0 text-white"> Sites</h5>
                     <!-- <span class="text-danger">*</span> -->
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect> </angular2-multiselect>
+                      <angular2-multiselect [data]="measures2" [settings]="dropdownSettings">
+                      </angular2-multiselect>
                     </div>
                   </div>
                 </div>
