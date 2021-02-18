@@ -64,6 +64,7 @@ import { map } from 'rxjs/operators';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
 import { AnalyticsComponent } from './core/analytics/analytics.component';
+import { MaintainenceComponent } from './core/maintainence/maintainence.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { AnalyticsComponent } from './core/analytics/analytics.component';
     VisitReviewComponent,
     DomsanitizePipe,
     ReviewExceptionpopupComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    MaintainenceComponent
   ],
   imports: [
     BrowserModule,
