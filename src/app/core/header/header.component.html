@@ -33,17 +33,17 @@
                       </button>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                        <li class="dropdown-item" href="#"><a>Home</a></li>
-                        <li class="dropdown-item" href="#"><a>POC Call
+                        <li class="dropdown-item"  [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']"><a>Home</a></li>
+                        <li class="dropdown-item" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']"><a>POC Call
                           Management</a></li>
-                        <li class="dropdown-item" href="#"><a>POC
+                        <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/charts']"><a>POC
                           DashBoard</a></li>
-                        <li class="dropdown-item" href="#"><a>Visit Review </a></li>
-                        <li class="dropdown-item dropdown">
+                        <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']"><a>Visit Review </a></li>
+                        <li class="dropdown-item dropdown" [ngClass]="analytics.isActive||maintaince.isActive ?'active':''">
                             <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
-                                <li class="dropdown-item" href="#"><a>Compliance</a></li>
-                                <li class="dropdown-item" href="#"><a>Maintainence</a></li>
+                                <li class="dropdown-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
+                                <li class="dropdown-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
                                 <!-- <li class="dropdown-item dropdown">
                                     <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maintainence</a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
@@ -109,3 +109,8 @@
     </nav>
   </div>
 </div>
+<style>
+  .active{
+    background-color: blue !important;;
+  }
+</style>
