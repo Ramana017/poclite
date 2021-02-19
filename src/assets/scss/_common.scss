@@ -172,6 +172,9 @@
 .w-25 {
   width: 25%;
 }
+.w-10{
+  width: 10%;
+}
 
 .mt-31 {
   margin-top: 31px;
@@ -1602,3 +1605,14 @@ a:hover{
 
 }
 
+.color-rep-table{
+  .color-div{
+    height: 20px;
+    width: 22px;
+    border: 1px solid #5a5a5a;
+    background-color: yellow;
+  }
+  .input-box{
+
+  }
+}
