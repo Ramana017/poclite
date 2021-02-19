@@ -1523,7 +1523,7 @@ th {
 }
 
 .screen-name {
-  width: 147px;
+  width: auto;
     background-color: #343a40;
     padding: 8px;
     -webkit-border-top-left-radius: 20px;
@@ -1545,6 +1545,8 @@ th {
     width: 80px;
     margin: 0 auto;
     color: #fff;
+    cursor: pointer;
+
 }
 .measures-wrapper{
   .card-header{
