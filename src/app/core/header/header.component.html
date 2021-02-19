@@ -4,10 +4,10 @@
       <div class="user-profile">
         <a class="navbar-brand">
           <div class="dropdown d-flex">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-list" aria-hidden="true" style="font-size: 20px;"></i>
-            </button>
-            <div class="dropdown-menu">
+            </button> -->
+            <!-- <div class="dropdown-menu">
               <a routerLinkActive="active" *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item"
                 [routerLink]="['/widgets']"> POC
                 Home </a>
@@ -19,12 +19,48 @@
                 DashBoard</a>
               <a routerLinkActive="active" class="dropdown-item" [routerLink]="['/visitreview']"> Visit Review </a>
 
-              <a routerLinkActive="active" class="dropdown-item" [routerLink]="['/analytics']"> Analytics </a>
-            </div>
+              <ul routerLinkActive="active" class="dropdown-item" [routerLink]="['/analytics']">
+                Analytics
+              </ul>
+            </div> -->
+
+
+              <ul class="navbar-nav mr-auto root-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown-menu">
+                        <i class="fa fa-list" aria-hidden="true" style="font-size: 20px;"></i>
+                      </button>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                        <li class="dropdown-item" href="#"><a>Home</a></li>
+                        <li class="dropdown-item" href="#"><a>POC Call
+                          Management</a></li>
+                        <li class="dropdown-item" href="#"><a>POC
+                          DashBoard</a></li>
+                        <li class="dropdown-item" href="#"><a>Visit Review </a></li>
+                        <li class="dropdown-item dropdown">
+                            <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
+                                <li class="dropdown-item" href="#"><a>Compliance</a></li>
+                                <li class="dropdown-item" href="#"><a>Maintainence</a></li>
+                                <!-- <li class="dropdown-item dropdown">
+                                    <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maintainence</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
+                                        <li class="dropdown-item" href="#"><a>Action 1.1.1</a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
 
           </div>
         </a>
-
 
         <a class="navbar-brand">
           <img src="assets/images/all-ways-caring-logo@2x.png" class="img-fluid">
