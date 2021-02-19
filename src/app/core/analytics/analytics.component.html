@@ -46,7 +46,7 @@
             <div class="screen-name">{{ headerString }}</div>
 
             <div class="radio-wrapper d-flex justify-content-center mb-3">
-              <div *ngIf="MangmentScreens[0]" class="form-check-inline">
+              <!-- <div *ngIf="MangmentScreens[0]" class="form-check-inline">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
                 <label class="form-check-label" for="flexRadioDefault1">
                   Management
@@ -57,7 +57,16 @@
                 <label class="form-check-label" for="flexRadioDefault2">
                   Parameter
                 </label>
-              </div>
+              </div> -->
+              <div class=" d-flex check-box-wrapper-analytics ">
+                <h5 class="mr-2">Management</h5>
+                <div class="on-off-toggle">
+                    <input class="on-off-toggle__input" type="checkbox"  id="bopis" />
+                    <label for="bopis" class="on-off-toggle__slider"></label>
+                </div>
+                <h5 class="ml-3">Parameter</h5>
+
+            </div>
             </div>
 
             <div class="table-responsive" style="height: 68vh">
@@ -372,15 +381,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row measures-wrapper">
-          <div class="col-md-6 card bg-light mb-3 box-shadow">
+        <div class="row   measures-wrapper ">
+          <div class=" col-md-6 card bg-light mb-3 box-shadow">
             <div class="card-header d-flex justify-content-between align-items-center">
               <h5 class="m-0">Select Date</h5>
-              <input type="text" bsDatepicker placeholder="MM/DD/YYYY" />
+              <input class="form-control" style="width: auto;" type="text" bsDatepicker placeholder="MM/DD/YYYY">
             </div>
           </div>
         </div>
-        <div class="row p-3 measures-wrapper">
+        <div class="row  measures-wrapper">
           <div class="col-md-6">
             <div class="card bg-light mb-3 box-shadow">
               <div class="card-header d-flex justify-content-between align-items-center">
@@ -440,7 +449,7 @@
             </div>
           </div>
         </div>
-        <div class="row p-3 measures-wrapper">
+        <div class="row  measures-wrapper">
           <div class="col-md-6">
             <div class="card bg-light mb-3 box-shadow">
               <div class="card-header d-flex justify-content-between align-items-center">
@@ -499,14 +508,12 @@
               </div>
             </div>
           </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <button type="button" class="btn btn-primary mx-2 px-3">
-              Close
-            </button>
-            <button type="button" class="btn btn-success mx-2 px-3">
-              Apply
-            </button>
-          </div>
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+
+          <button type="button" class="btn btn-primary mx-2 px-3">Close</button>
+          <button type="button" class="btn btn-success mx-2 px-3">Apply</button>
         </div>
       </div>
     </div>

@@ -104,7 +104,7 @@
                   <h5 class="mainheading-wrapper">DCS</h5>
                   <div class="input-outter-wrapper dropdown">
                     <div class="ng-autocomplete" style="width: 100%;">
-                      <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="keyword" #autodcs placeHolder="DCS"
+                      <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="keyword"  placeHolder="DCS"
                         (inputCleared)="resetfilter ? selectFilterEvent('','dcs'):''"
                         (selected)='selectFilterEvent($event,"dcs")' [itemTemplate]="itemTemplatedcs"
                         [notFoundTemplate]="notFoundTemplate">
@@ -123,7 +123,7 @@
                 <th scope="col" class="sticky-top table-header-wrapper">
                   <h5 class="mainheading-wrapper">CSS</h5>
                   <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="csskeyword" #autocss placeHolder="CSS"
+                    <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="csskeyword"  placeHolder="CSS"
                       [initialValue]='intialcssvalue' (inputCleared)="resetfilter ? selectFilterEvent('','css'):''"
                       (selected)=' siteList.length>0 ? selectFilterEvent($event,"css"):""'
                       [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate">
@@ -136,7 +136,7 @@
                 <th scope="col" class="sticky-top table-header-inner">
                   <h5 class="mainheading-wrapper">Service </h5>
                   <div class="input-outter-wrapper dropdown">
-                    <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="serviceKeyword" #autoservice
+                    <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="serviceKeyword"
                       placeHolder="Service" (inputCleared)="resetfilter ? selectFilterEvent('','service'):''"
                       (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
                       [notFoundTemplate]="notFoundTemplate">
