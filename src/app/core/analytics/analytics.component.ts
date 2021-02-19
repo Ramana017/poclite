@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
@@ -47,6 +47,10 @@ export class AnalyticsComponent implements OnInit {
     this.MangmentScreens = [false, false, false, false]
     this.MangmentScreens[j] = true;
     this.headerString = headerstring;
+
+  }
+  public templateOpen(){
+    $('#templatepopup').modal({ keyboard: false, backdrop: true }, 'show')
 
   }
 }
