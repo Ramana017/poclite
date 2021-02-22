@@ -1609,10 +1609,28 @@ a:hover{
   .color-div{
     height: 20px;
     width: 22px;
-    border: 1px solid #5a5a5a;
-    background-color: yellow;
+    border: 1px solid #ccc;
+    background-color: #449d44;
   }
-  .input-box{
+  .color-div-yellow{
+    height: 20px;
+    width: 22px;
+    border: 1px solid #ccc;
+    background-color: #ec971f;
+  }
+  .color-div-red{
+    height: 20px;
+    width: 22px;
+    border: 1px solid #ccc;
+    background-color: #d9534f;
+  }
+  // .input-box{
 
+  // }
+}
+
+.table-responsive{
+  .table{
+    background: #fff;
   }
 }
