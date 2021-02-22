@@ -41,6 +41,7 @@
                         <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']"><a>Visit Review </a></li>
                         <li class="dropdown-item dropdown" [ngClass]="analytics.isActive||maintaince.isActive ?'active':''">
                             <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
+                            <!-- <i class="fas fa-caret-right  ml-3"></i> -->
                             <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
                                 <li class="dropdown-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
                                 <li class="dropdown-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
