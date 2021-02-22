@@ -1648,12 +1648,15 @@ a:hover{
   background-color: #d9534f;
 }
 
-.table-responsive{
-  .table{
-    background: #fff;
-  }
-}
-
 .input-box{
   width: 50px;
+}
+
+
+app-analytics,app-maintainence{
+  .table-responsive{
+    .table{
+      background: #fff;
+    }
+  }
 }
