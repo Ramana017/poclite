@@ -293,7 +293,7 @@
 }
 
 .ml-negative {
-  margin-left: -33px;
+  margin-left: -60px;
 }
 
 .border-1 {
@@ -1629,8 +1629,31 @@ a:hover{
   // }
 }
 
+.color-div{
+  height: 20px;
+  width: 22px;
+  border: 1px solid #ccc;
+  background-color: #449d44;
+}
+.color-div-yellow{
+  height: 20px;
+  width: 22px;
+  border: 1px solid #ccc;
+  background-color: #ec971f;
+}
+.color-div-red{
+  height: 20px;
+  width: 22px;
+  border: 1px solid #ccc;
+  background-color: #d9534f;
+}
+
 .table-responsive{
   .table{
     background: #fff;
   }
+}
+
+.input-box{
+  width: 50px;
 }
