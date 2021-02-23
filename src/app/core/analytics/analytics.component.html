@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12 chart-content p-0 col-xs-12 bg-light">
         <div class="px-5 pt-3">
-          <div class="navigation d-flex justify-content-center">
+          <div class="navigation d-flex justify-content-center" *ngIf="!displayFlag">
             <ul class="nav nav-pills mb-3">
               <li class="nav-item mx-3">
                 <a class="nav-link" (click)="MangmentScreens = [true, false, false, false]"
@@ -41,7 +41,55 @@
               </li>
             </ul>
           </div>
-
+          <div class="navigation d-flex justify-content-center"*ngIf="displayFlag">
+            <ul class="nav nav-pills mb-3">
+              <li class="nav-item mx-3">
+                <a class="nav-link" (click)="parameterScreens = [true, false, false, false]"
+                  [ngClass]="parameterScreens[0] ? 'active' : ''">1</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" (click)="parameterScreens = [false, true, false, false]" [ngClass]="
+                    parameterScreens[0]
+                      ? 'disabled'
+                      : parameterScreens[1]
+                      ? 'active'
+                      : ''
+                  ">2</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" (click)="parameterScreens = [false, false, true, false]" [ngClass]="
+                    parameterScreens[0] || parameterScreens[1]
+                      ? 'disabled'
+                      : parameterScreens[2]
+                      ? 'active'
+                      : ''
+                  ">3</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" (click)="parameterScreens = [false, false, false, true]" [ngClass]="
+                    parameterScreens[0] ||
+                    parameterScreens[1] ||
+                    parameterScreens[2]
+                      ? 'disabled'
+                      : parameterScreens[3]
+                      ? 'active'
+                      : ''
+                  ">4</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" (click)="parameterScreens = [false, false, false, true]" [ngClass]="
+                    parameterScreens[0] ||
+                    parameterScreens[1] ||
+                    parameterScreens[2]||
+                    parameterScreens[3]
+                      ? 'disabled'
+                      : parameterScreens[4]
+                      ? 'active'
+                      : ''
+                  ">5</a>
+              </li>
+            </ul>
+          </div>
           <div class="compliance-content-wrapper">
             <div class="screen-name">{{ headerString }}</div>
 
@@ -61,7 +109,7 @@
               <div class=" d-flex check-box-wrapper-analytics ">
                 <h5 class="mr-2">Management</h5>
                 <div class="on-off-toggle">
-                    <input class="on-off-toggle__input" type="checkbox"  id="bopis" />
+                    <input class="on-off-toggle__input" (change)="onDisplayChange($event)" type="checkbox"  id="bopis" />
                     <label for="bopis" class="on-off-toggle__slider"></label>
                 </div>
                 <h5 class="ml-3">Parameter</h5>
@@ -69,7 +117,7 @@
             </div>
             </div>
 
-            <div class="table-responsive" style="height: 68vh">
+            <div class="table-responsive" style="height: 68vh" *ngIf="!displayFlag">
              <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[0]">
                 <thead class="thead-dark" >
                   <tr>
@@ -401,6 +449,121 @@
                 </tbody>
               </table>
             </div>
+            <div class="table-responsive" style="height: 68vh"*ngIf="displayFlag">
+              <table class="table box-shadow text-center mb-1" *ngIf="parameterScreens[0]">
+                 <thead class="thead-dark" >
+                   <tr>
+                     <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                     <th scope="col " class="sticky-top" style="z-index: 5;">Process
+                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
+                     </th>
+                     <th scope="col" class="sticky-top">Percentage</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr *ngFor="let item of measures">
+                     <th scope="row">{{item.sno}}</th>
+                     <td>{{item.process}}</td>
+                     <td>
+                       <div (click)="onMeasurelevelChange(1,item.process)" class="percentage-pill"
+                         [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                         {{item.percentage}}{{'%'}}
+                       </div>
+                     </td>
+
+                   </tr>
+
+                 </tbody>
+               </table>
+
+               <table class="table box-shadow text-center mb-1" *ngIf="parameterScreens[1]">
+                 <thead class="thead-dark">
+                   <tr>
+                     <th scope="col">
+                       Site
+                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
+                     </th>
+                     <th scope="col">Percentage</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr *ngFor="let item of measures2">
+                     <td scope="row">{{ item.site }}</td>
+
+                     <td>
+                       <div class="percentage-pill" (click)="onMeasurelevelChange(2, item.site)" [ngClass]="
+                           item.percentage <= 20
+                             ? 'bg-danger'
+                             : item.percentage > 20 && item.percentage <= 50
+                             ? 'bg-warning'
+                             : item.percentage > 50 && item.percentage <= 75
+                             ? 'bg-primary'
+                             : 'bg-success'
+                         ">
+                         {{ item.percentage }}
+                       </div>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+
+               <table class="table box-shadow text-center" *ngIf="parameterScreens[2]">
+                 <thead class="thead-dark">
+                   <tr>
+                     <th scope="col">S.No</th>
+                     <th scope="col ">
+                       Description
+                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
+                     </th>
+                     <th scope="col">Percentage</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr *ngFor="let item of measures3">
+                     <th scope="row">{{ item.sno }}</th>
+                     <td>{{ item.description }}</td>
+                     <td>
+                       <div class="percentage-pill" (click)="onMeasurelevelChange(3, headerString)" [ngClass]="
+                           item.percentage <= 20
+                             ? 'bg-danger'
+                             : item.percentage > 20 && item.percentage <= 50
+                             ? 'bg-warning'
+                             : item.percentage > 50 && item.percentage <= 75
+                             ? 'bg-primary'
+                             : 'bg-success'
+                         ">
+                         {{ item.percentage }}
+                       </div>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+
+               <table class="table box-shadow text-center" *ngIf="parameterScreens[3]">
+                 <thead class="thead-dark">
+                   <tr>
+                     <th scope="col">S.No</th>
+                     <th scope="col ">
+                       Description
+                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
+                     </th>
+                     <th scope="col">Totals</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr *ngFor="let item of measures4">
+                     <th scope="row">{{ item.sno }}</th>
+                     <td>{{ item.description }}</td>
+                     <td>
+                       <div class="blue" (click)="templateOpen()">
+                         {{ item.totals }}
+                       </div>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+
+             </div>
           </div>
         </div>
       </div>
@@ -549,7 +712,7 @@
         <div class="row   measures-wrapper ">
           <div class=" col-md-6 card bg-light mb-3 box-shadow">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <h5 class="m-0">Select Date</h5>
+              <h5 class="m-0">Job Run Date</h5>
               <input class="form-control" style="width: auto;" type="text" bsDatepicker placeholder="MM/DD/YYYY">
             </div>
           </div>
