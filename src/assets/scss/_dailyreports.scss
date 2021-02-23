@@ -3,5 +3,8 @@
     background-color: white;
     height: 80vh;
     overflow-y: auto;
+    .table .thead-dark th{
+      z-index: 1;
+    }
   }
 }
