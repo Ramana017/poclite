@@ -2,16 +2,22 @@
 <div class="navigation d-flex justify-content-center pt-2">
   <ul class="nav nav-pills mb-2">
     <li class="nav-item mx-3">
-      <a class="nav-link"(click)="navbuttons=[true,false,false]"[ngClass]="navbuttons[0]?'active':''" >Prev</a>
+      <a class="nav-link"(click)="navbuttons=[true,false,false]" [ngClass]="navbuttons[0]?'active':''" >Prev</a>
     </li>
     <li class="nav-item mx-3">
-      <a class="nav-link"(click)="navbuttons=[false,true,false]"[ngClass]="navbuttons[1]?'active':''" >Current</a>
+      <a class="nav-link"(click)="navbuttons=[false,true,false]" [ngClass]="navbuttons[1]?'active':''" >Current</a>
     </li>
     <li class="nav-item mx-3">
-      <a class="nav-link"(click)="navbuttons=[false,false,true]"[ngClass]="navbuttons[2]?'active':''" >Next</a>
+      <a class="nav-link"(click)="navbuttons=[false,false,true]" [ngClass]="navbuttons[2]?'active':''" >Next</a>
     </li>
   </ul>
 </div>
+
+<div class="downloads d-flex justify-content-end mr-4 mb-2">
+  <i class="fas fa-file-download mx-3 f-18"></i>
+  <i class="fas fa-filter mx-2 f-18" data-toggle="modal" data-target=".daily-reports-filter"></i>
+</div>
+
 <div class="daily-stats-wrapper px-4 pb-4">
   <div class="table-responsive box-shadow">
     <table class="table ">
@@ -77,5 +83,155 @@
         </tr> -->
              </tbody>
     </table>
+  </div>
+</div>
+
+<div class="modal fade daily-reports-filter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="exampleModalLabel">
+         Daily Reports Filter
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row measures-wrapper">
+          <div class="col-md-6  mb-3 ">
+            <div class="card-header d-flex justify-content-between align-items-center box-shadow">
+              <h5 class="m-0">Job Run Date</h5>
+              <input class="form-control bg-light-grey" style="width: auto" type="text" bsDatepicker placeholder="MM/DD/YYYY" />
+            </div>
+          </div>
+        </div>
+        <div class="row measures-wrapper">
+          <div class="col-md-6">
+            <div class="card bg-light mb-3 box-shadow">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Select RVP's</h5>
+                <div class="d-flex mr-3 align-items-center" style="width: 55%">
+                  <label class="site-label color-black">
+                    <!-- <h5 class="mb-0 text-white"> RVP's</h5> -->
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="input-group">
+                    <div class="procedurecode w-100 multiselect-angular">
+                      <angular2-multiselect >
+                      </angular2-multiselect>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <li>test 1</li>
+                  <li>test 2</li>
+                  <li>test 3</li>
+                  <li>test 4</li>
+                  <li>test 5</li>
+                  <li>test 6</li>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light mb-3 box-shadow">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Select ED's</h5>
+                <div class="d-flex mr-3 align-items-center" style="width: 55%">
+                  <label class="site-label color-black">
+                    <!-- <h5 class="mb-0 text-white"> ED's</h5> -->
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="input-group">
+                    <div class="procedurecode w-100 multiselect-angular">
+                      <angular2-multiselect >
+                      </angular2-multiselect>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <li>test 1</li>
+                  <li>test 2</li>
+                  <li>test 3</li>
+                  <li>test 4</li>
+                  <li>test 5</li>
+                  <li>test 6</li>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row measures-wrapper">
+          <div class="col-md-6">
+            <div class="card bg-light mb-3 box-shadow">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Select Branches</h5>
+                <div class="d-flex mr-3 align-items-center" style="width: 55%">
+                  <label class="site-label color-black">
+                    <!-- <h5 class="mb-0 text-white"> Branches</h5> -->
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="input-group">
+                    <div class="procedurecode w-100 multiselect-angular">
+                      <angular2-multiselect >
+                      </angular2-multiselect>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <li>test 1</li>
+                  <li>test 2</li>
+                  <li>test 3</li>
+                  <li>test 4</li>
+                  <li>test 5</li>
+                  <li>test 6</li>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-light mb-3 box-shadow">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="m-0">Select Sites</h5>
+                <div class="d-flex mr-3 align-items-center" style="width: 55%">
+                  <label class="site-label color-black">
+                    <!-- <h5 class="mb-0 text-white"> Sites</h5> -->
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="input-group">
+                    <div class="procedurecode w-100 multiselect-angular">
+                      <angular2-multiselect >
+                      </angular2-multiselect>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <li>test 1</li>
+                  <li>test 2</li>
+                  <li>test 3</li>
+                  <li>test 4</li>
+                  <li>test 5</li>
+                  <li>test 6</li>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-primary mx-2 px-3 border-radius-curved">Close</button>
+          <button type="button" class="btn btn-success mx-2 px-3 border-radius-curved">Apply</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
