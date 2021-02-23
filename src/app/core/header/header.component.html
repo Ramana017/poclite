@@ -45,7 +45,15 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
                                 <li class="dropdown-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
                                 <li class="dropdown-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
-
+                                <li class="dropdown-item"  [routerLink]="['/daily-reports']" routerLinkActive ><a>Daily Reports</a></li>
+                                <li class="dropdown-item"  [routerLink]="['/telephony']" routerLinkActive ><a>Telephony Stats</a></li>
+                                <li class="dropdown-item" [routerLink]="['/utilization']" routerLinkActive><a>Utilization Stats</a></li>
+                                <!-- <li class="dropdown-item dropdown">
+                                    <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maintainence</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
+                                        <li class="dropdown-item" href="#"><a>Action 1.1.1</a></li>
+                                    </ul>
+                                </li> -->
                             </ul>
                         </li>
                     </ul>
