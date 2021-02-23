@@ -172,7 +172,8 @@
 .w-25 {
   width: 25%;
 }
-.w-10{
+
+.w-10 {
   width: 10%;
 }
 
@@ -364,6 +365,7 @@ a {
 }
 
 button {
+
   &:focus,
   &:active {
     outline: none !important;
@@ -437,6 +439,7 @@ button {
       }
 
       .dropdown {
+
         // .button {
         // }
         .richard-img {
@@ -586,7 +589,7 @@ input[type="radio"] {
   display: none;
 }
 
-input[type="radio"] + label:before {
+input[type="radio"]+label:before {
   content: "";
   /* create custom radiobutton appearance */
   @include size(null, 14px);
@@ -602,7 +605,7 @@ input[type="radio"] + label:before {
 
 /* appearance for checked radiobutton */
 
-input[type="radio"]:checked + label:before {
+input[type="radio"]:checked+label:before {
   background-color: $button;
   border: 2px solid $button;
   color: $button;
@@ -764,6 +767,7 @@ modal-container {
 }
 
 .btn {
+
   &.disabled,
   &:disabled {
     cursor: not-allowed;
@@ -955,8 +959,10 @@ select:focus {
 }
 
 .edit-ps-container {
+
   .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
+
     // background: linear-gradient(to bottom right, #00aeef 0%, #76bc43 100%) !important;
     &:before {
       content: "";
@@ -978,8 +984,7 @@ select:focus {
 .tab-list-content {
   cursor: inherit;
 
-  &:hover {
-  }
+  &:hover {}
 }
 
 .material-icons {
@@ -1387,7 +1392,7 @@ input[type="number"] {
       opacity: 0;
     }
 
-    .on-off-toggle__input:checked + .on-off-toggle__slider {
+    .on-off-toggle__input:checked+.on-off-toggle__slider {
       background-color: #76bd43;
 
       &:before {
@@ -1515,11 +1520,13 @@ th {
   border: 2px solid #343a40;
   position: relative;
 
-    .table td, .table th {
-      padding: .55rem;
-      vertical-align: top;
-      border-top: 1px solid #dee2e6;
+  .table td,
+  .table th {
+    padding: .55rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
   }
+
   .modal-open .modal {
     background-color: #000000bf;
   }
@@ -1527,70 +1534,74 @@ th {
 
 .screen-name {
   width: auto;
-    background-color: #343a40;
-    padding: 8px;
-    -webkit-border-top-left-radius: 20px;
-    -webkit-border-bottom-right-radius: 20px;
-    -moz-border-radius-topleft: 20px;
-    -moz-border-radius-bottomright: 20px;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: absolute;
-    top: -19px;
-    right: 30px;
-    color: #fff;
+  background-color: #343a40;
+  padding: 8px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  top: -19px;
+  right: 30px;
+  color: #fff;
 }
 
-.percentage-pill{
+.percentage-pill {
 
-    padding: 2px;
-    border-radius: 500px;
-    width: 80px;
-    margin: 0 auto;
-    color: #fff;
-    cursor: pointer;
+  padding: 2px;
+  border-radius: 500px;
+  width: 80px;
+  margin: 0 auto;
+  color: #fff;
+  cursor: pointer;
 
 }
-.measures-wrapper{
-  .card-header{
+
+.measures-wrapper {
+  .card-header {
     background-color: #1a5092;
     color: $white;
   }
 }
 
-app-header{
+app-header {
 
-a:hover{
-  background-color: none;
-}
+  a:hover {
+    background-color: none;
+  }
 
-  .navbar .dropdown-toggle, .navbar .dropdown-menu a {
+  .navbar .dropdown-toggle,
+  .navbar .dropdown-menu a {
     cursor: pointer;
-}
+  }
 
-.navbar .dropdown-item.active, .navbar .dropdown-item:active {
+  .navbar .dropdown-item.active,
+  .navbar .dropdown-item:active {
     color: inherit;
     text-decoration: none;
     background-color: inherit;
-}
+  }
 
-// .navbar-dark .navbar-nav .nav-link:hover {
+  // .navbar-dark .navbar-nav .nav-link:hover {
 
-//   color: transparent !important;
+  //   color: transparent !important;
 
-// }
+  // }
 
-.dropdown a:hover {
-  background-color: transparent;
-}
+  .dropdown a:hover {
+    background-color: transparent;
+  }
 
-.navbar .dropdown-item:focus, .navbar .dropdown-item:hover {
+  .navbar .dropdown-item:focus,
+  .navbar .dropdown-item:hover {
     color: #16181b;
     text-decoration: none;
     background-color: #f8f9fa;
-}
+  }
 
-@media (min-width: 767px) {
+  @media (min-width: 767px) {
     // .navbar .dropdown-toggle:not(.nav-link)::after {
     //     display: inline-block;
     //     width: 0;
@@ -1601,62 +1612,88 @@ a:hover{
     //     border-top: .3em solid transparent;
     //     border-left: .3em solid;
     // }
-}
+  }
 
 }
 
-.color-rep-table{
-  .color-div{
+.color-rep-table {
+  .color-div {
     height: 20px;
     width: 22px;
     border: 1px solid #ccc;
     background-color: #449d44;
   }
-  .color-div-yellow{
+
+  .color-div-yellow {
     height: 20px;
     width: 22px;
     border: 1px solid #ccc;
     background-color: #ec971f;
   }
-  .color-div-red{
+
+  .color-div-red {
     height: 20px;
     width: 22px;
     border: 1px solid #ccc;
     background-color: #d9534f;
   }
+
   // .input-box{
 
   // }
 }
 
-.color-div{
+.color-div {
   height: 20px;
   width: 22px;
   border: 1px solid #ccc;
   background-color: #449d44;
 }
-.color-div-yellow{
+
+.color-div-yellow {
   height: 20px;
   width: 22px;
   border: 1px solid #ccc;
   background-color: #ec971f;
 }
-.color-div-red{
+
+.color-div-red {
   height: 20px;
   width: 22px;
   border: 1px solid #ccc;
   background-color: #d9534f;
 }
 
-.input-box{
+.input-box {
   width: 50px;
 }
 
 
-app-analytics,app-maintainence{
-  .table-responsive{
-    .table{
+app-analytics,
+app-maintainence {
+  .table-responsive {
+    .table {
       background: #fff;
     }
   }
 }
+
+.utilization-table {
+  .table-responsive{
+    height: 70vh;
+    background: #fff;
+    table {
+      background: #fff;
+      thead {
+        th {
+          font-size: 12px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  
+}
+.bg-light-grey{
+  background: #e9ecef !important;
+  }
