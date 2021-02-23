@@ -2,13 +2,13 @@
 <div class="navigation d-flex justify-content-center pt-2">
   <ul class="nav nav-pills mb-2">
     <li class="nav-item mx-3">
-      <a class="nav-link" >1</a>
+      <a class="nav-link"(click)="navbuttons=[true,false,false]"[ngClass]="navbuttons[0]?'active':''" >Prev</a>
     </li>
     <li class="nav-item mx-3">
-      <a class="nav-link" >2</a>
+      <a class="nav-link"(click)="navbuttons=[false,true,false]"[ngClass]="navbuttons[1]?'active':''" >Current</a>
     </li>
     <li class="nav-item mx-3">
-      <a class="nav-link" >3</a>
+      <a class="nav-link"(click)="navbuttons=[false,false,true]"[ngClass]="navbuttons[2]?'active':''" >Next</a>
     </li>
   </ul>
 </div>

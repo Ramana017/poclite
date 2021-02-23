@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DailyReportsComponent implements OnInit {
 
+  public navbuttons:Array<boolean>=[false,true,false];
   constructor() { }
 
   ngOnInit(): void {
