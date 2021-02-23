@@ -1,7 +1,20 @@
 .daily-stats-wrapper {
   .table-responsive {
     background-color: white;
-    height: 80vh;
+    height: 75vh;
     overflow-y: auto;
+    .table .thead-dark th{
+      z-index: 1;
+    }
   }
+  .table-scroll tfoot,
+.table-scroll tfoot th,
+.table-scroll tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background: #666;
+  color: #fff;
+  z-index:4;
+}
 }

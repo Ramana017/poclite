@@ -6,7 +6,9 @@ declare var $:any;
   styleUrls: ['./analytics.component.sass']
 })
 export class AnalyticsComponent implements OnInit {
-  public MangmentScreens: Array<Boolean> = [true, false, false, false]
+  public MangmentScreens: Array<Boolean> = [true, false, false, false];
+  public parameterScreens: Array<Boolean> = [true, false, false, false,false];
+  public displayFlag:boolean=false;
 
   measures = [];
   measures2 = [];
@@ -45,12 +47,23 @@ export class AnalyticsComponent implements OnInit {
 
   public onMeasurelevelChange(j, headerstring) {
     this.MangmentScreens = [false, false, false, false]
+    this.parameterScreens = [false, false, false, false,false]
+
     this.MangmentScreens[j] = true;
+    this.parameterScreens[j] = true;
+
     this.headerString = headerstring;
 
   }
   public templateOpen(){
     $('#templatepopup').modal({ keyboard: false, backdrop: true }, 'show')
+
+  }
+
+  public onDisplayChange(event){
+   this.displayFlag=event.target.checked;
+   this.MangmentScreens=[true,false,false,false];
+   this.parameterScreens=[true,false,false,false,false];
 
   }
 }
