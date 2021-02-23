@@ -1697,3 +1697,16 @@ app-maintainence {
 .bg-light-grey{
   background: #e9ecef !important;
   }
+  .measures-filter{
+    .modal-content{
+      height: auto !important;
+      overflow: hidden !important;
+    }
+  
+  }
+  .border-radius-curved{
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 8px;
+  }
