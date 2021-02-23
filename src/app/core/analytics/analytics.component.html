@@ -2,7 +2,7 @@
 <div class="charts-wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 chart-content p-0 col-xs-12 bg-light">
+      <div class="col-md-12 chart-content p-0 col-xs-12">
         <div class="px-5 pt-3">
           <div class="navigation d-flex justify-content-center" *ngIf="!displayFlag">
             <ul class="nav nav-pills mb-3">
@@ -39,6 +39,17 @@
                       : ''
                   ">4</a>
               </li>
+              <!-- <li class="nav-item mx-3">
+                <a class="nav-link" (click)="MangmentScreens = [false, false, false, true]" [ngClass]="
+                    MangmentScreens[0] ||
+                    MangmentScreens[1] ||
+                    MangmentScreens[2]
+                      ? 'disabled'
+                      : MangmentScreens[3]
+                      ? 'active'
+                      : ''
+                  ">5</a>
+              </li> -->
             </ul>
           </div>
           <div class="navigation d-flex justify-content-center"*ngIf="displayFlag">
@@ -106,15 +117,14 @@
                   Parameter
                 </label>
               </div> -->
-              <div class=" d-flex check-box-wrapper-analytics ">
+              <div class="d-flex check-box-wrapper-analytics">
                 <h5 class="mr-2">Management</h5>
                 <div class="on-off-toggle">
-                    <input class="on-off-toggle__input" (change)="onDisplayChange($event)" type="checkbox"  id="bopis" />
-                    <label for="bopis" class="on-off-toggle__slider"></label>
+                  <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+                  <label for="bopis" class="on-off-toggle__slider"></label>
                 </div>
                 <h5 class="ml-3">Parameter</h5>
-
-            </div>
+              </div>
             </div>
 
             <div class="table-responsive" style="height: 68vh" *ngIf="!displayFlag">
@@ -147,11 +157,11 @@
               <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[1]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">
                       Site
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Percentage</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Percentage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -178,12 +188,12 @@
               <table class="table box-shadow text-center" *ngIf="MangmentScreens[2]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col ">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col " class="sticky-top" style="z-index: 5;">
                       Description
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Percentage</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Percentage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -210,12 +220,12 @@
               <table class="table box-shadow text-center" *ngIf="MangmentScreens[3]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col ">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col " class="sticky-top" style="z-index: 5;">
                       Description
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Totals</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Totals</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -223,231 +233,202 @@
                     <th scope="row">{{ item.sno }}</th>
                     <td>{{ item.description }}</td>
                     <td>
-                      <div class="blue" (click)="templateOpen()">
-                        {{ item.totals }}
+                      <div class="blue text-decoration-underline" >
+                        <a (click)="templateOpen()" >{{ item.totals }}</a>
                       </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
+
+
 
               <table class="table color-rep-table box-shadow" *ngIf="false">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col" colspan="5" >Category</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col" colspan="4" class="sticky-top" style="z-index: 5;">Category</th>
                   </tr>
-
                 </thead>
                 <tbody>
                   <tr>
                     <td scope="row">1</td>
-                    <td colspan="">Scheduling-Interm</td>
+                    <td colspan="">Scheduling Interm</td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
+                      <div class="d-flex justify-content-center align-items-center">
                         <span class="color-div mr-3"></span>
                         <span>></span>
                         <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <input type="text" class="" />
                         </span>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mr-3"></div>
-                        <span>>=</span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <div class="color-div-yellow mr-3"></div>
+                          <span>>=</span>
+                          <div class="input-box mx-3">
+                            <input type="text" class="" />
+                          </div>
                         </div>
-                        </div>
-                        <span class="ml-n4">&</span>
+                        <span class="mx-4">&</span>
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mx-3"></div>
-                        <span> <= </span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25" />
-                        </div>
+                          <!-- <div class="color-div-red mx-3"></div> -->
+                          <span> <= </span>
+                              <div class="input-box mx-3">
+                                <input type="text" class="" />
+                              </div>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span><</span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <span class="color-div-red mr-3"></span>
+                        <
+                            <span class="input-box mx-3">
+                              <input type="text" class="" />
+                            </span>
                       </div>
                     </td>
                   </tr>
+
                   <tr>
                     <td scope="row">1</td>
-                    <td colspan="">LInking Visits</td>
+                    <td colspan="">Scheduling Interm</td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
+                      <div class="d-flex justify-content-center align-items-center">
                         <span class="color-div mr-3"></span>
                         <span>></span>
                         <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <input type="text" class="" />
                         </span>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mr-3"></div>
-                        <span>>=</span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <div class="color-div-yellow mr-3"></div>
+                          <span>>=</span>
+                          <div class="input-box mx-3">
+                            <input type="text" class="" />
+                          </div>
                         </div>
-                        </div>
-                        <span class="ml-n4">&</span>
+                        <span class="mx-4">&</span>
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mx-3"></div>
-                        <span> <= </span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25" />
-                        </div>
+                          <!-- <div class="color-div-red mx-3"></div> -->
+                          <span> <= </span>
+                              <div class="input-box mx-3">
+                                <input type="text" class="" />
+                              </div>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span><</span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <span class="color-div-red mr-3"></span>
+                        <
+                            <span class="input-box mx-3">
+                              <input type="text" class="" />
+                            </span>
                       </div>
                     </td>
                   </tr>
+
                   <tr>
                     <td scope="row">1</td>
-                    <td colspan="">New Admissions</td>
+                    <td colspan="">Scheduling Interm</td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
+                      <div class="d-flex justify-content-center align-items-center">
                         <span class="color-div mr-3"></span>
                         <span>></span>
                         <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <input type="text" class="" />
                         </span>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mr-3"></div>
-                        <span>>=</span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <div class="color-div-yellow mr-3"></div>
+                          <span>>=</span>
+                          <div class="input-box mx-3">
+                            <input type="text" class="" />
+                          </div>
                         </div>
-                        </div>
-                        <span class="ml-n4">&</span>
+                        <span class="mx-4">&</span>
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mx-3"></div>
-                        <span> <= </span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25" />
-                        </div>
+                          <!-- <div class="color-div-red mx-3"></div> -->
+                          <span> <= </span>
+                              <div class="input-box mx-3">
+                                <input type="text" class="" />
+                              </div>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span><</span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <span class="color-div-red mr-3"></span>
+                            <
+                            <span class="input-box mx-3">
+                              <input type="text" class="" />
+                            </span>
                       </div>
                     </td>
                   </tr>
+
                   <tr>
                     <td scope="row">1</td>
-                    <td colspan="">Employee Onboarding</td>
+                    <td colspan="">Scheduling Interm</td>
                     <td>
-                      <div class="d-flex justify-content-start align-items-center">
+                      <div class="d-flex justify-content-center align-items-center">
                         <span class="color-div mr-3"></span>
                         <span>></span>
                         <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <input type="text" class="" />
                         </span>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mr-3"></div>
-                        <span>>=</span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25"/>
+                          <div class="color-div-yellow mr-3"></div>
+                          <span>>=</span>
+                          <div class="input-box mx-3">
+                            <input type="text" class="" />
+                          </div>
                         </div>
-                        </div>
-                        <span class="ml-n4">&</span>
+                        <span class="mx-4">&</span>
                         <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mx-3"></div>
-                        <span> <= </span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25" />
+                          <!-- <div class="color-div-red mx-3"></div> -->
+                          <span> <= </span>
+                              <div class="input-box mx-3">
+                                <input type="text" class="" />
+                              </div>
                         </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span><</span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row">1</td>
-                    <td colspan="">Reconcilation</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span>></span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mr-3"></div>
-                        <span>>=</span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </div>
-                        </div>
-                        <span class="ml-n4">&</span>
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div mx-3"></div>
-                        <span> <= </span>
-                        <div class="input-box mx-3">
-                          <input type="text" class="w-25" />
-                        </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span><</span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="w-25"/>
-                        </span>
+                        <span class="color-div-red mr-3"></span>
+                        <
+                            <span class="input-box mx-3">
+                              <input type="text" class="" />
+                            </span>
                       </div>
                     </td>
                   </tr>
 
                 </tbody>
               </table>
+
+
+
+
+
+
+
+
             </div>
             <div class="table-responsive" style="height: 68vh"*ngIf="displayFlag">
               <table class="table box-shadow text-center mb-1" *ngIf="parameterScreens[0]">
@@ -584,6 +565,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="d-flex align-items-center justify-content-end">
+          <i class="fas fa-file-download download-icon"></i>
+        </div>
         <table class="table box-shadow">
           <thead class="thead-dark">
             <tr>
@@ -688,8 +672,8 @@
         </table>
 
         <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-primary">Close</button>
-          <button type="button" class="btn btn-success">Next</button>
+          <button type="button" class="btn btn-primary border-radius-curved">Close</button>
+          <button type="button" class="btn btn-success border-radius-curved">Next</button>
         </div>
       </div>
     </div>
@@ -702,22 +686,22 @@
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="exampleModalLabel">
-          Measures-filter
+          Measures Filter
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="row   measures-wrapper ">
-          <div class=" col-md-6 card bg-light mb-3 box-shadow">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="row measures-wrapper">
+          <div class="col-md-6  mb-3 ">
+            <div class="card-header d-flex justify-content-between align-items-center box-shadow">
               <h5 class="m-0">Job Run Date</h5>
-              <input class="form-control" style="width: auto;" type="text" bsDatepicker placeholder="MM/DD/YYYY">
+              <input class="form-control bg-light-grey" style="width: auto" type="text" bsDatepicker placeholder="MM/DD/YYYY" />
             </div>
           </div>
         </div>
-        <div class="row  measures-wrapper">
+        <div class="row measures-wrapper">
           <div class="col-md-6">
             <div class="card bg-light mb-3 box-shadow">
               <div class="card-header d-flex justify-content-between align-items-center">
@@ -777,7 +761,7 @@
             </div>
           </div>
         </div>
-        <div class="row  measures-wrapper">
+        <div class="row measures-wrapper">
           <div class="col-md-6">
             <div class="card bg-light mb-3 box-shadow">
               <div class="card-header d-flex justify-content-between align-items-center">
@@ -836,12 +820,10 @@
               </div>
             </div>
           </div>
-
         </div>
         <div class="d-flex justify-content-center align-items-center">
-
-          <button type="button" class="btn btn-primary mx-2 px-3">Close</button>
-          <button type="button" class="btn btn-success mx-2 px-3">Apply</button>
+          <button type="button" class="btn btn-primary mx-2 px-3 border-radius-curved">Close</button>
+          <button type="button" class="btn btn-success mx-2 px-3 border-radius-curved">Apply</button>
         </div>
       </div>
     </div>

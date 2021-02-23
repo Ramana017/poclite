@@ -1,0 +1,10 @@
+.daily-stats-wrapper {
+  .table-responsive {
+    background-color: white;
+    height: 75vh;
+    overflow-y: auto;
+    .table .thead-dark th{
+      z-index: 1;
+    }
+  }
+}
