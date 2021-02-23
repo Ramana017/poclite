@@ -65,6 +65,9 @@ import { VisitReviewComponent } from './core/visit-review/visit-review.component
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
 import { AnalyticsComponent } from './core/analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
+import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
+import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
+import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,10 @@ import { MaintainenceComponent } from './core/maintainence/maintainence.componen
     DomsanitizePipe,
     ReviewExceptionpopupComponent,
     AnalyticsComponent,
-    MaintainenceComponent
+    MaintainenceComponent,
+    DailyReportsComponent,
+    TelephonyStatsComponent,
+    UtilizationStatsComponent
   ],
   imports: [
     BrowserModule,

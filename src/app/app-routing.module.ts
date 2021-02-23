@@ -24,6 +24,9 @@ import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { AnalyticsComponent } from './core/analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
+import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
+import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
+import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 
 
 
@@ -34,6 +37,9 @@ const routes: Routes = [
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
   { path: 'analytics', component: AnalyticsComponent },
   {path:'maintaince',component:MaintainenceComponent},
+  {path:'daily-reports',component:DailyReportsComponent},
+  {path:'telephony',component:TelephonyStatsComponent},
+  {path:'utilization',component:UtilizationStatsComponent},
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
