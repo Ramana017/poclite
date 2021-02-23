@@ -109,11 +109,11 @@
               <table class="table box-shadow text-center mb-1" *ngIf="MangmentScreens[1]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">
                       Site
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Percentage</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Percentage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -140,12 +140,12 @@
               <table class="table box-shadow text-center" *ngIf="MangmentScreens[2]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col ">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col " class="sticky-top" style="z-index: 5;">
                       Description
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Percentage</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Percentage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -172,12 +172,12 @@
               <table class="table box-shadow text-center" *ngIf="MangmentScreens[3]">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col ">
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col " class="sticky-top" style="z-index: 5;">
                       Description
                       <i class="fas fa-filter ml-2" data-toggle="modal" data-target=".measures-filter"></i>
                     </th>
-                    <th scope="col">Totals</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">Totals</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -185,8 +185,8 @@
                     <th scope="row">{{ item.sno }}</th>
                     <td>{{ item.description }}</td>
                     <td>
-                      <div class="blue" (click)="templateOpen()">
-                        {{ item.totals }}
+                      <div class="blue text-decoration-underline" >
+                        <a (click)="templateOpen()" >{{ item.totals }}</a>
                       </div>
                     </td>
                   </tr>
@@ -198,8 +198,8 @@
               <table class="table color-rep-table box-shadow" *ngIf="false">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col" colspan="4">Category</th>
+                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
+                    <th scope="col" colspan="4" class="sticky-top" style="z-index: 5;">Category</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -402,6 +402,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="d-flex align-items-center justify-content-end">
+          <i class="fas fa-file-download download-icon"></i>
+        </div>
         <table class="table box-shadow">
           <thead class="thead-dark">
             <tr>
@@ -520,7 +523,7 @@
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="exampleModalLabel">
-          Measures-filter
+          Measures Filter
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
