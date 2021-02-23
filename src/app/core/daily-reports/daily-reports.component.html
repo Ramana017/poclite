@@ -37,7 +37,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="white-space: nowrap;">
+        <tr *ngFor="let item of navbuttons[0]? dailyReportStats.January:navbuttons[1]?dailyReportStats.February:dailyReportStats.March" style="white-space: nowrap;">
+          <th scope="row">{{item.rvp}}</th>
+          <td>{{item.ed}}</td>
+          <td>{{item.branch}}</td>
+          <td>{{item.AuthorizedHours}}</td>
+          <td>{{item.ScheduledHoursIncludingCancellations}} </td>
+          <td>{{item.authorizedHoursScheduledIncludingCancellations}}</td>
+          <td>{{item.CancelledHours}}</td>
+          <td>{{item.cancellation}}</td>
+          <td>{{item.NoNeedHours}}</td>
+          <td>{{item.PSNoNeed}}</td>
+          <td>{{item.ScheduledLessCancelledNoNeedHours}}</td>
+          <td>{{item.AuthorizedHoursScheduledAfterCancellationsNoNeed}}</td>
+          <td>{{item.ScheduledHoursDCSAssigned}}</td>
+          <td>{{item.ScheduledHourswnornDCSAssigned}}</td>
+          <td>{{item.ScheduledHoursnotStaffed}}</td>
+          <td>{{item.ServicedHours}}</td>
+          <td>{{item.ServedUtilization}}</td>
+        </tr>
+        <!-- <tr style="white-space: nowrap;">
           <th scope="row">Pacific</th>
           <td>ED: RCHC WA SOUTH KING COUNTY</td>
           <td>BR: RCHC FL BONITA SPRINGS</td>
@@ -55,84 +74,8 @@
           <td>22.5 </td>
           <td> 0.00 </td>
           <td> 0.0 </td>
-        </tr>
-        <tr style="white-space: nowrap;">
-          <th scope="row">Pacific</th>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>3176.41</td>
-          <td>2662.00 </td>
-          <td>83.8 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td> 2662.00 </td>
-          <td> 83.8 </td>
-          <td> 2062.00 </td>
-          <td> 600.00 </td>
-          <td>22.5 </td>
-          <td> 0.00 </td>
-          <td> 0.0 </td>
-        </tr>
-        <tr style="white-space: nowrap;">
-          <th scope="row">Pacific</th>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>3176.41</td>
-          <td>2662.00 </td>
-          <td>83.8 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td> 2662.00 </td>
-          <td> 83.8 </td>
-          <td> 2062.00 </td>
-          <td> 600.00 </td>
-          <td>22.5 </td>
-          <td> 0.00 </td>
-          <td> 0.0 </td>
-        </tr>
-        <tr style="white-space: nowrap;">
-          <th scope="row">Pacific</th>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>3176.41</td>
-          <td>2662.00 </td>
-          <td>83.8 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td> 2662.00 </td>
-          <td> 83.8 </td>
-          <td> 2062.00 </td>
-          <td> 600.00 </td>
-          <td>22.5 </td>
-          <td> 0.00 </td>
-          <td> 0.0 </td>
-        </tr>
-        <tr style="white-space: nowrap;">
-          <th scope="row">Pacific</th>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>3176.41</td>
-          <td>2662.00 </td>
-          <td>83.8 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td> 2662.00 </td>
-          <td> 83.8 </td>
-          <td> 2062.00 </td>
-          <td> 600.00 </td>
-          <td>22.5 </td>
-          <td> 0.00 </td>
-          <td> 0.0 </td>
-        </tr>
-      </tbody>
+        </tr> -->
+             </tbody>
     </table>
   </div>
 </div>
