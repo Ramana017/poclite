@@ -706,7 +706,7 @@
         <div class="modal-header bg-dark d-flex justify-content-between align-items-center">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress Notes</h5>
 
-         <p class="text-white m-0"> {{progressmodelLabel}}  -  {{progressmodelprocedureLabel}}</p>
+         <p class="text-white mb-0" style="margin-left:-5rem;"> {{progressmodelLabel}}  -  {{progressmodelprocedureLabel}}</p>
 
           <button type="button" class="close m-0 p-0" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -714,10 +714,11 @@
         </div>
 
         <div class="modal-body text-dark p-0">
-          <!-- <div class="d-flex justify-content-between progress-title text-white">
+           <!-- <div class="d-flex justify-content-between progress-title text-white">
             <h5>{{progressmodelLabel}}</h5>
             <h5>{{progressmodelprocedureLabel}}</h5>
           </div> -->
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="home-tab" (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Form 1</button>
@@ -756,7 +757,7 @@
                       for="other{{i}}{{j}}">{{option.displayName}}</label>
                   </div>
                 </div>
-    
+
                 <div *ngIf="data.displayType=='textbox'">
                   <div class="bottom-input pt-2">
                     <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -766,7 +767,7 @@
                 <div *ngIf="data.displayType=='textarea'">
                   <div class="pt-2">
                     <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-    
+
                     <textarea rows="3" cols="35"value="{{data.answer}}">
                       </textarea>
                   </div>
@@ -781,8 +782,8 @@
                     </select>
                   </div>
                 </div>
-    
-    
+
+
               </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" [ngClass]="navbuttons[1]?'active show':''">
@@ -808,7 +809,7 @@
                       for="other{{i}}{{j}}">{{option.displayName}}</label>
                   </div>
                 </div>
-    
+
                 <div *ngIf="data.displayType=='textbox'">
                   <div class="bottom-input pt-2">
                     <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -818,7 +819,7 @@
                 <div *ngIf="data.displayType=='textarea'">
                   <div class="pt-2">
                     <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-    
+
                     <textarea rows="3" cols="35"value="{{data.answer}}">
                       </textarea>
                   </div>
@@ -833,8 +834,8 @@
                     </select>
                   </div>
                 </div>
-    
-    
+
+
               </div>
             </div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" [ngClass]="navbuttons[2]?'active show':''">
@@ -860,7 +861,7 @@
                       for="other{{i}}{{j}}">{{option.displayName}}</label>
                   </div>
                 </div>
-    
+
                 <div *ngIf="data.displayType=='textbox'">
                   <div class="bottom-input pt-2">
                     <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -870,7 +871,7 @@
                 <div *ngIf="data.displayType=='textarea'">
                   <div class="pt-2">
                     <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-    
+
                     <textarea rows="3" cols="35"value="{{data.answer}}">
                       </textarea>
                   </div>
@@ -885,8 +886,8 @@
                     </select>
                   </div>
                 </div>
-    
-    
+
+
               </div>
             </div>
             <div class="tab-pane fade show" id="form-4" role="tabpanel" aria-labelledby="home-tab" [ngClass]="navbuttons[3]?'active show':''">
@@ -912,7 +913,7 @@
                       for="other{{i}}{{j}}">{{option.displayName}}</label>
                   </div>
                 </div>
-    
+
                 <div *ngIf="data.displayType=='textbox'">
                   <div class="bottom-input pt-2">
                     <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -922,7 +923,7 @@
                 <div *ngIf="data.displayType=='textarea'">
                   <div class="pt-2">
                     <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-    
+
                     <textarea rows="3" cols="35"value="{{data.answer}}">
                       </textarea>
                   </div>
@@ -937,8 +938,8 @@
                     </select>
                   </div>
                 </div>
-    
-    
+
+
               </div>
             </div>
           </div>
