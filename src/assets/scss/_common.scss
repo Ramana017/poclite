@@ -1752,3 +1752,51 @@ app-maintainence {
     
   }
 // }
+.daily-stats-wrapper{
+  .td{
+    max-width: 180px;
+  }
+}
+.sticky-top-th{
+  z-index: 100 !important;
+  // background-color: red;
+}
+.sticky-left{
+  position: sticky;
+  
+  z-index: 99;
+  background-color: #fff;
+}
+.left-0{
+  left: 0;
+  width: 97px;
+}
+.left-97{
+  left: 97px;
+}
+.left-277{
+  left: 281px;
+}
+.left-44{
+  left: 44px;
+}
+.left-94{
+  left: 94px;
+}
+.left-172{
+  left: 172px;
+}
+.left-307{
+  left: 307px;
+}
+.abc{
+  width: 200px;
+  height: 40px;
+  background: #a88746;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  &.active{
+    background: #343a40 !important;
+  }
+}
