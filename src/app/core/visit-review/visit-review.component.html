@@ -722,30 +722,30 @@
 
 
 <div class="">
-  <button class="nav-link" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Progress</button>
-  <button class="nav-link" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Form </button>
+  <button class="nav-link" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" >Progress</button>
+  <button class="nav-link" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active border-radius-curved':''" >Form </button>
 </div>
 <div class="">
   <div class="tab-pane fade" [ngClass]="progressbtn[0]?'active show':''" >
     ABCD
   </div>
-<div class="tab-pane fade" [ngClass]="progressbtn[1]?'active show':''">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+<div class="tab-pane fade d-flex " [ngClass]="progressbtn[1]?'active show':''">
+  <ul class=" mx-3 p-0" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="home-tab" (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Form 1</button>
+      <button class="nav-link white-space-nowrap"  (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 1</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" (click)="navbuttons=[false,true,false,false]" [ngClass]="navbuttons[1]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Form 2</button>
+      <button class="nav-link white-space-nowrap"  (click)="navbuttons=[false,true,false,false]" [ngClass]="navbuttons[1]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 2</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" (click)="navbuttons=[false,false,true,false]" [ngClass]="navbuttons[2]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Form 3</button>
+      <button class="nav-link white-space-nowrap"  (click)="navbuttons=[false,false,true,false]" [ngClass]="navbuttons[2]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 3</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="form-4" (click)="navbuttons=[false,false,false,true]" [ngClass]="navbuttons[3]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#form-4" type="button" role="tab" aria-controls="contact" aria-selected="false">Form 4</button>
+      <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,false,false,true]" [ngClass]="navbuttons[3]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 4</button>
     </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab" [ngClass]="navbuttons[0]?'active show':''">
+  <div class="tab-content mx-3 p-0 w-100" id="myTabContent">
+    <div class="tab-pane fade w-100"  [ngClass]="navbuttons[0]?'active show':''">
       <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
       </textarea></div>
       <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
@@ -797,7 +797,7 @@
 
       </div>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" [ngClass]="navbuttons[1]?'active show':''">
+    <div class="tab-pane fade w-100"  [ngClass]="navbuttons[1]?'active show':''">
       <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
       </textarea></div>
       <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
@@ -849,7 +849,7 @@
 
       </div>
     </div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" [ngClass]="navbuttons[2]?'active show':''">
+    <div class="tab-pane fade w-100" [ngClass]="navbuttons[2]?'active show':''">
       <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
       </textarea></div>
       <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
@@ -901,7 +901,7 @@
 
       </div>
     </div>
-    <div class="tab-pane fade show" id="form-4" role="tabpanel" aria-labelledby="home-tab" [ngClass]="navbuttons[3]?'active show':''">
+    <div class="tab-pane fade w-100"  [ngClass]="navbuttons[3]?'active show':''">
       <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
       </textarea></div>
       <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
