@@ -59,7 +59,9 @@ export class VisitReviewComponent implements OnInit {
 
 
   public progressmodel: boolean = false;
-
+  public navbuttons:Array<boolean>=[true,false,false,false];
+  public progressbtn:Array<boolean>=[true,false];
+  
   constructor(public apiservice: ApiserviceService, public modalService: BsModalService, public datepipe: DatePipe) {
     var data = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId;
