@@ -704,9 +704,9 @@
     <div class="modal-dialog modal-dialog-centered times-list progress-modal modal-md" role="document">
       <div class=" sticky modal-content" >
         <div class="modal-header bg-dark d-flex justify-content-between align-items-center">
-          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress Notes</h5>
+          <!-- <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress Notes</h5> -->
 
-         <p class="text-white mb-0" style="margin-left:-5rem;"> {{progressmodelLabel}}  -  {{progressmodelprocedureLabel}}</p>
+         <p class="text-white mb-0" > {{progressmodelLabel}}  -  {{progressmodelprocedureLabel}}</p>
 
           <button type="button" class="close m-0 p-0" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -721,9 +721,9 @@
 
 
 
-<div class="d-flex mt-2">
-  <button class="nav-link mx-2" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" >Progress</button>
-  <button class="nav-link mx-2" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active border-radius-curved':''" >Form </button>
+<div class="d-flex mt-4 ml-3">
+  <button class="abc mx-1" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active ':''" >Progress Notes</button>
+  <button class="abc " id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active ':''" >Form </button>
 </div>
 <div class="pt-3">
   <div class="mx-3" [ngClass]="progressbtn[0]?'active show':'hide'" >
@@ -734,13 +734,13 @@
           <textarea rows="10" cols="60"value="">
           </textarea>
         </div>
-        <button class="btn-green border-radius-curved text-white py-2 px-3 pull-right"> Submit </button>
+        <!-- <button class="btn-green border-radius-curved text-white py-2 px-3 pull-right"> Submit </button> -->
       </div>
 
     </div>
   </div>
 <div class="" [ngClass]="progressbtn[1]?'active show':'hide'">
-  <div class="d-flex">
+  <div class="">
     <ul class=" mx-3 p-0" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link white-space-nowrap"  (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 1</button>
@@ -755,7 +755,7 @@
         <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,false,false,true]" [ngClass]="navbuttons[3]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 4</button>
       </li>
     </ul>
-    <div class="tab-content mx-3 p-0 w-100" id="myTabContent">
+    <div class="tab-content mx-3 p-0 w-auto" id="myTabContent">
       <div class="tab-pane fade w-100"  [ngClass]="navbuttons[0]?'active show':''">
         <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
         </textarea></div>

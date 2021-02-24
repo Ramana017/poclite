@@ -27,30 +27,30 @@
     <table class="table ">
       <thead class="thead-dark">
         <tr>
-          <th scope="col" class="sticky-top">RVP</th>
-          <th scope="col" class="sticky-top">ED</th>
-          <th scope="col" class="sticky-top">Branch</th>
-          <th scope="col" class="sticky-top">Authorized Hours</th>
-          <th scope="col" class="sticky-top">Scheduled Hours <br> (Including Cancellations)</th>
-          <th scope="col" class="sticky-top"> % Authorized Hours scheduled <br>(Including Cancellations)</th>
-          <th scope="col" class="sticky-top"> Cancelled Hours </th>
-          <th scope="col" class="sticky-top"> Cancellation %  </th>
-          <th scope="col" class="sticky-top"> No Need Hours</th>
-          <th scope="col" class="sticky-top"> Ps No Need % </th>
+          <th scope="col" class="sticky-top sticky-left sticky-top-th left-0">RVP</th>
+          <th scope="col" class="sticky-top sticky-left sticky-top-th left-97">ED</th>
+          <th scope="col" class="sticky-top sticky-left sticky-top-th left-277 ">BRANCH</th>
+          <th scope="col" class="sticky-top">Authorized <br />Hours</th>
+          <th scope="col" class="sticky-top">Scheduled Hours <br> <span>(Including Cancellations)</span></th>
+          <th scope="col" class="sticky-top"> % Authorized Hours  Scheduled<br> <span>(Including Cancellations)</span></th>
+          <th scope="col" class="sticky-top"> Cancelled <br />Hours </th>
+          <th scope="col" class="sticky-top"> Cancellation<br /> %  </th>
+          <th scope="col" class="sticky-top"> No Need <br />Hours</th>
+          <th scope="col" class="sticky-top"> Ps No Need<br /> % </th>
           <th scope="col" class="sticky-top"> Scheduled less Cancelled/<br> No need Hours </th>
           <th scope="col" class="sticky-top"> % Authorized Hours Scheduled <br>(after Cancellations/no need) </th>
           <th scope="col" class="sticky-top"> Scheduled Hours w/a <br>DCS Assigned </th>
           <th scope="col" class="sticky-top"> Scheduled Hours w/no <br>DCS Assigned </th>
           <th scope="col" class="sticky-top"> % Scheduled Hours <br> not Staffed </th>
-          <th scope="col" class="sticky-top"> Serviced Hours </th>
-          <th scope="col" class="sticky-top"> Served Utilization </th>
+          <th scope="col" class="sticky-top"> Serviced <br />Hours </th>
+          <th scope="col" class="sticky-top"> Served <br />Utilization </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of navbuttons[0]? dailyReportStats.January:navbuttons[1]?dailyReportStats.February:dailyReportStats.March" style="white-space: nowrap;">
-          <th scope="row">{{item.rvp}}</th>
-          <td>{{item.ed}}</td>
-          <td>{{item.branch}}</td>
+        <tr *ngFor="let item of navbuttons[0]? dailyReportStats.January:navbuttons[1]?dailyReportStats.February:dailyReportStats.March" >
+          <td scope="row" class="sticky-left left-0">{{item.rvp}}</td>
+          <td class="td" class="sticky-left left-97">{{item.ed}}</td>
+          <td class="td" class="sticky-left left-277">{{item.branch}}</td>
           <td>{{item.AuthorizedHours}}</td>
           <td>{{item.ScheduledHoursIncludingCancellations}} </td>
           <td>{{item.authorizedHoursScheduledIncludingCancellations}}</td>
