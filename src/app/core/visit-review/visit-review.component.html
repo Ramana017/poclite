@@ -721,13 +721,19 @@
 
 
 
-<div class="">
-  <button class="nav-link" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Progress</button>
-  <button class="nav-link" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Form </button>
+<div class="d-flex mt-2">
+  <button class="nav-link mx-2" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Progress</button>
+  <button class="nav-link mx-2" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[0]?'active border-radius-curved':''" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Form </button>
 </div>
-<div class="">
+<div class="pt-3">
   <div class="tab-pane fade" [ngClass]="progressbtn[0]?'active show':''" >
-    ABCD
+    <div>
+      <h5 class="m-0 px-3"> Progress Notes </h5>
+      <div class="py-3 px-3">
+        <textarea rows="10" cols="60"value="">
+          </textarea>
+      </div>
+    </div>
   </div>
 <div class="tab-pane fade" [ngClass]="progressbtn[1]?'active show':''">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
