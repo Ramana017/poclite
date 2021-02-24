@@ -701,7 +701,7 @@
 <div class="progress" *ngIf="progressmodel">
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered times-list progress-modal" role="document">
+    <div class="modal-dialog modal-dialog-centered times-list progress-modal modal-md" role="document">
       <div class=" sticky modal-content" >
         <div class="modal-header bg-dark d-flex justify-content-between align-items-center">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">Progress Notes</h5>
@@ -726,13 +726,17 @@
   <button class="nav-link mx-2" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active border-radius-curved':''" >Form </button>
 </div>
 <div class="pt-3">
-  <div class="" [ngClass]="progressbtn[0]?'active show':'hide'" >
+  <div class="mx-3" [ngClass]="progressbtn[0]?'active show':'hide'" >
     <div>
       <h5 class="m-0 px-3"> Progress Notes </h5>
       <div class="py-3 px-3">
-        <textarea rows="10" cols="60"value="">
+        <div class="mb-3">
+          <textarea rows="10" cols="60"value="">
           </textarea>
+        </div>
+        <button class="btn-green border-radius-curved text-white py-2 px-3 pull-right"> Submit </button>
       </div>
+
     </div>
   </div>
 <div class="" [ngClass]="progressbtn[1]?'active show':'hide'">
@@ -775,7 +779,7 @@
                 for="other{{i}}{{j}}">{{option.displayName}}</label>
             </div>
           </div>
-  
+
           <div *ngIf="data.displayType=='textbox'">
             <div class="bottom-input pt-2">
               <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -785,7 +789,7 @@
           <div *ngIf="data.displayType=='textarea'">
             <div class="pt-2">
               <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-  
+
               <textarea rows="3" cols="35"value="{{data.answer}}">
                 </textarea>
             </div>
@@ -800,8 +804,8 @@
               </select>
             </div>
           </div>
-  
-  
+
+
         </div>
       </div>
       <div class="tab-pane fade w-100"  [ngClass]="navbuttons[1]?'active show':''">
@@ -827,7 +831,7 @@
                 for="other{{i}}{{j}}">{{option.displayName}}</label>
             </div>
           </div>
-  
+
           <div *ngIf="data.displayType=='textbox'">
             <div class="bottom-input pt-2">
               <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -837,7 +841,7 @@
           <div *ngIf="data.displayType=='textarea'">
             <div class="pt-2">
               <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-  
+
               <textarea rows="3" cols="35"value="{{data.answer}}">
                 </textarea>
             </div>
@@ -852,8 +856,8 @@
               </select>
             </div>
           </div>
-  
-  
+
+
         </div>
       </div>
       <div class="tab-pane fade w-100" [ngClass]="navbuttons[2]?'active show':''">
@@ -879,7 +883,7 @@
                 for="other{{i}}{{j}}">{{option.displayName}}</label>
             </div>
           </div>
-  
+
           <div *ngIf="data.displayType=='textbox'">
             <div class="bottom-input pt-2">
               <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -889,7 +893,7 @@
           <div *ngIf="data.displayType=='textarea'">
             <div class="pt-2">
               <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-  
+
               <textarea rows="3" cols="35"value="{{data.answer}}">
                 </textarea>
             </div>
@@ -904,8 +908,8 @@
               </select>
             </div>
           </div>
-  
-  
+
+
         </div>
       </div>
       <div class="tab-pane fade w-100"  [ngClass]="navbuttons[3]?'active show':''">
@@ -931,7 +935,7 @@
                 for="other{{i}}{{j}}">{{option.displayName}}</label>
             </div>
           </div>
-  
+
           <div *ngIf="data.displayType=='textbox'">
             <div class="bottom-input pt-2">
               <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -941,7 +945,7 @@
           <div *ngIf="data.displayType=='textarea'">
             <div class="pt-2">
               <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-  
+
               <textarea rows="3" cols="35"value="{{data.answer}}">
                 </textarea>
             </div>
@@ -956,8 +960,8 @@
               </select>
             </div>
           </div>
-  
-  
+
+
         </div>
       </div>
     </div>
