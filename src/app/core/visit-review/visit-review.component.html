@@ -224,7 +224,7 @@
           </div>
 
           <div class="input-group form-input align-items-center header-input">
-            <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'" #autodcs placeHolder="DCS"
+            <ng-autocomplete [data]="dcsList" #autodcs [searchKeyword]="'dcsName'"  placeHolder="DCS"
               (inputCleared)="selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")'
               [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
@@ -255,7 +255,7 @@
 
           <div class="input-group form-input align-items-center header-input">
             <!-- <input type="text" class="form-control" placeholder="CSS"> -->
-            <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'" #autocss placeHolder="CSS"
+            <ng-autocomplete [data]="cssList" #autocss [searchKeyword]="'cssName'"  placeHolder="CSS"
               (inputCleared)="selectFilterEvent('','css')" (selected)='selectFilterEvent($event,"css")'
               [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
@@ -285,7 +285,7 @@
         </div>
         <div class="mr-0 ml-1">
           <div class="input-group form-input align-items-center header-input mr-2">
-            <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'" #autoservice
+            <ng-autocomplete [data]="serviceList" #autoservice [searchKeyword]="'serviceName'"
               placeHolder="Service" (inputCleared)="selectFilterEvent('','service')"
               (selected)='selectFilterEvent($event,"service")' [itemTemplate]="itemTemplateservice"
               [notFoundTemplate]="notFoundTemplate">
