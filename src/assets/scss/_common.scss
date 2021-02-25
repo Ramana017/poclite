@@ -1756,6 +1756,12 @@ app-maintainence {
   .td{
     max-width: 180px;
   }
+  // tr:nth-child(odd){
+  //   background: rgb(239 239 239 / 60%);
+  // }
+  // tr:nth-child(even){
+  //   background: rgb(7 158 216 / 32%);
+  // }
 }
 .sticky-top-th{
   z-index: 100 !important;
