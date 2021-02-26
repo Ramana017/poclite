@@ -1914,3 +1914,86 @@ app-maintainence {
 .green{
   background-color: #449d44;
 }
+.color-grey {
+  color: #e9ecef !important;
+}
+//scheduling
+
+.user-symbol {
+  padding-right: 20px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+.user-symbol .symbol {
+  border-radius: 50%;
+  width: 40px;
+  text-align: center;
+  /* text-align: justify; */
+  justify-content: center;
+  background-color: #6f8ba4;
+  color: #fff !important;
+  position: relative;
+  height: 40px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.15;
+  letter-spacing: normal;
+  font-size: 13px;
+
+  .user{
+    padding-left: 21px;
+    padding-right: 11px;
+  }
+}
+.close-x{
+  background: none;
+  font-size: 20px;
+}
+.header-input{
+  width: 250px;
+  .form-control{
+      border-radius: 20px 20px 20px 20px !important;
+
+  }
+  .right-icon{
+      border-radius: 0px 20px 20px 0;
+  }
+}
+.color-grey {
+  color: #e9ecef !important;
+}
+.text-grey{
+  color: #808080 !important;
+}
+.w-95 {
+  width: 95% !important;
+}
+.height-67{
+  height: 67vh;
+}
+.find-dcs .dcs-content {
+  width: 420px;
+  height: auto !important;
+}
+.text-control {
+  background-color: #e9ecef !important;
+  border: 0 !important;
+  outline: none;
+  box-shadow: none;
+  font-size: 15px;
+  box-shadow: 2px 2px 3px #ccc;
+  color: #808080 !important;
+  overflow: auto;
+  padding: 8px;
+  width: 100%;
+}
+#ps_popup,#dcspopup,#service_popup,#status_popup,#coordinator_popup{
+.modal-content{
+  height: auto !important;
+}
+}
+.h-35{
+  height: 35px !important;
+}

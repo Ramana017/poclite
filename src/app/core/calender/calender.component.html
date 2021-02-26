@@ -1,0 +1,199 @@
+<div class="calendar-wrapper">
+
+    <div class="container-fluid m-0 p-0 d-flex">
+    
+      <div class="calendar-inner-wrapper col-md-9 py-5 pl-5 pr-3">
+    
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div class="btn btn-primary previous-button d-flex align-items-center" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                <i class="fas fa-backward pr-3"></i>
+               <span>Previous</span> 
+              </div>
+              <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                Current
+              </div>
+              <div class="btn btn-primary next-button d-flex align-items-center" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                <span>Next</span>
+                <i class="fas fa-forward px-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+          </div>
+    
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div
+                class="btn btn-primary"
+                (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month"
+              >
+                Month
+              </div>
+              <div
+                class="btn btn-primary"
+                (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week"
+              >
+                Week
+              </div>
+              <!-- <div
+                class="btn btn-primary"
+                (click)="setView(CalendarView.Day)"
+                [class.active]="view === CalendarView.Day"
+              >
+                Day
+              </div> -->
+            </div>
+          </div>
+        </div>
+        
+        <br />
+        <div class="calendar-view-wrapper">
+          <div [ngSwitch]="view">
+            <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('click', $event.event,'','')" (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (eventClicked)="handleEvent('click', $event.event,'','')"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" [hourSegments]="6" (eventClicked)="handleEvent('click', $event.event,'','')"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-day-view>
+          </div>
+        </div>
+        <br /><br /><br />
+      </div>
+    
+      <div class="widget-container col-md-3 pt-5 pr-5">
+        <div class="pc-status ">
+          <div class="pc-status-header py-2 px-3 mb-2 d-flex justify-content-between align-items-center">
+            <h5 class="date m-0">08/14/2020</h5>
+            <i class="fas fa-thumbtack"></i>
+          </div>
+          <div class="pc-status-content card m-3 p-3 text-dark position-relative">
+            <i class="fas fa-minus-circle position-absolute card-close"></i>
+            <h6 class="m-0 ">DCS</h6>
+            <p class="m-0">Service: <span>1</span></p>
+            <p class="m-0">Time: <span>8:00 AM - 9:00 AM</span></p>
+          </div>
+          <div class="pc-status-content card m-3 p-3 text-dark position-relative">
+            <i class="fas fa-minus-circle position-absolute card-close bg-green"></i>
+            <h6 class="m-0">DCS</h6>
+            <p class="m-0">Service: <span>1</span></p>
+            <p class="m-0">Time: <span>10:00 AM - 12:00 PM</span></p>
+          </div>
+          <div class="pc-status-content card m-3 p-3 text-dark position-relative">
+            <i class="fas fa-minus-circle position-absolute card-close"></i>
+            <h6 class="m-0">DCS</h6>
+            <p class="m-0">Service: <span>1</span></p>
+            <p class="m-0">Time: <span>8:00 AM - 9:00 AM</span></p>
+          </div>
+          <div class="pc-status-content card m-3 p-3 text-dark position-relative">
+            <i class="fas fa-minus-circle position-absolute card-close"></i>
+            <h6 class="m-0">DCS</h6>
+            <p class="m-0">Service: <span>1</span></p>
+            <p class="m-0">Time: <span>8:00 AM - 9:00 AM</span></p>
+          </div>
+          
+        </div>
+    
+      </div>
+    
+    </div>
+    
+    
+    <div class="events-table-wrapper mb-3 mx-5">
+      <h4>
+        Add/Edit events
+        <button class="float-right btn-common btn-green" (click)="addEvent()">
+          <span>Add New</span>
+          <i class="fas fa-plus-circle pl-2"></i>
+        </button>
+        <button (mouseup)="addMyEvent()">MyEvent</button>
+        <button (mouseup)="test()">test</button>
+    
+        
+        <div class="clearfix"></div>
+      </h4>
+    
+      <div class="table-responsive calendar-view-wrapper ">
+        <table class="table table-bordered edit-events-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Primary color</th>
+              <th>Secondary color</th>
+              <th>Starts at</th>
+              <th>Ends at</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+    
+          <!-- <tbody>
+            <tr *ngFor="let event of events">
+              <td>
+                <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
+              </td>
+              <td>
+                <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
+              </td>
+              <td>
+                <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
+              </td>
+              <td>
+                <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+                  (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+                  dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
+              </td>
+              <td>
+                <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
+                  (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+                  dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
+              </td>
+              <td>
+                <button class="btn-common btn-delete text-center" (click)="deleteEvent(event)">
+                  <span>Delete</span><i class="fas fa-trash-alt pl-2"></i> 
+                </button>
+              </td>
+            </tr>
+          </tbody> -->
+        </table>
+      </div>
+    
+      <ng-template #modalContent let-close="close">
+        <div class="modal-header">
+          <h5 class="modal-title">Event action occurred</h5>
+          <button type="button" class="close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div>
+            Action:
+            <pre>{{ modalData?.action }}</pre>
+          </div> -->
+          <div>
+            Event:
+            <pre>Start:- {{ modalData?.startDate | date :'medium' }}</pre>
+    
+            <pre>End:- {{ modalData?.endDate | date :'medium' }}</pre>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="close()">
+            OK
+          </button>
+        </div>
+      </ng-template>
+    </div>
+    
+    </div>

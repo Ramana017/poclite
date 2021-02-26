@@ -69,7 +69,9 @@ import { DailyReportsComponent } from './core/daily-reports/daily-reports.compon
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
-
+// import { CalendarComponent } from './core/calender/calender.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,7 +115,8 @@ import { ScheduleManagementComponent } from './core/schedule-management/schedule
     DailyReportsComponent,
     TelephonyStatsComponent,
     UtilizationStatsComponent,
-    ScheduleManagementComponent
+    ScheduleManagementComponent,
+    // CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -131,6 +134,10 @@ import { ScheduleManagementComponent } from './core/schedule-management/schedule
     TimepickerModule.forRoot(),
     AgmCoreModule.forRoot(
       {
+    }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
     }),
     NgbModule,
     // NgxGaugeModule,

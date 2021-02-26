@@ -28,6 +28,7 @@ import { DailyReportsComponent } from './core/daily-reports/daily-reports.compon
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
+// import { CalendarComponent } from './core/calender/calender.component';
 
 
 
@@ -42,7 +43,8 @@ const routes: Routes = [
   {path:'telephony',component:TelephonyStatsComponent},
   {path:'utilization',component:UtilizationStatsComponent},
   {path:'scheduling',component:ScheduleManagementComponent},
-
+  // { path: 'calendar', component: CalendarComponent },
+  
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
   { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },

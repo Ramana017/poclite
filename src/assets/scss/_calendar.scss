@@ -1,0 +1,122 @@
+.calendar-wrapper{
+  background-color: $section-bg;
+  h3 {
+    margin: 0 0 10px;
+  }
+  
+  pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+  }
+
+  .previous-button,.btn-month,.add-new-btn{
+    background-color: $blue !important;
+    border-color: $blue !important;
+    outline: none;
+  }
+
+  .btn-week,.btn-day{
+    background-color: $test-button !important;
+    border-color: $test-button !important;
+    outline: none;
+  }
+
+  
+  
+  .cal-open-day-events {
+    box-shadow: none !important;
+    background: $blue !important;
+    i{
+      color: $green;
+      &:focus{
+        outline: none;
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .cal-month-view .cal-day-cell.cal-today{
+    background-color: $section-bg !important;
+  }
+
+  .cal-month-view .cal-day-badge {
+    background-color: $green;
+    color: #fff;
+}
+
+  .cal-cell-row.cal-header {
+    background-color: #cacaca;
+    &:hover{
+      background-color: #cacaca;
+    }
+  }
+  
+  .btn-delete{
+    background-color:$button;
+  }
+  
+  .edit-events-table{
+    thead{
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  .calendar-view-wrapper {
+    box-shadow: 0px 10px 20px #ccc;
+  }
+
+  .previous-button {
+  background-color: $blue;
+  margin-right: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+}
+
+.next-button {
+  background-color: $green !important;
+  border-color: $green !important;
+  margin-left: 20px !important;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 8px !important;
+  width: 77px;
+  outline: none;
+  @include padding (null,70px,null,null);
+  &:hover{
+    background-color: $green;
+    border-color: $green;
+  }
+}
+
+.pc-status {
+  color: $white;
+  height: 600px;
+  background-color: $blue;
+  margin-top: 56px;
+  box-shadow: 0px 10px 20px #5f5f5f;
+  overflow-y: auto;
+  .pc-status-header{
+    background-color: $green;
+  }
+  i.fas.fa-thumbtack {
+    transform: rotateZ(415deg);
+    font-size: 20px;
+  }
+  .pc-status-content{
+    &.card{
+      background-color: $section-bg !important;
+    }
+    .card-close{
+      top:13px;
+      right: 10px;
+      color:$green;
+      font-size: 13px;
+    }
+  }
+}
+}
