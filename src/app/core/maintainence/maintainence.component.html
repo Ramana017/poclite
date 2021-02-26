@@ -7,17 +7,19 @@
         <div class="px-5 pt-3">
           <div class="navigation d-flex justify-content-center daily-pills">
             <ul class="nav nav-pills mb-3">
-              <li class="nav-item mx-3">
-                <a class="nav-link active">1</a>
+              <li class="nav-item mx-3"(click)="displayArray=[true,false]">
+                <a class="nav-link " [ngClass]="displayArray[0]?'active':''" >1</a>
               </li>
-              <li class="nav-item mx-3">
-                <a class="nav-link ">2</a>
+              <li class="nav-item mx-3"(click)="displayArray=[false,true]">
+                <a class="nav-link " [ngClass]="displayArray[1]?'active':''">2</a>
               </li>
             </ul>
           </div>
 
           <div class="compliance-content-wrapper">
-            <div class="screen-name">Category</div>
+            <div *ngIf="displayArray[0]" class="screen-name">Category</div>
+            <div *ngIf="displayArray[1]" class="screen-name">Parameters</div>
+
 
 
 
