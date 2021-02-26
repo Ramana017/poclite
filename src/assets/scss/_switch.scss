@@ -122,7 +122,8 @@
     }
 
     .on-off-toggle__input:checked+.on-off-toggle__slider {
-      background-color: #107cfa;
+      // background-color: #107cfa;
+      background-color: #a88746;
 
       &:before {
         transform: translateX(20px);
