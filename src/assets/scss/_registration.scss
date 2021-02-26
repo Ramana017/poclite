@@ -7,8 +7,12 @@
 
 .ps-registration-tabs-container {
   @include margin(null, null, 10px, null);
-  
 }
+
+// option {
+//   background: white;
+//   height: 40px;
+// }
 
 .site-form {
   justify-content: flex-end;
@@ -44,14 +48,6 @@
   a {
     padding: 0 !important;
   }
-  .border-radius{
-    border-bottom-left-radius: 20px;
-      border-top-right-radius: 22px !important;
-
-  }
-}
-.tab-list-wrapper{
-  padding: 0 5px !important;
 }
 
 // .form-control {
@@ -74,12 +70,7 @@
   width: Calc(100%/4);
   position: relative;
 }
-.telephony-input{
-  padding-bottom: 15px;
-  padding-right: 10px;
-  width: Calc(100%/3);
-  position: relative;
-}
+
 .checkbox-input {
   height: 25px !important;
 }
@@ -137,7 +128,6 @@ width: 100% !important;
 }
 
 .basic-input-container,
-.telephony-input,
 .input-container-wrapper {
   label {
     margin-bottom: 0 !important;
@@ -148,7 +138,6 @@ width: 100% !important;
 
 .input-container-wrapper,
 .basic-input-container,
-.telephony-input,
 .form-input {
 
 
@@ -172,6 +161,8 @@ width: 100% !important;
     &::placeholder {
       color: #808080;
     }
+
+
   }
 
   .is-invalid {
@@ -190,32 +181,6 @@ width: 100% !important;
       border: 1px solid #dc3545 !important;
       box-shadow: none !important;
     }
-  }
-  .textarea{
-    resize: none;
-    height: 158px !important;
-    background-color: #e9ecef !important;
-    border: 0 !important;
-    outline: none;
-    box-shadow: none;
-    font-size: 15px;
-    box-shadow: 2px 2px 3px #ccc;
-    color: #808080 !important;
-    overflow: auto;
-    padding: 8px;
-  }
-  .note-text-area{
-    resize: none;
-    height: 100px !important;
-    background-color: #e9ecef !important;
-    border: 0 !important;
-    outline: none;
-    box-shadow: none;
-    font-size: 15px;
-    box-shadow: 2px 2px 3px #ccc;
-    color: #808080 !important;
-    overflow: auto;
-    padding: 8px;
   }
 }
 .site-container{
@@ -246,15 +211,31 @@ width: 100% !important;
 }
 
 }
-
+.text-control{
+  background-color: #e9ecef !important;
+  border: 0 !important;
+  outline: none;
+  box-shadow: none;
+  font-size: 15px;
+  box-shadow: 2px 2px 3px #ccc;
+  color: #808080 !important;
+  overflow: auto;
+  padding: 8px;
+  width: 100%;
+}
 .mapped-site-container {
   min-width: 271px;
   margin-left: 10px;
 }
-.direction{
-  min-width: 19%;
-  margin-left: 10px;
-}
+
+// .zip-icon {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 30px;
+//   cursor: pointer;
+// }
+
 .next {
   display: flex;
   align-items: center;
@@ -308,6 +289,13 @@ width: 100% !important;
 .address-title {
   padding-left: 15px;
 }
+
+// .diagnosis-code-table {
+
+//   td {
+
+//   }
+// }
 .listing-container{
   
 }
@@ -463,7 +451,6 @@ form {
   }
   .input-container-wrapper,
   .basic-input-container,
-  .telephony-input,
   .form-input{
     width: auto;
   }
@@ -551,17 +538,7 @@ form {
       width: 50%;
     }
   }
-.telephony-input{
-  display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100% !important;
-    padding-bottom: 18px;
 
-    label {
-      width: 50%;
-    }
-}
   .errors {
     bottom: -2px;
     left: 50%;

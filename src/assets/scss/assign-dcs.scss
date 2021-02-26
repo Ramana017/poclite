@@ -1,0 +1,30 @@
+.assign-dcs-wrapper{
+    width: 60%;
+    margin: 0 auto;
+    input[type=checkbox]{
+        height: 16px;
+    }
+
+    .table-container{
+        border: 2px solid $blue;
+        .table-container-header{
+            background-color: $blue;
+        }
+    }
+    .schedule-modal{
+        background-color:rgb(0 0 0 / 77%);
+        overflow-y: hidden;
+        .modal-content {
+            width: 30%;
+            margin: 0 auto;
+            height: 80vh !important;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background-color: #f7fafc;
+        }
+        .btn-common{
+            width: 80px;
+        }
+    }
+    
+}

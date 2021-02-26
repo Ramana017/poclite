@@ -9,7 +9,7 @@
     .custum-wrapper {
         @include size(100%, null);
         background-color: #e0e1e2;
-        height: 89vh;
+        height: 90vh;
         // SUMMARY HEADING
         .summary-heading {
             @include padding(0.6rem, 3.3125rem, 1rem, 3.3125rem);
@@ -121,13 +121,6 @@
                 }
             }
         }
-        .seven-cols{
-            .col-lg-1{
-                max-width: fit-content;
-                // max-width: 14% !important;
-
-            }
-        }
     }
     .list-filter{
       input{
@@ -223,7 +216,7 @@
     }
     .outer-wrapper {
         @include padding(0rem, 3.3125rem, null, 3.3125rem);
-        @include margin(5px, null, 6px, null);
+        @include margin(5px, null, 12px, null);
         .no-data-text {
             font-size: 18px;
             border: 1px solid #eee;
@@ -395,6 +388,9 @@
             background: #d0d0c1;
         }
     }
+    // tr:hover{
+    //   background:  #d0d0c1;
+    // }
     .table-scroll td:last-of-type {
         right: 0;
         background: $table-body;
@@ -442,10 +438,6 @@
     }
     .list-area {
         width: 147px
-    }
-    .tooltip {
-        left: -35px !important;
-        top: 0px !important;
     }
 }
 
@@ -511,18 +503,23 @@
 
 
 /* Track */
+
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px $color-textdropdown;
     border-radius: 10px;
 }
 
+
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
     background: $login-text;
     border-radius: 10px;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
     background: $text;
 }
@@ -557,8 +554,6 @@
 
 .autocomplete-container .input-container .x i {
     font-size: 15px !important;
-    color:#e72e2e !important;
-    font-weight: 700;
 }
 
 .pagination {
@@ -568,7 +563,12 @@
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
     }
 }
+
+// .sitecodeinner {
+//   text-align: right;
+// }
 .reset-button {
+    // @include msize(, null);
     min-width: 60px;
     font-size: 13px;
     font-weight: 500;
@@ -580,7 +580,10 @@
     @include padding(3px, 8px, 3px, 8px);
 }
 
-
+.tooltip {
+    left: -35px !important;
+    top: 0px !important;
+}
 
 tr {
     .Serviceprocedurecode {
@@ -592,6 +595,7 @@ tr {
     .summary-info-boxes {
         .gps-box {
             @include margin(2px, null, 2px, null);
+            // height: 23px;
         }
         .caller-id-box {
             @include margin(2px, null, 2px, null);

@@ -1,0 +1,670 @@
+.schedule-management-wrapper{
+    i{
+        cursor: pointer;
+    }
+    h5{
+        // background-color: $heading-bg;
+    }
+    
+    .visits-casemanager{
+        // box-shadow: 2px 2px 10px #ccc;
+        thead{
+            background-color: $blue;
+            color: $white;
+            text-align: center;
+        }
+        th{
+            white-space: nowrap;
+            padding:7px ;
+        }
+        td{
+            padding: 8px;
+            vertical-align: middle;
+        }
+        tr{
+            font-size: 13px;
+            line-height: 18px;
+            
+        }
+        select{
+            border:0;
+            outline: none;
+            background-color:#e0e3e4 ;
+            height: 30px;
+        }
+        input{
+            height: 30px;
+        }
+    }
+    
+    .modal-box-input-list .modal-box-input {
+        outline: none;
+        height: 25px;
+        font-size: 12px;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        box-shadow: none;
+        border: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 8px;
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 8px;
+        -webkit-border-bottom-right-radius: 0px;
+        -webkit-border-bottom-left-radius: 8px;
+        -moz-border-radius-topleft: 0px;
+        -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 0px;
+        -moz-border-radius-bottomleft: 8px;
+        background-color: #e0e3e4; 
+    }
+    
+    .modal-box-input-list{
+        i{
+            font-size:14px;
+            color: $white;
+        }
+        select{
+            width: 150px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+            border-radius: 3px;
+            background-color: #e0e3e4;
+            height: 25px;
+        }
+        .page-input{
+            width: 60px;
+        }
+        .date-input{
+            width: 150px;
+        }
+        .time-input{
+            width: 55px;
+        }
+    }
+    
+    .top-panel{
+      background-color:$blue;
+      .schedule-input-header {
+        border-right: 1px solid #06366b;
+        border-bottom: 1px solid #06366b;
+        }
+    }
+    .top-panel-inner{
+        background-color:$blue;
+        .schedule-input-header{
+            border-right: 1px solid #06366b;
+            border-bottom: 1px solid #06366b;
+            }
+      }
+      .date-wrapper {
+        background-color:$blue;
+        color:$white;
+        // .col-md-6 {
+        //     border: 1px solid #16477d;
+        //     }
+    }
+    .inner-header{
+        // background-color: $section-bg;
+        .btn-configure{
+            background-color: $dashboard-blue;
+            float: right;
+        }
+        button.btn-common {
+            // padding: 0 !important;
+            width: 99px;
+            height: 28px;
+            border: 0;
+        }
+    }
+    
+    .panel-info {
+        p{
+            font-size:18px;
+            span{
+                    font-size:14px;
+                    background-color: #a5a5a5;
+                    padding: 5px;
+                    border-radius: 3px;
+                    margin-left: 10px;
+                    box-shadow: 2px 2px 10px #4e4e4e;            
+            }
+        }
+    }
+    
+    @media (min-width:280px) and (max-width:768px){
+       
+            .top-panel {
+                flex-direction: column;
+                .panel-info {
+                    margin-bottom: 15px;
+                }
+            }
+    
+            .modal-box-input-list{
+                li{
+                    margin-bottom: 10px;
+                }
+            }
+    }
+}
+
+/*
+Using FontAwesome for icons
+https://fortawesome.github.io/Font-Awesome/
+*/
+    // =============================================
+    // Color Settings
+    // =============================================
+    // Toggle Icon Colors
+    // =============================================
+    // Share button
+    // =============================================
+    // .icon::before {
+    //     display: inline-block;
+    //     font-style: normal;
+    //     font-variant: normal;
+    //     text-rendering: auto;
+    //     -webkit-font-smoothing: antialiased;
+    //   }
+    // Share Button Wrapper
+    .edit-option {
+        .share-button {
+            position: relative;
+            width: 25px;
+            //   margin: 20px;
+            // =============================================
+            // Open Toggle Button
+            &-input:checked+.toggle,
+            &-input:hover+.toggle {
+                // Cross Icon Bars
+                &:after,
+                &:before {
+                    background-color: #ffffff;
+                    content: "";
+                    height: 3px;
+                    width: 19px;
+                    position: absolute;
+                    left: 5px;
+                    top: 14px;
+                }
+                // Bar 1
+                &:after {
+                    transform: rotate(45deg);
+                    // animation: bar1 0.3s forwards;
+                }
+                // Bar 2
+                &:before {
+                    transform: rotate(-45deg);
+                    // animation: bar2 0.3s forwards;
+                }
+            }
+        }
+        // Toggle Button
+        .toggle {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            z-index: 0;
+            display: block;
+            border-radius: 25px;
+            cursor: pointer;
+            color: $blue;
+            // box-shadow: inset 0 0 0 1px #C8C7C0;
+            background: none;
+            //  animation: pulse-red 2s infinite;
+            // Toggle Button Hover
+            &:hover {
+                // box-shadow: inset 0 0 0 2px $toggle;
+                // transform: rotate(90deg);
+                transition: transform 0.25s;
+            }
+            //   @keyframes pulse-red {
+            //     0% {
+            //         transform: scale(0.95);
+            //         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+            //     }
+            //     70% {
+            //         transform: scale(1);
+            //         box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+            //     }
+            //     100% {
+            //         transform: scale(0.95);
+            //         box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+            //     }
+            // }
+            // Share Icon
+            &:after {
+                position: relative;
+                display: block;
+                width: 20px;
+                height: 20px;
+                font-family: "FontAwesome";
+                content: "\f055";
+                line-height: 17px;
+                font-size: 18px;
+                text-align: center;
+                // left: -2px;
+                font-family: "Font Awesome 5 Free";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+            }
+            // Hidden input to toggle state
+            &-input {
+                display: none;
+            }
+            // // =============================================
+            // // Open Toggle Button
+            // &-input:checked + .toggle, &-input:hover + .toggle {
+            //   // Cross Icon Bars
+            //   &:after, &:before {
+            //       background-color: #ffffff;
+            //       content: "";
+            //       height: 3px;
+            //       width: 19px;
+            //       position: absolute;
+            //       left: 5px;
+            //       top: 14px;
+            //   }
+            //   // Bar 1
+            //   &:after {
+            //     transform: rotate(45deg);
+            //     animation: bar1 0.3s forwards;
+            //   }
+            //   // Bar 2
+            //   &:before {
+            //     transform: rotate(-45deg);
+            //     animation: bar2 0.3s forwards;
+            //   }
+            // }
+        }
+        // // =============================================
+        // // Network List
+        // // =============================================
+        // .network-list {
+        //   // List Item
+        //   li {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     display: block;
+        //     width: 30px;
+        //     height: 30px;
+        //     margin: 0;
+        //     padding: 0;
+        //     list-style-type: none;
+        //     opacity: 0;
+        //     transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
+        //   }
+        //   // Link
+        //   a {
+        //     position: relative;
+        //     display: block;
+        //     width: 28px;
+        //     height: 28px;
+        //     overflow: hidden;
+        //     line-height: 30px;
+        //     text-indent: 120%;
+        //     text-decoration: none;
+        //     box-shadow: 6px 3px 3px 1px #ccc;
+        //   }
+        //   // Network Icon
+        //   a:before {
+        //     top: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     left: 0;
+        //     position: absolute;
+        //     width: 28px;
+        //     height: 28px;
+        //     // border-radius: 25px;
+        //     font-family:'FontAwesome';
+        //     font-size: 18px;
+        //     -webkit-font-smoothing: antialiased;
+        //     text-align: center;
+        //     line-height: 30px;
+        //     text-indent: 0;
+        //     // box-shadow: inset 0 0 0 1px $toggle;
+        //    background: #ffffff;
+        //   }
+        // Twitter
+        .twitter {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f073";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $twitter;
+            }
+        }
+        // Facebook
+        .facebook {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f007";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $facebook;
+            }
+        }
+        // google Plus
+        .googleplus {
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f19c";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $googleplus;
+            }
+        }
+        .flyout-1{
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f4ad";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $googleplus;
+            }
+        }
+        .flyout-2{
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f044";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $googleplus;
+            }
+        }
+        // }
+        // // =============================================
+        // // Open Network List
+        // .share-button input:checked ~ .network-list, .share-button input:hover ~ .network-list {
+        //   li {
+        //     opacity: 1;
+        //   }
+        //   li:nth-child(1) {
+        //     left: 35px;
+        //   }
+        //   li:nth-child(2) {
+        //     left: 73px;
+        //   }
+        //   li:nth-child(3) {
+        //     left: 110px;
+        //   }
+        // }
+        // // =============================================
+        // // Keyframe Animations
+        // // =============================================
+        // @keyframes bar1 {
+        // 	0% {
+        //     content: "\f1e0";
+        //     width: 46px;
+        //     height: 50px;
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(1);
+        //     top: 0;
+        //     left: 0;
+        //     opacity: 1;
+        // 	}
+        // 	30% {
+        //     background-color: transparent;
+        //     content: "\f1e0";
+        //     width: 46px;
+        //     height: 30px;
+        //     top: 0;
+        //     left: 0;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        //   30.001% {
+        //     background-color: #fff;
+        //     left: 10px;
+        //     top: 22px;
+        //     content: "";
+        //     height: 3px;
+        //     width: 30px;
+        // 	}
+        //   60% {
+        //     transform: rotate(0deg) scale(1);
+        //     opacity: 1;
+        //   }
+        //   100% {
+        //     transform: rotate(45deg) scale(1);
+        //   }
+        // }
+        // @keyframes bar2 {
+        // 	0% {
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        // 	30% {
+        //     background-color: transparent;
+        //     transform: rotate(0deg) scale(0.2);
+        //     opacity: 0;
+        // 	}
+        //   60% {
+        //     transform: rotate(0deg) scale(1);
+        //     opacity: 1;
+        //   }
+        //   100% {
+        //     transform: rotate(-45deg) scale(1);
+        //   }
+        // }
+        // // =============================================
+        // // Just to keep it tidy
+        // // =============================================
+        // // // Title
+        // // h1 {
+        // //   position: absolute;
+        // //   top: 5vh;
+        // //   left: 0;
+        // //   width: 100%;
+        // //   text-align: center;
+        // //   font-size: 22px;
+        // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        // //   color: #C4C2BB;
+        // //   text-shadow: 1px 1px 0px #FFFFFF;
+        // //   letter-spacing: 0.5px;
+        // // }
+        // // // Center the icon
+        // // body {
+        // //   display: -ms-flexbox;
+        // //   display: -webkit-flex;
+        // //   display: flex;
+        // //   justify-content: center;
+        // //   align-items: center;
+        // //   height: 90vh;
+        // //   background-color: #F4F3ED;
+        // // }
+        // .slider {
+        //   content: "";
+        //   position: absolute;
+        //   top: 0;
+        //   left: 51px;
+        //   width: 0px;
+        //   height: 50px;
+        //   background: #eebb5c;
+        //   border-radius: 3px;
+        //   transition: all 0.5s 0.3s ease;
+        // }
+        // .slider p {
+        //   text-transform: uppercase;
+        //   font-size: 16px;
+        //   font-weight: 900;
+        //   color: #fff;
+        //   text-align: center;
+        //   line-height: 50px;
+        //   opacity: 0;
+        //   transition: all 0.6s ease;
+        // }
+        // .share-button input:hover ~ .network-list  {
+        //   width: 180px;
+        //   transition: all 0.5s ease;
+        // }
+        // .share-button input:hover ~ .network-list li {
+        //   opacity: 1;
+        //   transition: all 1s 0.2s ease;
+        // }
+        ul {
+            list-style: none;
+        }
+        ul li {
+            width: 22px;
+            height: 21px;
+            position: relative;
+            // background: #e59500;
+            // margin: 10px 0;
+            // cursor: pointer;
+            // border-radius: 3px;
+            // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+        }
+        ul li .fa {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #fff;
+        }
+        ul li.facebook {
+            // background: #76bc43;
+        }
+        ul li.facebook div.slider {
+            // background: #76bc43;
+        }
+        .slider {
+            content: "";
+            position: absolute;
+            top: -7px;
+            left: 30px;
+            width: 0px;
+            height: 36px;
+            // background: #76bc43;
+            border-radius: 3px;
+            transition: all 0.5s 0.3s ease;
+        }
+        .slider p {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            opacity: 0;
+            transition: all 0.6s ease;
+            margin: 0;
+            border-radius: 50%;
+            // background: #ffffff;
+            // widows: 35px;
+            // height: 35px;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 15px;
+            margin-right: 5px;
+        
+        }
+        ul li:hover .slider {
+            width: 190px;
+            transition: all 0.5s ease;
+        }
+        ul li:hover .slider p {
+            opacity: 1;
+            transition: all 1s 0.2s ease;
+            background-color: $blue;
+            color: $white;
+        }
+    }
+
+    .structure{
+        padding: 10px 0px 0px 65px;
+        li{
+            position: relative;
+            @include padding(null,null,5px,null);
+            &::before{
+                content:url('../images/angle.gif');
+                position: absolute;
+                left: -46px;
+                top: 2px;
+            }
+        }
+        .no-before{
+            &:before{
+                display: none;
+            }
+        }
+    }
+    .popup-button-wrapper{
+        background: $shadow-color !important;
+    }
+    .modal-header{
+        background: $heading-bg;
+        color: $white;
+       span {
+            color: #fff;
+        }
+    }
+    .ps-popup,.service-popup,.coordinator_popup{
+        .modal-dialog{
+            width:35% !important;
+        }
+        .table{
+            width:100%;
+        }
+        .btn-green,.btn-blue{
+            width:20%;
+            height: 25px;
+        }
+        #exampleModal,#service_popup,#coordinator_popup,#exampleModalCenter{
+            background: #080808bd;
+        }
+    }
+
+    .payor-plan{
+        width: 100%;
+        input.form-control {
+            margin: 3px 0 0px 0;
+        }
+    }
+
+
+
+    .visitdetails{
+        height: 72vh !important;
+    }
+    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails{
+        background: #080808bd;
+    }

@@ -14,9 +14,10 @@
 @import "clockout";
 @import "clock-in-and-out";
 @import "charts";
-@import "chart";
 @import "invalid-token";
 @import "css-dashboard";
+@import "assign-dcs";
+//saichand scss
 @import "registration";
 @import "listing";
 @import "modal";
@@ -24,8 +25,13 @@
 @import "switch";
 @import "slide-icons";
 @import "tooltip-style";
-@import "edit";
-@import "dailyreports";
 @import '~ngx-toastr/toastr.css';
 @import "page-not-found";
-@import"reviewpopupexception"
+
+@import "schedule-management";
+
+@import "calendar";
+@import "visit-comments";
+@import "profile";
+
+// @import 'material-icons/iconfont/material-icons.scss';
