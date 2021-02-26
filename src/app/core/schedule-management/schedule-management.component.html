@@ -244,7 +244,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between mt-2">
                     <div class="input-group form-input align-items-center header-input">
-                        <input type="text" class="form-control" placeholder="Start Date">
+                        <input type="text" bsDatepicker class="form-control" placeholder="Start Date">
                         <i class="fas fa-calendar-week  ml-2 right-icon"></i>
 
                     </div>
@@ -255,9 +255,20 @@
                             <label class="color-grey mb-0 ">Hrs</label>
                             <select name="" id="" class="border-0 time-input height-30  text-grey">
                                 <option value="">Hrs</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
                                 <option value="">3</option>
                                 <option value="">4</option>
                                 <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
+
+
                             </select>
                         </div>
                         <div class="ml-3 d-flex align-items-center">
@@ -265,10 +276,19 @@
 
                             <label class="color-grey mb-0">Min</label>
                             <select name="" id="" class="border-0 time-input height-30 text-grey">
-                                <option value="">Min</option>
+                              <option value="">Min</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
                                 <option value="">3</option>
                                 <option value="">4</option>
                                 <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
                             </select>
                         </div>
                         <div>
@@ -282,8 +302,8 @@
 
                     </div>
                     <div class="input-group form-input align-items-center header-input">
-                        <input type="text" class="form-control" placeholder="End Date">
-                        <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+                        <input bsDatepicker type="text" class="form-control" placeholder="End Date">
+                        <i class="fas fa-calendar-week   ml-2 right-icon"></i>
 
                     </div>
                     <div class="d-flex align-items-center header-input ">
@@ -292,10 +312,19 @@
 
                             <label class="color-grey mb-0">Hrs</label>
                             <select name="" id="" class="border-0 time-input height-30  text-grey">
-                                <option value="">Hrs</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
+                              <option value="">Hrs</option>
+                              <option value="">1</option>
+                              <option value="">2</option>
+                              <option value="">3</option>
+                              <option value="">4</option>
+                              <option value="">5</option>
+                              <option value="">6</option>
+                              <option value="">7</option>
+                              <option value="">8</option>
+                              <option value="">9</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
                             </select>
                         </div>
                         <div class="ml-3 d-flex align-items-center">
@@ -350,7 +379,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="no-wrap">
+                    <tr class="no-wrap" *ngFor="let item of scheduleArray">
                         <td class="position-relative edit-option">
                             <ul class="m-0 p-0">
                                 <li class="">
@@ -466,304 +495,7 @@
                         <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
                                 aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
                     </tr>
-                    <tr class="no-wrap">
-                        <td class="position-relative edit-option">
-                            <ul class="m-0 p-0">
-                                <li class="">
-                                    <div class="share-button">
-                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                        <label for="toggle-input" class="toggle"></label></div>
-                                    <div class="slider d-flex ">
-                                        <p class="blue-bg twitter">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/calendar" class="text-white"
-                                                    title="Calendar">
-                                                </a>
-                                            </span>
 
-                                        </p>
-                                        <p class="blue-bg facebook" data-toggle="modal"
-                                            data-target="#exampleModalCenter" title="Find a DCS">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits"
-                                            title="Edit Visit">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg flyout-1">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/visit-comments"
-                                                    class="text-white" title="Visit Comments">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg flyout-2">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white"
-                                                    title="Assign DCS">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg flyout-2">
-                                            <span>
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                    data-target="#payorPlan" class="text-white" title="Payor Plan">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg flyout-2">
-                                            <span>
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                    data-target="#visitDetails" class="text-white" title="visitDetails">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>1244</td>
-                        <td>Banks,Louise</td>
-                        <td>AGEPS Personal support</td>
-                        <td>Mon</td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>ALLEN,JOHN</td>
-                        <td>
-                            <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
-                        </td>
-                        <td>
-                            <select>
-                                <option selected>Hourly</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td>Nelson Roy</td>
-                        <td><select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select></td>
-                        <td>
-                            <select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
-                    </tr>
-                    <tr class="no-wrap">
-                        <td class="position-relative edit-option">
-                            <ul class="m-0 p-0">
-                                <li class="">
-                                    <div class="share-button">
-                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                        <label for="toggle-input" class="toggle"></label></div>
-                                    <div class="slider d-flex ">
-                                        <p class="blue-bg twitter">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/calendar" class="text-white"
-                                                    title="Calendar">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg facebook" data-toggle="modal"
-                                            data-target="#exampleModalCenter" title="Find a DCS">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits"
-                                            title="Edit Visit">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg flyout-1">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/visit-comments"
-                                                    class="text-white" title="Visit Comments">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg flyout-2">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white"
-                                                    title="Assign DCS">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>1244</td>
-                        <td>Banks,Louise</td>
-                        <td>AGEPS Personal support</td>
-                        <td>Mon</td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>ALLEN,JOHN</td>
-                        <td>
-                            <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
-                        </td>
-                        <td>
-                            <select>
-                                <option selected>Hourly</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td>Nelson Roy</td>
-                        <td><select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select></td>
-                        <td>
-                            <select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
-                    </tr>
-                    <tr class="no-wrap">
-                        <td class="position-relative edit-option">
-                            <ul class="m-0 p-0">
-                                <li class="">
-                                    <div class="share-button">
-                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                        <label for="toggle-input" class="toggle"></label></div>
-                                    <div class="slider d-flex ">
-                                        <p class="blue-bg twitter">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/calendar" class="text-white"
-                                                    title="Calendar">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg facebook" data-toggle="modal"
-                                            data-target="#exampleModalCenter" title="Find a DCS">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits"
-                                            title="Edit Visit">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p class="blue-bg flyout-1">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/visit-comments"
-                                                    class="text-white" title="Visit Comments">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <p class="blue-bg flyout-2">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white"
-                                                    title="Assign DCS">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>1244</td>
-                        <td>Banks,Louise</td>
-                        <td>AGEPS Personal support</td>
-                        <td>Mon</td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>
-                            04/20/2020
-                            02:00 AM
-                        </td>
-                        <td>ALLEN,JOHN</td>
-                        <td>
-                            <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
-                        </td>
-                        <td>
-                            <select>
-                                <option selected>Hourly</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td>Nelson Roy</td>
-                        <td><select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select></td>
-                        <td>
-                            <select>
-                                <option selected>Regular</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </td>
-                        <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
-                                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
-                    </tr>
 
                 </tbody>
             </table>
@@ -1138,7 +870,7 @@
                                         </div>
                                     </td>
                                     <td class="border-right p-0">
-                                        <div class="d-flex 
+                                        <div class="d-flex
                      justify-content-between">
                                             <div class="border-right p-2 min-w-80">1</div>
                                             <div class="p-2 border-right min-w-80">2</div>
@@ -1805,7 +1537,7 @@
                   <span>
                     20 </span> of
                   <span>30</span></span>
-             
+
                 <button type="button" class="pagination-btn">Prev</button>
 
                 <button type="button " class="pagination-btn btn next-btn primary-button">Next</button>
@@ -3316,7 +3048,7 @@
 
                         <div class="d-flex justify-content-between m-2">
                             <button class="btn-common btn-green"> Close </button>
-                            <button class="btn-common btn-green f-12"> Check Availability</button>
+                            <button class="btn-common btn-green f-12 w-auto"> Check Availability</button>
                         </div>
 
                     </div>

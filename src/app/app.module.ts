@@ -69,9 +69,9 @@ import { DailyReportsComponent } from './core/daily-reports/daily-reports.compon
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
-// import { CalendarComponent } from './core/calender/calender.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +116,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     TelephonyStatsComponent,
     UtilizationStatsComponent,
     ScheduleManagementComponent,
-    // CalendarComponent
+    CalenderSchedulingComponent,
   ],
   imports: [
     BrowserModule,

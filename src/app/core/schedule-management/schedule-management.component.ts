@@ -9,6 +9,7 @@ declare var $: any;
 })
 export class ScheduleManagementComponent implements OnInit {
   modalRef: BsModalRef;
+  public scheduleArray:Array<any>=[1,1,1,1]
   constructor(private modalService: BsModalService) { }
   ngOnInit(): void {
   }
