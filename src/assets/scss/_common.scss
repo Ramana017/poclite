@@ -1747,9 +1747,9 @@ app-maintainence {
       color: #fff;
       &.active{
         background: #343a40 !important;
-      } 
+      }
     }
-    
+
   }
 // }
 .daily-stats-wrapper{
@@ -1763,7 +1763,7 @@ app-maintainence {
 }
 .sticky-left{
   position: sticky;
-  
+
   z-index: 99;
   background-color: #fff;
 }
@@ -1799,4 +1799,14 @@ app-maintainence {
   &.active{
     background: #343a40 !important;
   }
+}
+.red{
+  background-color: #d9534f;
+}
+.yellow{
+  background-color: #ec971f;
+}
+.green{
+  background-color: #449d44;
+
 }

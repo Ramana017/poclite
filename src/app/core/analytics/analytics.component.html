@@ -144,7 +144,12 @@
                     <td>{{item.process}}</td>
                     <td>
                       <div (click)="onMeasurelevelChange(1,item.process)" class="percentage-pill"
-                        [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                        [ngClass]=" item.percentage <= 20
+                        ? 'red'
+                        : item.percentage > 20 && item.percentage <= 75
+                        ? 'yellow'
+                        : 'green'
+                    ">
                         {{item.percentage}}{{'%'}}
                       </div>
                     </td>
@@ -170,14 +175,12 @@
 
                     <td>
                       <div class="percentage-pill" (click)="onMeasurelevelChange(2, item.site)" [ngClass]="
-                          item.percentage <= 20
-                            ? 'bg-danger'
-                            : item.percentage > 20 && item.percentage <= 50
-                            ? 'bg-warning'
-                            : item.percentage > 50 && item.percentage <= 75
-                            ? 'bg-primary'
-                            : 'bg-success'
-                        ">
+                      item.percentage <= 20
+                      ? 'red'
+                      : item.percentage > 20 && item.percentage <= 75
+                      ? 'yellow'
+                      : 'green'
+                  ">
                         {{ item.percentage }}
                       </div>
                     </td>
@@ -203,12 +206,10 @@
                     <td>
                       <div class="percentage-pill" (click)="onMeasurelevelChange(3, headerString)" [ngClass]="
                           item.percentage <= 20
-                            ? 'bg-danger'
-                            : item.percentage > 20 && item.percentage <= 50
-                            ? 'bg-warning'
-                            : item.percentage > 50 && item.percentage <= 75
-                            ? 'bg-primary'
-                            : 'bg-success'
+                            ? 'red'
+                            : item.percentage > 20 && item.percentage <= 75
+                            ? 'yellow'
+                            : 'green'
                         ">
                         {{ item.percentage }}
                       </div>
@@ -240,195 +241,6 @@
                   </tr>
                 </tbody>
               </table>
-
-
-
-              <table class="table color-rep-table box-shadow" *ngIf="false">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col" class="sticky-top" style="z-index: 5;">S.No</th>
-                    <th scope="col" colspan="4" class="sticky-top" style="z-index: 5;">Category</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td scope="row">1</td>
-                    <td colspan="">Scheduling Interm</td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span>></span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="" />
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div-yellow mr-3"></div>
-                          <span>>=</span>
-                          <div class="input-box mx-3">
-                            <input type="text" class="" />
-                          </div>
-                        </div>
-                        <span class="mx-4">&</span>
-                        <div class="d-flex justify-content-center align-items-center">
-                          <!-- <div class="color-div-red mx-3"></div> -->
-                          <span> <= </span>
-                              <div class="input-box mx-3">
-                                <input type="text" class="" />
-                              </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div-red mr-3"></span>
-                        <
-                            <span class="input-box mx-3">
-                              <input type="text" class="" />
-                            </span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row">1</td>
-                    <td colspan="">Scheduling Interm</td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span>></span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="" />
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div-yellow mr-3"></div>
-                          <span>>=</span>
-                          <div class="input-box mx-3">
-                            <input type="text" class="" />
-                          </div>
-                        </div>
-                        <span class="mx-4">&</span>
-                        <div class="d-flex justify-content-center align-items-center">
-                          <!-- <div class="color-div-red mx-3"></div> -->
-                          <span> <= </span>
-                              <div class="input-box mx-3">
-                                <input type="text" class="" />
-                              </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div-red mr-3"></span>
-                        <
-                            <span class="input-box mx-3">
-                              <input type="text" class="" />
-                            </span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row">1</td>
-                    <td colspan="">Scheduling Interm</td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span>></span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="" />
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div-yellow mr-3"></div>
-                          <span>>=</span>
-                          <div class="input-box mx-3">
-                            <input type="text" class="" />
-                          </div>
-                        </div>
-                        <span class="mx-4">&</span>
-                        <div class="d-flex justify-content-center align-items-center">
-                          <!-- <div class="color-div-red mx-3"></div> -->
-                          <span> <= </span>
-                              <div class="input-box mx-3">
-                                <input type="text" class="" />
-                              </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div-red mr-3"></span>
-                            <
-                            <span class="input-box mx-3">
-                              <input type="text" class="" />
-                            </span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row">1</td>
-                    <td colspan="">Scheduling Interm</td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div mr-3"></span>
-                        <span>></span>
-                        <span class="input-box mx-3">
-                          <input type="text" class="" />
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <div class="d-flex justify-content-center align-items-center">
-                          <div class="color-div-yellow mr-3"></div>
-                          <span>>=</span>
-                          <div class="input-box mx-3">
-                            <input type="text" class="" />
-                          </div>
-                        </div>
-                        <span class="mx-4">&</span>
-                        <div class="d-flex justify-content-center align-items-center">
-                          <!-- <div class="color-div-red mx-3"></div> -->
-                          <span> <= </span>
-                              <div class="input-box mx-3">
-                                <input type="text" class="" />
-                              </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center">
-                        <span class="color-div-red mr-3"></span>
-                        <
-                            <span class="input-box mx-3">
-                              <input type="text" class="" />
-                            </span>
-                      </div>
-                    </td>
-                  </tr>
-
-                </tbody>
-              </table>
-
-
-
-
-
-
-
-
             </div>
             <div class="table-responsive" style="height: 68vh"*ngIf="displayFlag">
               <table class="table box-shadow text-center mb-1" *ngIf="parameterScreens[0]">
@@ -447,7 +259,12 @@
                      <td>{{item.process}}</td>
                      <td>
                        <div (click)="onMeasurelevelChange(1,item.process)" class="percentage-pill"
-                         [ngClass]="item.percentage<=20?'bg-danger':item.percentage>20&&item.percentage<=50? 'bg-warning':item.percentage>50&& item.percentage<=75?'bg-primary':'bg-success'">
+                         [ngClass]=" item.percentage <= 20
+                         ? 'red'
+                         : item.percentage > 20 && item.percentage <= 75
+                         ? 'yellow'
+                         : 'green'
+                     ">
                          {{item.percentage}}{{'%'}}
                        </div>
                      </td>
@@ -473,14 +290,12 @@
 
                      <td>
                        <div class="percentage-pill" (click)="onMeasurelevelChange(2, item.site)" [ngClass]="
-                           item.percentage <= 20
-                             ? 'bg-danger'
-                             : item.percentage > 20 && item.percentage <= 50
-                             ? 'bg-warning'
-                             : item.percentage > 50 && item.percentage <= 75
-                             ? 'bg-primary'
-                             : 'bg-success'
-                         ">
+                       item.percentage <= 20
+                       ? 'red'
+                       : item.percentage > 20 && item.percentage <= 75
+                       ? 'yellow'
+                       : 'green'
+                   ">
                          {{ item.percentage }}
                        </div>
                      </td>
@@ -505,14 +320,12 @@
                      <td>{{ item.description }}</td>
                      <td>
                        <div class="percentage-pill" (click)="onMeasurelevelChange(3, headerString)" [ngClass]="
-                           item.percentage <= 20
-                             ? 'bg-danger'
-                             : item.percentage > 20 && item.percentage <= 50
-                             ? 'bg-warning'
-                             : item.percentage > 50 && item.percentage <= 75
-                             ? 'bg-primary'
-                             : 'bg-success'
-                         ">
+                       item.percentage <= 20
+                       ? 'red'
+                       : item.percentage > 20 && item.percentage <= 75
+                       ? 'yellow'
+                       : 'green'
+                   ">
                          {{ item.percentage }}
                        </div>
                      </td>
@@ -829,3 +642,16 @@
     </div>
   </div>
 </div>
+
+<style>
+  .red{
+    background-color: #d9534f;
+  }
+  .yellow{
+    background-color: #ec971f;
+  }
+  .green{
+    background-color: #449d44;
+
+  }
+</style>
