@@ -1891,13 +1891,17 @@ app-maintainence {
   font-size: 20px;
   top: 26px;
 }
-.daily-reports-filter,.stats-filter,.utility-stats-filter,.measures-filter{
+.daily-reports-filter,.stats-filter,.utility-stats-filter,.measures-filter,.bd-example-modal-lg{
   .modal-content{
     height: auto !important;
-    max-height: 100vh !important;
+    // max-height: 100vh !important;
     .btn-primary{
       background-color: #343a40 !important;
       border-color: #343a40 !important;
+    }
+    .bd-example-table{
+      max-height: 67vh;
+      margin-bottom: 10px;
     }
   }
 }
@@ -1909,5 +1913,4 @@ app-maintainence {
 }
 .green{
   background-color: #449d44;
-
 }
