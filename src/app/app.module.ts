@@ -68,6 +68,7 @@ import { MaintainenceComponent } from './core/maintainence/maintainence.componen
 import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
+import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
     MaintainenceComponent,
     DailyReportsComponent,
     TelephonyStatsComponent,
-    UtilizationStatsComponent
+    UtilizationStatsComponent,
+    ScheduleManagementComponent
   ],
   imports: [
     BrowserModule,
