@@ -27,6 +27,7 @@ import { MaintainenceComponent } from './core/maintainence/maintainence.componen
 import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
+import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path:'daily-reports',component:DailyReportsComponent},
   {path:'telephony',component:TelephonyStatsComponent},
   {path:'utilization',component:UtilizationStatsComponent},
+  {path:'scheduling',component:ScheduleManagementComponent},
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },

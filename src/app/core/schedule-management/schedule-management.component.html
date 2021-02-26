@@ -1,0 +1,3057 @@
+<app-header></app-header>
+
+
+<div class="schedule-management-wrapper">
+
+
+  <!-- <button class="btn-filter" type="button" data-target="#filters" data-toggle="modal"><span
+          class="material-icons mr-2">
+          filter_list
+        </span>filters</button> -->
+
+
+        
+  <div class="container-fluid m-0 p-0">
+    <!-- Search -->
+    <!-- <div class="d-flex align-items-center justify-content-center bg-blue w-100 px-4 py-2">
+
+      <div class="position-relative form-input w-250">
+        <input type="text" class="form-control " placeholder="Search....">
+
+        <i class="fas fa-chevron-down right top-0" (click)="filtermenu()"></i>
+        <div class="dropdown-menu  filter-menu">
+          <table class="payor-plan">
+            <tr>
+              <td class="pr-3 pb-2">PS
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+                </div>
+              </td>
+              <td class="pr-3 pb-2">DCS
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+                </div>
+              </td>
+              <td class="pr-3 pb-2">Service <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+                </div>
+              </td>
+              <td class=" pb-2">Status <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+
+                  <i class="fas fa-user ml-2 right"></i>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td class="pr-3 pb-2">Coordinator
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+                </div>
+              </td>
+              <td class="pr-3 pb-2">Site
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-sitemap ml-3 ml-2 right" (click)="openModalWithClass(template)"></i>
+                </div>
+              </td>
+              <td class="pr-3 pb-2">Week Days <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <span class="material-icons right ml-2 d-flex align-items-center justify-content-center">
+                    view_day
+                  </span>
+                </div>
+              </td>
+              <td class=" pb-2">Page Size <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <span class="material-icons right ml-2 d-flex align-items-center justify-content-center">
+                    web
+                  </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="pr-3">
+                <label class="color-black">Start Date</label>
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-calendar-week ml-3 ml-2 right "></i>
+                </div>
+              </td>
+              <td class="d-flex align-items-center justify-content-between pr-3">
+                <div class="ml-3">
+
+
+                  <label class="color-black">Hrs</label>
+                  <select name="" id="" class="border-0 time-input height-30  ">
+                    <option value="">Hrs</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                  </select>
+                </div>
+                <div class="ml-3">
+
+
+                  <label class="color-black">Min</label>
+                  <select name="" id="" class="border-0 time-input height-30 ">
+                    <option value="">Min</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                  </select>
+                </div>
+                <div>
+
+
+                  <select name="" id="" class="border-0 time-input ml-3 height-30 mt-26">
+                    <option value="">AM</option>
+                    <option value="">PM</option>
+                  </select>
+                </div>
+              </td>
+              <td class="pr-3">
+                <label class="color-black">End Date</label>
+                <div class="input-group form-input align-items-center">
+                  <input type="text" class="form-control">
+                  <i class="fas fa-calendar-week ml-3 ml-2 right "></i>
+                </div>
+              </td>
+
+              <td class="d-flex align-items-center justify-content-between ">
+                <div class="ml-3">
+
+
+                  <label class="color-black">Hrs</label>
+                  <select name="" id="" class="border-0 time-input height-30  ">
+                    <option value="">Hrs</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                  </select>
+                </div>
+                <div class="ml-3">
+
+
+                  <label class="color-black">Min</label>
+                  <select name="" id="" class="border-0 time-input height-30 ">
+                    <option value="">Min</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                  </select>
+                </div>
+                <div>
+
+
+                  <select name="" id="" class="border-0 time-input ml-3 height-30 mt-26">
+                    <option value="">AM</option>
+                    <option value="">PM</option>
+                  </select>
+                </div>
+              </td>
+
+            </tr>
+
+          </table>
+
+          <div class="d-flex align-items-center justify-content-between pt-2 inner-header">
+            <button class="btn-common height-30 btn-blue  d-flex align-items-center justify-content-center"><span
+                class=" mr-2">
+                <i class="fas fa-times"></i>
+              </span>Cancel</button>
+            <button class="btn-common btn-configure d-flex align-items-center justify-content-center w-auto px-2"><span
+                class="material-icons mr-2">
+                cached
+              </span>Reset Values</button>
+            <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center"><span
+                class=" mr-2">
+                <i class="fas fa-search"></i>
+              </span>Search</button>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div> -->
+
+
+    <div class="table-responsive visits-casemanager p-3">
+      <div class=" bg-blue w-100 px-4 py-2">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="PS">
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="DCS">
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Service">
+            <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-user-md ml-2 right-icon"></i>
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Status">
+            <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2">
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Coordinator">
+            <!-- <i class="fad fa-users-medical"></i> -->
+            <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-notes-medical ml-2 right-icon"></i>
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Site">
+            <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+            <!-- <i class="fas fa-calendar-week  ml-2 right-icon"></i> -->
+            <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i>
+
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Week Days">
+            <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+            <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Page Size">
+            <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
+            <span class="material-icons right-icon ml-2 d-flex align-items-center justify-content-center">
+              web
+            </span>
+          </div>
+       
+
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2">
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="Start Date">  
+               <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+
+          </div>
+          <div class="d-flex align-items-center header-input ">
+            <div class="ml-3 d-flex align-items-center">
+
+
+              <label class="color-grey mb-0 ">Hrs</label>
+              <select name="" id="" class="border-0 time-input height-30  text-grey">
+                <option value="">Hrs</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+              </select>
+            </div>
+            <div class="ml-3 d-flex align-items-center">
+  
+  
+              <label class="color-grey mb-0">Min</label>
+              <select name="" id="" class="border-0 time-input height-30 text-grey">
+                <option value="">Min</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+              </select>
+            </div>
+            <div>
+  
+  
+              <select name="" id="" class="border-0 time-input ml-3 height-30 text-grey">
+                <option value="">AM</option>
+                <option value="">PM</option>
+              </select>
+          </div>
+     
+          </div>
+          <div class="input-group form-input align-items-center header-input">
+            <input type="text" class="form-control" placeholder="End Date">
+            <i class="fas fa-calendar-week  ml-2 right-icon"></i>
+
+          </div>
+          <div class="d-flex align-items-center header-input ">
+            <div class="ml-3 d-flex align-items-center">
+
+
+              <label class="color-grey mb-0">Hrs</label>
+              <select name="" id="" class="border-0 time-input height-30  text-grey">
+                <option value="">Hrs</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+              </select>
+            </div>
+            <div class="ml-3 d-flex align-items-center">
+  
+  
+              <label class="color-grey mb-0">Min</label>
+              <select name="" id="" class="border-0 time-input height-30 text-grey">
+                <option value="">Min</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+              </select>
+            </div>
+            <div>
+  
+  
+              <select name="" id="" class="border-0 time-input ml-3 height-30 text-grey">
+                <option value="">AM</option>
+                <option value="">PM</option>
+              </select>
+          </div>
+     
+          </div>
+        </div>
+         <div class="d-flex align-items-center justify-content-end mt-2">
+      <button class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center w-80px "><span
+        class=" mr-2">
+        <i class="fas fa-search"></i>
+      </span>Search</button>
+    </div>
+      </div>
+
+
+      <table class="table box-shadow">
+        <thead class="">
+          <tr>
+            <th>Widget</th>
+            <th class="align-middle">Site Code</th>
+            <th class="align-middle">PS</th>
+            <th class="align-middle">Service</th>
+            <th class="align-middle">Day</th>
+            <th class="align-middle">Start Date</th>
+            <th class="align-middle">End Date</th>
+            <th class="align-middle">DCS</th>
+            <th class="align-middle">Act/Rate</th>
+            <th class="align-middle">Type</th>
+            <th class="align-middle">Co-Ord</th>
+            <th class="align-middle">Visit Type</th>
+            <th class="align-middle">Status</th>
+            <th class="align-middle">Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="no-wrap">
+            <td class="position-relative edit-option">
+              <ul class="m-0 p-0">
+                <li class="">
+                  <div class="share-button">
+                    <input class="toggle-input" id="toggle-input" type="checkbox" />
+                    <label for="toggle-input" class="toggle"></label></div>
+                  <div class="slider d-flex ">
+                    <p class="blue-bg twitter">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/calendar" class="text-white" title="Calendar">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg facebook" data-toggle="modal" data-target="#exampleModalCenter"
+                      title="Find a DCS">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits" title="Edit Visit">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg flyout-1">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white" data-toggle="modal" data-target="#visitComments"
+                          title="Visit Comments">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2" data-toggle="modal" data-target="#AssignDCS" title="Edit Visit">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+                        </a>
+                      </span>
+                    </p>
+
+                  </div>
+                </li>
+              </ul>
+            </td>
+            <td>1244</td>
+            <td>Banks,Louise</td>
+            <td>AGEPS Personal support</td>
+            <td>Mon</td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>ALLEN,JOHN</td>
+            <td>
+              <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
+            </td>
+            <td>
+              <select>
+                <option selected>Hourly</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td>Nelson Roy</td>
+            <td><select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select></td>
+            <td>
+              <select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
+          </tr>
+          <tr class="no-wrap">
+            <td class="position-relative edit-option">
+              <ul class="m-0 p-0">
+                <li class="">
+                  <div class="share-button">
+                    <input class="toggle-input" id="toggle-input" type="checkbox" />
+                    <label for="toggle-input" class="toggle"></label></div>
+                  <div class="slider d-flex ">
+                    <p class="blue-bg twitter">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/calendar" class="text-white" title="Calendar">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg facebook" data-toggle="modal" data-target="#exampleModalCenter"
+                      title="Find a DCS">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits" title="Edit Visit">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg flyout-1">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/visit-comments" class="text-white"
+                          title="Visit Comments">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white" title="Assign DCS">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2">
+                      <span>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#payorPlan" class="text-white"
+                          title="Payor Plan">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2">
+                      <span>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#visitDetails" class="text-white"
+                          title="visitDetails">
+                        </a>
+                      </span>
+
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </td>
+            <td>1244</td>
+            <td>Banks,Louise</td>
+            <td>AGEPS Personal support</td>
+            <td>Mon</td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>ALLEN,JOHN</td>
+            <td>
+              <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
+            </td>
+            <td>
+              <select>
+                <option selected>Hourly</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td>Nelson Roy</td>
+            <td><select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select></td>
+            <td>
+              <select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
+          </tr>
+          <tr class="no-wrap">
+            <td class="position-relative edit-option">
+              <ul class="m-0 p-0">
+                <li class="">
+                  <div class="share-button">
+                    <input class="toggle-input" id="toggle-input" type="checkbox" />
+                    <label for="toggle-input" class="toggle"></label></div>
+                  <div class="slider d-flex ">
+                    <p class="blue-bg twitter">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/calendar" class="text-white" title="Calendar">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg facebook" data-toggle="modal" data-target="#exampleModalCenter"
+                      title="Find a DCS">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits" title="Edit Visit">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg flyout-1">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/visit-comments" class="text-white"
+                          title="Visit Comments">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white" title="Assign DCS">
+                        </a>
+                      </span>
+
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </td>
+            <td>1244</td>
+            <td>Banks,Louise</td>
+            <td>AGEPS Personal support</td>
+            <td>Mon</td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>ALLEN,JOHN</td>
+            <td>
+              <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
+            </td>
+            <td>
+              <select>
+                <option selected>Hourly</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td>Nelson Roy</td>
+            <td><select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select></td>
+            <td>
+              <select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
+          </tr>
+          <tr class="no-wrap">
+            <td class="position-relative edit-option">
+              <ul class="m-0 p-0">
+                <li class="">
+                  <div class="share-button">
+                    <input class="toggle-input" id="toggle-input" type="checkbox" />
+                    <label for="toggle-input" class="toggle"></label></div>
+                  <div class="slider d-flex ">
+                    <p class="blue-bg twitter">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/calendar" class="text-white" title="Calendar">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg facebook" data-toggle="modal" data-target="#exampleModalCenter"
+                      title="Find a DCS">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg googleplus" data-toggle="modal" data-target="#editvisits" title="Edit Visit">
+                      <span>
+                        <a href="javascript:void(0)" class="text-white">
+
+                        </a>
+                      </span>
+                    </p>
+                    <p class="blue-bg flyout-1">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/visit-comments" class="text-white"
+                          title="Visit Comments">
+                        </a>
+                      </span>
+
+                    </p>
+                    <p class="blue-bg flyout-2">
+                      <span>
+                        <a href="javascript:void(0)" routerLink="/assigndcs" class="text-white" title="Assign DCS">
+                        </a>
+                      </span>
+
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </td>
+            <td>1244</td>
+            <td>Banks,Louise</td>
+            <td>AGEPS Personal support</td>
+            <td>Mon</td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>
+              04/20/2020
+              02:00 AM
+            </td>
+            <td>ALLEN,JOHN</td>
+            <td>
+              <input type="text" class="form-control modal-box-input" placeholder="0.00" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1">
+            </td>
+            <td>
+              <select>
+                <option selected>Hourly</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td>Nelson Roy</td>
+            <td><select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select></td>
+            <td>
+              <select>
+                <option selected>Regular</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </td>
+            <td><input type="text" class="form-control modal-box-input" placeholder="" aria-label="PS"
+                aria-describedby="basic-addon1" name="phone" pattern="" tabindex="1"></td>
+          </tr>
+
+        </tbody>
+      </table>
+      <button class="btn-common btn-green my-3 ml-auto d-flex align-items-center justify-content-center"><span
+          class=" mr-2">
+          <i class="fas fa-search"></i>
+        </span>Search</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Find DCS Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered edit-modal-content" role="document">
+    <div class="modal-content w-95">
+      <div class="modal-header  registration-modal-header d-flex justify-content-between align-items-center">
+        <div class="nav-item dropdown user-symbol">
+          <a class="nav-link dropdown-toggle symbol p-0 d-flex align-items-center " (click)="dropdown()"
+            href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <span class="material-icons user">
+              person
+            </span>
+          </a>
+          <div class="dropdown-menu dashboard-nav-dropdown p-0" aria-labelledby="navbarDropdown" style="width: 600px;">
+            <div class="d-flex justify-content-center align-items-center">
+              <table class="table box-shadow bg-white box-shadow mb-0">
+                <tbody>
+                  <tr>
+                    <td>PS</td>
+                    <td>BANKS, LOUISE </td>
+                  </tr>
+                  <tr>
+                    <td>Payor Plan</td>
+                    <td>PCARE-CSRA(1190/801)</td>
+                  </tr>
+                  <tr>
+                    <td>Service[Procedure Code]</td>
+                    <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
+                  </tr>
+                  <tr>
+                    <td>Visit Start Date</td>
+                    <td>04/20/2020 02:00 AM </td>
+                  </tr>
+                  <tr>
+                    <td>Visit End Date</td>
+                    <td>04/20/2020 02:30 AM </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Find DCS</h4>
+
+        <button type="button" class="pull-right close-x" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body schedule-management-wrapper pt-3">
+        <div class="container-fluid m-0 p-0">
+
+
+          <div class="table-responsive visits-casemanager box-shadow">
+
+            <table class="table ">
+              <thead class="">
+                <tr>
+                  <th></th>
+                  <th class="align-middle">DCS Name</th>
+                  <th></th>
+                  <th></th>
+
+                  <th class="align-middle">Scheduled</th>
+                  <th class="align-middle">Qualifications</th>
+                  <th class="align-middle">Preferences%</th>
+                  <th class="align-middle">Previously
+                    Served</th>
+                  <th class="align-middle">Shared
+                    DCS </th>
+                  <th class="align-middle">Preferred
+                    By DCS</th>
+                  <th class="align-middle">Family
+                    Serving
+                    Family</th>
+                  <th class="align-middle">Available DCS</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="no-wrap">
+                  <td class="position-relative">
+                    <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper" id="radio0"
+                        class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label for="radio0" class="m-0"></label><br>
+                    </div>
+                  </td>
+                  <td>Test,Test</td>
+
+                  <td class="position-relative">
+
+                    <span data-toggle="modal" data-target="#marginprojecton"><i class="fas fa-calendar-week"></i></span>
+                  </td>
+                  <td class="position-relative">
+                    <span><i class="fas fa-calendar-week"></i></span>
+                  </td>
+                  <td>No</td>
+                  <td>Yes</td>
+                  <td>
+
+                  </td>
+                  <td>
+
+                  </td>
+                  <td>
+                    No
+                  </td>
+                  <td></td>
+
+                  <td>Yes</td>
+                  <td>
+                    Yes
+                  </td>
+
+                </tr>
+
+                <tr class="no-wrap">
+                  <td class="position-relative">
+                    <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper" id="radio0"
+                        class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label for="radio0" class="m-0"></label><br>
+                    </div>
+                  </td>
+                  <td>Test,Test</td>
+
+                  <td class="position-relative">
+                    <span><i class="fas fa-calendar-week"></i></span>
+                  </td>
+                  <td class="position-relative">
+                    <span><i class="fas fa-calendar-week"></i></span>
+                  </td>
+                  <td>No</td>
+                  <td>Yes</td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                    No
+                  </td>
+                  <td></td>
+                  <td>Yes</td>
+                  <td>
+                    Yes
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
+            <button type="button" class="pagination-btn btn next-btn primary-button add">Refresh</button>
+
+            <button type="button " class="pagination-btn btn next-btn primary-button">Reset</button>
+
+            <div class="pr-3 pagination-add-close  justify-content-end">
+
+              <div>
+                <span class="footer-text">Per Page</span>
+                <select class="pagination-select border-0">
+                  <option>
+                    10
+                  </option>`
+                </select>
+                <span class="footer-text">Showing <span>10</span> to
+                  <span>
+                    20 </span> of
+                  <span>30</span></span>
+                <!-- <button type="button " class="pagination-btn ml-0" class="pagination-btn">Prev</button>
+                <button type="button " class="pagination-btn ml-0" id="next-btn" class="pagination-btn">Next</button> -->
+                <button type="button" class="pagination-btn">Prev</button>
+
+                <button type="button " class="pagination-btn btn next-btn primary-button">Next</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Visits Modal -->
+<div class="modal fade" id="editvisits" tabindex="-1" role="dialog" aria-labelledby="editvisits" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered find-dcs" role="document">
+    <div class="modal-content dcs-content">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Edit Visit</h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="d-flex align-items-center">
+          <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+          <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="">
+          <label class="color-black">Template</label>
+          <div class="input-group form-input">
+            <input type="text" class="form-control" value="09/01/2020 - 09/30/2020 - Daily">
+          </div>
+        </div>
+        <div class="pt-2">
+          <label class="color-black">Payor/Plan</label>
+          <div class="input-group form-input">
+            <input type="text" class="form-control" value="SOURCE-ITHACA(13/107)">
+          </div>
+        </div>
+        <div class="pt-2">
+          <label class="color-black">Time of Proc</label>
+          <div class="input-group form-input align-items-center mxw-108">
+            <input type="text" class="form-control mr-2" value="15"> <span>Minutes</span>
+          </div>
+        </div>
+        <div class="pt-2">
+          <label class="color-black">Start Date</label>
+          <div class="input-group form-input mxw-108">
+            <input type="text" class="form-control " value="09/28/2020 ">
+          </div>
+        </div>
+        <div class="d-flex pt-2">
+          <div class="mr-sm-2">
+            <label class="color-black">Start Time</label>
+            <div class="input-group form-input">
+              <input type="text" class="form-control" value="12:00 AM">
+            </div>
+          </div>
+          <div>
+            <label class="color-black">End Time</label>
+            <div class="input-group form-input">
+              <input type="text" class="form-control" value="12:00 PM">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center pt-3">
+          <label class="color-black">Over Night</label>
+          <div class="edit-option">
+            <label class="customcheck margin-left-15 m-0">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2">
+          <button class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+          <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Margin Projection -->
+<div class="modal fade" id="marginprojecton" tabindex="-1" role="dialog" aria-labelledby="marginprojecton"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered edit-modal-content" role="document">
+    <div class="modal-content w-95">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Margin Projection</h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body schedule-management-wrapper p-0">
+        <div class="container-fluid m-0 px-4 py-2">
+
+          <!-- <div class="d-flex justify-content-center align-items-center">
+            <table class="table box-shadow bg-white" style="width: 50%;">
+              <tbody>
+                <tr>
+                  <td>PS</td>
+                  <td>BANKS, LOUISE </td>
+                </tr>
+                <tr>
+                  <td>Payor Plan</td>
+                  <td>PCARE-CSRA(1190/801)</td>
+                </tr>
+                <tr>
+                  <td>Service[Procedure Code]</td>
+                  <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
+                </tr>
+                <tr>
+                  <td>Visit Start Date</td>
+                  <td>04/20/2020 02:00 AM </td>
+                </tr>
+                <tr>
+                  <td>Visit End Date</td>
+                  <td>04/20/2020 02:30 AM </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+          <div class="table-name">
+            <div class="d-flex align-items-center">
+              <h4 class="AvenirLTStd-Heavy mr-2 mb-0">PS Name:</h4>
+              <h4 class="AvenirLTStd-Heavy mb-0"> BANKS, MARGARET</h4>
+            </div>
+            <div class="d-flex align-items-center">
+              <h4 class="AvenirLTStd-Heavy mr-2 mb-0">DCS Name:</h4>
+              <h4 class="AvenirLTStd-Heavy mb-0">Test, DCS 1</h4>
+            </div>
+          </div>
+
+          <div class="table-responsive visits-casemanager margin-table">
+            <table class="table">
+              <thead class="">
+                <tr>
+                  <th class="align-middle border-right"></th>
+                  <th class="align-middle border-right">Start Date Time</th>
+                  <th class="align-middle border-right">End Date Time</th>
+                  <th class="align-middle border-right">Hours</th>
+                  <th class="align-middle border-right">Pay Rate Type </th>
+                  <th class="align-middle border-right p-0">
+                    <div class="p-2">Billing</div>
+                    <div class="d-flex border-top justify-content-between">
+                      <span class="border-right p-2 min-w-80">Rate</span>
+                      <span class="p-2 min-w-80">Amount</span>
+                    </div>
+                  </th>
+                  <th class="align-middle border-right p-0">
+                    <div class="p-2">Pay</div>
+                    <div class="d-flex border-top justify-content-between">
+                      <div class="border-right p-2 min-w-80">Pay</div>
+                      <div class="p-2 border-right min-w-80">Week End</div>
+                      <div class="p-2 border-right min-w-80">Holiday</div>
+                      <div class="border-right p-2 min-w-80">Extra</div>
+                      <div class="p-2 border-right min-w-80">OT</div>
+                      <div class="p-2 min-w-80">Amount</div>
+                    </div>
+                  </th>
+                  <th class="align-middle">Revenue</th>
+                  <!-- <th class="align-middle">Available DCS</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+                    <span data-toggle="modal" data-target="#paydetails"><i class="fas fa-calendar-week"></i></span>
+                  </td>
+                  <!-- <td>Test,Test</td> -->
+                  <td class="position-relative border-right">
+                    10/06/2020 12:30 AM
+                  </td>
+                  <td class="position-relative border-right">
+                    10/06/2020 12:30 AM
+                  </td>
+                  <td class="border-right">No</td>
+                  <td class="border-right">Yes</td>
+                  <td class="border-right p-0">
+                    <div class="d-flex  justify-content-between">
+                      <span class="border-right p-2 min-w-80">Rate</span>
+                      <span class="p-2 min-w-80">Amount</span>
+                    </div>
+                  </td>
+                  <td class="border-right p-0">
+                    <div class="d-flex 
+                     justify-content-between">
+                      <div class="border-right p-2 min-w-80">1</div>
+                      <div class="p-2 border-right min-w-80">2</div>
+                      <div class="p-2 border-right min-w-80">3</div>
+                      <div class="border-right p-2 min-w-80">4</div>
+                      <div class="p-2 border-right min-w-80">5</div>
+                      <div class="p-2 min-w-80">6</div>
+                    </div>
+                  </td>
+                  <td>
+                    29.00
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="margin-projection">
+              <div class="float-right"> Margin:<span>29.00</span></div>
+              <div>
+                <div class="float-right"> Margin Percentage:<span>89.23%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
+            <button type="button" class="pagination-btn btn next-btn primary-button add">Refresh</button>
+            <button type="button " class="pagination-btn btn next-btn primary-button">Reset</button>
+            <div class="pr-2 pagination-add-close  justify-content-end">
+              <div>
+                <span class="footer-text">Per Page</span>
+                <select class="pagination-select border-0">
+                  <option>
+                    10
+                  </option>`
+                </select>
+                <span class="footer-text">Showing <span>10</span> to
+                  <span>
+                    20 </span> of
+                  <span>30</span></span>
+                <!-- <button type="button " class="pagination-btn ml-0" class="pagination-btn">Prev</button>
+                <button type="button " class="pagination-btn ml-0" id="next-btn" class="pagination-btn">Next</button> -->
+                <button type="button" class="pagination-btn">Prev</button>
+                <button type="button " class="pagination-btn btn next-btn primary-button">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pay Details -->
+<div class="modal fade" id="paydetails" tabindex="-1" role="dialog" aria-labelledby="paydetails" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered edit-modal-content paydetails-container" role="document">
+    <div class="modal-content pay-details-content">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Pay Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body schedule-management-wrapper p-0">
+        <div class="container-fluid m-0 px-4 py-2">
+          <div class="table-name d-block">
+            <div class="d-flex align-items-center pr-2">
+              <h4 class="AvenirLTStd-Heavy mr-2 mb-0">PS Name:</h4>
+              <h4 class="AvenirLTStd-Heavy mb-0"> BANKS, MARGARET</h4>
+            </div>
+            <div class="d-flex align-items-center">
+              <h4 class="AvenirLTStd-Heavy mr-2 mb-0">DCS Name:</h4>
+              <h4 class="AvenirLTStd-Heavy mb-0">Test, DCS 1</h4>
+            </div>
+          </div>
+
+          <div class="table-responsive visits-casemanager margin-table">
+            <table class="table mb-0">
+
+              <tbody>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+                    Overridden Avg Pay Rate
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+                    DCS Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+                    Payor Plan Service Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+                    Site Service Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Site Base Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Effective Base Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Extra Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Holiday Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Holiday Pay Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Weekend Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Weekend Pay Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Day Shift Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Day Shift Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Evening Shift Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Evening Shift Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Night Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Night Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Travel Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Site Travel Pay Rate
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Over Time Hours
+
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+                <tr class="no-wrap">
+                  <td class="position-relative border-right">
+
+
+                    Over Time Rate
+                  </td>
+
+                  <td class="position-relative ">
+                    55.66
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex align-items-center justify-content-between pt-2">
+            <button class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DCS Input -->
+<div class="ps-popup">
+  <div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true" id="dcspopup">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Direct Care Staff List </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex py-2 form-input">
+            <label for="">Search</label>
+            <input type="text" class="modal-box-input form-control">
+          </div>
+
+          <div class="d-flex py-2">
+            <label for="">Active</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+              <label class="form-check-label" for="inlineCheckbox3">No</label>
+            </div>
+            <button class="btn-common btn-green"> Go</button>
+          </div>
+
+          <table class="table table-bordered mt-4">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center bg-dark text-white">Direct Care Staff List</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between">
+            <button class="btn-common btn-green">Close</button>
+            <!-- <button class="btn-common btn-green">Reset</button> -->
+            <button class="btn-common btn-green">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payor/plan -->
+<div class="modal fade" id="payorPlan" tabindex="-1" role="dialog" aria-labelledby="payorPlan" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered find-dcs" role="document">
+    <div class="modal-content dcs-content">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Payor/Plan
+
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+
+        <table class="payor-plan">
+          <tr>
+            <td>Payor Plan</td>
+            <td>SOURCE-ARC(13/121)</td>
+          </tr>
+          <tr>
+            <td>Last Name<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>First Name<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Middle Name</td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Policy #</td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Group #</td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Group Name</td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Relation with PS<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Gender<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Birth<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>SSN</td>
+            <td>
+              <div class="input-group form-input">
+                <input type="text" class="form-control">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Comments</td>
+            <td>
+              <div class="input-group form-input mb-1">
+                <textarea class="text-control" rows="2"></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Address<span class="text-danger">*</span></td>
+            <td>
+              <div class="input-group form-input ">
+                <textarea class="text-control  " rows="2"></textarea>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+
+
+        <div class="d-flex align-items-center justify-content-between pt-2">
+          <button class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+          <!-- <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Visit details log -->
+<div class="modal fade" id="visitDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered edit-modal-content" role="document">
+    <div class="modal-content w-95">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Visit Details Log
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body schedule-management-wrapper p-0">
+        <div class="container-fluid m-0 px-4 py-2">
+
+
+          <div class="table-responsive visits-casemanager visitdetails">
+
+            <table class="table ">
+              <thead class="">
+                <tr>
+                  <!-- <th> Last Updated</th> -->
+                  <th class="border-right">Location</th>
+                  <th class="align-middle border-right">Start Date</th>
+                  <th class="border-right">End Date</th>
+                  <th class="border-right">Service</th>
+
+                  <th class="align-middle border-right">DCS</th>
+                  <th class="align-middle border-right">Pay Rate</th>
+                  <th class="align-middle border-right">Over ridden Rate</th>
+                  <th class="align-middle border-right">Type</th>
+                  <th class="align-middle border-right">Extra Pay</th>
+                  <th class="align-middle border-right">Visit Type</th>
+                  <th class="align-middle border-right">Visit Status</th>
+                  <th class="align-middle border-right"> Visit Schedule Status</th>
+                  <th class="align-middle border-right"> Visit Service Status</th>
+                  <th class="align-middle border-right">Cancel Code</th>
+                  <th class="align-middle border-right"> Comments</th>
+                  <th class="align-middle border-right"> Updated User</th>
+                  <th class="align-middle"> Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="no-wrap">
+                  <td class="align-middle border-right">
+                    Work
+                  </td>
+                  <td class="align-middle border-right">10/18/2020 12:00 AM </td>
+                  <td class="align-middle border-right"> 10/18/2020 12:30 AM </td>
+                  <td class="align-middle border-right"> [CCRN] CCRN - CCRN REGISTERED NURSE</td>
+                  <td class="align-middle border-right">
+                    Home
+                  </td>
+                  <td class="align-middle border-right">0.00</td>
+                  <td class="align-middle border-right">0.00</td>
+                  <td class="align-middle border-right">Hours </td>
+                  <td class="align-middle border-right">
+                    0.00
+                  </td>
+                  <td class="align-middle border-right">Regular</td>
+                  <td class="align-middle border-right">Regular</td>
+                  <td class="align-middle border-right">None</td>
+                  <td class="align-middle border-right">
+
+                  </td>
+                  <td class="align-middle border-right"></td>
+                  <td class="align-middle border-right"></td>
+                  <td class="align-middle border-right">administrator</td>
+                  <td>10/28/2020 03:10 AM </td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
+            <button type="button" class="pagination-btn btn next-btn primary-button add">Refresh</button>
+
+            <button type="button " class="pagination-btn btn next-btn primary-button">Reset</button>
+
+            <div class="pr-3 pagination-add-close  justify-content-end">
+
+              <div>
+                <span class="footer-text">Per Page</span>
+                <select class="pagination-select border-0">
+                  <option>
+                    10
+                  </option>`
+                </select>
+                <span class="footer-text">Showing <span>10</span> to
+                  <span>
+                    20 </span> of
+                  <span>30</span></span>
+             
+                <button type="button" class="pagination-btn">Prev</button>
+
+                <button type="button " class="pagination-btn btn next-btn primary-button">Next</button>
+              </div>
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header filters -->
+<div class="modal fade" id="filters" tabindex="-1" role="dialog" aria-labelledby="payorPlan" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered find-dcs" role="document">
+    <div class="modal-content w-420px h-auto">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Payor/Plan
+
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+
+        <table class="payor-plan">
+          <tr>
+
+
+            <td class="pr-2 pb-2">PS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+
+
+            <td class="pr-2 pb-2">DCS
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+
+
+
+
+
+          </tr>
+          <tr>
+            <td class="pr-2 pb-2">Service <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+            <td class="pr-2 pb-2">Status <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pr-2 pb-2">Coordinator
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+
+              </div>
+            </td>
+
+
+            <td class="pr-2 pb-2">Site
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <!-- <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i> -->
+                <i class="fas fa-sitemap ml-3 ml-2 right" (click)="openModalWithClass(template)"></i>
+              </div>
+            </td>
+
+
+
+
+          </tr>
+          <tr>
+
+            <td class="pr-2 pb-2">Week Days <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <span class="material-icons right ml-2">
+                  view_day
+                </span>
+              </div>
+            </td>
+            <td class="pr-2 pb-2">Page Size <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+
+              </div>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td class="pr-2">Start Date
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-user ml-2 right" data-toggle="modal" data-target="#service_popup"></i>
+              </div>
+            </td>
+
+
+          </tr>
+          <tr>
+            <td class="pr-2">End Date
+              <div class="input-group form-input align-items-center">
+                <input type="text" class="form-control">
+                <i class="fas fa-sitemap ml-3 ml-2 right" (click)="openModalWithClass(template)"></i>
+              </div>
+            </td>
+          </tr> -->
+
+        </table>
+        <div class="d-flex pb-2">
+          <div>
+            <label class="color-black">Start Date</label>
+            <div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-sitemap ml-3 ml-2 right" (click)="openModalWithClass(template)"></i>
+            </div>
+          </div>
+          <div class="ml-3">
+
+
+            <label class="color-black">Hrs</label>
+            <select name="" id="" class="border-0 time-input height-30  ">
+              <option value="">Hrs</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div class="ml-3">
+
+
+            <label class="color-black">Min</label>
+            <select name="" id="" class="border-0 time-input height-30 ">
+              <option value="">Min</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div>
+
+
+            <select name="" id="" class="border-0 time-input ml-3 height-30 mt-26">
+              <option value="">AM</option>
+              <option value="">PM</option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="d-flex">
+          <div class="px-3">
+            <label >Hrs</label>
+            <select name="" id="" class="border-0 time-input ">
+              <option value="">Hrs</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div class="px-3">
+            <label >Min</label>
+            <select name="" id="" class="border-0 time-input ">
+              <option value="">Min</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <select name="" id="" class="border-0 time-input ml-3">
+            <option value="">AM</option>
+            <option value="">PM</option>
+          </select>
+         </div> -->
+        <!-- </div> -->
+        <div class="d-flex pb-2">
+          <div>
+            <label class="color-black">End Date</label>
+            <div class="input-group form-input align-items-center">
+              <input type="text" class="form-control">
+              <i class="fas fa-sitemap ml-3 ml-2 right" (click)="openModalWithClass(template)"></i>
+            </div>
+          </div>
+          <div class="ml-3">
+
+
+            <label class="color-black">Hrs</label>
+            <select name="" id="" class="border-0 time-input height-30  ">
+              <option value="">Hrs</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div class="ml-3">
+
+
+            <label class="color-black">Min</label>
+            <select name="" id="" class="border-0 time-input height-30 ">
+              <option value="">Min</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+            </select>
+          </div>
+          <div>
+
+
+            <select name="" id="" class="border-0 time-input ml-3 height-30 mt-26">
+              <option value="">AM</option>
+              <option value="">PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between pt-2">
+          <button class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+          <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--PS INPUT Modal -->
+<div class="ps-popup">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Person Served List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+
+          <div class="d-flex py-2">
+            <label for="">Search</label>
+            <input type="text" class="modal-box-input">
+          </div>
+
+          <div class="d-flex py-2">
+            <label for="">Active</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+              <label class="form-check-label" for="inlineCheckbox3">No</label>
+            </div>
+            <button class="btn-common btn-green"> Go</button>
+          </div>
+
+          <table class="table table-bordered mt-4 box-shadow">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center bg-dark text-white">Person Served</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between py-2">
+            <button class="btn-common btn-blue">Close</button>
+            <button class="btn-common btn-green">Clear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- service popup -->
+<div class="service-popup">
+  <div class="modal fade" id="service_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Service List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+          <div class="d-flex py-2">
+            <label for="">Service Category</label>
+            <select name="" id="" class="height-30">
+              <option value="">All</option>
+              <option value="">2</option>
+              <option value="">3</option>
+            </select>
+          </div>
+
+          <div class="d-flex py-2">
+            <label for="">Name Or Procedure Code</label>
+            <input type="text" class="modal-box-input">
+          </div>
+
+          <div class="d-flex py-2">
+            <label for="">Active</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+              <label class="form-check-label" for="inlineCheckbox3">No</label>
+            </div>
+            <button class="btn-common btn-green"> Go</button>
+          </div>
+
+          <table class="table table-bordered mt-4 box-shadow">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center bg-dark text-white">Person Served</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between py-2">
+            <button class="btn-common btn-blue">Close</button>
+            <button class="btn-common btn-green">Clear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- co ordinator popup -->
+<div class="coordinator_popup">
+  <div class="modal fade" id="coordinator_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Coordinators List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+
+          <div class="d-flex py-1">
+            <label for="">Search</label>
+            <input type="text" class="modal-box-input">
+            <button class="btn-common btn-green ml-3"> Go</button>
+          </div>
+
+          <table class="table table-bordered mt-4 box-shadow">
+            <thead>
+              <tr>
+                <th colspan="2" class="text-center bg-dark text-white">Coordinator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>Thornton</td>
+
+              </tr>
+              <tr>
+                <td><i class="fas fa-info-circle text-dark"></i></td>
+                <td>the Bird</td>
+
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between py-2">
+            <button class="btn-common btn-blue">Close</button>
+            <button class="btn-common btn-green">Clear</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- site list  -->
+<ng-template #template>
+  <div class="modal-header d-flex justify-content-end p-2 py-3 ">
+    <h5 class="m-0">User Office list</h5>
+    <button type="button" class="close pull-right text-dark" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- <button type="button" class="close pull-right" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+  </div>
+  <div class="structure">
+    <ul class="m-0 p-0">
+      <li class="no-before"><input type="checkbox" class="form-check-input" id="exampleCheck1"> RESCARE
+        CORPORATION(0)
+        <ul>
+          <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> RESCARE(1)
+            <ul>
+              <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> COMMUNITY SERVICES
+                GROUP(1)
+                <ul>
+                  <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> CENTRAL OWNED(10)
+                    <ul>
+                      <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> KHCS MO(782)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> RCHC
+                            COLUMBIA MO - SERVICE(71203)</li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> RCHC ST
+                            LOUIS MO - SERVICE(71205)</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS VA(783)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC NORFOLK
+                            VA - SERVICE(71215)</li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC RICHMOND
+                            VA - SERVICE(71217)</li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC ROANOKE
+                            VA - SERVICE(71219)</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS WV(784)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                            CHARLESTON WV - SERVICE(71233)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><input type="checkbox" class="form-check-input" id="exampleCheck1"> NORTHERN OWNED(12)
+                    <ul>
+                      <li><input type="checkbox" class="form-check-input" id="exampleCheck1">NORTHERN
+                        OWNED(12)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">FIRST
+                            CHOICE(467)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ROCHESTER MI - SERVICE(64203)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RAISE(429)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHESTERLAND SERVICE SITE(62329)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE - ILLINOIS(785)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ROCKFORD IL - SERVICE(71243)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE - MICHIGAN(786)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SOUTHFIELD MI - SERVICE(71253)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE - PA(787)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                HARRISBURG PA - SERVICE(71263)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PITTSBURGH PA - SERVICE(71265)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE
+                            PREMIER(462)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHICAGO DOWNERS GROVE(64060)</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><input type="checkbox" class="form-check-input" id="exampleCheck1">PACIFIC WEST
+                        OWNED(13)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CREATIVE
+                            NETWORKS(558)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN COT
+                                AAA(72084)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN COT
+                                ADOPTION SUBSIDY(72072)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN COT
+                                NARBHA(72087)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                COTTONWOOD DDD(72013)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                COTTONWOOD EVERCARE(72014)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                COTTONWOOD PRIVATE DUTY SVC(72015)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                COTTONWOOD YAVAPAI CLTC(72016)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN FLA
+                                YCLTC(72078)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                FLAGSTAFF ADOPTION SUBSIDY(72017)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                FLAGSTAFF DDD(72025)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                FLAGSTAFF EVERCARE(72026)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                FLAGSTAFF NARBHA(72027)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                FLAGSTAFF PRIVATE DUTY SVC(72028)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                EVERCARE(72032)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                AAA(72029)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                ADOPTION SUBSIDY(72073)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                BRIDGEWAY HEALTH(72099)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                DDD(72031)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                MERCY CARE(72033)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                PRIVATE DUTY(72036)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN MESA
+                                SCAN HEALTH PLAN(72095)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN PHO
+                                BRIDGEWAY HEALTH(72100)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN PHO
+                                SCAN HEALTH PLAN(72097)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX AAA(72037)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX ADOPTION SUBSIDY(72038)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX DDD(72041)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX EVERCARE(72042)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX MERCYCARE(72043)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PHOENIX PRIVATE DUTY SVC(72046)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN PRE
+                                NARBHA(72083)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN PRE
+                                YCLTC(72071)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PRESCOTT ADOPTION SUBSIDY(72047)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PRESCOTT DDD(72059)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                PRESCOTT PRIVATE DUTY SVC(72060)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN SUN
+                                HEALTH PRIVATE DUTY(72103)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN SUR
+                                BRIDGEWAY HEALTH(72098)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN SUR
+                                SCAN HEALTH PLAN(72096)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE(72010)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE AAA(72061)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE DDD(72063)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE EVERCARE(72064)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE MERCYCARE(72065)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                SURPRISE PRIVATE DUTY SVCS(72068)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN TUC
+                                DDD(72090)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN TUC
+                                PIM ALTCS(72089)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN TUC
+                                PIM CSS(72088)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN TUC
+                                PRIVATE DUTY(72092)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN
+                                TUCSON(72004)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CN TUCSON
+                                ELDERCARE PRI DUTY(72101)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                COTTONWOOD AZ - CORE(72009)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                FLAGSTAFF AZ - CORE(72007)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC MESA
+                                AZ - CORE(72006)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PHOENIX AZ - CORE(72005)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PRESCOTT AZ CORE(72008)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC SUN
+                                CITY AZ BRANCH(72102)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS
+                            ARIZONA(788)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PHOENIX AZ - CORE(71272)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PHOENIX AZ - SERVICE(71273)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                TUCSON AZ - CORE(71274)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                TUCSON AZ - SERVICE(71275)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS CA(789)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CULVER CITY CA - SERVICE(71283)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                MODESTO CA - SERVICE(71285)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ORANGE CO. CA - SERVICE(71287)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PASADENA CA - SERVICE(71289)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SACRAMENTO CA - SERVICE(71291)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC SAN
+                                DIEGO CA - SERVICE(71293)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                STOCKTON CA - SERVICE(71295)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS OR(790)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PORTLAND OR - SERVICE(71303)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SALEM OR - SERVICE(71305)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS WA(791)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                IDAHO - SERVICE(71443)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SEATTLE SOUTH WA - SVC(71317)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SEATTLE WA - SERVICE(71313)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SPOKANE WA - SERVICE(71315)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE
+                            HOMECARE(392)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS CA
+                                ALLSTATE-RIVERSIDE(52153)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS CA
+                                CLOVIS-CLOVIS(52166)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS CA
+                                CRENSHAW-TORRANCE(52157)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS CA
+                                FOOTHILL-PASADENA(52164)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS
+                                CALABASAS CA - SERVICE(52169)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">HCGS
+                                COSTA MESA ORANGE COUNTY(52176)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                PASADENA CA - CORE(52162)</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SOUTHERN
+                        OWNED(14)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">CNC
+                            ACCESS(531)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHARLOTTE MH(70213)
+
+                              </li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS AL(792)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                HUNTSVILLE AL - SERVICE(71323)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                MONTGOMERY AL - SERVICE(71325)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS LA(795)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                BATON ROUGE LA - SERVICE(71373)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SHREVEPORT LA - SERVICE(71375)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS NC(796)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                DURHAM NC - SERVICE(70460)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                RALEIGH NC - SERVICE(71387)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                WINSTON SALEM NC - SVC(71389)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS SC(797)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ANDERSON SC - SERVICE(76063)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHARLESTON SC - SERVICE(71403</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHESTER SC - SERVICE(76065)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                GREENVILLE SC - SERVICE(71405)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                GREENVILLE SC - SERVICE(76059)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                MYRTLE BCH SC - SERVICE(70290)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ROCKHILL SC - SERVICE(70280)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SPARTANBURG SC - SERVICE(76061)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS TN(798)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHATTANOOGA TN - SERVICE(71413)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                KNOXVILLE TN - SERVICE(71415)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                NASHVILLE TN - SERVICE(71417)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE(793)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC BOCA
+                                RATON FL - SERVICE(71335)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                BRADENTON FL COMPANION(71377)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                BRADENTON FL SERVICE SITE(71378)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CLEARWATER FL - SERVICE(71337)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                DAYTONA BEACH FL - SVC(71339)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                DAYTONA FL-SVC COMPANION(71366)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC FORT
+                                MYERS FL - SERVICE(71341)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC FT
+                                LAUDERDALE FL - SVC(71343)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                JACKSONVILLE FL - SERVICE(71345)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                MELBOURNE FL - SERVICE(71347)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                MIAMI FL - SERVICE(71349)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SARASOTA FL - COMPANION(71379)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SARASOTA FL - SERVICE(71351)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC ST
+                                PETE FL COMP SITE(71369)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC ST
+                                PETERSBURG FL - SVC(71333)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                TAMPA FL - SERVICE(71353)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                TAMPA FL - SVC COMPANION(71367)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC VERO
+                                BEACH FL - SERVICE(71358)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC W
+                                PALM BEACH FL - SERVICE(71355)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                WINTER PARK FL - SERVICE(71357)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE(638)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC -
+                                TOCCOA(30017)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ATLANTA GA - CORE(71362)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ATLANTA GA - SERVICE(71363)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ATLANTA GA - SERVICE(71363)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                AUGUSTA GA - SERVICE(71365)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                AIKEN, SC(1252)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                ALBANY(1250)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                ATLANTA EAST(1793)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                ATLANTA SKILLED(76013)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                ATLANTA WEST(1794)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                AUGUSTA(1244)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                BLUERIDGE GA(76016)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                CORDELE(76021)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                EASTMAN(1247)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                GAINESVILLE, GA(76019)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                MACON(1248)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                MAGNOLIA PRIVATE DUTY(76025)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                ROME(1723)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                SENOIA, GA(76018)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                THOMSON(76023)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SHC -
+                                VALDOSTA(1249)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RESCARE HOME
+                            CARE-CNC(529)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                ASHEVILLE NC - SERVICE(71383)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                CHARLOTTE NC - SERVICE(71385)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                FOREST CITY NC - SERVICE(70220)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                HICKORY NC - SERVICE(70010)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC NC
+                                CHARLOTTE SVC(70210)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                SHELBY(70190)</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SOUTHWEST
+                        OWNED(15)
+                        <ul>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">KHCS TX(799)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                HOUSTON TX - CORE(71424)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                HOUSTON TX - SERVICE(71425)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC SAN
+                                ANTONIO TX - CORE(71426)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC SAN
+                                ANTONIO TX - SERVICE(71427)</li>
+                            </ul>
+                          </li>
+                          <li><input type="checkbox" class="form-check-input" id="exampleCheck1">SUPPORT
+                            WITHOUT LIMITS(683)
+                            <ul>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                AUSTIN PERSONAL ASST SVS(81104)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                AUSTIN TX - CORE(71422)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                AUSTIN TX - SERVICE(71423)</li>
+                              <li><input type="checkbox" class="form-check-input" id="exampleCheck1">RCHC
+                                AUSTIN TX HOME HEALTH(81103)</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="button-wrapper d-flex justify-content-between p-3 popup-button-wrapper">
+    <button class="btn-common btn-green">Close</button>
+    <button class="btn-common btn-blue">Save</button>
+  </div>
+</ng-template>
+
+<!-- Visit comments -->
+
+<div class="modal fade" id="visitComments" tabindex="-1" role="dialog" aria-labelledby="editvisits" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered find-dcs" role="document">
+    <div class="modal-content dcs-content">
+      <div class="modal-header  registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Visit Comments</h4>
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="d-flex align-items-center">
+          <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+          <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="">
+          <label class="color-black">
+            Comments</label>
+          <div class="input-group form-input">
+            <!-- <input type="text" class="form-control" value="09/01/2020 - 09/30/2020 - Daily"> -->
+            <textarea class="text-control" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="pt-2">
+          <label class="color-black">Canceled Time</label>
+          <div class=" form-input mxw-108">
+            <input type="text" class="form-control " value="10:33 AM">
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2">
+          <button class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+          <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Assign DCS -->
+
+<!-- Assign DCS Modal -->
+<div class="modal fade" id="AssignDCS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-header  registration-modal-header d-flex justify-content-between align-items-center">
+        <div class="nav-item dropdown user-symbol">
+          <a class="nav-link dropdown-toggle symbol p-0 d-flex align-items-center " (click)="dropdown()"
+            href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <span class="material-icons user">
+              person
+            </span>
+          </a>
+          <div class="dropdown-menu dashboard-nav-dropdown p-0" aria-labelledby="navbarDropdown" style="width: 600px;">
+            <div class="d-flex justify-content-center align-items-center">
+              <table class="table box-shadow bg-white box-shadow mb-0">
+                <tbody>
+                  <tr>
+                    <td>PS</td>
+                    <td>BANKS, LOUISE </td>
+                  </tr>
+                  <tr>
+                    <td>Payor Plan</td>
+                    <td>PCARE-CSRA(1190/801)</td>
+                  </tr>
+                  <tr>
+                    <td>Service[Procedure Code]</td>
+                    <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
+                  </tr>
+                  <tr>
+                    <td>Visit Start Date</td>
+                    <td>04/20/2020 02:00 AM </td>
+                  </tr>
+                  <tr>
+                    <td>Visit End Date</td>
+                    <td>04/20/2020 02:30 AM </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Assign DCS</h4>
+
+        <button type="button" class="pull-right close-x" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="assign-dcs-wrapper">
+        <div class="container mt-3">
+          <p class="text-right mb-0 pb-1 pointer" data-toggle="modal" data-target=".bd-example-modal-sm">Schedule
+            Criteria</p>
+
+          <!-- <div class="d-flex justify-content-center align-items-center">
+            <table class="table box-shadow">
+              <tbody>
+                <tr>
+                  <td>PS</td>
+                  <td>BANKS, LOUISE </td>
+                </tr>
+                <tr>
+                  <td>Payor Plan</td>
+                  <td>PCARE-CSRA(1190/801)</td>
+                </tr>
+                <tr>
+                  <td>Service[Procedure Code]</td>
+                  <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
+                </tr>
+                <tr>
+                  <td>Visit Start Date</td>
+                  <td>04/20/2020 02:00 AM </td>
+                </tr>
+                <tr>
+                  <td>Visit End Date</td>
+                  <td>04/20/2020 02:30 AM </td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+
+          <div class="table-container">
+            <div class="table-container-header d-flex p-2 justify-content-between align-items-center mb-2">
+              <div class="input d-flex">
+                <label for="exampleInputEmail1" class="text-white px-2">Search</label>
+                <input type="search" class="form-control w-200">
+              </div>
+              <div class="checkbox px-3 d-flex align-items-center">
+                <p class="mr-2 mb-0 text-white"> <b>Active</b> </p>
+                <div class="form-check">
+                  <input class="form-check-input text-white" type="radio" name="exampleRadios" id="exampleRadios1"
+                    value="option1" checked>
+                  <label class="form-check-label text-white" for="exampleRadios1">
+                    All
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2"
+                    value="option2">
+                  <label class="form-check-label text-white" for="exampleRadios1">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios3" id="exampleRadios3"
+                    value="option3">
+                  <label class="form-check-label text-white" for="exampleRadios2">
+                    No
+                  </label>
+                </div>
+              </div>
+              <button class="btn-common btn-green"> Go </button>
+            </div>
+            <div class="p-2">
+              <table class="table box-shadow mb-0">
+                <thead class="thead-dark">
+                  <tr>
+                    <th colspan="2"></th>
+                    <th>
+                      <input type="checkbox" class="form-control">
+                    </th>
+                    <th>DCS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><input type="checkbox"></td>
+                    <td>BANKS, LOUISE </td>
+                  </tr>
+                  <tr>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><input type="checkbox"></td>
+                    <td>PCARE-CSRA(1190/801)</td>
+                  </tr>
+                  <tr>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><input type="checkbox"></td>
+                    <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
+                  </tr>
+                  <!-- <tr>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><input type="checkbox"></td>
+                    <td>04/20/2020 02:00 AM </td>
+                  </tr> -->
+                  <tr>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><i class="far fa-calendar-alt f-18"></i></td>
+                    <td><input type="checkbox"></td>
+                    <td>04/20/2020 02:30 AM </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="d-flex justify-content-between m-2">
+              <button class="btn-common btn-green"> Close </button>
+              <button class="btn-common btn-green f-12"> Check Availability</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Schedule criteria -->
+<div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Schedule Criteria </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table box-shadow">
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" class="form-control" />
+              </td>
+              <td>Qualifications </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Preferences</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Scheduled DCS
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Previously Served PS</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Shared DCS
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Get Preferred DCS
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Get UnAvailable DCS
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Do-not Use "Un Preferred DCS"
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" class="form-control" /></td>
+              <td>Get Family Serving Family DCS
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+          <button class="btn-common btn-green">Close</button>
+          <button class="btn-common btn-green">Reset</button>
+          <button class="btn-common btn-green">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
