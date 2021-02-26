@@ -1,6 +1,6 @@
 .schedule-management-wrapper{
     .bg-blue {
-        background-color: #145194 !important;
+        // background-color: #145194 !important;
     }
     i{
         cursor: pointer;
@@ -19,6 +19,8 @@
         th{
             white-space: nowrap;
             padding:7px ;
+            background-color: #343a40;
+            border-color: #454d55;
         }
         td{
             padding: 8px;
