@@ -152,7 +152,7 @@
             </td>
             <td>
               <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
-                (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
+                (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true" [enable]="[{ from: '2021-01-01', to: '2030-05-01' }]"
                 dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
             </td>
             <td>
