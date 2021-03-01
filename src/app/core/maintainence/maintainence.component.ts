@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaintainenceComponent implements OnInit {
 
+  displayArray:Array<boolean>=[true,false]
   constructor() { }
 
   ngOnInit(): void {

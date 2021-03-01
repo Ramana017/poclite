@@ -72,6 +72,8 @@ import { ScheduleManagementComponent } from './core/schedule-management/schedule
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,7 +147,8 @@ import { CalenderSchedulingComponent } from './core/calender-scheduling/calender
     MomentModule,
     ToastrModule.forRoot(),
     NgxChartsModule,
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    FlatpickrModule.forRoot()
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {
