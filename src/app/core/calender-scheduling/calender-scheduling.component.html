@@ -7,16 +7,16 @@
       <div class="row text-center">
         <div class="col-md-4">
           <div class="btn-group">
-            <div class="btn btn-primary previous-button d-flex align-items-center" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-              (viewDateChange)="closeOpenMonthViewDay()">
+            <div class="btn btn-primary previous-button d-flex align-items-center" mwlCalendarPreviousView [view]="view"
+              [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
               <i class="fas fa-backward pr-3"></i>
-             <span>Previous</span>
+              <span>Previous</span>
             </div>
             <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
               Current
             </div>
-            <div class="btn btn-primary next-button d-flex align-items-center" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-              (viewDateChange)="closeOpenMonthViewDay()">
+            <div class="btn btn-primary next-button d-flex align-items-center" mwlCalendarNextView [view]="view"
+              [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
               <span>Next</span>
               <i class="fas fa-forward px-2"></i>
             </div>
@@ -28,18 +28,12 @@
 
         <div class="col-md-4">
           <div class="btn-group">
-            <div
-              class="btn btn-primary"
-              (click)="setView(CalendarView.Month)"
-              [class.active]="view === CalendarView.Month"
-            >
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+              [class.active]="view === CalendarView.Month">
               Month
             </div>
-            <div
-              class="btn btn-primary"
-              (click)="setView(CalendarView.Week)"
-              [class.active]="view === CalendarView.Week"
-            >
+            <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+              [class.active]="view === CalendarView.Week">
               Week
             </div>
             <!-- <div
@@ -138,7 +132,7 @@
           </tr>
         </thead>
 
-        <!-- <tbody>
+        <tbody>
           <tr *ngFor="let event of events">
             <td>
               <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
@@ -150,9 +144,11 @@
               <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
             </td>
             <td>
-              <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+              <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start" [altInput]="true" [convertModelValue]="true" [enableTime]="true" [enable]="[{ from: '2021-01-01', to: '2030-05-01' }]"
                 (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
                 dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set" />
+
+
             </td>
             <td>
               <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
@@ -165,7 +161,7 @@
               </button>
             </td>
           </tr>
-        </tbody> -->
+        </tbody>
       </table>
     </div>
 
@@ -196,4 +192,4 @@
     </ng-template>
   </div>
 
-  </div>
+</div>
