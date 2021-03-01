@@ -409,6 +409,59 @@ https://fortawesome.github.io/Font-Awesome/
                 //   box-shadow: inset 0 0 0 2px $googleplus;
             }
         }
+            //user-search
+    .user-search{
+        &::before{
+          font-family: 'Material Icons';
+          content: "link";
+         -webkit-font-feature-settings: 'liga';
+         font-weight: 600;
+        }
+      }
+      .user{
+        &::before{
+          font-family: "Font Awesome 5 Free";
+          content: "\f007";
+          display: inline-block;
+          // padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 900;
+          color: #fff;
+        }
+      }
+      .list{
+        &::before{
+          font-family: "Font Awesome 5 Free";
+          content: "\f022";
+          display: inline-block;
+          // padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 900;
+          color: #fff;
+        }
+      }
+      .assign{
+        &::before{
+          font-family: "Font Awesome 5 Free";
+          content: "\f14b";
+          display: inline-block;
+          // padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 900;
+          color: #fff;
+        }
+      }
+      .search{
+        &::before{
+          font-family: "Font Awesome 5 Free";
+          content: "\f002";
+          display: inline-block;
+          // padding-right: 3px;
+          vertical-align: middle;
+          font-weight: 900;
+          color: #fff;
+        }
+      }
         // }
         // // =============================================
         // // Open Network List
@@ -673,6 +726,49 @@ https://fortawesome.github.io/Font-Awesome/
     .visitdetails{
         height: 72vh !important;
     }
-    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails{
+    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails,#AssignDCS{
+        
         background: #080808bd;
+        .modal-content{
+            overflow: auto;
+        }
     }
+
+.schedule-btn{
+    width: 150px;
+    background-color: rgba(111, 139, 164, 1);
+    height: 35px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    box-shadow: 0 1px 2px 1px rgb(0 0 0 / 10%);
+}
+.availabilityTable{
+    tbody{
+        background: white;
+        tr{
+            td{
+                &:last-child{
+                    // background: grey;
+                    // color: white;
+                }
+            }
+        }
+    }
+}
+.red-child{
+    background: #ff110a;
+    color: white;
+}
+.green-child{
+    background:#449d44;
+    color: white;
+}
+.color-green{
+    color:$button;
+}
+.color-red{
+    color:$red;
+}

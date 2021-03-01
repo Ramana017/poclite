@@ -218,13 +218,15 @@
                         <input type="text" class="form-control" placeholder="Coordinator">
                         <!-- <i class="fad fa-users-medical"></i> -->
                         <!-- <i class="fas fa-user " data-toggle="modal" data-target="#service_popup"></i> -->
-                        <i class="fas fa-notes-medical ml-2 right-icon" data-toggle="modal" data-target="#coordinator_popup"></i>
+                        <i class="fas fa-notes-medical ml-2 right-icon" data-toggle="modal"
+                            data-target="#coordinator_popup"></i>
                     </div>
                     <div class="input-group form-input align-items-center header-input">
                         <input type="text" class="form-control" placeholder="Site">
                         <!-- <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#service_popup"></i> -->
                         <!-- <i class="fas fa-calendar-week  ml-2 right-icon"></i> -->
-                        <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal" (click)="openModalWithClass(template)"></i>
+                        <i class="fas fa-sitemap  ml-2 right-icon" data-toggle="modal"
+                            (click)="openModalWithClass(template)"></i>
 
                     </div>
                     <div class="input-group form-input align-items-center header-input">
@@ -276,7 +278,7 @@
 
                             <label class="color-grey mb-0">Min</label>
                             <select name="" id="" class="border-0 time-input height-30 text-grey">
-                              <option value="">Min</option>
+                                <option value="">Min</option>
                                 <option value="">1</option>
                                 <option value="">2</option>
                                 <option value="">3</option>
@@ -312,19 +314,19 @@
 
                             <label class="color-grey mb-0">Hrs</label>
                             <select name="" id="" class="border-0 time-input height-30  text-grey">
-                              <option value="">Hrs</option>
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                              <option value="">5</option>
-                              <option value="">6</option>
-                              <option value="">7</option>
-                              <option value="">8</option>
-                              <option value="">9</option>
-                              <option value="">10</option>
-                              <option value="">11</option>
-                              <option value="">12</option>
+                                <option value="">Hrs</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                                <option value="">11</option>
+                                <option value="">12</option>
                             </select>
                         </div>
                         <div class="ml-3 d-flex align-items-center">
@@ -385,7 +387,8 @@
                                 <li class="">
                                     <div class="share-button">
                                         <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                        <label for="toggle-input" class="toggle"></label></div>
+                                        <label for="toggle-input" class="toggle"></label>
+                                    </div>
                                     <div class="slider d-flex ">
                                         <!-- calender -->
                                         <p class="blue-bg twitter">
@@ -396,9 +399,17 @@
                                             </span>
 
                                         </p>
+                                        <!-- assigndcs -->
+                                        <p class="blue-bg assign" data-toggle="modal" data-target="#AssignDCS"
+                                            title="Assign Dcs">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+                                        </p>
                                         <!-- find dcs -->
-                                        <p class="blue-bg search" data-toggle="modal"
-                                            data-target="#exampleModalCenter" title="Find DCS">
+                                        <p class="blue-bg search" data-toggle="modal" data-target="#exampleModalCenter"
+                                            title="Find DCS">
                                             <span>
                                                 <a href="javascript:void(0)" class="text-white">
                                                 </a>
@@ -413,6 +424,24 @@
                                                 </a>
                                             </span>
                                         </p>
+                                        <!-- payorplan -->
+                                        <p class="blue-bg user" data-toggle="modal" data-target="#payorPlan"
+                                            title="Payor Plan">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+
+                                        </p>
+                                        <!-- visit details -->
+                                        <p class="blue-bg list" data-toggle="modal" data-target="#visitDetails"
+                                            title="Visit Details">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+
+                                        </p>
                                         <!-- visitcomments -->
                                         <p class="blue-bg flyout-1">
                                             <span>
@@ -422,32 +451,25 @@
                                             </span>
 
                                         </p>
-                                        <!-- assigndcs -->
-                                        <p class="blue-bg assign" data-toggle="modal" data-target="#AssignDCS"
-                                            title="Assign Dcs">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <!-- payorplan -->
-                                        <p class="blue-bg user" title="Payor Plan">
+
+
+                                        <!-- <p class="blue-bg user" >
                                             <span>
                                                 <a href="javascript:void(0)" data-toggle="modal"
-                                                    data-target="#payorPlan" class="text-white" >
+                                                    data-target="#payorPlan" class="text-white" title="Payor Plan" >
                                                 </a>
                                             </span>
 
-                                        </p>
-                                        <!-- visit details -->
-                                        <p class="blue-bg list" title="Visit Details">
+                                        </p> -->
+
+                                        <!-- <p class="blue-bg list" title="Visit Details">
                                             <span>
                                                 <a href="javascript:void(0)" data-toggle="modal"
                                                     data-target="#visitDetails" class="text-white" >
                                                 </a>
                                             </span>
 
-                                        </p>
+                                        </p> -->
                                     </div>
                                 </li>
                             </ul>
@@ -600,7 +622,7 @@
 
                                     <td class="position-relative">
 
-                                        <span data-toggle="modal" data-target="#marginprojecton"><i
+                                        <span data-toggle="modal" data-target="#marginprojection"><i
                                                 class="fas fa-calendar-week"></i></span>
                                     </td>
                                     <td class="position-relative">
@@ -756,8 +778,9 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between pt-2">
-                    <button
-                        class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+                    <button class="btn-common btn-blue  d-flex align-items-center justify-content-center bg-dark"><i
+                            class="fas fa-times mr-1 "></i>Cancel</button>
+
                     <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button>
                 </div>
             </div>
@@ -766,7 +789,7 @@
 </div>
 
 <!-- Margin Projection -->
-<div class="modal fade" id="marginprojecton" tabindex="-1" role="dialog" aria-labelledby="marginprojecton"
+<div class="modal fade" id="marginprojection" tabindex="-1" role="dialog" aria-labelledby="marginprojection"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered edit-modal-content" role="document">
         <div class="modal-content w-95">
@@ -805,7 +828,7 @@
               </tbody>
             </table>
           </div> -->
-                    <div class="table-name">
+                    <div class="table-name d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <h4 class="AvenirLTStd-Heavy mr-2 mb-0">PS Name:</h4>
                             <h4 class="AvenirLTStd-Heavy mb-0"> BANKS, MARGARET</h4>
@@ -816,35 +839,38 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive visits-casemanager margin-table">
+                    <div class="table-responsive visits-casemanager margin-table height-67">
                         <table class="table">
                             <thead class="">
                                 <tr>
-                                    <th class="align-middle border-right"></th>
-                                    <th class="align-middle border-right">Start Date Time</th>
-                                    <th class="align-middle border-right">End Date Time</th>
-                                    <th class="align-middle border-right">Hours</th>
-                                    <th class="align-middle border-right">Pay Rate Type </th>
-                                    <th class="align-middle border-right p-0">
-                                        <div class="p-2">Billing</div>
-                                        <div class="d-flex border-top justify-content-between">
-                                            <span class="border-right p-2 min-w-80">Rate</span>
-                                            <span class="p-2 min-w-80">Amount</span>
-                                        </div>
+                                    <th class="align-middle border-right" rowspan="2"></th>
+                                    <th class="align-middle border-right" rowspan="2">Start Date Time</th>
+                                    <th class="align-middle border-right" rowspan="2">End Date Time</th>
+                                    <th class="align-middle border-right" rowspan="2">Hours</th>
+                                    <th class="align-middle border-right" rowspan="2">Pay Rate Type </th>
+                                    <th class="align-middle border-right border-bottom" rowspan="1" colspan="2">
+                                        Billing
                                     </th>
-                                    <th class="align-middle border-right p-0">
-                                        <div class="p-2">Pay</div>
-                                        <div class="d-flex border-top justify-content-between">
-                                            <div class="border-right p-2 min-w-80">Pay</div>
-                                            <div class="p-2 border-right min-w-80">Week End</div>
-                                            <div class="p-2 border-right min-w-80">Holiday</div>
-                                            <div class="border-right p-2 min-w-80">Extra</div>
-                                            <div class="p-2 border-right min-w-80">OT</div>
-                                            <div class="p-2 min-w-80">Amount</div>
-                                        </div>
+                                    <th class="align-middle border-right border-bottom" rowspan="1" colspan="6">
+                                        Pay
                                     </th>
-                                    <th class="align-middle">Revenue</th>
-                                    <!-- <th class="align-middle">Available DCS</th> -->
+                                    <th class="align-middle" rowspan="2">Revenue</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1" class="border-right">
+                                            Rate
+                                    </th>
+                                    <th colspan="1" class="border-right">
+                                        Amount
+                                    </th>
+                                    <th colspan="1" class="border-right">
+                                        Pay
+                                    </th>
+                                    <th colspan="1" class="border-right">Week End</th>
+                                    <th colspan="1" class="border-right">Holiday</th>
+                                    <th colspan="1" class="border-right">Extra</th>
+                                    <th colspan="1" class="border-right">OT</th>
+                                    <th colspan="1">Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -853,7 +879,6 @@
                                         <span data-toggle="modal" data-target="#paydetails"><i
                                                 class="fas fa-calendar-week"></i></span>
                                     </td>
-                                    <!-- <td>Test,Test</td> -->
                                     <td class="position-relative border-right">
                                         10/06/2020 12:30 AM
                                     </td>
@@ -862,34 +887,28 @@
                                     </td>
                                     <td class="border-right">No</td>
                                     <td class="border-right">Yes</td>
-                                    <td class="border-right p-0">
-                                        <div class="d-flex  justify-content-between">
-                                            <span class="border-right p-2 min-w-80">Rate</span>
-                                            <span class="p-2 min-w-80">Amount</span>
-                                        </div>
+                                    <td class="border-right ">
+                                    Rate
                                     </td>
-                                    <td class="border-right p-0">
-                                        <div class="d-flex
-                     justify-content-between">
-                                            <div class="border-right p-2 min-w-80">1</div>
-                                            <div class="p-2 border-right min-w-80">2</div>
-                                            <div class="p-2 border-right min-w-80">3</div>
-                                            <div class="border-right p-2 min-w-80">4</div>
-                                            <div class="p-2 border-right min-w-80">5</div>
-                                            <div class="p-2 min-w-80">6</div>
-                                        </div>
-                                    </td>
+                                    <td class="border-right">Amount</td>
+                                    <td class="border-right ">1</td>
+                                    <td class="border-right">2</td>
+                                    <td class="border-right ">3</td>
+                                    <td class="border-right ">4</td>
+                                    <td class="border-right ">5</td>
+                                    <td class=" ">6</td>
                                     <td>
                                         29.00
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="margin-projection">
-                            <div class="float-right"> Margin:<span>29.00</span></div>
-                            <div>
-                                <div class="float-right"> Margin Percentage:<span>89.23%</span></div>
-                            </div>
+                      
+                    </div>
+                    <div class="margin-projection">
+                        <div class="float-right color-green mr-2"> Margin:<span class="color-red">29.00</span></div>
+                        <div>
+                            <div class="float-right color-green mr-3"> Margin Percentage:<span class="color-red">89.23%</span></div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
@@ -932,7 +951,7 @@
             </div>
             <div class="modal-body schedule-management-wrapper p-0">
                 <div class="container-fluid m-0 px-4 py-2">
-                    <div class="table-name d-block">
+                    <div class="table-name d-flex align-items-center justify-content-between mb-2">
                         <div class="d-flex align-items-center pr-2">
                             <h4 class="AvenirLTStd-Heavy mr-2 mb-0">PS Name:</h4>
                             <h4 class="AvenirLTStd-Heavy mb-0"> BANKS, MARGARET</h4>
@@ -1219,7 +1238,8 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-between pt-2">
                         <button
-                            class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+                            class="btn-common btn-blue  d-flex align-items-center justify-content-center"><i
+                            class="fas fa-times mr-1 "></i>Cancel</button>
 
                     </div>
                 </div>
@@ -1304,7 +1324,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-between">
-                        <button class="btn-common btn-green">Close</button>
+                        <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close </button>
                         <!-- <button class="btn-common btn-green">Reset</button> -->
                         <button class="btn-common btn-green">Clear</button>
                     </div>
@@ -1766,6 +1786,7 @@
                 <div class="d-flex align-items-center justify-content-between pt-2">
                     <button
                         class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+
                     <button
                         class="btn-common btn-green  d-flex align-items-center justify-content-center">Search</button>
                 </div>
@@ -1851,7 +1872,8 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-blue h-35">Close</button>
+                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        </button>
                         <button class="btn-common btn-green h-35">Clear</button>
                     </div>
 
@@ -1945,7 +1967,8 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-blue h-35">Close</button>
+                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        </button>
                         <button class="btn-common btn-green h-35">Clear</button>
                     </div>
 
@@ -2040,7 +2063,8 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-blue h-35">Close</button>
+                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        </button>
                         <button class="btn-common btn-green h-35">Clear</button>
                     </div>
 
@@ -2111,7 +2135,8 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-blue h-35">Close</button>
+                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        </button>
                         <button class="btn-common btn-green h-35">Clear</button>
                     </div>
 
@@ -2830,7 +2855,7 @@
         </ul>
     </div>
     <div class="button-wrapper d-flex justify-content-between p-3 popup-button-wrapper">
-        <button class="btn-common btn-green">Close</button>
+        <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close </button>
         <button class="btn-common btn-blue">Save</button>
     </div>
 </ng-template>
@@ -2866,8 +2891,8 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between pt-2">
-                    <button
-                        class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+                    <button class="btn-common btn-blue  d-flex align-items-center justify-content-center bg-dark"><i
+                            class="fas fa-times mr-1 "></i>Cancel</button>
                     <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button>
                 </div>
             </div>
@@ -2880,8 +2905,8 @@
 <!-- Assign DCS Modal -->
 <div class="modal fade" id="AssignDCS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog assignDcs" role="document">
+        <div class="modal-content w-100 pr-0">
             <!-- <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -2898,7 +2923,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dashboard-nav-dropdown p-0" aria-labelledby="navbarDropdown"
-                        style="width: 600px;">
+                        style="width: 500px;">
                         <div class="d-flex justify-content-center align-items-center">
                             <table class="table box-shadow bg-white box-shadow mb-0">
                                 <tbody>
@@ -2928,78 +2953,47 @@
                     </div>
                 </div>
                 <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Assign DCS</h4>
-
                 <button type="button" class="pull-right close-x" aria-label="Close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
             </div>
-            <div class="assign-dcs-wrapper">
+            <div class="assign-dcs-wrapper" *ngIf="availabilityCheck">
                 <div class="container mt-3">
-                    <p class="text-right mb-0 pb-1 pointer" data-toggle="modal" data-target=".bd-example-modal-sm">
-                        Schedule
-                        Criteria</p>
-
-                    <!-- <div class="d-flex justify-content-center align-items-center">
-            <table class="table box-shadow">
-              <tbody>
-                <tr>
-                  <td>PS</td>
-                  <td>BANKS, LOUISE </td>
-                </tr>
-                <tr>
-                  <td>Payor Plan</td>
-                  <td>PCARE-CSRA(1190/801)</td>
-                </tr>
-                <tr>
-                  <td>Service[Procedure Code]</td>
-                  <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
-                </tr>
-                <tr>
-                  <td>Visit Start Date</td>
-                  <td>04/20/2020 02:00 AM </td>
-                </tr>
-                <tr>
-                  <td>Visit End Date</td>
-                  <td>04/20/2020 02:30 AM </td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
-
-                    <div class="table-container">
-                        <div class="table-container-header d-flex p-2 justify-content-between align-items-center mb-2">
-                            <div class="input d-flex">
-                                <label for="exampleInputEmail1" class="text-white px-2">Search</label>
-                                <input type="search" class="form-control w-200">
+                    <!-- <div class="d-flex justify-content-end mb-3">
+                        <a href="javascript:void(0)" class=" pointer schedule-btn" data-toggle="modal"
+                            data-target="#scheduleCriteria">
+                            <span class="material-icons mr-1">
+                                schedule
+                            </span>Schedule
+                            Criteria</a>
+                    </div> -->
+                    <div class="table-container ">
+                        <div
+                            class="table-container-header d-flex p-2 justify-content-between nav align-items-center mb-2">
+                            <a href="javascript:void(0)" class=" pointer schedule-btn" data-toggle="modal"
+                                data-target="#scheduleCriteria">
+                                <span class="material-icons mr-1">
+                                    schedule
+                                </span>Schedule
+                                Criteria</a>
+                            <div class="d-flex  nav align-items-center">
+                                <div class="input d-flex">
+                                    <label for="exampleInputEmail1" class="text-white px-2 mb-0">Search</label>
+                                    <input type="search" class="form-control w-200">
+                                </div>
+                                <div class="input d-flex mx-3">
+                                    <label for="exampleInputEmail1" class="text-white px-2 mb-0">Active</label>
+                                    <select class="h-30">
+                                        <option class="default" selected disabled>--Select--</option>
+                                        <option>All</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <button class="btn-common btn-green"> Go </button>
                             </div>
-                            <div class="checkbox px-3 d-flex align-items-center">
-                                <p class="mr-2 mb-0 text-white"> <b>Active</b> </p>
-                                <div class="form-check">
-                                    <input class="form-check-input text-white" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label text-white" for="exampleRadios1">
-                                        All
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios2"
-                                        id="exampleRadios2" value="option2">
-                                    <label class="form-check-label text-white" for="exampleRadios1">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios3"
-                                        id="exampleRadios3" value="option3">
-                                    <label class="form-check-label text-white" for="exampleRadios2">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                            <button class="btn-common btn-green"> Go </button>
                         </div>
-                        <div class="p-2">
+                        <div class="p-2 h-52vh">
                             <table class="table box-shadow mb-0">
                                 <thead class="thead-dark">
                                     <tr>
@@ -3029,12 +3023,6 @@
                                         <td><input type="checkbox"></td>
                                         <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
                                     </tr>
-                                    <!-- <tr>
-                    <td><i class="far fa-calendar-alt f-18"></i></td>
-                    <td><i class="far fa-calendar-alt f-18"></i></td>
-                    <td><input type="checkbox"></td>
-                    <td>04/20/2020 02:00 AM </td>
-                  </tr> -->
                                     <tr>
                                         <td><i class="far fa-calendar-alt f-18"></i></td>
                                         <td><i class="far fa-calendar-alt f-18"></i></td>
@@ -3044,24 +3032,97 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div class="d-flex justify-content-between m-2">
-                            <button class="btn-common btn-green"> Close </button>
-                            <button class="btn-common btn-green f-12 w-auto"> Check Availability</button>
+                            <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+                            </button>
+                            <button class="btn-common btn-green f-12 w-auto" (click)="checkAvailability()"><i
+                                    class="fas fa-user-tag mr-1"></i> Check Availability</button>
                         </div>
-
                     </div>
+                </div>
+            </div>
+            <div class="" *ngIf="!availabilityCheck" class="m-3">
+                <div class="table-responsive box-shadow height-67">
+                    <table class="table text-center mb-0 visit-table availabilityTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="12" class="bg-secondary border-right">
+                                    Schedule DCS
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="text-center border-right align-middle" scope="col"></th>
+                                <th class="text-center border-right align-middle" scope="col">DCS Name</th>
+                                <th class="text-center border-right align-middle" scope="col"></th>
+                                <th class="text-center border-right align-middle" scope="col"></th>
+                                <th class="text-center border-right align-middle" scope="col">Scheduled</th>
+                                <th class="text-center border-right align-middle" scope="col">Qualifications</th>
+                                <th class="text-center border-right align-middle" scope="col">Preferences% </th>
+                                <th class="text-center border-right align-middle" scope="col">Previously<br /> Served
+                                </th>
+                                <th class="text-center border-right align-middle" scope="col">Shared<br /> DCS </th>
+                                <th class="text-center border-right align-middle" scope="col">Preferred <br /> By DCS
+                                </th>
+                                <th class="text-center border-right align-middle" scope="col">Family Serving<br />
+                                    Family</th>
+                                <th class="text-center border-right align-middle" scope="col">Assign<br /> DCS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of scheduleArray;let i=index">
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault{{i}}"
+                                            id="flexRadioDefault{{i}}">
+                                        <label class="form-check-label" for="flexRadioDefault{{i}}">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>ATKINSON, JANICE</td>
+                                <td class="margin-projection" data-toggle="modal" data-target="#marginprojection">
+                                    <span class="material-icons">
+                                        analytics
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="material-icons">
+                                        today
+                                    </span>
+                                </td>
+                                <td>No</td>
+                                <td>Yes</td>
+                                <td>0.0</td>
+                                <td>Yes</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td> No</td>
+                                <td [ngClass]="{'green-child' : item === 'Yes' , 'red-child' : item === 'No'}">{{item}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+                    </button>
+                    <button class="btn-common btn-blue f-12 w-auto" (click)="back()"><i class="fas fa-arrow-left"></i>
+                        Back</button>
+                    <button class="btn-common btn-green f-12 w-auto d-flex align-items-center justify-content-center"
+                        (click)="checkAvailability()"> Schedule<span class="material-icons ml-1">
+                            schedule_send
+                        </span></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <!-- Schedule criteria -->
-<div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-sm schedule-modal" id="scheduleCriteria" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+    <div class="modal-dialog modal-sm scheduleCriteria">
+        <div class="modal-content w-100 pr-0">
             <div class="modal-header">
                 <h4 class="modal-title">Schedule Criteria </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -3073,7 +3134,9 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input type="checkbox" class="form-control" />
+                                <div class="">
+                                    <input type="checkbox"  />
+                                </div>
                             </td>
                             <td>Qualifications </td>
                         </tr>
@@ -3118,9 +3181,10 @@
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-between">
-                    <button class="btn-common btn-green">Close</button>
-                    <button class="btn-common btn-green">Reset</button>
-                    <button class="btn-common btn-green">Save</button>
+                    <button class="btn-common btn-green w-auto px-3 bg-dark"><i
+                            class="fas fa-times mr-1 "></i>Close</button>
+                    <button class="btn-common btn-green bg-blue-light w-auto px-3"><i class="fas fa-sync-alt mr-1"></i> Reset</button>
+                    <button class="btn-common btn-green w-auto px-3"><i class="fas fa-save mr-1"></i> Save</button>
                 </div>
             </div>
         </div>

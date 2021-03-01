@@ -9,7 +9,9 @@ declare var $: any;
 })
 export class ScheduleManagementComponent implements OnInit {
   modalRef: BsModalRef;
-  public scheduleArray:Array<any>=[1,1,1,1]
+  public scheduleArray:Array<any>=['Yes','No'];
+
+  public availabilityCheck:boolean = true;
   constructor(private modalService: BsModalService) { }
   ngOnInit(): void {
   }
@@ -32,7 +34,11 @@ export class ScheduleManagementComponent implements OnInit {
   dropdown() {
     $(".dashboard-nav-dropdown").toggleClass("show");
   }
-
-
+checkAvailability(){
+this.availabilityCheck  =false;
+}
+back(){
+  this.availabilityCheck  = true;
+}
 
 }

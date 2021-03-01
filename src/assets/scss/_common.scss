@@ -1990,10 +1990,13 @@ app-maintainence {
   width: 100%;
 }
 #ps_popup,#dcspopup,#service_popup,#status_popup,#coordinator_popup{
-.modal-content{
+.modal-content,#AssignDcs{
   height: auto !important;
 }
 }
 .h-35{
   height: 35px !important;
+}
+.h-52vh{
+  height: 52vh;
 }

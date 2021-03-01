@@ -1,6 +1,6 @@
 .assign-dcs-wrapper{
-    width: 60%;
-    margin: 0 auto;
+    // width: 60%;
+    // margin: 0 auto;
     input[type=checkbox]{
         height: 16px;
     }
@@ -27,4 +27,23 @@
         }
     }
     
+}
+#scheduleCriteria{
+    .modal-content{
+        height: auto !important;
+        overflow: auto !important;
+    }
+    input[type=checkbox]{
+        height: 16px;
+    }
+}
+@media(min-width:576px){
+    .assignDcs{
+        width: 1200px;
+        max-width: 1200px;
+    }
+    .scheduleCriteria{
+        width: 420px;
+        max-width: 420px;
+    }
 }
