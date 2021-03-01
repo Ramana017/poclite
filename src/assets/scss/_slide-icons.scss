@@ -135,8 +135,59 @@
         //   box-shadow: inset 0 0 0 2px $googleplus;
       }
     }
-    
-    
+    //user-search
+    .user-search{
+      &::before{
+        font-family: 'Material Icons';
+        content: "link";
+       -webkit-font-feature-settings: 'liga';
+       font-weight: 600;
+      }
+    }
+    .user{
+      &::before{
+        font-family: "Font Awesome 5 Free";
+        content: "\f007";
+        display: inline-block;
+        // padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+        color: #fff;
+      }
+    }
+    .list{
+      &::before{
+        font-family: "Font Awesome 5 Free";
+        content: "\f022";
+        display: inline-block;
+        // padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+        color: #fff;
+      }
+    }
+    .assign{
+      &::before{
+        font-family: "Font Awesome 5 Free";
+        content: "\f14b";
+        display: inline-block;
+        // padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+        color: #fff;
+      }
+    }
+    .search{
+      &::before{
+        font-family: "Font Awesome 5 Free";
+        content: "\f002";
+        display: inline-block;
+        // padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+        color: #fff;
+      }
+    }
     
     ul {
       list-style: none;
@@ -191,7 +242,7 @@
       text-align: center;
       line-height: 50px;
       opacity: 0;
-      transition: all 0.6s ease;
+      transition: all 0.05s ease;
       margin: 0;
       border-radius: 50%;
       // background: #ffffff;
@@ -212,6 +263,6 @@
     
     ul li:hover .slider p {
       opacity: 1;
-      transition: all 1s 0.2s ease;
+      transition: all 1s 0.02s ease;
     }
     }
