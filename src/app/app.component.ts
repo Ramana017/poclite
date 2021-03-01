@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AppService } from './services/app.service';
 import { local } from 'd3';
 import { Title } from '@angular/platform-browser';
+import { UserdetailsService } from './services/userdetails.service';
 
 declare var $: any;
 
@@ -37,20 +38,20 @@ export class AppComponent implements OnInit {
   public timePopupexist: boolean = false;
 
 
-  constructor(public _http: HttpClient,
+  constructor(public _http: HttpClient,public _userDetails: UserdetailsService,
     public apiservice: ApiserviceService, private idle: Idle, private keepalive: Keepalive,
     private router: Router, private modalService: BsModalService, private appService: AppService, title: Title) {
     // sets an idle timeout of 5 seconds, for testing purposes.
     // console.log("inconstructor",(session))
     title.setTitle("POCLite")
-    console.log("app.compenent.ts", localStorage.getItem('sessionTimeOut'))
+    // console.log("app.compenent.ts", localStorage.getItem('sessionTimeOut'))
 
     // idle.setIdle(15*60);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
 
     // idle.setTimeout(10);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+  idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     idle.onIdleEnd.subscribe(() => {
       this.timePopupexist = true;
