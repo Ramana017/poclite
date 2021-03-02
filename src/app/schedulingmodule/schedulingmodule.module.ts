@@ -9,6 +9,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AssignDCSComponent } from './assign-dcs/assign-dcs.component';
 
 
 
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [SchedulingmoduleComponent,
     ScheduleManagementComponent,
-    CalenderSchedulingComponent],
+    CalenderSchedulingComponent,
+    AssignDCSComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,

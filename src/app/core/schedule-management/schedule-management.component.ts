@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AssignDCSComponent } from 'src/app/schedulingmodule/assign-dcs/assign-dcs.component';
 declare var $: any;
 @Component({
   selector: 'app-schedule-management',
@@ -39,6 +40,14 @@ this.availabilityCheck  =false;
 }
 back(){
   this.availabilityCheck  = true;
+}
+
+public AssignDcs(){
+  console.log("In assign Dcs method")
+  this.modalRef = this.modalService.show(
+    AssignDCSComponent,
+    Object.assign({}, { class: 'site-map modal-dialog-centered' })
+  );
 }
 
 }
