@@ -36,26 +36,27 @@ export class HeaderComponent implements OnInit {
       this.userName = this.useraccount.userName;
     }
 
-      $('.navbar .dropdown-item').on('click', function (e) {
-          var $el = $(this).children('.dropdown-toggle');
-          var $parent = $el.offsetParent(".dropdown-menu");
-          $(this).parent("li").toggleClass('open');
+      // $('.navbar .dropdown-item').on('click', function (e) {
+      //     var $el = $(this).children('.dropdown-toggle');
+      //     var $parent = $el.offsetParent(".dropdown-menu");
+      //     $(this).parent("li").toggleClass('open');
 
-          if (!$parent.parent().hasClass('navbar-nav')) {
-              if ($parent.hasClass('show')) {
-                  $parent.removeClass('show');
-                  $el.next().removeClass('show');
-                  $el.next().css({"top": -999, "left": -999});
-              } else {
-                  $parent.parent().find('.show').removeClass('show');
-                  $parent.addClass('show');
-                  $el.next().addClass('show');
-                  $el.next().css({"top": $el[0]?.offsetTop, "left": $parent.outerWidth() - 4});
-              }
-              e.preventDefault();
-              e.stopPropagation();
-          }
-      });
+      //     if (!$parent.parent().hasClass('navbar-nav')) {
+      //         if ($parent.hasClass('show')) {
+      //             $parent.removeClass('show');
+      //             $el.next().removeClass('show');
+      //             $el.next().css({"top": -999, "left": -999});
+      //         } else {
+      //             $parent.parent().find('.show').removeClass('show');
+      //             $parent.addClass('show');
+      //             $el.next().addClass('show');
+      //             $el.next().css({"top": $el[0]?.offsetTop, "left": $parent.outerWidth() - 4});
+      //         }
+      //         e.preventDefault();
+      //         e.stopPropagation();
+      //     }
+      // });
+    
 
     }
 
@@ -77,5 +78,26 @@ export class HeaderComponent implements OnInit {
 
   }
 
+
+  // Prevent closing from click inside dropdown
+  // item(){
+  //   $(document).on('.dropdown-menu', function (e) {
+  //     e.stopPropagation();
+  //   });
+  // }
+
+
+// make it as accordion for smaller screens
+// if ($(window).width() < 992) {
+//   $('.dropdown-menu a').click(function(e){
+//     e.preventDefault();
+//       if($(this).next('.submenu').length){
+//         $(this).next('.submenu').toggle();
+//       }
+//       $('.dropdown').on('hide.bs.dropdown', function () {
+//      $(this).find('.submenu').hide();
+//   })
+//   });
+// }
 
 }
