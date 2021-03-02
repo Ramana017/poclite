@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { OnDestroy } from '@angular/core';
+import { Input,Component, OnInit } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 declare var $: any;
 
 @Component({
@@ -6,14 +9,17 @@ declare var $: any;
   templateUrl: './assign-dcs.component.html',
   styleUrls: ['./assign-dcs.component.sass']
 })
-export class AssignDCSComponent implements OnInit {
+export class AssignDCSComponent implements OnDestroy, OnInit {
   public availabilityCheck: boolean=true;
   public scheduleArray: Array<any> = ['Yes', 'No'];
 
+@Input() dcsObject:any;
+  constructor(public modelService:BsModalService,public bsmodelRef: BsModalRef) { }
+ public modalRef: BsModalRef;
 
-  constructor() { }
 
   ngOnInit(): void {
+    console.log("assigndcs component")
   }
 
   checkAvailability() {
@@ -25,5 +31,18 @@ export class AssignDCSComponent implements OnInit {
 
   dropdown() {
     $(".dashboard-nav-dropdown").toggleClass("show");
+  }
+  public openCriteria(){
+    console.log("open criteria")
+
+  }
+
+  public modelHide(){
+    this.bsmodelRef.hide()
+  }
+
+  ngOnDestroy(){
+    console.log('++++++++++++++++')
+    console.log("NgOndestroy in assign DCS")
   }
 }

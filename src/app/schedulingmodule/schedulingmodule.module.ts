@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssignDCSComponent } from './assign-dcs/assign-dcs.component';
 
 
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { AssignDCSComponent } from './assign-dcs/assign-dcs.component';
       useFactory: adapterFactory,
     }),
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    ModalModule.forRoot()
+  ],
+  providers:[BsModalRef]
 })
 export class SchedulingmoduleModule { }

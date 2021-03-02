@@ -66,4 +66,5 @@ export class AnalyticsComponent implements OnInit {
    this.parameterScreens=[true,false,false,false,false];
 
   }
+
 }
