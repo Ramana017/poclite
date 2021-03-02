@@ -896,7 +896,7 @@
                                     <td class="border-right ">3</td>
                                     <td class="border-right ">4</td>
                                     <td class="border-right ">5</td>
-                                    <td class=" ">6</td>
+                                    <td class=" border-right">6</td>
                                     <td>
                                         29.00
                                     </td>
@@ -1324,9 +1324,9 @@
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-between">
-                        <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close </button>
+                        <button class="btn-common  bg-dark h-35 w-auto px-3"><i class="fas fa-times mr-1 "></i> Close </button>
                         <!-- <button class="btn-common btn-green">Reset</button> -->
-                        <button class="btn-common btn-green">Clear</button>
+                        <button class="btn-common btn-green h-35 w-auto px-3">Clear</button>
                     </div>
                 </div>
             </div>
@@ -1538,7 +1538,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
+                    <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
             <button type="button" class="pagination-btn btn next-btn primary-button add">Refresh</button>
 
             <button type="button " class="pagination-btn btn next-btn primary-button">Reset</button>
@@ -1563,7 +1563,7 @@
               </div>
 
             </div>
-          </div> -->
+          </div>
                 </div>
             </div>
         </div>
@@ -1872,9 +1872,9 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        <button class="btn-common bg-dark h-35 w-auto px-3"><i class="fas fa-times mr-1 "></i> Close
                         </button>
-                        <button class="btn-common btn-green h-35">Clear</button>
+                        <button class="btn-common btn-green h-35 w-auto px-3">Clear</button>
                     </div>
 
                 </div>
@@ -1967,9 +1967,9 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        <button class="btn-common bg-dark h-35 w-auto px-3"><i class="fas fa-times mr-1 "></i> Close
                         </button>
-                        <button class="btn-common btn-green h-35">Clear</button>
+                        <button class="btn-common btn-green h-35 w-auto px-3">Clear</button>
                     </div>
 
                 </div>
@@ -2063,9 +2063,9 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        <button class="btn-common bg-dark h-35 w-auto px-3"><i class="fas fa-times mr-1 "></i> Close
                         </button>
-                        <button class="btn-common btn-green h-35">Clear</button>
+                        <button class="btn-common btn-green h-35 w-auto px-3">Clear</button>
                     </div>
 
                 </div>
@@ -2135,9 +2135,9 @@
                     </table>
 
                     <div class="d-flex justify-content-between py-2">
-                        <button class="btn-common btn-green bg-dark h-35"><i class="fas fa-times mr-1 "></i> Close
+                        <button class="btn-common bg-dark h-35 w-auto px-3"><i class="fas fa-times mr-1 "></i> Close
                         </button>
-                        <button class="btn-common btn-green h-35">Clear</button>
+                        <button class="btn-common btn-green h-35 w-auto px-3">Clear</button>
                     </div>
 
                 </div>
@@ -3046,26 +3046,27 @@
                     <table class="table text-center mb-0 visit-table availabilityTable">
                         <thead class="thead-dark">
                             <tr>
-                                <th colspan="12" class="bg-secondary border-right">
+                                <th colspan="13" class="bg-secondary border-right">
                                     Schedule DCS
                                 </th>
                             </tr>
                             <tr>
+                                <th class="text-center border-right align-middle" scope="col"></th>
                                 <th class="text-center border-right align-middle" scope="col"></th>
                                 <th class="text-center border-right align-middle" scope="col">DCS Name</th>
                                 <th class="text-center border-right align-middle" scope="col"></th>
                                 <th class="text-center border-right align-middle" scope="col"></th>
                                 <th class="text-center border-right align-middle" scope="col">Scheduled</th>
                                 <th class="text-center border-right align-middle" scope="col">Qualifications</th>
-                                <th class="text-center border-right align-middle" scope="col">Preferences% </th>
+                                <th class="text-center border-right align-middle" scope="col"><div class="d-flex align-items-center">Preferences% <i class="fas fa-sort ml-1"></i></div></th>
                                 <th class="text-center border-right align-middle" scope="col">Previously<br /> Served
                                 </th>
-                                <th class="text-center border-right align-middle" scope="col">Shared<br /> DCS </th>
+                                <th class="text-center border-right align-middle" scope="col"><div class="d-flex align-items-center">Shared<br /> DCS <i class="fas fa-sort ml-1"></i></div></th>
                                 <th class="text-center border-right align-middle" scope="col">Preferred <br /> By DCS
                                 </th>
                                 <th class="text-center border-right align-middle" scope="col">Family Serving<br />
                                     Family</th>
-                                <th class="text-center border-right align-middle" scope="col">Assign<br /> DCS</th>
+                                <th class="text-center border-right align-middle" scope="col"><div class="d-flex align-items-center">Assign<br /> DCS<i class="fas fa-sort ml-1"></i></div></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -3077,6 +3078,9 @@
                                         <label class="form-check-label" for="flexRadioDefault{{i}}">
                                         </label>
                                     </div>
+                                </td>
+                                <td>
+                                    <input type="checkbox">
                                 </td>
                                 <td>ATKINSON, JANICE</td>
                                 <td class="margin-projection" data-toggle="modal" data-target="#marginprojection">

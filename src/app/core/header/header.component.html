@@ -25,7 +25,7 @@
             </div> -->
 
 
-              <ul class="navbar-nav mr-auto root-nav">
+              <ul class="navbar-nav mr-auto root-nav"   >
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown-menu">
@@ -33,21 +33,21 @@
                       </button>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                        <li class="dropdown-item"  [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']"><a>Home</a></li>
-                        <li class="dropdown-item" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']"><a>POC Call
+                        <li class="dropdown-item"  [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']" ><a>Home</a></li>
+                        <li class="dropdown-item" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']" ><a>POC Call
                           Management</a></li>
-                        <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/charts']"><a>POC
+                        <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/charts']" ><a>POC
                           DashBoard</a></li>
                         <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']"><a>Visit Review </a></li>
-                        <li class="dropdown-item dropdown" [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
-                            <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
+                        <li class="dropdown-item dropdown side-menu-analytics" [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
+                            <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
                             <!-- <i class="fas fa-caret-right  ml-3"></i> -->
-                            <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
-                                <li class="dropdown-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
-                                <li class="dropdown-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
-                                <li class="dropdown-item" [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/daily-reports']" routerLinkActive ><a>Daily Reports</a></li>
-                                <li class="dropdown-item" [ngClass]="telephony.isActive?'active':''" [routerLink]="['/telephony']" routerLinkActive ><a>Telephony Stats</a></li>
-                                <li class="dropdown-item"[ngClass]="utilization.isActive?'active':''" [routerLink]="['/utilization']" routerLinkActive><a>Utilization Stats</a></li>
+                            <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
+                                <li class="dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
+                                <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
+                                <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/daily-reports']" routerLinkActive ><a>Daily Reports</a></li>
+                                <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''" [routerLink]="['/telephony']" routerLinkActive ><a>Telephony Stats</a></li>
+                                <li class="dropdown-item side-menu-item"[ngClass]="utilization.isActive?'active':''" [routerLink]="['/utilization']" routerLinkActive><a>Utilization Stats</a></li>
                                 <!-- <li class="dropdown-item dropdown">
                                     <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maintainence</a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">

@@ -2000,3 +2000,28 @@ app-maintainence {
 .h-52vh{
   height: 52vh;
 }
+.side-menu-analytics{
+  &:hover{
+    .side-menu-link{
+
+    }
+    .side-menu{
+      display: block;
+      right: 0;
+      top: 0;
+      left: 100%;
+      .side-menu-item{
+  
+      }
+    }
+  }
+  .side-menu-link{
+
+  }
+  .side-menu{
+    display: none;
+    .side-menu-item{
+
+    }
+  }
+}
