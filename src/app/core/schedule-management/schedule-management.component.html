@@ -521,6 +521,9 @@
 
                 </tbody>
             </table>
+            <button class="btn-common btn-green my-3 ml-auto  d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#addVisit" ><span
+                class=" mr-2">
+            </span>Add Visits</button>
             <button class="btn-common btn-green my-3 ml-auto  d-flex align-items-center justify-content-center"><span
                     class=" mr-2">
                 </span>Save</button>
@@ -3195,3 +3198,103 @@
     </div>
 </div>
 
+<!-- Add Visits -->
+<div class="modal fade" id="addVisit" tabindex="-1" role="dialog" aria-labelledby="addVisit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered find-dcs" role="document">
+        <div class="modal-content dcs-content">
+            <div class="modal-header  registration-modal-header ">
+                <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Add Visits
+
+                </h4>
+                <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+
+                <table class="payor-plan">
+                    <tr>
+                        <td>Payor Plan<span class="text-danger">*</span></td>
+                        <td>  <div class="input-group form-input mb-2">
+                            <input type="text" class="form-control">
+                        </div></td>
+                    </tr>
+                    <tr>
+                        <td>Visit Date<span class="text-danger">*</span></td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service<span class="text-danger">*</span></td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Template<span class="text-danger">*</span></td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Time of Proc</td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control mr-3">Minutes
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Start Time<span class="text-danger">*</span></td>
+                        <td> 
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>End Time<span class="text-danger">*</span></td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Visit Type<span class="text-danger">*</span></td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <input type="text" class="form-control">
+                            </div>
+                        </td>
+                    </tr>
+               
+                    <tr>
+                        <td>Comments</td>
+                        <td>
+                            <div class="input-group form-input mb-2">
+                                <textarea class="text-control" rows="2"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                   
+                </table>
+
+
+
+                <div class="d-flex align-items-center justify-content-between pt-2">
+                    <button
+                        class="btn-common btn-blue  d-flex align-items-center justify-content-center">Cancel</button>
+                    <!-- <button class="btn-common btn-green  d-flex align-items-center justify-content-center">Save</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
