@@ -4,9 +4,7 @@ import { LoginComponent } from './core/login/login/login.component';
 import { SummarytableComponent } from './core/summarytable/summarytable.component';
 import { ChartsComponent } from './core/charts/charts.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
-
 import { RegistrationComponent } from './core/create_new_ps/registration/registration.component';
-import { HeaderComponentPS } from './core/create_new_ps/header/header.component';
 import { BasicInfoComponent } from './core/create_new_ps/basic-info/basic-info.component';
 import { GuarantorDetailsComponent } from './core/create_new_ps/guarantor-details/guarantor-details.component';
 import { AdmissionDetailsComponent } from './core/create_new_ps/admission-details/admission-details.component';
@@ -42,8 +40,8 @@ const routes: Routes = [
   {path:'daily-reports',component:DailyReportsComponent},
   {path:'telephony',component:TelephonyStatsComponent},
   {path:'utilization',component:UtilizationStatsComponent},
-  {path:'scheduling',component:ScheduleManagementComponent},
-  { path: 'calendar', component: CalenderSchedulingComponent },
+  // {path:'scheduling',component:ScheduleManagementComponent},
+  // { path: 'calendar', component: CalenderSchedulingComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout', component: ChartLayoutComponent },
@@ -71,6 +69,7 @@ const routes: Routes = [
   },
   { path: "page-not-found", component: PageNotFoundComponent }
   ,
+  { path: 'schedulingmodule', loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 

@@ -68,11 +68,6 @@ import { MaintainenceComponent } from './core/maintainence/maintainence.componen
 import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
-import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
-import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   declarations: [
@@ -117,8 +112,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     DailyReportsComponent,
     TelephonyStatsComponent,
     UtilizationStatsComponent,
-    ScheduleManagementComponent,
-    CalenderSchedulingComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -137,10 +132,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     AgmCoreModule.forRoot(
       {
     }),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+
     NgbModule,
     // NgxGaugeModule,
     NgIdleKeepaliveModule.forRoot(),
@@ -148,7 +140,6 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     ToastrModule.forRoot(),
     NgxChartsModule,
     TypeaheadModule.forRoot(),
-    FlatpickrModule.forRoot()
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {
