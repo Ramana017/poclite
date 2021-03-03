@@ -171,7 +171,7 @@ public openMarginProtection(schedleTemplate:TemplateRef<any>){
 }
 public openPaydetails(schedleTemplate:TemplateRef<any>){
   this.modalRef=this.modelService.show(schedleTemplate,
-    Object.assign({}, { class: ' paydetails-container modal-dialog-centered edit-modal-content  modalcontent-wrapper' })
+    Object.assign({}, { class: ' paydetails-container modal-dialog-centered   modal content-wrapper' })
     )
 }
 
