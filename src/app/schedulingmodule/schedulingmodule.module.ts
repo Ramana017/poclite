@@ -10,6 +10,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AssignDCSComponent } from './assign-dcs/assign-dcs.component';
+import { AddVisitsComponent } from './add-visits/add-visits.component';
+import { ChangeStatusComponent } from './change-status/change-status.component';
+import { CancelCodeComponent } from './cancel-code/cancel-code.component';
 
 
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
@@ -19,7 +22,10 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
   declarations: [SchedulingmoduleComponent,
     ScheduleManagementComponent,
     CalenderSchedulingComponent,
-    AssignDCSComponent],
+    AssignDCSComponent,
+    AddVisitsComponent,
+    ChangeStatusComponent,
+    CancelCodeComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,
