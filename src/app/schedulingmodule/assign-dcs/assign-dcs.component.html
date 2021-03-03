@@ -140,7 +140,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of scheduleArray;let i=index">
+
+        <!-- {
+          "dcsId": 14634,
+          "totalVisits": 1,
+          "previouslyServed": "Yes",
+          "preferences": "Yes",
+          "prefColorFlag": 0,
+          "overtimeFlag": 1,
+          "dcsName": "ADAMS, CAMILLE",
+          "preference": 0,
+          "familyServingFamily": "No",
+          "unAvailableVisitCount": 0,
+          "resourceNumber": "112233446",
+          "preferedPS": "",
+          "unAvailableDCS": 1,
+          "countOfVisits": 1,
+          "qualifications": "Yes",
+          "visitCount": "1/1",
+          "sharedDCS": "No",
+          "availableVisitCount": 0,
+          "previouslyServedCount": 32,
+          "visitIds": "4688270",
+          "conflict": "No"
+          }, -->
+        <tr *ngFor="let item of availableDCSList;let i=index">
           <td>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault{{i}}" id="flexRadioDefault{{i}}">
@@ -151,8 +175,8 @@
           <td>
             <input type="checkbox">
           </td>
-          <td>ATKINSON, JANICE</td>
-          <td class="margin-projection" data-toggle="modal" (click)="openMarginProtection(marginprojection)">
+          <td>{{item.dcsName}}</td>
+          <td class="margin-projection" data-toggle="modal" title="MarginProtection" (click)="openMarginProtection(marginprojection)">
             <span class="material-icons">
               analytics
             </span>
@@ -162,14 +186,14 @@
               today
             </span>
           </td>
-          <td>No</td>
-          <td>Yes</td>
-          <td>0.0</td>
-          <td>Yes</td>
-          <td>No</td>
-          <td>No</td>
-          <td> No</td>
-          <td [ngClass]="{'green-child' : item === 'Yes' , 'red-child' : item === 'No'}">{{item}}
+          <td>{{item.unAvailableDCS==1?'Yes':'No'}}</td>
+          <td>{{item.qualifications}}</td>
+          <td>{{item.preference}}</td>
+          <td>{{item.previouslyServed}}</td>
+          <td>{{item.sharedDCS}}</td>
+          <td>{{item.preferedPS}}</td>
+          <td> {{item.familyServingFamily}}</td>
+          <td [ngClass]="{'green-child' : item.conflict === 'Yes' , 'red-child' : item.conflict === 'No'}">{{item.conflict}}
           </td>
         </tr>
       </tbody>
@@ -196,7 +220,7 @@
 <ng-template #schedleTemplate>
     <div class="modal-header">
       <h4 class="modal-title">Schedule Criteria </h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsmodelRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -226,7 +250,7 @@
 <ng-template #marginprojection>
   <div class="modal-header  registration-modal-header ">
     <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Margin Projection</h4>
-    <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsmodelRef.hide()" data-dismiss="modal">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -372,7 +396,7 @@
 <ng-template #paydetails>
   <div class="modal-header  registration-modal-header ">
     <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Pay Details</h4>
-    <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsmodelRef.hide()" data-dismiss="modal">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>

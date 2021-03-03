@@ -69,9 +69,11 @@ export class AppComponent implements OnInit {
       sessionStorage.clear();
       setTimeout(() => {
         console.log("Hello from setTimeout");
-        this.modalService._hideModal(1);
+        // this.modalService._hideModal(1);
+        this.modalService.hide(1)
         this.router.navigateByUrl('login');
         this.appService.setUserLoggedIn(false);
+        window.location.reload();
 
       }, 100);
     });
