@@ -8,8 +8,8 @@ import { ClockinComponent } from 'src/app/corrections/clockin/clockin.component'
 import { ClockInAndOutComponent } from 'src/app/corrections/clock-in-and-out/clock-in-and-out.component';
 import { ClockoutComponent } from 'src/app/corrections/clockout/clockout.component';
 import { AngularMultiSelect } from 'angular2-multiselect-dropdown';
-import * as d3 from 'd3'
-import * as  GaugeChart from 'gauge-chart'
+import * as d3 from 'd3';
+import * as  GaugeChart from 'gauge-chart';
 import { Subscription } from 'rxjs';
 
 

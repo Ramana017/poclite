@@ -360,97 +360,92 @@
 
             <table class="table box-shadow">
                 <thead class="">
-                    <tr>
-                        <th>Widget</th>
-                        <th class="align-middle">Site Code</th>
-                        <th class="align-middle">PS</th>
-                        <th class="align-middle">Service</th>
-                        <th class="align-middle">Day</th>
-                        <th class="align-middle">Start Date</th>
-                        <th class="align-middle">End Date</th>
-                        <th class="align-middle">DCS</th>
-                        <th class="align-middle">Act/Rate</th>
-                        <th class="align-middle">Type</th>
-                        <th class="align-middle">Co-Ord</th>
-                        <th class="align-middle">Visit Type</th>
-                        <th class="align-middle">Status</th>
-                        <th class="align-middle">Comments</th>
-                    </tr>
+                  <tr>
+                    <th>Widget</th>
+                    <th class="align-middle">Site Code</th>
+                    <th class="align-middle">PS</th>
+                    <th class="align-middle">Service</th>
+                    <th class="align-middle">Day</th>
+                    <th class="align-middle">Start Date</th>
+                    <th class="align-middle">End Date</th>
+                    <th class="align-middle">DCS</th>
+                    <th class="align-middle">Act/Rate</th>
+                    <th class="align-middle">Type</th>
+                    <th class="align-middle">Co-Ord</th>
+                    <th class="align-middle">Visit Type</th>
+                    <th class="align-middle">Status</th>
+                    <th class="align-middle">Comments</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    <tr class="no-wrap" *ngFor="let item of scheduleArray">
-                        <td class="position-relative edit-option">
-                            <ul class="m-0 p-0">
-                                <li class="">
-                                    <div class="share-button">
-                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                        <label for="toggle-input" class="toggle"></label>
-                                    </div>
-                                    <div class="slider d-flex ">
-                                        <!-- calender -->
-                                        <p class="blue-bg twitter">
-                                            <span>
-                                                <a href="javascript:void(0)" routerLink="/schedulingmodule/calendar"
-                                                    class="text-white" title="Calendar">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <!-- assigndcs -->
-                                        <p class="blue-bg assign" data-toggle="modal" data-target="#AssignDCS"
-                                            title="Assign Dcs">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <!-- find dcs -->
-                                        <p class="blue-bg search" data-toggle="modal" data-target="#exampleModalCenter"
-                                            title="Find DCS">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <!-- Assign Dcs-->
-                                        <p class="blue-bg flyout-2" data-toggle="modal" data-target="#editvisits"
-                                            title="Edit Visits">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <!-- payorplan -->
-                                        <p class="blue-bg user" data-toggle="modal" data-target="#payorPlan"
-                                            title="Payor Plan">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <!-- visit details -->
-                                        <p class="blue-bg list" data-toggle="modal" data-target="#visitDetails"
-                                            title="Visit Details">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white">
-                                                </a>
-                                            </span>
-
-                                        </p>
-                                        <!-- visitcomments -->
-                                        <p class="blue-bg flyout-1">
-                                            <span>
-                                                <a href="javascript:void(0)" class="text-white" data-toggle="modal"
-                                                    data-target="#visitComments" title="Visit Comments">
-                                                </a>
-                                            </span>
-
-                                        </p>
-
-
-                                        <!-- <p class="blue-bg user" >
+                  <tr class="no-wrap" *ngFor="let item of scheduleArray">
+                    <td class="position-relative edit-option">
+                      <ul class="m-0 p-0">
+                        <li class="">
+                          <div class="share-button">
+                            <input class="toggle-input" id="toggle-input" type="checkbox" />
+                            <label for="toggle-input" class="toggle"></label>
+                          </div>
+                          <div class="slider d-flex ">
+                            <!-- calender -->
+                            <p class="blue-bg twitter">
+                              <span>
+                                <a href="javascript:void(0)" routerLink="/schedulingmodule/calendar" class="text-white"
+                                  title="Calendar">
+                                </a>
+                              </span>
+        
+                            </p>
+                            <!-- assigndcs -->
+                            <p class="blue-bg assign" (click)="AssignDcs()" title="Assign Dcs">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white">
+                                </a>
+                              </span>
+                            </p>
+                            <!-- find dcs -->
+                            <p class="blue-bg search" data-toggle="modal" data-target="#exampleModalCenter" title="Find DCS">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white">
+                                </a>
+                              </span>
+                            </p>
+                            <!-- Assign Dcs-->
+                            <p class="blue-bg flyout-2" data-toggle="modal" data-target="#editvisits" title="Edit Visits">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white">
+        
+                                </a>
+                              </span>
+                            </p>
+                            <!-- payorplan -->
+                            <p class="blue-bg user" data-toggle="modal" data-target="#payorPlan" title="Payor Plan">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white">
+                                </a>
+                              </span>
+        
+                            </p>
+                            <!-- visit details -->
+                            <p class="blue-bg list" data-toggle="modal" data-target="#visitDetails" title="Visit Details">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white">
+                                </a>
+                              </span>
+        
+                            </p>
+                            <!-- visitcomments -->
+                            <p class="blue-bg flyout-1">
+                              <span>
+                                <a href="javascript:void(0)" class="text-white" data-toggle="modal" data-target="#visitComments"
+                                  title="Visit Comments">
+                                </a>
+                              </span>
+        
+                            </p>
+        
+        
+                            <!-- <p class="blue-bg user" >
                                             <span>
                                                 <a href="javascript:void(0)" data-toggle="modal"
                                                     data-target="#payorPlan" class="text-white" title="Payor Plan" >
@@ -794,157 +789,6 @@
     </div>
 </div>
 
-<!-- Margin Projection -->
-<div class="modal fade" id="marginprojection" tabindex="-1" role="dialog" aria-labelledby="marginprojection"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered edit-modal-content" role="document">
-        <div class="modal-content w-95">
-            <div class="modal-header  registration-modal-header ">
-                <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Margin Projection</h4>
-                <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body schedule-management-wrapper p-0">
-                <div class="container-fluid m-0 px-4 py-2">
-
-                    <!-- <div class="d-flex justify-content-center align-items-center">
-            <table class="table box-shadow bg-white" style="width: 50%;">
-              <tbody>
-                <tr>
-                  <td>PS</td>
-                  <td>BANKS, LOUISE </td>
-                </tr>
-                <tr>
-                  <td>Payor Plan</td>
-                  <td>PCARE-CSRA(1190/801)</td>
-                </tr>
-                <tr>
-                  <td>Service[Procedure Code]</td>
-                  <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
-                </tr>
-                <tr>
-                  <td>Visit Start Date</td>
-                  <td>04/20/2020 02:00 AM </td>
-                </tr>
-                <tr>
-                  <td>Visit End Date</td>
-                  <td>04/20/2020 02:30 AM </td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
-                    <div class="table-name d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <h4 class="AvenirLTStd-Heavy mr-2 mb-0">PS Name:</h4>
-                            <h4 class="AvenirLTStd-Heavy mb-0"> BANKS, MARGARET</h4>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <h4 class="AvenirLTStd-Heavy mr-2 mb-0">DCS Name:</h4>
-                            <h4 class="AvenirLTStd-Heavy mb-0">Test, DCS 1</h4>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive visits-casemanager margin-table height-67">
-                        <table class="table">
-                            <thead class="">
-                                <tr>
-                                    <th class="align-middle border-right" rowspan="2"></th>
-                                    <th class="align-middle border-right" rowspan="2">Start Date Time</th>
-                                    <th class="align-middle border-right" rowspan="2">End Date Time</th>
-                                    <th class="align-middle border-right" rowspan="2">Hours</th>
-                                    <th class="align-middle border-right" rowspan="2">Pay Rate Type </th>
-                                    <th class="align-middle border-right border-bottom" rowspan="1" colspan="2">
-                                        Billing
-                                    </th>
-                                    <th class="align-middle border-right border-bottom" rowspan="1" colspan="6">
-                                        Pay
-                                    </th>
-                                    <th class="align-middle" rowspan="2">Revenue</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="1" class="border-right">
-                                        Rate
-                                    </th>
-                                    <th colspan="1" class="border-right">
-                                        Amount
-                                    </th>
-                                    <th colspan="1" class="border-right">
-                                        Pay
-                                    </th>
-                                    <th colspan="1" class="border-right">Week End</th>
-                                    <th colspan="1" class="border-right">Holiday</th>
-                                    <th colspan="1" class="border-right">Extra</th>
-                                    <th colspan="1" class="border-right">OT</th>
-                                    <th colspan="1">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="no-wrap">
-                                    <td class="position-relative border-right">
-                                        <span data-toggle="modal" data-target="#paydetails"><i
-                                                class="fas fa-calendar-week"></i></span>
-                                    </td>
-                                    <td class="position-relative border-right">
-                                        10/06/2020 12:30 AM
-                                    </td>
-                                    <td class="position-relative border-right">
-                                        10/06/2020 12:30 AM
-                                    </td>
-                                    <td class="border-right">No</td>
-                                    <td class="border-right">Yes</td>
-                                    <td class="border-right ">
-                                        Rate
-                                    </td>
-                                    <td class="border-right">Amount</td>
-                                    <td class="border-right ">1</td>
-                                    <td class="border-right">2</td>
-                                    <td class="border-right ">3</td>
-                                    <td class="border-right ">4</td>
-                                    <td class="border-right ">5</td>
-                                    <td class=" border-right">6</td>
-                                    <td>
-                                        29.00
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div class="margin-projection">
-                        <div class="float-right color-green mr-2"> Margin:<span class="color-red">29.00</span></div>
-                        <div>
-                            <div class="float-right color-green mr-3"> Margin Percentage:<span
-                                    class="color-red">89.23%</span></div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-end pagination nav  mt-2">
-                        <button type="button" class="pagination-btn btn next-btn primary-button add">Refresh</button>
-                        <button type="button " class="pagination-btn btn next-btn primary-button">Reset</button>
-                        <div class="pr-2 pagination-add-close  justify-content-end">
-                            <div>
-                                <span class="footer-text">Per Page</span>
-                                <select class="pagination-select border-0">
-                                    <option>
-                                        10
-                                    </option>`
-                                </select>
-                                <span class="footer-text">Showing <span>10</span> to
-                                    <span>
-                                        20 </span> of
-                                    <span>30</span></span>
-                                <!-- <button type="button " class="pagination-btn ml-0" class="pagination-btn">Prev</button>
-                <button type="button " class="pagination-btn ml-0" id="next-btn" class="pagination-btn">Next</button> -->
-                                <button type="button" class="pagination-btn">Prev</button>
-                                <button type="button " class="pagination-btn btn next-btn primary-button">Next</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Pay Details -->
 <div class="modal fade" id="paydetails" tabindex="-1" role="dialog" aria-labelledby="paydetails" aria-hidden="true">
@@ -2999,5 +2843,8 @@
     <app-change-status></app-change-status>
 </div>
 <div class="modal fade" id="cancelCode" tabindex="-1" role="dialog" aria-labelledby="addVisit" aria-hidden="true">
+    <app-cancel-code></app-cancel-code>
+</div>
+<div class="modal fade" id="moveVisits" tabindex="-1" role="dialog" aria-labelledby="addVisit" aria-hidden="true">
     <app-cancel-code></app-cancel-code>
 </div>

@@ -15,6 +15,7 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
 import { CancelCodeComponent } from './cancel-code/cancel-code.component';
 
 
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import { CancelCodeComponent } from './cancel-code/cancel-code.component';
       useFactory: adapterFactory,
     }),
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    ModalModule.forRoot()
+  ],
+  providers:[BsModalRef]
 })
 export class SchedulingmoduleModule { }
