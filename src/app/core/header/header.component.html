@@ -56,7 +56,7 @@
                                 </li> -->
                             </ul>
                         </li>
-                        <li class="dropdown-item" [ngClass]="scheduling.isActive?'active':''" [routerLink]="['/scheduling']"><a>POC
+                        <li class="dropdown-item" [ngClass]="scheduling.isActive?'active':''" [routerLink]="['/schedulingmodule/scheduling']"><a>POC
                           Scheduling</a></li>
                     </ul>
                 </li>
@@ -103,7 +103,7 @@
             <span class="ml" routerLink="/utilization" routerLinkActive #utilization="routerLinkActive">
               {{utilization.isActive ? 'Utilization Stats' : ''}}
             </span>
-            <span class="ml" routerLink="/scheduling" routerLinkActive #scheduling="routerLinkActive">
+            <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
               {{scheduling.isActive ? 'Scheduling' : ''}}
             </span>
           </h3>
