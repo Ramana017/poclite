@@ -16,6 +16,7 @@ import { CancelCodeComponent } from './cancel-code/cancel-code.component';
 
 
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+import { MoveVisitsComponent } from './move-visits/move-visits.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
     AssignDCSComponent,
     AddVisitsComponent,
     ChangeStatusComponent,
-    CancelCodeComponent],
+    CancelCodeComponent,
+    MoveVisitsComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,
