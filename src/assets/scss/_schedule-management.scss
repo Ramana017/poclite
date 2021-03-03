@@ -773,3 +773,9 @@ https://fortawesome.github.io/Font-Awesome/
 .color-red{
     color:$red;
 }
+.footer-container-wrapper{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: 0 !important;
+}

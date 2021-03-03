@@ -17,6 +17,7 @@ import { CancelCodeComponent } from './cancel-code/cancel-code.component';
 
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { MoveVisitsComponent } from './move-visits/move-visits.component';
+import { DcsResExpComponent } from './dcs-res-exp/dcs-res-exp.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MoveVisitsComponent } from './move-visits/move-visits.component';
     AddVisitsComponent,
     ChangeStatusComponent,
     CancelCodeComponent,
-    MoveVisitsComponent],
+    MoveVisitsComponent,
+    DcsResExpComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,
