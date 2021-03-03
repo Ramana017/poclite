@@ -2011,7 +2011,7 @@ app-maintainence {
       top: 0;
       left: 100%;
       .side-menu-item{
-  
+
       }
     }
   }
@@ -2031,4 +2031,9 @@ app-maintainence {
   background: #f7fafc;
   z-index: 9999;
   padding: 0 8px;
+}
+.edit-modal-content{
+  width: 95%!important;
+  max-width: 95% !important;
+
 }

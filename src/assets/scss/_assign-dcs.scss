@@ -1,86 +1,115 @@
-.assign-dcs-wrapper{
-    // width: 60%;
-    // margin: 0 auto;
-    input[type=checkbox]{
-        height: 16px;
+.assign-dcs-wrapper {
+
+  // width: 60%;
+  // margin: 0 auto;
+  input[type=checkbox] {
+    height: 16px;
+  }
+
+  .table-container {
+    border: 2px solid $blue;
+
+    .table-container-header {
+      background-color: $blue;
+    }
+  }
+
+  .schedule-modal {
+    background-color: rgb(0 0 0 / 77%);
+    overflow-y: hidden;
+
+    .modal-content {
+      width: 30%;
+      margin: 0 auto;
+      height: 80vh !important;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      background-color: #f7fafc;
     }
 
-    .table-container{
-        border: 2px solid $blue;
-        .table-container-header{
-            background-color: $blue;
-        }
+    .btn-common {
+      width: 80px;
     }
-    .schedule-modal{
-        background-color:rgb(0 0 0 / 77%);
-        overflow-y: hidden;
-        .modal-content {
-            width: 30%;
-            margin: 0 auto;
-            height: 80vh !important;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            background-color: #f7fafc;
-        }
-        .btn-common{
-            width: 80px;
-        }
-    }
+  }
 
 }
-#scheduleCriteria{
-    .modal-content{
-        height: auto !important;
-        overflow: auto !important;
-    }
-    input[type=checkbox]{
-        height: 16px;
-    }
-}
-@media(min-width:576px){
-    .assignDcs{
 
-        width: 1200px;
-        max-width: 1200px;
+#scheduleCriteria {
+  .modal-content {
+    height: auto !important;
+    overflow: auto !important;
+  }
 
-    }
-    .scheduleCriteria{
-        width: 420px;
-        max-width: 420px;
-
-    }
+  input[type=checkbox] {
+    height: 16px;
+  }
 }
 
+@media(min-width:576px) {
+  .assignDcs {
 
+    width: 1200px;
+    max-width: 1200px;
 
-@media (min-width: 992px){
-	.dropdown-menu .dropdown-toggle:after{
-		border-top: .3em solid transparent;
-	    border-right: 0;
-	    border-bottom: .3em solid transparent;
-	    border-left: .3em solid;
-	}
-	.dropdown-menu .dropdown-menu{
-		margin-left:0; margin-right: 0;
-	}
-	.dropdown-menu li{
-		position: relative;
-	}
-	.nav-item .submenu{
-		display: none;
-		position: absolute;
-		left:100%; top:-7px;
-	}
-	.nav-item .submenu-left{
-		right:100%; left:auto;
-	}
-	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
-	.dropdown-menu > li:hover > .submenu{
-		display: block;
-	}
+  }
+
+  .scheduleCriteria {
+    width: 420px;
+    max-width: 420px;
+
+  }
 }
-.modalcontent-wrapper{
-  .modal-content{
+
+
+
+@media (min-width: 992px) {
+  .dropdown-menu .dropdown-toggle:after {
+    border-top: .3em solid transparent;
+    border-right: 0;
+    border-bottom: .3em solid transparent;
+    border-left: .3em solid;
+  }
+
+  .dropdown-menu .dropdown-menu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .dropdown-menu li {
+    position: relative;
+  }
+
+  .nav-item .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+  }
+
+  .nav-item .submenu-left {
+    right: 100%;
+    left: auto;
+  }
+
+  .dropdown-menu>li:hover {
+    background-color: #f1f1f1
+  }
+
+  .dropdown-menu>li:hover>.submenu {
+    display: block;
+  }
+}
+
+.modalcontent-wrapper {
+  .modal-content {
     width: 100% !important;
+  }
+
+  .modal-header {
+    background: #343a40;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1025;
   }
 }
