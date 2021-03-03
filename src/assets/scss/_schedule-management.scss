@@ -726,11 +726,12 @@ https://fortawesome.github.io/Font-Awesome/
     .visitdetails{
         height: 72vh !important;
     }
-    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails,#AssignDCS{
+    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails,#AssignDCS,.scheduleCriteria{
         
         background: #080808bd;
         .modal-content{
             overflow: auto;
+            height: auto !important;
         }
     }
 

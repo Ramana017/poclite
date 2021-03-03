@@ -160,7 +160,7 @@ export class AssignDCSComponent implements OnDestroy, OnInit {
   }
 public openschedleTemplate(schedleTemplate:TemplateRef<any>){
   this.modalRef=this.modelService.show(schedleTemplate,
-    Object.assign({}, { class: 'modal-sm scheduleCriteria modalcontent-wrapper' })
+    Object.assign({}, { class: 'modal-sm scheduleCriteria modalcontent-wrapper assign-dcs-wrapper' })
     )
 }
 public openMarginProtection(schedleTemplate:TemplateRef<any>){

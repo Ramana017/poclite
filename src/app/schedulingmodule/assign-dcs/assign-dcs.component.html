@@ -75,15 +75,15 @@
           <button class="btn-common btn-green"> Go </button>
         </div>
       </div>
-      <div class="p-2 h-52vh">
+      <div class=" h-60vh table-responsive">
         <table class="table box-shadow mb-0">
           <thead class="thead-dark">
             <tr>
-              <th colspan="2"></th>
-              <th>
+              <th colspan="2" class="sticky-top"></th>
+              <th class="sticky-top">
                 <input type="checkbox" class="form-control">
               </th>
-              <th>DCS</th>
+              <th class="sticky-top">DCS</th>
             </tr>
           </thead>
           <tbody>
@@ -96,12 +96,13 @@
           </tbody>
         </table>
       </div>
-      <div class="d-flex justify-content-between m-2">
-        <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
-        </button>
-        <button class="btn-common btn-green f-12 w-auto" (click)="checkAvailability()"><i
-            class="fas fa-user-tag mr-1"></i> Check Availability</button>
-      </div>
+    
+    </div>
+    <div class="d-flex justify-content-between m-2">
+      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      </button>
+      <button class="btn-common btn-green f-12 w-auto" (click)="checkAvailability()"><i
+          class="fas fa-user-tag mr-1"></i> Check Availability</button>
     </div>
   </div>
 </div>
@@ -110,31 +111,31 @@
     <table class="table text-center mb-0 visit-table availabilityTable">
       <thead class="thead-dark">
         <tr>
-          <th colspan="13" class="bg-secondary border-right">
+          <th colspan="13" class="bg-secondary border-right sticky-top">
             Schedule DCS
           </th>
         </tr>
         <tr>
-          <th class="text-center border-right align-middle" scope="col"></th>
-          <th class="text-center border-right align-middle" scope="col"></th>
-          <th class="text-center border-right align-middle" scope="col">DCS Name</th>
-          <th class="text-center border-right align-middle" scope="col"></th>
-          <th class="text-center border-right align-middle" scope="col"></th>
-          <th class="text-center border-right align-middle" scope="col">Scheduled</th>
-          <th class="text-center border-right align-middle" scope="col">Qualifications</th>
-          <th class="text-center border-right align-middle" scope="col">
+          <th class="text-center border-right align-middle sticky-top" scope="col"></th>
+          <th class="text-center border-right align-middle sticky-top" scope="col"></th>
+          <th class="text-center border-right align-middle sticky-top" scope="col">DCS Name</th>
+          <th class="text-center border-right align-middle sticky-top" scope="col"></th>
+          <th class="text-center border-right align-middle sticky-top" scope="col"></th>
+          <th class="text-center border-right align-middle sticky-top" scope="col">Scheduled</th>
+          <th class="text-center border-right align-middle sticky-top" scope="col">Qualifications</th>
+          <th class="text-center border-right align-middle sticky-top" scope="col">
             <div class="d-flex align-items-center">Preferences% <i class="fas fa-sort ml-1"></i></div>
           </th>
-          <th class="text-center border-right align-middle" scope="col">Previously<br /> Served
+          <th class="text-center border-right align-middle sticky-top" scope="col">Previously<br /> Served
           </th>
-          <th class="text-center border-right align-middle" scope="col">
+          <th class="text-center border-right align-middle sticky-top" scope="col">
             <div class="d-flex align-items-center">Shared<br /> DCS <i class="fas fa-sort ml-1"></i></div>
           </th>
-          <th class="text-center border-right align-middle" scope="col">Preferred <br /> By DCS
+          <th class="text-center border-right align-middle sticky-top" scope="col">Preferred <br /> By DCS
           </th>
-          <th class="text-center border-right align-middle" scope="col">Family Serving<br />
+          <th class="text-center border-right align-middle sticky-top" scope="col">Family Serving<br />
             Family</th>
-          <th class="text-center border-right align-middle" scope="col">
+          <th class="text-center border-right align-middle sticky-top" scope="col">
             <div class="d-flex align-items-center">Assign<br /> DCS<i class="fas fa-sort ml-1"></i></div>
           </th>
         </tr>
@@ -270,41 +271,41 @@
         </div>
       </div>
 
-      <div class="table-responsive visits-casemanager margin-table height-67">
+      <div class="table-responsive visits-casemanager margin-table height-67 box-shadow bg-white">
         <table class="table">
           <thead class="">
             <tr>
-              <th class="align-middle border-right" rowspan="2"></th>
-              <th class="align-middle border-right" rowspan="2">Start Date Time</th>
-              <th class="align-middle border-right" rowspan="2">End Date Time</th>
-              <th class="align-middle border-right" rowspan="2">Hours</th>
-              <th class="align-middle border-right" rowspan="2">Pay Rate Type </th>
-              <th class="align-middle border-right border-bottom" rowspan="1" colspan="2">
+              <th class="align-middle border-right sticky-top" rowspan="2"></th>
+              <th class="align-middle border-right sticky-top" rowspan="2">Start Date Time</th>
+              <th class="align-middle border-right sticky-top" rowspan="2">End Date Time</th>
+              <th class="align-middle border-right sticky-top" rowspan="2">Hours</th>
+              <th class="align-middle border-right sticky-top" rowspan="2">Pay Rate Type </th>
+              <th class="align-middle border-right border-bottom sticky-top" rowspan="1" colspan="2">
                 Billing
               </th>
-              <th class="align-middle border-right border-bottom" rowspan="1" colspan="6">
+              <th class="align-middle border-right border-bottom sticky-top" rowspan="1" colspan="6">
                 Pay
               </th>
-              <th class="align-middle" rowspan="2">Revenue</th>
+              <th class="align-middle sticky-top" rowspan="2">Revenue</th>
             </tr>
             <tr>
-              <th colspan="1" class="border-right">
+              <th colspan="1" class="border-right sticky-top t-33">
                 Rate
               </th>
-              <th colspan="1" class="border-right">
+              <th colspan="1" class="border-right sticky-top t-33">
                 Amount
               </th>
-              <th colspan="1" class="border-right">
+              <th colspan="1" class="border-right sticky-top t-33">
                 Pay
               </th>
-              <th colspan="1" class="border-right">Week End</th>
-              <th colspan="1" class="border-right">Holiday</th>
-              <th colspan="1" class="border-right">Extra</th>
-              <th colspan="1" class="border-right">OT</th>
-              <th colspan="1">Amount</th>
+              <th colspan="1" class="border-right  sticky-top t-33">Week End</th>
+              <th colspan="1" class="border-right sticky-top t-33">Holiday</th>
+              <th colspan="1" class="border-right sticky-top t-33">Extra</th>
+              <th colspan="1" class="border-right sticky-top t-33 ">OT</th>
+              <th colspan="1" class="sticky-top t-33">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="bg-white">
             <tr class="no-wrap">
               <td class="position-relative border-right">
                 <span (click)="openPaydetails(paydetails)" ><i class="fas fa-calendar-week"></i></span>
@@ -389,7 +390,7 @@
             </div>
         </div>
 
-        <div class="table-responsive visits-casemanager margin-table">
+        <div class="table-responsive visits-casemanager margin-table height-67">
             <table class="table mb-0">
 
                 <tbody>
