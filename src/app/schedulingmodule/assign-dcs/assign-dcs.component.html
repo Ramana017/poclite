@@ -87,29 +87,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let item of assignDCSList" >
               <td><i class="far fa-calendar-alt f-18"></i></td>
               <td><i class="far fa-calendar-alt f-18"></i></td>
               <td><input type="checkbox"></td>
-              <td>BANKS, LOUISE </td>
-            </tr>
-            <tr>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><input type="checkbox"></td>
-              <td>PCARE-CSRA(1190/801)</td>
-            </tr>
-            <tr>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><input type="checkbox"></td>
-              <td>[AGEPS] AGEPS - PERSONAL SUPPORT GRANT </td>
-            </tr>
-            <tr>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><input type="checkbox"></td>
-              <td>04/20/2020 02:30 AM </td>
+              <td>{{item.dcsName}} </td>
             </tr>
           </tbody>
         </table>
@@ -221,51 +203,13 @@
     <div class="modal-body">
       <table class="table box-shadow">
         <tbody>
-          <tr>
+          <tr *ngFor="let item of criteriaList">
             <td>
               <div class="">
-                <input type="checkbox" />
+                <input type="checkbox" [checked]="item.enabled==1" />
               </div>
             </td>
-            <td>Qualifications </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Preferences</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Scheduled DCS
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Previously Served PS</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Shared DCS
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Get Preferred DCS
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Get UnAvailable DCS
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Do-not Use "Un Preferred DCS"
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" class="form-control" /></td>
-            <td>Get Family Serving Family DCS
-            </td>
+            <td>{{item.criteriaName}} </td>
           </tr>
         </tbody>
       </table>
