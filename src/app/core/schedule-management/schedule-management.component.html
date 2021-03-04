@@ -144,14 +144,18 @@
                     <table class="table box-shadow">
                         <thead class="">
                             <tr>
-                                <th>Widget</th>
-                                <th class="align-middle">Site Code</th>
-                                <th class="align-middle">PS</th>
-                                <th class="align-middle">Service</th>
-                                <th class="align-middle">Day</th>
+                                <th>
+                                    <div class="assign-dcs-wrapper">
+                                        <input class="position-relative form-control" type="checkbox" >
+                                    </div>
+                                   </th>
+                                <th class="align-middle">Site Code<i class="fas fa-sort ml-1"></i></th>
+                                <th class="align-middle">PS<i class="fas fa-sort ml-1"></i></th>
+                                <th class="align-middle">Service<i class="fas fa-sort ml-1"></i></th>
+                                <th class="align-middle">Day<i class="fas fa-sort ml-1"></i></th>
                                 <th class="align-middle">Start Date</th>
                                 <th class="align-middle">End Date</th>
-                                <th class="align-middle">DCS</th>
+                                <th class="align-middle">DCS<i class="fas fa-sort ml-1"></i></th>
                                 <th class="align-middle">Act/Rate</th>
                                 <th class="align-middle">Type</th>
                                 <th class="align-middle">Co-Ord</th>
@@ -162,7 +166,10 @@
                         </thead>
                         <tbody>
                             <tr class="no-wrap" *ngFor="let item of scheduleArray">
-                                <td class="position-relative edit-option">
+                                <td class="position-relative edit-option" >
+                                    <div class="assign-dcs-wrapper ">
+                                        <input class=" position-relative" type="checkbox" >
+                                    </div>
                                     <ul class="m-0 p-0">
                                         <li class="">
                                             <div class="share-button">
@@ -227,6 +234,33 @@
                                                         </a>
                                                     </span>
                                                 </p>
+                                                <!-- service On Hold  -->
+                                                <p class="blue-bg flyout-1">
+                                                    <span>
+                                                        <a href="javascript:void(0)" class="text-white"
+                                                            data-toggle="modal" data-target="#serviceOnHold"
+                                                            title="Service on Hold">
+                                                        </a>
+                                                    </span>
+                                                </p>
+                                                <!-- visit attributes  -->
+                                                <p class="blue-bg flyout-1">
+                                                    <span>
+                                                        <a href="javascript:void(0)" class="text-white"
+                                                            data-toggle="modal" data-target="#visitAttributes"
+                                                            title="Visit Attributes">
+                                                        </a>
+                                                    </span>
+                                                </p>
+                                                <!-- case manager  -->
+                                                <p class="blue-bg flyout-1">
+                                                    <span>
+                                                        <a href="javascript:void(0)" class="text-white"
+                                                            data-toggle="modal" data-target="#caseManager"
+                                                            title="Case Manager">
+                                                        </a>
+                                                    </span>
+                                                </p>
                                             </div>
                                         </li>
                                     </ul>
@@ -244,8 +278,9 @@
                                     02:00 AM
                                 </td>
                                 <td>ALLEN,JOHN</td>
-                                <td>
-                                    <input type="text" class="form-control modal-box-input" placeholder="0.00"
+                                <td> 
+                                    <label class="mb-0 text-center">0.00</label>
+                                    <input type="text" class="form-control modal-box-input text-right" placeholder="0.00"
                                         aria-label="PS" aria-describedby="basic-addon1" name="phone" pattern=""
                                         tabindex="1">
                                 </td>
@@ -2529,10 +2564,6 @@
     </div>
 </div>
 
-
-
-
-
 <!-- Add Visits -->
 <div class="modal fade" id="addVisit" tabindex="-1" role="dialog" aria-labelledby="addVisit" aria-hidden="true">
     <app-add-visits></app-add-visits>
@@ -2545,4 +2576,16 @@
 </div>
 <div class="modal fade" id="moveVisits" tabindex="-1" role="dialog" aria-labelledby="addVisit" aria-hidden="true">
     <app-move-visits></app-move-visits>
+</div>
+<div class="modal fade" id="serviceOnHold" tabindex="-1" role="dialog" aria-labelledby="serviceOnHold" aria-hidden="true">
+<app-service-on-hold></app-service-on-hold>
+</div>
+<div class="modal fade" id="visitAttributes" tabindex="-1" role="dialog" aria-labelledby="serviceOnHold" aria-hidden="true">
+    <app-visit-attributes></app-visit-attributes>
+</div>
+<div class="ps-popup">
+    <div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="caseManager">
+       <app-case-manager></app-case-manager>
+    </div>
 </div>

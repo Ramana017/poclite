@@ -18,6 +18,9 @@ import { CancelCodeComponent } from './cancel-code/cancel-code.component';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { MoveVisitsComponent } from './move-visits/move-visits.component';
 import { DcsResExpComponent } from './dcs-res-exp/dcs-res-exp.component';
+import { ServiceOnHoldComponent } from './service-on-hold/service-on-hold.component';
+import { VisitAttributesComponent } from './visit-attributes/visit-attributes.component';
+import { CaseManagerComponent } from './case-manager/case-manager.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { DcsResExpComponent } from './dcs-res-exp/dcs-res-exp.component';
     ChangeStatusComponent,
     CancelCodeComponent,
     MoveVisitsComponent,
-    DcsResExpComponent],
+    DcsResExpComponent,
+    ServiceOnHoldComponent,
+    VisitAttributesComponent,
+    CaseManagerComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,
