@@ -10,13 +10,13 @@ declare var $: any;
   styleUrls: ['./schedule-management.component.sass']
 })
 export class ScheduleManagementComponent implements OnInit {
-  modalRef: BsModalRef;
+
   public scheduleArray:Array<any>=['Yes','No'];
 
   public assignDcs:any;
 
   public availabilityCheck:boolean = true;
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService,public modalRef: BsModalRef) { }
   ngOnInit(): void {
   }
 
@@ -52,5 +52,9 @@ public AssignDcs(){
     Object.assign({}, { class: "assignDcs modalcontent-wrapper" })
   );
 }
-
+ngOnDestroy() {
+  console.log('++++++++++++++++')
+  console.log("NgOndestroy in schhedule managment");
+  this.modalRef.hide()
+}
 }

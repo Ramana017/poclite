@@ -10,6 +10,10 @@ declare var $: any;
   styleUrls: ['./assign-dcs.component.sass']
 })
 export class AssignDCSComponent implements OnDestroy, OnInit {
+
+  public scheduleModel:BsModalRef;
+  public marginProtectionModel:BsModalRef;
+  public payDetaillsModel:BsModalRef;
   public availabilityCheck: boolean = true;
   public scheduleArray: Array<any> = ['Yes', 'No'];
    public criteriaList:Array<any>=[
@@ -356,8 +360,7 @@ export class AssignDCSComponent implements OnDestroy, OnInit {
       ]
 
   @Input() dcsObject: any;
-  constructor(public modelService: BsModalService, public bsmodelRef: BsModalRef) { }
-  public modalRef: BsModalRef;
+  constructor(public modelService: BsModalService,public modalRef:BsModalRef) { }
 
 
   ngOnInit(): void {
@@ -378,29 +381,31 @@ export class AssignDCSComponent implements OnDestroy, OnInit {
     console.log("open criteria")
 
   }
-
-  public modelHide() {
-    this.bsmodelRef.hide()
-  }
 public openschedleTemplate(schedleTemplate:TemplateRef<any>){
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.scheduleModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: 'modal-sm scheduleCriteria modalcontent-wrapper assign-dcs-wrapper' })
     )
 }
 public openMarginProtection(schedleTemplate:TemplateRef<any>){
   console.log("hiii")
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.marginProtectionModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: ' modalcontent-wrapper modal-dialog-centered edit-modal-content' })
     )
 }
 public openPaydetails(schedleTemplate:TemplateRef<any>){
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.payDetaillsModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: ' paydetails-container modal-dialog-centered   modal content-wrapper' })
     )
 }
 
   ngOnDestroy() {
-    console.log('++++++++++++++++')
     console.log("NgOndestroy in assign DCS")
+    this.closeAllModals();
+  }
+  closeAllModals(){
+    this.scheduleModel?.hide();
+    this.payDetaillsModel?.hide();
+    this.marginProtectionModel?.hide();
+    this.modalRef?.hide();
   }
 }

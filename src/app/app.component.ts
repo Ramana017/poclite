@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
         this.modalService.hide(1)
         this.router.navigateByUrl('login');
         this.appService.setUserLoggedIn(false);
-        window.location.reload();
+        // window.location.reload();
 
       }, 100);
     });
