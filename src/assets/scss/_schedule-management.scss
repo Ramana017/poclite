@@ -726,7 +726,7 @@ https://fortawesome.github.io/Font-Awesome/
     .visitdetails{
         height: 72vh !important;
     }
-    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails,#AssignDCS,.scheduleCriteria{
+    #editvisits,#exampleModalCenter,#visitComments,#payorPlan,#visitDetails,#AssignDCS,.scheduleCriteria,.schedule-modal{
         
         background: #080808bd;
         .modal-content{
@@ -772,4 +772,10 @@ https://fortawesome.github.io/Font-Awesome/
 }
 .color-red{
     color:$red;
+}
+.footer-container-wrapper{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border: 0 !important;
 }

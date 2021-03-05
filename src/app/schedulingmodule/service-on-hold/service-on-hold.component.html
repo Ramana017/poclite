@@ -1,0 +1,204 @@
+<p>service-on-hold works!</p>
+<div class="modal-dialog ">
+    <div class="modal-content">
+        <div class="modal-header registration-modal-header d-flex justify-content-between align-items-center">
+            <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Service on Hold </h4>
+            <button type="button" class="pull-right close-x" aria-label="Close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="mt-3 position-relative border-2 rounded mb-2">
+                <div class="row  py-3 m-0">
+                    <p class="visit-info-text AvenirLTStd-Heavy">Visit Information</p>
+                    <div class="col-md-6 col-12" *ngIf="covidCondition">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+                            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 white-space-nowrap">Hold Type</label>
+                            <div class="input-group form-input">
+                                <select class="form-control" (change)="onChange($event.target.value)">
+                                    <option value="1">Hospitalization</option>
+                                    <option value="2">COVID Hold</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 white-space-nowrap">
+                                Comments</label>
+                            <div class="input-group form-input">
+                                <textarea class="text-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" class="mr-1"> Allow Scheduling
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" *ngIf="covidCondition">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="AvenirLTStd-Heavy mr-2">Admission Date:</h4>
+                            <h4 class="AvenirLTStd-Heavy "> 03/03/2000</h4>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 w-47 white-space-nowrap">Hold Start Date</label>
+                            <div class="input-group form-input align-items-center">
+                                <input type="text" class="form-control mxw-108">
+                                <div class="ml-2">
+                                    <input type="checkbox" class="mr-1 color-black">Include Start Date
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47 white-space-nowrap">Expected Hold End Date</label>
+                            <div class="input-group form-input">
+                                <input type="text" class="form-control mxw-108">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47 white-space-nowrap">Actual Hold End Date</label>
+                            <div class="input-group form-input align-items-center">
+                                <input type="text" class="form-control mxw-108">
+                                <div class="ml-2">
+                                    <input type="checkbox" class="mr-1">Include Start Date
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" *ngIf="!covidCondition">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+                            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47">Hold Type</label>
+                            <div class="input-group form-input">
+                                <select class="form-control" (change)="onChange($event.target.value)">
+                                    <option value="1">Hospitalization</option>
+                                    <option value="2">COVID Hold</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 w-47 ">Hospital Admit Date</label>
+                            <div class="input-group form-input align-items-center">
+                                <input type="text" class="form-control mxw-108">
+                                <div class="ml-2">
+                                    <input type="checkbox" class="mr-1 color-black">Include Admit Date
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47">Reason for Hospitalization</label>
+                            <div class="input-group form-input">
+                                <select class="form-control" (change)="onChange($event.target.value)">
+                                    <option value="1">Hospitalization</option>
+                                    <option value="2">COVID Hold</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47">Hospital Name</label>
+                            <div class="input-group form-input">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" class="mr-1"> Allow Scheduling
+                        </div>
+                    </div>
+                    <div class="col-md -6 col-12" *ngIf="!covidCondition">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="AvenirLTStd-Heavy mr-2">Admission Date:</h4>
+                            <h4 class="AvenirLTStd-Heavy "> 03/03/2000</h4>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 w-47 ">Expected Discharge Date</label>
+                            <div class="input-group form-input align-items-center">
+                                <input type="text" class="form-control mxw-108">
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 w-47 ">Actual Discharge Date</label>
+                            <div class="input-group form-input align-items-center">
+                                <input type="text" class="form-control mxw-108">
+                                <div class="ml-2">
+                                    <input type="checkbox" class="mr-1 color-black">Include Discharge Date
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class=" color-black mb-0 w-47">Diagnosis Condition</label>
+                            <div class="input-group form-input">
+                                <select class="form-control" (change)="onChange($event.target.value)">
+                                    <option value="1">Hospitalization</option>
+                                    <option value="2">COVID Hold</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <label class="color-black mb-0 white-space-nowrap">
+                                Selected Diagnosis</label>
+                            <div class="input-group form-input">
+                                <textarea class="text-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="AvenirLTStd-Heavy color-black">Note</label>
+                    <p>a) Visits would be cancelled from Hold Start Date if <b class="AvenirLTStd-Heavy">"Include Start
+                            Date"</b> check box is selected otherwise visits would be cancelled from the next date after
+                        the Hold Start Date.</p>
+                    <p>b) Visits would be reinstated from Actual Hold End Date if <b class="AvenirLTStd-Heavy">"Include
+                            Restart Date"</b> check box is selected otherwise visits would be reinstated from the next
+                        date after the Actual Hold End Date.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+                    </button>
+                    <button class="btn-common btn-green " >Create
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive box-shadow ">
+                <table class="table text-center mb-0 visit-table availabilityTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="13" class="bg-secondary border-right">
+                                Service on Hold List
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th class="text-center border-right align-middle" scope="col">Hold Type</th>
+                            <th class="text-center border-right align-middle w-150" scope="col">Hospital Admit Date /<br />
+                                Hold Start Date</th>
+                            <th class="text-center border-right align-middle w-150" scope="col">Reason for<br />
+                                Hospitalization</th>
+                            <th class="text-center border-right align-middle w-150" scope="col">Expected Discharge Date/<br />
+                                Expected Hold End Date</th>
+                            <th class="text-center border-right align-middle w-150" scope="col">Actual Discharge Date/<br />
+                                Actual Hold End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Hospitalization</td>
+                            <td>10/03/2020</td>
+                            <td>10/03/2020</td>
+                            <td>10/03/2020</td>
+                            <td>10/03/2020</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
