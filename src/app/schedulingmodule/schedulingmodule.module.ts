@@ -22,6 +22,7 @@ import { ServiceOnHoldComponent } from './service-on-hold/service-on-hold.compon
 import { VisitAttributesComponent } from './visit-attributes/visit-attributes.component';
 import { CaseManagerComponent } from './case-manager/case-manager.component';
 import { VisitTimeComponent } from './visit-time/visit-time.component';
+import { DeliveryPlanComponent } from './delivery-plan/delivery-plan.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { VisitTimeComponent } from './visit-time/visit-time.component';
     ServiceOnHoldComponent,
     VisitAttributesComponent,
     CaseManagerComponent,
-    VisitTimeComponent],
+    VisitTimeComponent,
+    DeliveryPlanComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,

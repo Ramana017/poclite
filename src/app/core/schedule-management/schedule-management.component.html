@@ -226,47 +226,56 @@
                                                     </span>
                                                 </p>
                                                 <!-- visitcomments -->
-                                                <p class="blue-bg flyout-1">
+                                                <p class="blue-bg flyout-1" data-toggle="modal" data-target="#visitComments"
+                                                title="Visit Comments">
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
-                                                            data-toggle="modal" data-target="#visitComments"
-                                                            title="Visit Comments">
+                                                            >
                                                         </a>
                                                     </span>
                                                 </p>
                                                 <!-- service On Hold  -->
-                                                <p class="blue-bg flyout-1">
+                                                <p class="blue-bg service-hold"data-toggle="modal" data-target="#serviceOnHold"
+                                                title="Service on Hold">
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
-                                                            data-toggle="modal" data-target="#serviceOnHold"
-                                                            title="Service on Hold">
+                                                            >
                                                         </a>
                                                     </span>
                                                 </p>
                                                 <!-- visit attributes  -->
-                                                <p class="blue-bg flyout-1">
+                                                <p class="blue-bg visit-attributes"data-toggle="modal" data-target="#visitAttributes"
+                                                title="Visit Attributes">
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
-                                                            data-toggle="modal" data-target="#visitAttributes"
-                                                            title="Visit Attributes">
+                                                            >
                                                         </a>
                                                     </span>
                                                 </p>
                                                 <!-- case manager  -->
-                                                <p class="blue-bg flyout-1">
+                                                <p class="blue-bg case-manager"data-toggle="modal" data-target="#caseManager"
+                                                title="Case Manager">
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
-                                                            data-toggle="modal" data-target="#caseManager"
-                                                            title="Case Manager">
+                                                            >
                                                         </a>
                                                     </span>
                                                 </p>
                                                 <!-- visit time  -->
-                                                <p class="blue-bg flyout-1">
+                                                <p class="blue-bg visit-time"data-toggle="modal" data-target="#visitTime"
+                                                title="Visit Time">
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
-                                                            data-toggle="modal" data-target="#visitTime"
-                                                            title="Case Manager">
+                                                            >
+                                                        </a>
+                                                    </span>
+                                                </p>
+                                                <!-- deliveryPlan -->
+                                                <p class="blue-bg delivery-plan" data-toggle="modal" data-target="#deliveryPlan"
+                                                title="Delivery Plan">
+                                                    <span>
+                                                        <a href="javascript:void(0)" class="text-white"
+                                                           >
                                                         </a>
                                                     </span>
                                                 </p>
@@ -2598,8 +2607,11 @@
        <app-case-manager></app-case-manager>
     </div>
 </div>
-
 <div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
         aria-labelledby="mySmallModalLabel" aria-hidden="true" id="visitTime">
 <app-visit-time></app-visit-time>
+</div>
+<div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true" id="deliveryPlan">
+<app-delivery-plan></app-delivery-plan>
 </div>

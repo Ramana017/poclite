@@ -246,6 +246,9 @@
 .bg-grey-l {
   background-color: #f7fafc !important;
 }
+.w-50px{
+  width:50px;
+}
 
 .bg-white {
   background: $white;
@@ -2055,4 +2058,8 @@ app-maintainence {
 }
 .w-47{
   width: 47%;
+}
+.r-0{
+  right: 0;
+  left: auto;
 }

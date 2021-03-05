@@ -462,6 +462,61 @@ https://fortawesome.github.io/Font-Awesome/
           color: #fff;
         }
       }
+      .service-hold{
+        &::before{
+            font-family: "Font Awesome 5 Free";
+            content: "\f4c1";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #fff;
+          } 
+      }
+      .visit-attributes{
+        &::before{
+            font-family: "Font Awesome 5 Free";
+            content: "\f550";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #fff;
+          } 
+      }
+      .visit-time{
+        &::before{
+            font-family: "Font Awesome 5 Free";
+            content: "\f2f2";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #fff;
+          } 
+      }
+      .case-manager{
+        &::before{
+            font-family: "Font Awesome 5 Free";
+            content: "\f502";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #fff;
+          } 
+      }
+      .delivery-plan{
+        &::before{
+            font-family: "Font Awesome 5 Free";
+            content: "\f5a0";
+            display: inline-block;
+            // padding-right: 3px;
+            vertical-align: middle;
+            font-weight: 900;
+            color: #fff;
+          } 
+      }
         // }
         // // =============================================
         // // Open Network List
