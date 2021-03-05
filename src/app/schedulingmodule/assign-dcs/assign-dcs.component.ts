@@ -10,6 +10,10 @@ declare var $: any;
   styleUrls: ['./assign-dcs.component.sass']
 })
 export class AssignDCSComponent implements OnDestroy, OnInit {
+
+  public scheduleModel:BsModalRef;
+  public marginProtectionModel:BsModalRef;
+  public payDetaillsModel:BsModalRef;
   public availabilityCheck: boolean = true;
   public scheduleArray: Array<any> = ['Yes', 'No'];
    public criteriaList:Array<any>=[
@@ -131,9 +135,232 @@ export class AssignDCSComponent implements OnDestroy, OnInit {
     }
     ]
 
+    public availableDCSList=[
+      {
+      "dcsId": 14634,
+      "totalVisits": 1,
+      "previouslyServed": "Yes",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 1,
+      "dcsName": "ADAMS, CAMILLE",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "resourceNumber": "112233446",
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "Yes",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 32,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14635,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "ADAMS, JOHN",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "Yes"
+      },
+      {
+      "dcsId": 946,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "ADAMS, TAMMY",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "Yes",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14619,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "ALFORD, ASHLEE",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 15731,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "ATKINSON, JANICE",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14638,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "AVERY, MANDY",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14618,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "BANKS, ALLISON",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14622,
+      "totalVisits": 1,
+      "previouslyServed": "Yes",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "BANKS, LYNDA",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 0,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 1,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 15554,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "BARRETT, SHEILA",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      },
+      {
+      "dcsId": 14659,
+      "totalVisits": 1,
+      "previouslyServed": "No",
+      "preferences": "Yes",
+      "prefColorFlag": 0,
+      "overtimeFlag": 0,
+      "dcsName": "BENHAM, PAMELA",
+      "preference": 0,
+      "familyServingFamily": "No",
+      "unAvailableVisitCount": 0,
+      "preferedPS": "",
+      "unAvailableDCS": 1,
+      "countOfVisits": 1,
+      "qualifications": "No",
+      "visitCount": "1/1",
+      "sharedDCS": "No",
+      "availableVisitCount": 0,
+      "previouslyServedCount": 0,
+      "visitIds": "4688270",
+      "conflict": "No"
+      }
+      ]
+
   @Input() dcsObject: any;
-  constructor(public modelService: BsModalService, public bsmodelRef: BsModalRef) { }
-  public modalRef: BsModalRef;
+  constructor(public modelService: BsModalService,public modalRef:BsModalRef) { }
 
 
   ngOnInit(): void {
@@ -154,29 +381,31 @@ export class AssignDCSComponent implements OnDestroy, OnInit {
     console.log("open criteria")
 
   }
-
-  public modelHide() {
-    this.bsmodelRef.hide()
-  }
 public openschedleTemplate(schedleTemplate:TemplateRef<any>){
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.scheduleModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: 'modal-sm scheduleCriteria modalcontent-wrapper assign-dcs-wrapper' })
     )
 }
 public openMarginProtection(schedleTemplate:TemplateRef<any>){
   console.log("hiii")
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.marginProtectionModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: ' modalcontent-wrapper modal-dialog-centered edit-modal-content' })
     )
 }
 public openPaydetails(schedleTemplate:TemplateRef<any>){
-  this.modalRef=this.modelService.show(schedleTemplate,
+  this.payDetaillsModel=this.modelService.show(schedleTemplate,
     Object.assign({}, { class: ' paydetails-container modal-dialog-centered   modal content-wrapper' })
     )
 }
 
   ngOnDestroy() {
-    console.log('++++++++++++++++')
     console.log("NgOndestroy in assign DCS")
+    this.closeAllModals();
+  }
+  closeAllModals(){
+    this.scheduleModel?.hide();
+    this.payDetaillsModel?.hide();
+    this.marginProtectionModel?.hide();
+    this.modalRef?.hide();
   }
 }
