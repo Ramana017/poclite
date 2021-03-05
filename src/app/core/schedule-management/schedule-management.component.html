@@ -171,7 +171,7 @@
                                         <input class=" position-relative" type="checkbox" >
                                     </div>
                                     <ul class="m-0 p-0">
-                                        <li class="">
+                                        <li class="ml-1">
                                             <div class="share-button">
                                                 <input class="toggle-input" id="toggle-input" type="checkbox" />
                                                 <label for="toggle-input" class="toggle"></label>
@@ -257,6 +257,15 @@
                                                     <span>
                                                         <a href="javascript:void(0)" class="text-white"
                                                             data-toggle="modal" data-target="#caseManager"
+                                                            title="Case Manager">
+                                                        </a>
+                                                    </span>
+                                                </p>
+                                                <!-- visit time  -->
+                                                <p class="blue-bg flyout-1">
+                                                    <span>
+                                                        <a href="javascript:void(0)" class="text-white"
+                                                            data-toggle="modal" data-target="#visitTime"
                                                             title="Case Manager">
                                                         </a>
                                                     </span>
@@ -2588,4 +2597,9 @@
         aria-labelledby="mySmallModalLabel" aria-hidden="true" id="caseManager">
        <app-case-manager></app-case-manager>
     </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm schedule-modal" tabindex="-1" role="dialog"
+aria-labelledby="mySmallModalLabel" aria-hidden="true" id="visitTime">
+<app-visit-time></app-visit-time>
 </div>

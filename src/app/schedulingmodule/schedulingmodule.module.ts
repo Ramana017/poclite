@@ -21,6 +21,7 @@ import { DcsResExpComponent } from './dcs-res-exp/dcs-res-exp.component';
 import { ServiceOnHoldComponent } from './service-on-hold/service-on-hold.component';
 import { VisitAttributesComponent } from './visit-attributes/visit-attributes.component';
 import { CaseManagerComponent } from './case-manager/case-manager.component';
+import { VisitTimeComponent } from './visit-time/visit-time.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CaseManagerComponent } from './case-manager/case-manager.component';
     DcsResExpComponent,
     ServiceOnHoldComponent,
     VisitAttributesComponent,
-    CaseManagerComponent],
+    CaseManagerComponent,
+    VisitTimeComponent],
   imports: [
     CommonModule,
     SchedulingmoduleRoutingModule,
