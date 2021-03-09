@@ -17,7 +17,7 @@
                     </div>
                     <div class="input-group form-input align-items-center header-input">
                         <input type="text" class="form-control" placeholder="Status">
-                        <i class="fas fa-user ml-2 right-icon" data-toggle="modal" data-target="#status_popup"></i>
+                        <i class="fas fa-user ml-2 right-icon" ></i>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-between mt-2">
@@ -131,7 +131,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-end mt-2">
+                <div class="d-flex align-items-center justify-content-between mt-2">
+                    <button class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-1 "></i>Cancel</button>
+                    <button class="btn-common btn-green bg-blue-light w-auto px-3"><i class="fas fa-sync-alt mr-1"></i>
+                      Reset</button>
                     <button
                         class="btn-common height-30 btn-green  d-flex align-items-center justify-content-center w-80px "><span
                             class=" mr-2">
@@ -146,7 +149,12 @@
                             <tr>
                                 <th>
                                     <div class="assign-dcs-wrapper">
-                                        <input class="position-relative form-control" type="checkbox" >
+                                        <div class="edit-option">
+                                            <label class="customcheck margin-left-15 m-0">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
                                     </div>
                                    </th>
                                 <th class="align-middle">Site Code<i class="fas fa-sort ml-1"></i></th>
@@ -168,9 +176,14 @@
                             <tr class="no-wrap" *ngFor="let item of scheduleArray">
                                 <td class="position-relative edit-option" >
                                     <div class="assign-dcs-wrapper ">
-                                        <input class=" position-relative" type="checkbox" >
+                                        <div class="edit-option">
+                                            <label class="customcheck margin-left-15 m-0">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <ul class="m-0 p-0">
+                                    <ul class="m-0 mt-1 p-0">
                                         <li class="ml-1">
                                             <div class="share-button">
                                                 <input class="toggle-input" id="toggle-input" type="checkbox" />
@@ -948,18 +961,27 @@
                         <input type="text" class="modal-box-input form-control">
                     </div>
 
-                    <div class="d-flex py-2">
-                        <label for="">Active</label>
+                    <div class="d-flex py-2 justify-content-between">
+                        <label for="" class="mb-0">Active</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox1">All</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox2">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox3">No</label>
                         </div>
                         <button class="btn-common btn-green"> Go</button>
@@ -1496,18 +1518,27 @@
                         <input type="text" class="modal-box-input form-control">
                     </div>
 
-                    <div class="d-flex py-2">
-                        <label for="">Active</label>
+                    <div class="d-flex py-2 justify-content-between">
+                        <label for="" class="mb-0">Active</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox1">All</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox2">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox3">No</label>
                         </div>
                         <button class="btn-common btn-green"> Go</button>
@@ -1673,9 +1704,9 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                    <div class="d-flex py-2">
-                        <label for="">Service Category</label>
-                        <select name="" id="" class="height-30">
+                    <div class="d-flex py-2 form-input">
+                        <label for="" class="w-50">Service Category</label>
+                        <select name="" id="" class="height-30 form-control">
                             <option value="">All</option>
                             <option value="">2</option>
                             <option value="">3</option>
@@ -1683,22 +1714,31 @@
                     </div>
 
                     <div class="d-flex py-2 form-input">
-                        <label for="">Name Or Procedure Code</label>
+                        <label for="" class="w-50">Name Or Procedure Code</label>
                         <input type="text" class="modal-box-input form-control">
                     </div>
 
-                    <div class="d-flex py-2">
-                        <label for="">Active</label>
+                    <div class="d-flex py-2 justify-content-between">
+                        <label for="" class="mb-0">Active</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox1">All</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox2">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                            <div class="d-flex mt-n2 mb-n2"><input type="radio" name="formate-add-wrapper"
+                                id="radio0" class="ml-2 mt-3 ng-untouched ng-pristine ng-valid"><label
+                                for="radio0" class="m-0"></label><br>
+                        </div>
                             <label class="form-check-label" for="inlineCheckbox3">No</label>
                         </div>
                         <button class="btn-common btn-green"> Go</button>
