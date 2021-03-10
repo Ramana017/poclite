@@ -23,6 +23,7 @@ import { VisitAttributesComponent } from './visit-attributes/visit-attributes.co
 import { CaseManagerComponent } from './case-manager/case-manager.component';
 import { VisitTimeComponent } from './visit-time/visit-time.component';
 import { DeliveryPlanComponent } from './delivery-plan/delivery-plan.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DeliveryPlanComponent } from './delivery-plan/delivery-plan.component';
     DeliveryPlanComponent],
   imports: [
     CommonModule,
+    SharedModule,
     SchedulingmoduleRoutingModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
