@@ -790,7 +790,7 @@ ul {
 }
 
 .h-30 {
-    height: 30px;
+    height: 30px !important;
 }
 
 .w-25 {
@@ -1339,5 +1339,10 @@ https://fortawesome.github.io/Font-Awesome/
     ul li:hover .slider p {
         opacity: 1;
         transition: all 1s 0.2s ease;
+    }
+}
+.visit-review-table-wrapper{
+    .w-auto{
+        width: auto !important;
     }
 }
