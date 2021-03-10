@@ -10,7 +10,7 @@ import { ScheduledvarianceComponent } from './corrections/scheduledvariance/sche
 import { InvalidcalleridComponent } from './corrections/invalidcallerid/invalidcallerid.component';
 import { MileageexceptionComponent } from './corrections/mileageexception/mileageexception.component';
 import { TarveltimeexceptionComponent } from './corrections/tarveltimeexception/tarveltimeexception.component';
-import { GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
+import {GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
 import { ClockinComponent } from './corrections/clockin/clockin.component';
 import { ClockoutComponent } from './corrections/clockout/clockout.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -66,6 +66,8 @@ import { DailyReportsComponent } from './core/daily-reports/daily-reports.compon
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { SharedModule } from './shared/shared.module';
+import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
+import { map } from 'rxjs/operators';
 
 @NgModule({
   declarations: [
@@ -127,7 +129,9 @@ import { SharedModule } from './shared/shared.module';
     AngularMultiSelectModule,
     TimepickerModule.forRoot(),
 
-
+    AgmCoreModule.forRoot(
+      {
+      }),
     NgbModule,
     // NgxGaugeModule,
     NgIdleKeepaliveModule.forRoot(),
@@ -146,6 +150,12 @@ import { SharedModule } from './shared/shared.module';
       provide: APP_BASE_HREF,
       useValue: window['base-href']
     },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: agmConfigFactory,
+      deps: [HttpClient, LAZY_MAPS_API_CONFIG],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -154,3 +164,24 @@ import { SharedModule } from './shared/shared.module';
 export class AppModule { }
 
 
+
+
+export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
+  return () => http.get('assets/url.json').pipe(
+    map(urlresponse => {
+      console.log(urlresponse)
+      let data: any = urlresponse
+      http.get(data.webserviceURL + '/callmanagement/getGoogleApiKey').pipe(
+        map(mapresponse => {
+          console.log(mapresponse)
+          let data2: any = mapresponse;
+          config.apiKey = data2.googleAPIKey;
+          console.log(config.apiKey)
+          sessionStorage.setItem('mapsApiKey',data2.googleAPIKey)
+          return mapresponse;
+        })
+      ).toPromise()
+
+    })
+  ).toPromise();
+}
