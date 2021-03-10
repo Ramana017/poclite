@@ -6,8 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ps-dcs-map.component.sass']
 })
 export class PsDcsMapComponent implements OnInit {
+ public lat:any;
+ public lng:any;
+  constructor() {
+    if(navigator)
+    {
+      navigator.geolocation.getCurrentPosition( pos => {
+          this.lng = +pos.coords.longitude;
+          this.lat = +pos.coords.latitude;
+        });
+      }
+    }
 
-  constructor() { }
 public zoom=8;
   ngOnInit(): void {
   }

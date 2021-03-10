@@ -68,7 +68,7 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
 import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { map } from 'rxjs/operators';
-const mapsApikey=sessionStorage.getItem('mapsApiKey');
+const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
 @NgModule({
   declarations: [
     AppComponent,
@@ -178,7 +178,7 @@ export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConf
           let data2: any = mapresponse;
           config.apiKey = data2.googleAPIKey;
           console.log(config.apiKey)
-          sessionStorage.setItem('mapsApiKey',data2.googleAPIKey)
+          sessionStorage.setItem('mapsApiKey',btoa(data2.googleAPIKey))
           return mapresponse;
         })
       ).toPromise()
