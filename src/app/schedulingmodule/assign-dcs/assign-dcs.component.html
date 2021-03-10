@@ -81,7 +81,14 @@
             <tr>
               <th colspan="2" class="sticky-top"></th>
               <th class="sticky-top">
-                <input type="checkbox" class="form-control">
+                <div class="assign-dcs-wrapper">
+                  <div class="w-auto w-auto ">
+                      <label class="customcheck margin-left-15 m-0">
+                          <input type="checkbox">
+                          <span class="checkmark "></span>
+                      </label>
+                  </div>
+              </div>
               </th>
               <th class="sticky-top">DCS</th>
             </tr>
@@ -90,7 +97,14 @@
             <tr *ngFor="let item of assignDCSList" >
               <td><i class="far fa-calendar-alt f-18"></i></td>
               <td><i class="far fa-calendar-alt f-18"></i></td>
-              <td><input type="checkbox"></td>
+              <td>  <div class="assign-dcs-wrapper">
+                <div class="w-auto w-auto ">
+                    <label class="customcheck margin-left-15 m-0">
+                        <input type="checkbox">
+                        <span class="checkmark t-7"></span>
+                    </label>
+                </div>
+            </div></td>
               <td>{{item.dcsName}} </td>
             </tr>
           </tbody>
@@ -115,7 +129,7 @@
             Schedule DCS
           </th>
         </tr>
-        <tr>
+        <tr class="top-sticky">
           <th class="text-center border-right align-middle sticky-top" scope="col"></th>
           <th class="text-center border-right align-middle sticky-top" scope="col"></th>
           <th class="text-center border-right align-middle sticky-top" scope="col">DCS Name</th>
@@ -174,7 +188,14 @@
             </div>
           </td>
           <td>
-            <input type="checkbox">
+            <div class="assign-dcs-wrapper">
+              <div class="w-auto w-auto ">
+                  <label class="customcheck margin-left-15 m-0">
+                      <input type="checkbox">
+                      <span class="checkmark t-7"></span>
+                  </label>
+              </div>
+          </div>
           </td>
           <td>{{item.dcsName}}</td>
           <td class="margin-projection" data-toggle="modal" title="MarginProtection" (click)="openMarginProtection(marginprojection)">
@@ -231,7 +252,15 @@
           <tr *ngFor="let item of criteriaList">
             <td>
               <div class="">
-                <input type="checkbox" [checked]="item.enabled==1" />
+                <div class="assign-dcs-wrapper">
+                  <div class="w-auto w-auto ">
+                      <label class="customcheck margin-left-15 m-0">
+                          <input type="checkbox" [checked]="item.enabled==1">
+                          <span class="checkmark t-7"></span>
+                      </label>
+                  </div>
+              </div>
+                <!-- <input type="checkbox" [checked]="item.enabled==1" /> -->
               </div>
             </td>
             <td>{{item.criteriaName}} </td>
