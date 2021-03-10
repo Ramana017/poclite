@@ -856,3 +856,18 @@ https://fortawesome.github.io/Font-Awesome/
         border: 1px solid #343a40;
     }
 }
+.t-7{
+    top: -7px;
+}    
+.bg-primary-light{
+    background-color: #a88746 !important;
+    &:hover{
+        background-color: #a88746 !important;
+    }
+}
+
+.top-sticky{
+    th{
+        top: 40px !important;
+    }
+}
