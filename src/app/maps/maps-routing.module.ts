@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { DcsRouteMapComponent } from './dcs-route-map/dcs-route-map.component';
 import { LocateDcsComponent } from './locate-dcs/locate-dcs.component';
 
-import { MapsComponent } from './maps.component';
 import { PsDcsMapComponent } from './ps-dcs-map/ps-dcs-map.component';
 
 const routes: Routes = [

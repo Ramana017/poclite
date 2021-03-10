@@ -41,7 +41,7 @@
                         <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']"><a>Visit Review </a></li>
                         <li class="dropdown-item dropdown side-menu-analytics" [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
                             <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analytics</a>
-                           
+
                             <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
                                 <li class="dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''" [routerLink]="['/analytics']"><a>Compliance</a></li>
                                 <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"  routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']"><a>Maintainence</a></li>
@@ -50,6 +50,9 @@
                                 <li class="dropdown-item side-menu-item"[ngClass]="utilization.isActive?'active':''" [routerLink]="['/utilization']" routerLinkActive><a>Utilization Stats</a></li>
                             </ul>
                         </li>
+
+
+
                         <li class="dropdown-item" [ngClass]="scheduling.isActive?'active':''" [routerLink]="['/schedulingmodule/scheduling']"><a>POC
                           Scheduling</a></li>
                             <li class="dropdown-item dropdown side-menu-analytics" >
@@ -106,7 +109,14 @@
               {{utilization.isActive ? 'Utilization Stats' : ''}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
-              {{scheduling.isActive ? 'Scheduling' : ''}}
+              {{scheduling.isActive ? 'Schedule Management' : ''}}
+            </span>
+            <span class="ml" routerLink="/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
+              {{locateDCS.isActive ? 'Locate DCS	' : ''}}
+            </span><span class="ml" routerLink="/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
+              {{mapspsdcs.isActive ? 'PS/DCS Distribution	' : ''}}
+            </span><span class="ml" routerLink="/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
+              {{dcsroute.isActive ? 'DCS Route Map	' : ''}}
             </span>
           </h3>
         </div>
