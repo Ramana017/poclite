@@ -70,7 +70,6 @@ const routes: Routes = [
   { path: "page-not-found", component: PageNotFoundComponent }
   ,
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
-  { path: 'maps', loadChildren: () => import('./maps/maps.module').then(m => m.MapsModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 

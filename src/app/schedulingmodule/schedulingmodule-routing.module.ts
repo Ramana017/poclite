@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: SchedulingmoduleComponent },
   {path:'scheduling',component:ScheduleManagementComponent},
   { path: 'calendar', component: CalenderSchedulingComponent },
+  { path: 'maps', loadChildren: () => import('../maps/maps.module').then(m => m.MapsModule) },
 
 
 ];

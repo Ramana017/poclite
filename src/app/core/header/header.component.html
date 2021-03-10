@@ -35,14 +35,18 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
                   <li class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']">
-                    <a>Home</a></li>
+                    <a>Home</a>
+                  </li>
                   <li class="dropdown-item" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
                     <a>POC Call
-                      Management</a></li>
+                      Management</a>
+                  </li>
                   <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/charts']"><a>POC
-                      DashBoard</a></li>
+                      DashBoard</a>
+                  </li>
                   <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">
-                    <a>Visit Review </a></li>
+                    <a>Visit Review </a>
+                  </li>
 
                   <li class="dropdown-item dropdown side-menu-analytics"
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
@@ -51,35 +55,47 @@
 
                     <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
                       <li class="dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
-                        [routerLink]="['/analytics']"><a>Compliance</a></li>
+                        [routerLink]="['/analytics']"><a>Compliance</a>
+                      </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
-                        routerLinkActive #maintaince="routerLinkActive" [routerLink]="['/maintaince']">
-                        <a>Maintainence</a></li>
+                        [routerLink]="['/maintaince']">
+                        <a>Maintainence</a>
+                      </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''"
-                        [routerLink]="['/daily-reports']" routerLinkActive><a>Daily Reports</a></li>
+                        [routerLink]="['/daily-reports']"><a>Daily Reports</a>
+                      </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
-                        [routerLink]="['/telephony']" routerLinkActive><a>Telephony Stats</a></li>
+                        [routerLink]="['/telephony']"><a>Telephony Stats</a>
+                      </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
-                        [routerLink]="['/utilization']" routerLinkActive><a>Utilization Stats</a></li>
+                        [routerLink]="['/utilization']"><a>Utilization Stats</a>
+                      </li>
                     </ul>
                   </li>
-                  <li class="dropdown-item dropdown side-menu-analytics">
+                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class="dropdown-item dropdown side-menu-analytics">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">POC Scheduling</a>
+                      aria-haspopup="true"  aria-expanded="false">POC Scheduling</a>
 
                     <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
-                      <li class="dropdown-item side-menu-item" [routerLink]="['/schedulingmodule/scheduling']">
-                        <a>Scheduling</a></li>
+                      <li class="dropdown-item side-menu-item" [ngClass]="scheduling.isActive?'active':''" [routerLink]="['/schedulingmodule/scheduling']">
+                        <a>Scheduling</a>
+                      </li>
                       <li class="dropdown-item map-menu-item p-0">
                         <ul class="p-0">
-                          <li class="dropdown-item dropdown map-menu-analytics">
+                          <li class="dropdown-item dropdown map-menu-analytics" [ngClass]="mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''">
                             <a class="dropdown-toggle map-menu-link" id="dropdown1-1" data-toggle="dropdown"
-                              aria-haspopup="true" aria-expanded="false">Maps</a>
+                              aria-haspopup="true"  aria-expanded="false">Maps</a>
 
                             <ul class="dropdown-menu map-menu w-160" aria-labelledby="dropdown1-1">
-                              <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/ps-dcs']"><a>PS/DCS Distribution</a></li>
-                                  <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/locate-dcs']" routerLinkActive ><a>Locate DCS</a></li>
-                                  <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/dcs-map']" routerLinkActive ><a>DCS Route Map</a></li>
+                              <li class="dropdown-item map-menu-item" [ngClass]="mapspsdcs.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/ps-dcs']"><a>PS/DCS
+                                  Distribution</a>
+                              </li>
+                              <li class="dropdown-item map-menu-item" [ngClass]="locateDCS.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/locate-dcs']"><a>Locate
+                                  DCS</a>
+                              </li>
+                              <li class="dropdown-item map-menu-item" [ngClass]="dcsroute.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/dcs-map']"><a>DCS Route
+                                  Map</a>
+                              </li>
 
                             </ul>
                           </li>
@@ -94,7 +110,7 @@
                           <ul class="dropdown-menu side-menu w-100" aria-labelledby="dropdown1-1">
                               <li class="dropdown-item side-menu-item"  [routerLink]="['/maps/ps-dcs']"><a>Scheduling</a></li>
                               <li class="dropdown-item side-menu-item"  [routerLink]="['/maps/locate-dcs']" routerLinkActive ><a>Maps</a></li>
-                              
+
                           </ul>
                       </li> -->
                   <!-- <li class="dropdown-item dropdown side-menu-analytics" [ngClass]="scheduling.isActive?'active':''" >
@@ -103,9 +119,9 @@
                           <ul class="dropdown-menu side-menu w-100" aria-labelledby="dropdown1-1">
                             <li class="dropdown-item side-menu-item"  [routerLink]="['/schedulingmodule/scheduling']"><a>Scheduling</a></li>
                             <li class="dropdown-item side-menu-item"   ><a>Maps</a></li>
-                           
+
                               </ul>
-                        
+
                         </li> -->
 
                 </ul>
@@ -156,12 +172,12 @@
             <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
               {{scheduling.isActive ? 'Schedule Management' : ''}}
             </span>
-            <span class="ml" routerLink="/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
-              {{locateDCS.isActive ? 'Locate DCS	' : ''}}
-            </span><span class="ml" routerLink="/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
-              {{mapspsdcs.isActive ? 'PS/DCS Distribution	' : ''}}
-            </span><span class="ml" routerLink="/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
-              {{dcsroute.isActive ? 'DCS Route Map	' : ''}}
+            <span class="ml" routerLink="/schedulingmodule/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
+              {{locateDCS.isActive ? 'Locate DCS ' : ''}}
+            </span><span class="ml" routerLink="/schedulingmodule/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
+              {{mapspsdcs.isActive ? 'PS/DCS Distribution ' : ''}}
+            </span><span class="ml" routerLink="/schedulingmodule/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
+              {{dcsroute.isActive ? 'DCS Route Map ' : ''}}
             </span>
           </h3>
         </div>
