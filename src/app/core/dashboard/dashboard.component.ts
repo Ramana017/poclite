@@ -23,8 +23,11 @@ export class DashboardComponent implements OnInit {
     let data: any = JSON.parse(sessionStorage.getItem('useraccount'));
     this.userId = data.userId;
     let useraccount = sessionStorage.getItem('useraccount');
+    let mapkey=sessionStorage.getItem('mapsApiKey');
+
     sessionStorage.clear();
     sessionStorage.setItem('useraccount', useraccount);
+    sessionStorage.setItem('mapsApiKey',mapkey);
   }
   @ViewChild('autops') autops;
   @ViewChild('autodcs') autodcs;

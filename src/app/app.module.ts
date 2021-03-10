@@ -68,7 +68,7 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
 import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { map } from 'rxjs/operators';
-
+const mapsApikey=sessionStorage.getItem('mapsApiKey');
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,6 +131,7 @@ import { map } from 'rxjs/operators';
 
     AgmCoreModule.forRoot(
       {
+        apiKey:mapsApikey
       }),
     NgbModule,
     // NgxGaugeModule,
