@@ -77,11 +77,9 @@
                               aria-haspopup="true" aria-expanded="false">Maps</a>
 
                             <ul class="dropdown-menu map-menu" aria-labelledby="dropdown1-1">
-                              <li class="dropdown-item map-menu-item" [routerLink]="['/schedulingmodule/scheduling']">
-                                <a>Scheduling</a></li>
-                              <li class="dropdown-item map-menu-item">
-                                <a>Maps</a>
-                              </li>
+                              <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/ps-dcs']"><a>PS/DCS Distribution</a></li>
+                                  <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/locate-dcs']" routerLinkActive ><a>Locate DCS</a></li>
+                                  <li class="dropdown-item map-menu-item"  [routerLink]="['/maps/dcs-map']" routerLinkActive ><a>DCS Route Map</a></li>
 
                             </ul>
                           </li>
@@ -156,7 +154,14 @@
               {{utilization.isActive ? 'Utilization Stats' : ''}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
-              {{scheduling.isActive ? 'Scheduling' : ''}}
+              {{scheduling.isActive ? 'Schedule Management' : ''}}
+            </span>
+            <span class="ml" routerLink="/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
+              {{locateDCS.isActive ? 'Locate DCS	' : ''}}
+            </span><span class="ml" routerLink="/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
+              {{mapspsdcs.isActive ? 'PS/DCS Distribution	' : ''}}
+            </span><span class="ml" routerLink="/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
+              {{dcsroute.isActive ? 'DCS Route Map	' : ''}}
             </span>
           </h3>
         </div>
