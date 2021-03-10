@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PsDcsMapComponent implements OnInit {
 
   constructor() { }
-
+public zoom=8;
   ngOnInit(): void {
   }
 

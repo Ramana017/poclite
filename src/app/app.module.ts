@@ -5,13 +5,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login/login.component';
 import { ConfigComponent } from './core/config/config.component';
 import { SummarytableComponent } from './core/summarytable/summarytable.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CorrectionheaderComponent } from './corrections/correctionheader/correctionheader.component';
 import { ScheduledvarianceComponent } from './corrections/scheduledvariance/scheduledvariance.component';
 import { InvalidcalleridComponent } from './corrections/invalidcallerid/invalidcallerid.component';
 import { MileageexceptionComponent } from './corrections/mileageexception/mileageexception.component';
 import { TarveltimeexceptionComponent } from './corrections/tarveltimeexception/tarveltimeexception.component';
-import { GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
+import {GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
 import { ClockinComponent } from './corrections/clockin/clockin.component';
 import { ClockoutComponent } from './corrections/clockout/clockout.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -27,7 +26,6 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ClockInAndOutComponent } from './corrections/clock-in-and-out/clock-in-and-out.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartsComponent } from './core/charts/charts.component';
 // import { NgxGaugeModule } from 'ngx-gauge';
@@ -60,7 +58,6 @@ import {DomsanitizePipe} from '../app/pipes/domsanitize.pipe'
 
 
 
-import { map } from 'rxjs/operators';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
 import { AnalyticsComponent } from './core/analytics/analytics.component';
@@ -68,6 +65,9 @@ import { MaintainenceComponent } from './core/maintainence/maintainence.componen
 import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
 import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
+import { SharedModule } from './shared/shared.module';
+import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
+import { map } from 'rxjs/operators';
 
 @NgModule({
   declarations: [
@@ -117,10 +117,9 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     AutocompleteLibModule,
     BsDatepickerModule.forRoot(),
@@ -129,10 +128,10 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
     ModalModule.forRoot(),
     AngularMultiSelectModule,
     TimepickerModule.forRoot(),
+
     AgmCoreModule.forRoot(
       {
-    }),
-
+      }),
     NgbModule,
     // NgxGaugeModule,
     NgIdleKeepaliveModule.forRoot(),
@@ -151,27 +150,34 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
       provide: APP_BASE_HREF,
       useValue: window['base-href']
     },
-      {
-        provide: APP_INITIALIZER,
-        useFactory: agmConfigFactory,
-        deps: [HttpClient, LAZY_MAPS_API_CONFIG],
-        multi: true}
+    {
+      provide: APP_INITIALIZER,
+      useFactory: agmConfigFactory,
+      deps: [HttpClient, LAZY_MAPS_API_CONFIG],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [CorrectionheaderComponent, MileageexceptionComponent, LoginComponent, AppComponent]
 })
 export class AppModule { }
+
+
+
+
 export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConfigLiteral) {
   return () => http.get('assets/url.json').pipe(
     map(urlresponse => {
       console.log(urlresponse)
-      let data:any=urlresponse
-      http.get(data.webserviceURL+'/callmanagement/getGoogleApiKey').pipe(
-        map(mapresponse=>{
+      let data: any = urlresponse
+      http.get(data.webserviceURL + '/callmanagement/getGoogleApiKey').pipe(
+        map(mapresponse => {
           console.log(mapresponse)
-          let data2:any=mapresponse;
+          let data2: any = mapresponse;
           config.apiKey = data2.googleAPIKey;
+          console.log(config.apiKey)
+          sessionStorage.setItem('mapsApiKey',data2.googleAPIKey)
           return mapresponse;
         })
       ).toPromise()
@@ -179,4 +185,3 @@ export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConf
     })
   ).toPromise();
 }
-
