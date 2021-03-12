@@ -6,6 +6,67 @@ declare var $:any;
   styleUrls: ['./chart-layout.component.sass']
 })
 export class ChartLayoutComponent implements OnInit {
+  public siteList= [ {
+    "siteCode": "72072",
+    "siteId": 64,
+    "siteName": "CN COT ADOPTION SUBSIDY"
+    },
+    {
+    "siteCode": "72087",
+    "siteId": 52,
+    "siteName": "CN COT NARBHA"
+    },
+    {
+    "siteCode": "72013",
+    "siteId": 55,
+    "siteName": "CN COTTONWOOD DDD"
+    },
+    {
+    "siteCode": "72014",
+    "siteId": 56,
+    "siteName": "CN COTTONWOOD EVERCARE"
+    },
+
+
+
+    ]
+    public selectsite=[]
+    public dropdownSettings = {
+      singleSelection: false,
+      text: "Code",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      // enableFilterSelectAll	:true,
+      noDataLabel: "No Data Available",
+      classes: "myclass custom-class",
+      showCheckbox: true,
+      labelKey: "siteCode",
+      // limitSelection: 3,
+      primaryKey: 'siteCode',
+      escapeToClose: false,
+      searchBy: ['siteCode'],
+      position: 'top'
+
+    };
+    public dropdownSettings2 = {
+      singleSelection: false,
+      text: "CSS",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      // enableFilterSelectAll	:true,
+      noDataLabel: "No Data Available",
+      classes: "myclass custom-class",
+      showCheckbox: true,
+      labelKey: "siteCode",
+      // limitSelection: 3,
+      primaryKey: 'siteCode',
+      escapeToClose: false,
+      searchBy: ['siteCode'],
+      position: 'top'
+
+    };
   single: any[];
   multi: any[];
   animationState = 'out';
@@ -20,6 +81,9 @@ export class ChartLayoutComponent implements OnInit {
   xAxisLabel = 'Date';
   showYAxisLabel = true;
   yAxisLabel = 'count';
+
+  public displayVisitCards:boolean=true;
+  public displyHighlightCard='';
 
   colorScheme = {
     domain: ['#4472c3']
@@ -37,13 +101,20 @@ export class ChartLayoutComponent implements OnInit {
 
   }
   visits(){
-    $('.divA').toggleClass('hide')
+    $('.divA').toggleClass('hide');
+    this.displayVisitCards=true;
   }
 
   onSelect(event) {
     console.log(event);
   }
 
+
+  public openvisits(str){
+  this.displyHighlightCard=str;
+  this.displayVisitCards=false;
+
+  }
 }
 export var single = [
   {
