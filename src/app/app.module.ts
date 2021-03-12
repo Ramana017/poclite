@@ -68,6 +68,7 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
 import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { map } from 'rxjs/operators';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
     DailyReportsComponent,
     TelephonyStatsComponent,
     UtilizationStatsComponent,
+   
 
 
   ],
@@ -140,6 +142,7 @@ const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
     ToastrModule.forRoot(),
     NgxChartsModule,
     TypeaheadModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

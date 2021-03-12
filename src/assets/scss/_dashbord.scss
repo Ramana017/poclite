@@ -10,6 +10,7 @@
         @include size(100%, null);
         background-color: #e0e1e2;
         height: 89vh;
+        // overflow: auto;
         // SUMMARY HEADING
         .summary-heading {
             @include padding(0.6rem, 3.3125rem, 1rem, 3.3125rem);

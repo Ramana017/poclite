@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-chart-layout',
   templateUrl: './chart-layout.component.html',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ChartLayoutComponent implements OnInit {
   single: any[];
   multi: any[];
-
+  animationState = 'out';
   view: any[] = [700, 400];
 
   // options
@@ -36,7 +36,9 @@ export class ChartLayoutComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  visits(){
+    $('.divA').toggleClass('hide')
+  }
 
   onSelect(event) {
     console.log(event);

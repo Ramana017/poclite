@@ -4,9 +4,18 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 p-0 side-bar">
-
         <ul>
-          <li><a>Visits</a></li>
+          <li class="">
+            <a (click)="visits()">Visits</a>
+            <div class="divA ">
+              <ul>
+                <li class="drop-item mx-3">Missed Visits</li>
+                <li class="drop-item mx-3">Open Visits</li>
+                <li class="drop-item "><span class="px-3">Cancelled Visits</span> </li>
+           
+              </ul>
+            </div>
+          </li>
           <li><a>Clients</a></li>
         </ul>
 
@@ -47,23 +56,23 @@
           </div>
         </div>
 
-        <!-- <div class="chart-container col-md-12">
-                    <div class="card-container mr-5">
+        <div class="chart-container col-md-12 ">
+                    <div class="card-container mr-5 my-4">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">15</h1>
                         <span class="info"><i class="fas fa-info-circle"></i></span>
                     </div>
-                    <div class="card-container mr-5">
+                    <div class="card-container mr-5 my-4">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Missed Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">30</h1>
                         <span class="info"><i class="fas fa-info-circle"></i></span>
                     </div>
-                    <div class="card-container mr-5">
+                    <div class="card-container mr-5 my-4">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Open Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">10</h1>
                         <span class="info"><i class="fas fa-info-circle"></i></span>
                     </div>
-                </div> -->
+                </div>
         <div class="bar-graph-container col-md-12">
           <div class="row m-0">
             <div class="col-md-3 pl-0">
@@ -301,50 +310,7 @@
                 </div>
               </div>
             </div>
-
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
       </div>
     </div>

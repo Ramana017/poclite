@@ -90,8 +90,13 @@
             <h3 class="f-15">Clock In Comments</h3>
             <textarea class="form-control" [(ngModel)]="clockInComments" rows="3"></textarea>
           </div>
-          <div class="button-wrapper mb-2">
+          <div class="button-wrapper mb-2 d-flex align-items-center justify-content-between">
+           <div class="">
             <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
+           </div> 
+           <select class="mx-2">
+             <option>--select--</option>
+           </select>
             <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
           </div>
@@ -127,9 +132,14 @@
             <h3 class="f-15">Clock Out Comments</h3>
             <textarea class="form-control" [(ngModel)]="clockOutComments" rows="3"></textarea>
           </div>
-          <div class="button-wrapper d-flex ">
-            <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
-            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 ml-auto"
+          <div class="button-wrapper d-flex align-items-center justify-content-between mb-2">
+            <div class="">
+              <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
+            </div>
+            <select class="mx-2">
+              <option>--select--</option>
+            </select>
+            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 "
               (click)="acceptGpsException('clockout')">Accept</button>
           </div>
 
