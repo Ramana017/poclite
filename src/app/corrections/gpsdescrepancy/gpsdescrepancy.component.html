@@ -95,9 +95,9 @@
             <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
            </div> 
            <select class="mx-2">
-             <option>--select--</option>
+             <option>--Select Reason--</option>
            </select>
-            <button *ngIf="arrivalgpsErr" type="button" class="btn" [disabled]="!arrivalgpsErr"
+            <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
           </div>
         </div>
@@ -137,9 +137,9 @@
               <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
             </div>
             <select class="mx-2">
-              <option>--select--</option>
+              <option>--Select Reason--</option>
             </select>
-            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 "
+            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
               (click)="acceptGpsException('clockout')">Accept</button>
           </div>
 
