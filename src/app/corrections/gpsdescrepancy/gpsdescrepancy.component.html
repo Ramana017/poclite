@@ -86,16 +86,17 @@
               {{clockInLongitude}}
             </p>
           </div>
-          <div *ngIf="arrivalgpsErr" class="form-group mx-2">
-            <h3 class="f-15">Clock In Comments</h3>
-            <textarea class="form-control" [(ngModel)]="clockInComments" rows="3"></textarea>
+          <div class="form-group mx-2">
+            <h3 class="f-15">Clock In Comments<span class="text-danger">*</span></h3>
+            <textarea class="form-control" [readOnly]="!arrivalgpsErr" [(ngModel)]="clockInComments" rows="3"></textarea>
           </div>
           <div class="button-wrapper mb-2 d-flex align-items-center justify-content-between">
            <div class="">
             <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
-           </div> 
-           <select class="mx-2">
-             <option>--Select Reason--</option>
+           </div>
+           <select [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
+             <option [ngValue]="null||0" >--Select Reason--</option>
+             <option *ngFor="let item of gpsAcceptReasonList"[ngValue]="item.id" >{{item.name}}</option>
            </select>
             <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
@@ -128,18 +129,19 @@
             <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}},
               Longitude:{{clockOutLongitude}} </p>
           </div>
-          <div *ngIf="depgpsErr" class="form-group mx-2">
-            <h3 class="f-15">Clock Out Comments</h3>
-            <textarea class="form-control" [(ngModel)]="clockOutComments" rows="3"></textarea>
+          <div  class="form-group mx-2">
+            <h3 class="f-15">Clock Out Comments<span class="text-danger">*</span></h3>
+            <textarea class="form-control" [readOnly]="!depgpsErr" [(ngModel)]="clockOutComments" rows="3"></textarea>
           </div>
           <div class="button-wrapper d-flex align-items-center justify-content-between mb-2">
             <div class="">
               <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
             </div>
-            <select class="mx-2">
-              <option>--Select Reason--</option>
+            <select [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
+              <option [ngValue]="null||0" >--Select Reason--</option>
+              <option *ngFor="let item of gpsAcceptReasonList"[ngValue]="item.id" >{{item.name}}</option>
             </select>
-            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
+            <button *ngIf="depgpsErr"   type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
               (click)="acceptGpsException('clockout')">Accept</button>
           </div>
 
