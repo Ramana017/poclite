@@ -1,0 +1,55 @@
+.ps-edit-tabs{
+    .nav-tabs{
+        border-top: 1px solid #dee2e6;
+    }
+    .nav-link {
+        padding: 5px 10px;
+        font-size: 12px;
+        font-family: "AvenirLTStd-Light", sans-serif !important;
+        color: black;
+        position: relative;
+        &.active{
+            color: #fff;
+            background-color: #a88746 !important;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 5px;
+            // bottom: 50%;
+            width: 1px;
+            height: 65%;
+            background: #dee2e6;
+        }
+    }
+    .nav-item{
+        &:first-child{
+            .nav-link{
+                &::before{
+                    content: '';
+                    position: absolute;
+                    left:  0;
+                    top: 5px;
+                    // bottom: 50%;
+                    width: 1px;
+                    height: 65%;
+                    background: #dee2e6;
+                }
+            }
+        }
+    }
+    .basic-input-container label, .telephony-input label, .input-container-wrapper label {
+        font-size: 12px;
+    }
+}
+@media(max-width:1400px){
+    .mh-90{
+        min-height:90vh;
+    }
+}
+@media(min-width:1400px){
+    .mh-90{
+        height: 100%;
+    }
+}

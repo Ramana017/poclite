@@ -71,6 +71,7 @@ const routes: Routes = [
   { path: "page-not-found", component: PageNotFoundComponent }
   ,
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
+  { path: 'ps-edit', loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 
