@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AgmCoreModule}from '@agm/core';
@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })
 export class SharedModule {
