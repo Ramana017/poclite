@@ -1,6 +1,6 @@
 .side-bar {
     left: 0;
-   min-height: 90.4vh;
+    min-height: 90.4vh;
     background: #444444;
     color: white;
     header {
@@ -59,7 +59,7 @@
         overflow-x: hidden;
         background-color: #f7fafc;
     }
-    i{
+    i {
         cursor: pointer;
     }
 }
@@ -78,7 +78,7 @@
         overflow-x: hidden;
         background-color: #f7fafc;
     }
-    i{
+    i {
         cursor: pointer;
     }
 }
@@ -160,7 +160,7 @@
 }
 
 .chart-topbar-button {
-    min-width: 100px;
+    min-width: 45px;
     font-size: 13px;
     font-weight: 500;
     color: $white;
