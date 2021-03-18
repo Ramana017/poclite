@@ -48,7 +48,7 @@
                     <a>Visit Review </a>
                   </li>
 
-                  <li class="dropdown-item dropdown side-menu-analytics"
+                  <li class=" d-none dropdown-item dropdown side-menu-analytics"
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
@@ -72,7 +72,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class="dropdown-item dropdown side-menu-analytics">
+                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class=" d-none dropdown-item dropdown side-menu-analytics">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true"  aria-expanded="false">POC Scheduling</a>
 

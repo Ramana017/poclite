@@ -64,11 +64,7 @@
                 </div>
 
                 <div class="chart-container col-md-12 " *ngIf="displayVisitCards">
-                    <div class="card-container mr-5 my-4">
-                        <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
-                        <h1 class="AvenirLTStd-Heavy" class="count">{{cancelledVisitsCount}}</h1>
-                        <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
-                    </div>
+
                     <div class="card-container mr-5 my-4">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Missed Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">{{missedVisitsCount}}</h1>
@@ -79,6 +75,11 @@
                         <h1 class="AvenirLTStd-Heavy" class="count">{{openVisitsCount}}</h1>
                         <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
                     </div>
+                    <div class="card-container mr-5 my-4">
+                      <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
+                      <h1 class="AvenirLTStd-Heavy" class="count">{{cancelledVisitsCount}}</h1>
+                      <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                  </div>
                 </div>
                 <div class="chart-container col-md-12 " *ngIf="displayClientVisits">
                   <div class="card-container mr-5 my-4">
@@ -92,16 +93,17 @@
                         <div class="col-md-3 pl-0">
                             <!-- cards/ -->
                             <div class="d-flex">
-                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
-                                    <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
-                                    <h1 class="count mb-0">{{openVisitsCount}}</h1>
-                                    <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
-                                </div>
+
                                 <div class="card-container mr-2" *ngIf="displyHighlightCard!='Missed Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Missed Visits</h5>
                                     <h1 class="count mb-0">{{missedVisitsCount}}</h1>
                                     <span class="info" (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)"><i class="fas fa-info-circle"></i></span>
                                 </div>
+                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
+                                  <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
+                                  <h1 class="count mb-0">{{openVisitsCount}}</h1>
+                                  <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                              </div>
                                 <div class="card-container mr-2" *ngIf="displyHighlightCard!='Cancelled Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Cancelled Visits</h5>
                                     <h1 class="count mb-0">{{cancelledVisitsCount}}</h1>
