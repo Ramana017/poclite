@@ -16,26 +16,26 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a>Clients</a></li>
+                    <li (click)="!displayClientVisits?getDashBoardClientsCount(true):''" ><a>Clients</a></li>
                 </ul>
 
             </div>
             <div class="col-md-10 chart-content p-0 col-xs-12">
 
                 <div class="chart-content-header d-flex py-2  mb-2 justify-content-center sticky-top">
-                    <div class="site-dropdown text-center px-2">
+                    <div class="site-dropdown text-center px-2" *ngIf="!displayClientVisits">
                         <p class="m-0">CSS </p>
-                        <angular2-multiselect [data]="cssList" #ddd [(ngModel)]="officeIds" [settings]="cssdropdownSettings">
+                        <angular2-multiselect [data]="cssList" #ddd [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
                         </angular2-multiselect>
                     </div>
-                    <div class="site-dropdown text-center px-2">
+                    <div class="site-dropdown text-center px-2" >
                         <p class="m-0">Site </p>
-                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="cssIds" [settings]="sitedropdownSettings">
+                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officeIds" [settings]="sitedropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
                         <p class="m-0">Scheduled Start </p>
-                        <input type="text" maxlength=10 [(ngModel)]="scheduleStart" [minDate]="archiveDate" [maxDate]="archiveDate" bsDatepicker placeholder="MM/DD/YYYY">
+                        <input type="text" maxlength=10 [(ngModel)]="scheduleStart" [minDate]="archiveDate" [maxDate]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
                     <div class="end-date text-center px-2">
                         <p class="m-0">Scheduled End </p>
@@ -80,15 +80,15 @@
                         <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
                     </div>
                 </div>
-                <div class="chart-container col-md-12 " *ngIf="displayCancelVisits">
+                <div class="chart-container col-md-12 " *ngIf="displayClientVisits">
                   <div class="card-container mr-5 my-4">
                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Client</h5>
                     <h1 class="AvenirLTStd-Heavy" class="count">{{clientVisitCount}}</h1>
-                    <span class="info" (click)="getDashBoardClientsCount()"><i class="fas fa-info-circle"></i></span>
+                    <span class="info" (click)="getDashBoardClientsData()"><i class="fas fa-info-circle"></i></span>
                 </div>
                 </div>
-                <div class="bar-graph-container col-md-12" *ngIf="!displayVisitCards&&!displayCancelVisits">
-                    <div class="row m-0">
+                <div class="bar-graph-container col-md-12">
+                    <div class="row m-0"*ngIf="!displayVisitCards&& !displayClientVisits">
                         <div class="col-md-3 pl-0">
                             <!-- cards/ -->
                             <div class="d-flex">
@@ -129,7 +129,7 @@
 
 
 
-                    <div class="summary-wrapper">
+                    <div class="summary-wrapper" *ngIf="!displayVisitCards&&!displayClientVisits">
                         <div class="outer-wrapper">
                             <div id="table-scroll" class="table-scroll">
                                 <div class="table-width-scroll">
@@ -140,7 +140,7 @@
                                                     <h5 class="mainheading-wrapper">Site</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                                                            <angular2-multiselect [data]="siteFilter" [settings]="dropdownSettingsFilter">
+                                                            <angular2-multiselect [data]="siteFilter" [ngModel]="siteFilterName" [settings]="dropdownSettingsFilter">
                                                             </angular2-multiselect>
 
                                                         </div>
@@ -151,7 +151,7 @@
                                                     <h5 class="mainheading-wrapper">PS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete placeHolder="PS" [itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+                                                            <ng-autocomplete placeHolder="PS"[itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                                 <a [innerHTML]="item.psName"></a>
@@ -163,14 +163,12 @@
                                                     <h5 class="mainheading-wrapper">DCS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete [data]="dcsFilter" [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'dcsName'" placHolder="DCS">
+                                                            <ng-autocomplete [data]="dcsFilter" [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'dcsName'" placeHolder="DCS">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplatedcs let-item>
                                                                 <a [innerHTML]="item.dcsName"></a>
                                                             </ng-template>
-                                                            <ng-template #notFoundTemplate let-notFound>
-                                                                <div [innerHTML]="notFound" class="text-dark"></div>
-                                                            </ng-template>
+
                                                         </div>
 
 
@@ -276,6 +274,61 @@
                             </div>
                         </div>
                     </div>
+                    <div class="summary-wrapper" *ngIf="displayClientVisits&&displayClientTable">
+                      <div class="outer-wrapper">
+                          <div id="table-scroll" class="table-scroll">
+                              <div class="table-width-scroll">
+                                  <table id="main-table" class="main-table" cellpadding="0">
+                                      <thead class="thead-row">
+                                          <tr class="pb-0">
+                                              <th scope="col" class="sticky-top table-header-inner">
+                                                  <h5 class="mainheading-wrapper">Site</h5>
+
+                                              </th>
+                                              <th scope="col" class="sticky-top table-header-wrapper">
+                                                  <h5 class="mainheading-wrapper">PS</h5>
+                                              </th>
+
+                                              <th scope="col" class="sticky-top table-header-inner">
+                                                  <h5 class="mainheading-wrapper">Service </h5>
+                                              </th>
+
+                                              <th scope="col " class="sticky-top table-header-inner-wrapper">
+                                                  <h5 class="mainheading-wrapper ">Admission Date</h5>
+
+                                              </th>
+
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+
+                                          <tr *ngFor="let data of visitData let i=index " class="table-border ">
+                                              <td class="body-cell col2 text-color sitecodeinner">
+                                                  <div>
+                                                      {{data.site}}
+
+                                                  </div>
+                                              </td>
+                                              <td class="body-cell col2 ">{{data.psName}}</td>
+
+                                              <td class="body-cell text-color col4 Serviceprocedurecode">
+                                                  <div>
+                                                      {{data.serviceCode}}
+
+                                                  </div>
+
+                                              </td>
+                                              <td class="body-cell col4 ">{{data.admissionDate}}</td>
+                                              <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
+                                          </tr>
+                                      </tbody>
+
+                                  </table>
+                                  <p class="text-center no-data-text" *ngIf="visitData.length==0"> No Data To display</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
 
             </div>
@@ -286,3 +339,6 @@
 <div>
 
 </div>
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>
