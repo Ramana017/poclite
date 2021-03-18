@@ -1,0 +1,183 @@
+
+          <span class="slack-icon" (click)="healthlogdata(healthlog)">
+            <i class="pi pi-slack"></i></span>
+          <div
+            class="visit-information position-relative border-2 rounded my-3 mr-4"
+          >
+            <p class="visit-info-text AvenirLTStd-Heavy bg-white">Health</p>
+            <div class="container-wrapper mt-2">
+              <div class="ps-registration-tabs-container">
+                <div class="">
+                  <form class="d-flex nav border-2">
+                    <div class="input-container-wrapper">
+                      <label class="">
+                        Disaster Code<span class="text-danger">*</span>
+                      </label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control text-capital"
+                          aria-label="Auth"
+                        />
+                      </div>
+                    </div>
+                    <div class="input-container-wrapper">
+                      <label class="">
+                        Height<span class="text-danger">*</span>
+                      </label>
+                      <div class="input-group">
+                        <label class="mb-0 color-black">ft.</label>
+                        <input
+                          type="text"
+                          class="form-control text-capital mr-2"
+                          aria-label="Auth"
+                        />
+                        <label class="mb-0 color-black">inches</label>
+                        <input
+                          type="text"
+                          class="form-control text-capital"
+                          aria-label="Auth"
+                        />
+                      </div>
+                    </div>
+                    <div class="input-container-wrapper d-flex nav">
+                      <div>
+                        <label class="">
+                          Weight (lbs)<span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control text-capital w-100px mr-2"
+                            aria-label="Auth"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="check-box-wrapper">
+                        <label class="mb-0 color-black"
+                          >Advance Directive</label
+                        >
+                        <div class="on-off-toggle">
+                          <input
+                            class="on-off-toggle__input"
+                            type="checkbox"
+                            id="bopis"
+                          />
+                          <label
+                            for="bopis"
+                            class="on-off-toggle__slider"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="check-box-wrapper">
+                      <label class="mb-0 color-black">Do not Resuscitate</label>
+                      <div class="on-off-toggle">
+                        <input
+                          class="on-off-toggle__input"
+                          type="checkbox"
+                          id="bopis1"
+                        />
+                        <label
+                          for="bopis1"
+                          class="on-off-toggle__slider"
+                        ></label>
+                      </div>
+                    </div>
+                    <div class="form-group mr-2">
+                      <label class="mb-0 color-black">Limitations</label>
+                      <div class="input-group form-group">
+                        <textarea
+                          rows="3"
+                          class="form-control bg-light-grey"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="mb-0 color-black">Others</label>
+                      <div class="input-group form-group">
+                        <textarea
+                          rows="3"
+                          class="form-control bg-light-grey"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div
+                    class="d-flex align-items-center justify-content-between mt-3"
+                  >
+                    <div class="previous">
+                      <button
+                        type="button"
+                        class="btn-common btn-green w-auto px-3 bg-dark"
+                      >
+                        <i class="fas fa-times mr-2"></i>Close
+                      </button>
+                    </div>
+                    <div class="reset">
+                      <button
+                        type="button"
+                        class="btn-common btn-green w-auto px-3 bg-blue-light"
+                      >
+                        <i class="fas fa-sync mr-2"></i>Reset
+                      </button>
+                    </div>
+                    <div class="next">
+                      <button
+                        type="button"
+                        class="btn-common btn-green w-auto px-3"
+                      >
+                        <i class="fas fa-save mr-2"></i>Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+<ng-template #healthlog>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left AvenirLTStd-Heavy">Health Profile Log</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex align-items-center">
+      <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+      <h4 class="AvenirLTStd-Heavy">BANKS, MARGARET</h4>
+    </div>
+    <div class="table-responsive bg-white height-67 box-shadow">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center border-right align-middle">Priority</th>
+            <th class="text-center border-right align-middle">Weight</th>
+            <th class="text-center border-right align-middle">Limitations</th>
+            <th class="text-center border-right align-middle">Updated User</th>
+            <th class="text-center align-middle">Last Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border-right border-bottom">aa</td>
+            <td class="border-right border-bottom">aaa</td>
+            <td class="border-right border-bottom">aaa</td>
+            <td class="border-right border-bottom">aa</td>
+            <td class="border-bottom">aaa</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>
