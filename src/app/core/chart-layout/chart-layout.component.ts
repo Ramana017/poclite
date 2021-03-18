@@ -8,9 +8,9 @@ declare var $: any;
   styleUrls: ['./chart-layout.component.sass']
 })
 export class ChartLayoutComponent implements OnInit {
-  public dropdownSettings = {
+  public cssdropdownSettings = {
     singleSelection: false,
-    text: "Code",
+    text: "Css",
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
@@ -18,17 +18,17 @@ export class ChartLayoutComponent implements OnInit {
     noDataLabel: "No Data Available",
     classes: "myclass custom-class",
     showCheckbox: true,
-    labelKey: "siteCode",
+    labelKey: "cssName",
     // limitSelection: 3,
-    primaryKey: 'siteCode',
+    primaryKey: 'cssId',
     escapeToClose: false,
-    searchBy: ['siteCode'],
+    searchBy: ['cssName'],
     position: 'top'
 
   };
-  public dropdownSettings2 = {
+  public sitedropdownSettings = {
     singleSelection: false,
-    text: "CSS",
+    text: "Code",
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
@@ -64,7 +64,10 @@ export class ChartLayoutComponent implements OnInit {
   };
 
   public siteList = [];
-  public officeIds = []
+
+  public cssList = [];
+  public officeIds = [];
+  public cssIds=[];
 
   public archiveDate: Date = new Date();
   public scheduleStart: Date = new Date();
@@ -76,14 +79,12 @@ export class ChartLayoutComponent implements OnInit {
   public cssFilter=[];
   public serviceFilter=[];
   public visitData=[];
-
-
-
   private defaultstartdate: Date = new Date();
-
   public cancelledVisitsCount:number=0;
   public missedVisitsCount:number=0;
   public openVisitsCount :number=0;
+  animationState = 'out';
+
   single = [{
     "name": "10/28/2020",
     "value": 9
@@ -93,12 +94,7 @@ export class ChartLayoutComponent implements OnInit {
     "value": 50
   },];
   multi: any[];
-  animationState = 'out';
   view: any[] = [700, 400];
-
-  // options
-
-
   public displayVisitCards: boolean = true;
   public displyHighlightCard = '';
   public highlightcardcount:number=0;
@@ -119,6 +115,8 @@ export class ChartLayoutComponent implements OnInit {
   public psList: Array<any> = [];
   public pskeyword: string = '';
   public tableData: Array<any> = [];
+  public clientVisitCount:number=0;
+  public displayCancelVisits:boolean=false;
 
   ngOnInit(): void {
     this.getFilterData();
@@ -134,13 +132,13 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public getDashBoardVisitsCount() {
-
+    this.displayVisitCards=true;
     console.log("$$$$$$$$$$$$$########",this.officeIds.toString())
     let officelist=[];
     this.officeIds.map(y=>{
       officelist.push(y.siteId);
     })
-    let obj = { "userId": this.userData.userId, "startDate": this.datePipe.transform(this.scheduleStart,'MM/dd/yyyy'), "endDate": this.datePipe.transform(this.scheduleEnd,'MM/dd/yyyy'), "officeIds": officelist.length>0?officelist.toString():'' };
+    let obj = { "userId": this.userData.userId, "startDate": this.datePipe.transform(this.scheduleStart,'MM/dd/yyyy'), "endDate": this.datePipe.transform(this.scheduleEnd,'MM/dd/yyyy'), "officeIds": officelist.length>0?officelist.toString():'',"cssId":0 };
 
     try {
       this.dashboardService.getDashBoardVisitsCount(JSON.stringify(obj)).subscribe(res => {
@@ -152,12 +150,16 @@ export class ChartLayoutComponent implements OnInit {
 
     }
   }
-
+public getDashBoardClientsCount(){
+this.displayCancelVisits=true;
+this.displayVisitCards=false;
+}
   public getFilterData() {
     try {
       this.dashboardService.getFilterData(this.userData.userId).subscribe(res => {
         console.log(res);
-        this.siteList = res.siteList
+        this.siteList = res.siteList;
+        this.cssList=res.cssList;
         this.archiveDate = new Date(res.archiveDate);
       })
     } catch (error) {
@@ -166,6 +168,8 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public getDashBoardVisitsDetails(str,count) {
+
+    this.single=[];
     this.displyHighlightCard = str;
     this.displayVisitCards = false;
     this.highlightcardcount=count;
@@ -173,19 +177,46 @@ export class ChartLayoutComponent implements OnInit {
     this.officeIds.map(y=>{
       officelist.push(y.siteId);
     })
-let jsonObj={"userId" : this.userData.userId,"startDate":this.datePipe.transform(this.scheduleStart,'MM/dd/yyyy'),"endDate":this.datePipe.transform(this.scheduleEnd,'MM/dd/yyyy'),"officeIds":officelist.length>0?officelist.toString():'',"visitScenario":str=='Open Visits'?'openvisits':str=='Missed Visits'?'missedvisits':'cancelledvisits'  }
+
+let jsonObj={"userId" : this.userData.userId,"startDate":this.datePipe.transform(this.scheduleStart,'MM/dd/yyyy'),"endDate":this.datePipe.transform(this.scheduleEnd,'MM/dd/yyyy'),"officeIds":officelist.length>0?officelist.toString():'',"visitScenario":str=='Open Visits'?'openvisits':str=='Missed Visits'?'missedvisits':'cancelledvisits',"cssId":0  }
     try {
       this.dashboardService.getDashBoardVisitsDetails(JSON.stringify(jsonObj)).subscribe(res=>{
         console.log(res);
          this.visitData=res.visitData;
-        this.siteFilter=[...new Set(this.visitData.map(x=> x.site))]
-        this.dcsFilter=[...new Set(this.visitData.map(x=>x.dcsName))]
-        this.cssFilter=[...new Set(this.visitData.map(x=>x.cssName))]
-        this.serviceFilter=[...new Set(this.visitData.map(x=>x.serviceCode))]
-
-        console.log(this.siteFilter)
-
+        let visitdata =[...new Set(this.visitData.map(x=> x.site))]
+        let dcsData=[...new Set(this.visitData.map(x=>x.dcsName))]
+        let cssData=[...new Set(this.visitData.map(x=>x.cssName))]
+        let serviceData=[...new Set(this.visitData.map(x=>x.serviceCode))]
+        this.siteFilter=visitdata.map(x=>{
+          return {site:x}
+        });
+        this.dcsFilter=dcsData.map(x=>{
+          return {dcsName:x}
+        });
+        this.cssFilter=cssData.map(x=>{
+          return {cssName:x}
+        });
+         this.serviceFilter=serviceData.map(x=>{
+          return {serviceCode:x}
+        });
+        let visitdatedata=[...new Set(this.visitData.map(x=>x.visitDate))];
+        let graphData=[]
+        visitdatedata.map(x=>{
+          let i=0;
+          this.visitData.map(y=>{
+            if(y.visitDate==x){
+              i++;
+            }})
+          let obj={"name":x,"value":i}
+            graphData.push(obj)
+        })
+        this.single=graphData;
+        console.log(this.siteFilter,this.cssFilter,this.dcsFilter,this.serviceFilter)
+        this.displyHighlightCard = str;
+        this.displayVisitCards = false;
+        this.highlightcardcount=count;
       })
+
     } catch (error) {
 
     }

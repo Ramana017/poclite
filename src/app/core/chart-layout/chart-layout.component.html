@@ -25,12 +25,12 @@
                 <div class="chart-content-header d-flex py-2  mb-2 justify-content-center">
                     <div class="site-dropdown text-center px-2">
                         <p class="m-0">CSS </p>
-                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officeIds" [settings]="dropdownSettings2">
+                        <angular2-multiselect [data]="cssList" #ddd [(ngModel)]="officeIds" [settings]="cssdropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="site-dropdown text-center px-2">
                         <p class="m-0">Site </p>
-                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officeIds" [settings]="dropdownSettings">
+                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="cssIds" [settings]="sitedropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
@@ -80,7 +80,14 @@
                         <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
                     </div>
                 </div>
-                <div class="bar-graph-container col-md-12" *ngIf="!displayVisitCards">
+                <div class="chart-container col-md-12 " *ngIf="displayCancelVisits">
+                  <div class="card-container mr-5 my-4">
+                    <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Client</h5>
+                    <h1 class="AvenirLTStd-Heavy" class="count">{{clientVisitCount}}</h1>
+                    <span class="info" (click)="getDashBoardClientsCount()"><i class="fas fa-info-circle"></i></span>
+                </div>
+                </div>
+                <div class="bar-graph-container col-md-12" *ngIf="!displayVisitCards&&!displayCancelVisits">
                     <div class="row m-0">
                         <div class="col-md-3 pl-0">
                             <!-- cards/ -->
@@ -133,8 +140,8 @@
                                                     <h5 class="mainheading-wrapper">Site</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                                                            <!-- <angular2-multiselect [data]="siteFilter" #ddd [settings]="dropdownSettingsFilter">
-                                                            </angular2-multiselect> -->
+                                                            <angular2-multiselect [data]="siteFilter" [settings]="dropdownSettingsFilter">
+                                                            </angular2-multiselect>
 
                                                         </div>
 
@@ -156,7 +163,7 @@
                                                     <h5 class="mainheading-wrapper">DCS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete>
+                                                            <ng-autocomplete [data]="dcsFilter" [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'dcsName'" placHolder="DCS">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplatedcs let-item>
                                                                 <a [innerHTML]="item.dcsName"></a>
@@ -172,7 +179,7 @@
                                                 <th scope="col" class="sticky-top table-header-wrapper">
                                                     <h5 class="mainheading-wrapper">CSS</h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete>
+                                                        <ng-autocomplete [data]="cssFilter" [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'cssName'" placeHolder="CSS">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplatecss let-item>
                                                             <a [innerHTML]="item.cssName"></a>
@@ -182,10 +189,10 @@
                                                 <th scope="col" class="sticky-top table-header-inner">
                                                     <h5 class="mainheading-wrapper">Service </h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [data]="" #autoservice [searchKeyword]="" placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
+                                                        <ng-autocomplete [data]="serviceFilter"  [searchKeyword]="'serviceCode'" [notFoundTemplate]="notFoundTemplate" placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplateservice let-item>
-                                                            <a [innerHTML]="item.serviceName"></a>
+                                                            <a [innerHTML]="item.serviceCode"></a>
                                                         </ng-template>
                                                     </div>
                                                 </th>
@@ -270,7 +277,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
+
+<div>
+
 </div>
