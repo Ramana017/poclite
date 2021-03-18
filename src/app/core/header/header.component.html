@@ -34,14 +34,14 @@
                   </button>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                  <li class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']">
+                  <li *ngIf="userDetailService.checkUser('ceat')"  class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']">
                     <a>Home</a>
                   </li>
-                  <li class="dropdown-item" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
+                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
                     <a>POC Call
                       Management</a>
                   </li>
-                  <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>POC
+                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"  [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>POC
                       DashBoard</a>
                   </li>
                   <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">

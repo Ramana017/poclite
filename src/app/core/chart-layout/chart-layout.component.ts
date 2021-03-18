@@ -43,7 +43,7 @@ export class ChartLayoutComponent implements OnInit {
     position: 'top',
   };
   public dropdownSettingsFilter = {
-    singleSelection: false,
+    singleSelection: true,
     text: 'Code',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -81,7 +81,7 @@ export class ChartLayoutComponent implements OnInit {
   public missedVisitsCount: number = 0;
   public openVisitsCount: number = 0;
 
-  public siteFilterName=''
+  public siteFilterName = '';
   animationState = 'out';
 
   single = [
@@ -95,7 +95,7 @@ export class ChartLayoutComponent implements OnInit {
     },
   ];
   multi: any[];
-  view: any[] = [650, 400];
+  view: any[] = [700, 400];
   public displayVisitCards: boolean = true;
   public displyHighlightCard = '';
   public highlightcardcount: number = 0;
@@ -120,8 +120,17 @@ export class ChartLayoutComponent implements OnInit {
   public tableData: Array<any> = [];
   public clientVisitCount: number = 0;
   public displayClientVisits: boolean = false;
-  public displayClientTable:boolean=false;
-
+  public displayClientTable: boolean = false;
+  public fileterStartDate: any = null;
+  public filterEndeDate: any = null;
+  public psName: string = null;
+  public cssName: string = null;
+  public dcsName: string = null;
+  public serviceName: string = null;
+  public siteName: string = null;
+  public siteSelect;
+  public displayTable = [];
+  currentVisitScenario='';
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
@@ -129,21 +138,20 @@ export class ChartLayoutComponent implements OnInit {
   visits() {
     $('.divA').toggleClass('hide');
     this.displayVisitCards = true;
-    this.displayClientVisits=false
+    this.displayClientVisits = false;
   }
 
   onSelect(event) {
     console.log(event);
   }
 
-
   public getDashBoardClientsCount(flag: boolean) {
-    this.displayClientTable=false;
+    this.displayClientTable = false;
     this.displayClientVisits = true;
-    this.displayVisitCards=false;
+    this.displayVisitCards = false;
     flag ? (this.officeIds = []) : '';
     this.defaultstartdate.setDate(new Date().getDate() - 7);
-   this.scheduleStart.setDate(new Date().getDate() - 7);
+    this.scheduleStart.setDate(new Date().getDate() - 7);
     this.scheduleEnd = new Date();
 
     let officelist = [];
@@ -178,14 +186,14 @@ export class ChartLayoutComponent implements OnInit {
       officeIds: officelist.toString(),
     };
     try {
-      this.dashboardService.getDashBoardClientsData(JSON.stringify(jsonObj)).subscribe(res=>{
-        console.log(res);
-        this.visitData=res.clientData;
-        this.displayClientTable=true;
-      })
-    } catch (error) {
-
-    }
+      this.dashboardService
+        .getDashBoardClientsData(JSON.stringify(jsonObj))
+        .subscribe((res) => {
+          console.log(res);
+          this.visitData = res.clientData;
+          this.displayClientTable = true;
+        });
+    } catch (error) {}
   }
   public getFilterData() {
     try {
@@ -201,7 +209,7 @@ export class ChartLayoutComponent implements OnInit {
   }
   public getDashBoardVisitsCount() {
     this.displayVisitCards = true;
-    this.displayClientVisits=false
+    this.displayClientVisits = false;
 
     console.log('$$$$$$$$$$$$$########', this.officeIds.toString());
     let officelist = [];
@@ -227,10 +235,11 @@ export class ChartLayoutComponent implements OnInit {
     } catch (error) {}
   }
   public getDashBoardVisitsDetails(str, count) {
+    this.currentVisitScenario=str;
     this.single = [];
     this.displyHighlightCard = str;
     this.displayClientVisits = false;
-    this.displayVisitCards=false;
+    this.displayVisitCards = false;
     this.highlightcardcount = count;
     let officelist = [];
     this.officeIds.map((y) => {
@@ -243,7 +252,7 @@ export class ChartLayoutComponent implements OnInit {
       endDate: this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'),
       officeIds: officelist.length > 0 ? officelist.toString() : '',
       visitScenario:
-        str == 'Open Visits'
+        this.currentVisitScenario == 'Open Visits'
           ? 'openvisits'
           : str == 'Missed Visits'
           ? 'missedvisits'
@@ -256,9 +265,11 @@ export class ChartLayoutComponent implements OnInit {
         .subscribe((res) => {
           console.log(res);
           this.visitData = res.visitData;
+          this.displayTable = res.visitData;
           let visitdata = [...new Set(this.visitData.map((x) => x.site))];
           let dcsData = [...new Set(this.visitData.map((x) => x.dcsName))];
           let cssData = [...new Set(this.visitData.map((x) => x.cssName))];
+          let psData = [...new Set(this.visitData.map((x) => x.psName))];
           let serviceData = [
             ...new Set(this.visitData.map((x) => x.serviceCode)),
           ];
@@ -273,6 +284,9 @@ export class ChartLayoutComponent implements OnInit {
           });
           this.serviceFilter = serviceData.map((x) => {
             return { serviceCode: x };
+          });
+          this.psFilter = psData.map((x) => {
+            return { psName: x };
           });
           let visitdatedata = [
             ...new Set(this.visitData.map((x) => x.visitDate)),
@@ -301,55 +315,103 @@ export class ChartLayoutComponent implements OnInit {
         });
     } catch (error) {}
   }
-}
-export var single2 = [
-  {
-    name: '10/28/2020',
-    value: 9,
-  },
-  {
-    name: '10/29/2020',
-    value: 50,
-  },
-  {
-    name: '10/30/2020',
-    value: 72,
-  },
-  {
-    name: '11/01/2020',
-    value: 8,
-  },
-  {
-    name: '11/02/2020',
-    value: 50,
-  },
-  {
-    name: '11/03/2020',
-    value: 20,
-  },
-  {
-    name: '11/04/2020',
-    value: 20,
-  },
-  {
-    name: '11/05/2020',
-    value: 94,
-  },
-  {
-    name: '11/06/2020',
-    value: 55,
-  },
-  {
-    name: '11/07/2020',
-    value: 68,
-  },
-];
 
-// showXAxis = true;
-//   showYAxis = true;
-//   gradient = false;
-//   showLegend = false;
-//   showXAxisLabel = true;
-//   xAxisLabel = 'Date';
-//   showYAxisLabel = true;
-//   yAxisLabel = 'count';
+  public selectFilterEvent(event?: any, filter?: string) {
+    let eventpresent = event ? true : false;
+    console.log('+++++++', eventpresent, event);
+
+    if (filter == 'ps') {
+      this.psName = eventpresent ? event.psName : null;
+    }
+    if (filter == 'dcs') {
+      this.dcsName = eventpresent ? event.dcsName : null;
+    }
+    if (filter == 'css') {
+      this.cssName = eventpresent ? event.cssName : null;
+    }
+    if (filter == 'service') {
+      this.serviceName = eventpresent ? event.serviceCode : null;
+    }
+    if (filter == 'site') {
+      this.siteName = eventpresent ? event[0].site : null;
+    }
+    this.arrayManipulate();
+  }
+
+  public arrayManipulate() {
+    console.log(this.visitData);
+    this.displayTable = this.visitData;
+    console.log(this.displayTable);
+
+    if (this.psName != null) {
+      console.log('****', this.psName);
+      this.displayTable = this.displayTable.filter((x) => {
+        return x.psName == this.psName;
+      });
+      console.log(this.displayTable);
+    }
+    if (this.cssName != null) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return x.cssName == this.cssName;
+      });
+    }
+    if (this.dcsName != null) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return x.dcsName == this.dcsName;
+      });
+    }
+    if (this.serviceName != null) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return x.serviceCode == this.serviceName;
+      });
+    }
+    if (this.siteName != null) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return x.site == this.siteName;
+      });
+    }
+
+    if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return (
+          x.visitDate ==
+          this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy')
+        );
+      });
+    }
+
+    if (this.fileterStartDate != null && this.fileterStartDate != undefined) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return (
+          x.visitDate ==
+          this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy')
+        );
+      });
+    }
+    console.log(this.displayTable);
+  }
+
+  public FilterDateChange(event, flag?) {
+    console.log(this.datePipe.transform(event, 'MM/dd/yyyy'));
+    if (flag == 'start') {
+      this.fileterStartDate =
+        event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
+    }
+    if (flag == 'end') {
+      this.filterEndeDate =
+        event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
+    }
+    console.log(this.fileterStartDate);
+    console.log(this.filterEndeDate);
+    this.arrayManipulate();
+  }
+
+  public resetFilters() {
+    this.officeIds = [];
+    this.cssIds = [];
+    this.defaultstartdate.setDate(new Date().getDate() - 7);
+    this.scheduleStart.setDate(new Date().getDate() - 7);
+    this.scheduleEnd=new Date();
+    this.getDashBoardVisitsCount();
+  }
+}
