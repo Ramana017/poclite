@@ -8,7 +8,8 @@
         <div class="ps-edit-tabs">
             <tabset>
                 <tab heading="PS" id="tab1">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="pslogdata(pslog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">PS</p>
 
                         <!--    -->
@@ -262,29 +263,29 @@
 
                                         </div>
                                     </form>
-                                    <!-- <div class="next justify-content-between nav mt-3">
-                                            <div class="previous">
-                                                <button type="button" class="btn-info  btn-next prev-step"
-                                                    [routerLink]="['/widgets']">Cancel</button>
-                                            </div>
-                                            <button type="button" class="next-step btn-next"
-                                                (click)="onSubmit()">{{popup?'Save':'Save & Next'}}</button>
-
-                                        </div> -->
-
+                                    <div class="d-flex align-items-center justify-content-between mt-3">
+                                        <div class="previous">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
+                                        </div>
+                                        <div class="next">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
+                                        </div>
+                                    </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <ng-template #notFoundTemplate let-notFound>
                             <div [innerHTML]="notFound" class="text-dark"></div>
                         </ng-template>
-
                     </div>
+
                 </tab>
                 <tab heading="Guarantor">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon"  (click)="guarantorlogdata(guarantorlog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Guarantor Details</p>
                         <div class="container-wrapper">
                             <div class="ps-registration-tabs-container">
@@ -473,11 +474,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -485,9 +488,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-50 mx-auto mb-2 ">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Code</th>
+                                    <th class="text-center border-right align-middle">Last Name</th>
+                                    <th class="text-center  align-middle">First Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">aaa</td>
+                                    <td class="border-right border-bottom">aaa</td>
+                                    <td class=" border-bottom">aaa</td>
+                                </tr>
+                            </tbody>
+            
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Contacts">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="contactslogdata(contactlog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Contacts</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -738,11 +763,13 @@
 
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -750,9 +777,35 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-75 mx-auto mb-2 ">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Contact Type</th>
+                                    <th class="text-center border-right align-middle">Relationship</th>
+                                    <th class="text-center border-right align-middle">Last Name	</th>
+                                    <th class="text-center border-right align-middle">First Name</th>
+                                    <th class="text-center  align-middle">Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">aaa</td>
+                                    <td class="border-right border-bottom">aaa</td>
+                                    <td class=" border-right border-bottom">aaa</td>
+                                    <td class="border-right border-bottom">aaa</td>
+                                    <td class=" border-bottom">ddddddddddddd, Schenectady, New York, 12345, Home:6666666666 </td>
+                                </tr>
+                            </tbody>
+            
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Addresses">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="addresslogdata(addresslog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Addresses</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -781,106 +834,138 @@
                                         </h4>
                                     </div>
                                     <div class="d-flex ">
-                                        <form class="d-flex align-items-center nav justify-content-between border-2">
-                                            <div class="input-container-wrapper">
-                                                <label class="">
-                                                    Location<span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control text-capital"
-                                                        aria-label="Auth">
-                                                </div>
-                                            </div>
-                                            <div class=" input-container-wrapper">
-                                                <label class="">
-                                                    Address Line #1<span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control" aria-label="Auth">
-                                                </div>
-                                            </div>
-                                            <div class=" input-container-wrapper">
-                                                <label class="">
-                                                    Address Line #2
-                                                </label>
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control" aria-label="Auth">
-                                                </div>
-                                            </div>
-                                            <div class=" input-container-wrapper">
-                                                <label class="">
-                                                    Zip Code<span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control " aria-label="date"
-                                                        id="autocomplete" type="text" class="form-control">
-
-                                                </div>
-                                            </div>
-                                            <div class=" m-0  input-container-wrapper phone-container">
-                                                <label class="">
-                                                    Phone<span class="text-danger">*</span>
-                                                </label>
-
-                                                <div class="input-group">
-                                                    <div class="  date-input  d-flex align-items-center w-100">
-                                                        <div class="ng-autocomplete phone-select">
-                                                            <input type="text" class="form-control" aria-label="Auth">
-                                                        </div>
-                                                        <div class="input-group ">
-                                                            <input type="text" class="form-control" aria-label="Auth">
-
-                                                        </div>
+                                        <form class="d-flex justify-content-between border-2">
+                                            <div class="d-flex align-items-center nav">
+                                                <div class="basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Location<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control text-capital"
+                                                            aria-label="Auth">
                                                     </div>
                                                 </div>
-
-                                            </div>
-                                            <div class=" m-0  input-container-wrapper pb-sm-0">
-                                                <label class="">City<span class="text-danger">*</span> </label>
-                                                <div class="input-group ">
-                                                    <input type="text" class="form-control " aria-label="date"
-                                                        disabled="true">
+                                                <div class=" basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Address Line #1<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+                                                    </div>
+                                                </div>
+                                                <div class=" basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Address Line #2
+                                                    </label>
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+                                                    </div>
+                                                </div>
+                                                <div class="basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Zip Code<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control " aria-label="date"
+                                                            id="autocomplete" type="text" class="form-control">
+    
+                                                    </div>
+                                                </div>
+                                                <div class=" m-0  basic-input-container phone-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Phone<span class="text-danger">*</span>
+                                                    </label>
+    
+                                                    <div class="input-group">
+                                                        <div class="  date-input  d-flex align-items-center w-100">
+                                                            <div class="ng-autocomplete phone-select">
+                                                                <input type="text" class="form-control" aria-label="Auth">
+                                                            </div>
+                                                            <div class="input-group ">
+                                                                <input type="text" class="form-control" aria-label="Auth">
+    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+                                                <div class="  basic-input-container form-group pb-sm-0">
+                                                    <label class="">City<span class="text-danger">*</span> </label>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control " aria-label="date"
+                                                            disabled="true">
+                                                    </div>
+                                                </div>
+                                                <div class=" basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        State <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control " aria-label="date"
+                                                            disabled="true">
+                                                    </div>
+                                                </div>
+                                                <div class=" basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        County<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control" aria-label="date" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="  basic-input-container form-group pb-sm-0" >
+                                                    <label class="">
+                                                        Time Zone<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" formControlName="country"
+                                                            aria-label="Case Manager" disabled>
+                                                    </div>
+    
+    
+                                                </div>
+                                                <div class="basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Country<span class="text-danger">*</span>
+                                                    </label>
+    
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" formControlName="country"
+                                                            aria-label="Case Manager" disabled>
+                                                    </div>
+    
+                                                </div>
+                                                <div class=" basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Fax<span class="text-danger">*</span>
+                                                    </label>
+    
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" formControlName="country"
+                                                            aria-label="Case Manager" disabled>
+                                                    </div>
+    
+                                                </div>
+                                                <div class="basic-input-container form-group pb-sm-0">
+                                                    <label class="">
+                                                        Email<span class="text-danger">*</span>
+                                                    </label>
+    
+                                                    <div class="input-group  ">
+                                                        <input type="text" class="form-control" formControlName="country"
+                                                            aria-label="Case Manager" disabled>
+                                                    </div>
+    
                                                 </div>
                                             </div>
-                                            <div class=" input-container-wrapper pb-sm-0">
-                                                <label class="">
-                                                    State <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group ">
-                                                    <input type="text" class="form-control " aria-label="date"
-                                                        disabled="true">
+                                          <div class="w-50">
+                                            <div class="form-group">
+                                                <label class="mb-0 color-black">Directions</label>
+                                                <div class="input-group form-group">
+                                                    <textarea rows="7" class="form-control bg-light-grey"></textarea>
                                                 </div>
                                             </div>
-                                            <div class=" input-container-wrapper pb-sm-0">
-                                                <label class="">
-                                                    County<span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group ">
-                                                    <input type="text" class="form-control" aria-label="date" disabled>
-                                                </div>
-                                            </div>
-                                            <div class=" m-0  input-container-wrapper pb-sm-0">
-                                                <label class="">
-                                                    Time Zone<span class="text-danger">*</span>
-                                                </label>
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control" formControlName="country"
-                                                        aria-label="Case Manager" disabled>
-                                                </div>
-
-
-                                            </div>
-                                            <div class=" m-0  input-container-wrapper pb-sm-0">
-                                                <label class="">
-                                                    Country<span class="text-danger">*</span>
-                                                </label>
-
-                                                <div class="input-group  ">
-                                                    <input type="text" class="form-control" formControlName="country"
-                                                        aria-label="Case Manager" disabled>
-                                                </div>
-
-                                            </div>
+                                          </div>
                                         </form>
                                         <!-- <form class=" w-50  border-2 ml-2">
                                             <div class="form-group">
@@ -892,14 +977,16 @@
                                            
                                         </form> -->
                                     </div>
-
+                              
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -907,9 +994,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-75 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Address Type</th>
+                                    <th class="text-center border-right align-middle">Address</th>
+                                    <th class="text-center border-right align-middle">Active</th> 
+                                    <th class="text-center  align-middle">Directions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i><i class="pi pi-trash ml-2"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class="border-right border-bottom">ddddddddddddd, Schenectady, New York, 12345, Home:6666666666  </td>
+                                    <td class=" border-right border-bottom">Yes </td>
+                                    <td class=" border-bottom">View</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Health">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="healthlogdata(healthlog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Health</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -929,7 +1039,8 @@
                                             </label>
                                             <div class="input-group ">
                                                 <label class="mb-0 color-black">ft.</label>
-                                                <input type="text" class="form-control text-capital mr-2" aria-label="Auth">
+                                                <input type="text" class="form-control text-capital mr-2"
+                                                    aria-label="Auth">
                                                 <label class="mb-0 color-black">inches</label>
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
                                             </div>
@@ -940,10 +1051,11 @@
                                                     Weight (lbs)<span class="text-danger">*</span>
                                                 </label>
                                                 <div class="input-group ">
-                                                    <input type="text" class="form-control text-capital w-100px mr-2" aria-label="Auth">
+                                                    <input type="text" class="form-control text-capital w-100px mr-2"
+                                                        aria-label="Auth">
                                                 </div>
                                             </div>
-                                        
+
                                             <div class="check-box-wrapper">
                                                 <label class="mb-0 color-black">Advance Directive</label>
                                                 <div class="on-off-toggle">
@@ -952,7 +1064,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
                                         <div class="check-box-wrapper ">
                                             <label class="mb-0 color-black">Do not Resuscitate</label>
                                             <div class="on-off-toggle">
@@ -977,11 +1089,13 @@
 
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -991,7 +1105,8 @@
                     </div>
                 </tab>
                 <tab heading="Medication">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="medicationlogdata(medicationlog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Medication</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -999,7 +1114,7 @@
                                     <form class="d-flex nav border-2">
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                               Medication Type<span class="text-danger">*</span>
+                                                Medication Type<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1013,7 +1128,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                               Dosage<span class="text-danger">*</span>
+                                                Dosage<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1021,7 +1136,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                               Frequency<span class="text-danger">*</span>
+                                                Frequency<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1043,11 +1158,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1055,9 +1172,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-50 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Medication Type</th>
+                                    <th class="text-center border-right align-middle">Dosage</th>
+                                    <th class="text-center border-right align-middle">Frequency</th> 
+                                    <th class="text-center  align-middle">Self Administering</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i><i class="pi pi-trash ml-2"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class="border-right border-bottom">abcd  </td>
+                                    <td class=" border-right border-bottom">Yes </td>
+                                    <td class=" border-bottom">View</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Allergies">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="allergylogdata(allergylog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Allergies</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -1065,7 +1205,7 @@
                                     <form class="d-flex nav border-2">
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                               Allergy Type<span class="text-danger">*</span>
+                                                Allergy Type<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1077,8 +1217,8 @@
                                                 <textarea rows="3" class="form-control bg-light-grey"></textarea>
                                             </div>
                                         </div>
-                                       
-                                       
+
+
                                         <div class="form-group mr-2">
                                             <label class="mb-0 color-black">Comments</label>
                                             <div class="input-group form-group">
@@ -1095,11 +1235,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1107,9 +1249,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-50 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Allergy Type</th>
+                                    <th class="text-center border-right align-middle">Allergy</th>
+                                    <th class="text-center  align-middle">Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i><i class="pi pi-trash ml-2"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class=" border-right border-bottom">Yes </td>
+                                    <td class=" border-bottom">Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Languages">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="languageslogdata(languagelog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Languages</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -1117,7 +1280,7 @@
                                     <form class="d-flex nav border-2">
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Language<span class="text-danger">*</span>
+                                                Language<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1125,7 +1288,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Speak<span class="text-danger">*</span>
+                                                Speak<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1133,7 +1296,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Read<span class="text-danger">*</span>
+                                                Read<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1141,7 +1304,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Write<span class="text-danger">*</span>
+                                                Write<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1150,11 +1313,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1162,9 +1327,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-25 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="text-center border-right align-middle"></th>
+                                    <th class="text-center border-right align-middle">Language</th>
+                                    <th class="text-center border-right align-middle">Speak</th>
+                                    <th class="text-center border-right align-middle">Read</th>
+                                    <th class="text-center  align-middle">Write</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class=" border-right border-bottom">Yes </td>
+                                    <td class=" border-right border-bottom">Yes </td>
+                                    <td class=" border-bottom">Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Details">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="detailslogdata(detailslog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Details</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -1186,7 +1374,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Statement Address<span class="text-danger">*</span>
+                                                Statement Address<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1194,7 +1382,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             Drivers License<span class="text-danger">*</span>
+                                                Drivers License<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1202,7 +1390,7 @@
                                         </div>
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                             License State<span class="text-danger">*</span>
+                                                License State<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1211,11 +1399,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1225,7 +1415,8 @@
                     </div>
                 </tab>
                 <tab heading="Hospitals">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="hospitalslogdata(hospitalslog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Hospitals</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
@@ -1233,7 +1424,7 @@
                                     <form class="d-flex nav border-2">
                                         <div class="input-container-wrapper ">
                                             <label class="">
-                                               Hospital<span class="text-danger">*</span>
+                                                Hospital<span class="text-danger">*</span>
                                             </label>
                                             <div class="input-group ">
                                                 <input type="text" class="form-control text-capital" aria-label="Auth">
@@ -1243,18 +1434,20 @@
                                             <div class="mr-2">
                                                 <label class="">
                                                     Admit Date
-                                                 </label>
-                                                 <div class="input-group mr-2">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
+                                                </label>
+                                                <div class="input-group mr-2">
+                                                    <input type="text" class="form-control text-capital"
+                                                        aria-label="Auth">
+                                                </div>
                                             </div>
                                             <div class="">
                                                 <label class="">
                                                     Discharge Date
-                                                 </label>
-                                                 <div class="input-group ">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
+                                                </label>
+                                                <div class="input-group ">
+                                                    <input type="text" class="form-control text-capital"
+                                                        aria-label="Auth">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group mr-2">
@@ -1273,11 +1466,13 @@
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1285,109 +1480,148 @@
                             </div>
                         </div>
                     </div>
+                    <div class="table-responsive bg-white  box-shadow w-50 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class=" border-right align-middle"></th>
+                                    <th class="border-right align-middle">Hospital</th>
+                                    <th class=" border-right align-middle">Admit Date</th>
+                                    <th class="  align-middle">Discharge Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class=" border-right border-bottom">20/03/2021</td>
+                                    <td class=" border-bottom">25/03/2021</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </tab>
                 <tab heading="Telephony">
-                    <div class="visit-information position-relative border-2 rounded my-3">
+                    <span class="slack-icon" (click)="telephonylogdata(telephonylog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
                         <p class="visit-info-text AvenirLTStd-Heavy bg-white">Hospitals</p>
                         <div class="container-wrapper mt-2">
                             <div class="ps-registration-tabs-container">
                                 <div class="">
-                                    <form class="d-flex nav border-2">
-                                      
-                                        <div class="input-container-wrapper d-flex">
-                                            <div class="mr-2">
-                                                <label class="">
-                                                    Tel. Code
-                                                 </label>
-                                                 <div class="input-group mr-2">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
+                                    <form class="d-flex border-2">
+                                        <div class="d-flex align-items-center nav">
+                                            <div class="basic-input-container d-flex">
+                                                <div class="mr-2">
+                                                    <label class="">
+                                                        Tel. Code
+                                                    </label>
+                                                    <div class="input-group mr-2">
+                                                        <input type="text" class="form-control text-capital"
+                                                            aria-label="Auth">
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <label class="">
+                                                        TTS Name
+                                                    </label>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control text-capital"
+                                                            aria-label="Auth">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="">
+                                            <div class="basic-input-container ">
                                                 <label class="">
-                                                TTS Name
-                                                 </label>
-                                                 <div class="input-group ">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
+                                                    Time Zone<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="input-group ">
+                                                    <input type="text" class="form-control text-capital"
+                                                        aria-label="Auth">
+                                                </div>
+                                            </div>
+                                            <div class="basic-input-container d-flex">
+                                                <div class="mr-2">
+                                                    <label class="">
+                                                        Tel. Code
+                                                    </label>
+                                                    <div class="input-group mr-2">
+                                                        <input type="text" class="form-control text-capital"
+                                                            aria-label="Auth">
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <label class="">
+                                                        TTS Name
+                                                    </label>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control text-capital"
+                                                            aria-label="Auth">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="basic-input-container d-flex">
+                                                <div class="check-box-wrapper col-6 p-0">
+                                                    <label class="mb-0 color-black">Show Alerts</label>
+                                                    <div class="on-off-toggle">
+                                                        <input class="on-off-toggle__input" type="checkbox"
+                                                            id="bopis1" />
+                                                        <label for="bopis1" class="on-off-toggle__slider"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="check-box-wrapper col-6 p-0">
+                                                    <label class="mb-0 color-black">Allow Overtime</label>
+                                                    <div class="on-off-toggle">
+                                                        <input class="on-off-toggle__input" type="checkbox"
+                                                            id="bopis1" />
+                                                        <label for="bopis1" class="on-off-toggle__slider"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="basic-input-container d-flex">
+                                                <div class="check-box-wrapper ">
+                                                    <label class="mb-0 color-black">Exclude from Visit Linking </label>
+                                                    <div class="on-off-toggle">
+                                                        <input class="on-off-toggle__input" type="checkbox"
+                                                            id="bopis1" />
+                                                        <label for="bopis1" class="on-off-toggle__slider"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="basic-input-container ">
+                                                <label class="">
+                                                    Time Zone<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="input-group ">
+                                                    <input type="text" class="form-control text-capital"
+                                                        aria-label="Auth">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="input-container-wrapper ">
-                                            <label class="">
-                                               Time Zone<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control text-capital" aria-label="Auth">
-                                            </div>
-                                        </div>
-                                        <div class="input-container-wrapper d-flex">
-                                            <div class="mr-2">
-                                                <label class="">
-                                                    Tel. Code
-                                                 </label>
-                                                 <div class="input-group mr-2">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
-                                            </div>
-                                            <div class="">
-                                                <label class="">
-                                                TTS Name
-                                                 </label>
-                                                 <div class="input-group ">
-                                                     <input type="text" class="form-control text-capital" aria-label="Auth">
-                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group mr-2 input-container-wrapper">
-                                            <label class="mb-0 color-black">Comments</label>
+                                        <div class="form-group  w-25 mr-2">
+                                            <label class="mb-0 color-black">Directions</label>
                                             <div class="input-group form-group">
                                                 <textarea rows="3" class="form-control bg-light-grey"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group mr-2 input-container-wrapper">
-                                            <label class="mb-0 color-black">Comments</label>
+
+                                        <div class="form-group w-25">
+                                            <label class="mb-0 color-black">Exclusion Comments</label>
                                             <div class="input-group form-group">
                                                 <textarea rows="3" class="form-control bg-light-grey"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="check-box-wrapper ">
-                                            <label class="mb-0 color-black">Active</label>
-                                            <div class="on-off-toggle">
-                                                <input class="on-off-toggle__input" type="checkbox" id="bopis1" />
-                                                <label for="bopis1" class="on-off-toggle__slider"></label>
-                                            </div>
-                                        </div>
-                                        <div class="check-box-wrapper ">
-                                            <label class="mb-0 color-black">Active</label>
-                                            <div class="on-off-toggle">
-                                                <input class="on-off-toggle__input" type="checkbox" id="bopis1" />
-                                                <label for="bopis1" class="on-off-toggle__slider"></label>
-                                            </div>
-                                        </div>
-                                        <div class="check-box-wrapper ">
-                                            <label class="mb-0 color-black">Active</label>
-                                            <div class="on-off-toggle">
-                                                <input class="on-off-toggle__input" type="checkbox" id="bopis1" />
-                                                <label for="bopis1" class="on-off-toggle__slider"></label>
-                                            </div>
-                                        </div>
-                                        <div class="input-container-wrapper ">
-                                            <label class="">
-                                               Time Zone<span class="text-danger">*</span>
-                                            </label>
-                                            <div class="input-group ">
-                                                <input type="text" class="form-control text-capital" aria-label="Auth">
                                             </div>
                                         </div>
 
                                     </form>
                                     <div class="d-flex align-items-center justify-content-between mt-3">
                                         <div class="previous">
-                                            <button type="button" class="btn-info  btn-next prev-step">Cancel</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
                                         </div>
                                         <div class="next">
-                                            <button type="button" class="btn-info  btn-next next-step">Save &
-                                                Next</button>
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
                                         </div>
                                     </div>
 
@@ -1396,9 +1630,645 @@
                         </div>
                     </div>
                 </tab>
-                <tab heading="Comments">Basic content 2</tab>
-                <tab heading="Alternate Id">Basic content</tab>
+                <tab heading="Comments">
+                    <span class="slack-icon" (click)="commentslogdata(commentslog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
+                        <p class="visit-info-text AvenirLTStd-Heavy bg-white">Comments</p>
+                        <div class="container-wrapper mt-2">
+                            <div class="ps-registration-tabs-container">
+                                <div class="">
+                                    <form class="d-flex nav border-2">
+                                        <div class="form-group mr-2">
+                                            <label class="mb-0 color-black">Comments</label>
+                                            <div class="input-group form-group">
+                                                <textarea rows="3" class="form-control bg-light-grey"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label class="mb-0 color-black">Attachment</label>
+                                            <p-fileUpload name="myfile[]" url="./upload.php"></p-fileUpload>
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label class="mb-0 color-black">Description</label>
+                                            <div class="input-group form-group">
+                                                <textarea rows="3" class="form-control bg-light-grey"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="check-box-wrapper 
+                                         p-0">
+                                            <label class="mb-0 color-black">Active</label>
+                                            <div class="on-off-toggle">
+                                                <input class="on-off-toggle__input" type="checkbox" id="bopis1" />
+                                                <label for="bopis1" class="on-off-toggle__slider"></label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-flex align-items-center justify-content-between mt-3">
+                                        <div class="previous">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
+                                        </div>
+                                        <div class="next">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive bg-white  box-shadow w-50 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class=" border-right align-middle"></th>
+                                    <th class="border-right align-middle">Comments	</th>
+                                    <th class=" border-right align-middle">Comment Date Time</th>
+                                    <th class=" border-right align-middle">Attachment</th>
+                                    <th class="  align-middle">Updated User</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class=" border-right border-bottom">20/03/2021</td>
+                                    <td class=" border-right border-bottom">20/03/2021</td>
+                                    <td class=" border-bottom">25/03/2021</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </tab>
+                <tab heading="Alternate Id">
+                    <span class="slack-icon" (click)="alternateidlogdata(alternateidlog)"> <i class="pi pi-slack"></i></span>
+                    <div class="visit-information position-relative border-2 rounded my-3 mr-4">
+                        <p class="visit-info-text AvenirLTStd-Heavy bg-white">Alternate Id</p>
+                        <div class="container-wrapper mt-2">
+                            <div class="ps-registration-tabs-container">
+                                <div class="">
+                                    <form class="d-flex nav border-2">
+                                        <div class="input-container-wrapper ">
+                                            <label class="">
+                                                Interface<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control text-capital" aria-label="Auth">
+                                            </div>
+                                        </div>
+                                        <div class="input-container-wrapper ">
+                                            <label class="">
+                                                Alternate Id<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control text-capital" aria-label="Auth">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-flex align-items-center justify-content-between mt-3">
+                                        <div class="previous">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                        </div>
+                                        <div class="reset">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
+                                        </div>
+                                        <div class="next">
+                                            <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive bg-white  box-shadow w-25 mx-auto mb-2 mt-2">
+                        <table class="table mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th  class="border-right align-middle"></th>
+                                    <th class="border-right align-middle">Interface</th>
+                                    <th class="align-middle">Alternate Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i></td>
+                                    <td class=" border-right border-bottom">Home111 </td>
+                                    <td class=" border-bottom">25/03/2021</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </tab>
             </tabset>
         </div>
     </div>
 </div>
+
+
+<ng-template #pslog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">PS Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">First Name</th>
+                        <th class="text-center border-right align-middle">Last Name</th>
+                        <th class="text-center border-right align-middle">Gender</th>
+                        <th class="text-center border-right align-middle">Race</th>
+                        <th class="text-center border-right align-middle">Marital Status</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #guarantorlog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Guarantor Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">First Name</th>
+                        <th class="text-center border-right align-middle">Last Name</th>
+                        <th class="text-center border-right align-middle">Relation</th>
+                        <th class="text-center border-right align-middle">Occupation</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #contactlog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Contact  Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Contact Person</th>
+                        <th class="text-center border-right align-middle">Contact Type </th>
+                        <th class="text-center border-right align-middle">Relation</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #addresslog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Addresses Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Address Type</th>
+                        <th class="text-center border-right align-middle">Address </th>
+                        <th class="text-center border-right align-middle">Time Zone</th>
+                        <th class="text-center border-right align-middle">Directions</th>
+                        <th class="text-center align-middle">Active</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #healthlog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Health Profile Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Priority</th>
+                        <th class="text-center border-right align-middle">Weight</th>
+                        <th class="text-center border-right align-middle">Limitations</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #medicationlog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Medication Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Medication Type</th>
+                        <th class="text-center border-right align-middle">Medication</th>
+                        <th class="text-center border-right align-middle">Dosage</th>
+                        <th class="text-center border-right align-middle">Frequency</th>
+                        <th class="text-center border-right align-middle">Notes</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #allergylog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Allergy Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Allergy Type</th>
+                        <th class="text-center border-right align-middle">Allergy</th>
+                        <th class="text-center border-right align-middle">Comments</th>
+                        <th class="text-center border-right align-middle">Active</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #languagelog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Language Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Language</th>
+                        <th class="text-center border-right align-middle">Speak</th>
+                        <th class="text-center border-right align-middle">Read</th>
+                        <th class="text-center border-right align-middle">Write</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #detailslog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Details Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Statement Address</th>
+                        <th class="text-center border-right align-middle">Drivers License</th>
+                        <th class="text-center border-right align-middle">Drivers License State</th>
+                       
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #hospitalslog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Hospitals Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Hospital</th>
+                        <th class="text-center border-right align-middle">Admit Date</th>
+                        <th class="text-center border-right align-middle">Discharge Date</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #telephonylog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Telephony Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Tel Code</th>
+                        <th class="text-center border-right align-middle">TTS Name</th>
+                        <th class="text-center border-right align-middle">PS Lead Time</th>
+                        <th class="text-center border-right align-middle">PS Lag Time</th>
+                        <th class="text-center border-right align-middle">Time Zone</th>
+                        <th class="text-center border-right align-middle">Allow Overtime</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #commentslog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Telephony Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Comments</th>
+                        <th class="text-center border-right align-middle">Comment Date Time</th>
+                        <th class="text-center border-right align-middle">Attachment</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #alternateidlog>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Altrenate Id Log</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-center">
+            <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+            <h4 class="AvenirLTStd-Heavy "> BANKS, MARGARET</h4>
+        </div>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th  class="text-center border-right align-middle">Interface</th>
+                        <th class="text-center border-right align-middle">Alternate Id</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class=" border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</ng-template>
