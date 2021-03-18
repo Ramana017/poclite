@@ -25,12 +25,12 @@
                 <div class="chart-content-header d-flex py-2  mb-2 justify-content-center sticky-top">
                     <div class="site-dropdown text-center px-2" *ngIf="!displayClientVisits">
                         <p class="m-0">CSS </p>
-                        <angular2-multiselect [data]="cssList" #ddd [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
+                        <angular2-multiselect [data]="cssList" #ddd (onDeSelectAll)="cssIds=[]" [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="site-dropdown text-center px-2" >
                         <p class="m-0">Site </p>
-                        <angular2-multiselect [data]="siteList" #ddd [(ngModel)]="officeIds" [settings]="sitedropdownSettings">
+                        <angular2-multiselect [data]="siteList" (onDeSelectAll)="officeIds=[]" [(ngModel)]="officeIds" [settings]="sitedropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
@@ -53,22 +53,18 @@
 
                     </div>
                     <div class="category-dropdown text-center px-2">
-                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4">Reset</button>
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4"(click)="resetFilters()" >Reset</button>
                         </div>
 
                     </div>
-                    <div class="category-dropdown text-center px-2">
-                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4">Refresh</button></div>
+                    <!-- <div class="category-dropdown text-center px-2">
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4"(click)="displayClientVisits?getDashBoardClientsCount():getDashBoardVisitsCount()" >Refresh</button></div>
 
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="chart-container col-md-12 " *ngIf="displayVisitCards">
-                    <div class="card-container mr-5 my-4">
-                        <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
-                        <h1 class="AvenirLTStd-Heavy" class="count">{{cancelledVisitsCount}}</h1>
-                        <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
-                    </div>
+
                     <div class="card-container mr-5 my-4">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Missed Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">{{missedVisitsCount}}</h1>
@@ -79,6 +75,11 @@
                         <h1 class="AvenirLTStd-Heavy" class="count">{{openVisitsCount}}</h1>
                         <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
                     </div>
+                    <div class="card-container mr-5 my-4">
+                      <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
+                      <h1 class="AvenirLTStd-Heavy" class="count">{{cancelledVisitsCount}}</h1>
+                      <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                  </div>
                 </div>
                 <div class="chart-container col-md-12 " *ngIf="displayClientVisits">
                   <div class="card-container mr-5 my-4">
@@ -92,16 +93,17 @@
                         <div class="col-md-3 pl-0">
                             <!-- cards/ -->
                             <div class="d-flex">
-                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
-                                    <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
-                                    <h1 class="count mb-0">{{openVisitsCount}}</h1>
-                                    <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
-                                </div>
+
                                 <div class="card-container mr-2" *ngIf="displyHighlightCard!='Missed Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Missed Visits</h5>
                                     <h1 class="count mb-0">{{missedVisitsCount}}</h1>
                                     <span class="info" (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)"><i class="fas fa-info-circle"></i></span>
                                 </div>
+                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
+                                  <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
+                                  <h1 class="count mb-0">{{openVisitsCount}}</h1>
+                                  <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                              </div>
                                 <div class="card-container mr-2" *ngIf="displyHighlightCard!='Cancelled Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Cancelled Visits</h5>
                                     <h1 class="count mb-0">{{cancelledVisitsCount}}</h1>
@@ -140,7 +142,7 @@
                                                     <h5 class="mainheading-wrapper">Site</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                                                            <angular2-multiselect [data]="siteFilter" [ngModel]="siteFilterName" [settings]="dropdownSettingsFilter">
+                                                            <angular2-multiselect [data]="siteFilter" [(ngModel)]="siteSelect" (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')" [settings]="dropdownSettingsFilter">
                                                             </angular2-multiselect>
 
                                                         </div>
@@ -151,7 +153,7 @@
                                                     <h5 class="mainheading-wrapper">PS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete placeHolder="PS"[itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+                                                            <ng-autocomplete placeHolder="PS" [data]="psFilter" (inputCleared)=" selectFilterEvent('','ps')" [searchKeyword]="'psName'"  (selected)='selectFilterEvent($event,"ps")'[itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                                 <a [innerHTML]="item.psName"></a>
@@ -163,7 +165,7 @@
                                                     <h5 class="mainheading-wrapper">DCS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete [data]="dcsFilter" [itemTemplate]="itemTemplatedcs" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'dcsName'" placeHolder="DCS">
+                                                            <ng-autocomplete [data]="dcsFilter" [itemTemplate]="itemTemplatedcs"(inputCleared)=" selectFilterEvent('','dcs')" (selected)='selectFilterEvent($event,"dcs")' [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'dcsName'" placeHolder="DCS">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplatedcs let-item>
                                                                 <a [innerHTML]="item.dcsName"></a>
@@ -177,7 +179,7 @@
                                                 <th scope="col" class="sticky-top table-header-wrapper">
                                                     <h5 class="mainheading-wrapper">CSS</h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [data]="cssFilter" [itemTemplate]="itemTemplatecss" [notFoundTemplate]="notFoundTemplate" [searchKeyword]="'cssName'" placeHolder="CSS">
+                                                        <ng-autocomplete [data]="cssFilter" [itemTemplate]="itemTemplatecss" (inputCleared)=" selectFilterEvent('','css')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"css")' [searchKeyword]="'cssName'" placeHolder="CSS">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplatecss let-item>
                                                             <a [innerHTML]="item.cssName"></a>
@@ -187,7 +189,7 @@
                                                 <th scope="col" class="sticky-top table-header-inner">
                                                     <h5 class="mainheading-wrapper">Service </h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [data]="serviceFilter"  [searchKeyword]="'serviceCode'" [notFoundTemplate]="notFoundTemplate" placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
+                                                        <ng-autocomplete [data]="serviceFilter"  [searchKeyword]="'serviceCode'"  (inputCleared)=" selectFilterEvent('','service')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"service")' placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplateservice let-item>
                                                             <a [innerHTML]="item.serviceCode"></a>
@@ -198,14 +200,14 @@
                                                     <h5 class="mainheading-wrapper">Scheduled Start </h5>
                                                     <div class="input-outter-wrapper dropdown">
 
-                                                        <input type="text" placeholder="Start Time" maxlength=10 class="date-input">
+                                                        <input type="text" bsDatepicker (ngModelChange)="FilterDateChange($event,'start')" [(ngModel)]="fileterStartDate" placeholder="Start Time" maxlength=10 class="date-input">
                                                     </div>
                                                 </th>
                                                 <th scope="col " class="sticky-top table-header-inner-wrapper">
                                                     <h5 class="mainheading-wrapper ">Scheduled End </h5>
                                                     <div class="input-outter-wrapper dropdown ">
 
-                                                        <input type="text" placeholder="Start Time" maxlength=10 bsDatepicker class="date-input">
+                                                        <input type="text" placeholder="Start Time" bsDatepicker [(ngModel)]="filterEndeDate" (ngModelChange)="FilterDateChange($event,'end')" maxlength=10 bsDatepicker class="date-input">
 
                                                     </div>
                                                 </th>
@@ -246,7 +248,8 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr *ngFor="let data of visitData let i=index " class="table-border ">
+                                            <!-- <tr *ngFor="let data of visitData|Itemfilter:{'psName':this.psName.trim(),'cssName':this.cssName.trim(),'dcsName':dcsName.trim(),'serviceCode':serviceName.trim()}:false" class="table-border "> -->
+                                              <tr class="table-border " *ngFor="let data of displayTable">
                                                 <td class="body-cell col2 text-color sitecodeinner">
                                                     <div>
                                                         {{data.site}}
@@ -269,7 +272,7 @@
                                         </tbody>
 
                                     </table>
-                                    <p class="text-center no-data-text" *ngIf="visitData.length==0"> No Data To display</p>
+                                    <p class="text-center no-data-text" *ngIf="displayTable.length==0"> No Data To display</p>
                                 </div>
                             </div>
                         </div>

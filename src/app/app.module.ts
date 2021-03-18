@@ -54,7 +54,7 @@ import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import {DomsanitizePipe} from '../app/pipes/domsanitize.pipe'
+import {DomsanitizePipe, FilterPipe} from '../app/pipes/domsanitize.pipe'
 
 
 
@@ -107,13 +107,14 @@ const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
     ChartLayoutComponent,
     VisitReviewComponent,
     DomsanitizePipe,
+    FilterPipe,
     ReviewExceptionpopupComponent,
     AnalyticsComponent,
     MaintainenceComponent,
     DailyReportsComponent,
     TelephonyStatsComponent,
     UtilizationStatsComponent,
-   
+
 
 
   ],
