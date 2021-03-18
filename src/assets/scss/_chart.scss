@@ -35,7 +35,7 @@
     padding: 10px 10px 10px 10px;
     width: 120px;
     height: 103px;
-
+position: relative;
     .count {
       font-size: 30px;
       margin-top: 5px;
@@ -46,6 +46,9 @@
     .info {
       float: right;
       font-size: 20px;
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
     }
 
     .header-text {
@@ -72,6 +75,7 @@
   .info {
     float: right;
     font-size: 20px;
+  
   }
 }
 .bar-graph{

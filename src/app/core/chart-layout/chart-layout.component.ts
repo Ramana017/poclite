@@ -95,7 +95,7 @@ export class ChartLayoutComponent implements OnInit {
     },
   ];
   multi: any[];
-  view: any[] = [700, 400];
+  view: any[] = [650, 400];
   public displayVisitCards: boolean = true;
   public displyHighlightCard = '';
   public highlightcardcount: number = 0;

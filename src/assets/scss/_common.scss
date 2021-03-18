@@ -2125,7 +2125,7 @@ app-maintainence {
   position: absolute;
   top: -10px;
   background: #f7fafc;
-  z-index: 9999;
+  z-index: 5;
   padding: 0 8px;
 }
 
@@ -2198,4 +2198,16 @@ app-maintainence {
 }
 .w-100px{
   width: 100px;
+}
+.slack-icon{
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  background: blue;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

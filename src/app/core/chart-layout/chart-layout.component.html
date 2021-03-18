@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 p-0 side-bar">
-                <ul>
+                <ul class="sticky-top">
                     <li class="">
                         <a (click)="visits()">Visits</a>
                         <div class="divA ">
@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-10 chart-content p-0 col-xs-12">
 
-                <div class="chart-content-header d-flex py-2  mb-2 justify-content-center">
+                <div class="chart-content-header d-flex py-2  mb-2 justify-content-center sticky-top">
                     <div class="site-dropdown text-center px-2" *ngIf="!displayClientVisits">
                         <p class="m-0">CSS </p>
                         <angular2-multiselect [data]="cssList" #ddd [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
