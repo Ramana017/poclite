@@ -2211,3 +2211,8 @@ app-maintainence {
   align-items: center;
   justify-content: center;
 }
+.user-profile{
+  .dropdown-menu.show{
+    z-index: 1021;
+  }
+}
