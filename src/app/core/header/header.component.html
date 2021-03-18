@@ -41,7 +41,7 @@
                     <a>POC Call
                       Management</a>
                   </li>
-                  <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/charts']"><a>POC
+                  <li class="dropdown-item" [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>POC
                       DashBoard</a>
                   </li>
                   <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">
@@ -142,7 +142,7 @@
         <div class="d-flex mr-n5">
           <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
           <h3 class="text-white mt-3">
-            <span routerLink="/charts" routerLinkActive #activity="routerLinkActive">
+            <span routerLink="/chart-layout" routerLinkActive #activity="routerLinkActive">
               {{activity.isActive ? "POC DashBoard" : ''}}
             </span>
             <span routerLink="/summary" routerLinkActive #dashboard="routerLinkActive">
