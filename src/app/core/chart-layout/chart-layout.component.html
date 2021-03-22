@@ -34,12 +34,14 @@
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
-                        <p class="m-0">Scheduled Start </p>
-                        <input type="text" maxlength=10 [(ngModel)]="scheduleStart" [minDate]="archiveDate" [maxDate]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
+                        <p class="m-0">Scheduled Start {{(scheduleStart|date:'MM:dd:yyy')|json}} </p>
+                        <input type="text" class="date-input" [(ngModel)]="scheduleStart" [maxDate]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
+
+
                     <div class="end-date text-center px-2">
                         <p class="m-0">Scheduled End </p>
-                        <input type="text" maxlength=10 [(ngModel)]="scheduleEnd" [minDate]="scheduleStart" bsDatepicker placeholder="MM/DD/YYYY">
+                        <input type="text" [(ngModel)]="scheduleEnd" [minDate]="scheduleStart" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
                     <!-- <div class="category-dropdown text-center px-2">
                         <p class="m-0">Category</p>
@@ -48,7 +50,7 @@
                         </angular2-multiselect>
                     </div> -->
                     <div class="category-dropdown text-center px-2">
-                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="getDashBoardVisitsCount()">Go</button>
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="displayClientVisits?getDashBoardClientsCount(false):getDashBoardVisitsCount()">Go</button>
                         </div>
 
                     </div>
