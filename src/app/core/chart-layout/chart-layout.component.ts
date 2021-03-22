@@ -70,6 +70,7 @@ export class ChartLayoutComponent implements OnInit {
   public archiveDate: Date = new Date();
   public scheduleStart: Date = new Date();
   public scheduleEnd: Date = new Date();
+  public todayDate:Date=new Date();
 
   public psFilter = [];
   public dcsFilter = [];
@@ -112,8 +113,9 @@ export class ChartLayoutComponent implements OnInit {
     public datePipe: DatePipe
   ) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
-    this.defaultstartdate.setDate(new Date().getDate() - 7);
-    this.scheduleStart.setDate(new Date().getDate() - 7);
+    this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
+    this.scheduleStart.setDate(this.todayDate.getDate() - 7);
+
     // Object.assign(this.single, { single2 })
   }
   public psList: Array<any> = [];
@@ -150,10 +152,15 @@ export class ChartLayoutComponent implements OnInit {
     this.displayClientTable = false;
     this.displayClientVisits = true;
     this.displayVisitCards = false;
-    flag ? (this.officeIds = []) : '';
-    this.defaultstartdate.setDate(new Date().getDate() - 7);
-    this.scheduleStart.setDate(new Date().getDate() - 7);
+    if(flag){
+      this.officeIds=[];
+      this.defaultstartdate.setDate(new Date().getDate() - 7);
+      this.scheduleStart.setDate(new Date().getDate() - 7);
+    }
+    console.log('startdate',this.scheduleStart);
     this.scheduleEnd = new Date();
+    console.log('End Date',this.scheduleEnd)
+
 
     let officelist = [];
     this.officeIds.map((y) => {
@@ -176,6 +183,7 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public getDashBoardClientsData() {
+    console.log(this.scheduleStart,this.scheduleEnd)
     let officelist = [];
     this.officeIds.map((y) => {
       officelist.push(y.siteId);
@@ -393,7 +401,7 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public FilterDateChange(event, flag?) {
-    console.log(this.datePipe.transform(event, 'MM/dd/yyyy'));
+    console.log("+++++++",this.datePipe.transform(event, 'MM/dd/yyyy'));
     if (flag == 'start') {
       this.fileterStartDate =
         event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
