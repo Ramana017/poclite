@@ -48,6 +48,7 @@ export class ChartLayoutComponent implements OnInit {
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
+    
     // enableFilterSelectAll	:true,
     noDataLabel: 'No Data Available',
     classes: 'myclass custom-class',
@@ -57,7 +58,7 @@ export class ChartLayoutComponent implements OnInit {
     primaryKey: 'site',
     escapeToClose: false,
     searchBy: ['site'],
-    position: 'top',
+    position: 'bottom',
   };
 
   public siteList = [];

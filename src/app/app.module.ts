@@ -69,6 +69,7 @@ import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { map } from 'rxjs/operators';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import {MultiSelectModule} from 'primeng/multiselect';
 const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
     ToastrModule.forRoot(),
     NgxChartsModule,
     TypeaheadModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    MultiSelectModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

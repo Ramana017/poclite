@@ -25,7 +25,7 @@
                 <div class="chart-content-header d-flex py-2  mb-2 justify-content-center sticky-top">
                     <div class="site-dropdown text-center px-2" *ngIf="!displayClientVisits">
                         <p class="m-0">CSS </p>
-                        <angular2-multiselect [data]="cssList" #ddd (onDeSelectAll)="cssIds=[]" [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
+                        <angular2-multiselect  [data]="cssList" #ddd (onDeSelectAll)="cssIds=[]" [(ngModel)]="cssIds" [settings]="cssdropdownSettings">
                         </angular2-multiselect>
                     </div>
                     <div class="site-dropdown text-center px-2" >
@@ -144,9 +144,12 @@
                                                     <h5 class="mainheading-wrapper">Site</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                                                            <angular2-multiselect [data]="siteFilter"  [(ngModel)]="siteSelect" (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')" [settings]="dropdownSettingsFilter">
-                                                            </angular2-multiselect>
-
+                                                            <!-- <angular2-multiselect appendTo ="body" [data]="siteFilter"  [(ngModel)]="siteSelect"
+                                                                 (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')" 
+                                                                 [settings]="dropdownSettingsFilter">
+                                                            </angular2-multiselect> -->
+                                                            <p-multiSelect appendTo ="body"  [options]="siteFilter"
+                                                             [(ngModel)]="siteSelect" optionLabel="site" (ngModelChange)="selectFilterEvent(siteSelect,'site')" ></p-multiSelect>
                                                         </div>
 
                                                     </div>
