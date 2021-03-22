@@ -145,11 +145,11 @@
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
                                                             <!-- <angular2-multiselect appendTo ="body" [data]="siteFilter"  [(ngModel)]="siteSelect"
-                                                                 (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')" 
+                                                                 (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')"
                                                                  [settings]="dropdownSettingsFilter">
                                                             </angular2-multiselect> -->
-                                                            <p-multiSelect appendTo ="body"  [options]="siteFilter"
-                                                             [(ngModel)]="siteSelect" optionLabel="site" (ngModelChange)="selectFilterEvent(siteSelect,'site')" ></p-multiSelect>
+                                                            <p-multiSelect appendTo ="body" defaultLabel="Code" [showToggleAll]="false" display="chip"  [options]="siteFilter"
+                                                             [(ngModel)]="siteSelect" optionLabel="site" (ngModelChange)="arrayManipulate()"></p-multiSelect>
                                                         </div>
 
                                                     </div>

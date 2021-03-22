@@ -48,7 +48,7 @@ export class ChartLayoutComponent implements OnInit {
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
-    
+
     // enableFilterSelectAll	:true,
     noDataLabel: 'No Data Available',
     classes: 'myclass custom-class',
@@ -131,7 +131,7 @@ export class ChartLayoutComponent implements OnInit {
   public dcsName: string = null;
   public serviceName: string = null;
   public siteName: string = null;
-  public siteSelect;
+  public siteSelect=[];
   public displayTable = [];
   currentVisitScenario='';
   ngOnInit(): void {
@@ -341,9 +341,7 @@ export class ChartLayoutComponent implements OnInit {
     if (filter == 'service') {
       this.serviceName = eventpresent ? event.serviceCode : null;
     }
-    if (filter == 'site') {
-      this.siteName = eventpresent ? event[0].site : null;
-    }
+
     this.arrayManipulate();
   }
 
@@ -374,10 +372,15 @@ export class ChartLayoutComponent implements OnInit {
         return x.serviceCode == this.serviceName;
       });
     }
-    if (this.siteName != null) {
+
+    if (this.siteSelect.length>0) {
       this.displayTable = this.displayTable.filter((x) => {
-        return x.site == this.siteName;
-      });
+        for(let i=0;i<this.siteSelect.length;i++)
+        {
+          return x.site == this.siteSelect[i].site;
+
+        }
+      })
     }
 
     if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
