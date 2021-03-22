@@ -96,7 +96,7 @@
 
           <div class="button-wrapper d-flex mb-0 align-items-center">
             <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> :</p>
-            <select [(ngModel)]="clockInCallerIdAccptReasonId"
+            <select  [(ngModel)]="clockInCallerIdAccptReasonId"
               class="bg-white border-0 outline-0  adjust-reason ml-2">
               <option [ngValue]=0>--Select--</option>
               <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>

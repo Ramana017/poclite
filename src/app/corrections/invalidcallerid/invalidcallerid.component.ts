@@ -115,6 +115,7 @@ export class InvalidcalleridComponent implements OnInit {
           this.phone3 !== undefined ? this.PhoneNumFormat(this.phone3, 'phone3') : undefined;
           this.clockInDCSPhoneType = this.responseData.clockInDCSPhoneType;
           this.clockOutDCSPhoneType = this.responseData.clockOutDCSPhoneType;
+          this.callerIdAcceptReasonList=this.responseData.callerIdAcceptReasonList;
         }
       ), error => {
 
@@ -138,7 +139,8 @@ export class InvalidcalleridComponent implements OnInit {
     }
     let commentLength = event == 'clockin' ? this.clockInComments.trim().length : this.clockOutComments.trim().length;
     if (commentLength > 0 && acceptreason) {
-      let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInComments": event == 'clockin' ? this.clockInComments : '', "clockOutComments": event == "clockout" ? this.clockOutComments : "", "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+      let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInComments": event == 'clockin' ? this.clockInComments : '', "clockOutComments": event == "clockout" ? this.clockOutComments : "",
+      "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId,clockInCallerIdAccptReasonId:this.clockInCallerIdAccptReasonId,clockOutCallerIdAccptReasonId:this.clockOutCallerIdAccptReasonId }
       let parameters = JSON.stringify(JsonData);
       console.log(JsonData)
 

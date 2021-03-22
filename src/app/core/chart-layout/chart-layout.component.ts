@@ -10,7 +10,7 @@ declare var $: any;
 export class ChartLayoutComponent implements OnInit {
   public cssdropdownSettings = {
     singleSelection: false,
-    text: 'Css',
+    text: 'CSS',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     enableSearchFilter: true,
