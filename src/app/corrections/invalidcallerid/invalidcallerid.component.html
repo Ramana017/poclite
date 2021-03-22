@@ -1,17 +1,17 @@
 <!-- <app-correctionheader></app-correctionheader> -->
 <div class="user-id-wrapper">
-    <div class="inner-wrapper">
-        <div class="row">
-            <!-- <div class="col-md-12">
+  <div class="inner-wrapper">
+    <div class="row">
+      <!-- <div class="col-md-12">
                 <div class="heading-wrapper">
                     <p>Visit Information</p>
                 </div>
             </div> -->
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <!-- <table class="table table-borderless mt-0">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <!-- <table class="table table-borderless mt-0">
                         <thead>
                             <tr>
                                 <th class="pb-0">PS</th>
@@ -43,52 +43,70 @@
                             </tr>
                         </tbody>
                     </table> -->
-                    <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
-                        <li class="mt-1">
-                            <label for="" class="m-0">PS</label>
-                            <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern="" tabindex="1">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">DCS</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Procedure Code</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="Procedure" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone" placeholder="SOURPS" pattern="" tabindex="3">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Scheduled Start</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="Schedule Start" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate" placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
-                        </li>
-                        <li class="mt-1">
-                            <label for="">Scheduled End</label>
-                            <input type="text" class="form-control modal-box-input" aria-label="End date" aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY" name="enddate" tabindex="5">
-                        </li>
-                    </ul>
-                </div>
-            </div>
+          <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+            <li class="mt-1">
+              <label for="" class="m-0">PS</label>
+              <input type="text" class="form-control modal-box-input" placeholder="PS" aria-label="PS"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="psName" name="phone" pattern=""
+                tabindex="1">
+            </li>
+            <li class="mt-1">
+              <label for="">DCS</label>
+              <input type="text" class="form-control modal-box-input" aria-label="DCS" aria-describedby="basic-addon1"
+                [disabled]='true' [(ngModel)]="DcsName" name="phone" placeholder="DCS" pattern="" tabindex="2">
+            </li>
+            <li class="mt-1">
+              <label for="">Procedure Code</label>
+              <input type="text" class="form-control modal-box-input" aria-label="Procedure"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="procedureCode" name="phone"
+                placeholder="SOURPS" pattern="" tabindex="3">
+            </li>
+            <li class="mt-1">
+              <label for="">Scheduled Start</label>
+              <input type="text" class="form-control modal-box-input" aria-label="Schedule Start"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleStartDate"
+                placeholder="MM/DD/YYYY" name="startDate" tabindex="4">
+            </li>
+            <li class="mt-1">
+              <label for="">Scheduled End</label>
+              <input type="text" class="form-control modal-box-input" aria-label="End date"
+                aria-describedby="basic-addon1" [disabled]='true' [(ngModel)]="scheduleEndDate" placeholder="MM/DD/YYYY"
+                name="enddate" tabindex="5">
+            </li>
+          </ul>
         </div>
+      </div>
+    </div>
 
-        <div class="row m-0">
-            <div class="col-md-6 col-sm-12" *ngIf='arrInvalidErrView'>
-                <div class="clock-detail-wrapper ml-0">
-                    <!-- <h3>Issue</h3>
+    <div class="row m-0">
+      <div class="col-md-6 col-sm-12" *ngIf='arrInvalidErrView'>
+        <div class="clock-detail-wrapper ml-0">
+          <!-- <h3>Issue</h3>
                     <p>The Caller ID from the <b>Clock In  </b> call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
-                    <h4 class="my-2">Clock In Details</h4>
-                    <div class="caller-id">
-                        <p class="text-white">Caller ID: {{clockInCallerID}}</p>
-                    </div>
-                    <div class="form-group mx-2" >
-                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
-                        <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments" ></textarea>
-                      </div>
-                      <div *ngIf="clockInDCSPhoneType.length>0" class="" >The Phone number used matches the DCS {{clockInDCSPhoneType}}  Phone number.</div>
+          <h4 class="my-2">Clock In Details</h4>
+          <div class="caller-id">
+            <p class="text-white">Caller ID: {{clockInCallerID}}</p>
+          </div>
+          <div class="form-group mx-2">
+            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
+            <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments"></textarea>
+          </div>
+          <div *ngIf="clockInDCSPhoneType.length>0" class="">The Phone number used matches the DCS
+            {{clockInDCSPhoneType}} Phone number.</div>
 
-                    <div class="button-wrapper ">
-                        <button type="button" class="btn" [disabled]="!arrInvalidErr" (click)="acceptCallerIdException('clockin')">Accept</button>
-                    </div>
-                </div>
-                <!-- <div class="clock-detail-wrapper">
+          <div class="button-wrapper d-flex ">
+            <p class="mt-2">Accept Reason <span class="text-danger">*</span> </p>
+            <select [(ngModel)]="clockInCallerIdAccptReasonId"
+              class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+              <option [ngValue]=0>--Select--</option>
+              <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
+
+            </select>
+            <button type="button" class="btn" [disabled]="!arrInvalidErr"
+              (click)="acceptCallerIdException('clockin')">Accept</button>
+          </div>
+        </div>
+        <!-- <div class="clock-detail-wrapper">
                     <h3>Update PS Phone Number</h3>
                     <div class="table-responsive">
                         <table class="table table-borderless">
@@ -135,87 +153,98 @@
                         <button type="button" class="btn" (click)="updatePSPhone()">Update</button>
                     </div>
                 </div> -->
-            </div>
-            <div class="col-md-6 col-sm-12" *ngIf='depInvalidErrView'>
-                <div class="clock-detail-wrapper ml-0">
-                    <!-- <h3>Issue</h3>
+      </div>
+      <div class="col-md-6 col-sm-12" *ngIf='depInvalidErrView'>
+        <div class="clock-detail-wrapper ml-0">
+          <!-- <h3>Issue</h3>
                     <p>The Caller ID from the <b> Clock out </b>call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
-                    <h4 class="my-2">Clock Out Details</h4>
-                    <div class="caller-id">
-                        <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
-                    </div>
-                      <div class="form-group mx-2" >
-                        <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
-                        <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm" ></textarea>
-                      </div>
-                      <div *ngIf="clockOutDCSPhoneType.length>0" class="" >The Phone number used matches the DCS {{clockOutDCSPhoneType}}  Phone number.</div>
-                    <div class="button-wrapper">
-                        <button type="button" class="btn" [disabled]="!depInvalidErr" (click)="acceptCallerIdException('clockout')">Accept</button>
-                    </div>
-                </div>
-            </div>
+          <h4 class="my-2">Clock Out Details</h4>
+          <div class="caller-id">
+            <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
+          </div>
+          <div class="form-group mx-2">
+            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
+            <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm"></textarea>
+          </div>
+          <div *ngIf="clockOutDCSPhoneType.length>0" class="">The Phone number used matches the DCS
+            {{clockOutDCSPhoneType}} Phone number.</div>
+          <div class="button-wrapper d-flex">
+            <p class="mt-2">Accept Reason <span class="text-danger">*</span> </p>
+            <select [(ngModel)]="clockOutCallerIdAccptReasonId"
+              class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+              <option [ngValue]=0>--Select--</option>
+              <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
+            </select>
+            <button type="button" class="btn" [disabled]="!depInvalidErr"
+              (click)="acceptCallerIdException('clockout')">Accept</button>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row m-0">
-            <div class="col-md-12 col-sm-12 ">
-                <div class="clock-detail-wrapper ml-0">
-                    <h3>Update PS Phone Number</h3>
-                    <div class="table-responsive">
-                        <table class="table table-borderless m-0">
-                            <thead>
-                                <tr>
-                                    <th class="position-relative">
-                                        <select [(ngModel)]="phoneType1" class="bg-light border-0 outline-0 p-2 ">
-                                      <option [ngValue]="null">Select Type</option>
-                                    <option  *ngFor="let phone of phoneTypelist"[ngValue]="phone.value" >{{phone.label}}</option>
+    <div class="row m-0">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="clock-detail-wrapper ml-0">
+          <h3>Update PS Phone Number</h3>
+          <div class="table-responsive">
+            <table class="table table-borderless m-0">
+              <thead>
+                <tr>
+                  <th class="position-relative">
+                    <select [(ngModel)]="phoneType1" class="bg-light border-0 outline-0 p-2 ">
+                      <option [ngValue]="null">Select Type</option>
+                      <option *ngFor="let phone of phoneTypelist" [ngValue]="phone.value">{{phone.label}}</option>
 
-                                    </select>
-                                        <!-- <label class="ml-3">
+                    </select>
+                    <!-- <label class="ml-3">
                                       {{phoneType1}}
                                     </label> -->
-                                    </th>
-                                    <th>
-                                        <select [(ngModel)]="phoneType2" class="bg-light border-0 outline-0 p-2 ">
-                                      <option [ngValue]="null||undefined">Select Type</option>
-                                      <option  *ngFor="let phone of phoneTypelist"[ngValue]="phone.value" >{{phone.label}}</option>
+                  </th>
+                  <th>
+                    <select [(ngModel)]="phoneType2" class="bg-light border-0 outline-0 p-2 ">
+                      <option [ngValue]="null||undefined">Select Type</option>
+                      <option *ngFor="let phone of phoneTypelist" [ngValue]="phone.value">{{phone.label}}</option>
 
-                                    </select>
-                                    </th>
-                                    <th>
-                                        <select [(ngModel)]="phoneType3" class="bg-light border-0 outline-0 p-2 ">
-                                        <option [ngValue]="null||undefined">Select Type</option>
-                                        <option  *ngFor="let phone of phoneTypelist"[ngValue]="phone.value" >{{phone.label}}</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select [(ngModel)]="phoneType3" class="bg-light border-0 outline-0 p-2 ">
+                      <option [ngValue]="null||undefined">Select Type</option>
+                      <option *ngFor="let phone of phoneTypelist" [ngValue]="phone.value">{{phone.label}}</option>
 
-                                      </select>
-                                    </th>
-                                    <th></th>
-                                </tr>
+                    </select>
+                  </th>
+                  <th></th>
+                </tr>
 
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input (change)="PhoneNumFormat(phone1,'phone1')" type="text" [(ngModel)]="phone1" placeholder="Phone1" id="usr">
-                                    </td>
-                                    <td>
-                                        <input type="text" (change)="PhoneNumFormat(phone2,'phone2')" maxlength=12 [(ngModel)]="phone2" placeholder="Phone2" id="Mobile">
-                                    </td>
-                                    <td>
-                                        <input type="text" (change)="PhoneNumFormat(phone3,'phone3')" maxlength=12 style="font-size: 14px;" [(ngModel)]="phone3" placeholder="Phone3" id="user">
-                                    </td>
-                                    <td>
-                                        <div class="btn-wrapper">
-                                            <button type="button" class="btn" (click)="validation()">Update</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input (change)="PhoneNumFormat(phone1,'phone1')" type="text" [(ngModel)]="phone1"
+                      placeholder="Phone1" id="usr">
+                  </td>
+                  <td>
+                    <input type="text" (change)="PhoneNumFormat(phone2,'phone2')" maxlength=12 [(ngModel)]="phone2"
+                      placeholder="Phone2" id="Mobile">
+                  </td>
+                  <td>
+                    <input type="text" (change)="PhoneNumFormat(phone3,'phone3')" maxlength=12 style="font-size: 14px;"
+                      [(ngModel)]="phone3" placeholder="Phone3" id="user">
+                  </td>
+                  <td>
+                    <div class="btn-wrapper">
+                      <button type="button" class="btn" (click)="validation()">Update</button>
                     </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
 
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
