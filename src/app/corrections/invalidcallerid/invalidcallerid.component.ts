@@ -45,6 +45,9 @@ export class InvalidcalleridComponent implements OnInit {
   public clockOutComments:String="";
   public  clockInDCSPhoneType:string="";
   public clockOutDCSPhoneType:string='';
+  public callerIdAcceptReasonList=[];
+  public clockInCallerIdAccptReasonId:number=0;
+  public clockOutCallerIdAccptReasonId:number=0;
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 

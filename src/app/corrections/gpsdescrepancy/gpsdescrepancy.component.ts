@@ -259,7 +259,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       }
     } else {
       let data = event == "clockin" ? commentLength==0||commentLength==undefined? " Enter Clock In comments ":'' : commentLength==0||commentLength==undefined? "Enter Clock Out comments  ":'';
-      let str2=event=="clockin"?this.clockInGpsAcceptReasonsId==0||null?" Select Clock In aceept Reason":'':this.clockOutGpsAcceptReasonsId==0||null?" Select Clock Out aceept Reason":'';
+      let str2=event=="clockin"?this.clockInGpsAcceptReasonsId==0||null?" Select Clock In accept Reason":'':this.clockOutGpsAcceptReasonsId==0||null?" Select Clock Out accept Reason":'';
 
       swal.fire({
         title: "Invalid Comments",

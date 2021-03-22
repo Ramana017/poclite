@@ -60,6 +60,8 @@ export class ScheduledvarianceComponent implements OnInit {
 
   minTime: Date = new Date();
   maxTime: Date = new Date();
+  public scheduleVarAcceptReasonList = [];
+  public exceptionAcceptReasonId: Number = 0;
   constructor(public datepipe: DatePipe, public _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
   ngOnInit(): void {
@@ -114,6 +116,7 @@ export class ScheduledvarianceComponent implements OnInit {
 
           this.orginalStartDate = this.getResponsedata.originalSchBeginDateTime;
           this.OrginalEndDate = this.getResponsedata.originalSchEndDateTime;
+          this.scheduleVarAcceptReasonList = this.getResponsedata.scheduleVarAcceptReasonList;
           console.log("ramana", this.getResponsedata.originalSchEndDateTime)
 
           // this.datepipe.transform(this.clockInDateAndTime,'a')
@@ -136,45 +139,55 @@ export class ScheduledvarianceComponent implements OnInit {
   }
 
   public acceptScheduleVarException() {
-    var JsonData = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "userId": this.userid }
+    var JsonData = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "userId": this.userid, exceptionAcceptReasonId: this.exceptionAcceptReasonId }
     let parameters = JSON.stringify(JsonData);
-    console.log(JsonData)
-    try {
-      this._apiService.acceptScheduleVarException(parameters).subscribe(
-        response => {
-          if (response) {
-            let merged = { ...this.jsonData, ...response };
-            if (this._apiService.checkException(merged)) {
-              console.log("exception is there");
-              this.popupUpdate.emit();
-            } else {
-              console.log("exception not there")
-              swal.fire({
-                text: "Accepted successfully",
-                icon: "success",
-                confirmButtonText: 'OK',
-                allowOutsideClick: false
-              }).then(ok => {
-                let merged = { ...this.jsonData, ...response }
-                if (this._apiService.checkException(merged)) {
-                      this.popupUpdate.emit();
-                } else {
-                  this._apiService.updateTable.next(true);
-                  this.bsmodelRef.hide();
-                }
-              })
+    if (this.exceptionAcceptReasonId == 0) {
+      swal.fire({
+        // title: "Invalid",
+        text: "Please select Accept Reason before accept",
+        icon: "warning",
+        confirmButtonText: 'OK',
+        allowOutsideClick: false
+      })
+    } else {
+      console.log(JsonData)
+      try {
+        this._apiService.acceptScheduleVarException(parameters).subscribe(
+          response => {
+            if (response) {
+              let merged = { ...this.jsonData, ...response };
+              if (this._apiService.checkException(merged)) {
+                console.log("exception is there");
+                this.popupUpdate.emit();
+              } else {
+                console.log("exception not there")
+                swal.fire({
+                  text: "Accepted successfully",
+                  icon: "success",
+                  confirmButtonText: 'OK',
+                  allowOutsideClick: false
+                }).then(ok => {
+                  let merged = { ...this.jsonData, ...response }
+                  if (this._apiService.checkException(merged)) {
+                    this.popupUpdate.emit();
+                  } else {
+                    this._apiService.updateTable.next(true);
+                    this.bsmodelRef.hide();
+                  }
+                })
+              }
             }
+
+          },
+          error => {
+            console.log(error);
           }
+        )
+      }
+      catch (error) {
 
-        },
-        error => {
-          console.log(error);
-        }
-      )
-    }
-    catch (error) {
-
-      console.log(error);
+        console.log(error);
+      }
     }
   }
   public updateReportedTimes() {
@@ -199,7 +212,7 @@ export class ScheduledvarianceComponent implements OnInit {
               }).then(ok => {
                 let merged = { ...this.jsonData, ...response }
                 if (this._apiService.checkException(merged)) {
-                      this.popupUpdate.emit();
+                  this.popupUpdate.emit();
                 } else {
                   this._apiService.updateTable.next(true);
                   this.bsmodelRef.hide();
