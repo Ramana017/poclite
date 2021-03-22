@@ -91,18 +91,18 @@
             <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
             <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments"></textarea>
           </div>
-          <div *ngIf="clockInDCSPhoneType.length>0" class="">The Phone number used matches the DCS
+          <div *ngIf="clockInDCSPhoneType.length>0" class="pl-2">The Phone number used matches the DCS
             {{clockInDCSPhoneType}} Phone number.</div>
 
-          <div class="button-wrapper d-flex ">
-            <p class="mt-2">Accept Reason <span class="text-danger">*</span> </p>
+          <div class="button-wrapper d-flex mb-0 align-items-center">
+            <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> :</p>
             <select [(ngModel)]="clockInCallerIdAccptReasonId"
-              class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+              class="bg-white border-0 outline-0  adjust-reason ml-2">
               <option [ngValue]=0>--Select--</option>
               <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
 
             </select>
-            <button type="button" class="btn" [disabled]="!arrInvalidErr"
+            <button type="button" class="btn mb-0" [disabled]="!arrInvalidErr"
               (click)="acceptCallerIdException('clockin')">Accept</button>
           </div>
         </div>
@@ -166,16 +166,16 @@
             <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
             <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm"></textarea>
           </div>
-          <div *ngIf="clockOutDCSPhoneType.length>0" class="">The Phone number used matches the DCS
+          <div *ngIf="clockOutDCSPhoneType.length>0" class="pl-2">The Phone number used matches the DCS
             {{clockOutDCSPhoneType}} Phone number.</div>
-          <div class="button-wrapper d-flex">
-            <p class="mt-2">Accept Reason <span class="text-danger">*</span> </p>
+          <div class="button-wrapper d-flex mb-0 align-items-center">
+            <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> :</p>
             <select [(ngModel)]="clockOutCallerIdAccptReasonId"
-              class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+              class="bg-white border-0 outline-0 ml-2 adjust-reason">
               <option [ngValue]=0>--Select--</option>
               <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
             </select>
-            <button type="button" class="btn" [disabled]="!depInvalidErr"
+            <button type="button" class="btn mb-0" [disabled]="!depInvalidErr"
               (click)="acceptCallerIdException('clockout')">Accept</button>
           </div>
         </div>

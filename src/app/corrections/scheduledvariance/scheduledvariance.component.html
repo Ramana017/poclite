@@ -93,7 +93,7 @@
           <div class="row m-0">
             <div class="col-md-5">
               <div class="table-responsive">
-                <ul class="nav mx-3 p-0 align-items-center modal-box-input-list my-3">
+                <ul class="nav mx-3 p-0 align-items-center modal-box-input-list mb-3">
                   <li class="mt-1">
                     <label for="" class="m-0">Original Scheduled Start</label>
                     <input type="text" class="form-control modal-box-input" placeholder="M/DD/YYYY"
@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <h3>Change the Reported Times</h3>
+          <h3 class="pt-0">Change the Reported Times</h3>
           <!-- <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>
@@ -138,7 +138,7 @@
           <div class="col-md-12 ">
             <div class="row m-0">
               <div class="col-md-6 col-sm-12 clockin-inner-wrapper mt-3 overflow-auto">
-                <p class="mr-5 mb-0">Clock In Date Time</p>
+                <p class="mr-5 mb-0 pt-0">Clock In Date Time</p>
                 <div class="d-flex nav">
                   <input [(ngModel)]="clockinDateview" type="text" class="form-control mr-2 mxw-108 mt-3" bsDatepicker
                     [maxDate]='todaysDate' placeholder="MM/DD/YYYY">
@@ -165,7 +165,7 @@
                   </div>
 
                 </div>
-                <p class="mt-2">Adjust Reason</p>
+                <p class="mb-0 pl-0">Adjust Reason</p>
                 <select [(ngModel)]="arrivalAdjReasonId"
                   class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
                   <option [ngValue]=0>--Select--</option>
@@ -175,7 +175,7 @@
                 </select>
               </div>
               <div class="col-md-6 col-sm-12 clockout-inner-wrapper mt-3 overflow-auto ">
-                <p class="mr-5 mb-0">Clock Out Date Time</p>
+                <p class="mr-5 mb-0 pt-0">Clock Out Date Time</p>
                 <div class="d-flex nav">
                   <input [(ngModel)]="clockOutDateview" type="text mr-2" class="form-control mr-2 mxw-108 mt-3"
                     [maxDate]='todaysDate' bsDatepicker placeholder="MM/DD/YYYY">
@@ -200,7 +200,28 @@
 
                 </div>
                 <div>
-                <p class="mt-2">Adjust Reason</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="">
+                      <p class="mb-0 pl-0">Adjust Reason</p>
+                      <select [(ngModel)]="departureAdjReasonId"
+                        class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+                        <option [ngValue]=0>--Select--</option>
+                        <option *ngFor="let reason of departureAdjustReasons" [ngValue]="reason.id">{{reason.label}}</option>
+      
+                      </select>
+                    </div>
+                    <div class="">
+                      <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> </p>
+                      <select [(ngModel)]="exceptionAcceptReasonId"
+                        class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
+                        <option [ngValue]=0>--Select--</option>
+                        <option *ngFor="let reason of scheduleVarAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
+      
+                      </select>
+                    </div>
+                  </div>
+
+                <!-- <p class="mt-2">Adjust Reason</p>
                 <select [(ngModel)]="departureAdjReasonId"
                   class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
                   <option [ngValue]=0>--Select--</option>
@@ -213,12 +234,12 @@
                   <option [ngValue]=0>--Select--</option>
                   <option *ngFor="let reason of scheduleVarAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
 
-                </select>
+                </select> -->
 
               </div>
             </div>
           </div>
-          <div class="button-btn-wrapper d-flex justify-content-end">
+          <div class="button-btn-wrapper d-flex justify-content-end mt-0">
             <button type="button" (click)="acceptScheduleVarException()" class="btn mb-2 mr-2">Accept</button>
             <button type="button" (click)="validationschedule()  " class="second-button mb-2 mr-2">Update</button>
           </div>
