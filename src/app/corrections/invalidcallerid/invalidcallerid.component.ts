@@ -41,13 +41,13 @@ export class InvalidcalleridComponent implements OnInit {
   public arrInvalidErrView: boolean = false;
   public depInvalidErrView: boolean = false;
   public useraccount: any;
-  public clockInComments:string="";
-  public clockOutComments:String="";
-  public  clockInDCSPhoneType:string="";
-  public clockOutDCSPhoneType:string='';
-  public callerIdAcceptReasonList=[];
-  public clockInCallerIdAccptReasonId:number=0;
-  public clockOutCallerIdAccptReasonId:number=0;
+  public clockInComments: string = "";
+  public clockOutComments: String = "";
+  public clockInDCSPhoneType: string = "";
+  public clockOutDCSPhoneType: string = '';
+  public callerIdAcceptReasonList = [];
+  public clockInCallerIdAccptReasonId: number = 0;
+  public clockOutCallerIdAccptReasonId: number = 0;
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -69,12 +69,12 @@ export class InvalidcalleridComponent implements OnInit {
     this.DcsName = this.JsonData.dcsName;
     this.psName = this.JsonData.psName;
     this.procedureCode = this.JsonData.procedureCode;
-     // this.scheduleStartDate = this.datepipe.transform(this.jsonData.scheduledBeginDateTime, 'MM/dd/yyyy');
+    // this.scheduleStartDate = this.datepipe.transform(this.jsonData.scheduledBeginDateTime, 'MM/dd/yyyy');
     // this.scheduleStartTime = this.datepipe.transform(this.jsonData.scheduledBeginDateTime, 'shortTime');
     // this.scheduleEndDate = this.datepipe.transform(this.jsonData.scheduledEndDateTime, 'MM/dd/yyyy');
     // this.scheduleEndTime = this.datepipe.transform(this.jsonData.scheduledEndDateTime, 'shortTime');
-    this.scheduleStartDate=this.JsonData.scheduledBeginDateTime;
-    this.scheduleEndDate=this.JsonData.scheduledEndDateTime;
+    this.scheduleStartDate = this.JsonData.scheduledBeginDateTime;
+    this.scheduleEndDate = this.JsonData.scheduledEndDateTime;
     if (this.JsonData.arrCallerIdException == 1) {
       this.arrInvalidErr = true;
       this.arrInvalidErrView = true;
@@ -110,11 +110,11 @@ export class InvalidcalleridComponent implements OnInit {
           this.phone1 = this.psPhones.phone1;
           this.phone2 = this.psPhones.phone2;
           this.phone3 = this.psPhones.phone3;
-          this.phone1!==undefined?this.PhoneNumFormat(this.phone1,'phone1'):undefined;
-          this.phone2!==undefined?this.PhoneNumFormat(this.phone2,'phone2'):undefined;
-          this.phone3!==undefined?this.PhoneNumFormat(this.phone3,'phone3'):undefined;
-          this.clockInDCSPhoneType=this.responseData.clockInDCSPhoneType;
-          this.clockOutDCSPhoneType=this.responseData.clockOutDCSPhoneType;
+          this.phone1 !== undefined ? this.PhoneNumFormat(this.phone1, 'phone1') : undefined;
+          this.phone2 !== undefined ? this.PhoneNumFormat(this.phone2, 'phone2') : undefined;
+          this.phone3 !== undefined ? this.PhoneNumFormat(this.phone3, 'phone3') : undefined;
+          this.clockInDCSPhoneType = this.responseData.clockInDCSPhoneType;
+          this.clockOutDCSPhoneType = this.responseData.clockOutDCSPhoneType;
         }
       ), error => {
 
@@ -130,54 +130,68 @@ export class InvalidcalleridComponent implements OnInit {
   public acceptCallerIdException(event) {
     let clockInFlag = event == 'clockin' ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
-    let commentLength=event=='clockin'?this.clockInComments.trim().length:this.clockOutComments.trim().length;
-    if(commentLength>0){
-    let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId,"clockInComments":event=='clockin'?this.clockInComments:'',"clockOutComments":event == "clockout"?this.clockOutComments:"", "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
-    let parameters = JSON.stringify(JsonData);
-    console.log(JsonData)
-    try {
-      this._apiService.acceptCallerIdException(parameters).subscribe(
-        response => {
-          console.log(response)
-          this.arrInvalidErr = event == "clockin" ? false : this.arrInvalidErr;
-          this.depInvalidErr = event == "clockout" ? false : this.depInvalidErr;
-          if (this.arrInvalidErr == false && this.depInvalidErr == false) {
-            swal.fire({
-              text: "Accepted successfully",
-              icon: "success",
-              confirmButtonText: 'OK',
-              allowOutsideClick: false
-            }).then(ok => {
-              let merged = { ...this.JsonData, ...response }
+    let acceptreason: boolean;
+    if (event == 'clockin') {
+      this.clockInCallerIdAccptReasonId == 0 ? acceptreason = false : acceptreason = true;
+    } else {
+      this.clockOutCallerIdAccptReasonId == 0 ? acceptreason = false : acceptreason = true;
+    }
+    let commentLength = event == 'clockin' ? this.clockInComments.trim().length : this.clockOutComments.trim().length;
+    if (commentLength > 0 && acceptreason) {
+      let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInComments": event == 'clockin' ? this.clockInComments : '', "clockOutComments": event == "clockout" ? this.clockOutComments : "", "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId }
+      let parameters = JSON.stringify(JsonData);
+      console.log(JsonData)
+
+      try {
+        this._apiService.acceptCallerIdException(parameters).subscribe(
+          response => {
+            console.log(response)
+            this.arrInvalidErr = event == "clockin" ? false : this.arrInvalidErr;
+            this.depInvalidErr = event == "clockout" ? false : this.depInvalidErr;
+            if (this.arrInvalidErr == false && this.depInvalidErr == false) {
+              swal.fire({
+                text: "Accepted successfully",
+                icon: "success",
+                confirmButtonText: 'OK',
+                allowOutsideClick: false
+              }).then(ok => {
+                let merged = { ...this.JsonData, ...response }
                 if (this._apiService.checkException(merged)) {
                   this.popupUpdate.emit();
                 } else {
                   this._apiService.updateTable.next(true);
                   this.bsmodelRef.hide();
                 }
-            })
+              })
 
+            }
+
+          },
+          error => {
+            console.log(error);
           }
+        )
+      }
+      catch (error) {
 
-        },
-        error => {
-          console.log(error);
-        }
-      )
+        console.log(error);
+      }
+    } else {
+      let str = []
+      let data = event == "clockin" ? " Clock In" : " Clock Out";
+      if (commentLength == 0) {
+        str.push(`Enter ${data} comments`)
+      }
+      if (!acceptreason) {
+        str.push(`select ${data} accept reason `)
+      }
+      swal.fire({
+        title: "Invalid Comments",
+        text: `Please ${str.join(" and ")} before accept` ,
+        icon: "warning",
+        confirmButtonText: 'OK',
+      })
     }
-    catch (error) {
-
-      console.log(error);
-    }
-  }else{
-    let data= event=="clockin"?" Clock In":" Clock Out";
-    swal.fire({
-      title: "Invalid Comments",
-      text:"Please Enter"+ data +" comments before Accept",
-      icon: "warning",
-      confirmButtonText: 'OK',
-    })
-  }
   }
 
   public updatePSPhone() {
@@ -195,7 +209,7 @@ export class InvalidcalleridComponent implements OnInit {
 
     //{"addressId":593519,"visitDetailsId":4636570,"phoneType2":"Work","phone2":"666688789","phoneType3":"Other","phone3":"676876876","userId":1}
     let parametersUpdate =
-      { "id": this.JsonData.id, "addressId": this.responseData.psPhones.addressId, "visitDetailsId": this.JsonData.visitDetailsId, "phoneType1": phoneType1, "phone1": phone1,"phoneType2": phoneType2, "phone2": phone2, "phoneType3": phoneType3, "phone3": phone3, "userId": this.userId }
+      { "id": this.JsonData.id, "addressId": this.responseData.psPhones.addressId, "visitDetailsId": this.JsonData.visitDetailsId, "phoneType1": phoneType1, "phone1": phone1, "phoneType2": phoneType2, "phone2": phone2, "phoneType3": phoneType3, "phone3": phone3, "userId": this.userId }
     // {"addressId":593519,"visitDetailsId":4636570,"phoneType2":"Work","phone2":"666688789","phoneType3":"Other","phone3":"676876876","userId":1}
     let JsonData = JSON.stringify(parametersUpdate);
     console.log(JsonData)
@@ -213,7 +227,7 @@ export class InvalidcalleridComponent implements OnInit {
             }).then(ok => {
               let merged = { ...this.JsonData, ...response }
               if (this._apiService.checkException(merged)) {
-                    this.popupUpdate.emit();
+                this.popupUpdate.emit();
               } else {
                 this._apiService.updateTable.next(true);
                 this.bsmodelRef.hide();
@@ -268,8 +282,8 @@ export class InvalidcalleridComponent implements OnInit {
   }
 
   public validation() {
-    var phone1Flag:boolean=false;
-    var phone1typeFlag=false;
+    var phone1Flag: boolean = false;
+    var phone1typeFlag = false;
     var phone2Flag: boolean = false;
     var phone3Flag: boolean = false;
     var phone2typeFlag: boolean = false;
@@ -285,11 +299,10 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone1Flag = true;
-          if(phone1areacode <= 1 || phone1areacode <= 199)
-          {
+          if (phone1areacode <= 1 || phone1areacode <= 199) {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone  or Phone 3")
           }
-          if(phone1exchangecode <= 1 || phone1exchangecode <= 199){
+          if (phone1exchangecode <= 1 || phone1exchangecode <= 199) {
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone  or Phone 3")
           }
 
@@ -326,11 +339,10 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone2Flag = true;
-          if(phone2areacode <= 1 ||phone2areacode <= 199)
-          {
+          if (phone2areacode <= 1 || phone2areacode <= 199) {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone2 ")
           }
-          if(phone2exchangecode <= 1 || phone2exchangecode <= 199){
+          if (phone2exchangecode <= 1 || phone2exchangecode <= 199) {
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone2  ")
           }
         }
@@ -358,11 +370,10 @@ export class InvalidcalleridComponent implements OnInit {
         }
         else {
           phone3Flag = true;
-          if(phone3areacode <= 1 ||phone3areacode <= 199)
-          {
+          if (phone3areacode <= 1 || phone3areacode <= 199) {
             this.alertbox("Area Code (first 3 digits) should not be in between 001 and 199 for Phone 3")
           }
-          if(phone3exchangecode <= 1 || phone3exchangecode <= 199){
+          if (phone3exchangecode <= 1 || phone3exchangecode <= 199) {
             this.alertbox("Exchange (middle 3 digits)  should not be in between 001 and 199 for Phone 3")
           }
         }
@@ -385,7 +396,7 @@ export class InvalidcalleridComponent implements OnInit {
       }
     }
 
-    if (phone2Flag == false && phone3Flag == false && phone2typeFlag == false && phone2typeFlag == false && phone1Flag==false && phone1typeFlag==false) {
+    if (phone2Flag == false && phone3Flag == false && phone2typeFlag == false && phone2typeFlag == false && phone1Flag == false && phone1typeFlag == false) {
 
       this.updatePSPhone();
     }
