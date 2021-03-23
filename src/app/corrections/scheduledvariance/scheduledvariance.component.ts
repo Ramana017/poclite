@@ -144,7 +144,7 @@ export class ScheduledvarianceComponent implements OnInit {
     if (this.exceptionAcceptReasonId == 0) {
       swal.fire({
         // title: "Invalid",
-        text: "Please select Accept Reason before accept",
+        text: "Please select Verification Method before accept",
         icon: "warning",
         confirmButtonText: 'OK',
         allowOutsideClick: false

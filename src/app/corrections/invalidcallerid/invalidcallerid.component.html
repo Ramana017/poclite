@@ -88,14 +88,14 @@
             <p class="text-white">Caller ID: {{clockInCallerID}}</p>
           </div>
           <div class="form-group mx-2">
-            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments</p>
+            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments <span class="text-danger">*</span></p>
             <textarea class="form-control" id="exampleForm" [(ngModel)]="clockInComments"></textarea>
           </div>
           <div *ngIf="clockInDCSPhoneType.length>0" class="pl-2">The Phone number used matches the DCS
             {{clockInDCSPhoneType}} Phone number.</div>
 
           <div class="button-wrapper d-flex mb-0 align-items-center">
-            <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> :</p>
+            <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
             <select  [(ngModel)]="clockInCallerIdAccptReasonId"
               class="bg-white border-0 outline-0  adjust-reason ml-2">
               <option [ngValue]=0>--Select--</option>
@@ -163,13 +163,13 @@
             <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
           </div>
           <div class="form-group mx-2">
-            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments</p>
+            <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments<span class="text-danger">*</span></p>
             <textarea class="form-control" [(ngModel)]="clockOutComments" id="exampleForm"></textarea>
           </div>
           <div *ngIf="clockOutDCSPhoneType.length>0" class="pl-2">The Phone number used matches the DCS
             {{clockOutDCSPhoneType}} Phone number.</div>
           <div class="button-wrapper d-flex mb-0 align-items-center">
-            <p class="mb-0 pl-0">Accept Reason <span class="text-danger">*</span> :</p>
+            <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
             <select [(ngModel)]="clockOutCallerIdAccptReasonId"
               class="bg-white border-0 outline-0 ml-2 adjust-reason">
               <option [ngValue]=0>--Select--</option>

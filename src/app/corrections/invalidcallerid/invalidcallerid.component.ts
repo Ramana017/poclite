@@ -182,14 +182,14 @@ export class InvalidcalleridComponent implements OnInit {
       let str = []
       let data = event == "clockin" ? " Clock In" : " Clock Out";
       if (commentLength == 0) {
-        str.push(`Enter ${data} comments`)
+        str.push(`enter ${data} Comments`)
       }
       if (!acceptreason) {
-        str.push(`select ${data} accept reason `)
+        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verfication Method `)
       }
       swal.fire({
         title: "Invalid Comments",
-        text: `Please ${str.join(" and ")} before accept` ,
+        text: `Please ${str.join(" and ")} before accepting the Exception` ,
         icon: "warning",
         confirmButtonText: 'OK',
       })

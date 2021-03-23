@@ -79,8 +79,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public clockinDone: boolean = true;
   public clockOutDone: boolean = true;
-  public clockInComments: string = " ";
-  public clockOutComments: string = " ";
+  public clockInComments: string = "";
+  public clockOutComments: string = "";
   public geoCoordResultsIdRadio: number;
   public googleFormattedAddress: string = '';
 
@@ -175,11 +175,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
-          this.clockInGpsAcceptReasonsId=this.getResponseData.clockInGpsAcceptReasonsId;
-          this.clockOutGpsAcceptReasonsId=this.getResponseData.clockOutGpsAcceptReasonsId;
-          this.clockInComments=this.getResponseData?.clockInGpsAcceptComments;
-          this.clockOutComments=this.getResponseData?.clockOutGpsAcceptComments;
-          this.gpsAcceptReasonList=this.getResponseData.gpsAcceptReasonList;
+          this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId;
+          this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId;
+          this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
+          this.clockOutComments = this.getResponseData?.clockOutGpsAcceptComments;
+          this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;
           this.defaultpsdetails();
 
           if (this.arrivalgpsErr == true) {
@@ -221,11 +221,19 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public acceptGpsException(event: string) {
     let clockinflag = event == "clockin" ? 1 : 0;
     let clockOutFlag = event == "clockout" ? 1 : 0;
+    let acceptreason: boolean;
+    if (event == 'clockin') {
+      this.clockInGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
+    } else {
+      this.clockOutGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
+    }
     let commentLength = clockinflag == 1 ? this.clockInComments?.trim().length : this.clockOutComments?.trim().length;
     console.log(commentLength)
-    if (commentLength >0 && (clockinflag==1?(this.clockInGpsAcceptReasonsId!=0||null):(this.clockOutGpsAcceptReasonsId!=0||null))) {
-      var jsonObj = { "id": this.jsonData.id, "clockInComments": clockinflag == 1 ? this.clockInComments : '', "clockOutComments": clockOutFlag == 1 ? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId,
-      clockInGpsAcceptReasonsId:clockinflag == 1?this.clockInGpsAcceptReasonsId:0,clockOutGpsAcceptReasonsId: clockOutFlag == 1?this.clockOutGpsAcceptReasonsId:0}
+    if (commentLength > 0 && acceptreason) {
+      var jsonObj = {
+        "id": this.jsonData.id, "clockInComments": clockinflag == 1 ? this.clockInComments : '', "clockOutComments": clockOutFlag == 1 ? this.clockOutComments : "", "visitDetailsId": this.jsonData.visitDetailsId, "clockInFlag": clockinflag, "clockOutFlag": clockOutFlag, "userId": this.userId,
+        clockInGpsAcceptReasonsId: clockinflag == 1 ? this.clockInGpsAcceptReasonsId : 0, clockOutGpsAcceptReasonsId: clockOutFlag == 1 ? this.clockOutGpsAcceptReasonsId : 0
+      }
       var parameters = JSON.stringify(jsonObj)
       try {
         this.apiservice.acceptGpsException(parameters).subscribe(
@@ -258,13 +266,22 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         console.log(error);
       }
     } else {
-      let data = event == "clockin" ? commentLength==0||commentLength==undefined? " Enter Clock In comments ":'' : commentLength==0||commentLength==undefined? "Enter Clock Out comments  ":'';
-      let str2=event=="clockin"?this.clockInGpsAcceptReasonsId==0||null?" Select Clock In accept Reason":'':this.clockOutGpsAcceptReasonsId==0||null?" Select Clock Out accept Reason":'';
+      let str = [];
+      let data = event == "clockin" ? " Clock In" : " Clock Out";
+      if(commentLength==0||commentLength==undefined)
+      {
+        str.push(`enter ${data} Comments`)
+
+      }
+      if(!acceptreason){
+        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verfication Method `)
+
+      }
+
 
       swal.fire({
         title: "Invalid Comments",
-        text: `Please ${data}${data.trim().length>0&&str2.trim().length>0?'and':''} ${str2} before Accept`,
-        // "Please Enter" + data + " comments before Accept",
+        text: `Please ${str.join(" and ")} before accepting the Exception` ,
         icon: "warning",
         confirmButtonText: 'OK',
       })
