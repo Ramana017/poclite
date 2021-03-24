@@ -7,18 +7,13 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class PsEditComponent implements OnInit {
 
-  public modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+
 
   ngOnInit(): void {
   }
 
-  contactslogdata(contactlog: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(contactlog);
-  }
-  addresslogdata(addresslog: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(addresslog);
-  }
+
+
 
 
 

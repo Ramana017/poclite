@@ -6,7 +6,7 @@ import { ScheduleManagementComponent } from '../core/schedule-management/schedul
 import { SchedulingmoduleComponent } from './schedulingmodule.component';
 
 const routes: Routes = [
-  { path: '', component: SchedulingmoduleComponent },
+  { path: '', component: ScheduleManagementComponent },
   {path:'scheduling',component:ScheduleManagementComponent},
   { path: 'calendar', component: CalenderSchedulingComponent },
   { path: 'maps', loadChildren: () => import('../maps/maps.module').then(m => m.MapsModule) },

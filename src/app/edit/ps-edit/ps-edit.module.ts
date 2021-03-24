@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PsEditRoutingModule } from './ps-edit-routing.module';
 import { PsEditComponent } from './ps-edit.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import {FileUploadModule} from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AlternateIdComponent } from './alternate-id/alternate-id.component';
@@ -19,15 +19,33 @@ import { MedicationComponent } from './medication/medication.component';
 import { HealthComponent } from './health/health.component';
 import { GurantorComponent } from './gurantor/gurantor.component';
 import { PersonServedComponent } from './person-served/person-served.component';
+import { AddressesComponent } from './addresses/addresses.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
 @NgModule({
-  declarations: [PsEditComponent, AlternateIdComponent, CommentsComponent, TelephonyComponent, HospitalsComponent, DetailsComponent, LanguagesComponent, AllergiesComponent, MedicationComponent, HealthComponent, GurantorComponent, PersonServedComponent],
+  declarations: [PsEditComponent,
+    AlternateIdComponent,
+    CommentsComponent,
+    TelephonyComponent,
+     HospitalsComponent,
+    DetailsComponent,
+     LanguagesComponent,
+     AllergiesComponent,
+      MedicationComponent,
+       HealthComponent,
+        GurantorComponent,
+        PersonServedComponent,
+        AddressesComponent,
+        ContactsComponent],
   imports: [
     CommonModule,
     SharedModule,
     PsEditRoutingModule,
     TabsModule.forRoot(),
-    FileUploadModule,HttpClientModule,
-    ModalModule
+    FileUploadModule, HttpClientModule,
+    ModalModule,
+    AutoCompleteModule
   ]
 })
 export class PsEditModule { }

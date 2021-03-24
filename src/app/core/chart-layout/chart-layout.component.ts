@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import Swal from 'sweetalert2';
 declare var $: any;
 @Component({
   selector: 'app-chart-layout',
@@ -78,6 +79,7 @@ export class ChartLayoutComponent implements OnInit {
   public cssFilter = [];
   public serviceFilter = [];
   public visitData = [];
+  public clientData=[];
   private defaultstartdate: Date = new Date();
   public cancelledVisitsCount: number = 0;
   public missedVisitsCount: number = 0;
@@ -199,7 +201,7 @@ export class ChartLayoutComponent implements OnInit {
         .getDashBoardClientsData(JSON.stringify(jsonObj))
         .subscribe((res) => {
           console.log(res);
-          this.visitData = res.clientData;
+          this.clientData = res.clientData;
           this.displayClientTable = true;
         });
     } catch (error) {}
@@ -244,6 +246,8 @@ export class ChartLayoutComponent implements OnInit {
     } catch (error) {}
   }
   public getDashBoardVisitsDetails(str, count) {
+
+    if(count>0){
     this.currentVisitScenario=str;
     this.single = [];
     this.displyHighlightCard = str;
@@ -323,6 +327,9 @@ export class ChartLayoutComponent implements OnInit {
           this.highlightcardcount = count;
         });
     } catch (error) {}
+  }else{
+    Swal.fire(`No ${str} are there to display`)
+  }
   }
 
   public selectFilterEvent(event?: any, filter?: string) {

@@ -1,6 +1,6 @@
 <!-- <p>chart-layout works!</p> -->
 
-<div class="charts-wrapper">
+<div class="charts-wrapper ">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2 p-0 side-bar">
@@ -67,27 +67,27 @@
 
                 <div class="chart-container col-md-12 " *ngIf="displayVisitCards">
 
-                    <div class="card-container mr-5 my-4">
+                    <div class="card-container mr-5 my-4"style="cursor: pointer" (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)" >
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Missed Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">{{missedVisitsCount}}</h1>
-                        <span class="info" (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                        <span class="info" ><i class="fas fa-info-circle" [tooltip]="'Click the block to see the visit details for this scenario'" ></i></span>
                     </div>
-                    <div class="card-container mr-5 my-4">
+                    <div class="card-container mr-5 my-4" style="cursor: pointer" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)">
                         <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Open Visits</h5>
                         <h1 class="AvenirLTStd-Heavy" class="count">{{openVisitsCount}}</h1>
-                        <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                        <span class="info" ><i class="fas fa-info-circle" [tooltip]="'Click the block to see the visit details for this scenario'"></i></span>
                     </div>
-                    <div class="card-container mr-5 my-4">
+                    <div class="card-container mr-5 my-4" style="cursor: pointer" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)">
                       <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Cancelled Visits</h5>
                       <h1 class="AvenirLTStd-Heavy" class="count">{{cancelledVisitsCount}}</h1>
-                      <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                      <span class="info" ><i class="fas fa-info-circle" [tooltip]="'Click the block to see the visit details for this scenario'"></i></span>
                   </div>
                 </div>
                 <div class="chart-container col-md-12 " *ngIf="displayClientVisits">
-                  <div class="card-container mr-5 my-4">
+                  <div (click)="getDashBoardClientsData()" class="card-container mr-5 my-4">
                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Client</h5>
                     <h1 class="AvenirLTStd-Heavy" class="count">{{clientVisitCount}}</h1>
-                    <span class="info" (click)="getDashBoardClientsData()"><i class="fas fa-info-circle"></i></span>
+                    <span class="info" ><i [tooltip]="'Click the block to see the visit details for this scenario'" class="fas fa-info-circle"></i></span>
                 </div>
                 </div>
                 <div class="bar-graph-container col-md-12">
@@ -96,26 +96,26 @@
                             <!-- cards/ -->
                             <div class="d-flex">
 
-                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Missed Visits'">
+                                <div (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)" class="card-container mr-2" *ngIf="displyHighlightCard!='Missed Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Missed Visits</h5>
                                     <h1 class="count mb-0">{{missedVisitsCount}}</h1>
-                                    <span class="info" (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                                    <span class="info" ><i [tooltip]="'Click the block to see the visit details for this scenario'" class="fas fa-info-circle"></i></span>
                                 </div>
-                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
+                                <div (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)" class="card-container mr-2" *ngIf="displyHighlightCard!='Open Visits'">
                                   <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Open Visits</h5>
                                   <h1 class="count mb-0">{{openVisitsCount}}</h1>
-                                  <span class="info" (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                                  <span class="info" ><i [tooltip]="'Click the block to see the visit details for this scenario'" class="fas fa-info-circle"></i></span>
                               </div>
-                                <div class="card-container mr-2" *ngIf="displyHighlightCard!='Cancelled Visits'">
+                                <div (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)" class="card-container mr-2" *ngIf="displyHighlightCard!='Cancelled Visits'">
                                     <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">Cancelled Visits</h5>
                                     <h1 class="count mb-0">{{cancelledVisitsCount}}</h1>
-                                    <span class="info" (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)"><i class="fas fa-info-circle"></i></span>
+                                    <span class="info" ><i [tooltip]="'Click the block to see the visit details for this scenario'" class="fas fa-info-circle"></i></span>
                                 </div>
                             </div>
                             <div class="card-selected-container mr-3 ml-auto mt-5">
                                 <h5 class="AvenirLTStd-Black AvenirLTStd-Medium header-text">{{displyHighlightCard}}</h5>
                                 <h1 class="count mb-0">{{highlightcardcount}}</h1>
-                                <span class="info"><i class="fas fa-info-circle"></i></span>
+                                <span class="info"></span>
                             </div>
                         </div>
                         <!-- bargraph -->
@@ -166,7 +166,7 @@
                                                         </div>
                                                     </div>
                                                 </th>
-                                                <th scope="col" class="sticky-top table-header-wrapper">
+                                                <!-- <th scope="col" class="sticky-top table-header-wrapper">
                                                     <h5 class="mainheading-wrapper">DCS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
@@ -180,7 +180,7 @@
 
 
                                                     </div>
-                                                </th>
+                                                </th> -->
                                                 <th scope="col" class="sticky-top table-header-wrapper">
                                                     <h5 class="mainheading-wrapper">CSS</h5>
                                                     <div class="input-outter-wrapper dropdown">
@@ -262,7 +262,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="body-cell col2 ">{{data.psName}}</td>
-                                                <td class="body-cell col3 ">{{data.dcsName}}</td>
+                                                <!-- <td class="body-cell col3 ">{{data.dcsName}}</td> -->
                                                 <td class="body-cell col4 ">{{data.cssName}}</td>
                                                 <td class="body-cell text-color col4 Serviceprocedurecode">
                                                     <div>
@@ -310,7 +310,7 @@
                                       </thead>
                                       <tbody>
 
-                                          <tr *ngFor="let data of visitData let i=index " class="table-border ">
+                                          <tr *ngFor="let data of clientData let i=index " class="table-border ">
                                               <td class="body-cell col2 text-color sitecodeinner">
                                                   <div>
                                                       {{data.site}}
@@ -332,7 +332,7 @@
                                       </tbody>
 
                                   </table>
-                                  <p class="text-center no-data-text" *ngIf="visitData.length==0"> No Data To display</p>
+                                  <p class="text-center no-data-text" *ngIf="clientData.length==0"> No Data To display</p>
                               </div>
                           </div>
                       </div>
@@ -350,3 +350,8 @@
 <ng-template #notFoundTemplate let-notFound>
   <div [innerHTML]="notFound" class="text-dark"></div>
 </ng-template>
+
+<style>
+
+
+</style>

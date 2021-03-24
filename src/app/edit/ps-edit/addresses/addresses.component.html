@@ -1,0 +1,310 @@
+
+            <span class="slack-icon" (click)="addresslogdata(addresslog)"> <i class="pi pi-slack"></i></span>
+            <div class="visit-information position-relative border-2 rounded my-3 mr-4">
+                <p class="visit-info-text AvenirLTStd-Heavy bg-white">Addresses</p>
+                <div class="container-wrapper mt-2">
+                    <div class="ps-registration-tabs-container">
+                        <div class="">
+                            <form class="d-flex nav border-2">
+                                <div class="input-container-wrapper ">
+                                    <label class="">
+                                        Address Type<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group ">
+                                        <input type="text" class="form-control text-capital" aria-label="Auth">
+                                    </div>
+                                </div>
+                                <div class="check-box-wrapper">
+                                    <label class="mb-0 color-black">Active</label>
+                                    <div class="on-off-toggle">
+                                        <input class="on-off-toggle__input" type="checkbox" id="bopis" />
+                                        <label for="bopis" class="on-off-toggle__slider"></label>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                            <div class="d-flex align-items-center">
+                                <h4 class="py-2 AvenirLTStd-Heavy m-0 address-title p-0 f-size-16 pr-3">Address
+                                </h4>
+                            </div>
+                            <div class="d-flex ">
+                                <form class="d-flex justify-content-between border-2">
+                                    <div class="d-flex align-items-center nav">
+                                        <div class="basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Location<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control text-capital"
+                                                    aria-label="Auth">
+                                            </div>
+                                        </div>
+                                        <div class=" basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Address Line #1<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control" aria-label="Auth">
+                                            </div>
+                                        </div>
+                                        <div class=" basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Address Line #2
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control" aria-label="Auth">
+                                            </div>
+                                        </div>
+                                        <div
+                                        class="basic-input-container  nav d-flex align-items-center justify-content-between">
+                                        <div class=" w-50 pb-sm-0">
+                                            <label class="">
+                                                Zip Code<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control " aria-label="date"
+                                                     type="text" class="form-control">
+
+                                            </div>
+                                        </div>
+                                        <div class="w-48">
+                                            <label class="">
+                                                Zip+4 Code<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control " aria-label="date"
+                                                     type="text" class="form-control">
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                        <div class=" m-0  basic-input-container phone-container form-group ">
+                                            <label class="">
+                                                Phone 1<span class="text-danger">*</span>
+                                            </label>
+
+                                            <div class="input-group">
+                                                <div class="  date-input  d-flex align-items-center w-100">
+                                                    <div class="ng-autocomplete phone-select">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+                                                    </div>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class=" m-0  basic-input-container phone-container form-group ">
+                                            <label class="">
+                                                Phone 2
+                                            </label>
+
+                                            <div class="input-group">
+                                                <div class="  date-input  d-flex align-items-center w-100">
+                                                    <div class="ng-autocomplete phone-select">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+                                                    </div>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class=" m-0  basic-input-container phone-container form-group ">
+                                            <label class="">
+                                                Phone 3
+                                            </label>
+
+                                            <div class="input-group">
+                                                <div class="  date-input  d-flex align-items-center w-100">
+                                                    <div class="ng-autocomplete phone-select">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+                                                    </div>
+                                                    <div class="input-group ">
+                                                        <input type="text" class="form-control" aria-label="Auth">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="  basic-input-container form-group pb-sm-0">
+                                            <label class="">City<span class="text-danger">*</span> </label>
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control " aria-label="date"
+                                                    disabled="true">
+                                            </div>
+                                        </div>
+                                        <div class=" basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                State <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control " aria-label="date"
+                                                    disabled="true">
+                                            </div>
+                                        </div>
+                                        <div class=" basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                County<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group ">
+                                                <input type="text" class="form-control" aria-label="date" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="  basic-input-container form-group pb-sm-0" >
+                                            <label class="">
+                                                Time Zone<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control"
+                                                    aria-label="Case Manager" disabled>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Country<span class="text-danger">*</span>
+                                            </label>
+
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control"
+                                                    aria-label="Case Manager" disabled>
+                                            </div>
+
+                                        </div>
+                                        <div class=" basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Fax<span class="text-danger">*</span>
+                                            </label>
+
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control"
+                                                    aria-label="Case Manager" >
+                                            </div>
+
+                                        </div>
+                                        <div class="basic-input-container form-group pb-sm-0">
+                                            <label class="">
+                                                Email<span class="text-danger">*</span>
+                                            </label>
+
+                                            <div class="input-group  ">
+                                                <input type="text" class="form-control"
+                                                    aria-label="Case Manager" >
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                  <div class="w-50">
+                                    <div class="form-group">
+                                        <label class="mb-0 color-black">Directions</label>
+                                        <div class="input-group form-group">
+                                            <textarea rows="7" class="form-control bg-light-grey"></textarea>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </form>
+                                <!-- <form class=" w-50  border-2 ml-2">
+                                    <div class="form-group">
+                                        <label class="mb-0 color-black">Notes</label>
+                                        <div class="input-group form-group">
+                                            <textarea rows="3" class="form-control bg-light-grey"></textarea>
+                                        </div>
+                                    </div>
+
+                                </form> -->
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mt-3">
+                                <div class="previous">
+                                    <button type="button" class="btn-common btn-green w-auto px-3 bg-dark"><i class="fas fa-times mr-2"></i>Close</button>
+                                </div>
+                                <div class="reset">
+                                    <button type="button" class="btn-common btn-green w-auto px-3 bg-blue-light"><i class="fas fa-sync mr-2"></i>Reset</button>
+                                </div>
+                                <div class="next">
+                                    <button type="button" class="btn-common btn-green w-auto px-3 "><i class="fas fa-save mr-2"></i>Save</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive bg-white  box-shadow w-75 mx-auto mb-2 mt-2">
+                <table class="table mb-0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th  class="text-center border-right align-middle"></th>
+                            <th class="text-center border-right align-middle">Address Type</th>
+                            <th class="text-center border-right align-middle">Address</th>
+                            <th class="text-center border-right align-middle">Active</th>
+                            <th class="text-center  align-middle">Directions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center border-right border-bottom"><i class="pi pi-user-edit"></i><i class="pi pi-trash ml-2"></i></td>
+                            <td class=" border-right border-bottom">Home111 </td>
+                            <td class="border-right border-bottom">ddddddddddddd, Schenectady, New York, 12345, Home:6666666666  </td>
+                            <td class=" border-right border-bottom">Yes </td>
+                            <td class=" border-bottom">View</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #addresslog>
+              <div class="modal-header">
+                <h4 class="modal-title pull-left AvenirLTStd-Heavy">Addresses Log</h4>
+                <button
+                  type="button"
+                  class="close pull-right"
+                  aria-label="Close"
+                  (click)="modalRef.hide()"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex align-items-center">
+                  <h4 class="AvenirLTStd-Heavy mr-2">PS Name:</h4>
+                  <h4 class="AvenirLTStd-Heavy">BANKS, MARGARET</h4>
+                </div>
+                <div class="table-responsive bg-white height-67 box-shadow">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th class="text-center border-right align-middle">Address Type</th>
+                        <th class="text-center border-right align-middle">Address</th>
+                        <th class="text-center border-right align-middle">Time Zone</th>
+                        <th class="text-center border-right align-middle">Directions</th>
+                        <th class="text-center align-middle">Active</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center align-middle">Last Updated</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-bottom">aaa</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
