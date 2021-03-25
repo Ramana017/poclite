@@ -88,16 +88,22 @@
           </div>
           <div class="form-group mx-2">
             <h3 class="f-15">Clock In Comments<span class="text-danger">*</span></h3>
-            <textarea class="form-control" [readOnly]="!arrivalgpsErr" [(ngModel)]="clockInComments" rows="3"></textarea>
+            <textarea class="form-control" [readOnly]="!arrivalgpsErr" [(ngModel)]="clockInComments"
+              rows="3"></textarea>
           </div>
           <div class="button-wrapper mb-2 d-flex align-items-center justify-content-between">
-           <div class="">
-            <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
-           </div>
-           <select [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
-             <option [ngValue]="null||0" >--Verfication Method--</option>
-             <option *ngFor="let item of gpsAcceptReasonList"[ngValue]="item.id" >{{item.name}}</option>
-           </select>
+            <div class="">
+              <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
+            </div>
+            <div class="form-group mx-2">
+
+              <h3 class="f-15 ">Verfication Method<span class="text-danger">*</span></h3>
+
+              <select style="width: 79%;" [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
+                <option [ngValue]="null||0">--select--</option>
+                <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
+              </select>
+            </div>
             <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
           </div>
@@ -129,19 +135,24 @@
             <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}},
               Longitude:{{clockOutLongitude}} </p>
           </div>
-          <div  class="form-group mx-2">
+          <div class="form-group mx-2">
             <h3 class="f-15">Clock Out Comments<span class="text-danger">*</span></h3>
             <textarea class="form-control" [readOnly]="!depgpsErr" [(ngModel)]="clockOutComments" rows="3"></textarea>
           </div>
           <div class="button-wrapper d-flex align-items-center justify-content-between mb-2">
             <div class="">
-              <strong>Clock Out Variance:</strong>&nbsp;{{clockOutVariance}}
+              <strong>Clock Out Variance:</strong>{{clockOutVariance}}
             </div>
-            <select [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
-              <option [ngValue]="null||0" >--Verfication Method--</option>
-              <option *ngFor="let item of gpsAcceptReasonList"[ngValue]="item.id" >{{item.name}}</option>
-            </select>
-            <button *ngIf="depgpsErr"   type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
+            <div class="form-group mx-2">
+
+              <h3 class=" f-15 "> Verfication Method<span class="text-danger">*</span></h3>
+
+              <select style="width: 79%;" [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
+                <option [ngValue]="null||0">--select--</option>
+                <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
               (click)="acceptGpsException('clockout')">Accept</button>
           </div>
 
@@ -212,12 +223,13 @@
                   <td>{{address.latitude}}</td>
                   <td>{{address.longitude}}</td>
                 </tr>
-                <tr class="table-bordered" >
+                <tr class="table-bordered">
                   <td class="m-0 p-0 d-flex" style="border: none;">
-                    <input type="radio" (click)="openmodal('#exampleModalCenter')" name="formate-add-wrapper" id="format0" class="ml-2 mr-1"  />
+                    <input type="radio" (click)="openmodal('#exampleModalCenter')" name="formate-add-wrapper"
+                      id="format0" class="ml-2 mr-1" />
                     <label for="format0" class="ml-2 mt-4"></label>
                     <i class="fas fa-map-marker-alt mt-4 mr-2" style="font-size: 16px;color: #145194;"
-                    (click)="radiobuttonactive()"></i>
+                      (click)="radiobuttonactive()"></i>
                   </td>
                   <td>
                     <div class="input-btn d-flex">
@@ -228,14 +240,14 @@
                   </td>
                   <td>
                     <div class="input-btn">
-                      <input type="text" readonly style="background-color: #e9ecef;"[disabled]="!fomatAddressManualInput" name="" placeholder=""
-                        [(ngModel)]="manualLatitude" />
+                      <input type="text" readonly style="background-color: #e9ecef;"
+                        [disabled]="!fomatAddressManualInput" name="" placeholder="" [(ngModel)]="manualLatitude" />
                     </div>
                   </td>
                   <td>
                     <div class="input-btn">
-                      <input type="text" readonly style="background-color: #e9ecef;"[disabled]="!fomatAddressManualInput" name="" placeholder=""
-                        [(ngModel)]="manualLongitude" />
+                      <input type="text" readonly style="background-color: #e9ecef;"
+                        [disabled]="!fomatAddressManualInput" name="" placeholder="" [(ngModel)]="manualLongitude" />
                     </div>
                   </td>
                 </tr>

@@ -34,13 +34,13 @@
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
-                        <p class="m-0">Scheduled Start </p>
+                        <p class="m-0">Authz Service Start </p>
                         <input type="text" class="date-input" [(ngModel)]="scheduleStart" [maxDate]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
 
 
                     <div class="end-date text-center px-2">
-                        <p class="m-0">Scheduled End </p>
+                        <p class="m-0">Authz Service End </p>
                         <input type="text" [(ngModel)]="scheduleEnd" [minDate]="scheduleStart" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
                     <!-- <div class="category-dropdown text-center px-2">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="chart-container col-md-12 " *ngIf="displayClientVisits">
                   <div (click)="getDashBoardClientsData()" class="card-container mr-5 my-4">
-                    <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Client</h5>
+                    <h5 class="AvenirLTStd-Black AvenirLTStd-Medium">Clients</h5>
                     <h1 class="AvenirLTStd-Heavy" class="count">{{clientVisitCount}}</h1>
                     <span class="info" ><i [tooltip]="'Click the block to see the visit details for this scenario'" class="fas fa-info-circle"></i></span>
                 </div>
@@ -158,7 +158,7 @@
                                                     <h5 class="mainheading-wrapper">PS</h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
-                                                            <ng-autocomplete placeHolder="PS" [data]="psFilter" (inputCleared)=" selectFilterEvent('','ps')" [searchKeyword]="'psName'"  (selected)='selectFilterEvent($event,"ps")'[itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
+                                                            <ng-autocomplete #psfilter [(ngModel)]="psFilterAutocomplete" placeHolder="PS" [data]="psFilter" (inputCleared)=" selectFilterEvent('','ps')" [searchKeyword]="'psName'"  (selected)='selectFilterEvent($event,"ps")'[itemTemplate]="itemTemplateps" [notFoundTemplate]="notFoundTemplate">
                                                             </ng-autocomplete>
                                                             <ng-template style="width: 100%;" #itemTemplateps let-item>
                                                                 <a [innerHTML]="item.psName"></a>
@@ -184,7 +184,7 @@
                                                 <th scope="col" class="sticky-top table-header-wrapper">
                                                     <h5 class="mainheading-wrapper">CSS</h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [data]="cssFilter" [itemTemplate]="itemTemplatecss" (inputCleared)=" selectFilterEvent('','css')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"css")' [searchKeyword]="'cssName'" placeHolder="CSS">
+                                                        <ng-autocomplete #cssfilter [(ngModel)]="cssFilterAutocomplete" [data]="cssFilter" [itemTemplate]="itemTemplatecss" (inputCleared)=" selectFilterEvent('','css')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"css")' [searchKeyword]="'cssName'" placeHolder="CSS">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplatecss let-item>
                                                             <a [innerHTML]="item.cssName"></a>
@@ -194,7 +194,7 @@
                                                 <th scope="col" class="sticky-top table-header-inner">
                                                     <h5 class="mainheading-wrapper">Service </h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [data]="serviceFilter"  [searchKeyword]="'serviceCode'"  (inputCleared)=" selectFilterEvent('','service')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"service")' placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
+                                                        <ng-autocomplete [(ngModel)]="serviceFilterAutoComplete" [data]="serviceFilter"  [searchKeyword]="'serviceCode'"  (inputCleared)=" selectFilterEvent('','service')" [notFoundTemplate]="notFoundTemplate" (selected)='selectFilterEvent($event,"service")' placeHolder="Service" [itemTemplate]="itemTemplateservice" [notFoundTemplate]="notFoundTemplate">
                                                         </ng-autocomplete>
                                                         <ng-template style="width: 100%;" #itemTemplateservice let-item>
                                                             <a [innerHTML]="item.serviceCode"></a>
@@ -296,7 +296,11 @@
                                               <th scope="col" class="sticky-top table-header-wrapper">
                                                   <h5 class="mainheading-wrapper">PS</h5>
                                               </th>
-
+                                              <th scope="col" class="sticky-top table-header-wrapper">
+                                                <h5 class="mainheading-wrapper">Payor/Plan</h5>
+                                            </th>    <th scope="col" class="sticky-top table-header-wrapper">
+                                              <h5 class="mainheading-wrapper"> Authorization Number</h5>
+                                          </th>
                                               <th scope="col" class="sticky-top table-header-inner">
                                                   <h5 class="mainheading-wrapper">Service </h5>
                                               </th>
@@ -311,15 +315,18 @@
                                       <tbody>
 
                                           <tr *ngFor="let data of clientData let i=index " class="table-border ">
-                                              <td class="body-cell col2 text-color sitecodeinner">
+                                              <td class="body-cell col2 text-color ">
                                                   <div>
                                                       {{data.site}}
 
                                                   </div>
                                               </td>
                                               <td class="body-cell col2 ">{{data.psName}}</td>
+                                              <td class="body-cell col2 ">{{data.payorPlan}}</td>
+                                              <td class="body-cell col2 ">{{data?.authorizationNumber}}</td>
 
-                                              <td class="body-cell text-color col4 Serviceprocedurecode">
+
+                                              <td class="body-cell text-color col4 ">
                                                   <div>
                                                       {{data.serviceCode}}
 

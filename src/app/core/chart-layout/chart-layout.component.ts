@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 declare var $: any;
@@ -9,6 +9,10 @@ declare var $: any;
   styleUrls: ['./chart-layout.component.sass'],
 })
 export class ChartLayoutComponent implements OnInit {
+
+  psFilterAutocomplete = '';
+  cssFilterAutocomplete = '';
+  serviceFilterAutoComplete = '';
   public cssdropdownSettings = {
     singleSelection: false,
     text: 'CSS',
@@ -71,7 +75,7 @@ export class ChartLayoutComponent implements OnInit {
   public archiveDate: Date = new Date();
   public scheduleStart: Date = new Date();
   public scheduleEnd: Date = new Date();
-  public todayDate:Date=new Date();
+  public todayDate: Date = new Date();
 
   public psFilter = [];
   public dcsFilter = [];
@@ -79,7 +83,7 @@ export class ChartLayoutComponent implements OnInit {
   public cssFilter = [];
   public serviceFilter = [];
   public visitData = [];
-  public clientData=[];
+  public clientData = [];
   private defaultstartdate: Date = new Date();
   public cancelledVisitsCount: number = 0;
   public missedVisitsCount: number = 0;
@@ -133,9 +137,9 @@ export class ChartLayoutComponent implements OnInit {
   public dcsName: string = null;
   public serviceName: string = null;
   public siteName: string = null;
-  public siteSelect=[];
+  public siteSelect = [];
   public displayTable = [];
-  currentVisitScenario='';
+  currentVisitScenario = '';
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
@@ -154,14 +158,14 @@ export class ChartLayoutComponent implements OnInit {
     this.displayClientTable = false;
     this.displayClientVisits = true;
     this.displayVisitCards = false;
-    if(flag){
-      this.officeIds=[];
+    if (flag) {
+      this.officeIds = [];
       this.defaultstartdate.setDate(new Date().getDate() - 7);
       this.scheduleStart.setDate(new Date().getDate() - 7);
     }
-    console.log('startdate',this.scheduleStart);
+    console.log('startdate', this.scheduleStart);
     this.scheduleEnd = new Date();
-    console.log('End Date',this.scheduleEnd)
+    console.log('End Date', this.scheduleEnd)
 
 
     let officelist = [];
@@ -181,11 +185,11 @@ export class ChartLayoutComponent implements OnInit {
           console.log(res);
           this.clientVisitCount = res.psWithNoTemplate;
         });
-    } catch (error) {}
+    } catch (error) { }
   }
 
   public getDashBoardClientsData() {
-    console.log(this.scheduleStart,this.scheduleEnd)
+    console.log(this.scheduleStart, this.scheduleEnd)
     let officelist = [];
     this.officeIds.map((y) => {
       officelist.push(y.siteId);
@@ -204,7 +208,7 @@ export class ChartLayoutComponent implements OnInit {
           this.clientData = res.clientData;
           this.displayClientTable = true;
         });
-    } catch (error) {}
+    } catch (error) { }
   }
   public getFilterData() {
     try {
@@ -216,7 +220,7 @@ export class ChartLayoutComponent implements OnInit {
           this.cssList = res.cssList;
           this.archiveDate = new Date(res.archiveDate);
         });
-    } catch (error) {}
+    } catch (error) { }
   }
   public getDashBoardVisitsCount() {
     this.displayVisitCards = true;
@@ -243,93 +247,100 @@ export class ChartLayoutComponent implements OnInit {
           this.openVisitsCount = res.openVisitsCount;
           this.missedVisitsCount = res.missedVisitsCount;
         });
-    } catch (error) {}
+    } catch (error) { }
   }
   public getDashBoardVisitsDetails(str, count) {
 
-    if(count>0){
-    this.currentVisitScenario=str;
-    this.single = [];
-    this.displyHighlightCard = str;
-    this.displayClientVisits = false;
-    this.displayVisitCards = false;
-    this.highlightcardcount = count;
-    let officelist = [];
-    this.officeIds.map((y) => {
-      officelist.push(y.siteId);
-    });
+    if (count >= 0) {
+      this.cssFilterAutocomplete = '';
+      this.psFilterAutocomplete = '';
+      this.siteSelect = [];
+      this.serviceFilterAutoComplete = '';
+      this.filterEndeDate = null;
+      this.fileterStartDate = null;
 
-    let jsonObj = {
-      userId: this.userData.userId,
-      startDate: this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'),
-      endDate: this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'),
-      officeIds: officelist.length > 0 ? officelist.toString() : '',
-      visitScenario:
-        this.currentVisitScenario == 'Open Visits'
-          ? 'openvisits'
-          : str == 'Missed Visits'
-          ? 'missedvisits'
-          : 'cancelledvisits',
-      cssId: 0,
-    };
-    try {
-      this.dashboardService
-        .getDashBoardVisitsDetails(JSON.stringify(jsonObj))
-        .subscribe((res) => {
-          console.log(res);
-          this.visitData = res.visitData;
-          this.displayTable = res.visitData;
-          let visitdata = [...new Set(this.visitData.map((x) => x.site))];
-          let dcsData = [...new Set(this.visitData.map((x) => x.dcsName))];
-          let cssData = [...new Set(this.visitData.map((x) => x.cssName))];
-          let psData = [...new Set(this.visitData.map((x) => x.psName))];
-          let serviceData = [
-            ...new Set(this.visitData.map((x) => x.serviceCode)),
-          ];
-          this.siteFilter = visitdata.map((x) => {
-            return { site: x };
-          });
-          this.dcsFilter = dcsData.map((x) => {
-            return { dcsName: x };
-          });
-          this.cssFilter = cssData.map((x) => {
-            return { cssName: x };
-          });
-          this.serviceFilter = serviceData.map((x) => {
-            return { serviceCode: x };
-          });
-          this.psFilter = psData.map((x) => {
-            return { psName: x };
-          });
-          let visitdatedata = [
-            ...new Set(this.visitData.map((x) => x.visitDate)),
-          ];
-          let graphData = [];
-          visitdatedata.map((x) => {
-            let i = 0;
-            this.visitData.map((y) => {
-              if (y.visitDate == x) {
-                i++;
-              }
+      this.currentVisitScenario = str;
+      this.single = [];
+      this.displyHighlightCard = str;
+      this.displayClientVisits = false;
+      this.displayVisitCards = false;
+      this.highlightcardcount = count;
+      let officelist = [];
+      this.officeIds.map((y) => {
+        officelist.push(y.siteId);
+      });
+
+      let jsonObj = {
+        userId: this.userData.userId,
+        startDate: this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'),
+        endDate: this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'),
+        officeIds: officelist.length > 0 ? officelist.toString() : '',
+        visitScenario:
+          this.currentVisitScenario == 'Open Visits'
+            ? 'openvisits'
+            : str == 'Missed Visits'
+              ? 'missedvisits'
+              : 'cancelledvisits',
+        cssId: 0,
+      };
+      try {
+        this.dashboardService
+          .getDashBoardVisitsDetails(JSON.stringify(jsonObj))
+          .subscribe((res) => {
+            console.log(res);
+            this.visitData = res.visitData;
+            this.displayTable = res.visitData;
+            let visitdata = [...new Set(this.visitData.map((x) => x.site))];
+            let dcsData = [...new Set(this.visitData.map((x) => x.dcsName))];
+            let cssData = [...new Set(this.visitData.map((x) => x.cssName))];
+            let psData = [...new Set(this.visitData.map((x) => x.psName))];
+            let serviceData = [
+              ...new Set(this.visitData.map((x) => x.serviceCode)),
+            ];
+            this.siteFilter = visitdata.map((x) => {
+              return { site: x };
             });
-            let obj = { name: x, value: i };
-            graphData.push(obj);
+            this.dcsFilter = dcsData.map((x) => {
+              return { dcsName: x };
+            });
+            this.cssFilter = cssData.map((x) => {
+              return { cssName: x };
+            });
+            this.serviceFilter = serviceData.map((x) => {
+              return { serviceCode: x };
+            });
+            this.psFilter = psData.map((x) => {
+              return { psName: x };
+            });
+            let visitdatedata = [
+              ...new Set(this.visitData.map((x) => x.visitDate)),
+            ];
+            let graphData = [];
+            visitdatedata.map((x) => {
+              let i = 0;
+              this.visitData.map((y) => {
+                if (y.visitDate == x) {
+                  i++;
+                }
+              });
+              let obj = { name: x, value: i };
+              graphData.push(obj);
+            });
+            this.single = graphData;
+            console.log(
+              this.siteFilter,
+              this.cssFilter,
+              this.dcsFilter,
+              this.serviceFilter
+            );
+            this.displyHighlightCard = str;
+            this.displayVisitCards = false;
+            this.highlightcardcount = count;
           });
-          this.single = graphData;
-          console.log(
-            this.siteFilter,
-            this.cssFilter,
-            this.dcsFilter,
-            this.serviceFilter
-          );
-          this.displyHighlightCard = str;
-          this.displayVisitCards = false;
-          this.highlightcardcount = count;
-        });
-    } catch (error) {}
-  }else{
-    Swal.fire(`No ${str} are there to display`)
-  }
+      } catch (error) { }
+    } else {
+      Swal.fire(`No ${str} are there to display`)
+    }
   }
 
   public selectFilterEvent(event?: any, filter?: string) {
@@ -380,14 +391,28 @@ export class ChartLayoutComponent implements OnInit {
       });
     }
 
-    if (this.siteSelect.length>0) {
-      this.displayTable = this.displayTable.filter((x) => {
-        for(let i=0;i<this.siteSelect.length;i++)
-        {
-          return x.site == this.siteSelect[i].site;
+    if (this.siteSelect.length > 0) {
+      console.log(this.siteSelect.length);
+
+      let dummeyarray=[];
+      for(let i=0;i<this.displayTable.length;i++){
+        for (let j = 0; j < this.siteSelect.length; j++) {
+          console.log(j);
+          if(this.displayTable[i].site==this.siteSelect[j].site){
+            dummeyarray.push(this.displayTable[i]);
+          }
 
         }
-      })
+      }
+      this.displayTable=dummeyarray;
+      // this.displayTable = this.displayTable.filter((x) => {
+
+      //   for (let i = 0; i <= this.siteSelect.length; i++) {
+      //     console.log(i)
+
+      //     return x.site == this.siteSelect[i].site;
+      //   }
+      // })
     }
 
     if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
@@ -411,7 +436,7 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public FilterDateChange(event, flag?) {
-    console.log("+++++++",this.datePipe.transform(event, 'MM/dd/yyyy'));
+    console.log("+++++++", this.datePipe.transform(event, 'MM/dd/yyyy'));
     if (flag == 'start') {
       this.fileterStartDate =
         event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
@@ -430,7 +455,7 @@ export class ChartLayoutComponent implements OnInit {
     this.cssIds = [];
     this.defaultstartdate.setDate(new Date().getDate() - 7);
     this.scheduleStart.setDate(new Date().getDate() - 7);
-    this.scheduleEnd=new Date();
+    this.scheduleEnd = new Date();
     this.getDashBoardVisitsCount();
   }
 }
