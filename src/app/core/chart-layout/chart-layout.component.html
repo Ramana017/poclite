@@ -35,13 +35,13 @@
                     </div>
                     <div class="start-date text-center px-2">
                         <p class="m-0">Authz Service Start </p>
-                        <input type="text" class="date-input" [(ngModel)]="scheduleStart" [maxDate]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
+                        <input type="text" class="date-input" [(ngModel)]="scheduleStart" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
 
 
                     <div class="end-date text-center px-2">
                         <p class="m-0">Authz Service End </p>
-                        <input type="text" [(ngModel)]="scheduleEnd" [minDate]="scheduleStart" bsDatepicker placeholder="MM/DD/YYYY">
+                        <input type="text" [(ngModel)]="scheduleEnd"  bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
                     <!-- <div class="category-dropdown text-center px-2">
                         <p class="m-0">Category</p>
@@ -50,7 +50,7 @@
                         </angular2-multiselect>
                     </div> -->
                     <div class="category-dropdown text-center px-2">
-                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="displayClientVisits?getDashBoardClientsCount(false):getDashBoardVisitsCount()">Go</button>
+                        <div class="page-item "><button type="button" class="btn common-table-btn chart-topbar-button mt-4" (click)="onGo()">Go</button>
                         </div>
 
                     </div>
@@ -205,14 +205,14 @@
                                                     <h5 class="mainheading-wrapper">Scheduled Start </h5>
                                                     <div class="input-outter-wrapper dropdown">
 
-                                                        <input type="text" bsDatepicker (ngModelChange)="FilterDateChange($event,'start')" [(ngModel)]="fileterStartDate" placeholder="Start Time" maxlength=10 class="date-input">
+                                                        <input type="text" bsDatepicker (ngModelChange)="FilterDateChange($event,'start')" [(ngModel)]="fileterStartDate" placeholder="MM/DD/YYYY" maxlength=10 class="date-input">
                                                     </div>
                                                 </th>
                                                 <th scope="col " class="sticky-top table-header-inner-wrapper">
                                                     <h5 class="mainheading-wrapper ">Scheduled End </h5>
                                                     <div class="input-outter-wrapper dropdown ">
 
-                                                        <input type="text" placeholder="Start Time" bsDatepicker [(ngModel)]="filterEndeDate" (ngModelChange)="FilterDateChange($event,'end')" maxlength=10 bsDatepicker class="date-input">
+                                                        <input type="text" placeholder="MM/DD/YYYY" bsDatepicker [(ngModel)]="filterEndeDate" (ngModelChange)="FilterDateChange($event,'end')" maxlength=10 bsDatepicker class="date-input">
 
                                                     </div>
                                                 </th>

@@ -14,7 +14,7 @@ export class ChartLayoutComponent implements OnInit {
   cssFilterAutocomplete = '';
   serviceFilterAutoComplete = '';
   public cssdropdownSettings = {
-    singleSelection: false,
+    singleSelection: true,
     text: 'CSS',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -92,16 +92,7 @@ export class ChartLayoutComponent implements OnInit {
   public siteFilterName = '';
   animationState = 'out';
 
-  single = [
-    {
-      name: '10/28/2020',
-      value: 9,
-    },
-    {
-      name: '10/29/2020',
-      value: 50,
-    },
-  ];
+  single = [];
   multi: any[];
   view: any[] = [700, 400];
   public displayVisitCards: boolean = true;
@@ -160,8 +151,8 @@ export class ChartLayoutComponent implements OnInit {
     this.displayVisitCards = false;
     if (flag) {
       this.officeIds = [];
-      this.defaultstartdate.setDate(new Date().getDate() - 7);
-      this.scheduleStart.setDate(new Date().getDate() - 7);
+      this.scheduleStart = this.defaultstartdate;
+      this.scheduleEnd = this.todayDate;
     }
     console.log('startdate', this.scheduleStart);
     this.scheduleEnd = new Date();
@@ -228,15 +219,19 @@ export class ChartLayoutComponent implements OnInit {
 
     console.log('$$$$$$$$$$$$$########', this.officeIds.toString());
     let officelist = [];
+    let csslist=[];
     this.officeIds.map((y) => {
       officelist.push(y.siteId);
     });
+    this.cssIds.map(x=>{
+      csslist.push(x.cssId);
+    })
     let obj = {
       userId: this.userData.userId,
       startDate: this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'),
       endDate: this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'),
       officeIds: officelist.length > 0 ? officelist.toString() : '',
-      cssId: 0,
+      cssId:csslist.length > 0 ? csslist.toString() : '',
     };
 
     try {
@@ -266,10 +261,13 @@ export class ChartLayoutComponent implements OnInit {
       this.displayVisitCards = false;
       this.highlightcardcount = count;
       let officelist = [];
+      let csslist=[];
       this.officeIds.map((y) => {
         officelist.push(y.siteId);
       });
-
+      this.cssIds.map(x=>{
+        csslist.push(x.cssId);
+      })
       let jsonObj = {
         userId: this.userData.userId,
         startDate: this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'),
@@ -281,8 +279,8 @@ export class ChartLayoutComponent implements OnInit {
             : str == 'Missed Visits'
               ? 'missedvisits'
               : 'cancelledvisits',
-        cssId: 0,
-      };
+              cssId:csslist.length > 0 ? csslist.toString() : '',
+            };
       try {
         this.dashboardService
           .getDashBoardVisitsDetails(JSON.stringify(jsonObj))
@@ -394,45 +392,53 @@ export class ChartLayoutComponent implements OnInit {
     if (this.siteSelect.length > 0) {
       console.log(this.siteSelect.length);
 
-      let dummeyarray=[];
-      for(let i=0;i<this.displayTable.length;i++){
-        for (let j = 0; j < this.siteSelect.length; j++) {
-          console.log(j);
-          if(this.displayTable[i].site==this.siteSelect[j].site){
-            dummeyarray.push(this.displayTable[i]);
+      let dummeyarray = [];
+      this.displayTable.map(x => {
+        this.siteSelect.map(y => {
+          if (x.site == y.site) {
+            dummeyarray.push(x);
+
           }
+        })
+      })
+      this.displayTable = dummeyarray;
 
-        }
-      }
+    }
+
+    // if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
+    //   this.displayTable = this.displayTable.filter((x) => {
+    //     return (
+    //       x.visitDate ==
+    //       this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy')
+    //     );
+    //   });
+    // }
+
+    // if (this.fileterStartDate != null && this.fileterStartDate != undefined) {
+    //   this.displayTable = this.displayTable.filter((x) => {
+    //     return (
+    //       x.visitDate ==
+    //       this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy')
+    //     );
+    //   });
+    // }
+    if (this.filterEndeDate != null && this.filterEndeDate != undefined && this.fileterStartDate != null && this.fileterStartDate != undefined){
+      let dummeyarray=[];
+       let startdate=Date.parse(this.datePipe.transform(this.fileterStartDate,'MM/dd/yyyy'));
+       let endDate=Date.parse(this.datePipe.transform(this.filterEndeDate,'MM/dd/yyyy'));
+      this.displayTable.map(x=>{
+        let scheduledBeginDateTime=Date.parse(this.datePipe.transform(x.scheduledBeginDateTime,'MM/dd/yyyy'));
+        let scheduledEndDateTime=Date.parse(this.datePipe.transform(x.scheduledEndDateTime,'MM/dd/yyyy'));
+       if(scheduledBeginDateTime>=startdate &&scheduledEndDateTime<=endDate){
+          dummeyarray.push(x);
+       }
+      })
       this.displayTable=dummeyarray;
-      // this.displayTable = this.displayTable.filter((x) => {
 
-      //   for (let i = 0; i <= this.siteSelect.length; i++) {
-      //     console.log(i)
 
-      //     return x.site == this.siteSelect[i].site;
-      //   }
-      // })
+
     }
-
-    if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
-      this.displayTable = this.displayTable.filter((x) => {
-        return (
-          x.visitDate ==
-          this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy')
-        );
-      });
-    }
-
-    if (this.fileterStartDate != null && this.fileterStartDate != undefined) {
-      this.displayTable = this.displayTable.filter((x) => {
-        return (
-          x.visitDate ==
-          this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy')
-        );
-      });
-    }
-    console.log(this.displayTable);
+      console.log(this.displayTable);
   }
 
   public FilterDateChange(event, flag?) {
@@ -453,9 +459,32 @@ export class ChartLayoutComponent implements OnInit {
   public resetFilters() {
     this.officeIds = [];
     this.cssIds = [];
-    this.defaultstartdate.setDate(new Date().getDate() - 7);
-    this.scheduleStart.setDate(new Date().getDate() - 7);
-    this.scheduleEnd = new Date();
-    this.getDashBoardVisitsCount();
+    ;
+    this.scheduleStart = this.defaultstartdate;
+    this.scheduleEnd = this.todayDate;
+    this.displayClientVisits ? this.getDashBoardClientsCount(false) : this.getDashBoardVisitsCount()
+
+  }
+
+  public onGo() {
+    let startDate = Date.parse(this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'));;
+    let archivedate = Date.parse(this.datePipe.transform(this.archiveDate, 'MM/dd/yyyy'));
+    let endDate = Date.parse(this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'));
+
+
+    if (startDate >= archivedate && startDate <= endDate) {
+      console.log("validation  Ok");
+      this.displayClientVisits ? this.getDashBoardClientsCount(false) : this.getDashBoardVisitsCount()
+
+    } else {
+      if (startDate < archivedate) {
+        Swal.fire('Invalid Dates', `Authz Service Start cannot be prior to <strong> ${this.datePipe.transform(this.archiveDate, 'MM/dd/yyyy')}</strong>`, 'warning')
+      } else if (startDate > endDate) {
+        Swal.fire('Invalid Dates', `Authz Service End Date should be greater than or equal to Authz Service Start Date <strong> ${this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy')}</strong>`, 'warning')
+      }
+
+    }
+
+
   }
 }
