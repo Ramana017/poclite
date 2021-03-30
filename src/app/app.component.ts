@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   public timePopupexist: boolean = false;
 
 
-  constructor(public _http: HttpClient,public _userDetails: UserdetailsService,
+  constructor(public _http: HttpClient, public _userDetails: UserdetailsService,
     public apiservice: ApiserviceService, private idle: Idle, private keepalive: Keepalive,
     private router: Router, private modalService: BsModalService, private appService: AppService, title: Title) {
     // sets an idle timeout of 5 seconds, for testing purposes.
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
 
     // idle.setTimeout(10);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-  idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     idle.onIdleEnd.subscribe(() => {
       this.timePopupexist = true;
@@ -67,13 +67,15 @@ export class AppComponent implements OnInit {
       this.timedOut = true;
       console.log(this.idleState);
       sessionStorage.clear();
+
       setTimeout(() => {
         console.log("Hello from setTimeout");
         // this.modalService._hideModal(1);
         this.modalService.hide(1)
         this.router.navigateByUrl('login');
         this.appService.setUserLoggedIn(false);
-        // window.location.reload();
+
+        window.location.reload();
 
       }, 100);
     });

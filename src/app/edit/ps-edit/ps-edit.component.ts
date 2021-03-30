@@ -1,5 +1,6 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 @Component({
   selector: 'app-ps-edit',
   templateUrl: './ps-edit.component.html',
@@ -10,6 +11,7 @@ export class PsEditComponent implements OnInit {
 
 
   ngOnInit(): void {
+
   }
 
 
