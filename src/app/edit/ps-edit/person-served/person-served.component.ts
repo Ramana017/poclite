@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SelectItemGroup } from 'primeng/api';
@@ -13,6 +13,7 @@ import { FilterService } from "primeng/api";
 })
 export class PersonServedComponent implements OnInit {
 
+
   public modalRef: BsModalRef;
   constructor(private modalService: BsModalService, private _fb: FormBuilder, private filterService: FilterService
   ) { };
@@ -21,6 +22,7 @@ export class PersonServedComponent implements OnInit {
   public genderList: any[];
   selectedCountry:any;
   ngOnInit(): void {
+    console.log("yess")
  this.intialForm();
     this.genderList = [
       {name:"MALE",'value':'M'},
@@ -70,4 +72,8 @@ export class PersonServedComponent implements OnInit {
 
   }
   public filteredCountries: any[];
+
+ngOnDestroy(){
+  console.log("PS Destroy")
+}
 }

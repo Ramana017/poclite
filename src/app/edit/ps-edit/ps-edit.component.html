@@ -1,33 +1,3 @@
-<!-- <p>ps-edit works!</p> -->
-
-<nav class="navbar d-none navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-
-
 <div class="bg-white mh-90">
 
   <div class="px-3">
@@ -36,54 +6,49 @@
       <button type="button" class="btn">(To be Registered)</button>
     </div>
     <div class="ps-edit-tabs pb-1">
-      <tabset>
-        <tab heading="PS" id="tab1">
-          <app-person-served></app-person-served> </tab>
-        <tab heading="Guarantor">
-          <app-gurantor></app-gurantor> </tab>
-          <tab heading="Contacts">
-            <app-contacts></app-contacts> </tab>
-        <tab heading="Addresses">
-          <app-addresses></app-addresses>
-           </tab>
+      <tabset #staticTabs>
+        <tab heading="PS" #ps (deselect)="ps.active=false" (selectTab)="ps.active=true">
 
-
-        <tab heading="Health">
-          <app-health></app-health> </tab>
-        <tab heading="Medication">
-          <app-medication></app-medication> </tab>
-        <tab heading="Allergies">
-          <app-allergies></app-allergies>
+          <app-person-served *ngIf="ps.active"></app-person-served>
         </tab>
-        <tab heading="Languages">
-          <app-languages></app-languages>
+        <tab heading="Guarantor" #Gurantor (deselect)="Gurantor.active=false" (selectTab)="Gurantor.active=true">
+          <app-gurantor *ngIf="Gurantor.active"></app-gurantor>
         </tab>
-        <tab heading="Details">
-          <app-details></app-details>
+        <tab heading="Contacts" #contacts (deselect)="contacts.active=false" (selectTab)="contacts.active=true">
+          <app-contacts *ngIf="contacts.active"></app-contacts>
         </tab>
-        <tab heading="Hospitals">
-          <app-hospitals></app-hospitals>
+        <tab heading="Addresses" #address (deselect)="address.active=false" (selectTab)="address.active=true">
+          <app-addresses *ngIf="address.active"></app-addresses>
         </tab>
-        <tab heading="Telephony">
-          <app-telephony></app-telephony>
+        <tab heading="Health" #health (deselect)="health.active=false" (selectTab)="health.active=true">
+          <app-health *ngIf="health.active"></app-health>
         </tab>
-        <tab heading="Comments">
-          <app-comments></app-comments>
+        <tab heading="Medication" #medication (deselect)="medication.active=false" (selectTab)="medication.active=true">
+          <app-medication *ngIf="medication.active"></app-medication>
         </tab>
-        <tab heading="Alternate Id">
-          <app-alternate-id></app-alternate-id>
+        <tab heading="Allergies" #allergies (deselect)="allergies.active=false" (selectTab)="allergies.active=true">
+          <app-allergies *ngIf="allergies.active"></app-allergies>
+        </tab>
+        <tab heading="Languages" #languages (deselect)="languages.active=false" (selectTab)="languages.active=true">
+          <app-languages *ngIf="languages.active"></app-languages>
+        </tab>
+        <tab heading="Details" #details (deselect)="details.active=false" (selectTab)="details.active=true">
+          <app-details *ngIf="details.active"></app-details>
+        </tab>
+        <tab heading="Hospitals" #hospitals (deselect)="hospitals.active=false" (selectTab)="hospitals.active=true">
+          <app-hospitals *ngIf="hospitals.active"></app-hospitals>
+        </tab>
+        <tab heading="Telephony" #telephony (deselect)="telephony.active=false" (selectTab)="telephony.active=true">
+          <app-telephony *ngIf="telephony.active"></app-telephony>
+        </tab>
+        <tab heading="Comments" #comments (deselect)="comments.active=false" (selectTab)="comments.active=true">
+          <app-comments *ngIf="comments.active"></app-comments>
+        </tab>
+        <tab heading="Alternate Id" #alternateId (deselect)="alternateId.active=false"
+          (selectTab)="alternateId.active=true">
+          <app-alternate-id *ngIf="alternateId.active"></app-alternate-id>
         </tab>
       </tabset>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
