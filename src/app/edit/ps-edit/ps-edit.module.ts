@@ -21,23 +21,23 @@ import { GurantorComponent } from './gurantor/gurantor.component';
 import { PersonServedComponent } from './person-served/person-served.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import {AutoCompleteModule} from 'primeng/autocomplete';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [PsEditComponent,
     AlternateIdComponent,
     CommentsComponent,
     TelephonyComponent,
-     HospitalsComponent,
+    HospitalsComponent,
     DetailsComponent,
-     LanguagesComponent,
-     AllergiesComponent,
-      MedicationComponent,
-       HealthComponent,
-        GurantorComponent,
-        PersonServedComponent,
-        AddressesComponent,
-        ContactsComponent],
+    LanguagesComponent,
+    AllergiesComponent,
+    MedicationComponent,
+    HealthComponent,
+    GurantorComponent,
+    PersonServedComponent,
+    AddressesComponent,
+    ContactsComponent],
   imports: [
     CommonModule,
     SharedModule,

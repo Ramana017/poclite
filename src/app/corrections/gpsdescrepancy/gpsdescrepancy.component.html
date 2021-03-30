@@ -91,21 +91,25 @@
             <textarea class="form-control" [readOnly]="!arrivalgpsErr" [(ngModel)]="clockInComments"
               rows="3"></textarea>
           </div>
-          <div class="button-wrapper mb-2 d-flex align-items-center justify-content-between">
+          <div class="button-wrapper mb-2 d-flex  justify-content-between">
             <div class="">
-              <strong>Clock In Variance:</strong> &nbsp;{{clockInVariance}}
+              <strong class="f-15">Clock In Variance:</strong> <h3 class="f-15 h-30 d-flex align-items-center">{{clockInVariance}}
+              </h3>
             </div>
             <div class="form-group mx-2">
 
               <h3 class="f-15 ">Verfication Method<span class="text-danger">*</span></h3>
 
               <select style="width: 79%;" [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
-                <option [ngValue]="null||0">--select--</option>
+                <option [ngValue]="null||0">--Select--</option>
                 <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
               </select>
             </div>
-            <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
+            <div class="clock-accept d-flex align-items-center">
+              <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
+            </div>
+       
           </div>
         </div>
 
@@ -139,21 +143,26 @@
             <h3 class="f-15">Clock Out Comments<span class="text-danger">*</span></h3>
             <textarea class="form-control" [readOnly]="!depgpsErr" [(ngModel)]="clockOutComments" rows="3"></textarea>
           </div>
-          <div class="button-wrapper d-flex align-items-center justify-content-between mb-2">
+          <div class="button-wrapper d-flex  justify-content-between mb-2">
             <div class="">
-              <strong>Clock Out Variance:</strong>{{clockOutVariance}}
+              <strong>Clock Out Variance:</strong>
+              <h3 class="f-15 h-30 d-flex align-items-center">{{clockOutVariance}}
+              </h3>
             </div>
             <div class="form-group mx-2">
 
               <h3 class=" f-15 "> Verfication Method<span class="text-danger">*</span></h3>
 
               <select style="width: 79%;" [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
-                <option [ngValue]="null||0">--select--</option>
+                <option [ngValue]="null||0">--Select--</option>
                 <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
               </select>
             </div>
-            <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
+            <div class="d-flex align-items-center">
+              <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
               (click)="acceptGpsException('clockout')">Accept</button>
+            </div>
+            
           </div>
 
         </div>
