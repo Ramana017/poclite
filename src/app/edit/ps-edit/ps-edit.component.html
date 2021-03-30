@@ -9,7 +9,7 @@
       <tabset #staticTabs>
         <tab heading="PS" #ps (deselect)="ps.active=false" (selectTab)="ps.active=true">
 
-          <app-person-served *ngIf="ps.active"></app-person-served>
+          <app-person-served *ngIf="ps.active||ps.active==undefined"></app-person-served>
         </tab>
         <tab heading="Guarantor" #Gurantor (deselect)="Gurantor.active=false" (selectTab)="Gurantor.active=true">
           <app-gurantor *ngIf="Gurantor.active"></app-gurantor>
