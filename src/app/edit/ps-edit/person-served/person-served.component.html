@@ -72,9 +72,12 @@
                 <!-- <div class="input-group">
                   <input type="text" class="form-control lastName text-capital" />
                 </div> -->
-                <p-autoComplete formControlName="gender" class="  " [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
-                          #autocomplete (onFocus)="!autocomplete.value && autocomplete.handleDropdownClick(null)"
-                          field="name" [forceSelection]="true" [minLength]="0"></p-autoComplete>
+                <div class="ng-auto-style">
+                  <p-autoComplete formControlName="gender" class="  " [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
+                  #autocomplete (onFocus)="!autocomplete.value && autocomplete.handleDropdownClick(null)"
+                  field="name" [forceSelection]="true" [minLength]="0"></p-autoComplete>
+                </div>
+                
 
               </div>
               <div class="basic-input-container">
