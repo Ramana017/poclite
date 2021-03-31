@@ -274,7 +274,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
       }
       if(!acceptreason){
-        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verfication Method `)
+        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verification Method `)
 
       }
 

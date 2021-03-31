@@ -98,7 +98,7 @@
             </div>
             <div class="form-group mx-2">
 
-              <h3 class="f-15 ">Verfication Method<span class="text-danger">*</span></h3>
+              <h3 class="f-15 ">Verification Method<span class="text-danger">*</span></h3>
 
               <select style="width: 79%;" [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
                 <option [ngValue]="null||0">--Select--</option>
@@ -109,7 +109,7 @@
               <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
               (click)="acceptGpsException('clockin')">Accept</button>
             </div>
-       
+
           </div>
         </div>
 
@@ -151,7 +151,7 @@
             </div>
             <div class="form-group mx-2">
 
-              <h3 class=" f-15 "> Verfication Method<span class="text-danger">*</span></h3>
+              <h3 class=" f-15 "> Verification Method<span class="text-danger">*</span></h3>
 
               <select style="width: 79%;" [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
                 <option [ngValue]="null||0">--Select--</option>
@@ -162,7 +162,7 @@
               <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
               (click)="acceptGpsException('clockout')">Accept</button>
             </div>
-            
+
           </div>
 
         </div>

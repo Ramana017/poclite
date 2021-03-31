@@ -185,7 +185,7 @@ export class InvalidcalleridComponent implements OnInit {
         str.push(`enter ${data} Comments`)
       }
       if (!acceptreason) {
-        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verfication Method `)
+        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verification Method `)
       }
       swal.fire({
         title: "Invalid Comments",

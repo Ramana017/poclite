@@ -7,6 +7,7 @@ import { DatePipe, TitleCasePipe } from '@angular/common';
 // import { Observable, forkJoin, observable } from 'rxjs';
 // import { treemap, schemeSet3 } from 'd3';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+const color = d3.scaleOrdinal(d3.schemePaired);
 
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver'
@@ -114,16 +115,17 @@ export class ChartsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
-    this.startdate.setDate(this.todayDate.getDate() - 7);
-    var data = sessionStorage.getItem("useraccount");
-    this.useraccount = JSON.parse(data);
-    if (this.useraccount != undefined || null) {
-      this.userId = this.useraccount.userId;
-      this.getUserSites();
-      this.getVisitsDashboardDetails();
+    // this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
+    // this.startdate.setDate(this.todayDate.getDate() - 7);
+    // var data = sessionStorage.getItem("useraccount");
+    // this.useraccount = JSON.parse(data);
+    // if (this.useraccount != undefined || null) {
+    //   this.userId = this.useraccount.userId;
+    //   this.getUserSites();
+    //   this.getVisitsDashboardDetails();
 
-    }
+    // }
+    this.openvists()
 
   }
   private getVisitsDashboardDetails(): void {
@@ -175,7 +177,7 @@ export class ChartsComponent implements OnInit {
                 psName: this.responseData.openVisitCountsByPSLevel[i].psName,
                 psCount: this.responseData.openVisitCountsByPSLevel[i].psCount,
                 psId: this.responseData.openVisitCountsByPSLevel[i].psId,
-                id:'B'+ pscount++,
+                id: 'B' + pscount++,
                 cssId: this.responseData.openVisitCountsByPSLevel[i].cssId,
                 color: ''
               }
@@ -216,7 +218,7 @@ export class ChartsComponent implements OnInit {
           console.log(this.parentchildcolor)
           if (missedcount == this.responseData.missedVisitCountsByCSSLevel.length) {
 
-            let missedpscount:any = 1;
+            let missedpscount: any = 1;
             for (let i = 0; i < this.responseData.missedVisitCountsByPSLevel.length; i++) {
 
               let object = {
@@ -226,7 +228,7 @@ export class ChartsComponent implements OnInit {
                 psName: this.responseData.missedVisitCountsByPSLevel[i].psName,
                 psCount: this.responseData.missedVisitCountsByPSLevel[i].psCount,
                 psId: this.responseData.missedVisitCountsByPSLevel[i].psId,
-                id:"A"+missedpscount++,
+                id: "A" + missedpscount++,
                 cssId: this.responseData.missedVisitCountsByPSLevel[i].cssId,
                 color: ''
               }
@@ -423,7 +425,7 @@ export class ChartsComponent implements OnInit {
       { wch: 30 }
     ];
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.mappedJson);
-    worksheet["!cols"] = this.searchflag==1? wscols:wscols2;
+    worksheet["!cols"] = this.searchflag == 1 ? wscols : wscols2;
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     this.saveAsExcelFile(excelBuffer, this.psname);
@@ -447,43 +449,298 @@ export class ChartsComponent implements OnInit {
   }
 
 
-  private openvists(tree): void {
+  private openvists(tree?): void {
     d3.select('#canvas').selectAll('svg').remove();
-
+    let tree2 = [
+      {
+        "interfaceDefinitionId": 3,
+        "interfaceName": "CareBridge",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "Completed Visits",
+            "lastActivity": "11/12/2020 11:11 AM",
+            "id": "5"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "sdsd",
+            "lastActivity": "",
+            "id": "28"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "test",
+            "lastActivity": "",
+            "id": "30"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Testnow",
+            "lastActivity": "",
+            "id": "29"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 11,
+        "interfaceName": "CareBridge",
+        "datasetList": []
+      },
+      {
+        "interfaceDefinitionId": 10,
+        "interfaceName": "CareBridge",
+        "datasetList": []
+      },
+      {
+        "interfaceDefinitionId": 4,
+        "interfaceName": "HHA",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "Datset1",
+            "lastActivity": "",
+            "id": "6"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "dcs datset",
+            "lastActivity": "",
+            "id": "45"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "dcs datset",
+            "lastActivity": "",
+            "id": "49"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "dcs datset",
+            "lastActivity": "",
+            "id": "52"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "test HHA",
+            "lastActivity": "",
+            "id": "56"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 9,
+        "interfaceName": "HHA NJ",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "Completed Visits",
+            "lastActivity": "",
+            "id": "26"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "DCS",
+            "lastActivity": "",
+            "id": "25"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "DCS DATASET",
+            "lastActivity": "",
+            "id": "53"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "HHA NJ TEST 2",
+            "lastActivity": "",
+            "id": "37"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "HHANJ-MAR30",
+            "lastActivity": "",
+            "id": "59"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "Test",
+            "lastActivity": "",
+            "id": "32"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "test",
+            "lastActivity": "",
+            "id": "35"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Test",
+            "lastActivity": "",
+            "id": "36"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "test",
+            "lastActivity": "",
+            "id": "54"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "TEST DATASET",
+            "lastActivity": "",
+            "id": "60"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "TEST dcs hhanj",
+            "lastActivity": "",
+            "id": "57"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "Test HHANJ",
+            "lastActivity": "",
+            "id": "55"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 1,
+        "interfaceName": "Tellus",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "aquila",
+            "lastActivity": "",
+            "id": "8"
+          },
+          {
+            "dataFlow": "Import",
+            "name": "test",
+            "lastActivity": "",
+            "id": "23"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Visits",
+            "lastActivity": "",
+            "id": "1"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 8,
+        "interfaceName": "test 001",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "001",
+            "lastActivity": "",
+            "id": "24"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 12,
+        "interfaceName": "Test IN",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "PS",
+            "lastActivity": "",
+            "id": "58"
+          }
+        ]
+      },
+      {
+        "interfaceDefinitionId": 7,
+        "interfaceName": "Test intertface2",
+        "datasetList": [
+          {
+            "dataFlow": "Export",
+            "name": "Test Dataset",
+            "lastActivity": "",
+            "id": "31"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Test2",
+            "lastActivity": "",
+            "id": "21"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Test3",
+            "lastActivity": "",
+            "id": "22"
+          },
+          {
+            "dataFlow": "Export",
+            "name": "Testdataset",
+            "lastActivity": "",
+            "id": "14"
+          }
+        ]
+      }
+    ]
     var mydata: any = {
-      "name": this.totalcount !== 0 ? "Open Visits" : 'NO Open Visits Found',
+      "name": this.totalcount !== 0 ? "Open Visits" : 'Dashboard',
       // "count": "TotalVisitsCoun" + this.totalcount.toString(),
       "color": 'lightblue',
-      "children": tree
+      "datasetList": tree2
     }
     // var el = document.getElementById('canvas')
     // if (el)
     {
 
-      this.openVisitChart
-        .data(mydata)
+      // this.openVisitChart
+      //   .data(mydata)
+      //   .size((node: any) => {
+      //     return node.count;
+      //   })
+      //   .color('color')
+      //   .label(
+      //     (d: any) => {
+
+      //       return d.name;
+      //     })
+      //   .height(500)
+      //   .width(500)
+      //   .minSliceAngle(0)
+      //   .excludeRoot(false)
+      //   .tooltipContent((d, node) => `Count: <i>${node.value}</i>`)
+      //   .onClick((node) => {
+      //     console.log(node)
+      //     this.chartclick(node, 1);
+      //     this.searchflag = 1;
+      //     this.openVisitChart.focusOnNode(node);
+      //   })
+      //   (document.getElementById('canvas'))
+
+      this.openVisitChart.data(mydata)
         .size((node: any) => {
-          return node.count;
+          return node.id != undefined ? node.id : node.interfaceDefinitionId;
         })
-        .color('color')
+        .color((parent) => color(parent ? parent.name : null)).children('datasetList')
         .label(
           (d: any) => {
+            if (d.name != undefined) {
+              return d.name;
 
-            return d.name;
+            } else {
+              return d.interfaceName
+            }
           })
         .height(500)
         .width(500)
         .minSliceAngle(0)
-        .excludeRoot(false)
-        .tooltipContent((d, node) => `Count: <i>${node.value}</i>`)
-        .onClick((node) => {
-          console.log(node)
-          this.chartclick(node, 1);
-          this.searchflag = 1;
-          this.openVisitChart.focusOnNode(node);
-        })
-        (document.getElementById('canvas'))
+        .excludeRoot(true)
 
+
+
+        (document.getElementById('canvas'))
 
     }
 
