@@ -140,7 +140,7 @@ export class ChartLayoutComponent implements OnInit {
     this.displayVisitCards = true;
     this.displayClientVisits = false;
   }
-  charts() {
+  charts() {``
     $('.divB').toggleClass('hide');
   }
   onSelect(event) {

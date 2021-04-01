@@ -44,7 +44,7 @@ const routes: Routes = [
   // { path: 'calendar', component: CalenderSchedulingComponent },
 
   { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
-  { path: 'chart-layout', component: ChartLayoutComponent },
+  { path: 'chart-layout',canActivate: [AuthGuard], component: ChartLayoutComponent },
   { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
   {
     path: "registration", canActivate: [AuthGuard], canActivateChild: [AuthGuard], component: RegistrationComponent,
