@@ -16,7 +16,12 @@
                             </ul>
                         </div>
                     </li>
-                    <li (click)="!displayClientVisits?getDashBoardClientsCount(true):''" ><a>Clients</a></li>
+                    <li (click)="!displayClientVisits?getDashBoardClientsCount(true):''" (click)="charts()"><a>Clients</a></li>
+                    <div class="divB ">
+                        <ul>
+                            <li class="drop-item mx-3" >PS with no Template</li>
+                        </ul>
+                    </div>
                 </ul>
 
             </div>
