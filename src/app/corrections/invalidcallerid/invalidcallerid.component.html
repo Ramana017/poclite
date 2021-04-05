@@ -95,13 +95,21 @@
             {{clockInDCSPhoneType}} Phone number.</div>
 
           <div class="button-wrapper d-flex mb-0 align-items-center">
-            <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
-            <select  [(ngModel)]="clockInCallerIdAccptReasonId"
+          
+              <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
+              <div class="ng-select-verification ml-2">
+                <ng-select [(ngModel)]="clockInCallerIdAccptReasonId" appendTo="body" placeholder="--Select--">
+                  <ng-option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</ng-option>
+                </ng-select>
+              </div>
+            
+           
+            <!-- <select  [(ngModel)]="clockInCallerIdAccptReasonId"
               class="bg-white border-0 outline-0  adjust-reason ml-2">
               <option [ngValue]=0>--Select--</option>
               <option *ngFor="let reason of callerIdAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
 
-            </select>
+            </select> -->
             <button type="button" class="btn mb-0" [disabled]="!arrInvalidErr"
               (click)="acceptCallerIdException('clockin')">Accept</button>
           </div>

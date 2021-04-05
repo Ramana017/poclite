@@ -173,7 +173,7 @@
                  
                 </select> -->
                 <div class="ng-select-wraper">
-                  <ng-select [(ngModel)]="arrivalAdjReasonId" appendTo="body">
+                  <ng-select [(ngModel)]="arrivalAdjReasonId" appendTo="body" placeholder="--Select--">
                     <ng-option *ngFor="let reason of arrivalAdjustReasons" [ngValue]="reason.id">{{reason.label}}</ng-option>
                   </ng-select>
                 </div>
@@ -215,7 +215,7 @@
                         <option *ngFor="let reason of departureAdjustReasons" [ngValue]="reason.id">{{reason.label}}</option>
 
                       </select> -->
-                      <ng-select [(ngModel)]="departureAdjReasonId" appendTo="body">
+                      <ng-select [(ngModel)]="departureAdjReasonId" appendTo="body" placeholder="--Select--">
                         <ng-option *ngFor="let reason of departureAdjustReasons" [ngValue]="reason.id">{{reason.label}}</ng-option>
                       </ng-select>
                     </div>
@@ -227,7 +227,7 @@
                         <option *ngFor="let reason of scheduleVarAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</option>
 
                       </select> -->
-                      <ng-select [(ngModel)]="exceptionAcceptReasonId" appendTo="body">
+                      <ng-select [(ngModel)]="exceptionAcceptReasonId" appendTo="body" placeholder="--Select--">
                         <ng-option *ngFor="let reason of scheduleVarAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</ng-option>
                       </ng-select>
                     </div>
