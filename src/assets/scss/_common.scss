@@ -2283,13 +2283,14 @@ app-maintainence {
   }
 
   .ng-select-wraper{
+    width: 45%;
     .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
       top:-5px;
     }
     .ng-select.ng-select-single .ng-select-container{
       border: 0;
       box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
-      width: 200px;
+      // width: 200px;
       margin-bottom: 5px;
     }
     
@@ -2297,4 +2298,16 @@ app-maintainence {
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
     // text-overflow: auto;
     white-space: pre-wrap !important;
+  }
+  .ng-select-verification{
+    width: 35%;
+    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
+      top:9px;
+    }
+    .ng-select.ng-select-single .ng-select-container{
+      border: 0;
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
+      // width: 200px;
+      margin-bottom: 5px;
+    }
   }
