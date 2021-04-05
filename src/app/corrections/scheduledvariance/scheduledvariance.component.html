@@ -170,15 +170,15 @@
                   class="bg-white border-0 outline-0 mt-2 p-2 mb-4 adjust-reason">
                   <option [ngValue]=0>--Select--</option>
                   <option *ngFor="let reason of arrivalAdjustReasons" [ngValue]="reason.id">{{reason.label}}</option>
-                 
+
                 </select> -->
                 <div class="ng-select-wraper">
                   <ng-select [(ngModel)]="arrivalAdjReasonId" appendTo="body" placeholder="--Select--">
-                    <ng-option *ngFor="let reason of arrivalAdjustReasons" [ngValue]="reason.id">{{reason.label}}</ng-option>
+                    <ng-option *ngFor="let reason of arrivalAdjustReasons" [value]="reason.id">{{reason.label}}</ng-option>
                   </ng-select>
                 </div>
 
-               
+
               </div>
               <div class="col-md-6 col-sm-12 clockout-inner-wrapper mt-3 overflow-auto ">
                 <p class="mr-5 mb-0 pt-0">Clock Out Date Time</p>
@@ -216,7 +216,7 @@
 
                       </select> -->
                       <ng-select [(ngModel)]="departureAdjReasonId" appendTo="body" placeholder="--Select--">
-                        <ng-option *ngFor="let reason of departureAdjustReasons" [ngValue]="reason.id">{{reason.label}}</ng-option>
+                        <ng-option *ngFor="let reason of departureAdjustReasons" [value]="reason.id">{{reason.label}}</ng-option>
                       </ng-select>
                     </div>
                     <div class="ng-select-wraper">
@@ -228,7 +228,7 @@
 
                       </select> -->
                       <ng-select [(ngModel)]="exceptionAcceptReasonId" appendTo="body" placeholder="--Select--">
-                        <ng-option *ngFor="let reason of scheduleVarAcceptReasonList" [ngValue]="reason.id">{{reason.name}}</ng-option>
+                        <ng-option *ngFor="let reason of scheduleVarAcceptReasonList" [value]="reason.id">{{reason.name}}</ng-option>
                       </ng-select>
                     </div>
                   </div>

@@ -46,8 +46,8 @@ export class InvalidcalleridComponent implements OnInit {
   public clockInDCSPhoneType: string = "";
   public clockOutDCSPhoneType: string = '';
   public callerIdAcceptReasonList = [];
-  public clockInCallerIdAccptReasonId: number = 0;
-  public clockOutCallerIdAccptReasonId: number = 0;
+  public clockInCallerIdAccptReasonId: number = null;
+  public clockOutCallerIdAccptReasonId: number = null;
 
   constructor(public datepipe: DatePipe, private _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
@@ -133,14 +133,14 @@ export class InvalidcalleridComponent implements OnInit {
     let clockOutFlag = event == "clockout" ? 1 : 0;
     let acceptreason: boolean;
     if (event == 'clockin') {
-      this.clockInCallerIdAccptReasonId == 0 ? acceptreason = false : acceptreason = true;
+      this.clockInCallerIdAccptReasonId == null ? acceptreason = false : acceptreason = true;
     } else {
-      this.clockOutCallerIdAccptReasonId == 0 ? acceptreason = false : acceptreason = true;
+      this.clockOutCallerIdAccptReasonId == null ? acceptreason = false : acceptreason = true;
     }
     let commentLength = event == 'clockin' ? this.clockInComments.trim().length : this.clockOutComments.trim().length;
     if (commentLength > 0 && acceptreason) {
       let JsonData = { "id": this.JsonData.id, "visitDetailsId": this.JsonData.visitDetailsId, "clockInComments": event == 'clockin' ? this.clockInComments : '', "clockOutComments": event == "clockout" ? this.clockOutComments : "",
-      "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId,clockInCallerIdAccptReasonId:this.clockInCallerIdAccptReasonId,clockOutCallerIdAccptReasonId:this.clockOutCallerIdAccptReasonId }
+      "clockInFlag": clockInFlag, "clockOutFlag": clockOutFlag, "userId": this.userId,clockInCallerIdAccptReasonId:this.clockInCallerIdAccptReasonId==null?0:this.clockInCallerIdAccptReasonId,clockOutCallerIdAccptReasonId:this.clockOutCallerIdAccptReasonId==null?0:this.clockOutCallerIdAccptReasonId }
       let parameters = JSON.stringify(JsonData);
       console.log(JsonData)
 
