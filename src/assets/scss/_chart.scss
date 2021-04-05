@@ -4,7 +4,8 @@
   justify-content: center;
 
   .card-container {
-    width: 150px;
+    min-width: 150px;
+
     height: 150px;
     background: #009ccc;
     /* display: grid; */
@@ -73,7 +74,7 @@ position: relative;
   .info {
     float: right;
     font-size: 20px;
-  
+
   }
 }
 .bar-graph{
@@ -81,6 +82,7 @@ position: relative;
 }
 li.drop-item{
   // padding-left: 30%;
+  cursor: pointer;
   font-size: 13px;
   padding: 5px 0 5px 26%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
