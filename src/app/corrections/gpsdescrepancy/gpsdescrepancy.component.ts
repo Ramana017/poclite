@@ -223,9 +223,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     let clockOutFlag = event == "clockout" ? 1 : 0;
     let acceptreason: boolean;
     if (event == 'clockin') {
-      this.clockInGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
+      this.clockInGpsAcceptReasonsId == null||this.clockInGpsAcceptReasonsId==0 ? acceptreason = false : acceptreason = true;
     } else {
-      this.clockOutGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
+      this.clockOutGpsAcceptReasonsId == null||this.clockOutGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
     }
     let commentLength = clockinflag == 1 ? this.clockInComments?.trim().length : this.clockOutComments?.trim().length;
     console.log(commentLength)

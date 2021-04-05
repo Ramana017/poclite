@@ -141,7 +141,7 @@ export class ScheduledvarianceComponent implements OnInit {
   public acceptScheduleVarException() {
     var JsonData = { "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "userId": this.userid, exceptionAcceptReasonId: this.exceptionAcceptReasonId }
     let parameters = JSON.stringify(JsonData);
-    if (this.exceptionAcceptReasonId == 0) {
+    if (this.exceptionAcceptReasonId == 0||this.exceptionAcceptReasonId==null) {
       swal.fire({
         // title: "Invalid",
         text: "Please select Verification Method before accept",
@@ -272,8 +272,8 @@ export class ScheduledvarianceComponent implements OnInit {
         this.clockinChangeFlag = false;
       }
       else {
-        this.clockinChangeFlag = this.arrivalAdjReasonId == 0 ? true : false;
-        if (this.arrivalAdjReasonId == 0) {
+        this.clockinChangeFlag = this.arrivalAdjReasonId == 0 ||this.arrivalAdjReasonId == null ? true : false;
+        if (this.arrivalAdjReasonId == 0 ||this.arrivalAdjReasonId == null) {
           this.clockinChangeFlag = true;
           swal.fire({
             text: "There is a change in the Clock In, please select the adjust reason",
@@ -289,8 +289,8 @@ export class ScheduledvarianceComponent implements OnInit {
       }
       else {
         console.log(" changed")
-        this.clockoutChangeFlag = this.departureAdjReasonId == 0 ? true : false;
-        if (this.departureAdjReasonId == 0) {
+        this.clockoutChangeFlag = this.departureAdjReasonId == 0 || this.departureAdjReasonId==null ? true : false;
+        if (this.departureAdjReasonId == 0 || this.departureAdjReasonId==null) {
           swal.fire({
             text: "There is a change in the Clock Out, please select the adjust reason",
             icon: "warning",
