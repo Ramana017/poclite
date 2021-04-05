@@ -2289,6 +2289,12 @@ app-maintainence {
     .ng-select.ng-select-single .ng-select-container{
       border: 0;
       box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
-
+      width: 200px;
+      margin-bottom: 5px;
     }
+    
+  }
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+    // text-overflow: auto;
+    white-space: pre-wrap !important;
   }
