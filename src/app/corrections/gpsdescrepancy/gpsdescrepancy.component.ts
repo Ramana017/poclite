@@ -175,8 +175,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
-          this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId;
-          this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId;
+          this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId==0?null:this.getResponseData.clockInGpsAcceptReasonsId;
+          this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId==0?null:this.getResponseData.clockOutGpsAcceptReasonsId;
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
           this.clockOutComments = this.getResponseData?.clockOutGpsAcceptComments;
           this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;

@@ -35,8 +35,8 @@ export class ScheduledvarianceComponent implements OnInit {
   public clockinDateview: any;
 
   public ClockOutTime;
-  public departureAdjReasonId: number = 0;
-  public arrivalAdjReasonId: number = 0;
+  public departureAdjReasonId: number = null;
+  public arrivalAdjReasonId: number = null;
   public getResponsedata: any;
   public updateResponseData: any;
   public useraccount: any;
@@ -61,7 +61,7 @@ export class ScheduledvarianceComponent implements OnInit {
   minTime: Date = new Date();
   maxTime: Date = new Date();
   public scheduleVarAcceptReasonList = [];
-  public exceptionAcceptReasonId: Number = 0;
+  public exceptionAcceptReasonId: Number = null;
   constructor(public datepipe: DatePipe, public _apiService: ApiserviceService, public bsmodelRef: BsModalRef) { }
 
   ngOnInit(): void {
@@ -241,7 +241,8 @@ export class ScheduledvarianceComponent implements OnInit {
       }
     }
     else {
-      alert("select Arrival and  departure Adjust Reasons");
+      // alert("select Arrival and  departure Adjust Reasons");
+      swal.fire('Inavalid','Select Arrival and  Departure adjust reasons','warning')
     }
 
 
