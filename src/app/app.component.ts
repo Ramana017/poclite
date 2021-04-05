@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
 
     idle.onTimeout.subscribe(() => {
       // this.childModal.hide();
-      this.bsmodelRef.hide();
+      this.bsmodelRef?.hide();
       this.idleState = 'Session expired!';
       this.timedOut = true;
       console.log(this.idleState);
