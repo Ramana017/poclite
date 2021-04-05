@@ -192,10 +192,19 @@ export class ScheduledvarianceComponent implements OnInit {
   }
   public updateReportedTimes() {
 
-    if (this.arrivalAdjReasonId != null || undefined && this.departureAdjReasonId != null || undefined) {
+    let arrivaladjustId=this.arrivalAdjReasonId==null?0:this.arrivalAdjReasonId;
+    let departureadjustId=this.departureAdjReasonId==null?0:this.departureAdjReasonId;
+
+    if (arrivaladjustId != null || undefined && departureadjustId != null || undefined) {
       let newclockindate = this.datepipe.transform(this.clockInDate, 'MM/dd/yyyy') + " " + this.datepipe.transform(this.clockInDate, 'h:mm a');
       let newclockoutdate = this.datepipe.transform(this.clockOutDate, 'MM/dd/yyyy') + " " + this.datepipe.transform(this.clockOutDate, 'h:mm a');
-      var JsonData = { "id": this.jsonData.id, "arrivalDateTime": this.clockInDateAndTime, "departureDateTime": this.clockOutDateAndTime, newArrivalDateTime: newclockindate, "newDepartureDateTime": newclockoutdate, "arrivalAdjReasonId": this.arrivalAdjReasonId, "departureAdjReasonId": this.departureAdjReasonId, "userId": this.userid }
+      var JsonData = { "id": this.jsonData.id,
+       "arrivalDateTime": this.clockInDateAndTime,
+        "departureDateTime": this.clockOutDateAndTime,
+         newArrivalDateTime: newclockindate,
+          "newDepartureDateTime": newclockoutdate,
+           "arrivalAdjReasonId": arrivaladjustId,
+            "departureAdjReasonId": departureadjustId, "userId": this.userid }
       let parameters = JSON.stringify(JsonData);
       console.log(JsonData)
       try {
