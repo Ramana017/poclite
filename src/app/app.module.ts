@@ -71,6 +71,7 @@ import { map } from 'rxjs/operators';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';
 const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,7 +146,8 @@ const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
     NgxChartsModule,
     TypeaheadModule.forRoot(),
     BsDropdownModule.forRoot(),
-    MultiSelectModule
+    MultiSelectModule,
+    NgSelectModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {
