@@ -10,13 +10,13 @@
                         <div class="divA ">
                             <ul>
                                 <li class="drop-item mx-3"
-                                    (click)="getDashBoardVisitsDetails('Missed Visits',missedVisitsCount)">Missed
+                                    (click)="!displayClientVisits? getDashBoardVisitsDetails('Missed Visits',missedVisitsCount):resetFilters()">Missed
                                     Visits</li>
                                 <li class="drop-item mx-3"
-                                    (click)="getDashBoardVisitsDetails('Open Visits',openVisitsCount)">Open
+                                    (click)="!displayClientVisits? getDashBoardVisitsDetails('Open Visits',openVisitsCount):resetFilters()">Open
                                     Visits</li>
                                 <li class="drop-item "
-                                    (click)="getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount)">
+                                    (click)="!displayClientVisits?getDashBoardVisitsDetails('Cancelled Visits',cancelledVisitsCount):resetFilters()">
                                     <span class="px-3">Cancelled Visits</span>
                                 </li>
 
@@ -50,14 +50,14 @@
                         </angular2-multiselect>
                     </div>
                     <div class="start-date text-center px-2">
-                        <p class="m-0">{{!displayClientVisits?'Visit Start Date':'Authz Service Start'}} </p>
+                        <p class="m-0">{{!displayClientVisits?'Visit Start Date':'Authz Service Start'}}<span class="text-danger"> *</span> </p>
                         <input type="text" class="date-input" [(ngModel)]="scheduleStart" bsDatepicker
                             placeholder="MM/DD/YYYY">
                     </div>
 
 
                     <div class="end-date text-center px-2">
-                        <p class="m-0">{{!displayClientVisits?'Visit End Date':'Authz Service End'}} </p>
+                        <p class="m-0">{{!displayClientVisits?'Visit End Date':'Authz Service End'}}<span class="text-danger"> *</span> </p>
                         <input type="text" [(ngModel)]="scheduleEnd" bsDatepicker placeholder="MM/DD/YYYY">
                     </div>
                     <!-- <div class="category-dropdown text-center px-2">
@@ -181,7 +181,7 @@
                                         <thead class="thead-row">
                                             <tr class="pb-0">
                                                 <th scope="col" class="sticky-top table-header-inner">
-                                                    <h5 class="mainheading-wrapper">Site</h5>
+                                                    <h5 class="mainheading-wrapper"><i  (click)="setOrder('site',false)" [class.active]="orderByColumn=='site' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Site&nbsp;<i (click)="setOrder('site',true)" [class.active]="orderByColumn=='site' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete code-dropdown" style="width: 100%;">
                                                             <!-- <angular2-multiselect appendTo ="body" [data]="siteFilter"  [(ngModel)]="siteSelect"
@@ -198,7 +198,7 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="sticky-top table-header-wrapper">
-                                                    <h5 class="mainheading-wrapper">PS</h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('psName',false)" [class.active]="orderByColumn=='psName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;PS&nbsp;<i (click)="setOrder('psName',true)" [class.active]="orderByColumn=='psName' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <div class="ng-autocomplete" style="width: 100%;">
                                                             <ng-autocomplete #psfilter
@@ -232,7 +232,7 @@
                                                     </div>
                                                 </th> -->
                                                 <th scope="col" class="sticky-top table-header-wrapper">
-                                                    <h5 class="mainheading-wrapper">CSS</h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('cssName',false)" [class.active]="orderByColumn=='cssName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;CSS&nbsp;<i (click)="setOrder('cssName',true)" [class.active]="orderByColumn=='cssName' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <ng-autocomplete #cssfilter [(ngModel)]="cssFilterAutocomplete"
                                                             [data]="cssFilter" [itemTemplate]="itemTemplatecss"
@@ -263,7 +263,7 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="sticky-top table-header-inner-wrapper">
-                                                    <h5 class="mainheading-wrapper">Scheduled Start </h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('scheduledBeginDateTime',false)" [class.active]="orderByColumn=='scheduledBeginDateTime' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Scheduled Start&nbsp;<i (click)="setOrder('scheduledBeginDateTime',true)" [class.active]="orderByColumn=='scheduledBeginDateTime' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
 
                                                         <input type="text" bsDatepicker
@@ -273,7 +273,7 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col " class="sticky-top table-header-inner-wrapper">
-                                                    <h5 class="mainheading-wrapper ">Scheduled End </h5>
+                                                    <h5 class="mainheading-wrapper "><i (click)="setOrder('scheduledEndDateTime',false)" [class.active]="orderByColumn=='scheduledEndDateTime' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Scheduled End&nbsp;<i (click)="setOrder('scheduledEndDateTime',true)" [class.active]="orderByColumn=='scheduledEndDateTime' && reverse" class="fas fa-arrow-down text-white"></i> </h5>
                                                     <div class="input-outter-wrapper dropdown ">
 
                                                         <input type="text" placeholder="MM/DD/YYYY" bsDatepicker
@@ -321,7 +321,7 @@
                                         <tbody>
 
                                             <!-- <tr *ngFor="let data of visitData|Itemfilter:{'psName':this.psName.trim(),'cssName':this.cssName.trim(),'dcsName':dcsName.trim(),'serviceCode':serviceName.trim()}:false" class="table-border "> -->
-                                            <tr class="table-border " *ngFor="let data of displayTable">
+                                            <tr class="table-border " *ngFor="let data of displayTable | orderBy: orderByColumn:reverse:true">
                                                 <td class="body-cell col2 text-color sitecodeinner">
                                                     <div>
                                                         {{data.site}}
@@ -331,7 +331,7 @@
                                                 <td class="body-cell col2 ">{{data.psName}}</td>
                                                 <!-- <td class="body-cell col3 ">{{data.dcsName}}</td> -->
                                                 <td class="body-cell col4 ">{{data.cssName}}</td>
-                                                <td class="body-cell text-color col4 Serviceprocedurecode">
+                                                <td class="body-cell text-color col4 ">
                                                     <div>
                                                         {{data.serviceCode}}
 
@@ -438,7 +438,7 @@
 </ng-template>
 <ng-template #bargraph let-notFound>
     <div class="modal-header">
-        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Missed Visits</h4>
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">{{currentVisitScenario}}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modelRef.hide()"  >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -487,7 +487,7 @@
                                 <td class="body-cell col2 ">{{data.psName}}</td>
                                 <!-- <td class="body-cell col3 ">{{data.dcsName}}</td> -->
                                 <td class="body-cell col4 ">{{data.cssName}}</td>
-                                <td class="body-cell text-color col4 Serviceprocedurecode">
+                                <td class="body-cell text-color col4 ">
                                     <div>
                                         {{data.serviceCode}}
 
@@ -530,6 +530,8 @@
 </ng-template>
 
 <style>
-
+.active{
+  color: #145194 !important;
+}
 
 </style>

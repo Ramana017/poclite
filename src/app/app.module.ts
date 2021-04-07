@@ -72,6 +72,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {MultiSelectModule} from 'primeng/multiselect';
 const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -147,7 +149,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TypeaheadModule.forRoot(),
     BsDropdownModule.forRoot(),
     MultiSelectModule,
-    NgSelectModule
+    NgSelectModule,
+    OrderModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

@@ -136,6 +136,8 @@ export class ChartLayoutComponent implements OnInit {
   public siteSelect = [];
   public displayTable = [];
   currentVisitScenario = '';
+  public orderByColumn = "site"
+  public reverse: boolean = false;
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
@@ -160,11 +162,6 @@ export class ChartLayoutComponent implements OnInit {
       this.scheduleStart = this.defaultstartdate;
       this.scheduleEnd = this.todayDate;
     }
-    console.log('startdate', this.scheduleStart);
-    // this.scheduleEnd = new Date();
-    console.log('End Date', this.scheduleEnd)
-
-
     let officelist = [];
     this.officeIds.map((y) => {
       officelist.push(y.siteId);
@@ -220,6 +217,7 @@ export class ChartLayoutComponent implements OnInit {
     } catch (error) { }
   }
   public getDashBoardVisitsCount() {
+
     this.displayVisitCards = true;
     this.displayClientVisits = false;
 
@@ -411,45 +409,45 @@ export class ChartLayoutComponent implements OnInit {
 
     }
 
-    // if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
-    //   this.displayTable = this.displayTable.filter((x) => {
-    //     return (
-    //       x.visitDate ==
-    //       this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy')
-    //     );
-    //   });
-    // }
-
-    // if (this.fileterStartDate != null && this.fileterStartDate != undefined) {
-    //   this.displayTable = this.displayTable.filter((x) => {
-    //     return (
-    //       x.visitDate ==
-    //       this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy')
-    //     );
-    //   });
-    // }
-    if ((this.filterEndeDate == null && this.fileterStartDate != null) || (this.filterEndeDate != null && this.fileterStartDate == null)) {
-      Swal.fire('Invalid Dates', 'Start and End Dates both are Mandatory','warning')
-    } else {
-      if (this.filterEndeDate != null && this.filterEndeDate != undefined && this.fileterStartDate != null && this.fileterStartDate != undefined) {
-        let dummeyarray = [];
-        let startdate = Date.parse(this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy'));
-        let endDate = Date.parse(this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy'));
-        this.displayTable.map(x => {
-          let scheduledBeginDateTime = Date.parse(this.datePipe.transform(x.scheduledBeginDateTime, 'MM/dd/yyyy'));
-          let scheduledEndDateTime = Date.parse(this.datePipe.transform(x.scheduledEndDateTime, 'MM/dd/yyyy'));
-          if (scheduledBeginDateTime >= startdate && scheduledEndDateTime <= endDate) {
-            dummeyarray.push(x);
-          }
-        })
-        this.displayTable = dummeyarray;
-
-
-
-      } else {
-
-      }
+    if (this.filterEndeDate != null && this.filterEndeDate != undefined) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return (
+          x.visitDate ==
+          this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy')
+        );
+      });
     }
+
+    if (this.fileterStartDate != null && this.fileterStartDate != undefined) {
+      this.displayTable = this.displayTable.filter((x) => {
+        return (
+          x.visitDate ==
+          this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy')
+        );
+      });
+    }
+    // if ((this.filterEndeDate == null && this.fileterStartDate != null) || (this.filterEndeDate != null && this.fileterStartDate == null)) {
+    //   Swal.fire('Invalid Dates', 'Start and End Dates both are Mandatory','warning')
+    // } else {
+    //   if (this.filterEndeDate != null && this.filterEndeDate != undefined && this.fileterStartDate != null && this.fileterStartDate != undefined) {
+    //     let dummeyarray = [];
+    //     let startdate = Date.parse(this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy'));
+    //     let endDate = Date.parse(this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy'));
+    //     this.displayTable.map(x => {
+    //       let scheduledBeginDateTime = Date.parse(this.datePipe.transform(x.scheduledBeginDateTime, 'MM/dd/yyyy'));
+    //       let scheduledEndDateTime = Date.parse(this.datePipe.transform(x.scheduledEndDateTime, 'MM/dd/yyyy'));
+    //       if (scheduledBeginDateTime >= startdate && scheduledEndDateTime <= endDate) {
+    //         dummeyarray.push(x);
+    //       }
+    //     })
+    //     this.displayTable = dummeyarray;
+
+
+
+    //   } else {
+
+    //   }
+    // }
     console.log(this.displayTable);
   }
 
@@ -464,9 +462,7 @@ export class ChartLayoutComponent implements OnInit {
       this.filterEndeDate =
         event != null ? event : null;
     }
-    if(this.fileterStartDate>this.filterEndeDate){
-      this.fileterStartDate=this.filterEndeDate;
-    }
+
     console.log(this.fileterStartDate);
     console.log(this.filterEndeDate);
     this.arrayManipulate();
@@ -475,14 +471,20 @@ export class ChartLayoutComponent implements OnInit {
   public resetFilters() {
     this.officeIds = [];
     this.cssIds = [];
-    ;
     this.scheduleStart = this.defaultstartdate;
     this.scheduleEnd = this.todayDate;
-    this.displayClientVisits ? this.getDashBoardClientsCount(false) : this.getDashBoardVisitsCount()
+    this.getDashBoardVisitsCount()
 
   }
 
   public onGo() {
+
+    if (this.scheduleStart == null || this.scheduleEnd == null) {
+      let str = !this.displayClientVisits ? 'Visit' : 'Authz Service';
+      Swal.fire('Invalid Dates', `${this.scheduleStart == null && this.scheduleEnd == null ? str + ' Start and End Dates are mandatory feilds' : this.scheduleStart == null ? str + ' Start Date is mandatory feild' : str + ' End Date is mandatory feild'}`, 'warning')
+
+    }
+
     let startDate = Date.parse(this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'));;
     let archivedate = Date.parse(this.datePipe.transform(this.archiveDate, 'MM/dd/yyyy'));
     let endDate = Date.parse(this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'));
@@ -494,9 +496,9 @@ export class ChartLayoutComponent implements OnInit {
 
     } else {
       if (startDate < archivedate) {
-        Swal.fire('Invalid Dates', `Authz Service Start cannot be prior to <strong> ${this.datePipe.transform(this.archiveDate, 'MM/dd/yyyy')}</strong>`, 'warning')
+        Swal.fire('Invalid Dates', `${!this.displayClientVisits ? 'Visit' : 'Authz Service'} Start Date cannot be prior to <strong> ${this.datePipe.transform(this.archiveDate, 'MM/dd/yyyy')}</strong>`, 'warning')
       } else if (startDate > endDate) {
-        Swal.fire('Invalid Dates', `Authz Service End Date should be greater than or equal to Authz Service Start Date <strong> ${this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy')}</strong>`, 'warning')
+        Swal.fire('Invalid Dates', `${!this.displayClientVisits ? 'Visit' : 'Authz Service'} End Date should be greater than or equal to ${!this.displayClientVisits ? 'Visit' : 'Authz Service'} Start Date <strong> ${this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy')}</strong>`, 'warning')
       }
 
     }
@@ -510,9 +512,21 @@ export class ChartLayoutComponent implements OnInit {
   public popUpTable = [];
   public onBarclick(e, template: TemplateRef<any>) {
     console.log(e);
-    this.modelRef=this.modelService.show(template , Object.assign({}, { class:'barGraphPopup modal-dialog-centered'}));
-    this.popUpTable=this.visitData.filter(x=>x.visitDate==e.label);
+    this.modelRef = this.modelService.show(template, Object.assign({}, { class: 'barGraphPopup modal-dialog-centered' }));
+    this.popUpTable = this.visitData.filter(x => x.visitDate == e.label);
     console.log(this.popUpTable)
 
+  }
+  setOrder(value: string, reverse: boolean) {
+    this.reverse = reverse;
+    this.orderByColumn = value;
+    console.log(this.orderByColumn)
+  }
+  public resetAllFiltersinVisit() {
+    this.officeIds = [];
+    this.cssIds = []
+    this.scheduleStart = this.defaultstartdate;
+    this.scheduleEnd = this.todayDate;
+    this.getDashBoardVisitsCount();
   }
 }
