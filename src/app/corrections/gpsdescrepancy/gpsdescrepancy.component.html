@@ -97,7 +97,7 @@
               <h3 class="f-15 h-30 d-flex align-items-center">{{clockInVariance}}
               </h3>
             </div>
-            <div class="form-group mx-2">
+            <div class="form-group mx-2 ng-slect-gps">
 
               <h3 class="f-15 ">Verification Method<span class="text-danger">*</span></h3>
 
@@ -105,9 +105,12 @@
                 <option [ngValue]="null||0">--Select--</option>
                 <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
               </select> -->
+              <div class="">
+
+             
               <ng-select [(ngModel)]="clockInGpsAcceptReasonsId" placeholder="--Select--">
                 <ng-option *ngFor="let car of gpsAcceptReasonList" [value]="car.id">Verified with DCS Counciled/Adjustedddddd Times</ng-option>
-              </ng-select>
+              </ng-select> </div>
             </div>
             <div class="clock-accept d-flex align-items-center">
               <button *ngIf="arrivalgpsErr" type="button" class="btn btn-accept" [disabled]="!arrivalgpsErr"
@@ -153,7 +156,7 @@
               <h3 class="f-15 h-30 d-flex align-items-center">{{clockOutVariance}}
               </h3>
             </div>
-            <div class="form-group mx-2">
+            <div class="form-group mx-2 ng-slect-gps">
 
               <h3 class=" f-15 "> Verification Method<span class="text-danger">*</span></h3>
 
@@ -161,9 +164,10 @@
                 <option [ngValue]="null||0">--Select--</option>
                 <option *ngFor="let item of gpsAcceptReasonList" [ngValue]="item.id">{{item.name}}</option>
               </select> -->
+              <div class="">
               <ng-select  [(ngModel)]="clockOutGpsAcceptReasonsId" placeholder="--Select--">
                 <ng-option *ngFor="let car of gpsAcceptReasonList" [value]="car.id">{{car.name}}</ng-option>
-              </ng-select>
+              </ng-select></div>
             </div>
             <div class="d-flex align-items-center">
               <button *ngIf="depgpsErr" type="button" [disabled]="!depgpsErr" class="btn align-right mt-1 btn-accept"
