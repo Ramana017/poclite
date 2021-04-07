@@ -510,8 +510,8 @@ export class ChartLayoutComponent implements OnInit {
   public popUpTable = [];
   public onBarclick(e, template: TemplateRef<any>) {
     console.log(e);
-    this.modelRef = this.modelService.show(template, Object.assign({}, { class: 'barGraphPopup' }));
-    this.popUpTable = this.visitData.filter(x => x.visitDate == e.label);
+    this.modelRef=this.modelService.show(template , Object.assign({}, { class:'barGraphPopup modal-dialog-centered'}));
+    this.popUpTable=this.visitData.filter(x=>x.visitDate==e.label);
     console.log(this.popUpTable)
 
   }
