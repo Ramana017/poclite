@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { filter } from 'rxjs/operators';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 declare var $: any;
@@ -106,12 +107,12 @@ export class ChartLayoutComponent implements OnInit {
 
   public userData: any;
 
-  public modelRef:BsModalRef;
+  public modelRef: BsModalRef;
 
   constructor(
     private dashboardService: DashboardService,
     public datePipe: DatePipe,
-    public modelService:BsModalService
+    public modelService: BsModalService
   ) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
@@ -144,7 +145,8 @@ export class ChartLayoutComponent implements OnInit {
     this.displayVisitCards = true;
     this.displayClientVisits = false;
   }
-  charts() {``
+  charts() {
+    ``
     $('.divB').toggleClass('hide');
   }
 
@@ -159,7 +161,7 @@ export class ChartLayoutComponent implements OnInit {
       this.scheduleEnd = this.todayDate;
     }
     console.log('startdate', this.scheduleStart);
-    this.scheduleEnd = new Date();
+    // this.scheduleEnd = new Date();
     console.log('End Date', this.scheduleEnd)
 
 
@@ -223,11 +225,11 @@ export class ChartLayoutComponent implements OnInit {
 
     console.log('$$$$$$$$$$$$$########', this.officeIds.toString());
     let officelist = [];
-    let csslist=[];
+    let csslist = [];
     this.officeIds.map((y) => {
       officelist.push(y.siteId);
     });
-    this.cssIds.map(x=>{
+    this.cssIds.map(x => {
       csslist.push(x.cssId);
     })
     let obj = {
@@ -235,7 +237,7 @@ export class ChartLayoutComponent implements OnInit {
       startDate: this.datePipe.transform(this.scheduleStart, 'MM/dd/yyyy'),
       endDate: this.datePipe.transform(this.scheduleEnd, 'MM/dd/yyyy'),
       officeIds: officelist.length > 0 ? officelist.toString() : '',
-      cssId:csslist.length > 0 ? csslist.toString() : '',
+      cssId: csslist.length > 0 ? csslist.toString() : '',
     };
 
     try {
@@ -265,11 +267,11 @@ export class ChartLayoutComponent implements OnInit {
       this.displayVisitCards = false;
       this.highlightcardcount = count;
       let officelist = [];
-      let csslist=[];
+      let csslist = [];
       this.officeIds.map((y) => {
         officelist.push(y.siteId);
       });
-      this.cssIds.map(x=>{
+      this.cssIds.map(x => {
         csslist.push(x.cssId);
       })
       let jsonObj = {
@@ -283,8 +285,8 @@ export class ChartLayoutComponent implements OnInit {
             : str == 'Missed Visits'
               ? 'missedvisits'
               : 'cancelledvisits',
-              cssId:csslist.length > 0 ? csslist.toString() : '',
-            };
+        cssId: csslist.length > 0 ? csslist.toString() : '',
+      };
       try {
         this.dashboardService
           .getDashBoardVisitsDetails(JSON.stringify(jsonObj))
@@ -366,9 +368,9 @@ export class ChartLayoutComponent implements OnInit {
   }
 
   public arrayManipulate() {
-    console.log(this.visitData);
+    // console.log(this.visitData);
     this.displayTable = this.visitData;
-    console.log(this.displayTable);
+    // console.log(this.displayTable);
 
     if (this.psName != null) {
       console.log('****', this.psName);
@@ -426,34 +428,44 @@ export class ChartLayoutComponent implements OnInit {
     //     );
     //   });
     // }
-    if (this.filterEndeDate != null && this.filterEndeDate != undefined && this.fileterStartDate != null && this.fileterStartDate != undefined){
-      let dummeyarray=[];
-       let startdate=Date.parse(this.datePipe.transform(this.fileterStartDate,'MM/dd/yyyy'));
-       let endDate=Date.parse(this.datePipe.transform(this.filterEndeDate,'MM/dd/yyyy'));
-      this.displayTable.map(x=>{
-        let scheduledBeginDateTime=Date.parse(this.datePipe.transform(x.scheduledBeginDateTime,'MM/dd/yyyy'));
-        let scheduledEndDateTime=Date.parse(this.datePipe.transform(x.scheduledEndDateTime,'MM/dd/yyyy'));
-       if(scheduledBeginDateTime>=startdate &&scheduledEndDateTime<=endDate){
-          dummeyarray.push(x);
-       }
-      })
-      this.displayTable=dummeyarray;
+    if ((this.filterEndeDate == null && this.fileterStartDate != null) || (this.filterEndeDate != null && this.fileterStartDate == null)) {
+      Swal.fire('Invalid Dates', 'Start and End Dates both are Mandatory','warning')
+    } else {
+      if (this.filterEndeDate != null && this.filterEndeDate != undefined && this.fileterStartDate != null && this.fileterStartDate != undefined) {
+        let dummeyarray = [];
+        let startdate = Date.parse(this.datePipe.transform(this.fileterStartDate, 'MM/dd/yyyy'));
+        let endDate = Date.parse(this.datePipe.transform(this.filterEndeDate, 'MM/dd/yyyy'));
+        this.displayTable.map(x => {
+          let scheduledBeginDateTime = Date.parse(this.datePipe.transform(x.scheduledBeginDateTime, 'MM/dd/yyyy'));
+          let scheduledEndDateTime = Date.parse(this.datePipe.transform(x.scheduledEndDateTime, 'MM/dd/yyyy'));
+          if (scheduledBeginDateTime >= startdate && scheduledEndDateTime <= endDate) {
+            dummeyarray.push(x);
+          }
+        })
+        this.displayTable = dummeyarray;
 
 
 
+      } else {
+
+      }
     }
-      console.log(this.displayTable);
+    console.log(this.displayTable);
   }
 
   public FilterDateChange(event, flag?) {
-    console.log("+++++++", this.datePipe.transform(event, 'MM/dd/yyyy'));
+    console.log("+++++++", event);
+
     if (flag == 'start') {
       this.fileterStartDate =
-        event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
+        event != null ? event : null;
     }
     if (flag == 'end') {
       this.filterEndeDate =
-        event != null ? this.datePipe.transform(event, 'MM/dd/yyyy') : null;
+        event != null ? event : null;
+    }
+    if(this.fileterStartDate>this.filterEndeDate){
+      this.fileterStartDate=this.filterEndeDate;
     }
     console.log(this.fileterStartDate);
     console.log(this.filterEndeDate);
@@ -495,11 +507,11 @@ export class ChartLayoutComponent implements OnInit {
    * onBarclick method to get data from bar chart
    */
 
-  public popUpTable=[];
-  public onBarclick(e,template:TemplateRef<any>) {
+  public popUpTable = [];
+  public onBarclick(e, template: TemplateRef<any>) {
     console.log(e);
-    this.modelRef=this.modelService.show(template , Object.assign({}, { class:'barGraphPopup'}));
-    this.popUpTable=this.visitData.filter(x=>x.visitDate==e.label);
+    this.modelRef = this.modelService.show(template, Object.assign({}, { class: 'barGraphPopup' }));
+    this.popUpTable = this.visitData.filter(x => x.visitDate == e.label);
     console.log(this.popUpTable)
 
   }

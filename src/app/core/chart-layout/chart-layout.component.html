@@ -246,14 +246,14 @@
                           <div class="input-outter-wrapper dropdown">
 
                             <input type="text" bsDatepicker (ngModelChange)="FilterDateChange($event,'start')"
-                              [(ngModel)]="fileterStartDate" placeholder="MM/DD/YYYY" maxlength=10 class="date-input">
+                              [(ngModel)]="fileterStartDate"  placeholder="MM/DD/YYYY" [maxDate]="filterEndeDate" maxlength=10 class="date-input">
                           </div>
                         </th>
                         <th scope="col " class="sticky-top table-header-inner-wrapper">
                           <h5 class="mainheading-wrapper ">Scheduled End </h5>
                           <div class="input-outter-wrapper dropdown ">
 
-                            <input type="text" placeholder="MM/DD/YYYY" bsDatepicker [(ngModel)]="filterEndeDate"
+                            <input type="text"  placeholder="MM/DD/YYYY" bsDatepicker [minDate]="fileterStartDate" [(ngModel)]="filterEndeDate"
                               (ngModelChange)="FilterDateChange($event,'end')" maxlength=10 bsDatepicker
                               class="date-input">
 
@@ -307,7 +307,7 @@
                         <td class="body-cell col2 ">{{data.psName}}</td>
                         <!-- <td class="body-cell col3 ">{{data.dcsName}}</td> -->
                         <td class="body-cell col4 ">{{data.cssName}}</td>
-                        <td class="body-cell text-color col4 Serviceprocedurecode">
+                        <td class="body-cell text-color col4 ">
                           <div>
                             {{data.serviceCode}}
 
