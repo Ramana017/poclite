@@ -151,8 +151,8 @@
                 <!-- <img src="assets/images/map@2x.png" class="img-fluid"> -->
                 <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="false"
                   [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="true" [showYAxisLabel]="true"
-                  [xAxisLabel]="'Date'" [showDataLabel]="true" [yAxisLabel]="'Count'" [rotateXAxisTicks]="true"
-                  (select)="onSelect($event)">
+                  [xAxisLabel]="'Date'" [showDataLabel]="true" [yAxisLabel]="'Count'" (select)="onBarclick($event,bargraph)" [rotateXAxisTicks]="true"
+                  >
                 </ngx-charts-bar-vertical>
               </div>
             </div>
@@ -409,6 +409,60 @@
 </div>
 <ng-template #notFoundTemplate let-notFound>
   <div [innerHTML]="notFound" class="text-dark"></div>
+</ng-template>
+<ng-template  #bargraph let-notFound>
+  <table id="main-table" class="main-table table-width-scroll" cellpadding="0">
+    <thead class="thead-row">
+      <tr class="pb-0">
+        <th scope="col" class="sticky-top table-header-inner">
+          <h5 class="mainheading-wrapper">Site</h5>
+
+        </th>
+        <th scope="col" class="sticky-top table-header-wrapper">
+          <h5 class="mainheading-wrapper">PS</h5>
+
+        </th>
+       <th scope="col" class="sticky-top table-header-wrapper">
+          <h5 class="mainheading-wrapper">CSS</h5>
+
+        </th>
+        <th scope="col" class="sticky-top table-header-inner">
+          <h5 class="mainheading-wrapper">Service </h5>
+
+        </th>
+        <th scope="col" class="sticky-top table-header-inner-wrapper">
+          <h5 class="mainheading-wrapper">Scheduled Start </h5>
+
+        </th>
+        <th scope="col " class="sticky-top table-header-inner-wrapper">
+          <h5 class="mainheading-wrapper ">Scheduled End </h5>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+    <tr class="table-border " *ngFor="let data of popUpTable">
+      <td class="body-cell col2 text-color sitecodeinner">
+        <div>
+          {{data.site}}
+
+        </div>
+      </td>
+      <td class="body-cell col2 ">{{data.psName}}</td>
+      <!-- <td class="body-cell col3 ">{{data.dcsName}}</td> -->
+      <td class="body-cell col4 ">{{data.cssName}}</td>
+      <td class="body-cell text-color col4 Serviceprocedurecode">
+        <div>
+          {{data.serviceCode}}
+
+        </div>
+
+      </td>
+      <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
+      <td class="body-cell col4 ">{{data.scheduledEndDateTime}}</td>
+    </tr>
+    </tbody>
+  </table>
 </ng-template>
 
 <style>
