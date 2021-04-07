@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 declare var $: any;
@@ -105,9 +106,12 @@ export class ChartLayoutComponent implements OnInit {
 
   public userData: any;
 
+  public modelRef:BsModalRef;
+
   constructor(
     private dashboardService: DashboardService,
-    public datePipe: DatePipe
+    public datePipe: DatePipe,
+    public modelService:BsModalService
   ) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
@@ -143,9 +147,7 @@ export class ChartLayoutComponent implements OnInit {
   charts() {``
     $('.divB').toggleClass('hide');
   }
-  onSelect(event) {
-    console.log(event);
-  }
+
 
   public getDashBoardClientsCount(flag: boolean) {
     this.displayClientTable = false;
@@ -487,6 +489,18 @@ export class ChartLayoutComponent implements OnInit {
 
     }
 
+
+  }
+  /**
+   * onBarclick method to get data from bar chart
+   */
+
+  public popUpTable=[];
+  public onBarclick(e,template:TemplateRef<any>) {
+    console.log(e);
+    this.modelRef=this.modelService.show(template , Object.assign({}, { class:'barGraphPopup'}));
+    this.popUpTable=this.visitData.filter(x=>x.visitDate==e.label);
+    console.log(this.popUpTable)
 
   }
 }
