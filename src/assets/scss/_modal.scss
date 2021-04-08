@@ -130,3 +130,22 @@ div#timesModal{
 div#exampleModal{
   background: #000000b5;
 }
+.ppHistory{
+  width: 95% !important;
+  max-width: 95% !important;
+  .modal-content{
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+.physian-input{
+  // background: white;
+  width: 40%;
+  padding: 20px;
+  margin: 0 20px;
+}
+.editdig-modal{
+  .modal-content{
+    height: auto !important;
+  }
+}
