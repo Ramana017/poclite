@@ -51,8 +51,11 @@
                                         Guarantor<span class="text-danger">*</span>
                                     </label>
 
-                                    <div class="input-group">
+                                    <div class="input-group d-flex align-items-center">
                                         <input type="text" class="form-control text-capital" aria-label="Last Name" />
+                                        <span class="material-icons ml-2" title="Add Guarantor">
+                                            add_circle_outline
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="input-container-wrapper ">
@@ -208,76 +211,93 @@
             <p class="visit-info-text AvenirLTStd-Heavy bg-white">
                 Payor/Plan
             </p>
-            <p class="visit-info-text AvenirLTStd-Heavy bg-white middle-item text-blue-link" (click)="guarantorlogdata(guarantorlog)">
+            <p class="visit-info-text AvenirLTStd-Heavy bg-white middle-item text-blue-link"
+                (click)="ppListdata(ppList)">
                 <span class="material-icons">
                     list
-                    </span>
+                </span>
             </p>
             <p class="visit-info-text AvenirLTStd-Heavy bg-white right-item text-blue-link">
-                <span class="material-icons">
+                <span class="material-icons" (click)="ppHistorydata(ppHistory)">
                     history
-                    </span>
+                </span>
             </p>
-          <div class="table-responsive mt-2 px-md-5">
-              <table class="table box-shadow">
-                  <thead class="thead-dark">
-                      <tr>
-                          <th class="f-14">Rank</th>
-                          <th class="f-14">Payor/Plan</th>
-                          <th class="f-14">Subscriber</th>
-                          <th class="f-14">Policy #</th>
-                          <th class="f-14">Effective From</th>
-                          <th class="f-14">Effective To</th>
-                          <th class="f-14">Private Duty</th>
-                          <th class="f-14">Private Duty</th>
-                          <th class="f-14">Exported Status</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>sasa</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let movie of movies" cdkDrag>
-                <div class="example-handle" cdkDragHandle>
-                    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
-                  </div>
-              <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-              {{movie}}
+            <div class="table-responsive mt-2 px-md-5">
+                <table class="table box-shadow">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="f-14">Rank</th>
+                            <th class="f-14">Payor/Plan</th>
+                            <th class="f-14">Subscriber</th>
+                            <th class="f-14">Policy #</th>
+                            <th class="f-14">Effective From</th>
+                            <th class="f-14">Effective To</th>
+                            <th class="f-14">Private Duty</th>
+                            <th class="f-14">Private Duty</th>
+                            <th class="f-14">Exported Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>sasa</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
+
         </div>
-        <div class="visit-information position-relative border-2 rounded my-3 mr-4">
+        <div class="visit-information position-relative border-2 rounded my-3 mr-4 p-4">
             <p class="visit-info-text AvenirLTStd-Heavy bg-white">
-                Contacts 
+                Contacts
             </p>
-            <p class="visit-info-text AvenirLTStd-Heavy bg-white contact-item">
+            <!-- <p class="visit-info-text AvenirLTStd-Heavy bg-white contact-item">
                 <span class="material-icons">
                     contacts
-                    </span>
-            </p>
-          <div class=" box-shadow mt-2 mx-md-5">
-         aaaaa
-          </div>
+                </span>
+            </p> -->
+            <div class="row ">
+                <div class="col-md-5 col-12">
+                    <div class="form-group">
+                        <label>Select Contacts</label>
+                        <div class="contacts-section d-flex align-items-center">
+                            <p-multiSelect [options]=" cities" defaultLabel="Select a City" optionLabel="name">
+                            </p-multiSelect>
+                            <button pButton type="button" label="Save" icon="pi pi-save" iconPos="left"
+                                class="p-button-success p-button ml-2"></button>
+                            <button pButton type="button" label="Add Contact" icon="pi pi-plus-circle" iconPos="left"
+                                class="p-button-primary p-button ml-2"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-12">
+                    <div class=" box-shadow mt-2  p-3 d-flex align-items-center justify-content-between">
+
+                        <div class="d-flex align-items-center">
+                            <span class="material-icons mr-3">
+                                edit
+                            </span>
+                            <h5 class="mb-0">Name</h5>
+                        </div>
+                        <span class="material-icons">
+                            delete_outline
+                        </span>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="visit-information position-relative border-2 rounded my-3 mr-4">
             <p class="visit-info-text AvenirLTStd-Heavy bg-white">
-                Physician 
+                Physician
             </p>
             <p class="visit-info-text AvenirLTStd-Heavy bg-white middle-item">
-            <span class="material-icons">
-                list
+                <span class="material-icons" (click)="phyListdata(phyList)">
+                    list
                 </span></p>
             <p class="visit-info-text AvenirLTStd-Heavy bg-white right-item">
-                <span class="material-icons">
+                <span class="material-icons" (click)="phyHistorydata(phyHistory)">
                     history
-                    </span>
+                </span>
             </p>
             <div class="table-responsive  mt-2 px-md-5">
                 <table class="table box-shadow">
@@ -303,100 +323,569 @@
                 ICD-09 Diagnosis Codes (*)
             </p>
             <p class="visit-info-text AvenirLTStd-Heavy bg-white right-item">
-                <span class="material-icons">
+                <span class="material-icons" (click)="digHistorydata(digHistory)">
                     history
-                    </span>
+                </span>
             </p>
-          <div class="table-responsive mt-2 px-md-5">
-              <table class="table  box-shadow">
-                  <thead class="thead-dark">
-                      <tr>
-                          <th class="f-14"></th>
-                          <th class="f-14"></th>
-                          <th class="f-14">Effective Date</th>
-                          <th class="f-14">Type</th>
-                          <th class="f-14">Diagnosis Codes Sorted By Rank</th>
-                          <th class="f-14">Exported Status</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>sasa</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
+            <div class="table-responsive mt-2 px-md-5">
+                <table class="table  box-shadow">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="f-14"></th>
+
+                            <th class="f-14">Effective Date</th>
+                            <th class="f-14">Type</th>
+                            <th class="f-14">Diagnosis Codes Sorted By Rank</th>
+                            <th class="f-14">Exported Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="material-icons" (click)="editdigdata(editdig)">
+                                    edit
+                                </span>
+                            </td>
+                            <td>
+                                06/01/2009
+                            </td>
+                            <td>
+                                Admission
+                            </td>
+                            <td>
+                                Rr coll nos-passenger(E8001) , Rr coll nos-pedestrian(E8002) , Rr coll nos-ped
+                                cyclist(E8003)
+                            </td>
+                            <td>
+                                To be Exported
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="visit-information position-relative border-2 rounded mt-3 mr-4">
             <p class="visit-info-text AvenirLTStd-Heavy bg-white">
                 ICD-10 Diagnosis Codes (*)
             </p>
             <p class="visit-info-text AvenirLTStd-Heavy bg-white right-item">
-                <span class="material-icons">
+                <span class="material-icons" (click)="digHistorydata(digHistory)">
                     history
-                    </span>
+                </span>
             </p>
-          <div class="table-responsive  mt-2 px-md-5">
-              <table class="table box-shadow">
-                  <thead class="thead-dark">
-                      <tr>
-                          <th class="f-14"></th>
-                          <th class="f-14">Effective Date</th>
-                          <th class="f-14">Type</th>
-                          <th class="f-14">Diagnosis Codes Sorted By Rank</th>
-                          <th class="f-14">Exported Status</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>sasa</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
+            <div class="table-responsive  mt-2 px-md-5">
+                <table class="table box-shadow">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="f-14"></th>
+                            <th class="f-14">Effective Date</th>
+                            <th class="f-14">Type</th>
+                            <th class="f-14">Diagnosis Codes Sorted By Rank</th>
+                            <th class="f-14">Exported Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="material-icons" (click)="editdigdata(editdig)">
+                                    edit
+                                </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 
-<ng-template #guarantorlog>
+<ng-template #ppList>
     <div class="modal-header">
-      <h4 class="modal-title pull-left AvenirLTStd-Heavy">Payor/Plan List</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Payor/Plan List</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
-      <div class="table-responsive bg-white height-67 box-shadow">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th class="text-center border-right align-middle"></th>
-              <th class="text-center border-right align-middle">Payor/Plan</th>
-              <th class="text-center border-right align-middle">Subscriber</th>
-              <th class="text-center border-right align-middle">Policy #</th>
-              <th class="text-center border-right align-middle">Effective From</th>
-              <th class="text-center border-right align-middle">Effective To</th>
-              <th class="text-center align-middle">Private Duty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border-right border-bottom">aa</td>
-              <td class="border-right border-bottom">aaa</td>
-              <td class="border-right border-bottom">aaa</td>
-              <td class="border-right border-bottom">aaa</td>
-              <td class="border-right border-bottom">aa</td>
-              <td class="border-bottom">aaa</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="">
-        <button class="btn-common btn-green bg-dark">
-            <i class="fas fa-times mr-1"></i> Close </button>
-             <button class="">Add</button> <button class="">Save</button>
-    </div>
-  </ng-template>
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center border-right align-middle"></th>
+                        <th class="text-center border-right align-middle">Payor/Plan</th>
+                        <th class="text-center border-right align-middle">Subscriber</th>
+                        <th class="text-center border-right align-middle">Policy #</th>
+                        <th class="text-center border-right align-middle">Effective From</th>
+                        <th class="text-center border-right align-middle">Effective To</th>
+                        <th class="text-center align-middle">Private Duty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-right">
+                            <!-- <i class="fas fa-ellipsis-v" (click)="op.toggle($event)"></i>
+                            <p-overlayPanel #op>
+                                <ng-template pTemplate>
+                                    Content
+                                </ng-template>
+                            </p-overlayPanel> -->
 
+                        </td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-bottom">aaa</td>
+                    </tr>
+                    <tr>
+                        <td class="border-right" (click)="op1.toggle($event)">
+                            <div class="dropdown-p-panel">
+                                <i class="fas fa-ellipsis-v"></i>
+                                <p-overlayPanel #op1 [style]="{width: 'auto'}">
+                                    <ng-template pTemplate>
+                                        <ul class="p-0 m-0 p-menu border-0 w-auto">
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                                        class="p-menuitem-icon pi pi-refresh mr-2"></span>
+                                                    <span class="p-menuitem-text ">Terminate Payor/Plan</span>
+                                                </a>
+
+                                            </li>
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                                        class="p-menuitem-icon pi pi-trash mr-2"></span>
+                                                    <span class="p-menuitem-text ">Delete Payor/Plan</span>
+                                                </a>
+
+                                            </li>
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                                        class="p-menuitem-icon pi pi-replay  mr-2"></span>
+                                                    <span class="p-menuitem-text ">Replace Payor/Plan</span>
+                                                </a>
+                                            </li>
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                                        class="p-menuitem-icon pi pi-calendar-plus mr-2"></span>
+                                                    <span class="p-menuitem-text ">Change Effective From</span>
+                                                </a>
+
+                                            </li>
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                                class="p-menuitem-icon pi pi-sort mr-2"></span>
+                                            <span class="p-menuitem-text ">Change Rank</span>
+                                        </a>
+
+                                    </li>
+                                    <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                        class="p-menuitem-icon pi pi-replay mr-2"></span>
+                                    <span class="p-menuitem-text ">Replace Payor/Plan with Effective Date</span>
+                                </a>
+
+                            </li>
+                                        </ul>
+                                    </ng-template>
+                                </p-overlayPanel>
+                            </div>
+                        </td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aaa</td>
+                        <td class="border-right border-bottom">aa</td>
+                        <td class="border-bottom">aaa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mb-2 mx-2 d-flex align-items-center justify-content-between">
+        <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
+            <i class="fas fa-times mr-1 "></i> Close </button>
+        <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
+        <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
+    </div>
+    <p-splitButton label="Save" icon="pi pi-plus" (onClick)="save('info')" [model]="items"
+        styleClass="p-button-secondary"></p-splitButton>
+
+</ng-template>
+
+<!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>
+        <div class="example-handle" cdkDragHandle>
+            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+              <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+          </div>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{movie}}
+    </div>
+  </div> -->
+
+
+
+<!-- <i class="fas fa-ellipsis-v" (click)="op.toggle($event)"></i>
+<p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '450px'}">
+    <ng-template pTemplate>
+        Content
+    </ng-template>
+</p-overlayPanel> -->
+<ng-template #ppHistory>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Payor/Plan History</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center border-right align-middle">Payor/Plan</th>
+                        <th class="text-center border-right align-middle">Subscriber</th>
+                        <th class="text-center border-right align-middle">Subscriber Relation</th>
+                        <th class="text-center border-right align-middle">Subscriber Address</th>
+                        <th class="text-center border-right align-middle">Policy #</th>
+                        <th class="text-center border-right align-middle">Group #</th>
+                        <th class="text-center border-right align-middle">Group Name #</th>
+                        <th class="text-center border-right align-middle">Valid From</th>
+                        <th class="text-center border-right align-middle">Valid To</th>
+                        <th class="text-center border-right align-middle">Private Duty</th>
+                        <th class="text-center border-right align-middle">Rank</th>
+                        <th class="text-center border-right align-middle">Export Status</th>
+                        <th class="text-center border-right align-middle">Updated By</th>
+                        <th class="text-center align-middle">Updated Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td class="border-right border-bottom">HMKR-COOSA(1192/800)</td>
+                        <td class="border-right border-bottom">ALFORD , TOMMIE</td>
+                        <td class="border-right border-bottom">SELF</td>
+                        <td class="border-right border-bottom">62 BOYD VALLEY RD SE, ROME, Georgia, 30161 ,
+                            Home:7842222222 </td>
+                        <td class="border-right border-bottom">NA </td>
+                        <td class="border-right border-bottom"></td>
+                        <td class="border-right border-bottom"></td>
+                        <td class="border-right border-bottom">05/07/2008 </td>
+                        <td class="border-right border-bottom">06/30/2008 </td>
+                        <td class="border-right border-bottom"> No</td>
+                        <td class="border-right border-bottom"> 1</td>
+                        <td class="border-right border-bottom"> To be Exported</td>
+                        <td class="border-right border-bottom"> </td>
+                        <td class="border-bottom">07/29/2020 02:38 AM</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</ng-template>
+<ng-template #phyList>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Physician List </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex align-items-start">
+            <div class="">
+                <div class="table-responsive bg-white height-67 box-shadow">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="text-center border-right align-middle"></th>
+                                <th class="text-center border-right align-middle">Physician</th>
+                                <th class="text-center border-right align-middle">Effective From</th>
+                                <th class="text-center border-right align-middle">Effective To</th>
+                                <th class="text-center border-right align-middle">Staff Type</th>
+                                <th class="text-center align-middle">Exported Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td class="border-right border-bottom">
+                                    <div class="p-field-checkbox">
+                                        <p-checkbox class="p-button-success" binary="true" inputId="binary">
+                                        </p-checkbox>
+                                    </div>
+                                </td>
+                                <td class="border-right border-bottom">ALFORD , TOMMIE</td>
+                                <td class="border-right border-bottom">SELF</td>
+                                <td class="border-right border-bottom">abcd</td>
+                                <td class="border-right border-bottom">NA </td>
+                                <td class="border-bottom">07/29/2020 02:38 AM</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="mt-2 d-flex align-items-center justify-content-between">
+                    <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
+                        <i class="fas fa-times mr-1 "></i> Close </button>
+                    <!-- <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add</button> -->
+                    <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
+                </div>
+            </div>
+
+            <div class="physian-input visit-information position-relative border-2 rounded my-3 mr-4">
+
+                <p class="visit-info-text AvenirLTStd-Heavy ">
+                    Payor/Plan
+                </p>
+                <div class="form-group">
+                    <label class="mb-0 color-black">Physician Name</label>
+                    <div class="form-input"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label class="mb-0 color-black">Effective From</label>
+                    <div class="form-input"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label class="mb-0 color-black">Effective To</label>
+                    <div class="form-input"><input type="text" class="form-control"></div>
+                </div>
+                <div class="form-group">
+                    <label class="mb-0 color-black">Staff Type</label>
+                    <div class="form-input"><input type="text" class="form-control"></div>
+                </div>
+                <button class="btn-common btn-green h-30 w-auto px-3 float-right "><i
+                        class="pi pi-save mr-1 "></i>Create</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</ng-template>
+<ng-template #phyHistory>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Physician History </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center border-right align-middle">Physician Name</th>
+                        <th class="text-center border-right align-middle">From Effective Date</th>
+                        <th class="text-center border-right align-middle">To Effective Date</th>
+                        <th class="text-center border-right align-middle">Staff Type</th>
+                        <th class="text-center border-right align-middle">Updated User</th>
+                        <th class="text-center border-right align-middle">Last Updated</th>
+                        <th class="text-center border-right align-middle">Export Status</th>
+                        <th class="text-center align-middle">Exported On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td class="border-right border-bottom">HMKR-COOSA(1192/800)</td>
+                        <td class="border-right border-bottom">ALFORD , TOMMIE</td>
+                        <td class="border-right border-bottom">SELF</td>
+                        <td class="border-right border-bottom">abcd</td>
+                        <td class="border-right border-bottom">NA </td>
+                        <td class="border-right border-bottom">NA </td>
+                        <td class="border-right border-bottom">NA </td>
+                        <td class="border-bottom">07/29/2020 02:38 AM</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #digHistory>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">ICD-09 Diagnosis History</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center border-right align-middle">Effective Date</th>
+                        <th class="text-center border-right align-middle">Type</th>
+                        <th class="text-center  align-middle">Diagnosis Codes</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td class="border-right border-bottom">05/01/2009 </td>
+                        <td class="border-right border-bottom">Admission</td>
+                        <td class="border-right border-bottom">Rr coll nos-passenger(E8001) , Rr coll
+                            nos-pedestrian(E8002) , Rr coll nos-ped cyclist(E8003)</td>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+<ng-template #editdig>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">ICD-09 Diagnosis</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center border-right align-middle edit-option"></th>
+                        <th class="text-center border-right align-middle edit-option">Rank</th>
+                        <th class="text-center  align-middle">Diagnosis</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td class="border-right border-bottom"><span class="material-icons">
+                                delete
+                            </span> </td>
+                        <td class="border-right border-bottom"><select class="form-select form-control edit">
+                                <option>1</option>
+                            </select></td>
+                        <td class="border-right border-bottom">Rr coll nos-passenger(E8001) </td>
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-2 d-flex align-items-center justify-content-between">
+            <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
+                <i class="fas fa-times mr-1 "></i> Close </button>
+            <button class="btn-common btn-blue h-30 w-auto px-3" (click)="addDig(diglist)"><i
+                    class="pi pi-plus-circle mr-1 0"></i>Add Diagnosis</button>
+            <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
+        </div>
+    </div>
+</ng-template>
+<!-- <ng-template #diglist>
+    <div class="modal-header py-0 registration-modal-header ">
+        <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModelRef.hide()"
+            data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body p-0">
+        <div class="listing-container ">
+            <div class="">
+                <div class="interface-container">
+                    <div class="table-container mb-2">
+                        <div class="nav align-items-center justify-content-around">
+                            <div class=" m-0 form-input p-2 d-flex align-items-center ">
+                                <label class="mb-0 mr-2 white-space-nowrap">
+                                    Diagnosis Code
+                                </label>
+                                <div class="input-group ">
+                                    <input type="search" [(ngModel)]="diagnosisCode" (search)="searchCLick()"
+                                        class="form-control search-input">
+                                    <span class="right-icon" (click)="searchCLick()"><i
+                                            class="fas fa-search"></i></span>
+                        
+                                </div>
+
+
+                            </div>
+                            <div class=" m-0 form-input p-2 d-flex align-items-center">
+                                <label class="mb-0 mr-2 white-space-nowrap">
+                                    Diagnosis Name
+                                </label>
+                                <div class="input-group ">
+                                    <input type="search" [(ngModel)]="diagnosisName" (search)="searchCLick()"
+                                        class="form-control search-input">
+                                    <span class="right-icon" (click)="searchCLick()"><i
+                                            class="fas fa-search"></i></span>
+                                
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="table-responsive listing-table">
+                            <table class="table m-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="sticky-top"></th>
+                                        <th scope="col" class="sticky-top"> Diagnosis Code
+
+                                        </th>
+                                        <th scope="col" class="sticky-top">Diagnosis Name
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of diagnosisList ; let i=index ">
+                                        <td class="position-relative edit-option">
+                                            <label class="customcheck margin-left-15 m-0">
+                                                <input type="checkbox" (click)="check($event,i,'addDiagnosis')"
+                                                    [checked]="data.flag == true">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td class="width-180">{{data.diagnosisCode}}</td>
+                                        <td class="diagnosis-name">{{data.diagnosisName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center no-data-text" *ngIf="diagnosisList.length==0"> No Data To Display
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pagination nav  mt-2">
+                            <button type="button" (click)="bsModelRef.hide()" (click)="addList()"
+                                class="pagination-btn btn next-btn primary-button add">Add</button>
+                     
+                            <div class="pr-2 pagination-add-close  justify-content-end">
+
+                                <div>
+                                    <span class="footer-text">Per Page</span>
+                                    <select [(ngModel)]="perPage" (change)="pagereset()"
+                                        class="pagination-select border-0">
+                                        <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
+                                            {{page}}
+                                        </option>`
+                                    </select>
+                                    <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to
+                                        <span>
+                                            {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                                        <span>{{maxCount}}</span></span>
+                                    <button type="button " class="pagination-btn ml-0"
+                                        [disabled]="lowerBound<perPage||diagnosisList.length==0 "
+                                        [ngClass]="lowerBound<=1 ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' "
+                                        id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                                    <button type="button " class="pagination-btn ml-0"
+                                        [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
+                                        [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
+                                        id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
