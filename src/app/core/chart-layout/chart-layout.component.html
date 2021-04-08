@@ -438,7 +438,8 @@
 </ng-template>
 <ng-template #bargraph let-notFound>
     <div class="modal-header">
-        <h4 class="modal-title pull-left AvenirLTStd-Heavy">{{currentVisitScenario}}</h4>
+
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">{{currentVisitScenario}} <span title="export"><i (click)="exportexcel()" class="fas fa-download"></i></span> </h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modelRef.hide()"  >
           <span aria-hidden="true">&times;</span>
         </button>

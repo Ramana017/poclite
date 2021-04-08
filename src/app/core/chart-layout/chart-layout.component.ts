@@ -4,6 +4,12 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { filter } from 'rxjs/operators';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
+
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver'
+import * as moment from 'moment';
+const EXCEL_EXTENSION = '.xlsx';
+
 declare var $: any;
 @Component({
   selector: 'app-chart-layout',
@@ -257,6 +263,8 @@ export class ChartLayoutComponent implements OnInit {
       this.serviceFilterAutoComplete = '';
       this.filterEndeDate = null;
       this.fileterStartDate = null;
+      this.orderByColumn="site";
+      this.reverse=false;
 
       this.currentVisitScenario = str;
       this.single = [];
@@ -510,8 +518,10 @@ export class ChartLayoutComponent implements OnInit {
    */
 
   public popUpTable = [];
+  public popupDate='';
   public onBarclick(e, template: TemplateRef<any>) {
     console.log(e);
+    this.popupDate=e.label;
     this.modelRef = this.modelService.show(template, Object.assign({}, { class: 'barGraphPopup modal-dialog-centered' }));
     this.popUpTable = this.visitData.filter(x => x.visitDate == e.label);
     console.log(this.popUpTable)
@@ -528,5 +538,60 @@ export class ChartLayoutComponent implements OnInit {
     this.scheduleStart = this.defaultstartdate;
     this.scheduleEnd = this.todayDate;
     this.getDashBoardVisitsCount();
+  }
+
+
+public mappedJson=[];
+  public exportexcel(): void {
+    /* table id is passed over here */
+    // let element = document.getElementById('excel-table');
+    // console.log(typeof(element))
+    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    // /* generate workbook and add the worksheet */
+    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    // /* save to file */
+
+    // XLSX.writeFile(wb, this.psname + '.xlsx');
+    //-----------------------------------------------
+    this.mappedJson = this.popUpTable.map(item => {
+        return {
+          "site":item.site,
+          "PS":item.psName,
+          "css":item.cssName,
+          " Service Name": item.serviceCode,
+          "Scheduled Start": item.scheduledBeginDateTime ? moment(item.scheduledBeginDateTime).format('MM/DD/YYYY hh:mm a') : '',
+          "Scheduled End": item.scheduledEndDateTime ? moment(item.scheduledEndDateTime).format('MM/DD/YYYY hh:mm a') : '',
+
+      }
+
+    })
+    var wscols = [
+      { wch: 15 },
+      { wch: 22 },
+      { wch: 22 },
+      { wch: 20 },
+      { wch: 30 },
+      { wch: 30 },
+
+    ];
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.mappedJson);
+    worksheet["!cols"] =  wscols;
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, (this.currentVisitScenario+'-'+this.popupDate));
+
+
+
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, fileName + EXCEL_EXTENSION);
   }
 }

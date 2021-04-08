@@ -96,7 +96,7 @@
 
           <div class="button-wrapper d-flex mb-0 align-items-center">
 
-              <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
+              <p class="mb-0 pl-2">Exception Reason <span class="text-danger">*</span> :</p>
               <div class="ng-select-verification ml-2">
                 <ng-select [(ngModel)]="clockInCallerIdAccptReasonId" appendTo="body" placeholder="--Select--">
                   <ng-option *ngFor="let reason of callerIdAcceptReasonList" [value]="reason.id">{{reason.name}}</ng-option>
@@ -177,7 +177,7 @@
           <div *ngIf="clockOutDCSPhoneType.length>0" class="pl-2">The Phone number used matches the DCS
             {{clockOutDCSPhoneType}} Phone number.</div>
           <div class="button-wrapper d-flex mb-0 align-items-center">
-            <p class="mb-0 pl-0">Verification Method <span class="text-danger">*</span> :</p>
+            <p class="mb-0 pl-2">Exception Reason <span class="text-danger">*</span> :</p>
             <div class="ng-select-verification ml-2">
             <ng-select [(ngModel)]="clockOutCallerIdAccptReasonId" appendTo="body" placeholder="--Select--">
               <ng-option *ngFor="let reason of callerIdAcceptReasonList" [value]="reason.id">{{reason.name}}</ng-option>
