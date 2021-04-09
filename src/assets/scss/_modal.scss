@@ -157,3 +157,31 @@ div#exampleModal{
   height: 40vh;
   overflow: auto;
 }
+.create-contact-popup{
+  width: 95%;
+  max-width: 95%;
+  .modal-content{
+    width: auto;
+  }
+  .slack-icon{
+    display: none;
+  }
+  .table-responsive{
+    display: none;
+  }
+  .visit-information{
+    margin-left: 1.5rem!important; 
+    border: 0;
+    padding: 0;
+    margin: 10px;
+    .visit-info-text{
+      display: none;
+    }
+  }
+  .container-wrapper{
+padding: 0;
+  }
+  .modal-contact-wrapper{
+    width: 40% !important;
+  }
+}

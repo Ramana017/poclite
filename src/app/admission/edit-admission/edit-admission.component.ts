@@ -93,7 +93,7 @@ export class EditAdmissionComponent implements OnInit {
       initialState: {
         popupintialValue:false,
       }
-    }, { class: ' modal-dialog-centered' }))
+    }, { class: ' modal-dialog-centered create-contact-popup' }))
 console.log(this.modalRef)
   }
 
