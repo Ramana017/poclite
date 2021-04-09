@@ -163,12 +163,12 @@
                                     <div class="check-box-wrapper">
                                         <label class="">Prior Hospitalization</label>
                                         <div class="on-off-toggle">
-                                            <input class="on-off-toggle__input" type="checkbox" id="bopis4" />
+                                            <input (change)="priorHospitalization=!priorHospitalization" class="on-off-toggle__input" type="checkbox" id="bopis4" />
                                             <label for="bopis4" class="on-off-toggle__slider"></label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-0 input-container-wrapper ">
+                                <ng-container *ngIf="priorHospitalization">                                <div class="m-0 input-container-wrapper ">
                                     <label class="">Hospital Admit Date<span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control text-capital" aria-label="Auth" />
@@ -198,6 +198,7 @@
                                         <input type="text" class="form-control text-capital" aria-label="Auth" />
                                     </div>
                                 </div>
+                              </ng-container>
 
                             </div>
                             <div class="w-75">
@@ -217,7 +218,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group ">
+                                <div *ngIf="priorHospitalization" class="form-group ">
                                     <label class="color-black mb-0">Selected Diagnosis</label>
                                     <div class="input-group form-group">
                                         <textarea rows="5" class="form-control bg-light-grey"></textarea>
@@ -603,7 +604,7 @@
     <div class="mb-2 mx-2 d-flex align-items-center justify-content-between">
         <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
             <i class="fas fa-times mr-1 "></i> Close </button>
-        <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
+        <button class="btn-common btn-blue h-30 w-auto px-3"(click)="Addpayor()"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
         <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
     </div>
     <p-splitButton label="Save" icon="pi pi-plus" [model]="items" styleClass="p-button-secondary" class="d-none">
@@ -1167,7 +1168,7 @@
                         </div>
                         <div class="form-group">
                             <label>End Date</label>
-                     
+
                             <div class="input-group form-input">
                                 <input type="calender" class="form-control h-30 mxw-108">
                             </div>

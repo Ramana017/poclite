@@ -17,7 +17,6 @@ import { AddDaignosisComponent } from './popups/add-daignosis/add-daignosis.comp
   declarations: [AdmissionComponent, EditAdmissionComponent, AddDaignosisComponent],
   imports: [
     CommonModule,
-
     AdmissionRoutingModule,
     DragDropModule,
     OverlayPanelModule,
