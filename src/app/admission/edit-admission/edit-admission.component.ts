@@ -69,6 +69,9 @@ export class EditAdmissionComponent implements OnInit {
   replacePpdata(replacePp: TemplateRef<any>) {
     this.modalRef = this.modalService.show(replacePp, Object.assign({}, { class: 'modal-dialog-centered ' }))
   }
+  icd(icd910:TemplateRef<any>){
+    this.modalRef = this.modalService.show(icd910, Object.assign({}, { class: 'modal-dialog-centered ' }))
+  }
   movies = [
     'Episode I - The Phantom Menace',
     'Episode II - Attack of the Clones',
@@ -105,10 +108,17 @@ console.log(this.modalRef)
       initialState: {
         popupintialValue: false,
       }
-    }, { class: ' modal-dialog-centered' }))
+    }, { class: ' modal-dialog-centered modal-dialog-payor' }))
     console.log(this.modalRef)
   }
-
+  public editSubscriber() {
+    this.modalRef = this.modalService.show(PayorPlanDetailsComponent, Object.assign({
+      initialState: {
+        popupintialValue: false,
+      }
+    }, { class: ' modal-dialog-centered edit-subscriber-modal' }))
+    console.log(this.modalRef)
+  }
 
 
 
