@@ -437,14 +437,15 @@
                         <td class="border-right border-bottom">aa</td>
                         <td class="border-bottom">aaa</td>
                     </tr>
-                    <tr>
-                        <td class="border-right" (click)="op1.toggle($event)">
-                            <div class="dropdown-p-panel">
+                    <tr *ngFor="let item of cities">
+                        <td class="border-right">
+                            <div class="dropdown-p-panel " (click)="op1.toggle($event)" #op2>
                                 <i class="fas fa-ellipsis-v"></i>
-                                <p-overlayPanel #op1 [style]="{width: 'auto'}">
+                                <p-overlayPanel #op1 [style]="{width: 'auto'}" [appendTo]="op2">
                                     <ng-template pTemplate>
                                         <ul class="p-0 m-0 p-menu border-0 w-auto">
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "
+                                                    (click)="terminatePayor(terminate)"><span
                                                         class="p-menuitem-icon pi pi-refresh mr-2"></span>
                                                     <span class="p-menuitem-text ">Terminate Payor/Plan</span>
                                                 </a>
@@ -467,18 +468,19 @@
                                                 </a>
 
                                             </li>
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
-                                                class="p-menuitem-icon pi pi-sort mr-2"></span>
-                                            <span class="p-menuitem-text ">Change Rank</span>
-                                        </a>
+                                            <li class="p-menuitem " (click)="changeRankdata(changeRank)"><a role="menuitem" class="p-menuitem-link "><span
+                                                        class="p-menuitem-icon pi pi-sort mr-2"></span>
+                                                    <span class="p-menuitem-text ">Change Rank</span>
+                                                </a>
 
-                                    </li>
-                                    <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
-                                        class="p-menuitem-icon pi pi-replay mr-2"></span>
-                                    <span class="p-menuitem-text ">Replace Payor/Plan with Effective Date</span>
-                                </a>
+                                            </li>
+                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link " (click)="replacePpdata(replacePp)"><span
+                                                        class="p-menuitem-icon pi pi-replay mr-2"></span>
+                                                    <span class="p-menuitem-text ">Replace Payor/Plan with Effective
+                                                        Date</span>
+                                                </a>
 
-                            </li>
+                                            </li>
                                         </ul>
                                     </ng-template>
                                 </p-overlayPanel>
@@ -501,8 +503,8 @@
         <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
         <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
     </div>
-    <p-splitButton label="Save" icon="pi pi-plus" (onClick)="save('info')" [model]="items"
-        styleClass="p-button-secondary" class="d-none"></p-splitButton>
+    <p-splitButton label="Save" icon="pi pi-plus" [model]="items" styleClass="p-button-secondary" class="d-none">
+    </p-splitButton>
 
 </ng-template>
 
@@ -775,8 +777,8 @@
         <div class="mt-2 d-flex align-items-center justify-content-between">
             <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
                 <i class="fas fa-times mr-1 "></i> Close </button>
-            <button class="btn-common btn-blue h-30 w-auto px-3" (click)="addDig(diglist)"><i
-                    class="pi pi-plus-circle mr-1 0"></i>Add Diagnosis</button>
+            <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add
+                Diagnosis</button>
             <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
         </div>
     </div>
@@ -889,3 +891,410 @@
         </div>
     </div>
 </ng-template> -->
+<ng-template #terminate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Terminate Payor/Plan</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="form d-flex align-items-center justify-content-center bg-white mb-2 box-shadow">
+            <div class="form-group mr-2">
+                <label class="color-black">Payor/Plan</label>
+                <div class="input-group form-input">
+                    <!-- <input type="text   " class="form-control h-30 " disabled value="COMMUNITY CARE 2(13/113)"> -->
+                    <p class="mb-0">COMMUNITY CARE 2(13/113)</p>
+                </div>
+            </div>
+            <div class="form-group mr-2">
+                <label class="color-black">Rank</label>
+                <select class="form-control edit-option bg-light-grey">
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="color-black">Effective From</label>
+                <div class="input-group form-input">
+                    <input type="calender" class="form-control h-30 mxw-108">
+                </div>
+            </div>
+            <div class="form-group mx-2">
+                <label class="color-black">Effective To</label>
+                <div class="input-group form-input">
+                    <input type="calender" class="form-control h-30 mxw-108">
+                </div>
+            </div>
+           
+
+        </form>
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h4 class="text-unserviced  mb-0">UnServiced Visits To Be Cancelled</h4>
+                <p class="mb-0 auhorization">Authorization Number ( )</p>
+                <p class="m-0 service">
+                    <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                    LICENSED
+                    PRAC.NURS</p>
+                <div class="schedule-items-container">
+                    <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                        <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                            10/01/2011
+                        </p>
+                        <div class="row m-0">
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="d-flex align-items-center justify-content-between bg-white px-3 py-2">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <div class="input-group form-input">
+                            <input type="calender" class="form-control h-30 mxw-108">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                 
+                        <div class="input-group form-input">
+                            <input type="calender" class="form-control h-30 mxw-108">
+                        </div>
+                    </div>
+                    <button pButton pRipple type="button" label="Go" class="p-button-rounded"></button>
+                </div>  
+                <h4 class="text-unserviced  mb-0">Serviced Visits To Be Unlinked</h4>
+                <p class="mb-0 auhorization">Authorization Number ( )</p>
+                <p class="m-0 service">
+                    <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                    LICENSED
+                    PRAC.NURS</p>
+                   
+                <div class="schedule-items-container-right">
+                    <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                        <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                            10/01/2011
+                        </p>
+                        <div class="row m-0">
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- <div class="mt-2 d-flex align-items-center justify-content-between">
+            <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
+                <i class="fas fa-times mr-1 "></i> Close </button>
+            <button class="btn-common btn-blue h-30 w-auto px-3" (click)="addDig(diglist)"><i
+                    class="pi pi-plus-circle mr-1 0"></i>Add Diagnosis</button>
+            <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
+        </div>  -->
+    </div>
+</ng-template>
+<ng-template #changeRank>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Change Payor/Plan Rank</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body d-flex" >
+        <div class="mr-2">
+            <form class="form d-flex align-items-center justify-content-center bg-white mb-2 box-shadow">
+                <div class="form-group mr-2">
+                    <label class="color-black">Payor/Plan</label>
+                    <div class="input-group form-input">
+                         <input type="text   " class="form-control h-30 " disabled placeholder="COMMUNITY CARE 2(13/113)">
+                        <!-- <p class="mb-0">COMMUNITY CARE 2(13/113)</p> -->
+                    </div>
+                </div>
+                <div class="form-group mr-2">
+                    <label class="color-black">Rank</label>
+                    <select class="form-control edit-option bg-light-grey">
+                        <option>1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="color-black">Effective From</label>
+                    <div class="input-group form-input">
+                        <input type="calender" class="form-control h-30 mxw-108">
+                    </div>
+                </div>
+                <div class="form-group mx-2">
+                    <label class="color-black">Effective To</label>
+                    <div class="input-group form-input">
+                        <input type="calender" class="form-control h-30 mxw-108">
+                    </div>
+                </div>
+                <!-- <button pButton type="button" label="Save" icon="pi pi-save" iconPos="left"
+                class="p-button-success p-button ml-2"></button> -->
+    
+            </form>
+            <div class="row">
+                <div class="mb-2 col-12">
+                    <h4 class="text-unserviced  mb-0">UnServiced Visits To Be Cancelled</h4>
+                    <p class="mb-0 auhorization">Authorization Number ( )</p>
+                    <p class="m-0 service">
+                        <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                        LICENSED
+                        PRAC.NURS</p>
+                    <div class="schedule-items-container-right">
+                        <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                            <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                                10/01/2011
+                            </p>
+                            <div class="row m-0">
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-12">
+                   
+                    <h4 class="text-unserviced  mb-0">Serviced Visits To Be Unlinked</h4>
+                    <p class="mb-0 auhorization">Authorization Number ( )</p>
+                    <p class="m-0 service">
+                        <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                        LICENSED
+                        PRAC.NURS</p>
+                       
+                    <div class="schedule-items-container-right">
+                        <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                            <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                                10/01/2011
+                            </p>
+                            <div class="row m-0">
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <form class="form d-flex align-items-center justify-content-center bg-white mb-2 box-shadow">
+                <div class="form-group mr-2">
+                    <label>Payor/Plan</label>
+                    <div class="input-group form-input">
+                         <input type="text   " class="form-control h-30 " disabled placeholder="COMMUNITY CARE 2(13/113)">
+                        <!-- <p class="mb-0">COMMUNITY CARE 2(13/113)</p> -->
+                    </div>
+                </div>
+                <div class="form-group mr-2">
+                    <label>Rank</label>
+                    <select class="form-control edit-option bg-light-grey">
+                        <option>1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Effective From</label>
+                    <div class="input-group form-input">
+                        <input type="calender" class="form-control h-30 mxw-108">
+                    </div>
+                </div>
+                <div class="form-group mx-2">
+                    <label>Effective To</label>
+                    <div class="input-group form-input">
+                        <input type="calender" class="form-control h-30 mxw-108">
+                    </div>
+                </div>
+                <!-- <button pButton type="button" label="Save" icon="pi pi-save" iconPos="left"
+                class="p-button-success p-button ml-2"></button> -->
+    
+            </form>
+            <div class="row">
+                <div class="mb-2 col-12">
+                    <h4 class="text-unserviced  mb-0">UnServiced Visits To Be Cancelled</h4>
+                    <p class="mb-0 auhorization">Authorization Number ( )</p>
+                    <p class="m-0 service">
+                        <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                        LICENSED
+                        PRAC.NURS</p>
+                    <div class="schedule-items-container-right">
+                        <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                            <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                                10/01/2011
+                            </p>
+                            <div class="row m-0">
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-12">
+                    <!-- <div class="d-flex align-items-center justify-content-between bg-white px-3 py-2">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <div class="input-group form-input">
+                                <input type="calender" class="form-control h-30 mxw-108">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                     
+                            <div class="input-group form-input">
+                                <input type="calender" class="form-control h-30 mxw-108">
+                            </div>
+                        </div>
+                        <button pButton pRipple type="button" label="Go" class="p-button-rounded"></button>
+                    </div>   -->
+                    <h4 class="text-unserviced  mb-0">Serviced Visits To Be Unlinked</h4>
+                    <p class="mb-0 auhorization">Authorization Number ( )</p>
+                    <p class="m-0 service">
+                        <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                        LICENSED
+                        PRAC.NURS</p>
+                       
+                    <div class="schedule-items-container-right">
+                        <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                            <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                                10/01/2011
+                            </p>
+                            <div class="row m-0">
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                                <div class="col-md-6 col-12 border py-2">
+                                    04/07/2021 01:00 PM
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #replacePp>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Replace Payor/Plan With Effective Date</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="form d-flex align-items-center justify-content-center bg-white mb-2 box-shadow pt-2">
+            <div class="form-group mr-2">
+                <label class="color-black">Payor/Plan</label>
+                <div class="input-group form-input">
+                    <input type="text   " class="form-control h-30 " disabled placeholder="COMMUNITY CARE 2(13/113)">
+                </div>
+            </div>
+            <div class="form-group mr-2">
+                <label class="color-black">Rank</label>
+                <select class="form-control edit-option bg-light-grey">
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="color-black">Effective From</label>
+                <div class="input-group form-input">
+                    <input type="calender" class="form-control h-30 mxw-108">
+                </div>
+            </div>
+            <div class="form-group mx-2">
+                <label class="color-black">Effective To</label>
+                <div class="input-group form-input">
+                    <input type="calender" class="form-control h-30 mxw-108">
+                </div>
+            </div>
+            <div class="form-group mr-2">
+                <label class="color-black">New Payor/Plan</label>
+                <div class="input-group form-input">
+                    <input type="text   " class="form-control h-30 " disabled placeholder="COMMUNITY CARE 2(13/113)">
+                </div>
+            </div>
+            <div class="form-group mx-2">
+                <label class="color-black">Effective Date</label>
+                <div class="input-group form-input">
+                    <input type="calender" class="form-control h-30 mxw-108">
+                </div>
+            </div>
+            <button pButton type="button" label="Replace" icon="pi pi-refresh" iconPos="left"
+            class="p-button-success p-button ml-2"></button>
+        </form>
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h4 class="text-unserviced  mb-0">UnServiced Visits To Be Cancelled</h4>
+                <p class="mb-0 auhorization">Authorization Number ( )</p>
+                <p class="m-0 service">
+                    <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                    LICENSED
+                    PRAC.NURS</p>
+                <div class="schedule-items-container">
+                    <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                        <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                            10/01/2011
+                        </p>
+                        <div class="row m-0">
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <h4 class="text-unserviced  mb-0">Serviced Visits To Be Unlinked</h4>
+                <p class="mb-0 auhorization">Authorization Number ( )</p>
+                <p class="m-0 service">
+                    <span class="AvenirLTStd-Heavy">Service </span> &nbsp;&nbsp;&nbsp;&nbsp; [CCLPN] CCLPN-CCLPN
+                    LICENSED
+                    PRAC.NURS</p>
+                   
+                <div class="schedule-items-container">
+                    <div class="bg-white box-shadow m-2 p-2" *ngFor="let item of cities">
+                        <p class="mb-0">Schedule: Start Date 10/01/2011 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date
+                            10/01/2011
+                        </p>
+                        <div class="row m-0">
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                            <div class="col-md-6 col-12 border py-2">
+                                04/07/2021 01:00 PM
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+</ng-template>

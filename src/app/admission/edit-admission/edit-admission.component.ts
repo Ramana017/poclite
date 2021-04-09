@@ -24,6 +24,11 @@ export class EditAdmissionComponent implements OnInit {
       { name: 'Rome', code: 'RM' },
       { name: 'London', code: 'LDN' },
       { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
       { name: 'Paris', code: 'PRS' }
     ];
   }
@@ -56,6 +61,15 @@ export class EditAdmissionComponent implements OnInit {
   }
   addDig(diglist:TemplateRef<any>){
     this.modalRef = this.modalService.show(diglist,Object.assign({},{ class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable'}))
+  }
+  terminatePayor(terminate:TemplateRef<any>){
+    this.modalRef = this.modalService.show(terminate,Object.assign({},{class: 'modal-dialog-centered '}))
+  }
+  changeRankdata(changeRank:TemplateRef<any>){
+    this.modalRef = this.modalService.show(changeRank,Object.assign({},{class: 'modal-dialog-centered '}))
+  }
+  replacePpdata(replacePp:TemplateRef<any>){
+    this.modalRef = this.modalService.show(replacePp,Object.assign({},{class: 'modal-dialog-centered '}))
   }
   movies = [
     'Episode I - The Phantom Menace',
