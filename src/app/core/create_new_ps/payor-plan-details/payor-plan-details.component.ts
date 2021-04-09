@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class PayorPlanDetailsComponent implements OnInit {
 
+  public popupintialValue:boolean=true;
+
   public payorPlanForm: FormGroup;
   public lookupDetails: any;
   public relationshipList;
@@ -51,9 +53,12 @@ export class PayorPlanDetailsComponent implements OnInit {
     this.userId = this.service.getUserId();
   }
   ngOnInit() {
-    this.psGuarData();
-    this.getPayorPlanData();
-    this.basicDetails();
+    if(this.popupintialValue){
+      this.psGuarData();
+      this.getPayorPlanData();
+      this.basicDetails();
+    }
+
 
     this.payorPlanForm = this.fb.group({
       payorPlan: ['', Validators.required],
