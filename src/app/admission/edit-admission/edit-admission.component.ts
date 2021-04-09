@@ -2,6 +2,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import {MenuItem} from 'primeng/api';
+import { GurantorComponent } from 'src/app/edit/ps-edit/gurantor/gurantor.component';
+import { GuarantorDetailsComponent } from 'src/app/core/create_new_ps/guarantor-details/guarantor-details.component';
+import { ContactsComponent } from 'src/app/edit/ps-edit/contacts/contacts.component';
+import { AddDaignosisComponent } from '../popups/add-daignosis/add-daignosis.component';
 interface City {
   name: string,
   code: string
@@ -13,18 +17,15 @@ interface City {
   styleUrls: ['./edit-admission.component.sass']
 })
 export class EditAdmissionComponent implements OnInit {
-  cities: City[];
+  public rank=[{name:1}]
+  public contacts: City[];
   items: MenuItem[];
-
   selectedCities2: City[];
   public modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
+  constructor(public modalService: BsModalService) {
+    this.contacts = [
+      { name: 'BAILEY, RUTH', code: 'BR' },
+
     ];
   }
 
@@ -54,8 +55,8 @@ export class EditAdmissionComponent implements OnInit {
   editdigdata(editdig: TemplateRef<any>) {
     this.modalRef = this.modalService.show(editdig, Object.assign({}, { class: 'editdig-modal modal-dialog-centered' }))
   }
-  addDig(diglist:TemplateRef<any>){
-    this.modalRef = this.modalService.show(diglist,Object.assign({},{ class: 'registration-modal-container modal-dialog-centered modal-dialog-scrollable'}))
+  addDig(){
+    this.modalRef = this.modalService.show(AddDaignosisComponent,Object.assign({},{ class: ''}))
   }
   movies = [
     'Episode I - The Phantom Menace',
@@ -65,6 +66,26 @@ export class EditAdmissionComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  }
+
+  /**
+   * newGurantor method is used to create new Guranotor
+   */
+  public newGurantor() {
+    this.modalRef = this.modalService.show(GuarantorDetailsComponent, Object.assign({
+      initialState: {
+        intialPopUp:false,
+      }
+    }, { class: ' modal-dialog-centered' }))
+
+  }
+  public newContact() {
+    this.modalRef = this.modalService.show(ContactsComponent, Object.assign({
+      initialState: {
+        popupintialValue:false,
+      }
+    }, { class: ' modal-dialog-centered' }))
+console.log(this.modalRef)
   }
 
 

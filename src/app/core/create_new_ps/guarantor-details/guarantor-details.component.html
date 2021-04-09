@@ -4,7 +4,7 @@
         <div class="bg-grey-l p-3">
             <div class="d-flex">
                 <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">Guarantor Details</h4>
-                <div class="d-flex align-items-center pl-2">
+                <div class="d-flex align-items-center pl-2" *ngIf="intialPopUp">
                     <label class="customcheck m-0">
                         <input type="checkbox" (change)="SelfCheck($event)" [checked]="selfChecBox">
                         <span class="checkmark"></span>
@@ -201,7 +201,8 @@
             <div class="d-flex align-items-center justify-content-between mt-3">
 
                 <div class="previous">
-                    <button type="button" class="btn-info  btn-next prev-step" [routerLink]="['/widgets']">Cancel</button>
+                  <button type="button" *ngIf="!intialPopUp" class="btn-info  btn-next prev-step" (click)="modalserivce._hideModal(1)" >Close</button>
+                    <button type="button" *ngIf="intialPopUp" class="btn-info  btn-next prev-step" [routerLink]="['/widgets']">Cancel</button>
                 </div>
                 <!-- <div class="previous">
                     <button type="button" class="btn-info  btn-next prev-step" (click)="getPreviousBasic()">Previous</button>

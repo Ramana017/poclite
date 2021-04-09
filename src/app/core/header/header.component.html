@@ -38,10 +38,10 @@
                     <a>Home</a>
                   </li>
                   <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
-                    <a>POC Call
+                    <a> Call
                       Management</a>
                   </li>
-                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"  [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>POC
+                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"  [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>CSM
                       DashBoard</a>
                   </li>
                   <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">
@@ -143,10 +143,10 @@
           <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
           <h3 class="text-white mt-3">
             <span routerLink="/chart-layout" routerLinkActive #activity="routerLinkActive">
-              {{activity.isActive ? "POC DashBoard" : ''}}
+              {{activity.isActive ? "CSM DashBoard" : ''}}
             </span>
             <span routerLink="/summary" routerLinkActive #dashboard="routerLinkActive">
-              {{dashboard.isActive ? "POC Call Management" : ''}}
+              {{dashboard.isActive ? "Call Management" : ''}}
             </span>
             <span routerLink="/widgets" routerLinkActive #errorlog="routerLinkActive">
               {{errorlog.isActive ? "POC Home" : ''}}
@@ -176,8 +176,12 @@
               {{locateDCS.isActive ? 'Locate DCS ' : ''}}
             </span><span class="ml" routerLink="/schedulingmodule/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
               {{mapspsdcs.isActive ? 'PS/DCS Distribution ' : ''}}
-            </span><span class="ml" routerLink="/schedulingmodule/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
+            </span>
+            <span class="ml" routerLink="/schedulingmodule/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
               {{dcsroute.isActive ? 'DCS Route Map ' : ''}}
+            </span>
+            <span style="    margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive #admission="routerLinkActive">
+              {{admission.isActive ? 'Admissions ' : ''}}
             </span>
           </h3>
         </div>

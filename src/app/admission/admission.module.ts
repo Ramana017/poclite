@@ -12,8 +12,9 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { SharedModule } from '../shared/shared.module';
+import { AddDaignosisComponent } from './popups/add-daignosis/add-daignosis.component';
 @NgModule({
-  declarations: [AdmissionComponent, EditAdmissionComponent],
+  declarations: [AdmissionComponent, EditAdmissionComponent, AddDaignosisComponent],
   imports: [
     CommonModule,
 

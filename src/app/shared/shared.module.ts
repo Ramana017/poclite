@@ -4,6 +4,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AgmCoreModule}from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {DropdownModule} from 'primeng/dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
@@ -26,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DropdownModule,
+    NgSelectModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
