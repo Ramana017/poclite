@@ -9,13 +9,19 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class ContactsComponent implements OnInit {
 
   public modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  public popupintialValue=true;
+  constructor(public modalService: BsModalService) {
+    console.log(this.popupintialValue)
+  }
 
   ngOnInit(): void {
-
+console.log(this.popupintialValue)
     console.log("contact ngonInit")
   }
   contactslogdata(contactlog: TemplateRef<any>) {
     this.modalRef = this.modalService.show(contactlog);
+  }
+  public ngOnDestroy(){
+    console.log('COntact destroy')
   }
 }

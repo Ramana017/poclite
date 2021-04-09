@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ZipcodeService } from '../../../services/zipcode.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -12,6 +13,10 @@ import swal from 'sweetalert2';
   styleUrls: ['./guarantor-details.component.scss']
 })
 export class GuarantorDetailsComponent implements OnInit {
+ public intialPopUp:boolean=true;
+
+
+
   public selfChecBox: boolean = false;
 
   public addressCheckBox: boolean = false;
@@ -37,7 +42,7 @@ export class GuarantorDetailsComponent implements OnInit {
   private countyId: number;
   private timeZoneId: number;
   public phoneNUmber;
-  constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
+  constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router,public modalserivce:BsModalService) {
     this.userId = this.service.getUserId();
   }
   ngOnInit() {

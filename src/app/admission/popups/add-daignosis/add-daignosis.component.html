@@ -1,0 +1,115 @@
+<div class="modal-header py-0 registration-modal-header ">
+  <h4 id="dialog-child-name" class="modal-title pull-left AvenirLTStd-Heavy">Diagnosis Details</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="modalService._hideModal(2)"
+    data-dismiss="modal">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body p-0">
+  <div class="listing-container ">
+    <div class="">
+      <div class="interface-container">
+        <div class="table-container mb-2">
+          <div class="nav align-items-center justify-content-around">
+            <div class=" m-0 form-input p-2 d-flex align-items-center ">
+              <label class="mb-0 mr-2 white-space-nowrap">
+                Diagnosis Code
+              </label>
+              <div class="input-group ">
+                <input type="search" class="form-control search-input">
+                <!-- <span class="right-icon" ><i
+                                            class="fas fa-search"></i></span> -->
+
+              </div>
+
+
+            </div>
+            <div class=" m-0 form-input p-2 d-flex align-items-center">
+              <label class="mb-0 mr-2 white-space-nowrap">
+                Diagnosis Name
+              </label>
+              <div class="input-group ">
+                <input type="text" [(ngModel)]="diagnosisName" class="form-control search-input">
+                <!-- <span class="right-icon" ><i
+                                            class="fas fa-search"></i></span> -->
+
+              </div>
+              <button class="go border-radius-curved">Go</button>
+            </div>
+
+          </div>
+          <div class="table-responsive listing-table" style="height: 71vh !important;
+                        ">
+            <table class="table m-0">
+              <thead>
+                <tr>
+                  <th scope="col" class="sticky-top"></th>
+                  <th scope="col" class="sticky-top"> Diagnosis Code
+
+                  </th>
+                  <th scope="col" class="sticky-top">Diagnosis Name
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of diagnosisList ; let i=index ">
+                  <td class="position-relative edit-option">
+                    <label class="customcheck margin-left-15 m-0">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                    </label>
+                  </td>
+                  <td class="width-180">{{data.diagnosisCode}}</td>
+                  <td class="diagnosis-name">{{data.diagnosisName}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center no-data-text" *ngIf="diagnosisList.length==0"> No Data To Display
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-between pagination nav  mt-2">
+            <button type="button" (click)="bsModelref.hide()"
+              class="pagination-btn btn next-btn primary-button add">Add</button>
+
+            <div class="pr-2 pagination-add-close  justify-content-end">
+
+              <div>
+                <span class="footer-text">Per Page</span>
+                <select [(ngModel)]="perPage" (change)="pagereset()" class="pagination-select border-0">
+                  <option [ngValue]="pageArray[i]" *ngFor="let page of pageArray;let i = index">
+                    {{page}}
+                  </option>`
+                </select>
+                <span class="footer-text">Showing <span>{{maxCount!=0 ?lowerBound:0}}</span> to
+                  <span>
+                    {{upperBound>maxCount?maxCount:upperBound}} </span> of
+                  <span>{{maxCount}}</span></span>
+                <button type="button " class="pagination-btn ml-0"
+                  [disabled]="lowerBound<perPage||diagnosisList.length==0 "
+                  [ngClass]="lowerBound<=1 ? 'btn prev-btn primary-button ml-0': 'btn next-btn primary-button ml-0' "
+                  id="prev-btn " (click)="prevpage() " class="pagination-btn">Prev</button>
+                <button type="button " class="pagination-btn ml-0"
+                  [disabled]="upperBound>= maxCount ||diagnosisList.length==0 "
+                  [ngClass]="upperBound>= maxCount ||diagnosisList.length==0 ?'btn prev-btn primary-button':'btn next-btn primary-button'"
+                  id="next-btn" (click)="pagenext()" class="pagination-btn">Next</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .go{
+    background-color: #76bd43;
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-bottom: 0rem;
+    margin-left: 1rem;
+    color: #ffffff !important;
+  }
+</style>
