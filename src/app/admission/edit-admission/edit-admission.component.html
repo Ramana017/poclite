@@ -287,7 +287,7 @@
                         <tr>
                             <td class="f-14">1</td>
                             <td class="f-14">COMMUNITY CARE SERVICE PROGRAM(13/101) </td>
-                            <td class="f-14">BAILEY, RUTH </td>
+                            <td class="f-14 blue" (click)=" editSubscriber() ">BAILEY, RUTH </td>
                             <td class="f-14">111452310367</td>
                             <td class="f-14"> 03/20/2008 </td>
                             <td class="f-14">03/20/2008 </td>
@@ -408,7 +408,7 @@
                             <td>
                                 06/01/2009
                             </td>
-                            <td>
+                            <td class="blue" (click)="icd(icd910)">
                                 Admission
                             </td>
                             <td>
@@ -484,66 +484,9 @@
                             <h5 class="mb-0  AvenirLTStd-Heavy">Rank 1</h5>
                         </td>
                     </tr>
+              
                     <tr>
-                        <td class="border-right">
-                            <div class="dropdown-p-panel " (click)="op1.toggle($event)" #op2>
-                                <i class="fas fa-ellipsis-v"></i>
-                                <p-overlayPanel #op1 [style]="{width: 'auto'}" [appendTo]="op2">
-                                    <ng-template pTemplate>
-                                        <ul class="p-0 m-0 p-menu border-0 w-auto">
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "
-                                                    (click)="terminatePayor(terminate)"><span
-                                                        class="p-menuitem-icon pi pi-refresh mr-2"></span>
-                                                    <span class="p-menuitem-text ">Terminate Payor/Plan</span>
-                                                </a>
-
-                                            </li>
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
-                                                        class="p-menuitem-icon pi pi-trash mr-2"></span>
-                                                    <span class="p-menuitem-text ">Delete Payor/Plan</span>
-                                                </a>
-
-                                            </li>
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
-                                                        class="p-menuitem-icon pi pi-replay  mr-2"></span>
-                                                    <span class="p-menuitem-text ">Replace Payor/Plan</span>
-                                                </a>
-                                            </li>
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "><span
-                                                        class="p-menuitem-icon pi pi-calendar-plus mr-2"></span>
-                                                    <span class="p-menuitem-text ">Change Effective From</span>
-                                                </a>
-
-                                            </li>
-                                            <li class="p-menuitem " (click)="changeRankdata(changeRank)"><a
-                                                    role="menuitem" class="p-menuitem-link "><span
-                                                        class="p-menuitem-icon pi pi-sort mr-2"></span>
-                                                    <span class="p-menuitem-text ">Change Rank</span>
-                                                </a>
-
-                                            </li>
-                                            <li class="p-menuitem "><a role="menuitem" class="p-menuitem-link "
-                                                    (click)="replacePpdata(replacePp)"><span
-                                                        class="p-menuitem-icon pi pi-replay mr-2"></span>
-                                                    <span class="p-menuitem-text ">Replace Payor/Plan with Effective
-                                                        Date</span>
-                                                </a>
-
-                                            </li>
-                                        </ul>
-                                    </ng-template>
-                                </p-overlayPanel>
-                            </div>
-                        </td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-bottom">aaa</td>
-                    </tr>
-                    <tr>
-                        <td class="border-right border-bottom" (click)="op1.toggle($event)">
+                        <!-- <td class="border-right border-bottom" (click)="op1.toggle($event)">
                             <div class="dropdown-p-panel">
                                 <i class="fas fa-ellipsis-v"></i>
                                 <p-overlayPanel #op1 [style]="{width: 'auto'}">
@@ -589,9 +532,63 @@
                                     </ng-template>
                                 </p-overlayPanel>
                             </div>
+                        </td> -->
+                        <td class="position-relative edit-option w-auto border-right border-bottom">
+                            <ul class="m-0 mt-1 p-0">
+                                <li class="ml-1">
+                                    <div class="share-button">
+                                        <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                        <label for="toggle-input" class="toggle"></label>
+                                    </div>
+                                    <div class="slider d-flex ">
+                                        <!-- terminate pp -->
+                                        <p class="blue-bg terminate" (click)="terminatePayor(terminate)" title="Terminate Payor/Plan">
+                                            <span>
+                                                <a href="javascript:void(0)"
+                                                 class="text-white"
+                                                    >
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <!-- Delete Payor/Plan -->
+                                        <p class="blue-bg trash"  title="Delete Payor/Plan">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <!-- Replace Payor/Plan-->
+                                        <p class="blue-bg replacepp" data-toggle="modal"
+                                            data-target="#exampleModalCenter" title="Replace Payor/Plan">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <!-- change renk-->
+                                        <p class="blue-bg rankchange" data-toggle="modal"
+                                        (click)="changeRankdata(changeRank)" title="Change Rank">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <!-- replace pp date -->
+                                        <p class="blue-bg ppdate" data-toggle="modal" (click)="replacePpdata(replacePp)"
+                                            title="Replace Payor/Plan with Effective
+                                            Date">
+                                            <span>
+                                                <a href="javascript:void(0)" class="text-white">
+                                                </a>
+                                            </span>
+                                        </p>
+                             
+                                    </div>
+                                </li>
+                            </ul>
                         </td>
                         <td class="border-right border-bottom">COMMUNITY CARE SERVICE PROGRAM(13/101) </td>
-                        <td class="border-right border-bottom">BAILEY, RUTH </td>
+                        <td class="border-right border-bottom blue" (click)=" editSubscriber() ">BAILEY, RUTH </td>
                         <td class="border-right border-bottom">111452310367</td>
                         <td class="border-right border-bottom">03/20/2008 </td>
                         <td class="border-right border-bottom">03/21/2008 </td>
@@ -607,9 +604,6 @@
         <button class="btn-common btn-blue h-30 w-auto px-3"(click)="Addpayor()"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
         <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
     </div>
-    <p-splitButton label="Save" icon="pi pi-plus" [model]="items" styleClass="p-button-secondary" class="d-none">
-    </p-splitButton>
-
 </ng-template>
 
 <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
@@ -830,7 +824,7 @@
                     <tr>
 
                         <td class="border-right border-bottom">05/01/2009 </td>
-                        <td class="border-right border-bottom">Admission</td>
+                        <td class="border-right border-bottom " >Admission</td>
                         <td class="border-right border-bottom">Rr coll nos-passenger(E8001) , Rr coll
                             nos-pedestrian(E8002) , Rr coll nos-ped cyclist(E8003)</td>
 
@@ -1313,4 +1307,39 @@
         </button>
     </div>
     <!-- <app-contacts></app-contacts> -->
+</ng-template>
+<ng-template #icd910>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">ICD-09 to ICD-10 Diagnosis</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive bg-white height-67 box-shadow">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                       
+                        <th class="text-center border-right align-middle ">ICD-09 Diagnosis Codes</th>
+                        <th class="text-center  align-middle">ICD-10 Diagnosis Codes</th>
+    
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+    
+                        <td class="border-right border-bottom">Rr coll nos-passenger<span class="blue">(E8001)</span></td>
+                     
+                        <td class=" border-bottom">Occupant of railway train or railway vehicle injured in collision with or hit by rolling stock, initial encounter<span class="blue">(E8001)</span></td>
+    
+    
+                    </tr>
+    
+                </tbody>
+            </table>
+        </div>
+    </div>
+  
 </ng-template>

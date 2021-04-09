@@ -42,7 +42,8 @@
     font-size: 15px;
     color: #212529;
   }
-  .search-input{
+
+  .search-input {
     padding: 10px 32px 10px 7px;
   }
 }
@@ -55,60 +56,68 @@
 
   }
 }
+
 .modal-dialog-centered.modal-dialog-scrollable.registration-modal-container {
 
   height: auto !important;
 }
 
 
-.times-list{
- width: 100%;
+.times-list {
+  width: 100%;
 
- .modal-content {
-  width: 95%;
-  height: 335px !important;
- }
-
-}
-.sign{
   .modal-content {
-    width:60%;
-   }
+    width: 95%;
+    height: 335px !important;
+  }
+
 }
 
-.progress{
+.sign {
+  .modal-content {
+    width: 60%;
+  }
+}
+
+.progress {
   .modal-content {
 
     width: 80%;
-    height: calc(100vh - 52px)!important;
+    height: calc(100vh - 52px) !important;
     overflow-y: auto;
-   }
-   .modal-body{
-    height: calc(100vh - 48px)!important;
+  }
+
+  .modal-body {
+    height: calc(100vh - 48px) !important;
     overflow-y: auto;
-   }
-   font-size: 16px;
+  }
+
+  font-size: 16px;
 }
-.progress-title{
+
+.progress-title {
   background-color: #1690d1;
   padding: 5px 5px 5px 5px;
 
 }
-.task-list{
+
+.task-list {
   max-width: 500px !important;
 
-  .modal-content{
+  .modal-content {
     height: auto !important;
   }
+
   // table{
 
   // }
 }
-td{
+
+td {
   vertical-align: middle !important;
 }
 
-.bottom-input{
+.bottom-input {
   input {
     border: 0;
     outline: 0;
@@ -121,67 +130,114 @@ td{
 div#progress {
   background: #000000b5;
 }
-div#signModal{
+
+div#signModal {
   background: #000000b5;
 }
-div#timesModal{
+
+div#timesModal {
   background: #000000b5;
 }
-div#exampleModal{
+
+div#exampleModal {
   background: #000000b5;
 }
-.ppHistory{
+
+.ppHistory {
   width: 95% !important;
   max-width: 95% !important;
-  .modal-content{
+
+  .modal-content {
     width: 100% !important;
     height: auto !important;
   }
 }
-.physian-input{
+
+.physian-input {
   // background: white;
   width: 40%;
   padding: 20px;
   margin: 0 20px;
 }
-.editdig-modal{
-  .modal-content{
+
+.editdig-modal {
+  .modal-content {
     height: auto !important;
   }
 }
-.schedule-items-container{
+
+.schedule-items-container {
   height: 52vh;
   overflow: auto;
 }
-.schedule-items-container-right{
+
+.schedule-items-container-right {
   height: 40vh;
   overflow: auto;
 }
-.create-contact-popup{
+
+.create-contact-popup {
   width: 95%;
   max-width: 95%;
-  .modal-content{
+
+  .modal-content {
     width: auto;
   }
-  .slack-icon{
+
+  .slack-icon {
     display: none;
   }
-  .table-responsive{
+
+  .table-responsive {
     display: none;
   }
-  .visit-information{
-    margin-left: 1.5rem!important; 
+
+  .visit-information {
+    margin-left: 1.5rem !important;
     border: 0;
     padding: 0;
     margin: 10px;
-    .visit-info-text{
+
+    .visit-info-text {
       display: none;
     }
   }
-  .container-wrapper{
-padding: 0;
+
+  .container-wrapper {
+    padding: 0;
   }
-  .modal-contact-wrapper{
+
+  .modal-contact-wrapper {
     width: 40% !important;
   }
+}
+
+.modal-dialog-payor {
+  .modal-content {
+    height: auto !important;
+  }
+
+  .container-wrapper {
+    padding: 0;
+  }
+}
+
+.edit-subscriber-modal {
+  .modal-content {
+    height: auto !important;
+  }
+
+  .container-wrapper {
+    padding: 0;
+  }
+  .ps-registration-tabs-container{
+    .payor-title {
+      display: none !important;
+    }
+  
+    .form-1-payor {
+      display: none;
+    }
+  }
+
 }
