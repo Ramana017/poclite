@@ -90,8 +90,10 @@ export class EditAdmissionComponent implements OnInit {
     }, { class: ' modal-dialog-centered' }))
 
   }
-  public newContact() {
-    this.modalRef = this.modalService.show(ContactsComponent, Object.assign({
+  public modelhedaerType='';
+  public newContact(template:TemplateRef<any>,type) {
+    this.modelhedaerType=type;
+    this.modalRef = this.modalService.show(template, Object.assign({
       initialState: {
         popupintialValue: false,
       }

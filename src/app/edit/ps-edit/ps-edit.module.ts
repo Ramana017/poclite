@@ -46,6 +46,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     FileUploadModule, HttpClientModule,
     ModalModule,
     AutoCompleteModule
-  ]
+  ],
+  exports:[ContactsComponent]
 })
 export class PsEditModule { }
