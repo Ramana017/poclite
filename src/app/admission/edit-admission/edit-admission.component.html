@@ -317,7 +317,7 @@
                             </p-multiSelect>
                             <button pButton type="button" label="Save" icon="pi pi-save" iconPos="left"
                                 class="p-button-success p-button ml-2"></button>
-                            <button (click)="newContact()" pButton type="button" label="Add Contact"
+                            <button (click)="newContact(addContact,'Contacts')" pButton type="button" label="Add Contact"
                                 icon="pi pi-plus-circle" iconPos="left" class="p-button-primary p-button ml-2"></button>
                         </div>
                     </div>
@@ -326,7 +326,7 @@
                     <div class=" box-shadow mt-2  p-3 d-flex align-items-center justify-content-between">
 
                         <div class="d-flex align-items-center">
-                            <span (click)="newContact()" class="material-icons mr-3">
+                            <span (click)="newContact(addContact,'Contacts')" class="material-icons mr-3">
                                 edit
                             </span>
                             <h5 class="mb-0">BAILEY,RUTH</h5>
@@ -1313,12 +1313,12 @@
 </ng-template>
 <ng-template #addContact>
     <div class="modal-header">
-        <h4 class="modal-title pull-left AvenirLTStd-Heavy">Replace Payor/Plan With Effective Date</h4>
+        <h4 class="modal-title pull-left AvenirLTStd-Heavy">{{modelhedaerType}}</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <!-- <app-contacts></app-contacts> -->
+    <app-contacts *ngIf="modelhedaerType=='Contacts'"></app-contacts>
 </ng-template>
 <ng-template #icd910>
     <div class="modal-header">

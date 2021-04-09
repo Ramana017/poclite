@@ -13,6 +13,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { SharedModule } from '../shared/shared.module';
 import { AddDaignosisComponent } from './popups/add-daignosis/add-daignosis.component';
+import { PsEditModule } from '../edit/ps-edit/ps-edit.module';
 @NgModule({
   declarations: [AdmissionComponent, EditAdmissionComponent, AddDaignosisComponent],
   imports: [
@@ -25,7 +26,10 @@ import { AddDaignosisComponent } from './popups/add-daignosis/add-daignosis.comp
     CheckboxModule,
     BsDropdownModule,
     SplitButtonModule,
-    SharedModule
+    SharedModule,
+    PsEditModule,
+
+
   ]
 })
 export class AdmissionModule { }
