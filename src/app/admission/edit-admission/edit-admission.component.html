@@ -43,7 +43,7 @@
                                     </label>
 
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-capital" aria-label="Auth" />
+                                        <input type="text" bsDatepicker class="form-control text-capital" aria-label="Auth" />
                                     </div>
                                 </div>
                                 <div class="input-container-wrapper">
@@ -64,7 +64,7 @@
                                     </label>
 
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-capital" aria-label="Last Name" />
+                                        <input type="text" bsDatepicker class="form-control text-capital" aria-label="Last Name" />
                                     </div>
                                 </div>
                                 <div class="m-0 input-container-wrapper ">
@@ -77,7 +77,7 @@
                                 <div class="m-0 input-container-wrapper ">
                                     <label class="">First Visit Date<span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control text-capital" aria-label="Auth" />
+                                        <input type="text" bsDatepicker class="form-control text-capital" aria-label="Auth" />
                                     </div>
                                 </div>
                                 <div class="m-0 input-container-wrapper">
@@ -267,7 +267,7 @@
                     <div class="form-group">
                         <label>Select Contacts</label>
                         <div class="contacts-section d-flex align-items-center">
-                            <p-multiSelect [options]=" cities" defaultLabel="Select a City" optionLabel="name">
+                            <p-multiSelect [options]="  cities" defaultLabel="Select a City" optionLabel="name">
                             </p-multiSelect>
                             <button pButton type="button" label="Save" icon="pi pi-save" iconPos="left"
                                 class="p-button-success p-button ml-2"></button>
@@ -437,12 +437,7 @@
                             </p-overlayPanel> -->
 
                         </td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-bottom">aaa</td>
+
                     </tr>
                     <tr>
                         <td class="border-right" (click)="op1.toggle($event)">
@@ -491,12 +486,12 @@
                                 </p-overlayPanel>
                             </div>
                         </td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aaa</td>
-                        <td class="border-right border-bottom">aa</td>
-                        <td class="border-bottom">aaa</td>
+                        <td class="border-right border-bottom">COMMUNITY CARE SERVICE PROGRAM(13/101)	</td>
+                        <td class="border-right border-bottom">BAILEY, RUTH </td>
+                        <td class="border-right border-bottom">111452310367</td>
+                        <td class="border-right border-bottom">03/20/2008  	</td>
+                        <td class="border-right border-bottom">03/21/2008  	</td>
+                        <td class="border-bottom">No</td>
                     </tr>
                 </tbody>
             </table>
@@ -508,7 +503,7 @@
         <button class="btn-common btn-blue h-30 w-auto px-3"><i class="pi pi-plus-circle mr-1 0"></i>Add</button>
         <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
     </div>
-    <p-splitButton label="Save" icon="pi pi-plus" (onClick)="save('info')" [model]="items"
+    <p-splitButton label="Save" icon="pi pi-plus"  [model]="items"
         styleClass="p-button-secondary"></p-splitButton>
 
 </ng-template>
@@ -782,7 +777,7 @@
         <div class="mt-2 d-flex align-items-center justify-content-between">
             <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
                 <i class="fas fa-times mr-1 "></i> Close </button>
-            <button class="btn-common btn-blue h-30 w-auto px-3" (click)="addDig(diglist)"><i
+            <button class="btn-common btn-blue h-30 w-auto px-3" ><i
                     class="pi pi-plus-circle mr-1 0"></i>Add Diagnosis</button>
             <button class="btn-common btn-green h-30 w-auto px-3"><i class="pi pi-save mr-1 "></i>Save</button>
         </div>

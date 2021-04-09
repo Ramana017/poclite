@@ -11,11 +11,21 @@ import {ButtonModule} from 'primeng/button';
 import {CheckboxModule} from 'primeng/checkbox';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [AdmissionComponent, EditAdmissionComponent],
   imports: [
     CommonModule,
-    AdmissionRoutingModule,DragDropModule,OverlayPanelModule,MultiSelectModule,ButtonModule,CheckboxModule,BsDropdownModule,SplitButtonModule
+
+    AdmissionRoutingModule,
+    DragDropModule,
+    OverlayPanelModule,
+    MultiSelectModule,
+    ButtonModule,
+    CheckboxModule,
+    BsDropdownModule,
+    SplitButtonModule,
+    SharedModule
   ]
 })
 export class AdmissionModule { }
