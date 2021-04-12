@@ -2328,3 +2328,42 @@ app-maintainence {
     left: auto !important;
 }
 }
+.delivery-card{
+  position: fixed;
+  right: 0px;
+  font-size: 18px;
+  background: #2196f3;
+  color: white;
+  top: 130px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cancel-right{
+  position: fixed;
+  right: 0px;
+  font-size: 18px;
+  background: #343a40;;
+  color: white;
+  top: 93px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.save-right{
+  position: fixed;
+  right: 0px;
+  font-size: 18px;
+  background: #76bd43;
+  color: white;
+  top: 167px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
