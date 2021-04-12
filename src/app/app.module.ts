@@ -73,6 +73,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
+import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { OrderModule } from 'ngx-order-pipe';
     DailyReportsComponent,
     TelephonyStatsComponent,
     UtilizationStatsComponent,
+    CommunicationDashboardComponent,
 
 
 

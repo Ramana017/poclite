@@ -27,6 +27,7 @@ import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
+import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
 
 
 
@@ -68,8 +69,8 @@ const routes: Routes = [
     ]
   },
   { path: "chart-layout",component: ChartLayoutComponent},
-  { path: "page-not-found", component: PageNotFoundComponent }
-  ,
+  {path: "communication-dashboard",component:CommunicationDashboardComponent},
+  { path: "page-not-found", component: PageNotFoundComponent },
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: 'admission', canActivate: [AuthGuard],loadChildren: () => import('./admission/admission.module').then(m => m.AdmissionModule) },
