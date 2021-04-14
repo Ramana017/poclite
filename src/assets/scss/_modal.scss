@@ -234,10 +234,17 @@ div#exampleModal {
     .payor-title {
       display: none !important;
     }
-  
+
     .form-1-payor {
       display: none;
     }
   }
 
+}
+.p-dialog .p-dialog-header{
+  padding: 10px !important;
+}
+.p-dropdown-panel {
+
+  z-index: 11001 !important;
 }

@@ -78,6 +78,10 @@ import { CommunicationDashboardComponent } from './core/communication-dashboard/
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {DropdownModule} from 'primeng/dropdown';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,7 +162,11 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     OrderModule,
     DialogModule,
     ButtonModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    InputTextareaModule,
+    DropdownModule,
+    OverlayPanelModule,
+    InputTextModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

@@ -14,7 +14,14 @@ export class CommunicationDashboardComponent implements OnInit {
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
   displayPosition: boolean;
-
+  selectedState: any = null;
+  states: any[] = [
+    {name: 'Pending', code: 'Arizona'},
+    {name: 'California', value: 'California'},
+    {name: 'Florida', code: 'Florida'},
+    {name: 'Ohio', code: 'Ohio'},
+    {name: 'Washington', code: 'Washington'}
+];
   ngOnInit(): void {
     this.resize();
     // this.widgetReSize()
@@ -181,5 +188,5 @@ export class CommunicationDashboardComponent implements OnInit {
   showPositionDialog(position: string) {
     this.position = position;
     this.displayPosition = true;
-} 
+}
 }
