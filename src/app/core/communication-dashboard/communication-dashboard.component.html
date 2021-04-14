@@ -1,30 +1,395 @@
-<!-- <p>communication-dashboard works!</p> -->
-<div class="container-fluid">
-    <div class="row ">
-        <div class="col-6">
-            <div class="card">
-                <h5>Vertical with Fixed Viewport</h5>
-                <p-table [value]="customers" [scrollable]="true" >
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Name</th>
-                            <th>Country</th>
-                            <th>Company</th>
-                            <th>Representative</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-customer>
-                        <tr>
-                            <td>{{customer.name}}</td>
-                            <td>{{customer.country.name}}</td>
-                            <td>{{customer.company}}</td>
-                            <td>{{customer.representative.name}}</td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+<div class="css-dashboard-wrapper">
+  <!-- home-inner-wrapper -->
+  <div class="home-inner-wrapper d-flex">
+    <!-- Content-wrapper -->
+    <section class="content-wrapper pl-3 pt-2 pb-0 d-flex">
+      <div class="content-inner-wrapper">
+        <div class="d-flex">
+          <div class="cards-content w-100">
+            <div class="row m-0">
+              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                <div class="widget-block h-auto">
+                  <div class="widget-header row align-items-center blue-bg m-0 nav">
+                    <div class="col-md-4 col-0"></div>
+                    <h5 class="text-white m-0 text-center col-md-3 col-12">App Approvals</h5>
+                    <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
+                      <ng-autocomplete class="w-150" placeHolder="Search PS">
+                      </ng-autocomplete>
+                      <ng-template style="width: 100%;" let-item>
+                        <a [innerHTML]="item.PSName"></a>
+                      </ng-template>
+                      <div class="ico">
+                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps',$event)"></i>
+                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps',$event)"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="widget-inner p-2">
+                    <div class="table-responsive">
+                      <table class="table position-relative">
+                        <thead class="thead-light no-wrap">
+                          <tr>
+                            <th class=""></th>
+                            <th class="align-middle">DCS</th>
+                            <th class="align-middle">Approval Type</th>
+                            <th class="align-middle">Requested On</th>
+                            <th class="align-middle">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let item of customers">
+                            <td class="position-relative edit-option">
+                              <ul class="m-0 p-0">
+                                <li class="">
+                                  <div class="share-button">
+                                    <input class="toggle-input" id="toggle-input" type="checkbox"
+                                      (click)="showPositionDialog('left')" />
+                                    <label for="toggle-input" class="toggle"></label>
+                                  </div>
+                                  <!-- <div class="slider d-flex align-items-center">
+                                      <p class="blue-bg facebook mr-2" title="Admission">
+                                        <span>
+                                          <a class="text-white"
+                                            title="Admissions">
+                                          </a>
+                                        </span>
+                                      </p>
+                                      <p class="blue-bg googleplus mr-2" title="Authorizations">
+                                        <span>
+                                          <a class="text-white"
+                                            title="Authorizations">
+                                          </a>
+                                        </span>
+                                      </p>
+                                    </div> -->
+                                </li>
+                              </ul>
+                            </td>
+                            <td>aa</td>
+                            <td>aa</td>
+                            <td>ps.mrn</td>
+                            <td>ps.ssn</td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <div class="text-center no-data-text" *ngIf="pstotalRecordsCount==0"> No Data To Display </div> -->
+
+                    </div>
+                    <div class="pager d-flex justify-content-end mt-2">
+
+
+                      <div class="c">
+                        <span class="mr-2">Per page</span>
+                        <select class="border-0 mr-2">
+                          <option>5</option>
+                          <option>10</option>
+                          <option>15</option>
+                          <option>20</option>
+
+                        </select>
+                        <span class="mr-2">showing 10 of
+                          20
+                        </span>
+
+                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- =========================================== 2nd Widget============================= -->
+
+              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                <div class="widget-block h-auto xs-mar">
+
+                  <div class="widget-header row align-items-center peach-bg m-0">
+                    <div class="col-md-4"></div>
+                    <h5 class="text-white m-0 text-center col-md-3">DCS Messages</h5>
+                    <div class="col-md-5 d-flex justify-content-end align-items-center">
+                      <ng-autocomplete class="w-150" placeHolder="Search PS">
+                      </ng-autocomplete>
+
+                      <ng-template style="width: 100%;">
+                        <a></a>
+                      </ng-template>
+                      <div class="ico">
+                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'admissions',$event)"></i>
+                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'admissions',$event)"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="widget-inner p-2">
+                    <div class="table-responsive">
+                      <table class="table position-relative">
+                        <thead class="thead-light no-wrap">
+                          <tr>
+                            <th scope="col"></th>
+                            <th class="align-middle">DCS</th>
+                            <th class="align-middle">Message Text</th>
+                            <th class="align-middle">Last Received</th>
+                            <th class="align-middle"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="position-relative edit-option">
+                              <ul class="m-0 p-0">
+                                <li class="">
+                                  <div class="share-button">
+                                    <input class="toggle-input" id="toggle-input" type="checkbox" />
+                                    <label for="toggle-input" class="toggle"></label>
+                                  </div>
+                                  <div class="slider d-flex align-items-center">
+
+                                    <p class="blue-bg googleplus">
+                                      <span>
+                                        <a class="text-white" title="Authorizations">
+                                        </a>
+                                      </span>
+                                    </p>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                            <td>admission</td>
+                            <td>aaaaaaaa</td>
+                            <td>admission.admissionDate</td>
+                            <td><span class="material-icons" (click)="showPositionDialog('right')">
+                                chat_bubble_outline
+                              </span></td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <div class="text-center no-data-text" >
+                          No Data To Display
+                        </div> -->
+                    </div>
+                    <div class="pager mt-2 d-flex justify-content-end">
+
+                      <div class="nav">
+                        <span class="mr-2">Per page</span>
+                        <select class="border-0 mr-2">
+                          <option>5</option>
+                          <option>10</option>
+                          <option>15</option>
+                          <option>20</option>
+                        </select>
+                        <span class="mr-2">showing
+                          10
+                          of 100 </span>
+                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="row m-0">
+              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                <div class="widget-block h-auto">
+                  <div class="widget-header row align-items-center lightblue-bg m-0">
+
+                    <h5 class="text-white m-0 text-right col-md-7">Point of Care Release
+                      Notes/Training</h5>
+                    <div class="col-md-5 d-flex justify-content-end align-items-center">
+                      <ng-autocomplete class="w-150" placeHolder="Search PS ">
+                      </ng-autocomplete>
+                      <ng-template style="width: 100%;">
+                        <a></a>
+                      </ng-template>
+                      <div class="ico">
+                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'authorization')"></i>
+                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'authorization')"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="widget-inner p-2">
+                    <div class="table-responsive">
+                      <table class="table position-relative">
+                        <thead class="thead-light no-wrap">
+                          <tr>
+                            <th class="align-middle">Notification</th>
+                            <th class="align-middle">Published On </th>
+                            <th class="align-middle">Message</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+                            <td>auth.PSName</td>
+                            <td>auth.authorizationNumber</td>
+                            <td>auth.procedureCode</td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To
+                          Display </div> -->
+                    </div>
+                    <div class="pager mt-2 d-flex justify-content-between">
+                      <div>
+                      </div>
+                      <div class="nav">
+                        <span class="mr-2">Per page</span>
+                        <select class="border-0 mr-2">
+                          <option>5</option>
+                          <option>10</option>
+                          <option>15</option>
+                          <option>20</option>
+                        </select>
+                        <span class="mr-2">showing
+                          10
+                          of 20 </span>
+                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                <div class="widget-block h-auto">
+                  <div class="widget-header row align-items-center green-bg m-0">
+                    <div class="col-md-4"></div>
+                    <h5 class="text-white m-0 text-center col-md-3">Ams Alerts</h5>
+                    <div class="col-md-5 d-flex justify-content-end align-items-center">
+                      <ng-autocomplete class="w-150" placeHolder="search DCS">
+                      </ng-autocomplete>
+                      <ng-template style="width: 100%;">
+                        <a></a>
+                      </ng-template>
+                      <div class="ico">
+                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'dcs')"></i>
+                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'dcs')"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="widget-inner p-2">
+                    <div class="table-responsive">
+                      <table class="table position-relative">
+                        <thead class="thead-light no-wrap">
+                          <tr>
+                            <th class="align-middle">Alert Type</th>
+                            <th class="align-middle">Alert Message </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>dcs.dcsName</td>
+                            <td>dcs.homeSite</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div> -->
+                    </div>
+                    <div class="pager d-flex justify-content-between mt-2">
+                      <div>
+                      </div>
+                      <div class="nav">
+                        <span class="mr-2">Per page</span>
+                        <select class="border-0 mr-2">
+                          <option>5</option>
+                          <option>10</option>
+                          <option>15</option>
+                          <option>20</option>
+                        </select>
+                        <span class="mr-2">showing 20
+                          of
+                          100 </span>
+                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
-
-
-    </div>
+      </div>
+    </section>
+  </div>
 </div>
+<!-- ====================end of the file================== -->
+
+<p-dialog [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '60vw'}"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="header">
+    <div class="d-flex align-items-center ">
+      <p class="mb-0 title-font f-15">PS:</p>
+      <p class="mb-0 title-font ml-2">Doe,Jane</p>
+    </div>
+    <div class="d-flex align-items-center mx-2">
+      <p class="mb-0 title-font f-15">DCS:</p>
+      <p class="mb-0 title-font ml-2">PS,PS</p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="mb-0 title-font f-15">Service:</p>
+      <p class="mb-0 title-font ml-2">[CCRN] ATC-ATTENDANT CARE</p>
+    </div>
+  </ng-template>
+  <div class="row">
+    <div class="d-flex align-items-center col-md-6 col-12">
+      <p class="mb-0 title-font f-15">Arrival Time</p>
+      <p class="mb-0 title-font ml-">04/07/2021 06:00 PM</p>
+    </div>
+    <div class="d-flex align-items-center  col-md-6 col-12">
+      <p class="mb-0 title-font f-15">Departure Time</p>
+      <p class="mb-0 title-font ml-">04/07/2021 06:00 PM</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex align-items-center col-md-6 col-12">
+      <h5 class="mb-0">Updated Arrival Time</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+    <div class="d-flex align-items-center  col-md-6 col-12">
+      <h5 class="mb-0">Updated Departure Time</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex align-items-center col-md-6 col-12">
+      <h5 class="mb-0">Arrival Diff</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+    <div class="d-flex align-items-center  col-md-6 col-12">
+      <h5 class="mb-0">Departure Diff</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex align-items-center col-md-6 col-12">
+      <h5 class="mb-0">Arrival Adjusted Reason:</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+    <div class="d-flex align-items-center  col-md-6 col-12">
+      <h5 class="mb-0">Departure Adjusted Reason:</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex align-items-center col-md-6 col-12">
+      <h5 class="mb-0">Comments</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+    <div class="d-flex align-items-center  col-md-6 col-12">
+      <h5 class="mb-0">Status:</h5>
+      <h5 class="mb-0">PS,PS</h5>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayPosition=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

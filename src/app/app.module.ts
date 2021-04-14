@@ -75,6 +75,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
 
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,7 +155,10 @@ import { CommunicationDashboardComponent } from './core/communication-dashboard/
     BsDropdownModule.forRoot(),
     MultiSelectModule,
     NgSelectModule,
-    OrderModule
+    OrderModule,
+    DialogModule,
+    ButtonModule,
+    ConfirmPopupModule
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {
