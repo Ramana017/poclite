@@ -11,17 +11,18 @@ export class CommunicationDashboardComponent implements OnInit {
   public screenWidth: any;
   public screenHeight: any;
   public abcd: boolean = false;
+  // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
   displayPosition: boolean;
   selectedState: any = null;
   states: any[] = [
-    {name: 'Pending', code: 'Arizona'},
-    {name: 'California', value: 'California'},
-    {name: 'Florida', code: 'Florida'},
-    {name: 'Ohio', code: 'Ohio'},
-    {name: 'Washington', code: 'Washington'}
-];
+    { name: 'Pending', code: 'Arizona' },
+    { name: 'California', value: 'California' },
+    { name: 'Florida', code: 'Florida' },
+    { name: 'Ohio', code: 'Ohio' },
+    { name: 'Washington', code: 'Washington' }
+  ];
   ngOnInit(): void {
     this.resize();
     // this.widgetReSize()
@@ -35,7 +36,7 @@ export class CommunicationDashboardComponent implements OnInit {
     // this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
     var height = this.screenHeight / 2 - 130
-      $('.table-responsive').css('height', height + 'px');
+    $('.table-responsive').css('height', height + 'px');
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -188,5 +189,11 @@ export class CommunicationDashboardComponent implements OnInit {
   showPositionDialog(position: string) {
     this.position = position;
     this.displayPosition = true;
-}
+  }
+  // filter(filter) {
+  //   console.log(filter)
+  //   if (filter === "approval") {
+  //     this.appapproval = true;
+  //   }
+  // }
 }

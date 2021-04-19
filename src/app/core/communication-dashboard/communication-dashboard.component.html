@@ -12,12 +12,48 @@
                   <div class="widget-header row align-items-center blue-bg m-0 nav">
                     <div class="col-md-4 col-0"></div>
                     <h5 class="text-white m-0 text-center col-md-3 col-12">App Approvals</h5>
+
                     <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
-                      <ng-autocomplete class="w-150" placeHolder="Search PS">
+                      <ng-autocomplete class="w-150" placeHolder="Search DCS">
                       </ng-autocomplete>
                       <ng-template style="width: 100%;" let-item>
                         <a [innerHTML]="item.PSName"></a>
                       </ng-template>
+
+
+                      <div class="btn-group" dropdown container="body" placement="left" autoClose="auto" insideClick="false">
+                       
+                          <span class="mx-2" dropdownToggle>
+                            <i class="pi pi-filter"></i>
+                          </span>
+                  
+                        <!-- <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                            role="menu" aria-labelledby="button-basic">
+                          <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li class="divider dropdown-divider"></li>
+                          <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+                          </li>
+                        </ul> -->
+                        <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
+                          <div class="form-group form-input">
+                            <input type="text" placeholder="DCS Name" class="form-control">
+                          </div>
+                          <div class="form-group form-input">
+                            <input type="text" placeholder="Approval Type" class="form-control">
+                          </div>
+                          <div class="form-group form-input">
+                            <input type="text" placeholder="Requested On" class="form-control">
+                          </div>
+                          <div class="form-group form-input">
+                            <input type="text" placeholder="Status" class="form-control">
+                          </div>
+                          <div class="text-right">
+                            <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i  class="pi pi-search mr-2"></i>Search</button>
+                          </div>
+                        </div>
+                      </div>
                       <div class="ico">
                         <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps',$event)"></i>
                         <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps',$event)"></i>
@@ -31,7 +67,7 @@
                         <thead class="thead-light no-wrap">
                           <tr>
                             <th class=""></th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS</th>
+                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Approval Type</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Requested On</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Status</th>
@@ -39,7 +75,7 @@
                         </thead>
                         <tbody>
 
-                          <tr *ngFor="let item of customers">
+                          <tr>
                             <td class="position-relative edit-option">
                               <ul class="m-0 p-0">
                                 <li class="">
@@ -51,10 +87,10 @@
                                 </li>
                               </ul>
                             </td>
-                            <td>aa</td>
-                            <td>aa</td>
-                            <td>ps.mrn</td>
-                            <td>ps.ssn</td>
+                            <td>AAA,FULTRON</td>
+                            <td>Edited Punch</td>
+                            <td>04/06/2021 12:15</td>
+                            <td>Pending</td>
                           </tr>
                         </tbody>
                       </table>
@@ -91,7 +127,7 @@
                     <div class="col-md-4"></div>
                     <h5 class="text-white m-0 text-center col-md-3">DCS Messages</h5>
                     <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="Search PS">
+                      <ng-autocomplete class="w-150" placeHolder="Search..">
                       </ng-autocomplete>
 
                       <ng-template style="width: 100%;">
@@ -109,14 +145,14 @@
                         <thead class="thead-light no-wrap">
                           <tr>
                             <th scope="col"></th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS</th>
+                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Message Text</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Last Received</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black"></th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of customers">
+                          <tr>
                             <td class="position-relative edit-option">
                               <ul class="m-0 p-0">
                                 <li class="">
@@ -136,13 +172,13 @@
                                 </li>
                               </ul>
                             </td>
-                            <td>admission</td>
-                            <td>aaaaaaaa</td>
-                            <td>admission.admissionDate</td>
-                            <td (click)="op.toggle($event)" class="position-relative"><span  class="material-icons">
+                            <td>Abay,George</td>
+                            <td>Is my 2pm visit going to be rescheduled today ?</td>
+                            <td>04/03/2021 12:15 </td>
+                            <td (click)="op.toggle($event)" class="position-relative"><span class="material-icons">
                                 chat_bubble_outline
                               </span>
-                            <span class="notification-badge">1</span>
+                              <span class="notification-badge">1</span>
                             </td>
 
                           </tr>
@@ -181,7 +217,7 @@
                     <h5 class="text-white m-0 text-right col-md-7">Point of Care Release
                       Notes/Training</h5>
                     <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="Search PS ">
+                      <ng-autocomplete class="w-150" placeHolder="Search..">
                       </ng-autocomplete>
                       <ng-template style="width: 100%;">
                         <a></a>
@@ -208,7 +244,7 @@
                             <td>Release Notes 9.9</td>
                             <td>01/03/2021 12:15 PM</td>
                             <td><span class="material-icons color-light-blue">
-                              description
+                                description
                               </span></td>
 
                           </tr>
@@ -245,7 +281,7 @@
                     <div class="col-md-4"></div>
                     <h5 class="text-white m-0 text-center col-md-3">Ams Alerts</h5>
                     <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="search DCS">
+                      <ng-autocomplete class="w-150" placeHolder="Search..">
                       </ng-autocomplete>
                       <ng-template style="width: 100%;">
                         <a></a>
@@ -267,8 +303,9 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>dcs.dcsName</td>
-                            <td>dcs.homeSite</td>
+                            <td>Open Shift Alert</td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quidem perferendis quo
+                              optio expedita amet assumenda quas ration.</td>
                           </tr>
                         </tbody>
                       </table>
@@ -382,7 +419,7 @@
     <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
   </ng-template>
 </p-dialog>
-<p-overlayPanel #op  [style]="{width: '470px'}">
+<p-overlayPanel #op [style]="{width: '470px'}">
 
   <ng-template pTemplate>
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
@@ -390,19 +427,19 @@
       <p class="mb-0 mx-2">Today</p>
       <div class="border-5 m-0"></div>
     </div>
-   <div class="">
-     <div class="bg-color">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light">  2:21 PM</span></p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
-     </div>
-     <div class="bg-color-right">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light">  2:21 PM</span></p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
-     </div>
-   </div>
-   <span class="p-input-icon-right w-100 mt-2">
-    <i class="pi pi-send send-msg-icon"></i>
-    <input type="text" pInputText class="w-100"/>
-</span>
+    <div class="">
+      <div class="bg-color">
+        <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light"> 2:21 PM</span></p>
+        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
+      </div>
+      <div class="bg-color-right">
+        <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light"> 2:21 PM</span></p>
+        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
+      </div>
+    </div>
+    <span class="p-input-icon-right w-100 mt-2">
+      <i class="pi pi-send send-msg-icon"></i>
+      <input type="text" pInputText class="w-100" />
+    </span>
   </ng-template>
 </p-overlayPanel>
