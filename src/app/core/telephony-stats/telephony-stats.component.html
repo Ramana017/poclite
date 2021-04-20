@@ -101,7 +101,7 @@
                     <div class="procedurecode w-100 multiselect-angular">
                       <!-- <angular2-multiselect >
                       </angular2-multiselect> -->
-                      <p-multiSelect [options]="rvpList" (ngModelChange)="getEDList()" [(ngModel)]="selectedRvpList"
+                      <p-multiSelect [options]="rvpList" (onPanelHide)="getEDList()" [(ngModel)]="selectedRvpList"
                         defaultLabel="Select a RVP" optionLabel="operationOfficerName"
                         selectedItemsLabel="{0} items selected" class="multiselect-custom"></p-multiSelect>
 
@@ -127,8 +127,8 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <p-multiSelect [options]="edsList" [(ngModel)]="selectedEdList" maxSelectedLabels="1"
-                        defaultLabel="Select a RVP" optionLabel="executiveDirectorName"
+                      <p-multiSelect [options]="edsList" (onPanelHide)="getBMList()" [(ngModel)]="selectedEdList" maxSelectedLabels="1"
+                        defaultLabel="Select a RVP" optionLabel="executiveDirectorName" [panelStyle]="{ minWidth: '15em' }" [itemSize]="30"
                         selectedItemsLabel="{0} items selected" [virtualScroll]="true" class="multiselect-custom">
                       </p-multiSelect>
 
@@ -157,7 +157,7 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <p-multiSelect [options]="bmList" (onBlur)="getSiteList()"  [(ngModel)]="selectedBranches" maxSelectedLabels="1"  defaultLabel="Select a BMS" optionLabel="branchManagerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                      <p-multiSelect [options]="bmList" class="multiselect-custom"  (onPanelHide)="getSiteList()" [(ngModel)]="selectedBranches" maxSelectedLabels="1"  defaultLabel="Select a BMS" optionLabel="branchManagerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
 
                     </div>
                   </div>
@@ -165,12 +165,8 @@
               </div>
               <div class="card-body filter-card-body">
                 <p class="card-text">
-                  <li>test 1</li>
-                  <li>test 2</li>
-                  <li>test 3</li>
-                  <li>test 4</li>
-                  <li>test 5</li>
-                  <li>test 6</li>
+                  <li *ngFor="let item of selectedBranches">{{item.branchManagerName}}</li>
+
                 </p>
               </div>
             </div>
@@ -186,20 +182,17 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect>
-                      </angular2-multiselect>
+                      <p-multiSelect [dataKey]="'siteId'"  [options]="siteList"     [panelStyle]="{ minWidth: '15em' }" [itemSize]="30"
+                      class="multiselect-custom" [virtualScroll]="true"  [(ngModel)]="selectedSites" maxSelectedLabels="1"  defaultLabel="Select a Site" optionLabel="siteName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+
                     </div>
                   </div>
                 </div>
               </div>
               <div class="card-body filter-card-body">
                 <p class="card-text">
-                  <li>test 1</li>
-                  <li>test 2</li>
-                  <li>test 3</li>
-                  <li>test 4</li>
-                  <li>test 5</li>
-                  <li>test 6</li>
+                  <li *ngFor="let  item of selectedSites">{{item.siteName}}</li>
+
                 </p>
               </div>
             </div>
@@ -209,19 +202,10 @@
           <button type="button" class="btn btn-primary mx-2 px-3 border-radius-curved py-2"><i
               class="fas fa-times mr-1"></i>Close</button>
           <button type="button" class="btn btn-success mx-2 px-3 border-radius-curved py-2"><i
-              class="fas fa-check mr-1"></i>Apply</button>
+              class="fas fa-check mr-1" (click)="onApply()"></i>Apply</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<style>
-  .p-multiselect-label {
-    cursor: pointer;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: black !important;
-  }
-</style>
+
