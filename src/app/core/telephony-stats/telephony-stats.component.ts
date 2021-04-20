@@ -143,7 +143,7 @@ export class TelephonyStatsComponent implements OnInit {
 
 
   public openFilter(template:TemplateRef<any>){
-    this.modelRef=this.modalService.show(template,{class:'',
+    this.modelRef=this.modalService.show(template,{class:'stats-filter modal-lg mb-0',
   })
   }
 }
