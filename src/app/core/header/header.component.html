@@ -53,11 +53,11 @@
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
-                    <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
-                      <li class="dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
+                    <ul class=" dropdown-menu side-menu" aria-labelledby="dropdown1-1">
+                      <li class=" d-none  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
                         [routerLink]="['/analytics']"><a>Compliance</a>
                       </li>
-                      <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
+                      <li class="d-none dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
                         [routerLink]="['/maintaince']">
                         <a>Maintainence</a>
                       </li>
@@ -67,13 +67,13 @@
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
                         [routerLink]="['/telephony']"><a>Telephony Stats</a>
                       </li>
-                      <li class="dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
+                      <li class=" d-none dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
                         [routerLink]="['/utilization']"><a>Utilization Stats</a>
                       </li>
                     </ul>
                   </li>
-                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class="  dropdown-item dropdown side-menu-analytics">
-                    <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
+                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class=" d-none dropdown-item dropdown side-menu-analytics">
+                    <a class=" d-none dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true"  aria-expanded="false">POC Scheduling</a>
 
                     <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">

@@ -143,10 +143,10 @@ public onMonthChange(flag){
    }
 
    public onApply(){
-     this.appliedRvpList= this.selectedRvpList;
-    this.appliedEdsList= this.selectedEdList;
-    this.appliedBrancheslist= this.selectedBranches;
-    this.appliedSitelist= this.selectedSites;
+    this.appliedRvpList= this.selectedRvpList.map(x => x.operationOfficer);
+    this.appliedEdsList= this.selectedEdList.map(x => x.executiveDirector);
+    this.appliedBrancheslist= this.selectedBranches.map(x => x.branchManager);
+    this.appliedSitelist= this.selectedSites.map(x=>x.siteId);
      this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
      this.getDailyUtilStats();
      this.modelRef.hide();
