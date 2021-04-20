@@ -12,7 +12,7 @@ declare var $:any;
 })
 export class TelephonyStatsComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService,private datePipe:DatePipe,private modalService:BsModalService) {
+  constructor(private dashboardService: DashboardService,private datePipe:DatePipe,public modalService:BsModalService) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
 
