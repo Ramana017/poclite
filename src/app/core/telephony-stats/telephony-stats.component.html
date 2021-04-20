@@ -1,5 +1,3 @@
-
-
 <div class="downloads d-flex justify-content-end mr-4 mt-2">
   <i class="fas fa-file-download mx-3 f-18"></i>
   <i class="fas fa-filter mx-2 f-18" data-toggle="modal" data-target=".stats-filter"></i>
@@ -25,7 +23,7 @@
       </thead>
       <tbody>
         <tr style="white-space: nowrap;" *ngFor="let item of telephonyStatsList ">
-          <td >{{item.rvp}}</td>
+          <td>{{item.rvp}}</td>
           <td>{{item.ed}}/td>
           <td>{{item.branch}}</td>
           <td>{{item.site}}</td>
@@ -60,23 +58,20 @@
       <p class="m-0">Showing 4 to
         10 of 100</p>
     </div>
-    <div class="page-item "><button  type="button"
-        class="btn-green btn-border text-white mx-2 px-3 py-1">Prev</button>
+    <div class="page-item "><button type="button" class="btn-green btn-border text-white mx-2 px-3 py-1">Prev</button>
     </div>
-    <div class="page-item "><button type="button"
-        class="btn-green btn-border text-white mx-2 px-3 py-1">Next</button>
+    <div class="page-item "><button type="button" class="btn-green btn-border text-white mx-2 px-3 py-1">Next</button>
     </div>
   </div>
 </div>
 
 
-<div class="modal fade stats-filter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-  aria-hidden="true">
+<div class="modal fade stats-filter" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-dark">
         <h5 class="modal-title text-white" id="exampleModalLabel">
-         Telephony Stats Filter
+          Telephony Stats Filter
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -87,7 +82,8 @@
           <div class="col-md-6  mb-3 ">
             <div class="card-header d-flex justify-content-between align-items-center box-shadow">
               <h5 class="m-0">Job Run Date</h5>
-              <input class="form-control bg-light-grey" style="width: auto" type="text" bsDatepicker placeholder="MM/DD/YYYY" />
+              <input class="form-control bg-light-grey" style="width: auto" type="text" bsDatepicker
+                placeholder="MM/DD/YYYY" />
             </div>
           </div>
         </div>
@@ -105,13 +101,15 @@
                     <div class="procedurecode w-100 multiselect-angular">
                       <!-- <angular2-multiselect >
                       </angular2-multiselect> -->
-                      <p-multiSelect [options]="rvpList" (ngModelChange)="getEDList()" [(ngModel)]="selectedRvpList" defaultLabel="Select a RVP" optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                      <p-multiSelect [options]="rvpList" (ngModelChange)="getEDList()" [(ngModel)]="selectedRvpList"
+                        defaultLabel="Select a RVP" optionLabel="operationOfficerName"
+                        selectedItemsLabel="{0} items selected" class="multiselect-custom"></p-multiSelect>
 
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body filter-card-body">
                 <p class="card-text">
                   <li *ngFor="let item of selectedRvpList">{{item.operationOfficerName}}</li>
                 </p>
@@ -129,13 +127,16 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <p-multiSelect [options]="edsList"  [(ngModel)]="selectedEdList" defaultLabel="Select a RVP" optionLabel="executiveDirectorName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                      <p-multiSelect [options]="edsList" [(ngModel)]="selectedEdList" maxSelectedLabels="1"
+                        defaultLabel="Select a RVP" optionLabel="executiveDirectorName"
+                        selectedItemsLabel="{0} items selected" [virtualScroll]="true" class="multiselect-custom">
+                      </p-multiSelect>
 
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body filter-card-body">
                 <p class="card-text">
                   <li>test 1</li>
                   <li>test 2</li>
@@ -160,13 +161,13 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect >
+                      <angular2-multiselect>
                       </angular2-multiselect>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body filter-card-body">
                 <p class="card-text">
                   <li>test 1</li>
                   <li>test 2</li>
@@ -189,13 +190,13 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect >
+                      <angular2-multiselect>
                       </angular2-multiselect>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body filter-card-body">
                 <p class="card-text">
                   <li>test 1</li>
                   <li>test 2</li>
@@ -209,8 +210,10 @@
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-          <button type="button" class="btn btn-primary mx-2 px-3 border-radius-curved py-2"><i class="fas fa-times mr-1"></i>Close</button>
-          <button type="button" class="btn btn-success mx-2 px-3 border-radius-curved py-2"><i class="fas fa-check mr-1"></i>Apply</button>
+          <button type="button" class="btn btn-primary mx-2 px-3 border-radius-curved py-2"><i
+              class="fas fa-times mr-1"></i>Close</button>
+          <button type="button" class="btn btn-success mx-2 px-3 border-radius-curved py-2"><i
+              class="fas fa-check mr-1"></i>Apply</button>
         </div>
       </div>
     </div>
@@ -224,7 +227,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: black !important;
-}
-
-
+  }
 </style>
