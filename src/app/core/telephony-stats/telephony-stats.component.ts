@@ -43,7 +43,9 @@ export class TelephonyStatsComponent implements OnInit {
   public selectedRvpList=[];
   public edsList = [];
   public selectedEdList=[];
+  public bmList=[];
   public selectedBranches = [];
+  public siteList=[];
   public selectedSites = [];
 
 
@@ -75,7 +77,7 @@ export class TelephonyStatsComponent implements OnInit {
     try {
       this.dashboardService.getBMList(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
-        this.selectedBranches=res.bmList;
+        this.bmList=res.bmList;
 
       })
     } catch (error) {
@@ -87,7 +89,7 @@ export class TelephonyStatsComponent implements OnInit {
     try {
       this.dashboardService.getSiteList(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
-        this.selectedSites=res.siteList;
+        this.siteList=res.siteList;
 
       })
     } catch (error) {
