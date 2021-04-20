@@ -42,6 +42,7 @@ export class TelephonyStatsComponent implements OnInit {
   public rvpList = [];
   public selectedRvpList=[];
   public edsList = [];
+  public selectedEdList=[];
   public selectedBranches = [];
   public selectedSites = [];
 

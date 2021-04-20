@@ -105,7 +105,7 @@
                     <div class="procedurecode w-100 multiselect-angular">
                       <!-- <angular2-multiselect >
                       </angular2-multiselect> -->
-                      <p-multiSelect [options]="rvpList" [(ngModel)]="selectedRvpList" defaultLabel="Select a RVP" optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                      <p-multiSelect [options]="rvpList" (ngModelChange)="getEDList()" [(ngModel)]="selectedRvpList" defaultLabel="Select a RVP" optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
 
                     </div>
                   </div>
@@ -129,8 +129,8 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect >
-                      </angular2-multiselect>
+                      <p-multiSelect [options]="edsList"  [(ngModel)]="selectedEdList" defaultLabel="Select a RVP" optionLabel="executiveDirectorName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+
                     </div>
                   </div>
                 </div>
