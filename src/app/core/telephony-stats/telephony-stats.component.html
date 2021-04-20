@@ -24,62 +24,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="white-space: nowrap;">
-          <td >Pacific</td>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>1244</td>
-          <td> RCHC GA AGUSHTA REG </td>
-          <td>GA </td>
-          <td>January </td>
-          <td>7645 </td>
-          <td>1240 </td>
-          <td>5046 </td>
-          <td>1179 </td>
+        <tr style="white-space: nowrap;" *ngFor="let item of telephonyStatsList ">
+          <td >{{item.rvp}}</td>
+          <td>{{item.ed}}/td>
+          <td>{{item.branch}}</td>
+          <td>{{item.site}}</td>
+          <td> {{item.siteName}} </td>
+          <td>{{item.state}} </td>
+          <td>{{item.period}} </td>
+          <td>{{item.totalPunches}} </td>
+          <td>{{item.telephonyLandlinePunches}} </td>
+          <td>{{item.telephonyAppPunches}}} </td>
+          <td>{{item.manualPunches}} </td>
 
         </tr>
-        <tr style="white-space: nowrap;">
-          <td >Pacific</td>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>1244</td>
-          <td> RCHC GA AGUSHTA REG </td>
-          <td>GA </td>
-          <td>January </td>
-          <td>7645 </td>
-          <td>1240 </td>
-          <td>5046 </td>
-          <td>1179 </td>
 
-        </tr>
-        <tr style="white-space: nowrap;">
-          <td >Pacific</td>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>1244</td>
-          <td> RCHC GA AGUSHTA REG </td>
-          <td>GA </td>
-          <td>January </td>
-          <td>7645 </td>
-          <td>1240 </td>
-          <td>5046 </td>
-          <td>1179 </td>
-
-        </tr>
-        <tr style="white-space: nowrap;">
-          <td >Pacific</td>
-          <td>ED: RCHC WA SOUTH KING COUNTY</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>1244</td>
-          <td> RCHC GA AGUSHTA REG </td>
-          <td>GA </td>
-          <td>January </td>
-          <td>7645 </td>
-          <td>1240 </td>
-          <td>5046 </td>
-          <td>1179 </td>
-
-        </tr>
       </tbody>
     </table>
   </div>
@@ -144,20 +103,17 @@
                   </label>
                   <div class="input-group">
                     <div class="procedurecode w-100 multiselect-angular">
-                      <angular2-multiselect >
-                      </angular2-multiselect>
+                      <!-- <angular2-multiselect >
+                      </angular2-multiselect> -->
+                      <p-multiSelect [options]="rvpList" [(ngModel)]="selectedRvpList" defaultLabel="Select a RVP" optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+
                     </div>
                   </div>
                 </div>
               </div>
               <div class="card-body">
                 <p class="card-text">
-                  <li>test 1</li>
-                  <li>test 2</li>
-                  <li>test 3</li>
-                  <li>test 4</li>
-                  <li>test 5</li>
-                  <li>test 6</li>
+                  <li *ngFor="let item of selectedRvpList">{{item.operationOfficerName}}</li>
                 </p>
               </div>
             </div>
@@ -260,3 +216,15 @@
     </div>
   </div>
 </div>
+<style>
+  .p-multiselect-label {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black !important;
+}
+
+
+</style>
