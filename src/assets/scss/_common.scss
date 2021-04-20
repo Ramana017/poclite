@@ -2412,11 +2412,14 @@ app-maintainence {
       color: black;
       padding: 5px;
     }
+    .p-multiselect-item{
+      white-space: normal;
+      word-break: break-all;
+    }
   }
 }
 .filter-card-body{
  
   height: 22vh;
   overflow: auto;
-
 }
