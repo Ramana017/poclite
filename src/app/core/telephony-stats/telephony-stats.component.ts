@@ -1,6 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+declare var $:any;
+
 
 @Component({
   selector: 'app-telephony-stats',
@@ -9,7 +12,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 })
 export class TelephonyStatsComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService,private datePipe:DatePipe) {
+  constructor(private dashboardService: DashboardService,private datePipe:DatePipe,private modalService:BsModalService) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
 
@@ -50,6 +53,7 @@ export class TelephonyStatsComponent implements OnInit {
   public selectedBranches = [];
   public siteList = [];
   public selectedSites = [];
+  public modelRef:BsModalRef;
 
 
 
@@ -133,5 +137,13 @@ export class TelephonyStatsComponent implements OnInit {
    this.appliedSitelist= this.selectedSites;
     this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
     this.getTelephonyStats();
+    this.modelRef.hide();
+
+  }
+
+
+  public openFilter(template:TemplateRef<any>){
+    this.modelRef=this.modalService.show(template,{class:'',
+  })
   }
 }

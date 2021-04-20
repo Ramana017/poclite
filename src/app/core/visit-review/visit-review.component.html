@@ -600,48 +600,37 @@
               <tbody>
                 <tr>
                   <td>
-                    {{getVisitTimesresponse.originalScheduledBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledBeginDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.originalScheduledBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledBeginDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalScheduledEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledEndDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.originalScheduledEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalScheduledEndDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedBeginDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.originalReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedBeginDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.originalReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedEndDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.originalReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.originalReportedEndDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.adjustedReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedBeginDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.adjustedReportedBeginDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedBeginDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.adjustedReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedEndDate|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.adjustedReportedEndDate|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.adjustedReportedEndDate|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.billStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billStartTime|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.billStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billStartTime|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.billEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billEndTime|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.billEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.billEndTime|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.payStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payStartTime|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.payStartTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payStartTime|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.payEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payEndTime|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.payEndTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.payEndTime|date:'hh:mm a'}}
                   </td>
                   <td>
-                    {{getVisitTimesresponse.visitLinkedTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.visitLinkedTime|date:'hh:mm
-                    a'}}
+                    {{getVisitTimesresponse.visitLinkedTime|date:'MM/dd/yyyy'}}<br>{{getVisitTimesresponse.visitLinkedTime|date:'hh:mm a'}}
                   </td>
                   <td>{{getVisitTimesresponse.visitLinkedBy}}</td>
                 </tr>
@@ -722,10 +711,10 @@
 
 
 <div class="d-flex mt-4 ml-3">
-  <button class="abc mx-1" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active ':''" >Progress Notes</button>
-  <button class="abc " id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active ':''" >Form </button>
+  <button class="abc mx-1 d-none" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active ':''" >Progress Notes</button>
+  <button class="abc  d-none" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active ':''" >Form </button>
 </div>
-<div class="pt-3">
+<div class="pt-3 d-none">
   <div class="mx-3" [ngClass]="progressbtn[0]?'active show':'hide'" >
     <div>
       <h5 class="m-0 px-3"> Progress Notes </h5>
@@ -740,7 +729,7 @@
     </div>
   </div>
 <div class="" [ngClass]="progressbtn[1]?'active show':'hide'">
-  <div class="">
+  <div>
     <ul class=" mx-3 p-0" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link white-space-nowrap"  (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 1</button>
@@ -978,7 +967,7 @@
 
 
 
-          <!-- <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
+          <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
           </textarea></div>
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
             <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
@@ -1027,7 +1016,7 @@
             </div>
 
 
-          </div> -->
+          </div>
 
         </div>
       </div>
