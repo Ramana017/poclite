@@ -2405,3 +2405,18 @@ app-maintainence {
     border-bottom: 10px solid white;
   }
 }
+.multiselect-custom{
+  .p-multiselect{
+    width: 100%;
+    .p-multiselect-label {
+      color: black;
+      padding: 5px;
+    }
+  }
+}
+.filter-card-body{
+ 
+  height: 22vh;
+  overflow: auto;
+
+}
