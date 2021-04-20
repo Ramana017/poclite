@@ -38,6 +38,14 @@ public getDailyUtilStats(){
   }
 }
 
+public onMonthChange(flag){
+  if(this.monthFlag!=flag){
+    this.monthFlag=flag
+ this.getDailyUtilStats();
+  }
+
+}
+
 
 
 
