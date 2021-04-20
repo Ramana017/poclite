@@ -1738,7 +1738,8 @@ app-maintainence {
   background: #e9ecef !important;
 }
 
-.measures-filter,.barGraphPopup {
+.measures-filter,
+.barGraphPopup {
   .modal-content {
     height: auto !important;
     overflow: hidden !important;
@@ -2100,11 +2101,12 @@ app-maintainence {
     .side-menu-item {}
   }
 }
+
 .map-menu-analytics {
   &:hover {
 
 
-    .map-menu{
+    .map-menu {
       display: block;
       right: 0;
       top: 0;
@@ -2122,6 +2124,7 @@ app-maintainence {
 
   }
 }
+
 .visit-info-text {
   position: absolute;
   top: -10px;
@@ -2185,22 +2188,27 @@ app-maintainence {
   margin-right: 5px;
 }
 
-.color-red-light{
+.color-red-light {
   color: #fd7567;
 }
-.color-green-light{
+
+.color-green-light {
   color: #00e64d;
 }
-.color-blue-light{
+
+.color-blue-light {
   color: #6890fa;
 }
-.color-light-yellow{
+
+.color-light-yellow {
   color: #fdf569;
 }
-.w-100px{
+
+.w-100px {
   width: 100px;
 }
-.slack-icon{
+
+.slack-icon {
   position: absolute;
   right: 0;
   z-index: 999;
@@ -2212,13 +2220,14 @@ app-maintainence {
   align-items: center;
   justify-content: center;
 }
-.user-profile{
-  .dropdown-menu.show{
+
+.user-profile {
+  .dropdown-menu.show {
     z-index: 1021;
   }
 }
 
-.tooltipwrapper{
+.tooltipwrapper {
   .tooltip {
     left: 3px !important;
 
@@ -2244,91 +2253,103 @@ app-maintainence {
       align-items: center;
       border-radius: 4px;
     }
-  }}
-  .example-box {
-    // width: 200px;
-    height: 50px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #fff;
-    border-radius: 4px;
-    position: relative;
-    z-index: 1;
-    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-                0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }
-  
-  .example-box:active {
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  }
-  
-  .example-handle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #ccc;
-    cursor: move;
-    width: 24px;
-    height: 24px;
+}
+
+.example-box {
+  // width: 200px;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.example-handle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ccc;
+  cursor: move;
+  width: 24px;
+  height: 24px;
+}
+
+.ng-select-wraper {
+  width: 45%;
+
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    top: -5px;
   }
 
-  .ng-select-wraper{
-    width: 45%;
-    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
-      top:-5px;
-    }
-    .ng-select.ng-select-single .ng-select-container{
-      border: 0;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
-      // width: 200px;
-      margin-bottom: 5px;
-    }
-    
+  .ng-select.ng-select-single .ng-select-container {
+    border: 0;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
+    // width: 200px;
+    margin-bottom: 5px;
   }
-  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
-    white-space: pre-wrap !important;
-    overflow: visible !important;
-    word-break: break-word;
+
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  white-space: pre-wrap !important;
+  overflow: visible !important;
+  word-break: break-word;
+}
+
+.ng-select-verification {
+  width: 35%;
+
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    top: 9px;
   }
-  .ng-select-verification{
-    width: 35%;
-    .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
-      top:9px;
-    }
-    .ng-select.ng-select-single .ng-select-container{
-      border: 0;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
-      // width: 200px;
-      margin-bottom: 5px;
-    }
+
+  .ng-select.ng-select-single .ng-select-container {
+    border: 0;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
+    // width: 200px;
+    margin-bottom: 5px;
   }
-  .ng-slect-gps{
-    width: 40%;
-    .ng-select.ng-select-single .ng-select-container{
-      border: 0;
-      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
-    
-     
-    }
+}
+
+.ng-slect-gps {
+  width: 40%;
+
+  .ng-select.ng-select-single .ng-select-container {
+    border: 0;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
+
+
   }
-.dropdown-p-panel{
+}
+
+.dropdown-p-panel {
   .p-overlaypanel {
-  
+
     top: auto !important;
     left: auto !important;
+  }
 }
-}
-.delivery-card{
+
+.delivery-card {
   position: fixed;
   right: 0px;
   font-size: 18px;
@@ -2341,11 +2362,13 @@ app-maintainence {
   align-items: center;
   justify-content: center;
 }
-.cancel-right{
+
+.cancel-right {
   position: fixed;
   right: 0px;
   font-size: 18px;
-  background: #343a40;;
+  background: #343a40;
+  ;
   color: white;
   top: 93px;
   width: 30px;
@@ -2354,7 +2377,8 @@ app-maintainence {
   align-items: center;
   justify-content: center;
 }
-.save-right{
+
+.save-right {
   position: fixed;
   right: 0px;
   font-size: 18px;
@@ -2366,4 +2390,18 @@ app-maintainence {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dropdown-filter-menu {
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 1px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+  }
 }
