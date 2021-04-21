@@ -65,8 +65,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public arrivalgpsErrview: boolean = false;
   public depgpserrview: boolean = false;
   public locations: Array<any> = [];
-  public redicon = "assets/images/locationRed.svg"
-  public greenicon = "assets/images/locationblue.svg";
+  public redicon = "assets/images/locationRed.svg";
+  public greenicon="assets/images/locationgreen.svg";
+  public blueicon= "assets/images/locationblue.svg";
 
   public centerlatitude: number;
   public centerlangutide: number;
@@ -182,12 +183,12 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;
           this.defaultpsdetails();
 
-          if (this.arrivalgpsErr == true) {
-            let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress, this.redicon]
+          if (this.arrivalgpsErr == true||this.arrivalgpsErr==false) {
+            let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress,this.arrivalgpsErr == true?this.redicon:this.greenicon]
             this.locations.push(obj)
           }
-          if (this.depgpsErr == true) {
-            let obj = [this.clockOutLatitude, this.clockOutLongitude, this.clockOutAddress, this.redicon]
+          if (this.depgpsErr == true||this.depgpsErr == false) {
+            let obj = [this.clockOutLatitude, this.clockOutLongitude, this.clockOutAddress,this.depgpsErr == true?this.redicon:this.greenicon]
             this.locations.push(obj)
           }
           for (let i = 0; i < this.psAddressList.length; i++) {
@@ -196,7 +197,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               this.centerlangutide = +this.psAddressList[i].longitude;
               this.psLatitude = +this.psAddressList[i].latitude;
               this.psLongitude = +this.psAddressList[i].longitude;
-              let obj = [this.psAddressList[i].latitude, this.psAddressList[i].longitude, this.psAddressList[i].address, this.greenicon]
+              let obj = [this.psAddressList[i].latitude, this.psAddressList[i].longitude, this.psAddressList[i].address, this.blueicon]
               this.locations.push(obj);
             }
           }

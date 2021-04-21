@@ -90,24 +90,24 @@
           <td> 0.0 </td>
         </tr> -->
       </tbody>
-      <tfoot class="daily-report-foot">
+      <tfoot class="daily-report-foot" *ngIf="dailyStatsList.length!=0">
         <tr class="border-top">
           <td colspan="3" class="sticky-left left-0 border-top AvenirLTStd-Heavy">Grand Total</td>
 
-          <td class="AvenirLTStd-Heavy">6968.8798828125</td>
-          <td class="AvenirLTStd-Heavy">6648 </td>
-          <td class="AvenirLTStd-Heavy">95.4000015258789</td>
-          <td class="AvenirLTStd-Heavy">0</td>
-          <td class="AvenirLTStd-Heavy">0</td>
-          <td class="AvenirLTStd-Heavy">0</td>
-          <td class="AvenirLTStd-Heavy">0</td>
-          <td class="AvenirLTStd-Heavy">6648</td>
-          <td class="AvenirLTStd-Heavy">95.4000015258789</td>
-          <td class="AvenirLTStd-Heavy">5618</td>
-          <td class="AvenirLTStd-Heavy">1030</td>
-          <td class="AvenirLTStd-Heavy">15.5</td>
-          <td class="AvenirLTStd-Heavy">0</td>
-          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.authorizedHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.scheduledHrs}} </td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.percentOfAuthSchHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.cancelledHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.percentOfCancelHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.noNeedHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.percentOfNoNeedHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.scheduledHrsWithoutCancel}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.perOfSchLessCancelHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.sumScheduledHrsWithDcs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.sumScheduledHrsWithNoDcs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.scheduledWithNoDcsPercent}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.servicedHrs}}</td>
+          <td class="AvenirLTStd-Heavy">{{grandtotal?.servicedHrsPercent}}</td>
         </tr>
       </tfoot>
     </table>
