@@ -65,8 +65,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public arrivalgpsErrview: boolean = false;
   public depgpserrview: boolean = false;
   public locations: Array<any> = [];
-  public redicon = "assets/images/red-dot.png"
-  public greenicon = "assets/images/bluemarker.png";
+  public redicon = "assets/images/locationRed.svg"
+  public greenicon = "assets/images/locationblue.svg";
 
   public centerlatitude: number;
   public centerlangutide: number;
