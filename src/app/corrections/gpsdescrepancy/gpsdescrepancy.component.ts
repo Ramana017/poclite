@@ -579,6 +579,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     console.log(this.psAddress)
   }
 
+  onmarkerDrag(event){
+     console.log(event)
+  }
+
 }
 export function agmConfigFactory(value, config?: LazyMapsAPILoaderConfigLiteral) {
   config.apiKey = value;
