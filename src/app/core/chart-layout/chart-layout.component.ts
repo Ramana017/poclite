@@ -148,12 +148,12 @@ export class ChartLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
-    this.resize();
+    // this.resize();
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     console.log(event)
-    this.resize();
+    // this.resize();
   }
   resize():void{
     this.screenHeight = window.innerHeight;
