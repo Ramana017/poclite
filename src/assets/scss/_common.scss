@@ -1844,15 +1844,17 @@ app-maintainence {
 
 .left-0 {
   left: 0;
-  width: 97px;
+  min-width: 97px;
 }
 
 .left-97 {
   left: 97px;
+  min-width: 160px;
 }
 
 .left-277 {
-  left: 281px;
+  left: 257px;
+  min-width: 150px;
 }
 
 .left-44 {
