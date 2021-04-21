@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-daily-reports',
@@ -11,92 +12,22 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class DailyReportsComponent implements OnInit {
 public userData:any;
 public monthFlag=0;
+public months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
+public currentMonth = new Date().getMonth();
+
   public navbuttons:Array<boolean>=[false,true,false];
   constructor(private dashboardService: DashboardService,private datePipe:DatePipe,private modalService:BsModalService) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
 
   }
-  public grandtotal={
-    "sumScheduledHrsWithDcs": 16854,
-    "percentOfAuthSchHrs": 286.20001220703125,
-    "scheduledWithNoDcsPercent": 46.5,
-    "rvp": "gradndtotal",
-    "servicedHrs": 0,
-    "scheduledHrs": 19944,
-    "scheduledHrsWithoutCancel": 19944,
-    "percentOfCancelHrs": 0,
-    "authorizedHrs": 20906.640625,
-    "percentOfNoNeedHrs": 0,
-    "perOfSchLessCancelHrs": 286.20001220703125,
-    "noNeedHrs": 0,
-    "servicedHrsPercent": 0,
-    "cancelledHrs": 0,
-    "sumScheduledHrsWithNoDcs": 3090
-}
-public dailyStatsList=[
-  {
-      "sumScheduledHrsWithDcs": 5618,
-      "percentOfAuthSchHrs": 95.4000015258789,
-      "scheduledWithNoDcsPercent": 15.5,
-      "rvp": "COASTAL",
-      "branch": "BR: RCHC GA ALBANY",
-      "servicedHrs": 0,
-      "scheduledHrs": 6648,
-      "scheduledHrsWithoutCancel": 6648,
-      "percentOfCancelHrs": 0,
-      "authorizedHrs": 6968.8798828125,
-      "percentOfNoNeedHrs": 0,
-      "perOfSchLessCancelHrs": 95.4000015258789,
-      "noNeedHrs": 0,
-      "servicedHrsPercent": 0,
-      "cancelledHrs": 0,
-      "ed": "ED: RCHC GA WEST",
-      "sumScheduledHrsWithNoDcs": 1030
-  },
-  {
-      "sumScheduledHrsWithDcs": 5618,
-      "percentOfAuthSchHrs": 95.4000015258789,
-      "scheduledWithNoDcsPercent": 15.5,
-      "rvp": "COASTAL",
-      "branch": "BR: RCHC GA ALBANY",
-      "servicedHrs": 0,
-      "scheduledHrs": 6648,
-      "scheduledHrsWithoutCancel": 6648,
-      "percentOfCancelHrs": 0,
-      "authorizedHrs": 6968.8798828125,
-      "percentOfNoNeedHrs": 0,
-      "perOfSchLessCancelHrs": 95.4000015258789,
-      "noNeedHrs": 0,
-      "servicedHrsPercent": 0,
-      "cancelledHrs": 0,
-      "ed": "ED: RCHC GA WEST",
-      "sumScheduledHrsWithNoDcs": 1030
-  },
-  {
-      "sumScheduledHrsWithDcs": 5618,
-      "percentOfAuthSchHrs": 95.4000015258789,
-      "scheduledWithNoDcsPercent": 15.5,
-      "rvp": "COASTAL",
-      "branch": "BR: RCHC GA ALBANY",
-      "servicedHrs": 0,
-      "scheduledHrs": 6648,
-      "scheduledHrsWithoutCancel": 6648,
-      "percentOfCancelHrs": 0,
-      "authorizedHrs": 6968.8798828125,
-      "percentOfNoNeedHrs": 0,
-      "perOfSchLessCancelHrs": 95.4000015258789,
-      "noNeedHrs": 0,
-      "servicedHrsPercent": 0,
-      "cancelledHrs": 0,
-      "ed": "ED: RCHC GA WEST",
-      "sumScheduledHrsWithNoDcs": 1030
-  }
-]
+  public grandtotal:any;
+public dailyStatsList=[];
 
   ngOnInit(): void {
+    console.log(this.currentMonth,this.months[this.currentMonth])
     this.getRVPList();
-    // this.getDailyUtilStats()
+    this.getDailyUtilStats()
   }
 
 public getDailyUtilStats(){
@@ -106,6 +37,7 @@ public getDailyUtilStats(){
     this.dashboardService.getDailyUtilStats(JSON.stringify(obj)).subscribe(res=>{
       console.log(res);
       this.dailyStatsList=res.dailyStatsList;
+      this.grandtotal=res?.grandtotal;
     })
   } catch (error) {
 
@@ -120,6 +52,23 @@ public onMonthChange(flag){
 
 }
 
+// file saving functionality
+fileName= 'dailyReports.xlsx';
+
+exportexcel2(): void
+    {
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+
+    }
 
 
 

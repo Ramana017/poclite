@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 declare var $:any;
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -146,4 +147,19 @@ export class TelephonyStatsComponent implements OnInit {
     this.modelRef=this.modalService.show(template,{class:'stats-filter modal-lg mb-0',
   })
   }
+
+  exportexcel2(): void
+    {
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, 'Telephony.xlsx');
+
+    }
 }
