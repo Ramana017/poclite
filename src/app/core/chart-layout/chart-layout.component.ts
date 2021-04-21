@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, HostListener } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { filter } from 'rxjs/operators';
 import { DashboardService } from 'src/app/services/dashboard.service';
@@ -144,9 +144,21 @@ export class ChartLayoutComponent implements OnInit {
   currentVisitScenario = '';
   public orderByColumn = "site"
   public reverse: boolean = false;
+  public screenHeight:any;
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
+    this.resize();
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log(event)
+    this.resize();
+  }
+  resize():void{
+    this.screenHeight = window.innerHeight;
+    var height = this.screenHeight - 66
+    $('.charts-wrapper').css('height', height + 'px');
   }
   visits() {
     $('.divA').toggleClass('hide');
