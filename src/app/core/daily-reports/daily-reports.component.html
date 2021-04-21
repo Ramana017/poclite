@@ -1,16 +1,18 @@
-
 <div class="navigation d-flex justify-content-center position-relative pt-2">
   <!-- <div></div> -->
   <div class="">
     <ul class="nav nav-pills mb-2">
-      <li class="nav-item mx-3" [tooltip]="months[currentMonth-1]" >
-        <a class="nav-link"(click)="onMonthChange(-1)" [ngClass]="monthFlag==-1?'active border-radius-curved':''" ><i class="fa fa-arrow-left mr-1"></i>Prev</a>
+      <li class="nav-item mx-3" [tooltip]="months[currentMonth-1]">
+        <a class="nav-link" (click)="onMonthChange(-1)" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
+            class="fa fa-arrow-left mr-1"></i>Prev</a>
       </li>
-      <li class="nav-item mx-3" [tooltip]="months[currentMonth]" >
-        <a class="nav-link"(click)="onMonthChange(0)" [ngClass]="monthFlag==0?'active border-radius-curved':''" >Current</a>
+      <li class="nav-item mx-3"[tooltip]="months[currentMonth]">
+        <a class="nav-link" (click)="onMonthChange(0)"
+          [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
       <li class="nav-item mx-3"[tooltip]="months[currentMonth+1]">
-        <a class="nav-link"(click)="onMonthChange(1)" [ngClass]="monthFlag== 1?'active border-radius-curved':''" >Next<i class="fa fa-arrow-right ml-1"></i></a>
+        <a class="nav-link" (click)="onMonthChange(1)" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
+            class="fa fa-arrow-right ml-1"></i></a>
       </li>
     </ul>
   </div>
@@ -24,7 +26,7 @@
 
 <div class="daily-stats-wrapper px-4 ">
   <div class="table-responsive box-shadow">
-    <table class="table " id='excel-table' [ngClass]="{'daily-stats-table': dailyStatsList.length==0}">
+    <table class="table mb-0"  id='excel-table' [ngClass]="{'daily-stats-table': dailyStatsList.length==0}">
       <thead class="thead-dark">
         <tr>
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-0">RVP</th>
@@ -32,9 +34,10 @@
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-277 ">BRANCH</th>
           <th scope="col" class="sticky-top">Authorized <br />Hours</th>
           <th scope="col" class="sticky-top">Scheduled Hours <br> <span>(Including Cancellations)</span></th>
-          <th scope="col" class="sticky-top"> % Authorized Hours  Scheduled<br> <span>(Including Cancellations)</span></th>
+          <th scope="col" class="sticky-top"> % Authorized Hours Scheduled<br> <span>(Including Cancellations)</span>
+          </th>
           <th scope="col" class="sticky-top"> Cancelled <br />Hours </th>
-          <th scope="col" class="sticky-top"> Cancellation<br /> %  </th>
+          <th scope="col" class="sticky-top"> Cancellation<br /> % </th>
           <th scope="col" class="sticky-top"> No Need <br />Hours</th>
           <th scope="col" class="sticky-top"> Ps No Need<br /> % </th>
           <th scope="col" class="sticky-top"> Scheduled less Cancelled/<br> No need Hours </th>
@@ -47,10 +50,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of  dailyStatsList" >
+        <tr *ngFor="let item of  dailyStatsList">
           <td scope="row" class="sticky-left left-0">{{item.rvp}}</td>
-          <td class="td" class="sticky-left left-97">{{item.ed}}</td>
-          <td class="td" class="sticky-left left-277">{{item.branch}}</td>
+          <td class="sticky-left left-97 td">{{item.ed}}</td>
+          <td class="sticky-left left-277 td">{{item.branch}}</td>
           <td>{{item.authorizedHrs}}</td>
           <td>{{item.scheduledHrs}} </td>
           <td>{{item.percentOfAuthSchHrs}}</td>
@@ -66,7 +69,8 @@
           <td>{{item.servicedHrs}}</td>
           <td>{{item.servicedHrsPercent}}</td>
         </tr>
-      <!-- <tr style="white-space: nowrap;">
+
+        <!-- <tr style="white-space: nowrap;">
           <th scope="row">Pacific</th>
           <td>ED: RCHC WA SOUTH KING COUNTY ddsfdsfdsfdsf</td>
           <td>BR: RCHC FL BONITA SPRINGS</td>
@@ -85,12 +89,43 @@
           <td> 0.00 </td>
           <td> 0.0 </td>
         </tr> -->
-             </tbody>
+      </tbody>
+      <tfoot class="daily-report-foot">
+        <tr class="border-top">
+          <td colspan="3" class="sticky-left left-0 border-top AvenirLTStd-Heavy">Grand Total</td>
+
+          <td class="AvenirLTStd-Heavy">6968.8798828125</td>
+          <td class="AvenirLTStd-Heavy">6648 </td>
+          <td class="AvenirLTStd-Heavy">95.4000015258789</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">6648</td>
+          <td class="AvenirLTStd-Heavy">95.4000015258789</td>
+          <td class="AvenirLTStd-Heavy">5618</td>
+          <td class="AvenirLTStd-Heavy">1030</td>
+          <td class="AvenirLTStd-Heavy">15.5</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+          <td class="AvenirLTStd-Heavy">0</td>
+        </tr>
+      </tfoot>
     </table>
+
     <p *ngIf="dailyStatsList.length==0" class="no-records text-center">No Records Found</p>
 
   </div>
-  <p class="mt-2 AvenirLTStd-Heavy text-right">Grand Total :<span class="ml-1 color-light-blue mr-5">200</span></p>
+  <!-- <table class="table">
+    <tbody>
+      <tr>
+        <td colspan="3" class="sticky-left left-0">Grand Total
+
+        </td>
+        <td>22,500</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <!-- <p class="mt-2 AvenirLTStd-Heavy text-right">Grand Total :<span class="ml-1 color-light-blue mr-5">200</span></p> -->
 </div>
 
 <ng-template #filtermodal>
@@ -107,8 +142,8 @@
       <div class="col-md-6  mb-3 ">
         <div class="card-header d-flex justify-content-between align-items-center box-shadow">
           <h5 class="m-0">Job Run Date <span class="text-danger">*</span></h5>
-          <input class="form-control bg-light-grey" [(ngModel)]="jobRunDate" style="width: auto" type="text" bsDatepicker
-            placeholder="MM/DD/YYYY" />
+          <input class="form-control bg-light-grey" [(ngModel)]="jobRunDate" style="width: auto" type="text"
+            bsDatepicker placeholder="MM/DD/YYYY" />
         </div>
       </div>
     </div>
@@ -127,8 +162,8 @@
                   <!-- <angular2-multiselect >
                   </angular2-multiselect> -->
                   <p-multiSelect [options]="rvpList" (onPanelHide)="getEDList()" [(ngModel)]="selectedRvpList"
-                     optionLabel="operationOfficerName"
-                    selectedItemsLabel="{0} items selected" class="multiselect-custom"></p-multiSelect>
+                    optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"
+                    class="multiselect-custom"></p-multiSelect>
 
                 </div>
               </div>
@@ -152,9 +187,10 @@
               </label>
               <div class="input-group">
                 <div class="procedurecode w-100 multiselect-angular">
-                  <p-multiSelect [options]="edsList" (onPanelHide)="getBMList()" [(ngModel)]="selectedEdList" maxSelectedLabels="1"
-                     optionLabel="executiveDirectorName" [panelStyle]="{ minWidth: '15em' }" [itemSize]="30"
-                    selectedItemsLabel="{0} items selected" [virtualScroll]="true" class="multiselect-custom">
+                  <p-multiSelect [options]="edsList" (onPanelHide)="getBMList()" [(ngModel)]="selectedEdList"
+                    maxSelectedLabels="1" optionLabel="executiveDirectorName" [panelStyle]="{ minWidth: '15em' }"
+                    [itemSize]="30" selectedItemsLabel="{0} items selected" [virtualScroll]="true"
+                    class="multiselect-custom">
                   </p-multiSelect>
 
                 </div>
@@ -182,7 +218,9 @@
               </label>
               <div class="input-group">
                 <div class="procedurecode w-100 multiselect-angular">
-                  <p-multiSelect [options]="bmList" class="multiselect-custom"   [(ngModel)]="selectedBranches" maxSelectedLabels="1"  optionLabel="branchManagerName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                  <p-multiSelect [options]="bmList" class="multiselect-custom" [(ngModel)]="selectedBranches"
+                    maxSelectedLabels="1" optionLabel="branchManagerName" selectedItemsLabel="{0} items selected">
+                  </p-multiSelect>
 
                 </div>
               </div>
@@ -207,8 +245,10 @@
               </label>
               <div class="input-group">
                 <div class="procedurecode w-100 multiselect-angular">
-                  <p-multiSelect [dataKey]="'siteId'"  [options]="siteList"     [panelStyle]="{ minWidth: '15em' }" [itemSize]="30"
-                  class="multiselect-custom" [virtualScroll]="true"  [(ngModel)]="selectedSites" maxSelectedLabels="1"  optionLabel="siteName" selectedItemsLabel="{0} items selected"></p-multiSelect>
+                  <p-multiSelect [dataKey]="'siteId'" [options]="siteList" [panelStyle]="{ minWidth: '15em' }"
+                    [itemSize]="30" class="multiselect-custom" [virtualScroll]="true" [(ngModel)]="selectedSites"
+                    maxSelectedLabels="1" optionLabel="siteName" selectedItemsLabel="{0} items selected">
+                  </p-multiSelect>
 
                 </div>
               </div>
@@ -224,10 +264,10 @@
       </div>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <button type="button"  (click)="modelRef.hide()"  class="btn btn-primary mx-2 px-3 border-radius-curved py-2"><i
+      <button type="button" (click)="modelRef.hide()" class="btn btn-primary mx-2 px-3 border-radius-curved py-2"><i
           class="fas fa-times mr-1"></i>Close</button>
       <button type="button" (click)="onApply()" class="btn btn-success mx-2 px-3 border-radius-curved py-2"><i
-          class="fas fa-check mr-1" ></i>Apply</button>
+          class="fas fa-check mr-1"></i>Apply</button>
     </div>
   </div>
 
