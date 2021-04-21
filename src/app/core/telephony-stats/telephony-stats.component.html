@@ -1,11 +1,11 @@
 <div class="downloads d-flex justify-content-end mr-4 mt-2">
-  <i class="fas fa-file-download mx-3 f-18"></i>
+  <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
   <i class="fas fa-filter mx-2 f-18"  (click)="openFilter(filtermodal)" ></i>
 </div>
 
 <div class="daily-stats-wrapper px-4 pt-2 pb-3">
   <div class="table-responsive box-shadow">
-    <table class="table ">
+    <table class="table "id='excel-table' >
       <thead class="thead-dark">
         <tr>
           <th scope="col" class="sticky-top">RVP</th>

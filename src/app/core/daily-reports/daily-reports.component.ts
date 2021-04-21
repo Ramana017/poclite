@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-daily-reports',
@@ -11,6 +12,9 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class DailyReportsComponent implements OnInit {
 public userData:any;
 public monthFlag=0;
+public months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", ];
+public currentMonth = new Date().getMonth();
+
   public navbuttons:Array<boolean>=[false,true,false];
   constructor(private dashboardService: DashboardService,private datePipe:DatePipe,private modalService:BsModalService) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
@@ -95,6 +99,7 @@ public dailyStatsList=[
 ]
 
   ngOnInit(): void {
+    console.log(this.currentMonth,this.months[this.currentMonth])
     this.getRVPList();
     // this.getDailyUtilStats()
   }
@@ -120,6 +125,23 @@ public onMonthChange(flag){
 
 }
 
+// file saving functionality
+fileName= 'dailyReports.xlsx';
+
+exportexcel2(): void
+    {
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+
+    }
 
 
 
