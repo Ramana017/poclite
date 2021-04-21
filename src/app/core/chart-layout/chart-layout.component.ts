@@ -123,7 +123,7 @@ export class ChartLayoutComponent implements OnInit {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
     this.scheduleStart.setDate(this.todayDate.getDate() - 7);
-
+    
     // Object.assign(this.single, { single2 })
   }
   public psList: Array<any> = [];
@@ -148,30 +148,34 @@ export class ChartLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.getFilterData();
     this.getDashBoardVisitsCount();
-    // this.resize();
+    this.resize();
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    console.log(event)
-    // this.resize();
+    // console.log(event)
+    this.resize();
   }
-  resize():void{
+  public chartheight
+  resize(){
     this.screenHeight = window.innerHeight;
-    var height = this.screenHeight - 66
-    $('.charts-wrapper').css('height', height + 'px');
+      var height = this.screenHeight - 67
+      $('.side-bar').css('height', height + 'px');
+      $('.chart-content').css('height', height + 'px');
   }
   visits() {
     $('.divA').toggleClass('hide');
     this.displayVisitCards = true;
     this.displayClientVisits = false;
+  
   }
   charts() {
-    ``
+   
     $('.divB').toggleClass('hide');
   }
 
 
   public getDashBoardClientsCount(flag: boolean) {
+    
     this.displayClientTable = false;
     this.displayClientVisits = true;
     this.displayVisitCards = false;
@@ -267,7 +271,7 @@ export class ChartLayoutComponent implements OnInit {
     } catch (error) { }
   }
   public getDashBoardVisitsDetails(str, count) {
-
+    
     if (count >= 0) {
       this.cssFilterAutocomplete = '';
       this.psFilterAutocomplete = '';
