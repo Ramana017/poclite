@@ -54,9 +54,7 @@ import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import {DomsanitizePipe, FilterPipe} from '../app/pipes/domsanitize.pipe'
-
-
+import {DomsanitizePipe, FilterPipe, PhonePipe} from '../app/pipes/domsanitize.pipe'
 
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
@@ -120,6 +118,7 @@ import {InputTextModule} from 'primeng/inputtext';
     VisitReviewComponent,
     DomsanitizePipe,
     FilterPipe,
+    PhonePipe,
     ReviewExceptionpopupComponent,
     AnalyticsComponent,
     MaintainenceComponent,
@@ -166,7 +165,8 @@ import {InputTextModule} from 'primeng/inputtext';
     InputTextareaModule,
     DropdownModule,
     OverlayPanelModule,
-    InputTextModule
+    InputTextModule,
+
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe
     , {

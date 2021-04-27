@@ -96,7 +96,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockInGpsAcceptReasonsId: number = null;
 
 
-
+  public arrGpsAcceptedBy;
+  public arrGpsAcceptedOn;
+  public depGpsAcceptedBy;
+  public depGpsAcceptedOn;
   public ngOnInit(): void {
     console.log('gps oninit working');
     this.displayData();
@@ -184,6 +187,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
           this.clockOutComments = this.getResponseData?.clockOutGpsAcceptComments;
           this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;
+          this.arrGpsAcceptedBy=this.getResponseData.arrGpsAcceptedBy;
+          this.arrGpsAcceptedOn=this.getResponseData.arrGpsAcceptedOn;
+          this.depGpsAcceptedBy=this.getResponseData.depGpsAcceptedBy;
+          this.depGpsAcceptedOn=this.getResponseData.depGpsAcceptedOn;
           this.defaultpsdetails();
 
           let clockinObj = { latitude: this.clockInLatitude, longitude: this.clockInLongitude, address: this.clockInAddress, type: 'clockin' }
@@ -261,6 +268,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
                 }
 
               })
+            }else{
+              this.getGpsExceptionData();
             }
 
           }
@@ -385,6 +394,13 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         },
         error => {
           console.log(error);
+          console.log(error);
+          swal.fire({
+            text: "Failed to Save Data",
+            icon: "error",
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+          })
 
         }
       )
@@ -436,7 +452,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public psAddressClick(): void {
     console.log("psaddressclock");
-// console.log(+this.locations[2].latitude)
+    // console.log(+this.locations[2].latitude)
     this.centerlatitude = +this.locations[2].latitude;
     this.centerlangutide = +this.locations[2].longitude;
     this.map.centerChange;
@@ -584,6 +600,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
 
 
+  public editpsAdreesButton: boolean = false;
 
 
   public onmarkerDrag(event, type) {
@@ -601,83 +618,117 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     };
     let address: any;
     geocoder.geocode(request, (results, status) => {
-      console.log(results[0].formatted_address);
-      address = results[0].formatted_address;
-      console.log(results[0].address_components[5]?.long_name)
-      console.log(type, address);
-      this.locations[2].address = address;
-      // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
-      this.psaddressTxtArea=address;
+      if (status == "OK") {
+        console.log(results[0].formatted_address);
+        address = results[0].formatted_address;
+        console.log(results[0].address_components[5]?.long_name)
+        results[0].address_components.map(x => {
+          console.log(x.long_name)
+
+          console.log(type, address);
+          this.locations[2].address = address;
+          // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
+          this.psaddressTxtArea = address;
+          x.types.map(y => {
+            if (y == "postal_code") {
+              console.log(x.long_name)
+            }
+          })
+        })
+      }
 
 
     });
   }
-  public savepsAddreess(){
+  public savepsAddreess() {
     let obj = { "psAddressId": this.psAddressId }
     this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
       console.log(res);
       this.geoCoordinatesRange = res.geoCoordinatesRange;
-      // this.psAddress = res.psAddress
-      // this.zipCode(false, this.psAddress.zipCode);
-
       let latitudeFlag = false;
       let longitudeFlag = false;
-      if (this.locations[2].latitude == undefined || this.locations[2].longitude == undefined) {
+      let latitutde: string = this.locations[2].latitude;
+      let longitude: string = this.locations[2].longitude;
+      if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
+        latitudeFlag = true;
+      } else {
         swal.fire({
-          title: "Invalid Details",
-          text: "Please Enter all Feilds",
+          title: "Invalid Latitude",
+          text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
           icon: "warning",
           confirmButtonText: 'OK',
 
         })
       }
-      else {
-        let latitutde: string = this.locations[2].latitude.trim();
-        let longitude: string = this.locations[2].longitude.trim();
-        if (latitutde.length == 0 || longitude.length == 0) {
-          swal.fire({
-            title: "Invalid Details",
-            text: "Please Enter all Feilds",
-            icon: "warning",
-            confirmButtonText: 'OK',
+      if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
+        longitudeFlag = true;
+      } else {
+        swal.fire({
+          title: "Invalid Longitude",
+          text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
+          icon: "warning",
+          confirmButtonText: 'OK',
 
-          })
-        }
-        if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
-          latitudeFlag = true;
-        } else {
-          swal.fire({
-            title: "Invalid Latitude",
-            text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
-            icon: "warning",
-            confirmButtonText: 'OK',
+        })
+      }
+      console.log(this.psAddress.suite)
+      if (latitudeFlag && longitudeFlag) {
 
-          })
-        }
-        if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
-          longitudeFlag = true;
-        } else {
-          swal.fire({
-            title: "Invalid Longitude",
-            text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
-            icon: "warning",
-            confirmButtonText: 'OK',
+        var jsonObj = {
+          "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.locations[2].address, "latitude": latitutde, "longitude": longitude, "userId": this.userId, "street": '', "suite": '', "city": '', "stateId": '', "zipCode": '', "addressId": ''
+        };
+        try {
+          this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
+            response => {
+              console.log(response);
+              this.saveResponseData = response;
+              if (this.saveResponseData.validateFlag == 0) {
+                swal.fire({
+                  text: "Data saved successfully",
+                  icon: "success",
+                  confirmButtonText: 'OK',
+                  allowOutsideClick: false
+                }).then(ok => {
+                  this.editpsAdreesButton=false;
+                  this.apiservice.updateTable.next(true);
+                  this.bsmodelRef.hide();
+                })
+              } else {
+                swal.fire({
+                  text: "Data saved failed",
+                  icon: "error",
+                  confirmButtonText: 'OK',
+                  allowOutsideClick: false
+                })
+              }
 
-          })
+            },
+            error => {
+              console.log(error);
+              swal.fire({
+                text: "Failed to Save Data",
+                icon: "error",
+                confirmButtonText: 'OK',
+                allowOutsideClick: false
+              })
+
+            }
+          )
         }
-        console.log(this.psAddress.suite)
-        if (latitudeFlag && longitudeFlag) {
-          this.manualAddress = this.psAddress.street + ',' + this.psAddress.city + ',' + this.psAddress.stateName + ',' + this.psAddress.zipCode;
-          this.manualLatitude = latitutde;
-          this.manualLongitude = longitude;
-          this.savebutton = false
-          this.fomatAddressManualInput = true;
+        catch (error) {
+          console.log(error);
         }
+
+
 
       }
+
+
     })
   }
   public psaddressTxtArea = '';
+
+
 }
 export function agmConfigFactory(value, config?: LazyMapsAPILoaderConfigLiteral) {
   config.apiKey = value;

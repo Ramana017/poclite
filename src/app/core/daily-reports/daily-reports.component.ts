@@ -37,7 +37,7 @@ public getDailyUtilStats(){
     this.dashboardService.getDailyUtilStats(JSON.stringify(obj)).subscribe(res=>{
       console.log(res);
       this.dailyStatsList=res.dailyStatsList;
-      this.grandtotal=res?.grandtotal;
+      this.grandtotal=res?.gradndTotal;
     })
   } catch (error) {
 

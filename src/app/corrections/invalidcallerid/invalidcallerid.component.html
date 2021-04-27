@@ -85,7 +85,7 @@
                     <p>The Caller ID from the <b>Clock In  </b> call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
           <h4 class="my-2">Clock In Details</h4>
           <div class="caller-id">
-            <p class="text-white">Caller ID: {{clockInCallerID}}</p>
+            <p class="text-white">Caller ID: {{clockInCallerID|phone}}</p>
           </div>
           <div class="form-group mx-2">
             <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock In Comments <span class="text-danger">*</span></p>
@@ -168,7 +168,7 @@
                     <p>The Caller ID from the <b> Clock out </b>call does not match any of the PS Phone Numbers. Accept the Caller ID exception for this Call or Update one of the PS Phone Numbers below to match the new Caller ID</p> -->
           <h4 class="my-2">Clock Out Details</h4>
           <div class="caller-id">
-            <p class="text-white">Caller ID: {{clockOutCallerId}}</p>
+            <p class="text-white">Caller ID: {{clockOutCallerId|phone}}</p>
           </div>
           <div class="form-group mx-2">
             <p class="text-dark mb-0 pt-0 pb-1 px-2">Clock Out Comments<span class="text-danger">*</span></p>
