@@ -602,7 +602,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     let address: any;
     geocoder.geocode(request, (results, status) => {
       console.log(results[0].formatted_address);
-      address = results[0].formatted_address
+      address = results[0].formatted_address;
+      console.log(results[0].address_components[5]?.long_name)
       console.log(type, address);
       this.locations[2].address = address;
       // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
