@@ -187,10 +187,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
           this.clockOutComments = this.getResponseData?.clockOutGpsAcceptComments;
           this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;
-          this.arrGpsAcceptedBy=this.getResponseData.arrGpsAcceptedBy;
-          this.arrGpsAcceptedOn=this.getResponseData.arrGpsAcceptedOn;
-          this.depGpsAcceptedBy=this.getResponseData.depGpsAcceptedBy;
-          this.depGpsAcceptedOn=this.getResponseData.depGpsAcceptedOn;
+          this.arrGpsAcceptedBy = this.getResponseData.arrGpsAcceptedBy;
+          this.arrGpsAcceptedOn = this.getResponseData.arrGpsAcceptedOn;
+          this.depGpsAcceptedBy = this.getResponseData.depGpsAcceptedBy;
+          this.depGpsAcceptedOn = this.getResponseData.depGpsAcceptedOn;
           this.defaultpsdetails();
 
           let clockinObj = { latitude: this.clockInLatitude, longitude: this.clockInLongitude, address: this.clockInAddress, type: 'clockin' }
@@ -268,7 +268,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
                 }
 
               })
-            }else{
+            } else {
               this.getGpsExceptionData();
             }
 
@@ -459,14 +459,10 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
   public clockInAddressClick(): void {
     console.log("clockin address")
+    this.locations[0] = { latitude: this.clockOutLatitude, longitude: this.clockOutLongitude, address: this.clockOutAddress, type: 'clockout' }
+    this.locations[1] = { latitude: this.clockInLatitude, longitude: this.clockInLongitude, address: this.clockInAddress, type: 'clockin' }
 
- if(this.locations[1].type="clockin"){
 
- }else{
-   let temp=this.locations[1];
-   this.locations[1]=this.locations[0];
-   this.locations[0]=temp;
- }
     this.centerlatitude = this.clockInLatitude;
     this.centerlangutide = this.clockInLongitude;
     this.map.centerChange;
@@ -475,13 +471,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public clockOutAddressClick(): void {
 
-    if(this.locations[1].type="clockout"){
+    this.locations[1] = { latitude: this.clockOutLatitude, longitude: this.clockOutLongitude, address: this.clockOutAddress, type: 'clockout' }
+    this.locations[0] = { latitude: this.clockInLatitude, longitude: this.clockInLongitude, address: this.clockInAddress, type: 'clockin' }
 
-    }else{
-      let temp=this.locations[1];
-      this.locations[1]=this.locations[0];
-      this.locations[0]=temp;
-    }
     this.centerlatitude = this.clockOutLatitude;
     this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
@@ -705,7 +697,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
                   confirmButtonText: 'OK',
                   allowOutsideClick: false
                 }).then(ok => {
-                  this.editpsAdreesButton=false;
+                  this.editpsAdreesButton = false;
                   this.apiservice.updateTable.next(true);
                   this.bsmodelRef.hide();
                 })

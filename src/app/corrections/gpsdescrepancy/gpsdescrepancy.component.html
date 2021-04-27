@@ -306,7 +306,7 @@
           <!-- <div #map style="width:100%; height:500px"></div> -->
           <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude"
             [longitude]="centerlangutide">
-            <agm-marker [markerDraggable]="(item.type=='ps' &&editpsAdreesButton)" (mouseOver)="infowindow.open()" (mouseOut)="infowindow.close()" (dragEnd)="onmarkerDrag($event,item.type)" *ngFor='let item of locations; let i=index ' [latitude]="item.latitude" [iconUrl]='item.type=="ps"?blueicon:item.type=="clockin"&& arrivalgpsErr?redicon:item.type=="clockout"&&depgpsErr?redicon:greenicon' [longitude]="item.longitude">
+            <agm-marker [markerDraggable]="(item.type=='ps' &&editpsAdreesButton)" (mouseOver)="item.type!='ps'?infowindow.open():''" (mouseOut)="item.type!='ps'?infowindow.close():''" (dragEnd)="onmarkerDrag($event,item.type)" *ngFor='let item of locations; let i=index ' [latitude]="item.latitude" [iconUrl]='item.type=="ps"?blueicon:item.type=="clockin"&& arrivalgpsErr?redicon:item.type=="clockout"&&depgpsErr?redicon:greenicon' [longitude]="item.longitude">
               <agm-info-window [disableAutoPan]="false" #infowindow>
                 <strong style="color: blue;" ><b>{{item.type=='ps'?'PS':item.type=="clockin"?"Clock In":'Clock Out'}}</b></strong><br>
                 <strong>{{item.address}}<br>lat: {{item.latitude}},lng: {{item.longitude}}</strong>
