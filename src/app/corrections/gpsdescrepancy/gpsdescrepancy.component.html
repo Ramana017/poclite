@@ -288,9 +288,9 @@
           <!-- <div #map style="width:100%; height:500px"></div> -->
           <agm-map [apikey]="" [zoom]="12" [mapTypeControl]='true' [latitude]="centerlatitude"
             [longitude]="centerlangutide">
-            <agm-marker [markerDraggable]="false" (dragEnd)="onmarkerDrag($event)" *ngFor='let i of locations' [latitude]="i[0]" [iconUrl]='i[3]' [longitude]="i[1]">
+            <agm-marker [markerDraggable]="item.type=='ps'" (dragEnd)="onmarkerDrag($event,item.type)" *ngFor='let item of locations' [latitude]="item.latitude" [iconUrl]='item.type=="ps"?blueicon:item.type=="clockin"&& arrivalgpsErr?redicon:item.type=="clockout"&&depgpsErr?redicon:greenicon' [longitude]="item.longitude">
               <agm-info-window [disableAutoPan]="false">
-                <strong>{{i[2]}}</strong>
+                <strong>{{item.address}}<br>lat: {{item.latitude}},lng: {{item.longitude}}</strong>
               </agm-info-window>
             </agm-marker>
           </agm-map>
@@ -316,15 +316,16 @@
             <span class="material-icons mr-2">
               help_outline
               </span>
-            <p class="mb-0 mr-2 ">Drag and place the PS Address pin at the Service Location</p>
+            <p class="mb-0 mr-2 ">Drag and place the PS  Address pin at the Service Location</p>
             <div class="p-inputgroup" style="width:200px">
 
-              <input type="text" pInputText placeholder="Address">
+              <textarea type="text" [(ngModel)]="psaddressTxtArea" readonly pInputText placeholder="Address"></textarea>
           </div>
             <div class="sizes ml-3">
               <p-button label="Save PS Address"  styleClass="p-button-sm"></p-button>
             </div>
           </div>
+
           <div class="d-flex pointermaps " (click)="psAddressClick()">
             <i style="color: #145194;" class="fas fa-map-marker-alt  mr-2 ml-2"></i>
             <p class="mb-0">PS Address</p>

@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, EventEmitter, Output, NgZone } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
-import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapTypeControlOptions, MapTypeId } from '@agm/core';
+import { AgmMap, ControlPosition, LazyMapsAPILoaderConfigLiteral, MapsAPILoader, MapTypeControlOptions, MapTypeId } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-declare var $: any;
+import { google } from "google-maps";
 
+declare var $: any;
 
 @Component({
   selector: 'app-gpsdescrepancy',
@@ -20,7 +21,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   @Output()
   popupUpdate: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private _fb: FormBuilder, public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef) { }
+  constructor(private _fb: FormBuilder, public datepipe: DatePipe, public apiservice: ApiserviceService, public bsmodelRef: BsModalRef,
+    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   public psName: string;
   public DcsName: string;
@@ -66,8 +68,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public depgpserrview: boolean = false;
   public locations: Array<any> = [];
   public redicon = "assets/images/locationRed.svg";
-  public greenicon="assets/images/locationgreen.svg";
-  public blueicon= "assets/images/locationblue.svg";
+  public greenicon = "assets/images/locationgreen.svg";
+  public blueicon = "assets/images/locationblue.svg";
 
   public centerlatitude: number;
   public centerlangutide: number;
@@ -92,6 +94,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public gpsAcceptReasonList = [];
   public clockOutGpsAcceptReasonsId: number = null;
   public clockInGpsAcceptReasonsId: number = null;
+
 
 
   public ngOnInit(): void {
@@ -176,29 +179,29 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
-          this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId==0?null:this.getResponseData.clockInGpsAcceptReasonsId;
-          this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId==0?null:this.getResponseData.clockOutGpsAcceptReasonsId;
+          this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockInGpsAcceptReasonsId;
+          this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockOutGpsAcceptReasonsId;
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
           this.clockOutComments = this.getResponseData?.clockOutGpsAcceptComments;
           this.gpsAcceptReasonList = this.getResponseData.gpsAcceptReasonList;
           this.defaultpsdetails();
 
-          if (this.arrivalgpsErr == true||this.arrivalgpsErr==false) {
-            let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress,this.arrivalgpsErr == true?this.redicon:this.greenicon]
-            this.locations.push(obj)
-          }
-          if (this.depgpsErr == true||this.depgpsErr == false) {
-            let obj = [this.clockOutLatitude, this.clockOutLongitude, this.clockOutAddress,this.depgpsErr == true?this.redicon:this.greenicon]
-            this.locations.push(obj)
-          }
+          let clockinObj = { latitude: this.clockInLatitude, longitude: this.clockInLongitude, address: this.clockInAddress, type: 'clockin' }
+          // let obj = [this.clockInLatitude, this.clockInLongitude, this.clockInAddress,this.arrivalgpsErr == true?this.redicon:this.greenicon]
+          this.locations.push(clockinObj)
+          let clockOutObj = { latitude: this.clockOutLatitude, longitude: this.clockOutLongitude, address: this.clockOutAddress, type: 'clockout' }
+          // let obj = [this.clockOutLatitude, this.clockOutLongitude, this.clockOutAddress,this.depgpsErr == true?this.redicon:this.greenicon]
+          this.locations.push(clockOutObj)
+
           for (let i = 0; i < this.psAddressList.length; i++) {
             if (this.psAddressId == this.psAddressList[i].psAddressId) {
               this.centerlatitude = +this.psAddressList[i].latitude;
               this.centerlangutide = +this.psAddressList[i].longitude;
               this.psLatitude = +this.psAddressList[i].latitude;
               this.psLongitude = +this.psAddressList[i].longitude;
-              let obj = [this.psAddressList[i].latitude, this.psAddressList[i].longitude, this.psAddressList[i].address, this.blueicon]
-              this.locations.push(obj);
+              let psObj = { latitude: this.psAddressList[i].latitude, longitude: this.psAddressList[i].longitude, address: this.psAddressList[i].address, type: 'ps' }
+              // let obj = [this.psAddressList[i].latitude, this.psAddressList[i].longitude, this.psAddressList[i].address, this.blueicon]
+              this.locations.push(psObj);
             }
           }
 
@@ -224,9 +227,9 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     let clockOutFlag = event == "clockout" ? 1 : 0;
     let acceptreason: boolean;
     if (event == 'clockin') {
-      this.clockInGpsAcceptReasonsId == null||this.clockInGpsAcceptReasonsId==0 ? acceptreason = false : acceptreason = true;
+      this.clockInGpsAcceptReasonsId == null || this.clockInGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
     } else {
-      this.clockOutGpsAcceptReasonsId == null||this.clockOutGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
+      this.clockOutGpsAcceptReasonsId == null || this.clockOutGpsAcceptReasonsId == 0 ? acceptreason = false : acceptreason = true;
     }
     let commentLength = clockinflag == 1 ? this.clockInComments?.trim().length : this.clockOutComments?.trim().length;
     console.log(commentLength)
@@ -269,20 +272,19 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     } else {
       let str = [];
       let data = event == "clockin" ? " Clock In" : " Clock Out";
-      if(commentLength==0||commentLength==undefined)
-      {
+      if (commentLength == 0 || commentLength == undefined) {
         str.push(`enter ${data} Comments`)
 
       }
-      if(!acceptreason){
-        str.push(`select ${commentLength==0||commentLength==undefined?'':data} Verification Method `)
+      if (!acceptreason) {
+        str.push(`select ${commentLength == 0 || commentLength == undefined ? '' : data} Verification Method `)
 
       }
 
 
       swal.fire({
         title: "Invalid Comments",
-        text: `Please ${str.join(" and ")} before accepting the Exception` ,
+        text: `Please ${str.join(" and ")} before accepting the Exception`,
         icon: "warning",
         confirmButtonText: 'OK',
       })
@@ -433,14 +435,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
 
   public psAddressClick(): void {
-    console.log("psaddressclock")
-    this.centerlatitude = +this.psLatitude;
-    this.centerlangutide = +this.psLongitude;
+    console.log("psaddressclock");
+// console.log(+this.locations[2].latitude)
+    this.centerlatitude = +this.locations[2].latitude;
+    this.centerlangutide = +this.locations[2].longitude;
     this.map.centerChange;
   }
   public clockInAddressClick(): void {
     console.log("clockin address")
-
     this.centerlatitude = this.clockInLatitude;
     this.centerlangutide = this.clockInLongitude;
     this.map.centerChange;
@@ -580,10 +582,101 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     console.log(this.psAddress)
   }
 
-  onmarkerDrag(event){
-     console.log(event)
-  }
 
+
+
+
+  public onmarkerDrag(event, type) {
+    console.log(event)
+    let lat = event.coords.lat;
+    let lng = event.coords.lng;
+
+    this.locations[2].latitude = lat;
+    this.locations[2].longitude = lng;
+
+    const geocoder = new google.maps.Geocoder();
+    const latlng = new google.maps.LatLng(lat, lng);
+    const request = {
+      location: latlng
+    };
+    let address: any;
+    geocoder.geocode(request, (results, status) => {
+      console.log(results[0].formatted_address);
+      address = results[0].formatted_address
+      console.log(type, address);
+      this.locations[2].address = address;
+      // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
+      this.psaddressTxtArea=address;
+
+
+    });
+  }
+  public savepsAddreess(){
+    let obj = { "psAddressId": this.psAddressId }
+    this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
+      console.log(res);
+      this.geoCoordinatesRange = res.geoCoordinatesRange;
+      // this.psAddress = res.psAddress
+      // this.zipCode(false, this.psAddress.zipCode);
+
+      let latitudeFlag = false;
+      let longitudeFlag = false;
+      if (this.locations[2].latitude == undefined || this.locations[2].longitude == undefined) {
+        swal.fire({
+          title: "Invalid Details",
+          text: "Please Enter all Feilds",
+          icon: "warning",
+          confirmButtonText: 'OK',
+
+        })
+      }
+      else {
+        let latitutde: string = this.locations[2].latitude.trim();
+        let longitude: string = this.locations[2].longitude.trim();
+        if (latitutde.length == 0 || longitude.length == 0) {
+          swal.fire({
+            title: "Invalid Details",
+            text: "Please Enter all Feilds",
+            icon: "warning",
+            confirmButtonText: 'OK',
+
+          })
+        }
+        if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
+          latitudeFlag = true;
+        } else {
+          swal.fire({
+            title: "Invalid Latitude",
+            text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
+            icon: "warning",
+            confirmButtonText: 'OK',
+
+          })
+        }
+        if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
+          longitudeFlag = true;
+        } else {
+          swal.fire({
+            title: "Invalid Longitude",
+            text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
+            icon: "warning",
+            confirmButtonText: 'OK',
+
+          })
+        }
+        console.log(this.psAddress.suite)
+        if (latitudeFlag && longitudeFlag) {
+          this.manualAddress = this.psAddress.street + ',' + this.psAddress.city + ',' + this.psAddress.stateName + ',' + this.psAddress.zipCode;
+          this.manualLatitude = latitutde;
+          this.manualLongitude = longitude;
+          this.savebutton = false
+          this.fomatAddressManualInput = true;
+        }
+
+      }
+    })
+  }
+  public psaddressTxtArea = '';
 }
 export function agmConfigFactory(value, config?: LazyMapsAPILoaderConfigLiteral) {
   config.apiKey = value;
