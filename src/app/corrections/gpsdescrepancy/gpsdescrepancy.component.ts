@@ -459,6 +459,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
   public clockInAddressClick(): void {
     console.log("clockin address")
+
+ if(this.locations[1].type="clockin"){
+
+ }else{
+   let temp=this.locations[1];
+   this.locations[1]=this.locations[0];
+   this.locations[0]=temp;
+ }
     this.centerlatitude = this.clockInLatitude;
     this.centerlangutide = this.clockInLongitude;
     this.map.centerChange;
@@ -466,6 +474,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
 
   public clockOutAddressClick(): void {
+
+    if(this.locations[1].type="clockout"){
+
+    }else{
+      let temp=this.locations[1];
+      this.locations[1]=this.locations[0];
+      this.locations[0]=temp;
+    }
     this.centerlatitude = this.clockOutLatitude;
     this.centerlangutide = this.clockOutLongitude;
     this.map.centerChange;
