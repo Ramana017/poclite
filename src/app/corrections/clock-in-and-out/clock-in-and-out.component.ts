@@ -264,6 +264,10 @@ export class ClockInAndOutComponent implements OnInit {
     let manualclockoutseconds = Date.parse(manualclockout);
 
 
+
+
+
+
     if (manualarrivalDateseconds >= this.templatestartsconds && manualarrivalDateseconds <= this.templatendseconds && manualdepartureDateseconds >= this.templatestartsconds && manualdepartureDateseconds <= this.templatendseconds) {
 
 
@@ -274,8 +278,20 @@ export class ClockInAndOutComponent implements OnInit {
       var traveltimeFlag: boolean = false;
       var arrivalmileageFlag: boolean = false;
       var departuremileageFlag: boolean = false;
+      let todayFlag:boolean=false;
+      let todayDate:any=new Date();
+      let todayseconds=Date.parse(todayDate);
       var arrsmallflag: boolean = manualclockinseconds > manualclockoutseconds ? true : false;
       var timespanFlag: boolean = differnce < 0 || differnce > 24 ? true : false;
+
+      if(manualclockinseconds>todayseconds){
+        todayFlag = true;
+        this.alertbox('Invalid Arrival', 'Arrival Date time should not be greater than current Date');
+      }
+      if(manualclockoutseconds>todayseconds){
+        todayFlag = true;
+        this.alertbox('Invalid Departure', 'Departure Date time should not be greater than current Date');
+      }
       if (this.manualTravelTime >= 0) {
         traveltimeFlag = false;
       }
@@ -312,7 +328,7 @@ export class ClockInAndOutComponent implements OnInit {
         arrsmallflag = false;
       }
       // console.log(traveltimeFlag == false && arrsmallflag == false && arrivalmileageFlag == false && departuremileageFlag == false && timespanFlag == false)
-      if (traveltimeFlag == false && arrsmallflag == false && arrivalmileageFlag == false && departuremileageFlag == false && timespanFlag == false) {
+      if (traveltimeFlag == false && arrsmallflag == false && arrivalmileageFlag == false && departuremileageFlag == false && timespanFlag == false && todayFlag==false ) {
         this.createPunchForSchedule()
       }
     } else {

@@ -195,7 +195,8 @@ export class ClockoutComponent implements OnInit {
     let differnce = (((manualseconds - arrivalseconds) / 1000) / 60) / 60;
     let differnceFlag =( differnce <= 24 && differnce >= 0) ? false : true;
     let todaysdate:any=new Date();
-    let todaysseconds=Date.parse(todaysdate)
+    let todaysseconds=Date.parse(todaysdate);
+    let todayflag:boolean=false;
 
 
     if (this.manualDate == undefined || null) {
@@ -206,6 +207,10 @@ export class ClockoutComponent implements OnInit {
       dateFlag = false;
       if (manualDateseconds <= this.templatedEnddateseconds && manualDateseconds >= this.templateStartdateseconds) {
 
+        if (manualDateseconds > todaysseconds) {
+          todayflag = true;
+          this.alertbox('Invalid Departure', 'Departure Date time should not be greater than current Date');
+        }
         if ((this.manualmileage >= 0 && this.manualmileage <= 999.99) || this.manualmileage == undefined) {
           mileageFlag = false;
         }
@@ -223,7 +228,7 @@ export class ClockoutComponent implements OnInit {
           }
         }
 
-        if (dateFlag == false && mileageFlag == false && dateafterFlag == false && differnceFlag == false) {
+        if (dateFlag == false && mileageFlag == false && dateafterFlag == false && differnceFlag == false && todayflag==false) {
           this.createArrivalDeparture();
         }
       }
