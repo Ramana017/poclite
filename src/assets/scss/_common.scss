@@ -2426,3 +2426,9 @@ app-maintainence {
   height: 22vh;
   overflow: auto;
 }
+
+@media(max-width:991px){
+  .communication-table{
+    height: 36vh !important;
+  }
+}
