@@ -22,20 +22,9 @@
 
 
                       <div class="btn-group" dropdown container="body" placement="left" autoClose="auto" insideClick="false">
-                       
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
                           </span>
-                  
-                        <!-- <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-                            role="menu" aria-labelledby="button-basic">
-                          <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-                          <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-                          <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-                          <li class="divider dropdown-divider"></li>
-                          <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-                          </li>
-                        </ul> -->
                         <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
                           <div class="form-group form-input">
                             <input type="text" placeholder="DCS Name" class="form-control">
@@ -69,26 +58,33 @@
                             <th class=""></th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Approval Type</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Requested On</th>
+                            <th class="align-middle AvenirLTStd-Heavy color-black">Start Date & Time</th>
+                            <th class="align-middle AvenirLTStd-Heavy color-black">End Date & Time</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Status</th>
                           </tr>
                         </thead>
                         <tbody>
 
                           <tr>
-                            <td class="position-relative edit-option">
+                            <td class="">
                               <ul class="m-0 p-0">
                                 <li class="">
-                                  <div class="share-button">
+                                  <!-- <div class="share-button">
                                     <input class="toggle-input" id="toggle-input" type="checkbox"
-                                      (click)="showPositionDialog('left')" />
+                                       />
                                     <label for="toggle-input" class="toggle"></label>
+                                  </div> -->
+                                  <div class="">
+                                    <span class="material-icons add-bg" (click)="showPositionDialog('left')" >
+                                      add_circle
+                                      </span>
                                   </div>
                                 </li>
                               </ul>
                             </td>
                             <td>AAA,FULTRON</td>
                             <td>Edited Punch</td>
+                            <td>04/06/2021 12:15</td>
                             <td>04/06/2021 12:15</td>
                             <td>Pending</td>
                           </tr>
@@ -153,14 +149,19 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td class="position-relative edit-option">
+                            <td class="">
                               <ul class="m-0 p-0">
-                                <li class="">
-                                  <div class="share-button">
-                                    <input class="toggle-input" id="toggle-input" type="checkbox" />
-                                    <label for="toggle-input" class="toggle"></label>
+                                <li class="" (click)="op.toggle($event)">
+                                  <!-- <div class="share-button"  >
+                                    <input class="toggle-input" id="toggle-input1" type="checkbox"  />
+                                    <label for="toggle-input1" class="toggle"  ></label>
+                                  </div> -->
+                                  <div class="">
+                                    <span class="material-icons add-bg" (click)="op.toggle($event)" >
+                                      add_circle
+                                      </span>
                                   </div>
-                                  <div class="slider d-flex align-items-center">
+                                  <!-- <div class="slider d-flex align-items-center">
 
                                     <p class="blue-bg googleplus">
                                       <span>
@@ -168,14 +169,14 @@
                                         </a>
                                       </span>
                                     </p>
-                                  </div>
+                                  </div> -->
                                 </li>
                               </ul>
                             </td>
                             <td>Abay,George</td>
                             <td>Is my 2pm visit going to be rescheduled today ?</td>
                             <td>04/03/2021 12:15 </td>
-                            <td (click)="op.toggle($event)" class="position-relative"><span class="material-icons">
+                            <td  class="position-relative"><span class="material-icons">
                                 chat_bubble_outline
                               </span>
                               <span class="notification-badge">1</span>
@@ -286,6 +287,36 @@
                       <ng-template style="width: 100%;">
                         <a></a>
                       </ng-template>
+
+                      <div class="btn-group" dropdown   autoClose="auto" insideClick="false">
+                        <span class="mx-2" dropdownToggle>
+                          <i class="pi pi-filter"></i>
+                        </span>
+                      <div id="dropdown-basic" *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
+                        <div class="form-group form-input">
+                          <input type="text" placeholder="Search By" class="form-control">
+                        </div>
+                        <div class="form-group form-input">
+                          <input type="text" placeholder="Start & End Date" class="form-control">
+                        </div>
+                        <div class="form-group form-input">
+                          <input type="text" placeholder="-Select-" class="form-control">
+                        </div>
+                        <div class="form-group form-input">
+                          <input type="text" placeholder="-Select Application-" class="form-control">
+                        </div>
+                        <div class="form-group form-input">
+                          <input type="text" placeholder="-Select Alert Definition-" class="form-control">
+                        </div>
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i  class="pi pi-search mr-2"></i>Search</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
                       <div class="ico">
                         <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'dcs')"></i>
                         <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'dcs')"></i>
@@ -297,12 +328,28 @@
                       <table class="table position-relative">
                         <thead class="thead-light no-wrap">
                           <tr>
+                       <th></th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
                             <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
+                            <td class="align-middle color-black">
+                              <div class="position-relative hover-btn">
+                                <span class="material-icons">
+                                  more_vert
+                                  </span>
+                                  <div class=" align-items-center btn-hover-content">
+                                    <button pButton type="button" label="Close" icon="pi pi-save" iconPos="left"
+                                class="p-button-success p-button ml-2"></button>
+                                <button pButton type="button" label="Dismiss" icon="pi pi-save" iconPos="left"
+                                class="p-button-success p-button ml-2"></button>
+                                <button pButton type="button" label="More" icon="pi pi-save" iconPos="left"
+                                class="p-button-success p-button ml-2"></button>
+                                  </div>
+                              </div>
+                              </td>
                             <td>Open Shift Alert</td>
                             <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quidem perferendis quo
                               optio expedita amet assumenda quas ration.</td>
@@ -419,7 +466,7 @@
     <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
   </ng-template>
 </p-dialog>
-<p-overlayPanel #op [style]="{width: '470px'}">
+<p-overlayPanel #op [style]="{width: '40%'}">
 
   <ng-template pTemplate>
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
