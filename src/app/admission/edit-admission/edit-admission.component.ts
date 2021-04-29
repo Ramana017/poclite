@@ -90,7 +90,7 @@ export class EditAdmissionComponent implements OnInit {
       initialState: {
         intialPopUp: false,
       }
-    }, { class: ' modal-dialog-centered' }))
+    }, { class: ' modal-dialog-centered guarantor-create-modal' }))
 
   }
   public modelhedaerType='';

@@ -248,3 +248,23 @@ div#exampleModal {
 
   z-index: 11111 !important;
 }
+.guarantor-create-modal{
+  .modal-content{
+    height: auto !important;
+  }
+}
+.hover-btn{
+  display: flex;
+  align-items: center;
+  position: relative;
+ .btn-hover-content{
+  display: none;
+ } 
+ &:hover{
+   .btn-hover-content{
+    display: flex;
+    position: absolute;
+    left: 10px;
+   }
+ }
+}
