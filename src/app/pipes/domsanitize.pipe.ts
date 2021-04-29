@@ -44,18 +44,11 @@ export class FilterPipe implements PipeTransform {
   name: "phone"
 })
 export class PhonePipe {
-  transform(rawNum) {
-    // rawNum = rawNum.charAt(0) != 0 ? "0" + rawNum : "" + rawNum;
+  transform(input) {
 
-    // let newStr = "";
-    // let i = 0;
-
-    // for (; i < Math.floor(rawNum.length / 2) - 1; i++) {
-    //   newStr = newStr + rawNum.substr(i * 2, 2) + "-";
-    // }
-    console.log(rawNum)
-    if (rawNum != undefined) {
-      let trimmed = rawNum?.replace(/\s+/g, '');
+    console.log(input)
+    if (input != undefined) {
+      let trimmed = input?.replace(/\s+/g, '');
 
       trimmed = trimmed?.replace(/-/g, '');
       let numbers = [];

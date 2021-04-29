@@ -201,7 +201,7 @@ export class ClockoutComponent implements OnInit {
 
     if (this.manualDate == undefined || null) {
       dateFlag = true;
-      this.alertbox('Invalid Departure', 'Departure Date and Time cannot be Empty');
+      this.alertbox('Invalid Clock Out', 'Clock Out Date and Time cannot be Empty');
     }
     else {
       dateFlag = false;
@@ -209,22 +209,22 @@ export class ClockoutComponent implements OnInit {
 
         if (manualDateseconds > todaysseconds) {
           todayflag = true;
-          this.alertbox('Invalid Departure', 'Departure Date time should not be greater than current Date');
+          this.alertbox('Invalid Clock Out', 'Clock Out Date time should not be greater than current Date');
         }
         if ((this.manualmileage >= 0 && this.manualmileage <= 999.99) || this.manualmileage == undefined) {
           mileageFlag = false;
         }
         else {
           mileageFlag = true;
-          this.alertbox('Invalid Departure Mileage', 'Mileage Value cannot  be  greater  than 999.99');
+          this.alertbox('Invalid Clock Out Mileage', 'Mileage Value cannot  be  greater  than 999.99');
         }
         if (dateafterFlag == true) {
-          this.alertbox('Invalid Departure', ' Departure Date should be After  ' + this.JsonData.arrivalDateTime)
+          this.alertbox('Invalid Clock Out', ' Clock Out Date should be After  ' + this.JsonData.arrivalDateTime)
         }
         else {
           dateafterFlag = false;
           if (differnceFlag == true) {
-            this.alertbox('Invalid Departure', 'Arrival Date Time and Departure Date Time must be in 24 hours Time Span');
+            this.alertbox('Invalid Clock Out', 'Clock In Date Time and Clock Out Date Time must be in 24 hours Time Span');
           }
         }
 
@@ -233,7 +233,7 @@ export class ClockoutComponent implements OnInit {
         }
       }
       else {
-        this.alertbox('Invalid Departure', "Departure Date time should be in between template start date " + this.datepipe.transform(this.templatebeginDate, 'MM/dd/yyyy') + ' and template end date ' + this.datepipe.transform(this.templateendDate, 'MM/dd/yyyy'))
+        this.alertbox('Invalid Clock Out', "Clock Out Date time should be in between template start date " + this.datepipe.transform(this.templatebeginDate, 'MM/dd/yyyy') + ' and template end date ' + this.datepipe.transform(this.templateendDate, 'MM/dd/yyyy'))
       }
     }
   }
@@ -252,7 +252,7 @@ export class ClockoutComponent implements OnInit {
           this.createArrivalDeparture();
         }
         else {
-          this.alertbox('Invalid Link', "Departure Date should After " + this.JsonData.arrivalDateTime)
+          this.alertbox('Invalid Link', "Clock Out Date should After " + this.JsonData.arrivalDateTime)
 
         }
       }else{
@@ -262,7 +262,7 @@ export class ClockoutComponent implements OnInit {
 
     }
     else {
-      this.alertbox('Invalid Link', "Departure Date time should be in between template start date " + this.datepipe.transform(this.templatebeginDate, 'MM/dd/yyyy') + ' and template end date ' + this.datepipe.transform(this.templateendDate, 'MM/dd/yyyy'))
+      this.alertbox('Invalid Link', "Clock Out Date time should be in between template start date " + this.datepipe.transform(this.templatebeginDate, 'MM/dd/yyyy') + ' and template end date ' + this.datepipe.transform(this.templateendDate, 'MM/dd/yyyy'))
 
     }
   }

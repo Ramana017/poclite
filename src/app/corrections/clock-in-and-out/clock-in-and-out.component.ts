@@ -286,11 +286,11 @@ export class ClockInAndOutComponent implements OnInit {
 
       if(manualclockinseconds>todayseconds){
         todayFlag = true;
-        this.alertbox('Invalid Arrival', 'Arrival Date time should not be greater than current Date');
+        this.alertbox('Invalid Clock In', 'Clock In Date time should not be greater than current Date');
       }
       if(manualclockoutseconds>todayseconds){
         todayFlag = true;
-        this.alertbox('Invalid Departure', 'Departure Date time should not be greater than current Date');
+        this.alertbox('Invalid Clock Out', 'Clock Out Date time should not be greater than current Date');
       }
       if (this.manualTravelTime >= 0) {
         traveltimeFlag = false;
@@ -305,7 +305,7 @@ export class ClockInAndOutComponent implements OnInit {
       }
       else {
         arrivalmileageFlag = true;
-        this.alertbox('Invalid Arrival Mileage', 'Arrival Mileage should between [0-999.99] ');
+        this.alertbox('Invalid Clock In Mileage', 'Clock In Mileage should between [0-999.99] ');
       }
       if ((this.manualDepartureMileage >= 0 && this.manualDepartureMileage < 999.99) || this.manualDepartureMileage==undefined) {
         departuremileageFlag = false;
@@ -313,15 +313,15 @@ export class ClockInAndOutComponent implements OnInit {
       } else {
         console.log("+++++++++")
         departuremileageFlag = true;
-        this.alertbox('Invalid Departure Mileage', 'Mileage Value should between  [0-999.99]')
+        this.alertbox('Invalid Clock Out Mileage', 'Mileage Value should between  [0-999.99]')
       }
       if (timespanFlag == true) {
-        this.alertbox('Invalid Time', 'Arrival Date Time and Departure Date Time must be in 24 hours Time Span');
+        this.alertbox('Invalid Time', 'Clock In Date Time and Clock Out Date Time must be in 24 hours Time Span');
       }
 
       if (manualclockinseconds > manualclockoutseconds) {
         arrsmallflag = true;
-        this.alertbox('Inavlid Entry', 'Arrival Date Time should always before Departure Date Time')
+        this.alertbox('Invalid Entry', 'Clock In Date Time should always before Clock Out Date Time')
 
       }
       else {
@@ -333,15 +333,15 @@ export class ClockInAndOutComponent implements OnInit {
       }
     } else {
       if ((manualarrivalDateseconds <= this.templatestartsconds || manualarrivalDateseconds >= this.templatendseconds) && (manualdepartureDateseconds <= this.templatestartsconds || manualdepartureDateseconds >= this.templatendseconds)) {
-        this.alertbox('Invalid Entry', " Arrival and Departure Date should between Template Start Date " + this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy') + '  and Template End Date ' + this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'))
+        this.alertbox('Invalid Entry', " Clock In and Clock Out Date should between Template Start Date " + this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy') + '  and Template End Date ' + this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'))
 
       }
 
       else if (manualarrivalDateseconds <= this.templatestartsconds || manualarrivalDateseconds >= this.templatendseconds) {
-        this.alertbox('Invalid Arrival', " Arrival Date time should be in between Template Start Date"+ this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy')+ " and Template End Date "  +  this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'));
+        this.alertbox('Invalid Clock In', " Clock In Date time should be in between Template Start Date"+ this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy')+ " and Template End Date "  +  this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'));
       }
       else if (manualdepartureDateseconds <= this.templatestartsconds || manualdepartureDateseconds >= this.templatendseconds) {
-        this.alertbox('Invalid Departure','Departure Date time should be between Template Start Date '+  this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy')+ " and Template End Date "  +  this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'));
+        this.alertbox('Invalid Clock Out','Clock Out Date time should be between Template Start Date '+  this.datepipe.transform(this.templateStartDate, 'MM/dd/yyyy')+ " and Template End Date "  +  this.datepipe.transform(this.templateEndDate, 'MM/dd/yyyy'));
       }
 
 
@@ -382,11 +382,11 @@ export class ClockInAndOutComponent implements OnInit {
     else{
       if(linkarraivalseconds<=linkdeparturar)
       {
-        this.alertbox('Invalid Link','Arrival Cannot be lessthan Departure')
+        this.alertbox('Invalid Link','Clock In Cannot be lessthan Clock Out')
       }
     }}
     else{
-      this.alertbox('Invalid Link',' Arrival and Departure Date time should be in between template start date'+this.templateStartDate+" and template end date "+this.templateEndDate);
+      this.alertbox('Invalid Link',' Clock In and Clock Out Date time should be in between template start date'+this.templateStartDate+" and template end date "+this.templateEndDate);
     }
   }
 

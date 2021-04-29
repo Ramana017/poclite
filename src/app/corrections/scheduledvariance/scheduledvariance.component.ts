@@ -251,7 +251,7 @@ export class ScheduledvarianceComponent implements OnInit {
     }
     else {
       // alert("select Arrival and  departure Adjust Reasons");
-      swal.fire('Inavalid','Select Arrival and  Departure adjust reasons','warning')
+      swal.fire('Inavalid','Select Clock In and  Clock Out adjust reasons','warning')
     }
 
 
