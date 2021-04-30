@@ -44,7 +44,6 @@ const routes: Routes = [
   // {path:'scheduling',component:ScheduleManagementComponent},
   // { path: 'calendar', component: CalenderSchedulingComponent },
 
-  { path: 'charts', canActivate: [AuthGuard], component: ChartsComponent },
   { path: 'chart-layout',canActivate: [AuthGuard], component: ChartLayoutComponent },
   { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
   {
@@ -68,7 +67,6 @@ const routes: Routes = [
       { path: "telephony", component: PsTelephonyComponent },
     ]
   },
-  { path: "chart-layout",component: ChartLayoutComponent},
   {path: "communication-dashboard",component:CommunicationDashboardComponent},
   { path: "page-not-found", component: PageNotFoundComponent },
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
