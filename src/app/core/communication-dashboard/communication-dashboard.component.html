@@ -7,161 +7,168 @@
         <div class="d-flex">
           <div class="cards-content w-100">
             <div class="row m-0">
-              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
-                <div class="widget-block h-auto">
-                  <div class="widget-header row align-items-center blue-bg m-0 nav">
-                    <div class="col-md-4 col-0"></div>
-                    <h5 class="text-white m-0 text-center col-md-3 col-12">App Approvals</h5>
+              <ng-container>
+                <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
 
-                    <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
-                      <ng-autocomplete class="w-150" placeHolder="Search DCS">
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;" let-item>
-                        <a [innerHTML]="item.PSName"></a>
-                      </ng-template>
+                <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                  <div class="widget-block h-auto">
+                    <div class="widget-header row align-items-center blue-bg m-0 nav">
+                      <div class="col-md-4 col-0"></div>
+                      <h5 class="text-white m-0 text-center col-md-3 col-12">App Approvals</h5>
+
+                      <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
+                        <ng-autocomplete class="w-150" placeHolder="Search DCS">
+                        </ng-autocomplete>
+                        <ng-template style="width: 100%;" let-item>
+                          <a [innerHTML]="item.PSName"></a>
+                        </ng-template>
 
 
-                      <div class="btn-group" dropdown container="body" placement="left" autoClose="auto" insideClick="false">
+                        <div class="btn-group" #filter="bs-dropdown" (click)="ngxspineer.show('spinner1')" dropdown [autoClose]="false" [insideClick]="true"
+                          container="body" placement="left" autoClose="auto" insideClick="false">
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
                           </span>
-                        <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
-                          <div class="form-group form-input">
-                            <input type="text" placeholder="DCS Name" class="form-control">
-                          </div>
-                          <div class="form-group form-input">
-                            <input type="text" placeholder="Approval Type" class="form-control">
-                          </div>
-                          <div class="form-group form-input">
-                            <input type="text" bsDaterangepicker placeholder="Requested On" class="form-control">
-                          </div>
-                          <div class="form-group form-input">
-                            <input type="text" placeholder="Status" class="form-control">
-                          </div>
-                          <div class="text-right">
-                            <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i  class="pi pi-search mr-2"></i>Search</button>
+                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="DCS Name" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="Approval Type" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" bsDaterangepicker [(ngModel)]="date" readonly
+                                placeholder="Requested On" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="Status" class="form-control">
+                            </div>
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
+                                (click)="appApprovalsFilter(filter)"><i class="pi pi-search mr-2"></i>Search</button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="ico">
-                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps',$event)"></i>
-                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps',$event)"></i>
+                        <div class="ico">
+                          <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps',$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps',$event)"></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="widget-inner p-2">
-                    <div class="table-responsive communication-table">
-                      <table class="table position-relative">
-                        <thead class="thead-light no-wrap">
-                          <tr>
-                            <th class=""></th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Approval Type</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Start Date & Time</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">End Date & Time</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                    <div class="widget-inner p-2">
+                      <div class="table-responsive communication-table">
+                        <table class="table position-relative">
+                          <thead class="thead-light no-wrap">
+                            <tr>
+                              <th class=""></th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Approval Type</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Start Date & Time</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">End Date & Time</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
 
-                          <tr>
-                            <td class="">
-                              <ul class="m-0 p-0">
-                                <li class="">
-                                  <!-- <div class="share-button">
+                            <tr>
+                              <td class="">
+                                <ul class="m-0 p-0">
+                                  <li class="">
+                                    <!-- <div class="share-button">
                                     <input class="toggle-input" id="toggle-input" type="checkbox"
                                        />
                                     <label for="toggle-input" class="toggle"></label>
                                   </div> -->
-                                  <div class="">
-                                    <span class="material-icons add-bg" (click)="showPositionDialog('left')" >
-                                      add_circle
+                                    <div class="">
+                                      <span class="material-icons add-bg" (click)="showPositionDialog('left')">
+                                        add_circle
                                       </span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </td>
-                            <td>AAA,FULTRON</td>
-                            <td>Edited Punch</td>
-                            <td>04/06/2021 12:15</td>
-                            <td>04/06/2021 12:15</td>
-                            <td>Pending</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="pager d-flex justify-content-end mt-2">
-                      <div class="c">
-                        <span class="mr-2">Per page</span>
-                        <select class="border-0 mr-2">
-                          <option>5</option>
-                          <option>10</option>
-                          <option>15</option>
-                          <option>20</option>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td>AAA,FULTRON</td>
+                              <td>Edited Punch</td>
+                              <td>04/06/2021 12:15</td>
+                              <td>04/06/2021 12:15</td>
+                              <td>Pending</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="pager d-flex justify-content-end mt-2">
+                        <div class="c">
+                          <span class="mr-2">Per page</span>
+                          <select class="border-0 mr-2">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
 
-                        </select>
-                        <span class="mr-2">showing 10 of
-                          20
-                        </span>
+                          </select>
+                          <span class="mr-2">showing 10 of
+                            20
+                          </span>
 
-                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                        <button type="button" class="btn-common-small mx-2">Next</button>
+                          <button type="button" class="btn-common-small mx-2">Prev</button>
+                          <button type="button" class="btn-common-small mx-2">Next</button>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
-              </div>
-
+              </ng-container>
               <!-- =========================================== 2nd Widget============================= -->
+              <ng-container>
+                <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+                  <div class="widget-block h-auto xs-mar">
 
-              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-                <div class="widget-block h-auto xs-mar">
+                    <div class="widget-header row align-items-center peach-bg m-0">
+                      <div class="col-md-4"></div>
+                      <h5 class="text-white m-0 text-center col-md-3">DCS Messages</h5>
+                      <div class="col-md-5 d-flex justify-content-end align-items-center">
+                        <ng-autocomplete class="w-150" placeHolder="Search..">
+                        </ng-autocomplete>
 
-                  <div class="widget-header row align-items-center peach-bg m-0">
-                    <div class="col-md-4"></div>
-                    <h5 class="text-white m-0 text-center col-md-3">DCS Messages</h5>
-                    <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="Search..">
-                      </ng-autocomplete>
-
-                      <ng-template style="width: 100%;">
-                        <a></a>
-                      </ng-template>
-                      <div class="ico">
-                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'admissions',$event)"></i>
-                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'admissions',$event)"></i>
+                        <ng-template style="width: 100%;">
+                          <a></a>
+                        </ng-template>
+                        <div class="ico">
+                          <i class="fas fa-compress-alt min-1 px-2"
+                            (click)="widgetReSize(false,'admissions',$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'admissions',$event)"></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="widget-inner p-2">
-                    <div class="table-responsive communication-table">
-                      <table class="table position-relative">
-                        <thead class="thead-light no-wrap">
-                          <tr>
-                            <th scope="col"></th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Message Text</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Last Received</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="">
-                              <ul class="m-0 p-0">
-                                <li class="" (click)="op.toggle($event)">
-                                  <!-- <div class="share-button"  >
+                    <div class="widget-inner p-2">
+                      <div class="table-responsive communication-table">
+                        <table class="table position-relative">
+                          <thead class="thead-light no-wrap">
+                            <tr>
+                              <th scope="col"></th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Message Text</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Last Received</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="">
+                                <ul class="m-0 p-0">
+                                  <li class="" (click)="op.toggle($event)">
+                                    <!-- <div class="share-button"  >
                                     <input class="toggle-input" id="toggle-input1" type="checkbox"  />
                                     <label for="toggle-input1" class="toggle"  ></label>
                                   </div> -->
-                                  <div class="">
-                                    <span class="material-icons add-bg" (click)="op.toggle($event)" >
-                                      add_circle
+                                    <div class="">
+                                      <span class="material-icons add-bg" (click)="op.toggle($event)">
+                                        add_circle
                                       </span>
-                                  </div>
-                                  <!-- <div class="slider d-flex align-items-center">
+                                    </div>
+                                    <!-- <div class="slider d-flex align-items-center">
 
                                     <p class="blue-bg googleplus">
                                       <span>
@@ -170,217 +177,224 @@
                                       </span>
                                     </p>
                                   </div> -->
-                                </li>
-                              </ul>
-                            </td>
-                            <td>Abay,George</td>
-                            <td>Is my 2pm visit going to be rescheduled today ?</td>
-                            <td>04/03/2021 12:15 </td>
-                            <td  class="position-relative"><span class="material-icons">
-                                chat_bubble_outline
-                              </span>
-                              <span class="notification-badge">1</span>
-                            </td>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td>Abay,George</td>
+                              <td>Is my 2pm visit going to be rescheduled today ?</td>
+                              <td>04/03/2021 12:15 </td>
+                              <td class="position-relative"><span class="material-icons">
+                                  chat_bubble_outline
+                                </span>
+                                <span class="notification-badge">1</span>
+                              </td>
 
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- <div class="text-center no-data-text" >
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div class="text-center no-data-text" >
                           No Data To Display
                         </div> -->
-                    </div>
-                    <div class="pager mt-2 d-flex justify-content-end">
+                      </div>
+                      <div class="pager mt-2 d-flex justify-content-end">
 
-                      <div class="nav">
-                        <span class="mr-2">Per page</span>
-                        <select class="border-0 mr-2">
-                          <option>5</option>
-                          <option>10</option>
-                          <option>15</option>
-                          <option>20</option>
-                        </select>
-                        <span class="mr-2">showing
-                          10
-                          of 100 </span>
-                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                        <button type="button" class="btn-common-small mx-2">Next</button>
+                        <div class="nav">
+                          <span class="mr-2">Per page</span>
+                          <select class="border-0 mr-2">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                          </select>
+                          <span class="mr-2">showing
+                            10
+                            of 100 </span>
+                          <button type="button" class="btn-common-small mx-2">Prev</button>
+                          <button type="button" class="btn-common-small mx-2">Next</button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </ng-container>
             </div>
             <div class="row m-0">
-              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
-                <div class="widget-block h-auto">
-                  <div class="widget-header row align-items-center lightblue-bg m-0">
+              <ng-container>
+                <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                  <div class="widget-block h-auto">
+                    <div class="widget-header row align-items-center lightblue-bg m-0">
 
-                    <h5 class="text-white m-0 text-right col-md-7">Point of Care Release
-                      Notes/Training</h5>
-                    <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="Search..">
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;">
-                        <a></a>
-                      </ng-template>
-                      <div class="ico">
-                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'authorization')"></i>
-                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'authorization')"></i>
+                      <h5 class="text-white m-0 text-right col-md-7">Point of Care Release
+                        Notes/Training</h5>
+                      <div class="col-md-5 d-flex justify-content-end align-items-center">
+                        <ng-autocomplete class="w-150" placeHolder="Search..">
+                        </ng-autocomplete>
+                        <ng-template style="width: 100%;">
+                          <a></a>
+                        </ng-template>
+                        <div class="ico">
+                          <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'authorization')"></i>
+                          <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'authorization')"></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="widget-inner p-2">
-                    <div class="table-responsive communication-table">
-                      <table class="table position-relative">
-                        <thead class="thead-light no-wrap">
-                          <tr>
-                            <th class="align-middle AvenirLTStd-Heavy color-black notification">Notification</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black publish">Published On </th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Message</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
+                    <div class="widget-inner p-2">
+                      <div class="table-responsive communication-table">
+                        <table class="table position-relative">
+                          <thead class="thead-light no-wrap">
+                            <tr>
+                              <th class="align-middle AvenirLTStd-Heavy color-black notification">Notification</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black publish">Published On </th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Message</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
 
-                            <td>Release Notes 9.9</td>
-                            <td>01/03/2021 12:15 PM</td>
-                            <td><span class="material-icons color-light-blue">
-                                description
-                              </span></td>
+                              <td>Release Notes 9.9</td>
+                              <td>01/03/2021 12:15 PM</td>
+                              <td><span class="material-icons color-light-blue">
+                                  description
+                                </span></td>
 
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To
                           Display </div> -->
-                    </div>
-                    <div class="pager mt-2 d-flex justify-content-between">
-                      <div>
                       </div>
-                      <div class="nav">
-                        <span class="mr-2">Per page</span>
-                        <select class="border-0 mr-2">
-                          <option>5</option>
-                          <option>10</option>
-                          <option>15</option>
-                          <option>20</option>
-                        </select>
-                        <span class="mr-2">showing
-                          10
-                          of 20 </span>
-                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                        <button type="button" class="btn-common-small mx-2">Next</button>
-                      </div>
+                      <div class="pager mt-2 d-flex justify-content-between">
+                        <div>
+                        </div>
+                        <div class="nav">
+                          <span class="mr-2">Per page</span>
+                          <select class="border-0 mr-2">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                          </select>
+                          <span class="mr-2">showing
+                            10
+                            of 20 </span>
+                          <button type="button" class="btn-common-small mx-2">Prev</button>
+                          <button type="button" class="btn-common-small mx-2">Next</button>
+                        </div>
 
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-                <div class="widget-block h-auto">
-                  <div class="widget-header row align-items-center green-bg m-0">
-                    <div class="col-md-4"></div>
-                    <h5 class="text-white m-0 text-center col-md-3">Ams Alerts</h5>
-                    <div class="col-md-5 d-flex justify-content-end align-items-center">
-                      <ng-autocomplete class="w-150" placeHolder="Search..">
-                      </ng-autocomplete>
-                      <ng-template style="width: 100%;">
-                        <a></a>
-                      </ng-template>
+              </ng-container>
+              <ng-container>
+                <div class="col-md-6 col-xs-12 px-3  pb-2 pt-0 mr-0 xs-pad">
+                  <div class="widget-block h-auto">
+                    <div class="widget-header row align-items-center green-bg m-0">
+                      <div class="col-md-4"></div>
+                      <h5 class="text-white m-0 text-center col-md-3">Ams Alerts</h5>
+                      <div class="col-md-5 d-flex justify-content-end align-items-center">
+                        <ng-autocomplete class="w-150" placeHolder="Search..">
+                        </ng-autocomplete>
+                        <ng-template style="width: 100%;">
+                          <a></a>
+                        </ng-template>
 
-                      <div class="btn-group" dropdown container="body"  autoClose="auto" insideClick="false">
-                        <span class="mx-2" dropdownToggle>
-                          <i class="pi pi-filter"></i>
-                        </span>
-                      <div id="dropdown-basic" *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
-                        <div class="form-group form-input">
-                          <input type="text" placeholder="Search By" class="form-control">
+                        <div class="btn-group" [autoClose]="false"  dropdown container="body" autoClose="auto" insideClick="false">
+                          <span class="mx-2" dropdownToggle>
+                            <i class="pi pi-filter"></i>
+                          </span>
+                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="Search By" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" bsDaterangepicker placeholder="Start & End Date" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="-Select-" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="-Select Application-" class="form-control">
+                            </div>
+                            <div class="form-group form-input">
+                              <input type="text" placeholder="-Select Alert Definition-" class="form-control">
+                            </div>
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                  class="pi pi-search mr-2"></i>Search</button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group form-input">
-                          <input type="text" placeholder="Start & End Date" class="form-control">
-                        </div>
-                        <div class="form-group form-input">
-                          <input type="text" placeholder="-Select-" class="form-control">
-                        </div>
-                        <div class="form-group form-input">
-                          <input type="text" placeholder="-Select Application-" class="form-control">
-                        </div>
-                        <div class="form-group form-input">
-                          <input type="text" placeholder="-Select Alert Definition-" class="form-control">
-                        </div>
-                        <div class="text-right">
-                          <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i  class="pi pi-search mr-2"></i>Search</button>
+
+
+
+
+                        <div class="ico">
+                          <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'dcs')"></i>
+                          <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'dcs')"></i>
                         </div>
                       </div>
                     </div>
-
-
-
-
-                      <div class="ico">
-                        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'dcs')"></i>
-                        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'dcs')"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="widget-inner p-2">
-                    <div class="table-responsive communication-table">
-                      <table class="table position-relative">
-                        <thead class="thead-light no-wrap">
-                          <tr>
-                       <th></th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
-                            <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="align-middle color-black">
-                              <div class="position-relative hover-btn">
-                                <span class="material-icons">
-                                  more_vert
+                    <div class="widget-inner p-2">
+                      <div class="table-responsive communication-table">
+                        <table class="table position-relative">
+                          <thead class="thead-light no-wrap">
+                            <tr>
+                              <th></th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="align-middle color-black">
+                                <div class="position-relative hover-btn">
+                                  <span class="material-icons">
+                                    more_vert
                                   </span>
                                   <div class=" align-items-center btn-hover-content">
                                     <button pButton type="button" label="Close" icon="pi pi-save" iconPos="left"
-                                class="p-button-success p-button ml-2"></button>
-                                <button pButton type="button" label="Dismiss" icon="pi pi-save" iconPos="left"
-                                class="p-button-success p-button ml-2"></button>
-                                <button pButton type="button" label="More" icon="pi pi-save" iconPos="left"
-                                class="p-button-success p-button ml-2"></button>
+                                      class="p-button-success p-button ml-2"></button>
+                                    <button pButton type="button" label="Dismiss" icon="pi pi-save" iconPos="left"
+                                      class="p-button-success p-button ml-2"></button>
+                                    <button pButton type="button" label="More" icon="pi pi-save" iconPos="left"
+                                      class="p-button-success p-button ml-2"></button>
                                   </div>
-                              </div>
+                                </div>
                               </td>
-                            <td>Open Shift Alert</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quidem perferendis quo
-                              optio expedita amet assumenda quas ration.</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <!-- <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div> -->
-                    </div>
-                    <div class="pager d-flex justify-content-between mt-2">
-                      <div>
+                              <td>Open Shift Alert</td>
+                              <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quidem perferendis
+                                quo
+                                optio expedita amet assumenda quas ration.</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div> -->
                       </div>
-                      <div class="nav">
-                        <span class="mr-2">Per page</span>
-                        <select class="border-0 mr-2">
-                          <option>5</option>
-                          <option>10</option>
-                          <option>15</option>
-                          <option>20</option>
-                        </select>
-                        <span class="mr-2">showing 20
-                          of
-                          100 </span>
-                        <button type="button" class="btn-common-small mx-2">Prev</button>
-                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      <div class="pager d-flex justify-content-between mt-2">
+                        <div>
+                        </div>
+                        <div class="nav">
+                          <span class="mr-2">Per page</span>
+                          <select class="border-0 mr-2">
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                          </select>
+                          <span class="mr-2">showing 20
+                            of
+                            100 </span>
+                          <button type="button" class="btn-common-small mx-2">Prev</button>
+                          <button type="button" class="btn-common-small mx-2">Next</button>
+                        </div>
                       </div>
                     </div>
+
                   </div>
 
                 </div>
-
-              </div>
+              </ng-container>
             </div>
           </div>
         </div>

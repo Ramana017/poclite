@@ -67,8 +67,8 @@ const routes: Routes = [
       { path: "telephony", component: PsTelephonyComponent },
     ]
   },
-  {path: "communication-dashboard",component:CommunicationDashboardComponent},
-  { path: "page-not-found", component: PageNotFoundComponent },
+  {path: "communication-dashboard",canActivate: [AuthGuard], component:CommunicationDashboardComponent},
+  { path: "page-not-found",canActivate: [AuthGuard], component: PageNotFoundComponent },
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: 'admission', canActivate: [AuthGuard],loadChildren: () => import('./admission/admission.module').then(m => m.AdmissionModule) },

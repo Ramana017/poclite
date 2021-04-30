@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -7,10 +8,11 @@ declare var $: any;
 })
 export class CommunicationDashboardComponent implements OnInit {
   customers: any = [];
-  constructor() { }
+  constructor(public ngxspineer:NgxSpinnerService) { }
   public screenWidth: any;
   public screenHeight: any;
   public abcd: boolean = false;
+  public date=[new Date(),(new Date())];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
@@ -190,10 +192,11 @@ export class CommunicationDashboardComponent implements OnInit {
     this.position = position;
     this.displayPosition = true;
   }
-  // filter(filter) {
-  //   console.log(filter)
-  //   if (filter === "approval") {
-  //     this.appapproval = true;
-  //   }
-  // }
+
+
+  public appApprovalsFilter(template){
+
+    template.hide()
+
+  }
 }
