@@ -8,9 +8,10 @@
           <div class="cards-content w-100">
             <div class="row m-0">
               <ng-container>
-                <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+                
 
                 <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+                  <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
                   <div class="widget-block h-auto">
                     <div class="widget-header row align-items-center blue-bg m-0 nav">
                       <div class="col-md-4 col-0"></div>
@@ -25,7 +26,7 @@
 
 
                         <div class="btn-group" #filter="bs-dropdown" (click)="ngxspineer.show('spinner1')" dropdown [autoClose]="false" [insideClick]="true"
-                          container="body" placement="left" autoClose="auto" insideClick="false">
+                           placement="left" >
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
                           </span>
@@ -299,30 +300,33 @@
                           <a></a>
                         </ng-template>
 
-                        <div class="btn-group" [autoClose]="false"  dropdown container="body" autoClose="auto" insideClick="false">
+                        <div class="btn-group" [autoClose]="false"  dropdown container="body" insideClick="false">
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
                           </span>
                           <div id="dropdown-basic" *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
-                            <div class="form-group form-input">
-                              <input type="text" placeholder="Search By" class="form-control">
+                            <div class="row">
+                              <div class="form-group form-input col-6">
+                                <input type="text" placeholder="Search By" class="form-control">
+                              </div>
+                              <div class="form-group form-input col-6">
+                                <input type="text" bsDaterangepicker placeholder="Start & End Date" class="form-control">
+                              </div>
+                              <div class="form-group form-input col-6">
+                                <input type="text" placeholder="-Select-" class="form-control">
+                              </div>
+                              <div class="form-group form-input col-6">
+                                <input type="text" placeholder="-Select Application-" class="form-control">
+                              </div>
+                              <div class="form-group form-input col-6">
+                                <input type="text" placeholder="-Select Alert Definition-" class="form-control">
+                              </div>
+                              <div class="text-right col-6">
+                                <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                    class="pi pi-search mr-2"></i>Search</button>
+                              </div>
                             </div>
-                            <div class="form-group form-input">
-                              <input type="text" bsDaterangepicker placeholder="Start & End Date" class="form-control">
-                            </div>
-                            <div class="form-group form-input">
-                              <input type="text" placeholder="-Select-" class="form-control">
-                            </div>
-                            <div class="form-group form-input">
-                              <input type="text" placeholder="-Select Application-" class="form-control">
-                            </div>
-                            <div class="form-group form-input">
-                              <input type="text" placeholder="-Select Alert Definition-" class="form-control">
-                            </div>
-                            <div class="text-right">
-                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
-                                  class="pi pi-search mr-2"></i>Search</button>
-                            </div>
+                        
                           </div>
                         </div>
 
@@ -353,12 +357,12 @@
                                     more_vert
                                   </span>
                                   <div class=" align-items-center btn-hover-content">
-                                    <button pButton type="button" label="Close" icon="pi pi-save" iconPos="left"
-                                      class="p-button-success p-button ml-2"></button>
-                                    <button pButton type="button" label="Dismiss" icon="pi pi-save" iconPos="left"
-                                      class="p-button-success p-button ml-2"></button>
-                                    <button pButton type="button" label="More" icon="pi pi-save" iconPos="left"
-                                      class="p-button-success p-button ml-2"></button>
+                                    <button pButton type="button" label="Close" icon="pi pi-times" iconPos="left"
+                                      class="p-button-secondary p-button ml-2"></button>
+                                    <button pButton type="button" label="Dismiss" icon="pi pi-times" iconPos="left"
+                                      class="p-button-danger p-button ml-2"></button>
+                                    <button pButton type="button" label="More"  iconPos="left"
+                                      class="p-button-info p-button ml-2"></button>
                                   </div>
                                 </div>
                               </td>
