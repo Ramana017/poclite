@@ -2445,3 +2445,6 @@ app-maintainence {
     height: 36vh !important;
   }
 }
+.pure-checkbox input[type=checkbox]+label{
+  white-space: initial;
+}
