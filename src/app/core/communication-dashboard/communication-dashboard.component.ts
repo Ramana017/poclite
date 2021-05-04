@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -8,7 +9,7 @@ declare var $: any;
 })
 export class CommunicationDashboardComponent implements OnInit {
   customers: any = [];
-  constructor(public ngxspineer:NgxSpinnerService) { }
+  constructor(public ngxspineer:NgxSpinnerService,public amsService:AmsAlertsServiceService) { }
   public screenWidth: any;
   public screenHeight: any;
   public abcd: boolean = false;
@@ -192,11 +193,10 @@ export class CommunicationDashboardComponent implements OnInit {
     this.position = position;
     this.displayPosition = true;
   }
-
-
   public appApprovalsFilter(template){
 
     template.hide()
 
   }
+
 }

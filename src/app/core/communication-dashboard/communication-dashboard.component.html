@@ -8,7 +8,7 @@
           <div class="cards-content w-100">
             <div class="row m-0">
               <ng-container>
-                
+
 
                 <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                   <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
@@ -25,7 +25,7 @@
                         </ng-template>
 
 
-                        <div class="btn-group" #filter="bs-dropdown" (click)="ngxspineer.show('spinner1')" dropdown [autoClose]="false" [insideClick]="true"
+                        <div class="btn-group" #filter="bs-dropdown"  dropdown [autoClose]="false" [insideClick]="true"
                            placement="left" >
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
@@ -82,7 +82,7 @@
                                     <label for="toggle-input" class="toggle"></label>
                                   </div> -->
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showPositionDialog('left')">
+                                      <span class="material-icons add-bg" (click)=" ('left')">
                                         add_circle
                                       </span>
                                     </div>
@@ -310,7 +310,7 @@
                                 <input type="text" placeholder="Search By" class="form-control">
                               </div>
                               <div class="form-group form-input col-6">
-                                <input type="text" bsDaterangepicker placeholder="Start & End Date" class="form-control">
+                                <input type="text" bsDaterangepicker  [bsConfig]="{ adaptivePosition: true }" placeholder="Start & End Date" class="form-control">
                               </div>
                               <div class="form-group form-input col-6">
                                 <input type="text" placeholder="-Select-" class="form-control">
@@ -326,7 +326,7 @@
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
                             </div>
-                        
+
                           </div>
                         </div>
 
