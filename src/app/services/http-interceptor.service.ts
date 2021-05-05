@@ -3,13 +3,19 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, finalize, tap } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpInterceptorService implements HttpInterceptor {
   public count = 0;
-  constructor(public spinner: NgxSpinnerService) { }
+  constructor(public spinner: NgxSpinnerService,private router:Router) { }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    console.log(this.router.url,this.router.url != "/communication-dashboard")
+    if(this.router.url!="/communication-dashboard")
+    {
     this.spinner.show();
 
     this.count++;
@@ -21,7 +27,7 @@ export class HttpInterceptorService implements HttpInterceptor {
           //console.log(event),
         },
         error => {
-          //console.log(error)
+          console.log(error)
         }
       ), finalize(() => {
         this.count--;
@@ -36,4 +42,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       })
       );
   }
+  else{
+return next.handle(req) ;
+  }}
 }

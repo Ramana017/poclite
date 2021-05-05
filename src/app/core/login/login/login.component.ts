@@ -70,6 +70,8 @@ export class LoginComponent implements OnInit {
             } else {
               this.loginFailed = false;
               this.appService.setUserLoggedIn(true)
+              let obj={"username":this.loginForm.value.email,"password":this.loginForm.value.password};
+              sessionStorage.setItem(btoa('logindetils'),btoa(JSON.stringify(obj)))
               sessionStorage.setItem('useraccount', JSON.stringify(this.responsedata));
               this.responsedata.priviledFlag=="all"||this.responsedata.priviledFlag=="schedule"? this._router.navigateByUrl('summary'): this._router.navigateByUrl('widgets')
 
