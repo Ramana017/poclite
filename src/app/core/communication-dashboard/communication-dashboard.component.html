@@ -8,8 +8,6 @@
           <div class="cards-content w-100">
             <div class="row m-0">
               <ng-container>
-
-
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
                   <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
                   </ngx-spinner>
@@ -17,15 +15,12 @@
                     <div class="widget-header row align-items-center blue-bg m-0 nav justify-content-between">
                       <!-- <div class="col-md-4 col-0"></div> -->
                       <h5 class="text-white m-0 text-right col-md-6 col-12">App Approvals</h5>
-
                       <div class="col-md-5 col-12 d-flex justify-content-end align-items-center ">
                         <ng-autocomplete class="w-150" placeHolder="Search DCS">
                         </ng-autocomplete>
                         <ng-template style="width: 100%;" let-item>
                           <a [innerHTML]="item.PSName"></a>
                         </ng-template>
-
-
                         <div class="btn-group" #filter="bs-dropdown" dropdown [autoClose]="false" [insideClick]="true"
                           placement="left">
                           <span class="mx-2" dropdownToggle>
@@ -55,7 +50,6 @@
                                   (click)="appApprovalsFilter(filter)"><i class="pi pi-search mr-2"></i>Search</button>
                               </div>
                             </div>
-
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
@@ -64,7 +58,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="widget-inner p-2">
                       <div class="table-responsive communication-table">
                         <table class="table position-relative">
@@ -113,18 +106,15 @@
                             <option>10</option>
                             <option>15</option>
                             <option>20</option>
-
                           </select>
                           <span class="mr-2">showing 10 of
                             20
                           </span>
-
                           <button type="button" class="btn-common-small mx-2">Prev</button>
                           <button type="button" class="btn-common-small mx-2">Next</button>
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </ng-container>
