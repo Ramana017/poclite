@@ -188,7 +188,7 @@ https://fortawesome.github.io/Font-Awesome/
                 // Cross Icon Bars
                 &:after,
                 &:before {
-                    background-color: #ffffff;
+                    background-color: $white;
                     content: "";
                     height: 3px;
                     width: 19px;
@@ -268,7 +268,7 @@ https://fortawesome.github.io/Font-Awesome/
             // &-input:checked + .toggle, &-input:hover + .toggle {
             //   // Cross Icon Bars
             //   &:after, &:before {
-            //       background-color: #ffffff;
+            //       background-color: $white;
             //       content: "";
             //       height: 3px;
             //       width: 19px;
@@ -335,7 +335,7 @@ https://fortawesome.github.io/Font-Awesome/
         //     line-height: 30px;
         //     text-indent: 0;
         //     // box-shadow: inset 0 0 0 1px $toggle;
-        //    background: #ffffff;
+        //    background: $white;
         //   }
         // Twitter
         .twitter {
@@ -607,7 +607,7 @@ https://fortawesome.github.io/Font-Awesome/
         // //   font-size: 22px;
         // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         // //   color: #C4C2BB;
-        // //   text-shadow: 1px 1px 0px #FFFFFF;
+        // //   text-shadow: 1px 1px 0px $white;
         // //   letter-spacing: 0.5px;
         // // }
         // // // Center the icon
@@ -700,7 +700,7 @@ https://fortawesome.github.io/Font-Awesome/
             transition: all 0.6s ease;
             margin: 0;
             border-radius: 50%;
-            // background: #ffffff;
+            // background: $white;
             // widows: 35px;
             // height: 35px;
             background: white;

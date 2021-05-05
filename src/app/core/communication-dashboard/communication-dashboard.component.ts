@@ -82,7 +82,7 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .hasClass('col-md-6')
+          .hasClass('col-lg-6')
       ) {
         $(this)
           .parent()
@@ -90,14 +90,14 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .addClass('col-md-12');
+          .addClass('col-lg-12');
         $(this)
           .parent()
           .parent()
           .parent()
           .parent()
           .parent()
-          .removeClass('col-md-6');
+          .removeClass('col-lg-6');
       }
     });
 
@@ -128,7 +128,7 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .hasClass('col-md-12')
+          .hasClass('col-lg-12')
       ) {
         $(this)
           .parent()
@@ -136,14 +136,14 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .addClass('col-md-6');
+          .addClass('col-lg-6');
         $(this)
           .parent()
           .parent()
           .parent()
           .parent()
           .parent()
-          .removeClass('col-md-12');
+          .removeClass('col-lg-12');
       }
     });
   }

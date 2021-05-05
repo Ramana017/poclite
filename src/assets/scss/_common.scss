@@ -49,7 +49,7 @@
   // }
   .dropdown-open {
     width: 40%;
-    background: #fff;
+    background: $white;
     overflow-y: auto;
     top: 77%;
     right: 10%;
@@ -62,7 +62,7 @@
       top: -20px;
       right: 15px;
       border: 10px solid;
-      border-color: transparent transparent #fff transparent;
+      border-color: transparent transparent $white transparent;
     }
   }
 }
@@ -903,8 +903,8 @@ modal-container {
 // ==========================sessiontimeoutstyles=====================
 .timepopup {
   .modal-header {
-    background-color: #343a40;
-    color: #fff;
+    background-color: $heading-bg;
+    color: $white;
     position: sticky;
   }
 
@@ -1087,7 +1087,7 @@ select:focus {
 //     display: flex;
 //     align-items: center;
 //     justify-content: center;
-//     color: #ffffff;
+//     color: $white;
 //     z-index: 5;
 //   }
 // ng-autocomplete code
@@ -1166,7 +1166,7 @@ input[type="number"] {
 .icons {
   cursor: pointer;
   background-color: #145194;
-  color: #fff;
+  color: $white;
   width: 30px;
   height: 30px;
   // font-size: 15px;
@@ -1219,7 +1219,7 @@ input[type="number"] {
 
 .title-button {
   background: none;
-  color: #ffffff;
+  color: $white;
   font-size: 14px;
 }
 
@@ -1239,7 +1239,7 @@ input[type="number"] {
   justify-content: center;
   align-items: center;
   letter-spacing: normal;
-  color: #ffffff;
+  color: $white;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
   cursor: pointer;
   border-top-left-radius: 0px;
@@ -1342,7 +1342,7 @@ input[type="number"] {
   }
 
   .form-input .form-control {
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
@@ -1370,7 +1370,7 @@ input[type="number"] {
       &:before {
         content: "";
         display: block;
-        background-color: #fff;
+        background-color: $white;
         // box-shadow: 0 0 0 1px #949494;
         bottom: 4px;
         height: 16px;
@@ -1389,7 +1389,7 @@ input[type="number"] {
         font-size: 9px;
         font-weight: bold;
         content: "No";
-        color: #ffff;
+        color: $white;
         padding-left: 23px;
         transition: all 0.4s;
       }
@@ -1409,7 +1409,7 @@ input[type="number"] {
 
       &:after {
         content: "Yes";
-        color: #ffffff;
+        color: $white;
         padding-left: 6px;
       }
     }
@@ -1536,7 +1536,7 @@ th {
 
 .compliance-content-wrapper {
   padding: 15px;
-  border: 2px solid #343a40;
+  border: 2px solid $heading-bg;
   position: relative;
   border-radius: 5px;
 
@@ -1554,7 +1554,7 @@ th {
 
 .screen-name {
   width: auto;
-  // background-color: #343a40;
+  // background-color: $heading-bg;
   padding: 8px;
   -webkit-border-top-left-radius: 20px;
   -webkit-border-bottom-right-radius: 20px;
@@ -1565,7 +1565,7 @@ th {
   position: absolute;
   top: -19px;
   right: 30px;
-  // color: #fff;
+  // color: $white;
   background-color: #a88746;
   // padding: 8px;
   // -webkit-border-top-left-radius: 20px;
@@ -1577,7 +1577,7 @@ th {
   // position: absolute;
   // top: -19px;
   // right: 30px;
-  color: #fff;
+  color: $white;
   font-size: 15px;
   /* font-weight: 600; */
   font-family: "AvenirLTStd-Heavy";
@@ -1589,7 +1589,7 @@ th {
   border-radius: 500px;
   width: 80px;
   margin: 0 auto;
-  color: #fff;
+  color: $white;
   cursor: pointer;
 
 }
@@ -1710,7 +1710,7 @@ app-analytics,
 app-maintainence {
   .table-responsive {
     .table {
-      background: #fff;
+      background: $white;
     }
   }
 }
@@ -1718,10 +1718,10 @@ app-maintainence {
 .utilization-table {
   .table-responsive {
     height: 76vh;
-    background: #fff;
+    background: $white;
 
     table {
-      background: #fff;
+      background: $white;
 
       thead {
         th {
@@ -1771,7 +1771,7 @@ app-maintainence {
 .filter {
   font-size: 20px;
   margin-bottom: 5px;
-  color: #343a40;
+  color: $heading-bg;
 
 
 }
@@ -1792,10 +1792,10 @@ app-maintainence {
     -webkit-border-bottom-left-radius: 8px !important;
     background: rgb(0 117 255) !important;
     margin: 10px;
-    color: #fff;
+    color: $white;
 
     &.active {
-      background: #343a40 !important;
+      background: $heading-bg !important;
     }
   }
 
@@ -1838,7 +1838,7 @@ app-maintainence {
   position: sticky;
 
   z-index: 99;
-  background-color: #fff;
+  background-color: $white;
 
 }
 
@@ -1882,7 +1882,7 @@ app-maintainence {
   border-top-right-radius: 10px;
 
   &.active {
-    background: #343a40 !important;
+    background: $heading-bg !important;
   }
 }
 
@@ -1890,7 +1890,7 @@ app-maintainence {
 
   .nav-pills .nav-link.active,
   .nav-pills .show>.nav-link {
-    color: #fff;
+    color: $white;
     background-color: #1a5092;
     font-size: 18px;
     width: 40px;
@@ -1907,7 +1907,7 @@ app-maintainence {
     ;
     font-size: 18px;
     width: 40px;
-    // color: #fff !important;
+    // color: $white !important;
     height: 40px;
     border-radius: 50% !important;
     display: flex;
@@ -1919,7 +1919,7 @@ app-maintainence {
 .navigation {
 
   .nav-link {
-    background: #ffffff;
+    background: $white;
     border-radius: 12px;
     /* border: 1px solid; */
     font-size: 14px;
@@ -1950,8 +1950,8 @@ app-maintainence {
 
     // max-height: 100vh !important;
     .btn-primary {
-      background-color: #343a40 !important;
-      border-color: #343a40 !important;
+      background-color: $heading-bg !important;
+      border-color: $heading-bg !important;
     }
 
     .bd-example-table {
@@ -1993,7 +1993,7 @@ app-maintainence {
   /* text-align: justify; */
   justify-content: center;
   background-color: #6f8ba4;
-  color: #fff !important;
+  color: $white !important;
   position: relative;
   height: 40px;
   font-weight: normal;
@@ -2269,7 +2269,7 @@ app-maintainence {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #fff;
+  background: $white;
   border-radius: 4px;
   position: relative;
   z-index: 1;
@@ -2369,7 +2369,7 @@ app-maintainence {
   position: fixed;
   right: 0px;
   font-size: 18px;
-  background: #343a40;
+  background: $heading-bg;
   ;
   color: white;
   top: 93px;

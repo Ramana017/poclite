@@ -4,9 +4,9 @@
     //     width: 450px;
     // }
     a {
-        color: #fff;
+        color: $white;
         &:hover {
-            color: #fff;
+            color: $white;
         }
     }
     .cms-widget-content {
@@ -107,7 +107,7 @@
         padding: 10px;
         border-radius: 50%;
         // background-color: $blue;
-        color: #fff;
+        color: $white;
         font-size: 14px;
         margin-right: 10px;
     }
@@ -167,7 +167,7 @@ https://fortawesome.github.io/Font-Awesome/
                 // Cross Icon Bars
                 &:after,
                 &:before {
-                    background-color: #ffffff;
+                    background-color: $white;
                     content: "";
                     height: 3px;
                     width: 19px;
@@ -247,7 +247,7 @@ https://fortawesome.github.io/Font-Awesome/
             // &-input:checked + .toggle, &-input:hover + .toggle {
             //   // Cross Icon Bars
             //   &:after, &:before {
-            //       background-color: #ffffff;
+            //       background-color: $white;
             //       content: "";
             //       height: 3px;
             //       width: 19px;
@@ -314,7 +314,7 @@ https://fortawesome.github.io/Font-Awesome/
         //     line-height: 30px;
         //     text-indent: 0;
         //     // box-shadow: inset 0 0 0 1px $toggle;
-        //    background: #ffffff;
+        //    background: $white;
         //   }
         // Twitter
         .twitter {
@@ -403,7 +403,7 @@ https://fortawesome.github.io/Font-Awesome/
         //     opacity: 0;
         // 	}
         //   30.001% {
-        //     background-color: #fff;
+        //     background-color: $white;
         //     left: 10px;
         //     top: 22px;
         //     content: "";
@@ -450,7 +450,7 @@ https://fortawesome.github.io/Font-Awesome/
         // //   font-size: 22px;
         // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         // //   color: #C4C2BB;
-        // //   text-shadow: 1px 1px 0px #FFFFFF;
+        // //   text-shadow: 1px 1px 0px $white;
         // //   letter-spacing: 0.5px;
         // // }
         // // // Center the icon
@@ -478,7 +478,7 @@ https://fortawesome.github.io/Font-Awesome/
         //   text-transform: uppercase;
         //   font-size: 16px;
         //   font-weight: 900;
-        //   color: #fff;
+        //   color: $white;
         //   text-align: center;
         //   line-height: 50px;
         //   opacity: 0;
@@ -512,7 +512,7 @@ https://fortawesome.github.io/Font-Awesome/
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 20px;
-            color: #fff;
+            color: $white;
         }
         ul li.facebook {
             // background: #76bc43;
@@ -535,14 +535,14 @@ https://fortawesome.github.io/Font-Awesome/
             text-transform: uppercase;
             font-size: 16px;
             font-weight: 900;
-            color: #fff;
+            color: $white;
             text-align: center;
             line-height: 50px;
             opacity: 0;
             transition: all 0.6s ease;
             margin: 0;
             border-radius: 50%;
-            // background: #ffffff;
+            // background: $white;
             // widows: 35px;
             // height: 35px;
             background: white;
@@ -722,7 +722,7 @@ https://fortawesome.github.io/Font-Awesome/
     // float: right;
     .btn-common-small {
         font-size: 15px;
-        color: #ffffff;
+        color: $white;
         font-weight: 500;
         background-color: $green;
         width: 50px;
@@ -819,7 +819,7 @@ ul {
 // ===============Global button styles===========
 .btn-common {
     font-size: 15px;
-    color: #ffffff;
+    color: $white;
     font-weight: 500;
     width: 120px;
     height: 35px;
@@ -968,7 +968,7 @@ https://fortawesome.github.io/Font-Awesome/
             // Cross Icon Bars
             &:after,
             &:before {
-                background-color: #ffffff;
+                background-color: $white;
                 content: "";
                 height: 3px;
                 width: 19px;
@@ -997,7 +997,7 @@ https://fortawesome.github.io/Font-Awesome/
         display: block;
         border-radius: 25px;
         cursor: pointer;
-        color: #ffffff;
+        color: $white;
         // box-shadow: inset 0 0 0 1px #C8C7C0;
         background: #76bc43;
         // Toggle Button Hover
@@ -1031,7 +1031,7 @@ https://fortawesome.github.io/Font-Awesome/
         // &-input:checked + .toggle, &-input:hover + .toggle {
         //   // Cross Icon Bars
         //   &:after, &:before {
-        //       background-color: #ffffff;
+        //       background-color: $white;
         //       content: "";
         //       height: 3px;
         //       width: 19px;
@@ -1098,7 +1098,7 @@ https://fortawesome.github.io/Font-Awesome/
     //     line-height: 30px;
     //     text-indent: 0;
     //     // box-shadow: inset 0 0 0 1px $toggle;
-    //    background: #ffffff;
+    //    background: $white;
     //   }
     // Twitter
     .twitter {
@@ -1187,7 +1187,7 @@ https://fortawesome.github.io/Font-Awesome/
     //     opacity: 0;
     // 	}
     //   30.001% {
-    //     background-color: #fff;
+    //     background-color: $white;
     //     left: 10px;
     //     top: 22px;
     //     content: "";
@@ -1234,7 +1234,7 @@ https://fortawesome.github.io/Font-Awesome/
     // //   font-size: 22px;
     // //   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     // //   color: #C4C2BB;
-    // //   text-shadow: 1px 1px 0px #FFFFFF;
+    // //   text-shadow: 1px 1px 0px $white;
     // //   letter-spacing: 0.5px;
     // // }
     // // // Center the icon
@@ -1262,7 +1262,7 @@ https://fortawesome.github.io/Font-Awesome/
     //   text-transform: uppercase;
     //   font-size: 16px;
     //   font-weight: 900;
-    //   color: #fff;
+    //   color: $white;
     //   text-align: center;
     //   line-height: 50px;
     //   opacity: 0;
@@ -1296,7 +1296,7 @@ https://fortawesome.github.io/Font-Awesome/
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 20px;
-        color: #fff;
+        color: $white;
     }
     ul li.facebook {
         // background: #76bc43;
@@ -1319,14 +1319,14 @@ https://fortawesome.github.io/Font-Awesome/
         text-transform: uppercase;
         font-size: 16px;
         font-weight: 900;
-        color: #fff;
+        color: $white;
         text-align: center;
         line-height: 50px;
         opacity: 0;
         transition: all 0.6s ease;
         margin: 0;
         border-radius: 50%;
-        // background: #ffffff;
+        // background: $white;
         // widows: 35px;
         // height: 35px;
         background: white;

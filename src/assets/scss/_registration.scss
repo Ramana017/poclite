@@ -15,7 +15,7 @@
 }
 
 .tab-list-content {
-  color: #ffffff !important;
+  color: $white !important;
   background: #145194;
   text-decoration: none;
   border-style: none;
@@ -269,7 +269,7 @@ width: 100% !important;
 
 .btn-next {
   font-size: 15px;
-  color: #ffffff;
+  color: $white;
   font-weight: 500;
   width: 120px;
   height: 35px;
