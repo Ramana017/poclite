@@ -31,6 +31,7 @@ export class CommunicationDashboardComponent implements OnInit {
   ngOnInit(): void {
 
     this.authenticateUserForDevices();
+    this.getAlertButtonDetails();
     this.resize();
     // this.widgetReSize()
     this.customers = [
@@ -237,12 +238,59 @@ export class CommunicationDashboardComponent implements OnInit {
     "status": 1
   }]
 
-
+  public amsAuthenicateResponse: any;
+  public alertDefinitionList = [];
+  public applicationId = 0;
+  public alertFlag = 0;
+  public alertButtonDetails: any;
+  public alertbuttons=[];
   public authenticateUserForDevices() {
     try {
       this.amsService.authenticateUserForDevices().subscribe(res => {
         console.log(res);
+        this.amsAuthenicateResponse = res;
       })
+    } catch (error) {
+
+    }
+  }
+
+  public getAlertDefinitionList() {
+    try {
+      this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
+        .subscribe(res => {
+          console.log(res);
+        })
+    } catch (error) {
+
+    }
+  }
+
+  public ram:string="";
+
+  public getAlertButtonDetails() {
+    this.alertButtonDetails=[{
+      "confirmPrompt": "null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?",
+      "AmsActionIds": "0,1,2",
+      "errorCode": 0,
+      "actions": "null,null,null",
+      "captions": "Close,Dismiss,Action Taken"
+  }];
+  console.log(this.alertButtonDetails[0].captions.split(','))
+    this.alertbuttons=this.alertButtonDetails[0].captions.split(',');
+    try {
+      // this.amsService.getAlertButtonDetails(this.applicationId, this.alertFlag,this.amsAuthenicateResponse.userId, this.amsAuthenicateResponse?.sessionId).subscribe(res => {
+      //   console.log(res);
+      //   this.alertButtonDetails=[{
+      //     "confirmPrompt": "null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?",
+      //     "AmsActionIds": "0,1,2",
+      //     "errorCode": 0,
+      //     "actions": "null,null,null",
+      //     "captions": "Close,Dismiss,Action Taken"
+      // }];
+      // console.log(this.alertButtonDetails[0].captions.split(','))
+      //   this.alertbuttons=this.alertButtonDetails[0].captions.split(',');
+      // })
     } catch (error) {
 
     }
