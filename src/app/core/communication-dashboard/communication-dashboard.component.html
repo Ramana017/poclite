@@ -346,7 +346,7 @@
                                 <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination" [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                               </div>
                               <div class="text-right col-12">
-                                <button (click)="onAmsSearch()" (click)="appApprovalsFilter(filter2)" type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                <button (click)="onAmsSearch(filter2)"  type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
                             </div>
