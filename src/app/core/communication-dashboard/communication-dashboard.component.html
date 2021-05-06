@@ -375,7 +375,11 @@
                                   </span>
 
                                   <div class=" align-items-center btn-hover-content">
-                                    <button *ngFor="let button of alertbuttons;let i=index" pButton type="button" [label]="button"  class="p-button-secondary p-button ml-2"></button>
+                                    <div *ngFor="let button of alertbuttons;let i=index" class="mr-2">
+                                      <button  pButton type="button" [label]="button"  
+                                      class="p-button-secondary p-button "></button>
+                                    </div>
+                                    
 
                                   </div>
                                 </div>

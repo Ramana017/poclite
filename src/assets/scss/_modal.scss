@@ -264,7 +264,10 @@ div#exampleModal {
    .btn-hover-content{
     display: flex;
     position: absolute;
-    left: 10px;
+    left: 15px;
+    .p-button-label{
+      white-space: nowrap;
+    }
    }
  }
 }
