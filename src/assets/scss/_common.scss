@@ -2448,3 +2448,17 @@ app-maintainence {
 .pure-checkbox input[type=checkbox]+label{
   white-space: initial;
 }
+.alert-dropdown{
+  .p-dropdown{
+    background-color: #e9ecef;
+    border: 0;
+    font-size: 15px    ;
+    box-shadow: 2px 2px 3px #ccc;
+    color: #000000 !important;
+    width: 100%;
+  }
+.p-dropdown-label{
+  color:#000;
+   font-size:15px;
+}
+}
