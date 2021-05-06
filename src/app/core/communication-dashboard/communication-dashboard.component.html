@@ -146,7 +146,7 @@
 
                             <div class="form-group form-input">
                               <input type="text" bsDaterangepicker [(ngModel)]="date" readonly
-                                placeholder="Requested On" class="form-control">
+                                placeholder="Requested On" class="form-control" placement="left">
                             </div>
 
                             <div class="text-right">
@@ -336,14 +336,14 @@
                               <!-- <div class="form-group form-input col-6">
                                 <input type="text" placeholder="-Select-" class="form-control">
                               </div> -->
-                              <div class="form-group form-input col-6">
+                              <div class="form-group form-input col-6 alert-dropdown">
                                 <p-dropdown [options]="applicationList" placeholder="Select Application" [(ngModel)]="applicationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
 
                               </div>
-                              <div class="form-group form-input col-6">
+                              <div class="form-group form-input col-6 alert-dropdown">
                                 <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination" [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                               </div>
-                              <div class="text-right col-6">
+                              <div class="text-right col-12">
                                 <button (click)="onAmsSearch()" type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
