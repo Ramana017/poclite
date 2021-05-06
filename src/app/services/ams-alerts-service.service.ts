@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +9,38 @@ import { Observable } from 'rxjs';
 export class AmsAlertsServiceService {
 
   constructor(private http: HttpClient) {
-    console.log("##########ams alerts")
     this.getUrl()
   }
   public amsAlertUrl;
   public loginDetails;
   public getUrl() {
-    console.log("##########ams alerts")
-    this.loginDetails=JSON.parse(atob(sessionStorage.getItem(btoa('logindetils'))));
-    console.log(this.loginDetails);
-
+    this.amsAlertUrl = sessionStorage.getItem('amsAlertUrl');
   }
 
-  public authenticateUserForDevices(): Observable<any>{
-    return this.http.get(`/authenticateUserForDevices?username=${this.loginDetails.username}&password=${this.loginDetails.password}&deviceId=""`)
+  public authenticateUserForDevices(): Observable<any> {
+    this.loginDetails = JSON.parse(atob(sessionStorage.getItem(btoa('logindetils'))));
+    return this.http.get(`${this.amsAlertUrl}/authenticateUserForDevices?username=${this.loginDetails.username}&password=${this.loginDetails.password}&deviceId=""`).pipe(catchError(this.errorHandler));
   }
-  // http://pcdvlweb01.rescare.ad:7004/pocextacc-webservices_ams/ams/webservice/getApplicationList?userId=52171&userTypeId=4&sessionId=52171_FHG3E390D2N13SZV
+  public getApplicationList(userId, userTypeId, sessionId,): Observable<any> {
+    return this.http.get(`${this.amsAlertUrl}/getApplicationList?userId=${userId}&userTypeId=${userTypeId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+  }
 
-  // http://pocwebservices.rescare.com:7004/pocextacc-webservices/ams/webservice/authenticateUserForDevices?username=administrator&password=louisville&deviceId=%22%22
+
+
+  public getAlertDefinitionList(applicationId, alertFlag, sessionId): Observable<any> {
+    return this.http.get(`${this.amsAlertUrl}/getAlertDefinitionList?applicationId=${applicationId}&alertFlag=${alertFlag}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+  }
+
+  public getAlertsForDevices(userId,startDate,endDate,searchBy,viewByFlag,applicationId,alertDefinitionId,sessionId): Observable<any> {
+    return this.http.get(`${this.amsAlertUrl}getAlertsForDevices?userId=${userId}&startDate=${startDate}&endDate=${endDate}&searchByKeyword=${searchBy}&viewByFlag=${viewByFlag}&applicationId=${applicationId}&alertDefinitionId=${alertDefinitionId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+  }
+  public getAlertButtonDetails(applicationId,alertDefId,userId,sessionId): Observable<any> {
+    return this.http.get(`${this.amsAlertUrl}/getAlertButtonDetails?applicationId=${applicationId}&alertDefId=${alertDefId}&userId=${userId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+  }
+  private errorHandler(error: HttpErrorResponse) {
+    console.log("error in AMS  service Alerts", error);
+    return throwError(error);
+  }
+
+
 }
