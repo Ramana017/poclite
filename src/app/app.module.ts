@@ -80,6 +80,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DropdownModule} from 'primeng/dropdown';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {InputTextModule} from 'primeng/inputtext';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -167,8 +169,10 @@ import {InputTextModule} from 'primeng/inputtext';
     OverlayPanelModule,
     InputTextModule,
 
+    ConfirmDialogModule
+
   ],
-  providers: [DatePipe, BsModalRef,TitleCasePipe
+  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService
     , {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
