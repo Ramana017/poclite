@@ -65,6 +65,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public alertbuttons = [];
   public applicationList=[];
   public amsDateFilter=[];
+  public amsSearchBy='';
 
   public authenticateUserForDevices() {
     try {
@@ -118,7 +119,7 @@ export class CommunicationDashboardComponent implements OnInit {
   }
 
   public onAmsSearch(){
-    console.log(this.amsDateFilter)
+    console.log(this.amsDateFilter);
   }
 
 
