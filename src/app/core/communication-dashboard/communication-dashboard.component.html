@@ -283,7 +283,7 @@
                         <!-- <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To
                           Display </div> -->
                       </div>
-                      <div class="pager mt-2 d-flex justify-content-between">
+                      <div class="pager mt-2 d-none justify-content-between">
                         <div>
                         </div>
                         <div class="nav">
@@ -308,6 +308,8 @@
               </ng-container>
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pr-3  pl-0  pb-2 pt-0 mr-0 xs-pad">
+                  <ngx-spinner [name]="'amsspinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+
                   <div class="widget-block h-auto">
                     <div class="widget-header row align-items-center green-bg m-0 justify-content-between">
                       <!-- <div class="col-md-4"></div> -->
@@ -344,7 +346,7 @@
                                 <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination" [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                               </div>
                               <div class="text-right col-6">
-                                <button (click)="onAmsSearch()" type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                <button (click)="getAlertsForDevices()" type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
                             </div>
@@ -363,7 +365,9 @@
                             <tr>
                               <th></th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Alert Date </th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
+
                             </tr>
                           </thead>
                           <tbody>
@@ -376,22 +380,24 @@
 
                                   <div class=" align-items-center btn-hover-content">
                                     <div *ngFor="let button of alertbuttons;let i=index" class="mr-2">
-                                      <button  pButton type="button" [label]="button"  
+                                      <button  pButton type="button" [label]="button"
                                       class="p-button-secondary p-button "></button>
                                     </div>
-                                    
+
 
                                   </div>
                                 </div>
                               </td>
                               <td>{{item.subject}}</td>
+                              <td>{{item.groupBy}}</td>
                               <td><p [innerHTML]="item.message"></p></td>
                             </tr>
                           </tbody>
                         </table>
-                        <!-- <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div> -->
+                        <div class="text-center no-data-text" *ngIf="amsAlertList.length==0"> No Data To Display </div>
                       </div>
-                      <div class="pager d-flex justify-content-between mt-2">
+                      <div class="pager d-none
+                       justify-content-between mt-2">
                         <div>
                         </div>
                         <div class="nav">

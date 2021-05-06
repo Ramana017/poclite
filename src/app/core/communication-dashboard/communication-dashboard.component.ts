@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Observable } from 'rxjs';
 import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
 declare var $: any;
 @Component({
@@ -11,18 +13,18 @@ export class CommunicationDashboardComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   customers: any = [];
-  constructor(public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
-    
+  constructor(public datepipe:DatePipe, public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
+
 
     this.screenHeight = window.innerHeight;
     var height = this.screenHeight / 2 - 130
     $('.table-responsive').css('height', height + 'px');
-   }
+  }
   public screenWidth: any;
   public screenHeight: any;
   public minmaxResize: boolean = false;
-  public intialStartDate=new Date();
-  public todayDate=new Date();
+  public intialStartDate = new Date();
+  public todayDate = new Date();
   public date = [];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
@@ -38,13 +40,14 @@ export class CommunicationDashboardComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
-    this.amsDateFilter=[this.intialStartDate,this.todayDate];
-    this.date=[this.intialStartDate,this.todayDate]
+    this.amsDateFilter = [this.intialStartDate, this.todayDate];
+    this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
     this.onResize();
-    // this.authenticateUserForDevices();
-    this.defaultstaticData();
+    this.authenticateUserForDevices();
+    // this.defaultstaticData();
+    // this.getAlertsForDevices();
 
 
   }
@@ -64,15 +67,17 @@ export class CommunicationDashboardComponent implements OnInit {
   public alertFlag = 1;
   public alertButtonDetails: any;
   public alertbuttons = [];
-  public applicationList=[];
-  public amsDateFilter=[];
-  public amsSearchBy='';
+  public applicationList = [];
+  public amsDateFilter = [];
+  public amsSearchBy = '';
 
   public authenticateUserForDevices() {
     try {
+      console.log("Authentic user")
       this.amsService.authenticateUserForDevices().subscribe(res => {
         console.log(res);
         this.amsAuthenicateResponse = res;
+        this.getAlertsForDevices();
         this.getApplicationList();
         this.getAlertDefinitionList();
       })
@@ -108,18 +113,37 @@ export class CommunicationDashboardComponent implements OnInit {
     }
   }
 
-  public getApplicationList(){
-   try {
-     this.amsService.getApplicationList(this.amsAuthenicateResponse.userId,this.amsAuthenicateResponse.userTypeId,this.amsAuthenicateResponse.sessionId).subscribe(res=>{
-       console.log(res)
-       this.applicationList=res;
-     })
-   } catch (error) {
+  public getApplicationList() {
+    try {
+      this.amsService.getApplicationList(this.amsAuthenicateResponse.userId, this.amsAuthenicateResponse.userTypeId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
+        console.log(res)
+        this.applicationList = res;
+      })
+    } catch (error) {
 
-   }
+    }
   }
 
-  public onAmsSearch(){
+  public getAlertsForDevices() {
+
+    try {
+      this.ngxspineer.show('amsspinner');
+      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId,this.datepipe.transform(this.amsDateFilter[0],'MM/dd/yyyy'),this.datepipe.transform(this.amsDateFilter[1],'MM/dd/yyyy'),this.amsSearchBy,1,this.applicationId,this.alertDefinationId,this.amsAuthenicateResponse.sessionId).subscribe(res=>{
+        console.log(res);
+        this.amsAlertList=res;
+        this.ngxspineer.hide('amsspinner');
+
+      },err=>{
+        this.ngxspineer.hide('amsspinner');
+
+      })
+
+    } catch (error) {
+
+    }
+  }
+
+  public onAmsSearch() {
     console.log(this.amsDateFilter);
   }
 
@@ -141,95 +165,95 @@ export class CommunicationDashboardComponent implements OnInit {
       $('.table-responsive').css('height', height + 'px');
     }
   }
-// for UI maximize and minimize
-public  resize() {
-  $('.max-1,.max-2,.max-3,.max-4').click(function () {
-    $(this).parent().parent().parent().parent().parent().siblings().hide();
-    $(this)
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .siblings()
-      .hide();
-    $(this).parent().parent().parent().parent().css({ height: '87vh' });
-    $('.widget-block').find('.table-responsive').addClass('table-resize');
-    $('.cms-widget,.scrolling-alerts').hide();
+  // for UI maximize and minimize
+  public resize() {
+    $('.max-1,.max-2,.max-3,.max-4').click(function () {
+      $(this).parent().parent().parent().parent().parent().siblings().hide();
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .siblings()
+        .hide();
+      $(this).parent().parent().parent().parent().css({ height: '87vh' });
+      $('.widget-block').find('.table-responsive').addClass('table-resize');
+      $('.cms-widget,.scrolling-alerts').hide();
 
-    if (
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .hasClass('col-lg-6')
-    ) {
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .addClass('col-lg-12');
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .removeClass('col-lg-6');
-    }
-  });
+      if (
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .hasClass('col-lg-6')
+      ) {
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .addClass('col-lg-12');
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .removeClass('col-lg-6');
+      }
+    });
 
-  $('.min-1,.min-2,.min-3,.min-4').click(function () {
-    $(this).parent().parent().parent().parent().parent().siblings().show();
-    $(this)
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .siblings()
-      .show();
-    $(this)
-      .parent()
-      .parent()
-      .parent()
-      .parent()
-      .css({ height: '', width: '' });
-    $('.widget-block').find('.table-responsive').removeClass('table-resize');
-    $('.cms-widget,.scrolling-alerts').show();
+    $('.min-1,.min-2,.min-3,.min-4').click(function () {
+      $(this).parent().parent().parent().parent().parent().siblings().show();
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .siblings()
+        .show();
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .css({ height: '', width: '' });
+      $('.widget-block').find('.table-responsive').removeClass('table-resize');
+      $('.cms-widget,.scrolling-alerts').show();
 
-    if (
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .hasClass('col-lg-12')
-    ) {
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .addClass('col-lg-6');
-      $(this)
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .parent()
-        .removeClass('col-lg-12');
-    }
-  });
-}
+      if (
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .hasClass('col-lg-12')
+      ) {
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .addClass('col-lg-6');
+        $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .removeClass('col-lg-12');
+      }
+    });
+  }
 
   // minimize and maximize screens
   public widgetReSize(flag, widgetName, event?) {
@@ -379,11 +403,11 @@ public  resize() {
     console.log(this.alertButtonDetails[0].captions.split(','))
     this.alertbuttons = this.alertButtonDetails[0].captions.split(',');
 
-   this.applicationList=[{
-    "name": "Rescare - POC",
-    "errorCode": 0,
-    "id": 2
-}]
+    this.applicationList = [{
+      "name": "Rescare - POC",
+      "errorCode": 0,
+      "id": 2
+    }]
     this.customers = [
       { field: 'id', header: 'Id' },
       { field: 'date', header: 'Date' },

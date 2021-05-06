@@ -9,6 +9,7 @@ import { AppService } from './services/app.service';
 import { local } from 'd3';
 import { Title } from '@angular/platform-browser';
 import { UserdetailsService } from './services/userdetails.service';
+import { AmsAlertsServiceService } from './services/ams-alerts-service.service';
 
 declare var $: any;
 
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
   public timePopupexist: boolean = false;
 
 
-  constructor(public _http: HttpClient, public _userDetails: UserdetailsService,
+  constructor(public _http: HttpClient,public amsService:AmsAlertsServiceService, public _userDetails: UserdetailsService,
     public apiservice: ApiserviceService, private idle: Idle, private keepalive: Keepalive,
     private router: Router, private modalService: BsModalService, private appService: AppService, title: Title) {
     // sets an idle timeout of 5 seconds, for testing purposes.
@@ -132,6 +133,7 @@ export class AppComponent implements OnInit {
           localStorage.setItem("webserviceURL", webserviceURL);
           sessionStorage.setItem("amsAlertUrl", this.responseData.amsAlertUrl);
           this.apiservice.geturl();
+          this.amsService.getUrl()
           console.log(sessiontime);
           this.idle.setIdle(sessiontime * 60)
           this.idle.setTimeout(10);

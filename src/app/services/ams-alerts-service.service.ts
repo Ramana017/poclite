@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -8,13 +9,14 @@ import { catchError } from 'rxjs/operators';
 })
 export class AmsAlertsServiceService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private toastr: ToastrService,) {
     this.getUrl()
   }
   public amsAlertUrl;
   public loginDetails;
   public getUrl() {
     this.amsAlertUrl = sessionStorage.getItem('amsAlertUrl');
+    console.log("++++++++++++++",this.amsAlertUrl)
   }
 
   public authenticateUserForDevices(): Observable<any> {
@@ -32,6 +34,7 @@ export class AmsAlertsServiceService {
   }
 
   public getAlertsForDevices(userId,startDate,endDate,searchBy,viewByFlag,applicationId,alertDefinitionId,sessionId): Observable<any> {
+    console.log("wwwwwwwwwwwwwwww",this.amsAlertUrl)
     return this.http.get(`${this.amsAlertUrl}getAlertsForDevices?userId=${userId}&startDate=${startDate}&endDate=${endDate}&searchByKeyword=${searchBy}&viewByFlag=${viewByFlag}&applicationId=${applicationId}&alertDefinitionId=${alertDefinitionId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
   public getAlertButtonDetails(applicationId,alertDefId,userId,sessionId): Observable<any> {
@@ -41,6 +44,10 @@ export class AmsAlertsServiceService {
     console.log("error in AMS  service Alerts", error);
     return throwError(error);
   }
-
+  public errtoast() {
+    this.toastr.error('','Failed to Authenticate AMS', {
+      timeOut:1500
+    });
+  }
 
 }
