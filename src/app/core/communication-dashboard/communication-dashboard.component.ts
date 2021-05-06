@@ -8,12 +8,14 @@ declare var $: any;
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit {
+
+  @HostListener('window:resize', ['$event'])
   customers: any = [];
-  constructor(public ngxspineer:NgxSpinnerService,public amsService:AmsAlertsServiceService) { }
+  constructor(public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) { }
   public screenWidth: any;
   public screenHeight: any;
   public abcd: boolean = false;
-  public date=[new Date(),(new Date())];
+  public date = [new Date(), (new Date())];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
@@ -27,6 +29,8 @@ export class CommunicationDashboardComponent implements OnInit {
     { name: 'Washington', code: 'Washington' }
   ];
   ngOnInit(): void {
+
+    this.authenticateUserForDevices();
     this.resize();
     // this.widgetReSize()
     this.customers = [
@@ -41,7 +45,6 @@ export class CommunicationDashboardComponent implements OnInit {
     var height = this.screenHeight / 2 - 130
     $('.table-responsive').css('height', height + 'px');
   }
-  @HostListener('window:resize', ['$event'])
   onResize(event) {
     console.log(event)
     // this.screenWidth = window.innerWidth;
@@ -83,7 +86,7 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .hasClass('col-lg-6')
+          .hasClass('col-md-6')
       ) {
         $(this)
           .parent()
@@ -91,14 +94,14 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .addClass('col-lg-12');
+          .addClass('col-md-12');
         $(this)
           .parent()
           .parent()
           .parent()
           .parent()
           .parent()
-          .removeClass('col-lg-6');
+          .removeClass('col-md-6');
       }
     });
 
@@ -129,7 +132,7 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .hasClass('col-lg-12')
+          .hasClass('col-md-12')
       ) {
         $(this)
           .parent()
@@ -137,14 +140,14 @@ export class CommunicationDashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
-          .addClass('col-lg-6');
+          .addClass('col-md-6');
         $(this)
           .parent()
           .parent()
           .parent()
           .parent()
           .parent()
-          .removeClass('col-lg-12');
+          .removeClass('col-md-12');
       }
     });
   }
@@ -193,10 +196,55 @@ export class CommunicationDashboardComponent implements OnInit {
     this.position = position;
     this.displayPosition = true;
   }
-  public appApprovalsFilter(template){
+  public appApprovalsFilter(template) {
 
     template.hide()
 
   }
 
+
+  public amsAlertList = [{
+    "toMail": " ",
+    "alertSendDate": "11:35 pm",
+    "subject": "LAEVV Job Errors",
+    "errorCode": 0,
+    "alertDefId": 14,
+    "groupBy": "05\/04\/2021",
+    "message": "LAEVV PA CSV File Import Job for 71434# failed on 05\/04\/2021 11:30 PM - <!DO CTYPE HTML PUBLIC \"-\/\/W3C\/\/DTD HTML 4.0 Draft\/\/EN\"><br\/><HT ML><br\/><HEAD><br\/><TITLE>Error 400--Bad Request<\/TITLE><br\/><\/HEAD><br\/><BODY bgcolor=\"white\"><br\/><FONT FACE=Helvetica><BR CLEAR=all><br\/><TABLE border=0 cellspacing=5><TR><TD><BR CLEAR=all><br\/><FONT FACE=\"Helvetica\" COLOR=\"black\" SIZE=\"3\"><H2>Error 400--Bad Request<\/H2><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><TABLE border=0 width=100% cellpadding=10><TR><TD VALIGN=top WIDTH=100% BGCOLOR=white><FONT FACE=\"Courier New\"><FONT FACE=\"Helvetica\" SIZE=\"3\"><H3>From RFC 2068 <i>Hypertext Transfer Protocol -- HTTP\/1.1<\/i>:<\/H3><br\/><\/FONT><FONT FACE=\"Helvetica\" SIZE=\"3\"><H4>10.4.1 400 Bad Request<\/H4><br\/><\/FONT><P><FONT FACE=\"Courier New\">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.<\/FONT><\/P><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><br\/><\/BODY><br\/><\/HTML><br\/>",
+    "userId": 52171,
+    "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+    "aggregateAlertId": "0",
+    "messageTypeId": 1,
+    "id": 5.6332839e7,
+    "alertId": 1.4798645e7,
+    "applicationId": 2,
+    "status": 1
+  }, {
+    "toMail": " ",
+    "alertSendDate": "11:35 pm",
+    "subject": "LAEVV Job Errors",
+    "errorCode": 0,
+    "alertDefId": 14,
+    "groupBy": "05\/04\/2021",
+    "message": "LAEVV PA CSV File Import Job for 71591# failed on 05\/04\/2021 11:30 PM - <!DO CTYPE HTML PUBLIC \"-\/\/W3C\/\/DTD HTML 4.0 Draft\/\/EN\"><br\/><HT ML><br\/><HEAD><br\/><TITLE>Error 400--Bad Request<\/TITLE><br\/><\/HEAD><br\/><BODY bgcolor=\"white\"><br\/><FONT FACE=Helvetica><BR CLEAR=all><br\/><TABLE border=0 cellspacing=5><TR><TD><BR CLEAR=all><br\/><FONT FACE=\"Helvetica\" COLOR=\"black\" SIZE=\"3\"><H2>Error 400--Bad Request<\/H2><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><TABLE border=0 width=100% cellpadding=10><TR><TD VALIGN=top WIDTH=100% BGCOLOR=white><FONT FACE=\"Courier New\"><FONT FACE=\"Helvetica\" SIZE=\"3\"><H3>From RFC 2068 <i>Hypertext Transfer Protocol -- HTTP\/1.1<\/i>:<\/H3><br\/><\/FONT><FONT FACE=\"Helvetica\" SIZE=\"3\"><H4>10.4.1 400 Bad Request<\/H4><br\/><\/FONT><P><FONT FACE=\"Courier New\">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.<\/FONT><\/P><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><br\/><\/BODY><br\/><\/HTML><br\/>",
+    "userId": 52171,
+    "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+    "aggregateAlertId": "0",
+    "messageTypeId": 1,
+    "id": 5.6332837e7,
+    "alertId": 1.4798644e7,
+    "applicationId": 2,
+    "status": 1
+  }]
+
+
+  public authenticateUserForDevices() {
+    try {
+      this.amsService.authenticateUserForDevices().subscribe(res => {
+        console.log(res);
+      })
+    } catch (error) {
+
+    }
+  }
 }

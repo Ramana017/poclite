@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
           let webserviceURL = this.responseData.webserviceURL;
           let sessiontime = this.responseData.sessionTimeOut;
           localStorage.setItem("webserviceURL", webserviceURL);
-          // localStorage.setItem("sessiontime", sessiontime);
+          sessionStorage.setItem("amsAlertUrl", this.responseData.amsAlertUrl);
           this.apiservice.geturl();
           console.log(sessiontime);
           this.idle.setIdle(sessiontime * 60)
