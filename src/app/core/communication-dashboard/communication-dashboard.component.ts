@@ -12,7 +12,7 @@ export class CommunicationDashboardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   customers: any = [];
   constructor(public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
-    this.resize();
+    
 
     this.screenHeight = window.innerHeight;
     var height = this.screenHeight / 2 - 130
@@ -20,7 +20,7 @@ export class CommunicationDashboardComponent implements OnInit {
    }
   public screenWidth: any;
   public screenHeight: any;
-  public abcd: boolean = false;
+  public minmaxResize: boolean = false;
   public intialStartDate=new Date();
   public todayDate=new Date();
   public date = [];
@@ -41,7 +41,8 @@ export class CommunicationDashboardComponent implements OnInit {
     this.amsDateFilter=[this.intialStartDate,this.todayDate];
     this.date=[this.intialStartDate,this.todayDate]
 
-
+    this.resize();
+    this.onResize();
     // this.authenticateUserForDevices();
     this.defaultstaticData();
 
@@ -122,112 +123,112 @@ export class CommunicationDashboardComponent implements OnInit {
   }
 
 
-  onResize(event) {
-    console.log(event)
+  onResize() {
+    // console.log(event)
     // this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
     console.log(this.screenWidth, this.screenHeight);
-    if (this.abcd === false) {
+    if (this.minmaxResize === false) {
       var height = this.screenHeight / 2 - 130
       $('.table-responsive').css('height', height + 'px');
-      console.log(this.abcd)
+      // console.log(this.minmaxResize)
     }
-    else if (this.abcd === true) {
+    else if (this.minmaxResize === true) {
       this.screenHeight = window.innerHeight;
       console.log(this.screenWidth, this.screenHeight);
       var height = this.screenHeight - 200;
       $('.table-responsive').css('height', height + 'px');
     }
   }
-  // for UI maximize and minimize
-  public resize() {
-    $('.max-1,.max-2,.max-3,.max-4').click(function () {
-      $(this).parent().parent().parent().parent().parent().siblings().hide();
+// for UI maximize and minimize
+public  resize() {
+  $('.max-1,.max-2,.max-3,.max-4').click(function () {
+    $(this).parent().parent().parent().parent().parent().siblings().hide();
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .siblings()
+      .hide();
+    $(this).parent().parent().parent().parent().css({ height: '87vh' });
+    $('.widget-block').find('.table-responsive').addClass('table-resize');
+    $('.cms-widget,.scrolling-alerts').hide();
+
+    if (
       $(this)
         .parent()
         .parent()
         .parent()
         .parent()
         .parent()
-        .parent()
-        .siblings()
-        .hide();
-      $(this).parent().parent().parent().parent().css({ height: '87vh' });
-      $('.widget-block').find('.table-responsive').addClass('table-resize');
-      $('.cms-widget,.scrolling-alerts').hide();
-
-      if (
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .hasClass('col-md-6')
-      ) {
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .addClass('col-md-12');
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .removeClass('col-md-6');
-      }
-    });
-
-    $('.min-1,.min-2,.min-3,.min-4').click(function () {
-      $(this).parent().parent().parent().parent().parent().siblings().show();
+        .hasClass('col-lg-6')
+    ) {
       $(this)
         .parent()
         .parent()
         .parent()
         .parent()
         .parent()
-        .parent()
-        .siblings()
-        .show();
+        .addClass('col-lg-12');
       $(this)
         .parent()
         .parent()
         .parent()
         .parent()
-        .css({ height: '', width: '' });
-      $('.widget-block').find('.table-responsive').removeClass('table-resize');
-      $('.cms-widget,.scrolling-alerts').show();
+        .parent()
+        .removeClass('col-lg-6');
+    }
+  });
 
-      if (
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .hasClass('col-md-12')
-      ) {
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .addClass('col-md-6');
-        $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .removeClass('col-md-12');
-      }
-    });
-  }
+  $('.min-1,.min-2,.min-3,.min-4').click(function () {
+    $(this).parent().parent().parent().parent().parent().siblings().show();
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .siblings()
+      .show();
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .parent()
+      .css({ height: '', width: '' });
+    $('.widget-block').find('.table-responsive').removeClass('table-resize');
+    $('.cms-widget,.scrolling-alerts').show();
+
+    if (
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .hasClass('col-lg-12')
+    ) {
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .addClass('col-lg-6');
+      $(this)
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .parent()
+        .removeClass('col-lg-12');
+    }
+  });
+}
 
   // minimize and maximize screens
   public widgetReSize(flag, widgetName, event?) {
@@ -252,8 +253,8 @@ export class CommunicationDashboardComponent implements OnInit {
         : (this.widgetArray = [false, false, false, false]);
     }
     if (flag === true) {
-      this.abcd = true;
-      this.onResize(event);
+      this.minmaxResize = true;
+      this.onResize();
       // this.screenHeight = window.innerHeight;
       // console.log(this.screenWidth,this.screenHeight);
       // var height = this.screenHeight-200;
@@ -261,8 +262,8 @@ export class CommunicationDashboardComponent implements OnInit {
       // $('.table-responsive').css('height',height + 'px');
     }
     if (flag === false) {
-      this.abcd = false;
-      this.onResize(event);
+      this.minmaxResize = false;
+      this.onResize();
       //     var height = this.screenHeight/2-130
 
       // $('.table-responsive').css('height',height + 'px');
