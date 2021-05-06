@@ -143,8 +143,10 @@ export class CommunicationDashboardComponent implements OnInit {
     }
   }
 
-  public onAmsSearch() {
+  public onAmsSearch(template) {
     console.log(this.amsDateFilter);
+    template.hide();
+    this.getAlertsForDevices()
   }
 
 
