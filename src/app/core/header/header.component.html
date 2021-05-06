@@ -143,49 +143,50 @@
           <img src="assets/images/Icon.svg" style="height:50px; width:50px;" alt="logo" class="p-2">
           <h3 class="text-white mt-3">
             <span routerLink="/chart-layout" routerLinkActive #activity="routerLinkActive">
-              {{activity.isActive ? "CSM DashBoard" : ''}}
+              {{activity.isActive ? "CSM DashBoard" : null}}
             </span>
             <span routerLink="/summary" routerLinkActive #dashboard="routerLinkActive">
-              {{dashboard.isActive ? "Call Management" : ''}}
+              {{dashboard.isActive ? "Call Management" : null}}
             </span>
             <span routerLink="/widgets" routerLinkActive #errorlog="routerLinkActive">
-              {{errorlog.isActive ? "POC Home" : ''}}
+              {{errorlog.isActive ? "POC Home" :null}}
             </span>
             <span routerLink="/visitreview" routerLinkActive #interface="routerLinkActive">
-              {{interface.isActive ? 'Visit Review' : ''}}
+              {{interface.isActive ? 'Visit Review' : null}}
             </span>
             <span routerLink="/analytics" routerLinkActive #analytics="routerLinkActive">
-              {{analytics.isActive ? 'SP Compliance Measures Overview' : ''}}
+              {{analytics.isActive ? 'SP Compliance Measures Overview' : null}}
             </span>
             <span class="ml" routerLink="/maintaince" routerLinkActive #maintaince="routerLinkActive">
-              {{maintaince.isActive ? 'Maintainence' : ''}}
+              {{maintaince.isActive ? 'Maintainence' : null}}
             </span>
             <span class="ml" routerLink="/daily-reports" routerLinkActive #dailyReports="routerLinkActive">
-              {{dailyReports.isActive ? 'Daily Reports' : ''}}
+              {{dailyReports.isActive ? 'Daily Reports' : null}}
             </span>
             <span class="ml" routerLink="/telephony" routerLinkActive #telephony="routerLinkActive">
-              {{telephony.isActive ? 'Telephony Stats' : ''}}
+              {{telephony.isActive ? 'Telephony Stats' : null}}
             </span>
             <span class="ml" routerLink="/utilization" routerLinkActive #utilization="routerLinkActive">
-              {{utilization.isActive ? 'Utilization Stats' : ''}}
+              {{utilization.isActive ? 'Utilization Stats' : null}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
-              {{scheduling.isActive ? 'Schedule Management' : ''}}
+              {{scheduling.isActive ? 'Schedule Management' : null}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
-              {{locateDCS.isActive ? 'Locate DCS ' : ''}}
+              {{locateDCS.isActive ? 'Locate DCS ' : null}}
             </span><span class="ml" routerLink="/schedulingmodule/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
-              {{mapspsdcs.isActive ? 'PS/DCS Distribution ' : ''}}
+              {{mapspsdcs.isActive ? 'PS/DCS Distribution ' : null}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
-              {{dcsroute.isActive ? 'DCS Route Map ' : ''}}
-            </span>
-            <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive #admission="routerLinkActive">
-              {{admission.isActive ? 'Admissions ' : ''}}
+              {{dcsroute.isActive ? 'DCS Route Map ' : null}}
             </span>
             <span class="ml" routerLink="/communication-dashboard" routerLinkActive #communication="routerLinkActive">
               {{communication.isActive ? "Communication Dashboard" : ''}}
             </span>
+            <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive #admission="routerLinkActive">
+              {{admission.isActive ? 'Admissions ' : ''}}
+            </span>
+
           </h3>
         </div>
 

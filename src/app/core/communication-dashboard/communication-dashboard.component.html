@@ -377,18 +377,16 @@
                                   <span class="material-icons">
                                     more_vert
                                   </span>
+
                                   <div class=" align-items-center btn-hover-content">
-                                    <button pButton type="button" label="Close" icon="pi pi-times" iconPos="left"
+                                    <button *ngFor="let button of alertbuttons;let i=index" pButton type="button" [label]="button" icon="pi pi-times" iconPos="left"
                                       class="p-button-secondary p-button ml-2"></button>
-                                    <button pButton type="button" label="Dismiss" icon="pi pi-times" iconPos="left"
-                                      class="p-button-danger p-button ml-2"></button>
-                                    <button pButton type="button" label="More"  iconPos="left"
-                                      class="p-button-info p-button ml-2"></button>
+
                                   </div>
                                 </div>
                               </td>
                               <td>{{item.subject}}</td>
-                              <td><p [innerHTML]="item.message|slice:0:20" ></p></td>
+                              <td><p [innerHTML]="item.message"></p></td>
                             </tr>
                           </tbody>
                         </table>
