@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, Input } from "@angular/core";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
@@ -64,7 +64,7 @@ export class AdmissionDetailsComponent implements OnInit {
   public diagnosisCode: string = '';
   public diagnosisName: string = '';
   public dateValidationFlag: boolean = false;
-  constructor(private fb: FormBuilder, public date: DatePipe, public service: ZipcodeService, public modalService: BsModalService, private router: Router) {
+  constructor(private fb: FormBuilder, public date: DatePipe, public service: PSRegistrationService, public modalService: BsModalService, private router: Router) {
     console.log("basic constructer", this.popup);
     this.userId = this.service.getUserId();
 

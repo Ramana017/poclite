@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ZipcodeService } from '../../../services/zipcode.service';
+import { PSRegistrationService } from '../../../services/PS-registarion.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
@@ -42,7 +42,7 @@ export class PsGurantorComponent implements OnInit {
   public editPs;
 
 
-  constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router) {
+  constructor(private fb: FormBuilder, public service: PSRegistrationService, private router: Router) {
     let data: any = this.userId = JSON.parse(sessionStorage.getItem("useraccount"));
     this.userId = data.userId
     // let session = sessionStorage.getItem('guarantorDetails');

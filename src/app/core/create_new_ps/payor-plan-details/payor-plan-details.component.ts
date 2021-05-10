@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ZipcodeService } from '../../../services/zipcode.service';
+import { PSRegistrationService } from '../../../services/PS-registarion.service';
 import { DatePipe } from '@angular/common';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -49,7 +49,7 @@ export class PayorPlanDetailsComponent implements OnInit {
   private admitDate;
   private clientTypeId;
   private clientClassId;
-  constructor(private fb: FormBuilder, private router: Router, public service: ZipcodeService, public date: DatePipe) {
+  constructor(private fb: FormBuilder, private router: Router, public service: PSRegistrationService, public date: DatePipe) {
     this.userId = this.service.getUserId();
   }
   ngOnInit() {

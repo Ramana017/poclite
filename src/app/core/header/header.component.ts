@@ -5,7 +5,7 @@ import { interval } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal/public_api';
 import { AppService } from 'src/app/services/app.service';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
-import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { UserdetailsService } from 'src/app/services/userdetails.service';
 declare var $: any;
 
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   public activeclass: Array<boolean> = []
 
-  constructor(private router: Router, public service: ZipcodeService, private appService: AppService, public userDetailService: UserdetailsService, public apiService: ApiserviceService) { }
+  constructor(private router: Router, public service: PSRegistrationService, private appService: AppService, public userDetailService: UserdetailsService, public apiService: ApiserviceService) { }
 
   ngOnInit(): void {
     this.useraccount = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       //         e.stopPropagation();
       //     }
       // });
-    
+
 
     }
 

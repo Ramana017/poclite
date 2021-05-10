@@ -3,7 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 declare var $: any;
 import * as d3 from 'd3';
 import * as GaugeChart from 'gauge-chart';
-import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { UserdetailsService } from 'src/app/services/userdetails.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     public apiService: ApiserviceService,
-    private zipcode: ZipcodeService,
+    private zipcode: PSRegistrationService,
     public userDetailService:UserdetailsService,
     private _router:Router
   ) {

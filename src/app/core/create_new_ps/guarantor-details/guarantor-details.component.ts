@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ZipcodeService } from '../../../services/zipcode.service';
+import { PSRegistrationService } from '../../../services/PS-registarion.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -42,7 +42,7 @@ export class GuarantorDetailsComponent implements OnInit {
   private countyId: number;
   private timeZoneId: number;
   public phoneNUmber;
-  constructor(private fb: FormBuilder, public service: ZipcodeService, private router: Router,public modalserivce:BsModalService) {
+  constructor(private fb: FormBuilder, public service: PSRegistrationService, private router: Router,public modalserivce:BsModalService) {
     this.userId = this.service.getUserId();
   }
   ngOnInit() {

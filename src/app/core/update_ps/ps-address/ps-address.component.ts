@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ZipcodeService } from 'src/app/services/zipcode.service';
+import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
@@ -33,7 +33,7 @@ export class PsAddressComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public modalService: BsModalService,
-    public service: ZipcodeService,
+    public service: PSRegistrationService,
     public date: DatePipe,
     private router: Router,
     private http: HttpClient

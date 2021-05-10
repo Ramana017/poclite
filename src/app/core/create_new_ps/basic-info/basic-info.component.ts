@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ZipcodeService } from '../../../services/zipcode.service';
+import { PSRegistrationService } from '../../../services/PS-registarion.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -56,7 +56,7 @@ export class BasicInfoComponent implements OnInit {
   public formError: boolean = false;
   private userId: number;
   public mappedArray: Array<any>;
-  constructor(private fb: FormBuilder, public modalService: BsModalService, public service: ZipcodeService, public date: DatePipe, private router: Router, private http: HttpClient) {
+  constructor(private fb: FormBuilder, public modalService: BsModalService, public service: PSRegistrationService, public date: DatePipe, private router: Router, private http: HttpClient) {
     console.log("basic constructer", this.popup);
     this.userId = this.service.getUserId()
     this.newForm();

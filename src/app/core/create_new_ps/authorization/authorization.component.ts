@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { ZipcodeService } from '../../../services/zipcode.service';
+import { PSRegistrationService } from '../../../services/PS-registarion.service';
 import { DatePipe } from '@angular/common';
 import swal from 'sweetalert2'
 import { Router } from '@angular/router';
@@ -92,7 +92,7 @@ export class AuthorizationComponent implements OnInit {
   public zeroShiftFlag:boolean=false;
 
 
-  constructor(private _zipService: ZipcodeService, private date: DatePipe, private router: Router) {
+  constructor(private _zipService: PSRegistrationService, private date: DatePipe, private router: Router) {
     this.userId = this._zipService.getUserId();
     this.payorPlanResponse = JSON.parse(sessionStorage.getItem('savePayorRes'));
     if (this.payorPlanResponse != undefined || null) {
