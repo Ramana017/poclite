@@ -30,6 +30,8 @@ export class CommunicationDashboardComponent implements OnInit {
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
   displayPosition: boolean;
+  createException:boolean;
+  createAvailability:boolean;
   selectedState: any = null;
   states: any[] = [
     { name: 'Pending', code: 'Arizona' },
@@ -149,14 +151,13 @@ export class CommunicationDashboardComponent implements OnInit {
     this.getAlertsForDevices()
   }
 
-
   onResize() {
     // console.log(event)
     // this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
     console.log(this.screenWidth, this.screenHeight);
     if (this.minmaxResize === false) {
-      var height = this.screenHeight / 2 - 130
+      var height = this.screenHeight / 2 - 115;
       $('.table-responsive').css('height', height + 'px');
       // console.log(this.minmaxResize)
     }
@@ -301,7 +302,14 @@ export class CommunicationDashboardComponent implements OnInit {
     this.position = position;
     this.displayPosition = true;
   }
-
+  showcreateExceptionDialog(position: string){
+    this.position = position;
+    this.createException = true;
+  }
+  showcreateAvailabilityDialog(position: string){
+    this.position = position;
+    this.createAvailability = true;
+  }
   defaultstaticData() {
     this.amsAlertList = [{
       "toMail": " ",
