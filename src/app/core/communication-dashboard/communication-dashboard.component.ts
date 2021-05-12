@@ -3,6 +3,7 @@ import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -13,7 +14,8 @@ export class CommunicationDashboardComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   customers: any = [];
-  constructor(public datepipe: DatePipe, public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
+  constructor(public datepipe: DatePipe,public dashboardService:DashboardService,
+    public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
 
 
     this.screenHeight = window.innerHeight;
@@ -27,6 +29,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public todayDate = new Date();
   public date = [];
   public approvalTypeFilterList = [];
+  public appAprovalStatusList=[];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
@@ -55,7 +58,11 @@ export class CommunicationDashboardComponent implements OnInit {
     this.approvalTypeFilterList = [{ name: 'Edited Punch', id: 1 },
     { name: 'Create Exception', id: 2 },
     { name: 'Create Availability', id: 3 }]
+    this.appAprovalStatusList=[{ name: 'Accept', id: 1 },
+    { name: 'Pending', id: 2 },
+    { name: 'Reject', id: 3 }]
 
+    this.getPocReleaseNotesList();
 
   }
 
@@ -69,7 +76,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public amsAlertList = [];
   public amsAuthenicateResponse: any;
   public alertDefinitionList = [];
-  public alertDefinationId = 0;
+  public alertDefinationId = null;
   public applicationId = 0;
   public alertFlag = 1;
   public alertButtonDetails: any;
@@ -98,7 +105,9 @@ export class CommunicationDashboardComponent implements OnInit {
       this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
         .subscribe(res => {
           console.log(res);
-          this.alertDefinitionList = res;
+          if(res[0].errorCode!=412){
+            this.alertDefinitionList = res;
+          }
         })
     } catch (error) {
 
@@ -432,6 +441,25 @@ export class CommunicationDashboardComponent implements OnInit {
     ];
   }
 
+
+
+
+
+
+public pocReleaseNotesList=[];
+public getPocReleaseNotesList(template?){
+  try {
+
+    let jsonObj={"startDate":"05/01/2020","endDate":"05/12/2021","lowerBound":1,"upperBound":10};
+     this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res=>{
+       this.pocReleaseNotesList=res.releaseNotesList;
+     })
+
+
+  } catch (error) {
+
+  }
+}
 
 
 

@@ -117,4 +117,8 @@ export class DashboardService {
   public getRVPList(data): Observable<any> {
     return this.http.get(this.webserviceUrl + `/analytics/getRVPList?jsonObj=${data}`).pipe(catchError(this.errorHandler))
   }
+
+  public getPocReleaseNotesList(data): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getPocReleaseNotesList?jsonObj=${data}`).pipe(catchError(this.errorHandler))
+  }
 }
