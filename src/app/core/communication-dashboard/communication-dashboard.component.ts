@@ -13,7 +13,7 @@ export class CommunicationDashboardComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   customers: any = [];
-  constructor(public datepipe:DatePipe, public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
+  constructor(public datepipe: DatePipe, public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
 
 
     this.screenHeight = window.innerHeight;
@@ -26,12 +26,13 @@ export class CommunicationDashboardComponent implements OnInit {
   public intialStartDate = new Date();
   public todayDate = new Date();
   public date = [];
+  public approvalTypeFilterList = [];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
   displayPosition: boolean;
-  createException:boolean;
-  createAvailability:boolean;
+  createException: boolean;
+  createAvailability: boolean;
   selectedState: any = null;
   states: any[] = [
     { name: 'Pending', code: 'Arizona' },
@@ -50,6 +51,10 @@ export class CommunicationDashboardComponent implements OnInit {
     this.authenticateUserForDevices();
     // this.defaultstaticData();
     // this.getAlertsForDevices();
+
+    this.approvalTypeFilterList = [{ name: 'Edited Punch', id: 1 },
+    { name: 'Create Exception', id: 2 },
+    { name: 'Create Availability', id: 3 }]
 
 
   }
@@ -130,12 +135,12 @@ export class CommunicationDashboardComponent implements OnInit {
 
     try {
       this.ngxspineer.show('amsspinner');
-      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId,this.datepipe.transform(this.amsDateFilter[0],'MM/dd/yyyy'),this.datepipe.transform(this.amsDateFilter[1],'MM/dd/yyyy'),this.amsSearchBy,1,this.applicationId,this.alertDefinationId,this.amsAuthenicateResponse.sessionId).subscribe(res=>{
+      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy'), this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy'), this.amsSearchBy, 1, this.applicationId, this.alertDefinationId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
         console.log(res);
-        this.amsAlertList=res;
+        this.amsAlertList = res;
         this.ngxspineer.hide('amsspinner');
 
-      },err=>{
+      }, err => {
         this.ngxspineer.hide('amsspinner');
 
       })
@@ -302,11 +307,11 @@ export class CommunicationDashboardComponent implements OnInit {
     this.position = position;
     this.displayPosition = true;
   }
-  showcreateExceptionDialog(position: string){
+  showcreateExceptionDialog(position: string) {
     this.position = position;
     this.createException = true;
   }
-  showcreateAvailabilityDialog(position: string){
+  showcreateAvailabilityDialog(position: string) {
     this.position = position;
     this.createAvailability = true;
   }
