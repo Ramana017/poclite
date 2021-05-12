@@ -11,18 +11,18 @@
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
                   <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
                   <div class="widget-block h-auto">
-                    <div class="widget-header row align-items-center blue-bg m-0 nav justify-content-between">
+                    <div class="widget-header  blue-bg text-center">
                       <!-- <div class="col-md-4 col-0"></div> -->
-                      <h5 class="text-white m-0 text-right col-md-6 col-12">App Approvals</h5>
+                      <h5 class="text-white m-0  ">App Approvals</h5>
 
-                      <div class="col-md-5 col-12 d-flex justify-content-end align-items-center ">
+                      <div class="d-flex justify-content-end align-items-center right-filter-icons">
                         <!-- <ng-autocomplete class="w-150" placeHolder="Search DCS">
                         </ng-autocomplete>
                         <ng-template style="width: 100%;" let-item>
                           <a [innerHTML]="item.PSName"></a>
                         </ng-template> -->
                         <div class="btn-group" #filter="bs-dropdown"  dropdown [autoClose]="false" [insideClick]="true"
-                           placement="left" >
+                           placement="left" container="body">
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
                           </span>
@@ -150,18 +150,14 @@
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pr-3 pl-0 pb-2 pt-0 mr-0 xs-pad">
                   <div class="widget-block h-auto xs-mar">
-
-                    <div class="widget-header row align-items-center peach-bg m-0 justify-content-between">
+                    <div class="widget-header peach-bg m-0 text-center">
                       <!-- <div class="col-md-4"></div> -->
-                      <h5 class="text-white m-0 text-right col-md-6">DCS Messages</h5>
-                      <div class="col-md-5 d-flex justify-content-end align-items-center">
-                        <!-- <ng-autocomplete class="w-150" placeHolder="Search..">
-                        </ng-autocomplete> -->
+                      <h5 class="text-white m-0  ">DCS Messages</h5>
+                      <div class="d-flex justify-content-end align-items-center right-filter-icons">
+              
 
-                        <ng-template style="width: 100%;">
-                          <a></a>
-                        </ng-template>
-                        <div class="btn-group" #filter1="bs-dropdown"  dropdown [autoClose]="false" [insideClick]="true"
+                    
+                        <div class="btn-group" #filter1="bs-dropdown"  dropdown [autoClose]="false" container="body" [insideClick]="true"
                            placement="left" >
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter"></i>
@@ -272,11 +268,11 @@
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
                   <div class="widget-block h-auto">
-                    <div class="widget-header row align-items-center lightblue-bg m-0 justify-content-between">
+                    <div class="widget-header  lightblue-bg ">
 
-                      <h5 class="text-white m-0 text-right col-md-7">Point of Care Release
+                      <h5 class="text-white m-0 text-center">Point of Care Release
                         Notes/Training</h5>
-                      <div class="col-md-5 d-flex justify-content-end align-items-center">
+                      <div class=" d-flex justify-content-end align-items-center right-filter-icons">
                         <!-- <ng-autocomplete class="w-150" placeHolder="Search..">
                         </ng-autocomplete> -->
                         <ng-template style="width: 100%;">
@@ -341,10 +337,10 @@
                   <ngx-spinner [name]="'amsspinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
 
                   <div class="widget-block h-auto">
-                    <div class="widget-header row align-items-center green-bg m-0 justify-content-between">
+                    <div class="widget-header  green-bg text-center">
                       <!-- <div class="col-md-4"></div> -->
-                      <h5 class="text-white m-0 text-right col-md-6">Ams Alerts</h5>
-                      <div class="col-md-5 d-flex justify-content-end align-items-center">
+                      <h5 class="text-white m-0 ">Ams Alerts</h5>
+                      <div class=" d-flex justify-content-end align-items-center right-filter-icons">
                         <!-- <ng-autocomplete class="w-150" placeHolder="Search..">
                         </ng-autocomplete> -->
                         <ng-template style="width: 100%;">
