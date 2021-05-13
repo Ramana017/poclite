@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
@@ -14,7 +15,7 @@ export class CommunicationDashboardComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   customers: any = [];
-  constructor(public datepipe: DatePipe,public dashboardService:DashboardService,
+  constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
     public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
 
 
@@ -29,7 +30,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public todayDate = new Date();
   public date = [];
   public approvalTypeFilterList = [];
-  public appAprovalStatusList=[];
+  public appAprovalStatusList = [];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
   position: string;
@@ -48,7 +49,7 @@ export class CommunicationDashboardComponent implements OnInit {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
     this.pointofCareIntialStartDate.setDate(this.todayDate.getDate() - 30)
-    this.pointofCareDates=[this.pointofCareIntialStartDate,this.todayDate]
+    this.pointofCareDates = [this.pointofCareIntialStartDate, this.todayDate]
     this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
@@ -60,7 +61,7 @@ export class CommunicationDashboardComponent implements OnInit {
     this.approvalTypeFilterList = [{ name: 'Edited Punch', id: 1 },
     { name: 'Create Exception', id: 2 },
     { name: 'Create Availability', id: 3 }]
-    this.appAprovalStatusList=[{ name: 'Accept', id: 1 },
+    this.appAprovalStatusList = [{ name: 'Accept', id: 1 },
     { name: 'Pending', id: 2 },
     { name: 'Reject', id: 3 }]
 
@@ -107,7 +108,7 @@ export class CommunicationDashboardComponent implements OnInit {
       this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
         .subscribe(res => {
           console.log(res);
-          if(res[0].errorCode!=412){
+          if (res[0].errorCode != 412) {
             this.alertDefinitionList = res;
           }
         })
@@ -447,48 +448,49 @@ export class CommunicationDashboardComponent implements OnInit {
 
 
 
-/* Point of care Started*/
-public pocReleaseNotesList=[];
-public pointofCareDates=[];
-public pointofCareIntialStartDate:Date=new Date();
-public pocReleaseNotesFile:any;
-public getPocReleaseNotesList(template?){
-  try {
- this.ngxspineer.show('spinner3');
-    // let jsonObj={"startDate":this.datepipe.transform(this.pointofCareDates[0],'MM/dd/yyyy'),"endDate":this.datepipe.transform(this.pointofCareDates[1],'MM/dd/yyyy'),"lowerBound":1,"upperBound":10};
-    let jsonObj={"startDate":'01/01/2020',"endDate":'01/01/2021',"lowerBound":1,"upperBound":10};
-    this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res=>{
-       this.pocReleaseNotesList=res.releaseNotesList;
-       this.ngxspineer.hide('spinner3');
-     })
+  /* Point of care Started*/
+  public pocReleaseNotesList = [];
+  public pointofCareDates = [];
+  public pointofCareIntialStartDate: Date = new Date();
+  public pocReleaseNotesFile: any;
+  public getPocReleaseNotesList(template?) {
+    try {
+      this.ngxspineer.show('spinner3');
+      let jsonObj={"startDate":this.datepipe.transform(this.pointofCareDates[0],'MM/dd/yyyy'),"endDate":this.datepipe.transform(this.pointofCareDates[1],'MM/dd/yyyy'),"lowerBound":1,"upperBound":100};
+      // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
+      this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
+        this.pocReleaseNotesList = res.releaseNotesList;
+        this.ngxspineer.hide('spinner3');
+      })
 
 
-  } catch (error) {
+    } catch (error) {
 
+    }
   }
-}
 
-public getPocReleaseNotesFile(id){
-  try {
-    this.ngxspineer.show('spinner3');
-        this.dashboardService.getPocReleaseNotesFile(id).subscribe(res=>{
-          this.pocReleaseNotesFile=res;
-          // console.log(res.getFilterData)
-          console.log(atob(res.fileData))
-          this.ngxspineer.hide('spinner3');
-        })
-
-
-     } catch (error) {
-
-     }
-}
+  public getPocReleaseNotesFile(id) {
+    try {
+      this.ngxspineer.show('spinner3');
+      this.dashboardService.getPocReleaseNotesFile(id).subscribe(res => {
+        this.pocReleaseNotesFile = (res.fileData);
+        this.ngxspineer.hide('spinner3');
+        const byteArray = new Uint8Array(atob(res.fileData).split('').map(char => char.charCodeAt(0)));
+        var file = new Blob([byteArray], { type: 'application/pdf' });
+        var fileURL = window.URL.createObjectURL(file);
+        window.open(fileURL,'name')
+      })
 
 
-displayBasic: boolean;
+    } catch (error) {
 
-showBasicDialog() {
-  this.displayBasic = true;
-}
+    }
+  }
+
+
+  displayBasic: boolean;
+
+  showBasicDialog() {
+  }
 
 }
