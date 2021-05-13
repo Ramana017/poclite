@@ -485,8 +485,10 @@ public getPocReleaseNotesFile(id){
 }
 
 
+displayBasic: boolean;
 
-
-
+showBasicDialog() {
+  this.displayBasic = true;
+}
 
 }
