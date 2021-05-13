@@ -462,8 +462,10 @@ public getPocReleaseNotesList(template?){
 }
 
 
+displayBasic: boolean;
 
-
-
+showBasicDialog() {
+  this.displayBasic = true;
+}
 
 }
