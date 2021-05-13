@@ -47,6 +47,8 @@ export class CommunicationDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
+    this.pointofCareIntialStartDate.setDate(this.todayDate.getDate() - 30)
+    this.pointofCareDates=[this.pointofCareIntialStartDate,this.todayDate]
     this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
@@ -445,20 +447,41 @@ export class CommunicationDashboardComponent implements OnInit {
 
 
 
-
+/* Point of care Started*/
 public pocReleaseNotesList=[];
+public pointofCareDates=[];
+public pointofCareIntialStartDate:Date=new Date();
+public pocReleaseNotesFile:any;
 public getPocReleaseNotesList(template?){
   try {
-
-    let jsonObj={"startDate":"05/01/2020","endDate":"05/12/2021","lowerBound":1,"upperBound":10};
-     this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res=>{
+ this.ngxspineer.show('spinner3');
+    // let jsonObj={"startDate":this.datepipe.transform(this.pointofCareDates[0],'MM/dd/yyyy'),"endDate":this.datepipe.transform(this.pointofCareDates[1],'MM/dd/yyyy'),"lowerBound":1,"upperBound":10};
+    let jsonObj={"startDate":'01/01/2020',"endDate":'01/01/2021',"lowerBound":1,"upperBound":10};
+    this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res=>{
        this.pocReleaseNotesList=res.releaseNotesList;
+       this.ngxspineer.hide('spinner3');
      })
 
 
   } catch (error) {
 
   }
+}
+
+public getPocReleaseNotesFile(id){
+  try {
+    this.ngxspineer.show('spinner3');
+        this.dashboardService.getPocReleaseNotesFile(id).subscribe(res=>{
+          this.pocReleaseNotesFile=res;
+          // console.log(res.getFilterData)
+          console.log(atob(res.fileData))
+          this.ngxspineer.hide('spinner3');
+        })
+
+
+     } catch (error) {
+
+     }
 }
 
 

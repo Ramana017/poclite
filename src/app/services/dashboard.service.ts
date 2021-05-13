@@ -121,4 +121,8 @@ export class DashboardService {
   public getPocReleaseNotesList(data): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getPocReleaseNotesList?jsonObj=${data}`).pipe(catchError(this.errorHandler))
   }
+  public getPocReleaseNotesFile(id): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getPocReleaseNotesFile?jsonObj={"attachmentId":${id}}`).pipe(catchError(this.errorHandler))
+  }
+
 }

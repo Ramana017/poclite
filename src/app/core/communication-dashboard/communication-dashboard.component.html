@@ -267,6 +267,7 @@
             <div class="row m-0">
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
+                  <ngx-spinner [name]="'spinner3'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
                   <div class="widget-block h-auto">
                     <div class="widget-header  lightblue-bg ">
 
@@ -282,7 +283,7 @@
 
 
                          <div class="form-group form-input">
-                           <input type="text" [bsConfig]="{ adaptivePosition: true }" bsDaterangepicker [(ngModel)]="date" readonly
+                           <input type="text" [bsConfig]="{ adaptivePosition: true }" bsDaterangepicker [(ngModel)]="pointofCareDates" readonly
                              placeholder="Requested On" class="form-control" placement="left">
                          </div>
 
@@ -313,7 +314,7 @@
 
                               <td>{{item.notification}}</td>
                               <td>{{item.publishedOn}}</td>
-                              <td ><span [tooltip]="item.fileName" class="material-icons color-light-blue">
+                              <td ><span (click)="getPocReleaseNotesFile(item.attachmentId)" [tooltip]="item.fileName" class="material-icons color-light-blue">
                                   description
                                 </span></td>
 
