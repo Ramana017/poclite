@@ -206,8 +206,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               this.centerlangutide = +this.psAddressList[i].longitude;
               this.psLatitude = +this.psAddressList[i].latitude;
               this.psLongitude = +this.psAddressList[i].longitude;
-              let psObj = { latitude: this.psAddressList[i].latitude, longitude: this.psAddressList[i].longitude, address: this.psAddressList[i].address, type: 'ps' }
-              // let obj = [this.psAddressList[i].latitude, this.psAddressList[i].longitude, this.psAddressList[i].address, this.blueicon]
+              let psObj = { psAddressId: this.psAddressList[i].psAddressId, latitude: this.psAddressList[i].latitude, longitude: this.psAddressList[i].longitude, address: this.psAddressList[i].address, type: 'ps' }
               this.locations.push(psObj);
             }
           }
@@ -453,6 +452,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public psAddressClick(): void {
     console.log("psaddressclock");
     // console.log(+this.locations[2].latitude)
+    this.locations[2] = { latitude: +this.locations[2].latitude, longitude: +this.locations[2].longitude, address: this.locations[2].address, type: 'ps' }
     this.centerlatitude = +this.locations[2].latitude;
     this.centerlangutide = +this.locations[2].longitude;
     this.map.centerChange;
@@ -579,6 +579,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
         })
       }
+      console.log("############", (+longitude) >= (+this.geoCoordinatesRange.minLongitude), (+longitude) <= (+this.geoCoordinatesRange.maxLongitude), (+longitude) <= (+this.geoCoordinatesRange.maxLongitude) && (+longitude) >= (+this.geoCoordinatesRange.minLongitude))
       if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
         longitudeFlag = true;
       } else {
@@ -610,8 +611,28 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   public editpsAdreesButton: boolean = false;
 
-
+  public editMarkerPsAddress: any;
+  public editMarkerObj = {
+    "formattedAddress": "",
+    "latitude": null,
+    "longitude": null,
+    "street": null,
+    "suite": '',
+    "city": null,
+    "stateName": null,
+    "zipCode": null,
+  }
   public onmarkerDrag(event, type) {
+    this.editMarkerObj = {
+      "formattedAddress": "",
+      "latitude": null,
+      "longitude": null,
+      "street": null,
+      "suite": '',
+      "city": null,
+      "stateName": null,
+      "zipCode": null,
+    }
     console.log(event)
     let lat = event.coords.lat;
     let lng = event.coords.lng;
@@ -625,11 +646,14 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       location: latlng
     };
     let address: any;
+
     geocoder.geocode(request, (results, status) => {
+      console.log(status)
       if (status == "OK") {
-        console.log(results[0].formatted_address);
+        // console.log(request, results);
+        // console.log(results[0].formatted_address);
         address = results[0].formatted_address;
-        console.log(results[0].address_components[5]?.long_name)
+        // console.log(results[0].address_components[5]?.long_name)
         results[0].address_components.map(x => {
           console.log(x.long_name)
 
@@ -637,102 +661,130 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.locations[2].address = address;
           // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
           this.psaddressTxtArea = address;
+          console.log(this.psaddressTxtArea)
           x.types.map(y => {
             if (y == "postal_code") {
+              this.editMarkerObj.zipCode = x.long_name;
               console.log(x.long_name)
             }
+            if (y == "administrative_area_level_1") {
+              this.editMarkerObj.stateName = x.long_name;
+              console.log(x.long_name);
+            }
+            if (y == "administrative_area_level_2") {
+              this.editMarkerObj.city = x.long_name;
+              console.log(x.long_name);
+            }
           })
+
         })
+        this.editMarkerObj.formattedAddress = results[0].formatted_address
+        this.editMarkerObj.latitude = event.coords.lat;
+        this.editMarkerObj.longitude = event.coords.lng;
+        this.editMarkerObj.street = this.editMarkerObj.formattedAddress?.split(',')[0];
+        console.log(this.editMarkerObj.formattedAddress.split(','))
+      }else{
+        this.locations[2].address="Invalid Address"
       }
+      console.log("final object after drag", this.editMarkerObj)
 
 
     });
   }
   public savepsAddreess() {
     let obj = { "psAddressId": this.psAddressId }
-    this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
-      console.log(res);
-      this.geoCoordinatesRange = res.geoCoordinatesRange;
-      let latitudeFlag = false;
-      let longitudeFlag = false;
-      let latitutde: string = this.locations[2].latitude;
-      let longitude: string = this.locations[2].longitude;
-      if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
-        latitudeFlag = true;
-      } else {
-        swal.fire({
-          title: "Invalid Latitude",
-          text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
-          icon: "warning",
-          confirmButtonText: 'OK',
+    if (this.editMarkerObj.zipCode != null) {
+      this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
+        console.log(res);
+        this.geoCoordinatesRange = res.geoCoordinatesRange;
+        let latitudeFlag = false;
+        let longitudeFlag = false;
+        let latitutde: string = this.locations[2].latitude;
+        let longitude: string = this.locations[2].longitude;
+        if ((+latitutde) >= (+this.geoCoordinatesRange.minLatitude) && (+latitutde) <= (+this.geoCoordinatesRange.maxLatitude)) {
+          latitudeFlag = true;
+        } else {
+          swal.fire({
+            title: "Invalid Latitude",
+            text: "Latitude should between " + this.geoCoordinatesRange.minLatitude + ' and ' + this.geoCoordinatesRange.maxLatitude,
+            icon: "warning",
+            confirmButtonText: 'OK',
 
-        })
-      }
-      if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
-        longitudeFlag = true;
-      } else {
-        swal.fire({
-          title: "Invalid Longitude",
-          text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
-          icon: "warning",
-          confirmButtonText: 'OK',
+          })
+        }
+        if ((+longitude) >= (+this.geoCoordinatesRange.minLongitude) && (+longitude) <= (+this.geoCoordinatesRange.maxLongitude)) {
+          longitudeFlag = true;
+        } else {
+          swal.fire({
+            title: "Invalid Longitude",
+            text: "Longitude should between " + this.geoCoordinatesRange.minLongitude + ' and ' + this.geoCoordinatesRange.maxLongitude,
+            icon: "warning",
+            confirmButtonText: 'OK',
 
-        })
-      }
-      console.log(this.psAddress.suite)
-      if (latitudeFlag && longitudeFlag) {
+          })
+        }
+        console.log(this.psAddress.suite)
+        if (latitudeFlag && longitudeFlag) {
 
-        var jsonObj = {
-          "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.locations[2].address, "latitude": latitutde, "longitude": longitude, "userId": this.userId, "street": '', "suite": '', "city": '', "stateId": '', "zipCode": '', "addressId": ''
-        };
-        try {
-          this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
-            response => {
-              console.log(response);
-              this.saveResponseData = response;
-              if (this.saveResponseData.validateFlag == 0) {
+          var jsonObj = {
+            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId":this.psAddressId, "statecode": this.editMarkerObj.stateName
+          };
+          console.log(jsonObj)
+          try {
+            this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
+              response => {
+                console.log(response);
+                this.saveResponseData = response;
+                if (this.saveResponseData.validateFlag == 0) {
+                  swal.fire({
+                    text: "Data saved successfully",
+                    icon: "success",
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                  }).then(ok => {
+                    this.editpsAdreesButton = false;
+                    this.getGpsExceptionData()
+                  })
+                } else {
+                  swal.fire({
+                    text: "Data saved failed",
+                    icon: "error",
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                  })
+                }
+
+              },
+              error => {
+                console.log(error);
                 swal.fire({
-                  text: "Data saved successfully",
-                  icon: "success",
-                  confirmButtonText: 'OK',
-                  allowOutsideClick: false
-                }).then(ok => {
-                  this.editpsAdreesButton = false;
-                  this.apiservice.updateTable.next(true);
-                  this.bsmodelRef.hide();
-                })
-              } else {
-                swal.fire({
-                  text: "Data saved failed",
+                  text: "Failed to Save Data",
                   icon: "error",
                   confirmButtonText: 'OK',
                   allowOutsideClick: false
                 })
+
               }
+            )
+          }
+          catch (error) {
+            console.log(error);
+          }
 
-            },
-            error => {
-              console.log(error);
-              swal.fire({
-                text: "Failed to Save Data",
-                icon: "error",
-                confirmButtonText: 'OK',
-                allowOutsideClick: false
-              })
 
-            }
-          )
-        }
-        catch (error) {
-          console.log(error);
+
         }
 
 
-
-      }
-
-
-    })
+      })
+    }else{
+      swal.fire({
+        title: 'Invalid ',
+        text: `Invalid Address Format - ${this.editMarkerObj.formattedAddress} `,
+        icon: "warning",
+        confirmButtonText: 'OK',
+      })
+    }
   }
   public psaddressTxtArea = '';
 
