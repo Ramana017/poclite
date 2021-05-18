@@ -376,3 +376,17 @@ agm-map {
         padding-left: 6px;
     }
 }
+
+
+.address-message{
+    max-width: 100% !important;
+    font-size: 12px !important;
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    border: 1px solid #70707052;
+    border-radius: 5px;
+    // padding: 5px;
+    @include padding(5px !important,5px !important,5px !important,5px !important) ;
+    // margin: 0px 9px 9px 9px;
+    @include margin(0,9px,9px,9px);
+    color: $black !important;
+}
