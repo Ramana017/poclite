@@ -463,7 +463,7 @@ export class CommunicationDashboardComponent implements OnInit {
         this.ngxspineer.hide('spinner3');
       })
 
-
+      template.hide();
     } catch (error) {
 
     }

@@ -73,9 +73,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showPositionDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showPositionDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showPositionDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -91,9 +94,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateExceptionDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -108,9 +114,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateAvailabilityDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -304,8 +313,8 @@
                         <table class="table position-relative">
                           <thead class="thead-light no-wrap">
                             <tr>
-                              <th class="align-middle AvenirLTStd-Heavy color-black notification">Notification</th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black publish">Published On </th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black ">Notification</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black ">Published On </th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Message</th>
                             </tr>
                           </thead>
@@ -358,7 +367,7 @@
                   <div class="widget-block h-auto">
                     <div class="widget-header  green-bg text-center">
                       <!-- <div class="col-md-4"></div> -->
-                      <h5 class="text-white m-0 ">Ams Alerts</h5>
+                      <h5 class="text-white m-0 ">AMS Alerts</h5>
                       <div class=" d-flex justify-content-end align-items-center right-filter-icons">
                         <!-- <ng-autocomplete class="w-150" placeHolder="Search..">
                         </ng-autocomplete> -->
@@ -410,9 +419,8 @@
                             <tr>
                               <th></th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black">Alert Date </th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
-
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Recieved Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -434,8 +442,8 @@
                                 </div>
                               </td>
                               <td>{{item.subject}}</td>
-                              <td>{{item.groupBy}}</td>
                               <td><p [innerHTML]="item.message"></p></td>
+                              <td>{{item.groupBy}}</td>
                             </tr>
                           </tbody>
                         </table>
