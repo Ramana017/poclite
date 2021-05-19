@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -16,7 +17,7 @@ export class CommunicationDashboardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   customers: any = [];
   constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
-    public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService) {
+    public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService,private modalService: BsModalService) {
 
 
     this.screenHeight = window.innerHeight;
@@ -33,6 +34,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public appAprovalStatusList = [];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
+  public  modalRef: BsModalRef;
   position: string;
   displayPosition: boolean;
   createException: boolean;
@@ -74,7 +76,9 @@ export class CommunicationDashboardComponent implements OnInit {
     template.hide()
 
   }
-
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,Object.assign({}, { class: 'approval-modal' }));
+  }
 
   public amsAlertList = [];
   public amsAuthenicateResponse: any;
@@ -463,7 +467,7 @@ export class CommunicationDashboardComponent implements OnInit {
         this.ngxspineer.hide('spinner3');
       })
 
-
+      template.hide();
     } catch (error) {
 
     }

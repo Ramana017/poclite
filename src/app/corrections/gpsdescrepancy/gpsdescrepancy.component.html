@@ -86,12 +86,13 @@
               {{clockInLongitude}}
             </p>
           </div>
+          <p *ngIf="jsonData.isArrDcsAddressMatch==1" class="address-message">The captured Clock In came from the Caregiver's Home address</p>
           <div class="form-group mx-2">
             <h3 class="f-15">Clock In Comments<span class="text-danger">*</span></h3>
             <textarea class="form-control" [readOnly]="!arrivalgpsErr" [(ngModel)]="clockInComments"
               rows="3"></textarea>
           </div>
-          <p *ngIf="jsonData.isArrDcsAddressMatch==1" class="address-message">The captured Clock In came from the Caregiver's Home address</p>
+         
           <div class="button-wrapper mb-2 d-flex  justify-content-between">
             <div class="">
               <strong class="f-15">Clock In Variance:</strong>
@@ -100,7 +101,7 @@
             </div>
             <div class="form-group mx-2 ng-slect-gps">
 
-              <h3 class="f-15 pl-3">Exception Reason<span class="text-danger">*</span></h3>
+              <h3 class="f-15 pl-3">Exception Reason<span class="text-danger">*</span> :</h3>
 
               <!-- <select style="width: 79%;" [(ngModel)]="clockInGpsAcceptReasonsId" class="mx-2">
                 <option [ngValue]="null||0">--Select--</option>
@@ -122,11 +123,11 @@
           </div>
           <div class="d-flex align-items-center justify-content-between pl-3 pr-2" *ngIf="!arrivalgpsErr">
             <div class="form-group ">
-              <h3 class="f-15 mb-0">Accepted By</h3>
+              <h3 class="f-15 mb-0">Accepted By :</h3>
               <h3 class="f-15 mb-0 AvenirLTStd-Heavy">{{arrGpsAcceptedBy}}</h3>
             </div>
             <div class="form-group ">
-              <h3 class="f-15 mb-0">Accepted On</h3>
+              <h3 class="f-15 mb-0">Accepted On :</h3>
               <h3 class="f-15 mb-0 AvenirLTStd-Heavy">{{arrGpsAcceptedOn}}</h3>
             </div>
           </div>
@@ -158,11 +159,12 @@
             <p><strong>Address:</strong> <br> {{clockOutAddress}} <br> Latitude: {{clockOutLatitude}},
               Longitude:{{clockOutLongitude}} </p>
           </div>
+          <p *ngIf="jsonData.isDepDcsAddressMatch==1" class="address-message">The captured Clock Out came from the Caregiver's Home address</p>
           <div class="form-group mx-2">
             <h3 class="f-15">Clock Out Comments<span class="text-danger">*</span></h3>
             <textarea class="form-control" [readOnly]="!depgpsErr" [(ngModel)]="clockOutComments" rows="3"></textarea>
           </div>
-          <p *ngIf="jsonData.isDepDcsAddressMatch==1" class="address-message">The captured Clock Out came from the Caregiver's Home address</p>
+          
           <div class="button-wrapper d-flex  justify-content-between mb-2">
             <div class="">
               <strong class="f-15">Clock Out Variance:</strong>
@@ -171,7 +173,7 @@
             </div>
             <div class="form-group mx-2 ng-slect-gps">
 
-              <h3 class=" f-15 pl-3 "> Exception Reason<span class="text-danger">*</span></h3>
+              <h3 class=" f-15 pl-3 "> Exception Reason<span class="text-danger">*</span> :</h3>
 
               <!-- <select style="width: 79%;" [(ngModel)]="clockOutGpsAcceptReasonsId" class="mx-2">
                 <option [ngValue]="null||0">--Select--</option>
@@ -190,11 +192,11 @@
           </div>
           <div class="d-flex align-items-center justify-content-between pl-3 pr-2 " *ngIf="!depgpsErr">
             <div class="form-group ">
-              <h3 class="f-15 mb-0">Accepted By</h3>
+              <h3 class="f-15 mb-0">Accepted By :</h3>
               <h3 class="f-15 mb-0 AvenirLTStd-Heavy">{{depGpsAcceptedBy}}</h3>
             </div>
             <div class="form-group ">
-              <h3 class="f-15 mb-0">Accepted On</h3>
+              <h3 class="f-15 mb-0">Accepted On :</h3>
               <h3 class="f-15 mb-0 AvenirLTStd-Heavy">{{depGpsAcceptedOn}}</h3>
             </div>
           </div>
@@ -328,7 +330,7 @@
             <span class="material-icons mr-2">
               help_outline
               </span>
-            <p class="m-0">To Confirm the PS Service Address. Click Edit</p>
+            <p class="m-0">To correct the PS service address, click Edit.</p>
             <div class="sizes ml-3">
               <p-button label="Edit&nbsp;PS&nbsp;Address" (click)="editpsAdreesButton=true"  styleClass="p-button-sm"></p-button>
             </div>
@@ -337,7 +339,7 @@
             <span class="material-icons mr-2">
               help_outline
               </span>
-            <p class="mb-0 mr-2 ">Drag and place the PS  Address pin at the Service Location</p>
+            <p class="mb-0 mr-2 ">Drag and place the PS Address Pin at the correct Service Location.</p>
             <div class="p-inputgroup" style="width: 200px;" >
               <textarea type="text" [(ngModel)]="psaddressTxtArea" readonly rows="1" pInputTextarea placeholder="Address"></textarea>
           </div>
@@ -346,16 +348,16 @@
             </div>
           </div>
 
-          <div class="d-flex pointermaps " (click)="psAddressClick()">
+          <div class="d-flex pointermaps align-items-center" (click)="psAddressClick()">
             <i style="color: #145194;" class="fas fa-map-marker-alt  mr-2 ml-2"></i>
             <p class="mb-0">PS Address</p>
           </div>
-          <div *ngIf="clockInLatitude!=0 || clockInLongitude!=0 " class="d-flex pointermaps "
+          <div *ngIf="clockInLatitude!=0 || clockInLongitude!=0 " class="d-flex pointermaps align-items-center"
             (click)="clockInAddressClick()">
             <i [ngClass]="arrivalgpsErr?'text-danger':'text-success'" class="fas fa-map-marker-alt  mr-2 ml-2"></i>
             <p class="mb-0">Clock In Address</p>
           </div>
-          <div *ngIf="clockOutLatitude!=0 || clockOutLongitude!=0" class="d-flex pointermaps "
+          <div *ngIf="clockOutLatitude!=0 || clockOutLongitude!=0" class="d-flex pointermaps align-items-center"
             (click)="clockOutAddressClick()">
             <i [ngClass]="depgpsErr?'text-danger':'text-success'" class="fas fa-map-marker-alt mr-2 ml-2"></i>
             <p class="mb-0">Clock Out Address</p>

@@ -73,9 +73,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showPositionDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showPositionDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showPositionDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -91,9 +94,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateExceptionDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -108,9 +114,12 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                     <div class="">
-                                      <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
+                                      <!-- <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
                                         add_circle
-                                      </span>
+                                      </span> -->
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateAvailabilityDialog('left')">
+                                        edit
+                                        </span>
                                     </div>
                                   </li>
                                 </ul>
@@ -304,8 +313,8 @@
                         <table class="table position-relative">
                           <thead class="thead-light no-wrap">
                             <tr>
-                              <th class="align-middle AvenirLTStd-Heavy color-black notification">Notification</th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black publish">Published On </th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black ">Notification</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black ">Published On </th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Message</th>
                             </tr>
                           </thead>
@@ -358,7 +367,7 @@
                   <div class="widget-block h-auto">
                     <div class="widget-header  green-bg text-center">
                       <!-- <div class="col-md-4"></div> -->
-                      <h5 class="text-white m-0 ">Ams Alerts</h5>
+                      <h5 class="text-white m-0 ">AMS Alerts</h5>
                       <div class=" d-flex justify-content-end align-items-center right-filter-icons">
                         <!-- <ng-autocomplete class="w-150" placeHolder="Search..">
                         </ng-autocomplete> -->
@@ -410,9 +419,8 @@
                             <tr>
                               <th></th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black">Alert Date </th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
-
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Recieved Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -434,8 +442,8 @@
                                 </div>
                               </td>
                               <td>{{item.subject}}</td>
-                              <td>{{item.groupBy}}</td>
                               <td><p [innerHTML]="item.message"></p></td>
+                              <td>{{item.groupBy}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -703,3 +711,144 @@
         <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+ 
+
+<!-- Visit Edit Details for Approval -->
+<ng-template >
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Visit Edit Details for Approval</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex align-items-center ">
+      <p class="mb-0 title-font f-15 p-0 w-45">PS:</p>
+      <p class="mb-0 title-font ">Doe,Jane</p>
+    </div>
+    <div class="d-flex align-items-center ">
+      <p class="mb-0 title-font f-15 p-0 w-45">DCS:</p>
+      <p class="mb-0 title-font ">PS,PS</p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="mb-0 title-font f-15 p-0 w-45">Service:</p>
+      <p class="mb-0 title-font ">[CCRN] ATC-ATTENDANT CARE</p>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Arrival Time:</p>
+        <p class="mb-0 title-font  ">04/07/2021 06:00 PM</p>
+      </div>
+      <div class="d-flex align-items-center  mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Departure Time:</p>
+        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Updated Arrival Time:</p>
+        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+      </div>
+      <div class="d-flex align-items-center  mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Updated Departure Time:</p>
+        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Arrival Diff:</p>
+        <p class="mb-0 title-font ">0.0 Mins</p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Departure Diff:</p>
+        <p class="mb-0 title-font ">-60.0 Mins</p>
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Arrival Adjusted Reason:</p>
+        <p class="mb-0 title-font "></p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Departure Adjusted Reason:</p>
+        <p class="mb-0 title-font ">DCS Called Early/Late</p>
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
+        <div class="col-6 p-0">
+          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
+            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        </div>
+      </div>
+      <div class="d-flex mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
+        <textarea rows="3" cols="30" pInputTextarea></textarea>
+      </div>
+     
+    </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
+
+    </div>
+  </div>
+</ng-template>
+<!-- DCS Exceptions -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">DCS Exceptions</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="d-flex align-items-center ">
+      <p class="mb-0 title-font f-15 p-0 w-45">DCS:</p>
+      <p class="mb-0 title-font ">PS,PS</p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="mb-0 title-font f-15 w-45">Start Date:</p>
+      <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">End Date:</p>
+        <p class="mb-0 title-font  ">04/07/2021 06:00 PM</p>
+      </div>
+      <div class="d-flex align-items-center  mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Exception Type:</p>
+        <p class="mb-0 title-font ">Paid Time Off</p>
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Exception Comments:</p>
+        <p class="mb-0 title-font ">Paid Time Off</p>
+      </div>
+    </div>
+
+
+    <div class="">
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
+        <div class="col-6 p-0">
+          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
+            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        </div>
+      </div>
+      <div class="d-flex mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
+        <textarea rows="3" cols="30" pInputTextarea></textarea>
+      </div>
+     
+    </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
+
+    </div>
+  </div>
+</ng-template>
