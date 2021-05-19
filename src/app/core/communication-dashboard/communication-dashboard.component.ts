@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, HostListener, TemplateRef } from '@angular/core';
+import { Component, OnInit, HostListener, TemplateRef, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
@@ -12,12 +12,12 @@ declare var $: any;
   templateUrl: './communication-dashboard.component.html',
   styleUrls: ['./communication-dashboard.component.sass']
 })
-export class CommunicationDashboardComponent implements OnInit {
+export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   customers: any = [];
   constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
-    public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService,private modalService: BsModalService) {
+    public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService, private modalService: BsModalService) {
 
 
     this.screenHeight = window.innerHeight;
@@ -34,7 +34,7 @@ export class CommunicationDashboardComponent implements OnInit {
   public appAprovalStatusList = [];
   // public appapproval: boolean = false;
   public widgetArray: Array<boolean> = [false, false, false, false];
-  public  modalRef: BsModalRef;
+  public modalRef: BsModalRef;
   position: string;
   displayPosition: boolean;
   createException: boolean;
@@ -48,15 +48,21 @@ export class CommunicationDashboardComponent implements OnInit {
     { name: 'Washington', code: 'Washington' }
   ];
   ngOnInit(): void {
+
+
+  }
+  ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
     this.pointofCareIntialStartDate.setDate(this.todayDate.getDate() - 30)
-    this.pointofCareDates = [this.pointofCareIntialStartDate, this.todayDate]
+    this.pointofCareStartDate=this.pointofCareIntialStartDate;
+    this.pocStartDate=this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
+    this.pocEndDate=this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
     this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
     this.onResize();
-    this.authenticateUserForDevices();
+    // this.authenticateUserForDevices();
     // this.defaultstaticData();
     // this.getAlertsForDevices();
 
@@ -68,7 +74,6 @@ export class CommunicationDashboardComponent implements OnInit {
     { name: 'Reject', id: 3 }]
 
     this.getPocReleaseNotesList();
-
   }
 
   public appApprovalsFilter(template) {
@@ -76,8 +81,8 @@ export class CommunicationDashboardComponent implements OnInit {
     template.hide()
 
   }
-  openModal(availability: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(availability,Object.assign({}, { class: 'approval-modal' }));
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
   }
 
   public amsAlertList = [];
@@ -455,22 +460,36 @@ export class CommunicationDashboardComponent implements OnInit {
   /* Point of care Started*/
   public pocReleaseNotesList = [];
   public pointofCareDates = [];
+  public pointofCareStartDate: Date = new Date();
+  public pointofCareEndDate: Date = new Date();
   public pointofCareIntialStartDate: Date = new Date();
+  public pocTotalRecordsCount=0;
   public pocReleaseNotesFile: any;
-  public getPocReleaseNotesList(template?) {
+  public pocUpperBound = 10;
+  public pocLowerBound = 1;
+  public pocperPage = 10;
+  private pocStartDate='';
+  private pocEndDate='';
+  public getPocReleaseNotesList() {
     try {
       this.ngxspineer.show('spinner3');
-      let jsonObj={"startDate":this.datepipe.transform(this.pointofCareDates[0],'MM/dd/yyyy'),"endDate":this.datepipe.transform(this.pointofCareDates[1],'MM/dd/yyyy'),"lowerBound":1,"upperBound":100};
+      let jsonObj = { "startDate": this.pocStartDate, "endDate": this.pocEndDate, "lowerBound": this.pocLowerBound, "upperBound": this.pocUpperBound };
       // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
       this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
         this.pocReleaseNotesList = res.releaseNotesList;
+        this.pocTotalRecordsCount=res.totalCount;
         this.ngxspineer.hide('spinner3');
       })
 
-      template.hide();
     } catch (error) {
 
     }
+  }
+  public onPocSearch(template){
+    this.pocStartDate=this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
+    this.pocEndDate=this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
+    template.hide();
+    this.getPocReleaseNotesList();
   }
 
   public getPocReleaseNotesFile(id) {
@@ -482,7 +501,7 @@ export class CommunicationDashboardComponent implements OnInit {
         const byteArray = new Uint8Array(atob(res.fileData).split('').map(char => char.charCodeAt(0)));
         var file = new Blob([byteArray], { type: 'application/pdf' });
         var fileURL = window.URL.createObjectURL(file);
-        window.open(fileURL,'name')
+        window.open(fileURL, 'name')
       })
 
 
@@ -490,11 +509,31 @@ export class CommunicationDashboardComponent implements OnInit {
 
     }
   }
+  public pocPrevPage() {
+   this.pocLowerBound= this.pocLowerBound-this.pocperPage;
+   this.pocUpperBound=this.pocUpperBound-this.pocperPage;
+   this.getPocReleaseNotesList();
+  }
+  public PocNextPage(){
+    this.pocLowerBound= this.pocLowerBound+this.pocperPage;
+    this.pocUpperBound=this.pocUpperBound+this.pocperPage;
+    this.getPocReleaseNotesList();
+  }
+  public pocFilterReset(template){
+    this.pointofCareStartDate=this.pointofCareIntialStartDate;
+    this.pointofCareEndDate =new Date();
+    this.pocpageReset();
+    template.hide();
+  }
+  public pocpageReset(){
+  this.pocLowerBound=1;
+  this.pocUpperBound=this.pocperPage;
+  this.getPocReleaseNotesList();
+  }
 
 
   displayBasic: boolean;
 
-  showBasicDialog() {
-  }
+
 
 }
