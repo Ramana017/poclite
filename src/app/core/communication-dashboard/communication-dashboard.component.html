@@ -712,11 +712,12 @@
     </ng-template>
 </p-dialog>
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
+<button type="button" class="btn btn-primary" (click)="openModal(availability)">Create template modal</button>
+<button type="button" class="btn btn-primary" (click)="openModal(editDetails)">Create template modal</button>
+<button type="button" class="btn btn-primary" (click)="openModal(exception)">Create template modal</button>
 
 <!-- Visit Edit Details for Approval -->
-<ng-template >
+<ng-template #editDetails>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Visit Edit Details for Approval</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -797,7 +798,7 @@
   </div>
 </ng-template>
 <!-- DCS Exceptions -->
-<ng-template #template>
+<ng-template #exception>
   <div class="modal-header">
     <h4 class="modal-title pull-left">DCS Exceptions</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -849,6 +850,64 @@
     <div class="d-flex align-items-center justify-content-end">
       <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
 
+    </div>
+  </div>
+</ng-template>
+<!-- DCS Availability -->
+<ng-template #availability>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">DCS Availability</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">DCS:</p>
+      <p class="mb-0 title-font ">PS,PS</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 w-45">Start Date:</p>
+      <p class="mb-0 title-font ">04/07/2021</p>
+    </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">End Date:</p>
+        <p class="mb-0 title-font  ">04/07/2021</p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 w-45">Start Time 1:</p>
+        <p class="mb-0 title-font "> 06:00 PM</p>
+      </div>
+        <div class="d-flex align-items-center mb-2">
+          <p class="mb-0 title-font f-15 p-0 w-45">End Time 1:</p>
+          <p class="mb-0 title-font  "> 06:00 PM</p>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <p class="mb-0 title-font f-15 w-45">Start Time 2:</p>
+          <p class="mb-0 title-font "> 06:00 PM</p>
+        </div>
+          <div class="d-flex align-items-center mb-2">
+            <p class="mb-0 title-font f-15 p-0 w-45">End Time 2:</p>
+            <p class="mb-0 title-font  "> 06:00 PM</p>
+          </div>
+      <div class="d-flex align-items-center  mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Day(s):</p>
+        <p class="mb-0 title-font ">Wed</p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
+        <div class="col-6 p-0">
+          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
+            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        </div>
+      </div>
+      <div class="d-flex mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
+        <textarea rows="3" cols="30" pInputTextarea></textarea>
+      </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
     </div>
   </div>
 </ng-template>
