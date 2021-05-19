@@ -76,8 +76,8 @@ export class CommunicationDashboardComponent implements OnInit {
     template.hide()
 
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template,Object.assign({}, { class: 'approval-modal' }));
+  openModal(availability: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(availability,Object.assign({}, { class: 'approval-modal' }));
   }
 
   public amsAlertList = [];

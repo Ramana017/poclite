@@ -33,14 +33,23 @@
                             <div class="form-group form-input  alert-dropdown">
                               <p-dropdown [options]="approvalTypeFilterList" [showClear]="true"  placeholder="Approval Type"  [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                             </div>
-                            <div class="form-group form-input">
-                              <input type="text" bsDaterangepicker [(ngModel)]="date" readonly
-                                placeholder="Requested On" class="form-control">
+                            <div class="d-flex align-items-center">
+                              <div class="form-group form-input mr-2">
+                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                  placeholder="Start Date" class="form-control">
+                              </div>
+                              <div class="form-group form-input">
+                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                  placeholder="End Date" class="form-control">
+                              </div>
                             </div>
+                          
                             <div class="form-group form-input  alert-dropdown">
                               <p-dropdown [options]="appAprovalStatusList" [showClear]="true"  placeholder="Status"  [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                             </div>
                             <div class="text-right">
+                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
+                                ><i class="fas fa-sync mr-2"></i>Reset</button>
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="appApprovalsFilter(filter)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -76,7 +85,7 @@
                                       <!-- <span class="material-icons add-bg" (click)="showPositionDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="showPositionDialog('left')">
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(editDetails)">
                                         edit
                                         </span>
                                     </div>
@@ -97,7 +106,7 @@
                                       <!-- <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateExceptionDialog('left')">
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(exception)">
                                         edit
                                         </span>
                                     </div>
@@ -117,7 +126,7 @@
                                       <!-- <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="showcreateAvailabilityDialog('left')">
+                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(availability)">
                                         edit
                                         </span>
                                     </div>
@@ -175,13 +184,24 @@
                             <div class="form-group form-input">
                               <input type="text" placeholder="DCS Name" class="form-control">
                             </div>
-
-                            <div class="form-group form-input">
+                            <div class="d-flex align-items-center">
+                              <div class="form-group form-input mr-2">
+                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                  placeholder="Start Date" class="form-control">
+                              </div>
+                              <div class="form-group form-input">
+                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }" placement="left"
+                                  placeholder="End Date" class="form-control">
+                              </div>
+                            </div>
+                            <!-- <div class="form-group form-input">
                               <input type="text" bsDaterangepicker [(ngModel)]="date" readonly
                                 placeholder="Requested On" class="form-control" placement="left">
-                            </div>
+                            </div> -->
 
                             <div class="text-right">
+                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
+                              ><i class="fas fa-sync mr-2"></i>Reset</button>
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="appApprovalsFilter(filter1)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -290,13 +310,24 @@
                        </span>
                        <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
 
-
-                         <div class="form-group form-input">
+                        <div class="d-flex align-items-center">
+                          <div class="form-group form-input mr-2">
+                            <input type="text" bsDatepicker [(ngModel)]="pointofCareDates" readonly [bsConfig]="{ adaptivePosition: true }"
+                              placeholder="Start Date" class="form-control">
+                          </div>
+                          <div class="form-group form-input">
+                            <input type="text" bsDatepicker [(ngModel)]="pointofCareDates" readonly [bsConfig]="{ adaptivePosition: true }"
+                              placeholder="End Date" class="form-control">
+                          </div>
+                        </div>
+                         <!-- <div class="form-group form-input">
                            <input type="text" [bsConfig]="{ adaptivePosition: true }" bsDaterangepicker [(ngModel)]="pointofCareDates" readonly
                              placeholder="Requested On" class="form-control" placement="left">
-                         </div>
+                         </div> -->
 
                          <div class="text-right">
+                          <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
+                          ><i class="fas fa-sync mr-2"></i>Reset</button>
                            <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                              (click)="getPocReleaseNotesList(filterPOC)"><i class="pi pi-search mr-2"></i>Search</button>
                          </div>
@@ -380,26 +411,38 @@
                             <i class="pi pi-filter"></i>
                           </span>
                           <div id="dropdown-basic"   *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
-                            <div class="row">
-                              <div class="form-group form-input col-6">
+                            <div class="row mr-0">
+                              <div class="d-flex align-items-center col-6 pr-0">
+                                <div class="form-group form-input mr-2">
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter" readonly [bsConfig]="{ adaptivePosition: true }"
+                                    placeholder="Start Date" class="form-control">
+                                </div>
+                                <div class="form-group form-input">
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter" readonly [bsConfig]="{ adaptivePosition: true }"
+                                    placeholder="End Date" class="form-control">
+                                </div>
+                              </div>
+                              <!-- <div class="form-group form-input col-6">
                                 <input type="text" bsDaterangepicker readonly [bsConfig]="{ adaptivePosition: true }" [(ngModel)]="amsDateFilter" placeholder="Start & End Date" class="form-control">
 
-                              </div>
-                              <div class="form-group form-input col-6">
+                              </div> -->
+                              <div class="form-group form-input col-6 pr-0">
                                 <input type="text" [(ngModel)]="amsSearchBy" placeholder="Search By" class="form-control">
 
                               </div>
                               <!-- <div class="form-group form-input col-6">
                                 <input type="text" placeholder="-Select-" class="form-control">
                               </div> -->
-                              <div class="form-group form-input col-6 alert-dropdown">
+                              <div class="form-group form-input col-6 alert-dropdown pr-0">
                                 <p-dropdown [options]="applicationList" placeholder="Select Application" [(ngModel)]="applicationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
 
                               </div>
-                              <div class="form-group form-input col-6 alert-dropdown">
+                              <div class="form-group form-input col-6 alert-dropdown pr-0">
                                 <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination" [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                               </div>
-                              <div class="text-right col-12">
+                              <div class="text-right col-12 pr-0">
+                                <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
+                                ><i class="fas fa-sync mr-2"></i>Reset</button>
                                 <button (click)="onAmsSearch(filter2)"  type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
@@ -712,11 +755,9 @@
     </ng-template>
 </p-dialog>
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
- 
 
 <!-- Visit Edit Details for Approval -->
-<ng-template >
+<ng-template #editDetails>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Visit Edit Details for Approval</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -797,7 +838,7 @@
   </div>
 </ng-template>
 <!-- DCS Exceptions -->
-<ng-template #template>
+<ng-template #exception>
   <div class="modal-header">
     <h4 class="modal-title pull-left">DCS Exceptions</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -849,6 +890,64 @@
     <div class="d-flex align-items-center justify-content-end">
       <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
 
+    </div>
+  </div>
+</ng-template>
+<!-- DCS Availability -->
+<ng-template #availability>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">DCS Availability</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">DCS:</p>
+      <p class="mb-0 title-font ">PS,PS</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 w-45">Start Date:</p>
+      <p class="mb-0 title-font ">04/07/2021</p>
+    </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">End Date:</p>
+        <p class="mb-0 title-font  ">04/07/2021</p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 w-45">Start Time 1:</p>
+        <p class="mb-0 title-font "> 06:00 PM</p>
+      </div>
+        <div class="d-flex align-items-center mb-2">
+          <p class="mb-0 title-font f-15 p-0 w-45">End Time 1:</p>
+          <p class="mb-0 title-font  "> 06:00 PM</p>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <p class="mb-0 title-font f-15 w-45">Start Time 2:</p>
+          <p class="mb-0 title-font "> 06:00 PM</p>
+        </div>
+          <div class="d-flex align-items-center mb-2">
+            <p class="mb-0 title-font f-15 p-0 w-45">End Time 2:</p>
+            <p class="mb-0 title-font  "> 06:00 PM</p>
+          </div>
+      <div class="d-flex align-items-center  mb-2">
+        <p class="mb-0 title-font f-15  p-0 w-45">Day(s):</p>
+        <p class="mb-0 title-font ">Wed</p>
+      </div>
+      <div class="d-flex align-items-center mb-2">
+        <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
+        <div class="col-6 p-0">
+          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
+            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        </div>
+      </div>
+      <div class="d-flex mb-2">
+        <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
+        <textarea rows="3" cols="30" pInputTextarea></textarea>
+      </div>
+    <div class="d-flex align-items-center justify-content-end">
+      <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
     </div>
   </div>
 </ng-template>
