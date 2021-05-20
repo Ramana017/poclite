@@ -13,24 +13,24 @@
 .bg-color
   background: #f5f5f5
   padding: 5px 10px
-  max-width: 60%
+  max-width: 90%
   border-radius: 20px
 .l-height-21
  line-height:21px
 .bg-color-right
- background: #dbf4fd
+ background: #ecf0f1
  padding: 5px 10px
- max-width: 60%
+ max-width: 90%
  border-radius: 20px
  margin: 10px 0 auto auto
+ 
 .send-msg-icon
-    width: 31px
+    width: 33px
     height: 33px
-    background: #343a40
+    background: #6fb13f
     color:#fff !important
-    padding: 9px
-    right:0 !important
-    top:7px !important
+    padding: 5px
+    border-radius: 20px
 .notification-badge
   position: absolute
   top: 2px
@@ -71,3 +71,33 @@
   margin-top: -18px
 ::ng-deep .tooltip-inner
   max-width:100%
+::ng-deep .time-stamp
+  float: right
+  font-size: 10px
+  margin-top: 6px
+  color: gray
+::ng-deep .p-overlaypanel-content
+  height: 50vh
+  overflow: auto
+  background:#e7e8d2
+  padding-bottom: 60px !important
+::ng-deep .p-message-input
+  position: absolute
+  bottom: 0
+  z-index: 9999
+  padding-bottom: 10px
+  background: #f0f0f0
+  padding-right: 15px
+  margin-left: -13px
+  .input-message
+    border-radius:20px
+::ng-deep .p-overlaypanel
+  &:after
+    border-bottom-color: #e7e8d2
+  &:before
+    border-bottom-color: #e7e8d2
+  .today-text
+    background: #e1f4fa
+    padding: 5px
+    border-radius: 5px
+    color: black

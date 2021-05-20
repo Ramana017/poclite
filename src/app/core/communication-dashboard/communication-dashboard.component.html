@@ -56,6 +56,7 @@
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
+                          <i class="fas fa-sync px-2"></i>
                           <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps',$event)"></i>
                           <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps',$event)"></i>
                         </div>
@@ -208,6 +209,7 @@
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
+                          <i class="fas fa-sync px-2"></i>
                           <i class="fas fa-compress-alt min-1 px-2"
                             (click)="widgetReSize(false,'admissions',$event)"></i>
                           <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'admissions',$event)"></i>
@@ -334,6 +336,7 @@
                        </div>
                      </div>
                         <div class="ico d-flex align-items-center">
+                          <i class="fas fa-sync px-2"></i>
                           <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'authorization')"></i>
                           <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'authorization')"></i>
                         </div>
@@ -449,6 +452,7 @@
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
+                          <i class="fas fa-sync px-2"></i>
                           <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'dcs')"></i>
                           <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'dcs')"></i>
                         </div>
@@ -723,24 +727,42 @@
 
   <ng-template pTemplate>
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
-      <div class="border-5 m-0"></div>
-      <p class="mb-0 mx-2">Today</p>
-      <div class="border-5 m-0"></div>
+      <!-- <div class="border-5 m-0"></div> -->
+      <p class="mb-0 mx-2 today-text">Today</p>
+      <!-- <div class="border-5 m-0"></div> -->
     </div>
     <div class="">
       <div class="bg-color">
-        <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light"> 2:21 PM</span></p>
-        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
+        <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-black-dark">Abbay, George</p>
+        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
       </div>
-      <div class="bg-color-right">
-        <p class="mb-0 AvenirLTStd-Heavy l-height-21">Abbay, George<span class="AvenirLTStd-Light"> 2:21 PM</span></p>
-        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?</p>
-      </div>
+ 
     </div>
-    <span class="p-input-icon-right w-100 mt-2">
-      <i class="pi pi-send send-msg-icon"></i>
-      <input type="text" pInputText class="w-100" />
-    </span>
+    <div class="position-relative d-flex align-items-center justify-content-center mb-2 mt-2">
+      <div class="border-5 m-0"></div>
+      <p class="mb-0 mx-2 white-space-nowrap ">3 Unread Messages</p>
+      <div class="border-5 m-0"></div>
+    </div>
+    <div class="bg-color-right">
+      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+    </div>
+    <div class="bg-color-right">
+      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+    </div>
+    <div class="bg-color-right">
+      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+    </div>
+    <div class=" w-100 pt-2 p-message-input d-flex">
+      <!-- <i class="pi pi-send "></i> -->
+      
+      <input type="text" pInputText class=" input-message ml-2 w-100 mr-2" />
+      <span class="material-icons send-msg-icon mr-2">
+        send
+        </span>
+    </div>
   </ng-template>
 </p-overlayPanel>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
