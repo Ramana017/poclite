@@ -184,8 +184,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.screenHeight = window.innerHeight;
     console.log(this.screenWidth, this.screenHeight);
     if (this.minmaxResize === false) {
-      var height = this.screenHeight / 2 - 115;
+      var height = this.screenHeight / 2 - 127;
       $('.table-responsive').css('height', height + 'px');
+      $('.alert-responsive').css('height', height +30 + 'px');
       // console.log(this.minmaxResize)
     }
     else if (this.minmaxResize === true) {
@@ -193,6 +194,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       console.log(this.screenWidth, this.screenHeight);
       var height = this.screenHeight - 200;
       $('.table-responsive').css('height', height + 'px');
+      $('.alert-responsive').css('height', height+30 + 'px');
     }
   }
   // for UI maximize and minimize
