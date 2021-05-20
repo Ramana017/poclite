@@ -94,10 +94,21 @@
 ::ng-deep .p-overlaypanel
   &:after
     border-bottom-color: #e7e8d2
+    
   &:before
-    border-bottom-color: #e7e8d2
+    border-bottom-color: #e7e8d2 
+  &.p-overlaypanel-flipped
+    &:after
+      border-top-color: #e7e8d2
+    &:before
+     border-top-color: #e7e8d2 
   .today-text
     background: #e1f4fa
     padding: 5px
     border-radius: 5px
     color: black
+  .unread-text 
+    background: #fff
+    padding: 3px 5px
+    border-radius: 20px
+    margin: 5px 0 !important
