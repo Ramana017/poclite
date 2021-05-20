@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import Swal from 'sweetalert2';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -55,9 +56,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
     this.pointofCareIntialStartDate.setDate(this.todayDate.getDate() - 30)
-    this.pointofCareStartDate=this.pointofCareIntialStartDate;
-    this.pocStartDate=this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
-    this.pocEndDate=this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
+    this.pointofCareStartDate = this.pointofCareIntialStartDate;
+    this.pocStartDate = this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
+    this.pocEndDate = this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
     this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
@@ -463,13 +464,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public pointofCareStartDate: Date = new Date();
   public pointofCareEndDate: Date = new Date();
   public pointofCareIntialStartDate: Date = new Date();
-  public pocTotalRecordsCount=0;
+  public pocTotalRecordsCount = 0;
   public pocReleaseNotesFile: any;
   public pocUpperBound = 10;
   public pocLowerBound = 1;
   public pocperPage = 10;
-  private pocStartDate='';
-  private pocEndDate='';
+  private pocStartDate = '';
+  private pocEndDate = '';
   public getPocReleaseNotesList() {
     try {
       this.ngxspineer.show('spinner3');
@@ -477,7 +478,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
       this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
         this.pocReleaseNotesList = res.releaseNotesList;
-        this.pocTotalRecordsCount=res.totalCount;
+        this.pocTotalRecordsCount = res.totalCount;
         this.ngxspineer.hide('spinner3');
       })
 
@@ -485,11 +486,16 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     }
   }
-  public onPocSearch(template){
-    this.pocStartDate=this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
-    this.pocEndDate=this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
-    template.hide();
-    this.getPocReleaseNotesList();
+  public onPocSearch(template) {
+    if (this.pointofCareStartDate <= this.pointofCareEndDate) {
+      this.pocStartDate = this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
+      this.pocEndDate = this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
+      template.hide();
+      this.getPocReleaseNotesList();
+    }
+    else{
+      Swal.fire('Invalid Dates','Start date cannot be greater than End date','warning')
+    }
   }
 
   public getPocReleaseNotesFile(id) {
@@ -510,25 +516,25 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public pocPrevPage() {
-   this.pocLowerBound= this.pocLowerBound-this.pocperPage;
-   this.pocUpperBound=this.pocUpperBound-this.pocperPage;
-   this.getPocReleaseNotesList();
-  }
-  public PocNextPage(){
-    this.pocLowerBound= this.pocLowerBound+this.pocperPage;
-    this.pocUpperBound=this.pocUpperBound+this.pocperPage;
+    this.pocLowerBound = this.pocLowerBound - this.pocperPage;
+    this.pocUpperBound = this.pocUpperBound - this.pocperPage;
     this.getPocReleaseNotesList();
   }
-  public pocFilterReset(template){
-    this.pointofCareStartDate=this.pointofCareIntialStartDate;
-    this.pointofCareEndDate =new Date();
+  public PocNextPage() {
+    this.pocLowerBound = this.pocLowerBound + this.pocperPage;
+    this.pocUpperBound = this.pocUpperBound + this.pocperPage;
+    this.getPocReleaseNotesList();
+  }
+  public pocFilterReset(template) {
+    this.pointofCareStartDate = this.pointofCareIntialStartDate;
+    this.pointofCareEndDate = new Date();
     this.pocpageReset();
     template.hide();
   }
-  public pocpageReset(){
-  this.pocLowerBound=1;
-  this.pocUpperBound=this.pocperPage;
-  this.getPocReleaseNotesList();
+  public pocpageReset() {
+    this.pocLowerBound = 1;
+    this.pocUpperBound = this.pocperPage;
+    this.getPocReleaseNotesList();
   }
 
 
