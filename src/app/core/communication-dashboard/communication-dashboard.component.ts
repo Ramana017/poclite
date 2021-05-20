@@ -3,7 +3,7 @@ import { Component, OnInit, HostListener, TemplateRef, AfterViewInit } from '@an
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
-import { AmsAlertsServiceService } from 'src/app/services/ams-alerts-service.service';
+import { alertForDevices, AmsAlertsServiceService, amsLogin } from 'src/app/services/ams-alerts-service.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
-  @HostListener('window:resize', ['$event'])
+  // @HostListener('window:resize', ['$event'])
   customers: any = [];
   constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
     public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService, private modalService: BsModalService) {
@@ -61,10 +61,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     this.resize();
     this.onResize();
-    // this.authenticateUserForDevices();
-    // this.defaultstaticData();
-    // this.getAlertsForDevices();
-
+    this.authenticateUserForDevices();
     this.approvalTypeFilterList = [{ name: 'Edited Punch', id: 1 },
     { name: 'Create Exception', id: 2 },
     { name: 'Create Availability', id: 3 }]
@@ -84,8 +81,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
   }
 
-  public amsAlertList = [];
-  public amsAuthenicateResponse: any;
+  public amsAlertList:Array<alertForDevices> = [];
+  public amsAuthenicateResponse: amsLogin;
   public alertDefinitionList = [];
   public alertDefinationId = null;
   public applicationId = 0;
@@ -101,7 +98,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       console.log("Authentic user")
       this.amsService.authenticateUserForDevices().subscribe(res => {
         console.log(res);
-        this.amsAuthenicateResponse = res;
+        this.amsAuthenicateResponse = res[0];
         this.getAlertsForDevices();
         this.getApplicationList();
         this.getAlertDefinitionList();
@@ -353,39 +350,120 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.createAvailability = true;
   }
   defaultstaticData() {
-    this.amsAlertList = [{
-      "toMail": " ",
-      "alertSendDate": "11:35 pm",
-      "subject": "LAEVV Job Errors",
-      "errorCode": 0,
-      "alertDefId": 14,
-      "groupBy": "05\/04\/2021",
-      "message": "LAEVV PA CSV File Import Job for 71434# failed on 05\/04\/2021 11:30 PM - <!DO CTYPE HTML PUBLIC \"-\/\/W3C\/\/DTD HTML 4.0 Draft\/\/EN\"><br\/><HT ML><br\/><HEAD><br\/><TITLE>Error 400--Bad Request<\/TITLE><br\/><\/HEAD><br\/><BODY bgcolor=\"white\"><br\/><FONT FACE=Helvetica><BR CLEAR=all><br\/><TABLE border=0 cellspacing=5><TR><TD><BR CLEAR=all><br\/><FONT FACE=\"Helvetica\" COLOR=\"black\" SIZE=\"3\"><H2>Error 400--Bad Request<\/H2><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><TABLE border=0 width=100% cellpadding=10><TR><TD VALIGN=top WIDTH=100% BGCOLOR=white><FONT FACE=\"Courier New\"><FONT FACE=\"Helvetica\" SIZE=\"3\"><H3>From RFC 2068 <i>Hypertext Transfer Protocol -- HTTP\/1.1<\/i>:<\/H3><br\/><\/FONT><FONT FACE=\"Helvetica\" SIZE=\"3\"><H4>10.4.1 400 Bad Request<\/H4><br\/><\/FONT><P><FONT FACE=\"Courier New\">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.<\/FONT><\/P><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><br\/><\/BODY><br\/><\/HTML><br\/>",
-      "userId": 52171,
-      "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-      "aggregateAlertId": "0",
-      "messageTypeId": 1,
-      "id": 5.6332839e7,
-      "alertId": 1.4798645e7,
-      "applicationId": 2,
-      "status": 1
-    }, {
-      "toMail": " ",
-      "alertSendDate": "11:35 pm",
-      "subject": "LAEVV Job Errors",
-      "errorCode": 0,
-      "alertDefId": 14,
-      "groupBy": "05\/04\/2021",
-      "message": "LAEVV PA CSV File Import Job for 71591# failed on 05\/04\/2021 11:30 PM - <!DO CTYPE HTML PUBLIC \"-\/\/W3C\/\/DTD HTML 4.0 Draft\/\/EN\"><br\/><HT ML><br\/><HEAD><br\/><TITLE>Error 400--Bad Request<\/TITLE><br\/><\/HEAD><br\/><BODY bgcolor=\"white\"><br\/><FONT FACE=Helvetica><BR CLEAR=all><br\/><TABLE border=0 cellspacing=5><TR><TD><BR CLEAR=all><br\/><FONT FACE=\"Helvetica\" COLOR=\"black\" SIZE=\"3\"><H2>Error 400--Bad Request<\/H2><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><TABLE border=0 width=100% cellpadding=10><TR><TD VALIGN=top WIDTH=100% BGCOLOR=white><FONT FACE=\"Courier New\"><FONT FACE=\"Helvetica\" SIZE=\"3\"><H3>From RFC 2068 <i>Hypertext Transfer Protocol -- HTTP\/1.1<\/i>:<\/H3><br\/><\/FONT><FONT FACE=\"Helvetica\" SIZE=\"3\"><H4>10.4.1 400 Bad Request<\/H4><br\/><\/FONT><P><FONT FACE=\"Courier New\">The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.<\/FONT><\/P><br\/><\/FONT><\/TD><\/TR><br\/><\/TABLE><br\/><br\/><\/BODY><br\/><\/HTML><br\/>",
-      "userId": 52171,
-      "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-      "aggregateAlertId": "0",
-      "messageTypeId": 1,
-      "id": 5.6332837e7,
-      "alertId": 1.4798644e7,
-      "applicationId": 2,
-      "status": 1
-    }];
+    this.amsAlertList =[
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "CHRISTY NORTON's TB Skin Test Certification will expire on 06/15/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56449587,
+          "alertId": 14943762,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "LUCIA ACOSTA BEIRO's Annual Evaluation Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56449657,
+          "alertId": 14943786,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "LAURA BROTHERS's Annual Competency Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56454020,
+          "alertId": 14945540,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "CHRISTY NORTON's Annual Competency Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56449633,
+          "alertId": 14943778,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "LAURA BROTHERS's TB Skin Test Certification will expire on 06/18/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56454063,
+          "alertId": 14945554,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "LAURA BROTHERS's First Aid Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56454023,
+          "alertId": 14945542,
+          "applicationId": 2,
+          "status": 1
+      },
+      {
+          "alertSendDate": "03:10 am",
+          "subject": "Certification Expired",
+          "errorCode": 0,
+          "alertDefId": 1,
+          "groupBy": "05/19/2021",
+          "message": "LAURA BROTHERS's BBP/Infection Control Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
+          "userId": 52171,
+          "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
+          "aggregateAlertId": "0",
+          "messageTypeId": 1,
+          "id": 56454019,
+          "alertId": 14945539,
+          "applicationId": 2,
+          "status": 1
+      }
+  ]
 
     this.alertDefinitionList = [{
       "name": "Certification Expired",
