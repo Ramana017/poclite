@@ -35,11 +35,11 @@
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="End Date" class="form-control">
                               </div>
                             </div>
@@ -187,11 +187,11 @@
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker [(ngModel)]="date" readonly [bsConfig]="{ adaptivePosition: true }" placement="left"
+                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }" placement="left"
                                   placeholder="End Date" class="form-control">
                               </div>
                             </div>
@@ -410,17 +410,17 @@
 
                         <div class="btn-group" #filter2="bs-dropdown" [autoClose]="false"  dropdown container="body" insideClick="false">
                           <span class="mx-2" dropdownToggle>
-                            <i class="pi pi-filter" title="Filter"></i>
+                            <i class="pi pi-filter"  title="Filter"></i>
                           </span>
                           <div id="dropdown-basic"   *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
                             <div class="row mr-0">
                               <div class="d-flex align-items-center col-6 pr-0">
                                 <div class="form-group form-input mr-2">
-                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[0]" readonly [bsConfig]="{ adaptivePosition: true }"
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[0]"  [bsConfig]="{ adaptivePosition: true }"
                                     placeholder="Start Date" class="form-control">
                                 </div>
                                 <div class="form-group form-input">
-                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[1]" readonly [bsConfig]="{ adaptivePosition: true }"
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[1]"  [bsConfig]="{ adaptivePosition: true }"
                                     placeholder="End Date" class="form-control">
                                 </div>
                               </div>
@@ -444,7 +444,7 @@
                               </div>
                               <div class="text-right col-12 pr-0">
                                 <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
-                                ><i class="fas fa-sync mr-2"></i>Reset</button>
+                                ><i class="fas fa-sync mr-2" (click)="onAmsReset(filter2)" ></i>Reset</button>
                                 <button (click)="onAmsSearch(filter2)"  type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
@@ -452,7 +452,7 @@
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
-                          <i class="fas fa-sync px-2" title="Refresh"></i>
+                          <i class="fas fa-sync px-2" (click)="getAlertsForDevices()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize" (click)="widgetReSize(false,'dcs')"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs')"></i>
                         </div>

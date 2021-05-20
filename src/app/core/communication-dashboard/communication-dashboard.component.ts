@@ -30,7 +30,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public minmaxResize: boolean = false;
   public intialStartDate = new Date();
   public todayDate = new Date();
-  public date = [];
   public approvalTypeFilterList = [];
   public appAprovalStatusList = [];
   // public appapproval: boolean = false;
@@ -59,7 +58,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.pointofCareStartDate = this.pointofCareIntialStartDate;
     this.pocStartDate = this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
     this.pocEndDate = this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
-    this.date = [this.intialStartDate, this.todayDate]
 
     this.resize();
     this.onResize();
@@ -171,11 +169,26 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     }
   }
-
-  public onAmsSearch(template) {
-    console.log(this.amsDateFilter);
+  public onAmsReset(template) {
+    this.amsDateFilter = [this.intialStartDate, this.todayDate];
+    this.applicationId = 0;
+    this.alertDefinationId = 0;
+    this.amsSearchBy = '';
     template.hide();
     this.getAlertsForDevices()
+  }
+
+
+  public onAmsSearch(template) {
+
+    if (this.amsDateFilter[0] <= this.amsDateFilter[1]) {
+      console.log(this.amsDateFilter);
+      template.hide();
+      this.getAlertsForDevices();
+    } else {
+      Swal.fire('Invalid Dates', 'Start date cannot be greater than End date', 'warning')
+
+    }
   }
 
   onResize() {
@@ -493,8 +506,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       template.hide();
       this.getPocReleaseNotesList();
     }
-    else{
-      Swal.fire('Invalid Dates','Start date cannot be greater than End date','warning')
+    else {
+      Swal.fire('Invalid Dates', 'Start date cannot be greater than End date', 'warning')
     }
   }
 
