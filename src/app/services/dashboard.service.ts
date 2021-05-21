@@ -23,6 +23,7 @@ export class DashboardService {
 
 
   geturl() {
+    console.log(localStorage.getItem('webserviceURL'))
     this.webserviceUrl = localStorage.getItem('webserviceURL')
     this.baseURL = this.webserviceUrl + '/dashboard/';
   }
@@ -123,6 +124,20 @@ export class DashboardService {
   }
   public getPocReleaseNotesFile(id): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getPocReleaseNotesFile?jsonObj={"attachmentId":${id}}`).pipe(catchError(this.errorHandler))
+  }
+
+  public getAppApprovals(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppApprovals?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public getLookupsData(): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/common/getLookupsData?lookupNames=app_approval_type,approval_status`).pipe(catchError(this.errorHandler))
+  }
+
+  public approvingEditPunch(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/approvingEditPunch?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public getAppEditPunchList(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppEditPunchList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
 
 }

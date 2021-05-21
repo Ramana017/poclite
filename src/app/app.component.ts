@@ -131,7 +131,6 @@ export class AppComponent implements OnInit {
           let webserviceURL = this.responseData.webserviceURL;
           let sessiontime = this.responseData.sessionTimeOut;
           localStorage.setItem("webserviceURL", webserviceURL);
-          // sessionStorage.setItem("amsWebserviceURL", this.responseData.amsWebserviceURL);
           this.apiservice.geturl();
           this.amsService.getUrl()
           console.log(sessiontime);

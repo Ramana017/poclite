@@ -1,9 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+export const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
 
+  }),
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -15,14 +20,14 @@ export class AmsAlertsServiceService {
   public amsAlertUrl;
   public loginDetails;
   public getUrl() {
-    this.amsAlertUrl = sessionStorage.getItem('webserviceURL');
+    this.amsAlertUrl = localStorage.getItem('webserviceURL');
     console.log("++++++++++++++", this.amsAlertUrl)
   }
 
   public authenticateUserForDevices(): Observable<any> {
     this.loginDetails = JSON.parse(atob(sessionStorage.getItem(btoa('logindetils'))));
     let obj={username:this.loginDetails.username,password:this.loginDetails.password,deviceId:"IA2B3C4D5E6F7G8H"}
-    return this.http.post(`${this.amsAlertUrl}/communicationDashboard/authenticateUserForDevices`,obj).pipe(catchError(this.errorHandler));
+    return this.http.post(`${this.amsAlertUrl}/communicationDashboard/authenticateUserForDevices`,obj,httpOptions).pipe(catchError(this.errorHandler));
   }
   public getApplicationList(userId, userTypeId, sessionId,): Observable<any> {
     return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getApplicationList?userId=${userId}&userTypeId=${userTypeId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));

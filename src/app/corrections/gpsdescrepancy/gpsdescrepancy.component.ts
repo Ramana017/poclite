@@ -84,7 +84,6 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockOutDone: boolean = true;
   public clockInComments: string = "";
   public clockOutComments: string = "";
-  public geoCoordResultsIdRadio: number;
   public googleFormattedAddress: string = '';
 
   public geoCoordinatesRange: any = {};
@@ -181,7 +180,6 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.psFormatAddressList = this.getResponseData.psFormatAddressList;
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
-          this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
           this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockInGpsAcceptReasonsId;
           this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockOutGpsAcceptReasonsId;
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;

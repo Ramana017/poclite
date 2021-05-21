@@ -29,34 +29,37 @@
                           </span>
                           <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
                             <div class="form-group form-input  alert-dropdown ">
-                              <p-dropdown [options]="alertDefinitionList" [showClear]="true" placeholder="DCS"
-                                [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                              <p-dropdown [(ngModel)]="dcsFilterId" [options]="appApprovalDCSList"
+                                [virtualScroll]="true" [itemSize]="31" [showClear]="true" placeholder="DCS"
+                                [filter]="true" filterBy="dcsName" optionLabel="dcsName" optionValue="dcsId">
+                              </p-dropdown>
                             </div>
                             <div class="form-group form-input  alert-dropdown">
-                              <p-dropdown [options]="approvalTypeFilterList" [showClear]="true"
+                              <p-dropdown [(ngModel)]="approvalTypeId" [options]="approvalTypeList" [showClear]="true"
                                 placeholder="Approval Type" [filter]="true" filterBy="name" optionLabel="name"
                                 optionValue="id"></p-dropdown>
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
-                                  placeholder="Start Date" class="form-control">
+                                <input type="text" [(ngModel)]="appApprovalStartDate" bsDatepicker readonly
+                                  [bsConfig]="{ adaptivePosition: true }" placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
-                                  placeholder="End Date" class="form-control">
+                                <input type="text" [(ngModel)]="appApprovalEndDate" bsDatepicker readonly
+                                  [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" class="form-control">
                               </div>
                             </div>
 
                             <div class="form-group form-input  alert-dropdown">
-                              <p-dropdown [options]="appAprovalStatusList" [showClear]="true" placeholder="Status"
-                                [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                              <p-dropdown [(ngModel)]="statusId" [options]="appAprovalStatusList" [showClear]="true"
+                                placeholder="Status" [filter]="true" filterBy="name" optionLabel="name"
+                                optionValue="id"></p-dropdown>
                             </div>
                             <div class="text-right">
                               <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
                                   class="fas fa-sync mr-2"></i>Reset</button>
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
-                                (click)="appApprovalsFilter(filter)"><i class="pi pi-search mr-2"></i>Search</button>
+                                (click)="onAppApprovalSearch(filter)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
                           </div>
                         </div>
@@ -84,8 +87,7 @@
                             </tr>
                           </thead>
                           <tbody>
-
-                            <tr>
+                            <tr *ngFor="let item of appApprovalList;let i=index">
                               <td class="">
                                 <ul class="m-0 p-0">
                                   <li class="">
@@ -94,63 +96,24 @@
                                         add_circle
                                       </span> -->
                                       <span class="material-icons-outlined add-bg material-icons"
-                                        (click)="openModal(editDetails)">
+                                        (click)="item.appApprovalTypeId==1?getAppEditPunchList(item,editDetails):item.appApprovalTypeId==2?availability:exception">
                                         edit
                                       </span>
                                     </div>
                                   </li>
                                 </ul>
                               </td>
-                              <td>AAA,FULTRON</td>
-                              <td>Edited Punch</td>
-                              <td>04/06/2021 12:15</td>
+                              <td>{{item.dcsName}}</td>
+                              <td>{{item.appApprovalType}}</td>
+                              <td>{{item.requestedOn}}</td>
+                              <td>{{item.approvalStatus}}</td>
+                            </tr>
 
-                              <td>Pending</td>
-                            </tr>
-                            <tr>
-                              <td class="">
-                                <ul class="m-0 p-0">
-                                  <li class="">
-                                    <div class="">
-                                      <!-- <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
-                                        add_circle
-                                      </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons"
-                                        (click)="openModal(exception)">
-                                        edit
-                                      </span>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </td>
-                              <td>AAA,FULTRON</td>
-                              <td>Create Exception</td>
-                              <td>04/06/2021 12:15</td>
-                              <td>Pending</td>
-                            </tr>
-                            <tr>
-                              <td class="">
-                                <ul class="m-0 p-0">
-                                  <li class="">
-                                    <div class="">
-                                      <!-- <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
-                                        add_circle
-                                      </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons"
-                                        (click)="openModal(availability)">
-                                        edit
-                                      </span>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </td>
-                              <td>AAA,FULTRON</td>
-                              <td>Create Availability</td>
-                              <td>04/06/2021 12:15</td>
-                              <td>Pending</td>
-                            </tr>
                           </tbody>
                         </table>
+                        <div *ngIf="appApprovalList.length==0" class="text-center no-data-text">
+                          No Data To Display
+                        </div>
                       </div>
                       <div class="pager d-flex justify-content-end mt-2">
                         <div class="c">
@@ -213,8 +176,8 @@
                             <div class="text-right">
                               <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
                                   class="fas fa-sync mr-2"></i>Reset</button>
-                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
-                                (click)="appApprovalsFilter(filter1)"><i class="pi pi-search mr-2"></i>Search</button>
+                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                  class="pi pi-search mr-2"></i>Search</button>
                             </div>
                           </div>
                         </div>
@@ -622,7 +585,7 @@
   <div class="row">
     <div class="d-flex  col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30" ></textarea>
+      <textarea rows="3" cols="30"></textarea>
     </div>
     <div class="d-flex align-items-center  col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
@@ -684,7 +647,7 @@
     </div>
     <div class="d-flex  col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30" ></textarea>
+      <textarea rows="3" cols="30"></textarea>
     </div>
   </div>
   <ng-template pTemplate="footer">
@@ -748,7 +711,7 @@
     </div>
     <div class="d-flex  col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30" ></textarea>
+      <textarea rows="3" cols="30"></textarea>
     </div>
   </div>
   <ng-template pTemplate="footer">
@@ -825,66 +788,67 @@
   <div class="modal-body">
     <div class="d-flex align-items-center ">
       <p class="mb-0 title-font f-15 p-0 w-45">PS:</p>
-      <p class="mb-0 title-font ">Doe,Jane</p>
+      <p class="mb-0 title-font ">{{appEditPunchList.psName}}</p>
     </div>
     <div class="d-flex align-items-center ">
       <p class="mb-0 title-font f-15 p-0 w-45">DCS:</p>
-      <p class="mb-0 title-font ">PS,PS</p>
+      <p class="mb-0 title-font ">{{appEditPunchList.dcsName}}</p>
     </div>
     <div class="d-flex align-items-center">
       <p class="mb-0 title-font f-15 p-0 w-45">Service:</p>
-      <p class="mb-0 title-font ">[CCRN] ATC-ATTENDANT CARE</p>
+      <p class="mb-0 title-font ">{{appEditPunchList.service}}</p>
     </div>
     <div class="">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Arrival Time:</p>
-        <p class="mb-0 title-font  ">04/07/2021 06:00 PM</p>
+        <p class="mb-0 title-font  ">{{appEditPunchList.oldArrivalDateTime}}</p>
       </div>
       <div class="d-flex align-items-center  mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Departure Time:</p>
-        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+        <p class="mb-0 title-font ">{{appEditPunchList.oldDepartureDateTime}}</p>
       </div>
     </div>
     <div class="">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Updated Arrival Time:</p>
-        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+        <p class="mb-0 title-font ">{{appEditPunchList.updatedArrivalDateTime}}</p>
       </div>
       <div class="d-flex align-items-center  mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Updated Departure Time:</p>
-        <p class="mb-0 title-font ">04/07/2021 06:00 PM</p>
+        <p class="mb-0 title-font ">{{appEditPunchList.updatedDepartureDateTime}}</p>
       </div>
     </div>
     <div class="">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Arrival Diff:</p>
-        <p class="mb-0 title-font ">0.0 Mins</p>
+        <p class="mb-0 title-font ">{{appEditPunchList.arrivalDiff}}</p>
       </div>
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Departure Diff:</p>
-        <p class="mb-0 title-font ">-60.0 Mins</p>
+        <p class="mb-0 title-font ">-6{{appEditPunchList.departureDiff}}</p>
       </div>
     </div>
     <div class="">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Arrival Adjusted Reason:</p>
-        <p class="mb-0 title-font "></p>
+        <p class="mb-0 title-font ">{{appEditPunchList.arrilvalAdjustedReason}}</p>
       </div>
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15  p-0 w-45">Departure Adjusted Reason:</p>
-        <p class="mb-0 title-font ">DCS Called Early/Late</p>
+        <p class="mb-0 title-font ">{{appEditPunchList.departureAdjustedReason}}</p>
       </div>
     </div>
     <div class="">
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
         <div class="col-6 p-0">
-          <p-dropdown placeholder="Select" optionLabel="name" [appendTo]="'body'"></p-dropdown>
-        </div>
+          <p-dropdown [(ngModel)]="appEditPunchList.status" [options]="appAprovalStatusList" [showClear]="true"
+          placeholder="Status" [filter]="true" filterBy="name" optionLabel="name"
+          optionValue="id"></p-dropdown>        </div>
       </div>
       <div class="d-flex mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea rows="3" cols="30" ></textarea>
+        <textarea rows="3" cols="30"></textarea>
       </div>
 
     </div>
@@ -895,11 +859,12 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button class="btn-common btn-green d-flex align-items-center justify-content-center"  (click)="scheduleModal(schedules)"> Proceed<span class="material-icons ml-2">
-        navigate_next
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center"
+        (click)="scheduleModal(schedules)"> Proceed<span class="material-icons ml-2">
+          navigate_next
         </span>
       </button>
-  </div>
+    </div>
   </div>
 </ng-template>
 <!-- DCS Exceptions -->
@@ -948,7 +913,7 @@
       </div>
       <div class="d-flex mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea rows="3" cols="30" ></textarea>
+        <textarea rows="3" cols="30"></textarea>
       </div>
 
     </div>
@@ -959,11 +924,12 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
-        navigate_next
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span
+          class="material-icons ml-2">
+          navigate_next
         </span>
       </button>
-  </div>
+    </div>
   </div>
 </ng-template>
 <!-- DCS Availability -->
@@ -1022,11 +988,12 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
-        navigate_next
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span
+          class="material-icons ml-2">
+          navigate_next
         </span>
       </button>
-  </div>
+    </div>
   </div>
 </ng-template>
 <!-- DCS Schedules -->
@@ -1038,8 +1005,9 @@
     </button>
   </div>
   <div class="modal-body pt-0">
-    <p class="text-visits-modal my-1 d-flex align-items-center justify-content-between">Visits That will br Affected With the change in Availability <span class="material-icons color-green">
-      file_download
+    <p class="text-visits-modal my-1 d-flex align-items-center justify-content-between">Visits That will br Affected
+      With the change in Availability <span class="material-icons color-green">
+        file_download
       </span></p>
     <div class="table-responsive box-shadow height-67 bg-white">
       <table class="table text-center mb-0  ">
@@ -1065,12 +1033,13 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
-        navigate_next
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span
+          class="material-icons ml-2">
+          navigate_next
         </span>
       </button>
-  </div>
+    </div>
   </div>
 
-  </ng-template>
-  <!-- <button>save</button> -->
+</ng-template>
+<!-- <button>save</button> -->
