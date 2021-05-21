@@ -84,6 +84,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public clockOutDone: boolean = true;
   public clockInComments: string = "";
   public clockOutComments: string = "";
+  public geoCoordResultsIdRadio: number;
   public googleFormattedAddress: string = '';
 
   public geoCoordinatesRange: any = {};
@@ -180,6 +181,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.psFormatAddressList = this.getResponseData.psFormatAddressList;
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
+          this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
           this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockInGpsAcceptReasonsId;
           this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockOutGpsAcceptReasonsId;
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
@@ -666,8 +668,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
               console.log(x.long_name)
             }
             if (y == "administrative_area_level_1") {
-              this.editMarkerObj.stateName = x.long_name;
-              console.log(x.long_name);
+              this.editMarkerObj.stateName = x.short_name;
+              console.log(x.short_name);
             }
             if (y == "administrative_area_level_2") {
               this.editMarkerObj.city = x.long_name;
