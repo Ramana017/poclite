@@ -9,7 +9,8 @@
             <div class="row m-0">
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
-                  <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+                  <ngx-spinner [name]="'spinner1'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+                  </ngx-spinner>
                   <div class="widget-block h-auto">
                     <div class="widget-header  blue-bg text-center">
                       <!-- <div class="col-md-4 col-0"></div> -->
@@ -21,35 +22,39 @@
                         <ng-template style="width: 100%;" let-item>
                           <a [innerHTML]="item.PSName"></a>
                         </ng-template> -->
-                        <div class="btn-group" #filter="bs-dropdown"  dropdown [autoClose]="false" [insideClick]="true"
-                           placement="left" container="body">
+                        <div class="btn-group" #filter="bs-dropdown" dropdown [autoClose]="false" [insideClick]="true"
+                          placement="left" container="body">
                           <span class="mx-2" dropdownToggle>
-                            <i class="pi pi-filter" title="Filter" ></i>
+                            <i class="pi pi-filter" title="Filter"></i>
                           </span>
                           <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
                             <div class="form-group form-input  alert-dropdown ">
-                              <p-dropdown [options]="alertDefinitionList" [showClear]="true" placeholder="DCS"  [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                              <p-dropdown [options]="alertDefinitionList" [showClear]="true" placeholder="DCS"
+                                [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                             </div>
                             <div class="form-group form-input  alert-dropdown">
-                              <p-dropdown [options]="approvalTypeFilterList" [showClear]="true"  placeholder="Approval Type"  [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                              <p-dropdown [options]="approvalTypeFilterList" [showClear]="true"
+                                placeholder="Approval Type" [filter]="true" filterBy="name" optionLabel="name"
+                                optionValue="id"></p-dropdown>
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="End Date" class="form-control">
                               </div>
                             </div>
 
                             <div class="form-group form-input  alert-dropdown">
-                              <p-dropdown [options]="appAprovalStatusList" [showClear]="true"  placeholder="Status"  [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                              <p-dropdown [options]="appAprovalStatusList" [showClear]="true" placeholder="Status"
+                                [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
                             </div>
                             <div class="text-right">
-                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
-                                ><i class="fas fa-sync mr-2"></i>Reset</button>
+                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                  class="fas fa-sync mr-2"></i>Reset</button>
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="appApprovalsFilter(filter)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -57,8 +62,10 @@
                         </div>
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" title="Refresh"></i>
-                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize" (click)="widgetReSize(false,'ps',$event)"></i>
-                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'ps',$event)"></i>
+                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
+                            (click)="widgetReSize(false,'ps',$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" title="Maximize"
+                            (click)="widgetReSize(true,'ps',$event)"></i>
                         </div>
                       </div>
                     </div>
@@ -86,15 +93,16 @@
                                       <!-- <span class="material-icons add-bg" (click)="showPositionDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(editDetails)">
+                                      <span class="material-icons-outlined add-bg material-icons"
+                                        (click)="openModal(editDetails)">
                                         edit
-                                        </span>
+                                      </span>
                                     </div>
                                   </li>
                                 </ul>
                               </td>
                               <td>AAA,FULTRON</td>
-                              <td >Edited Punch</td>
+                              <td>Edited Punch</td>
                               <td>04/06/2021 12:15</td>
 
                               <td>Pending</td>
@@ -107,15 +115,16 @@
                                       <!-- <span class="material-icons add-bg" (click)="showcreateExceptionDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(exception)">
+                                      <span class="material-icons-outlined add-bg material-icons"
+                                        (click)="openModal(exception)">
                                         edit
-                                        </span>
+                                      </span>
                                     </div>
                                   </li>
                                 </ul>
                               </td>
                               <td>AAA,FULTRON</td>
-                              <td  >Create Exception</td>
+                              <td>Create Exception</td>
                               <td>04/06/2021 12:15</td>
                               <td>Pending</td>
                             </tr>
@@ -127,15 +136,16 @@
                                       <!-- <span class="material-icons add-bg" (click)="showcreateAvailabilityDialog('left')">
                                         add_circle
                                       </span> -->
-                                      <span class="material-icons-outlined add-bg material-icons" (click)="openModal(availability)">
+                                      <span class="material-icons-outlined add-bg material-icons"
+                                        (click)="openModal(availability)">
                                         edit
-                                        </span>
+                                      </span>
                                     </div>
                                   </li>
                                 </ul>
                               </td>
                               <td>AAA,FULTRON</td>
-                              <td  >Create Availability</td>
+                              <td>Create Availability</td>
                               <td>04/06/2021 12:15</td>
                               <td>Pending</td>
                             </tr>
@@ -176,8 +186,8 @@
 
 
 
-                        <div class="btn-group" #filter1="bs-dropdown"  dropdown [autoClose]="false" container="body" [insideClick]="true"
-                           placement="left" >
+                        <div class="btn-group" #filter1="bs-dropdown" dropdown [autoClose]="false" container="body"
+                          [insideClick]="true" placement="left">
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter" title="Filter"></i>
                           </span>
@@ -187,12 +197,12 @@
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker  readonly [bsConfig]="{ adaptivePosition: true }" placement="left"
-                                  placeholder="End Date" class="form-control">
+                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
+                                  placement="left" placeholder="End Date" class="form-control">
                               </div>
                             </div>
                             <!-- <div class="form-group form-input">
@@ -201,8 +211,8 @@
                             </div> -->
 
                             <div class="text-right">
-                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
-                              ><i class="fas fa-sync mr-2"></i>Reset</button>
+                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                  class="fas fa-sync mr-2"></i>Reset</button>
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="appApprovalsFilter(filter1)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -212,7 +222,8 @@
                           <i class="fas fa-sync px-2" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
                             (click)="widgetReSize(false,'admissions',$event)"></i>
-                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'admissions',$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" title="Maximize"
+                            (click)="widgetReSize(true,'admissions',$event)"></i>
                         </div>
                       </div>
                     </div>
@@ -298,47 +309,51 @@
             <div class="row m-0">
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pl-0 pb-2 pt-0 mr-0">
-                  <ngx-spinner [name]="'spinner3'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+                  <ngx-spinner [name]="'spinner3'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+                  </ngx-spinner>
                   <div class="widget-block h-auto">
                     <div class="widget-header  lightblue-bg ">
 
                       <h5 class="text-white m-0 text-center">Point of Care Release
                         Notes/Training</h5>
                       <div class=" d-flex justify-content-end align-items-center right-filter-icons">
-                        <div class="btn-group" #filterPOC="bs-dropdown"  dropdown [autoClose]="false" container="body" [insideClick]="true"
-                        placement="left" >
-                       <span class="mx-2" dropdownToggle>
-                         <i class="pi pi-filter"title="Filter"></i>
-                       </span>
-                       <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
+                        <div class="btn-group" #filterPOC="bs-dropdown" dropdown [autoClose]="false" container="body"
+                          [insideClick]="true" placement="left">
+                          <span class="mx-2" dropdownToggle>
+                            <i class="pi pi-filter" title="Filter"></i>
+                          </span>
+                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
 
-                        <div class="d-flex align-items-center">
-                          <div class="form-group form-input mr-2">
-                            <input type="text" bsDatepicker [(ngModel)]="pointofCareStartDate"  [bsConfig]="{ adaptivePosition: true }"
-                              placeholder="Start Date" class="form-control">
-                          </div>
-                          <div class="form-group form-input">
-                            <input type="text" bsDatepicker [(ngModel)]="pointofCareEndDate"  [bsConfig]="{ adaptivePosition: true }"
-                              placeholder="End Date" class="form-control">
-                          </div>
-                        </div>
-                         <!-- <div class="form-group form-input">
+                            <div class="d-flex align-items-center">
+                              <div class="form-group form-input mr-2">
+                                <input type="text" bsDatepicker [(ngModel)]="pointofCareStartDate"
+                                  [bsConfig]="{ adaptivePosition: true }" placeholder="Start Date" class="form-control">
+                              </div>
+                              <div class="form-group form-input">
+                                <input type="text" bsDatepicker [(ngModel)]="pointofCareEndDate"
+                                  [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" class="form-control">
+                              </div>
+                            </div>
+                            <!-- <div class="form-group form-input">
                            <input type="text" [bsConfig]="{ adaptivePosition: true }" bsDaterangepicker [(ngModel)]="pointofCareDates" readonly
                              placeholder="Requested On" class="form-control" placement="left">
                          </div> -->
 
-                         <div class="text-right">
-                          <button type="submit" (click)="pocFilterReset(filterPOC)" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
-                          ><i class="fas fa-sync mr-2"></i>Reset</button>
-                           <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
-                             (click)="onPocSearch(filterPOC)"><i class="pi pi-search mr-2"></i>Search</button>
-                         </div>
-                       </div>
-                     </div>
+                            <div class="text-right">
+                              <button type="submit" (click)="pocFilterReset(filterPOC)"
+                                class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                  class="fas fa-sync mr-2"></i>Reset</button>
+                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
+                                (click)="onPocSearch(filterPOC)"><i class="pi pi-search mr-2"></i>Search</button>
+                            </div>
+                          </div>
+                        </div>
                         <div class="ico d-flex align-items-center">
-                          <i class="fas fa-sync px-2"(click)="getPocReleaseNotesList()" title="Refresh"></i>
-                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize" (click)="widgetReSize(false,'authorization')"></i>
-                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'authorization')"></i>
+                          <i class="fas fa-sync px-2" (click)="getPocReleaseNotesList()" title="Refresh"></i>
+                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
+                            (click)="widgetReSize(false,'authorization')"></i>
+                          <i class="fas fa-expand max-1 px-2" title="Maximize"
+                            (click)="widgetReSize(true,'authorization')"></i>
                         </div>
                       </div>
                     </div>
@@ -357,10 +372,11 @@
 
                               <td>{{item.notification}}</td>
                               <td>{{item.publishedOn}}</td>
-                              <td ><span (click)="getPocReleaseNotesFile(item.attachmentId)" [tooltip]="item.fileName" class="material-icons color-light-blue" container="body">
+                              <td><span (click)="getPocReleaseNotesFile(item.attachmentId)" [tooltip]="item.fileName"
+                                  class="material-icons color-light-blue" container="body">
                                   description
                                 </span>
-                               <!-- <a [href]="'data:application/octet-stream;base64,' + pocReleaseNotesFile | domsanitize" download='file.pdf'>
+                                <!-- <a [href]="'data:application/octet-stream;base64,' + pocReleaseNotesFile | domsanitize" download='file.pdf'>
                                 <i class="fa fa-download blueanchor ml-2" style="font-size: 22px;" aria-hidden="true"></i>
                               </a> -->
                               </td>
@@ -383,9 +399,12 @@
                             <option>20</option>
                           </select>
                           <span class="mr-2">Showing {{pocReleaseNotesList.length>0?pocLowerBound:'0'}} to
-                            {{pocUpperBound >pocTotalRecordsCount?pocTotalRecordsCount:pocUpperBound}} of {{pocTotalRecordsCount}} </span>
-                          <button type="button" [disabled]="pocLowerBound==1" class="btn-common-small mx-2" (click)="pocPrevPage()" >Prev</button>
-                          <button type="button" [disabled]="pocUpperBound>pocTotalRecordsCount" class="btn-common-small mx-2" (click)="PocNextPage()">Next</button>
+                            {{pocUpperBound >pocTotalRecordsCount?pocTotalRecordsCount:pocUpperBound}} of
+                            {{pocTotalRecordsCount}} </span>
+                          <button type="button" [disabled]="pocLowerBound==1" class="btn-common-small mx-2"
+                            (click)="pocPrevPage()">Prev</button>
+                          <button type="button" [disabled]="pocUpperBound>pocTotalRecordsCount"
+                            class="btn-common-small mx-2" (click)="PocNextPage()">Next</button>
                         </div>
 
                       </div>
@@ -395,7 +414,8 @@
               </ng-container>
               <ng-container>
                 <div class="col-lg-6 col-xs-12 pr-3  pl-0  pb-2 pt-0 mr-0 xs-pad">
-                  <ngx-spinner [name]="'amsspinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
+                  <ngx-spinner [name]="'amsspinner'" [fullScreen]="false" type="ball-clip-rotate-multiple"
+                    size="medium"></ngx-spinner>
 
                   <div class="widget-block h-auto">
                     <div class="widget-header  green-bg text-center">
@@ -408,20 +428,22 @@
                           <a></a>
                         </ng-template>
 
-                        <div class="btn-group" #filter2="bs-dropdown" [autoClose]="false"  dropdown container="body" insideClick="false">
+                        <div class="btn-group" #filter2="bs-dropdown" [autoClose]="false" dropdown container="body"
+                          insideClick="false">
                           <span class="mx-2" dropdownToggle>
-                            <i class="pi pi-filter"  title="Filter"></i>
+                            <i class="pi pi-filter" title="Filter"></i>
                           </span>
-                          <div id="dropdown-basic"   *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
+                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu  alert-filter-dropdown-menu">
                             <div class="row mr-0">
                               <div class="d-flex align-items-center col-6 pr-0">
                                 <div class="form-group form-input mr-2">
-                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[0]"  [bsConfig]="{ adaptivePosition: true }"
-                                    placeholder="Start Date" class="form-control">
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[0]"
+                                    [bsConfig]="{ adaptivePosition: true }" placeholder="Start Date"
+                                    class="form-control">
                                 </div>
                                 <div class="form-group form-input">
-                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[1]"  [bsConfig]="{ adaptivePosition: true }"
-                                    placeholder="End Date" class="form-control">
+                                  <input type="text" bsDatepicker [(ngModel)]="amsDateFilter[1]"
+                                    [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" class="form-control">
                                 </div>
                               </div>
                               <!-- <div class="form-group form-input col-6">
@@ -429,23 +451,30 @@
 
                               </div> -->
                               <div class="form-group form-input col-6 pr-0">
-                                <input type="text" [(ngModel)]="amsSearchBy" placeholder="Search By" class="form-control">
+                                <input type="text" [(ngModel)]="amsSearchBy" placeholder="Search By"
+                                  class="form-control">
 
                               </div>
                               <!-- <div class="form-group form-input col-6">
                                 <input type="text" placeholder="-Select-" class="form-control">
                               </div> -->
                               <div class="form-group form-input col-6 alert-dropdown pr-0">
-                                <p-dropdown [options]="applicationList" placeholder="Select Application" [(ngModel)]="applicationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                                <p-dropdown [options]="applicationList" placeholder="Select Application"
+                                  [(ngModel)]="applicationId" [filter]="true" filterBy="name" optionLabel="name"
+                                  optionValue="id"></p-dropdown>
 
                               </div>
                               <div class="form-group form-input col-6 alert-dropdown pr-0">
-                                <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination" [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
+                                <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination"
+                                  [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name"
+                                  optionValue="id"></p-dropdown>
                               </div>
                               <div class="text-right col-12 pr-0">
-                                <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"
-                                ><i class="fas fa-sync mr-2" (click)="onAmsReset(filter2)" ></i>Reset</button>
-                                <button (click)="onAmsSearch(filter2)"  type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                <button type="submit"
+                                  class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                    class="fas fa-sync mr-2" (click)="onAmsReset(filter2)"></i>Reset</button>
+                                <button (click)="onAmsSearch(filter2)" type="submit"
+                                  class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
                               </div>
                             </div>
@@ -453,7 +482,8 @@
                         </div>
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" (click)="getAlertsForDevices()" title="Refresh"></i>
-                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize" (click)="widgetReSize(false,'dcs')"></i>
+                          <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
+                            (click)="widgetReSize(false,'dcs')"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs')"></i>
                         </div>
                       </div>
@@ -470,7 +500,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let item of amsAlertList" >
+                            <tr *ngFor="let item of amsAlertList">
                               <td class="align-middle color-black">
                                 <div class="position-relative hover-btn">
                                   <span class="material-icons">
@@ -479,8 +509,8 @@
 
                                   <div class=" align-items-center btn-hover-content">
                                     <div *ngFor="let button of alertbuttons;let i=index" class="mr-2">
-                                      <button  pButton type="button" [label]="button"
-                                      class="p-button-secondary p-button "></button>
+                                      <button pButton type="button" [label]="button"
+                                        class="p-button-secondary p-button "></button>
                                     </div>
 
 
@@ -488,7 +518,9 @@
                                 </div>
                               </td>
                               <td>{{item.subject}}</td>
-                              <td><p [innerHTML]="item.message"></p></td>
+                              <td>
+                                <p [innerHTML]="item.message"></p>
+                              </td>
                               <td>{{item.groupBy +' '+ item.alertSendDate }}</td>
                             </tr>
                           </tbody>
@@ -595,8 +627,8 @@
     <div class="d-flex align-items-center  col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
       <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
-          optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
+        </p-dropdown>
 
       </div>
     </div>
@@ -646,8 +678,8 @@
     <div class="d-flex   col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
       <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
-          optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
+        </p-dropdown>
       </div>
     </div>
     <div class="d-flex  col-md-6 col-12">
@@ -660,7 +692,7 @@
   </ng-template>
 </p-dialog>
 <p-dialog [(visible)]="createAvailability" [position]="position" [modal]="true" [style]="{width: '60%'}"
-  [baseZIndex]="10000" [draggable]="false" [resizable]="false" >
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
   <ng-template pTemplate="header">
     <!-- DCS Exceptions -->
     <div class="d-flex align-items-center ">
@@ -710,8 +742,8 @@
     <div class="d-flex   col-md-6 col-12">
       <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
       <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
-          optionLabel="name" [appendTo]="'body'"></p-dropdown>
+        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
+        </p-dropdown>
       </div>
     </div>
     <div class="d-flex  col-md-6 col-12">
@@ -735,7 +767,8 @@
     <div class="">
       <div class="bg-color">
         <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-green-dark">Abbay, George</p>
-        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
+            class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
       </div>
 
     </div>
@@ -746,15 +779,18 @@
     </div>
     <div class="bg-color-right">
       <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
+          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
     </div>
     <div class="bg-color-right">
       <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
+          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
     </div>
     <div class="bg-color-right">
       <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
+          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
     </div>
     <div class=" w-100 pt-2 p-message-input d-flex">
       <!-- <i class="pi pi-send "></i> -->
@@ -762,7 +798,7 @@
       <input type="text" pInputText class=" input-message ml-2 w-100 mr-2" />
       <span class="material-icons send-msg-icon mr-2">
         send
-        </span>
+      </span>
     </div>
   </ng-template>
 </p-overlayPanel>
@@ -771,10 +807,10 @@
 
 
 <p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-    <p>{{pocReleaseNotesFile}}</p>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template>
+  <p>{{pocReleaseNotesFile}}</p>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
 </p-dialog>
 
 
@@ -843,8 +879,7 @@
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
         <div class="col-6 p-0">
-          <p-dropdown  placeholder="Select"
-            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+          <p-dropdown placeholder="Select" optionLabel="name" [appendTo]="'body'"></p-dropdown>
         </div>
       </div>
       <div class="d-flex mb-2">
@@ -853,10 +888,18 @@
       </div>
 
     </div>
-    <div class="d-flex align-items-center justify-content-end">
+    <!-- <div class="d-flex align-items-center justify-content-end">
       <p-button icon="pi pi-save" label="Save" styleClass="p-button-raised"></p-button>
 
-    </div>
+    </div> -->
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      </button>
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center"  (click)="scheduleModal(schedules)"> Proceed<span class="material-icons ml-2">
+        navigate_next
+        </span>
+      </button>
+  </div>
   </div>
 </ng-template>
 <!-- DCS Exceptions -->
@@ -899,8 +942,8 @@
       <div class="d-flex align-items-center mb-2">
         <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
         <div class="col-6 p-0">
-          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
-            optionLabel="name" [appendTo]="'body'"></p-dropdown>
+          <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
+          </p-dropdown>
         </div>
       </div>
       <div class="d-flex mb-2">
@@ -909,10 +952,18 @@
       </div>
 
     </div>
-    <div class="d-flex align-items-center justify-content-end">
+    <!-- <div class="d-flex align-items-center justify-content-end">
       <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
 
-    </div>
+    </div> -->
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      </button>
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
+        navigate_next
+        </span>
+      </button>
+  </div>
   </div>
 </ng-template>
 <!-- DCS Availability -->
@@ -933,43 +984,93 @@
       <p class="mb-0 title-font f-15 w-45">Start Date:</p>
       <p class="mb-0 title-font ">04/07/2021</p>
     </div>
-      <div class="d-flex align-items-center mb-2">
-        <p class="mb-0 title-font f-15 p-0 w-45">End Date:</p>
-        <p class="mb-0 title-font  ">04/07/2021</p>
-      </div>
-      <div class="d-flex align-items-center mb-2">
-        <p class="mb-0 title-font f-15 w-45">Start Time 1:</p>
-        <p class="mb-0 title-font "> 06:00 PM</p>
-      </div>
-        <div class="d-flex align-items-center mb-2">
-          <p class="mb-0 title-font f-15 p-0 w-45">End Time 1:</p>
-          <p class="mb-0 title-font  "> 06:00 PM</p>
-        </div>
-        <div class="d-flex align-items-center mb-2">
-          <p class="mb-0 title-font f-15 w-45">Start Time 2:</p>
-          <p class="mb-0 title-font "> 06:00 PM</p>
-        </div>
-          <div class="d-flex align-items-center mb-2">
-            <p class="mb-0 title-font f-15 p-0 w-45">End Time 2:</p>
-            <p class="mb-0 title-font  "> 06:00 PM</p>
-          </div>
-      <div class="d-flex align-items-center  mb-2">
-        <p class="mb-0 title-font f-15  p-0 w-45">Day(s):</p>
-        <p class="mb-0 title-font ">Wed</p>
-      </div>
-      <div class="d-flex align-items-center mb-2">
-        <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
-        <div class="col-6 p-0">
-          <p-dropdown inputId="state" [options]="[]"  placeholder="Select"
-            optionLabel="name" [appendTo]="'body'"></p-dropdown>
-        </div>
-      </div>
-      <div class="d-flex mb-2">
-        <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea rows="3" cols="30" pInputTextarea></textarea>
-      </div>
-    <div class="d-flex align-items-center justify-content-end">
-      <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">End Date:</p>
+      <p class="mb-0 title-font  ">04/07/2021</p>
     </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 w-45">Start Time 1:</p>
+      <p class="mb-0 title-font "> 06:00 PM</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">End Time 1:</p>
+      <p class="mb-0 title-font  "> 06:00 PM</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 w-45">Start Time 2:</p>
+      <p class="mb-0 title-font "> 06:00 PM</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">End Time 2:</p>
+      <p class="mb-0 title-font  "> 06:00 PM</p>
+    </div>
+    <div class="d-flex align-items-center  mb-2">
+      <p class="mb-0 title-font f-15  p-0 w-45">Day(s):</p>
+      <p class="mb-0 title-font ">Wed</p>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
+      <div class="col-6 p-0">
+        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
+        </p-dropdown>
+      </div>
+    </div>
+    <div class="d-flex mb-2">
+      <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
+      <textarea rows="3" cols="30" pInputTextarea></textarea>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      </button>
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
+        navigate_next
+        </span>
+      </button>
+  </div>
   </div>
 </ng-template>
+<!-- DCS Schedules -->
+<ng-template #schedules>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">DCS Schedules</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body pt-0">
+    <p class="text-visits-modal my-1 d-flex align-items-center justify-content-between">Visits That will br Affected With the change in Availability <span class="material-icons color-green">
+      file_download
+      </span></p>
+    <div class="table-responsive box-shadow height-67 bg-white">
+      <table class="table text-center mb-0  ">
+        <thead class="thead-dark">
+   
+          <tr>
+            <th class="text-center border-right align-middle" scope="col">PS</th>
+            <th class="text-center border-right align-middle" scope="col">Service</th>
+            <th class="text-center border-right align-middle w-150" scope="col">Start Date</th>
+            <th class="text-center border-right align-middle w-150" scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center border-right align-middle">ATKINSON, JANICE</td>
+            <td class="text-center border-right align-middle">[CCRN] ATC-ATTENDANT CARE</td>
+            <td class="text-center border-right align-middle">04/07/2021 06:00 PM</td>
+            <td class="text-center border-right align-middle">04/07/2021 06:00 PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      </button>
+      <button class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span class="material-icons ml-2">
+        navigate_next
+        </span>
+      </button>
+  </div>
+  </div>
+
+  </ng-template>
+  <!-- <button>save</button> -->

@@ -286,3 +286,14 @@ div#exampleModal {
     width: 14rem;
   }
 }
+.schedule-modal{
+  .modal-content{
+    height: auto !important;
+    .text-visits-modal{
+      background: #e7e8d2;
+      padding: 5px;
+      font-family: "AvenirLTStd-Medium", sans-serif !important;
+      color: $black;
+    }
+  }
+}

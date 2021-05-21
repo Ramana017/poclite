@@ -80,7 +80,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
   }
-
+  scheduleModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'schedule-modal' }));
+  }
   public amsAlertList:Array<alertForDevices> = [];
   public amsAuthenicateResponse: amsLogin;
   public alertDefinitionList = [];
