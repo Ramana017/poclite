@@ -480,9 +480,14 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public approvingEditPunch() {
-    console.log(this.currentStatus)
+    console.log(this.currentStatus,this.currentApprovedComments.length)
 
-  if(this.currentStatus=null|| true){
+  if(this.currentStatus==null || (this.currentApprovedComments.length>4000 ||this.currentApprovedComments.length==0) ){
+
+    let str=this.currentStatus==null?'Status is mandatory filed':'';
+    let str2=this.currentApprovedComments.length>0?"Comments is  mandatory filed ":''
+    let str3=this.currentApprovedComments.length>4000?"Comments Cannot be More than 4000 Characters ":''
+    Swal.fire('Invalid ', `Status and comments are mandotry Feilds`, 'warning')
 
   }
   else{
@@ -490,9 +495,14 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
+      console.log(this.currentStatus)
       let obj={"appApprovalId":this.currentAppApprovalId,"userId":this.userDetails.userId,"approvedComments":this.currentApprovedComments,"status":this.currentStatus}
       this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
+        console.log(Object.keys(res).length)
+        if(Object.keys(res).length>0){
+          Swal.fire('',res.errorMsg,'error')
+        }
         this.appApprovalSpinner--;
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
