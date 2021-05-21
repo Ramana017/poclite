@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
-  // @HostListener('window:resize', ['$event'])
+  // @HostListener('window:resize', ['event'])
   customers: any = [];
   constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
     public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService, private modalService: BsModalService) {
@@ -573,6 +573,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.pocReleaseNotesList = res.releaseNotesList;
         this.pocTotalRecordsCount = res.totalCount;
         this.ngxspineer.hide('spinner3');
+      },err=>{
+        Swal.fire('404 Not Found','','error')
+        this.ngxspineer.hide('spinner3');
+
       })
 
     } catch (error) {

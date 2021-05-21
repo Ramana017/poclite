@@ -15,30 +15,31 @@ export class AmsAlertsServiceService {
   public amsAlertUrl;
   public loginDetails;
   public getUrl() {
-    this.amsAlertUrl = sessionStorage.getItem('amsWebserviceURL');
+    this.amsAlertUrl = sessionStorage.getItem('webserviceURL');
     console.log("++++++++++++++", this.amsAlertUrl)
   }
 
   public authenticateUserForDevices(): Observable<any> {
     this.loginDetails = JSON.parse(atob(sessionStorage.getItem(btoa('logindetils'))));
-    return this.http.get(`${this.amsAlertUrl}/authenticateUserForDevices?username=${this.loginDetails.username}&password=${this.loginDetails.password}&deviceId="IA2B3C4D5E6F7G8H"`).pipe(catchError(this.errorHandler));
+    let obj={username:this.loginDetails.username,password:this.loginDetails.password,deviceId:"IA2B3C4D5E6F7G8H"}
+    return this.http.post(`${this.amsAlertUrl}/communicationDashboard/authenticateUserForDevices`,obj).pipe(catchError(this.errorHandler));
   }
   public getApplicationList(userId, userTypeId, sessionId,): Observable<any> {
-    return this.http.get(`${this.amsAlertUrl}/getApplicationList?userId=${userId}&userTypeId=${userTypeId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getApplicationList?userId=${userId}&userTypeId=${userTypeId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
 
 
 
   public getAlertDefinitionList(applicationId, alertFlag, sessionId): Observable<any> {
-    return this.http.get(`${this.amsAlertUrl}/getAlertDefinitionList?applicationId=${applicationId}&alertFlag=${alertFlag}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getAlertDefinitionList?applicationId=${applicationId}&alertFlag=${alertFlag}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
 
   public getAlertsForDevices(userId, startDate, endDate, searchBy, viewByFlag, applicationId, alertDefinitionId, sessionId): Observable<any> {
     console.log("wwwwwwwwwwwwwwww", this.amsAlertUrl)
-    return this.http.get(`${this.amsAlertUrl}getAlertsForDevices?userId=${userId}&startDate=${startDate}&endDate=${endDate}&searchByKeyword=${searchBy}&viewByFlag=0&applicationId=${applicationId}&alertDefinitionId=${alertDefinitionId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getAlertsForDevices?userId=${userId}&startDate=${startDate}&endDate=${endDate}&searchByKeyword=${searchBy}&viewByFlag=0&applicationId=${applicationId}&alertDefinitionId=${alertDefinitionId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
   public getAlertButtonDetails(applicationId, alertDefId, userId, sessionId): Observable<any> {
-    return this.http.get(`${this.amsAlertUrl}/getAlertButtonDetails?applicationId=${applicationId}&alertDefId=${alertDefId}&userId=${userId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
+    return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getAlertButtonDetails?applicationId=${applicationId}&alertDefId=${alertDefId}&userId=${userId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in AMS  service Alerts", error);

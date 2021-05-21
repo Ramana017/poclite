@@ -1,6 +1,5 @@
 {
     "baseURL": "http://pcdvlweb01.rescare.ad/pocws/callmanagement",
     "webserviceURL": "http://poc.aquilasoftware.com/poclite",
-    "sessionTimeOut": 15,
-    "amsWebserviceURL":"http://poc.aquilasoftware.com/pocextacc-webservices/ams/webservice"
-    }
+    "sessionTimeOut": 15
+}
