@@ -345,7 +345,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   private appliedApprovalTypeId = 0;
   private appliedDcsId = 0;
   private appliedStatusId = 0;
-
+  public currentApprovedComments='';
+  public currentAppApprovalId=0;
+  public currentStatus=null;
 
 
   public appaprovalInint() {
@@ -435,6 +437,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public onAppApprovalSearch(template) {
+    if(this.appApprovalStartDate>this.appApprovalEndDate){
+      Swal.fire('Invalid Dates', 'Start date cannot be greater than End date', 'warning')
+
+    }else{
     this.appliedApprovalStartDate = this.datepipe.transform(this.appApprovalStartDate, 'MM/dd/yyyy');
     this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
     this.appliedApprovalTypeId = this.approvalTypeId != null ? this.approvalTypeId : 0;
@@ -442,18 +448,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appliedStatusId = this.statusId != null ? this.statusId : 0;
     template.hide();
     this.getAppApprovals();
-  }
-  public approvingEditPunch() {
-    try {
-      this.dashboardService.approvingEditPunch(JSON.stringify).subscribe(res => {
-        console.log(res);
-      })
+  }}
 
-    } catch (error) {
-
-    }
-  }
   public getAppEditPunchList(data, template: TemplateRef<any>) {
+    this.currentApprovedComments='';
+    this.currentAppApprovalId=data.appApprovalId;
+    this.currentStatus=null;
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
@@ -465,6 +465,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.ngxspineer.hide('spinner1');
         }
         this.appEditPunchList = res.appEditPunchList[0];
+        this.currentStatus=this.appEditPunchList.status;
         this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
 
       }, err => {
@@ -478,6 +479,37 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     }
   }
+  public approvingEditPunch() {
+    console.log(this.currentStatus)
+
+  if(this.currentStatus=null|| true){
+
+  }
+  else{
+
+    try {
+      this.appApprovalSpinner++;
+      this.ngxspineer.show('spinner1');
+      let obj={"appApprovalId":this.currentAppApprovalId,"userId":this.userDetails.userId,"approvedComments":this.currentApprovedComments,"status":this.currentStatus}
+      this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
+        console.log(res);
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      }, err => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      })
+
+    } catch (error) {
+
+    }
+  }}
+
+
 
 
 
