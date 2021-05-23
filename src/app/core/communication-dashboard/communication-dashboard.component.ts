@@ -35,6 +35,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   public widgetArray: Array<boolean> = [false, false, false, false];
   public modalRef: BsModalRef;
+  public dcsmodelRef: BsModalRef;
+  public dcsExceptionModelRef: BsModalRef;
   position: string;
   displayPosition: boolean;
   createException: boolean;
@@ -42,6 +44,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.appaprovalInint();
+    this.authenticateUserForDevices();
+
   }
   ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
@@ -53,7 +57,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     this.resize();
     this.onResize();
-    // this.authenticateUserForDevices();
     this.getPocReleaseNotesList();
   }
 
@@ -85,6 +88,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.getAlertsForDevices();
         this.getApplicationList();
         this.getAlertDefinitionList();
+      }, err => {
+        Swal.fire('', 'Failed to Authenticate AMS', 'error')
       })
     } catch (error) {
 
@@ -134,14 +139,14 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAlertsForDevices() {
 
     try {
-      this.ngxspineer.show('appApprovalspinner');
+      this.ngxspineer.show('amsspinner');
       this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy'), this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy'), this.amsSearchBy, 1, this.applicationId, this.alertDefinationId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
         console.log(res);
         this.amsAlertList = res;
-        this.ngxspineer.hide('appApprovalspinner');
+        this.ngxspineer.hide('amsspinner');
 
       }, err => {
-        this.ngxspineer.hide('appApprovalspinner');
+        this.ngxspineer.hide('amsspinner');
 
       })
 
@@ -323,7 +328,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
 
 
-  // App approval Started
+  /* ---------------------- App approval Started------------------------*/
 
   public approvalTypeList = [];
   public appAprovalStatusList = [];
@@ -335,9 +340,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public appApprovalIntialDate: Date = new Date();
   private appliedApprovalStartDate = '';
   private appliedApprovalEndDate = '';
-  public appApprovalLowerbound = 1;
-  public appApprovalUpperbound = 10;
-  public appApprovalPerPage = 10;
   public dcsFilterId = null;
   public approvalTypeId = null;
   public statusId = null;
@@ -345,12 +347,20 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   private appliedApprovalTypeId = 0;
   private appliedDcsId = 0;
   private appliedStatusId = 0;
-  public currentApprovedComments='';
-  public currentAppApprovalId=0;
-  public currentStatus=null;
+  public currentApprovedComments = '';
+  public currentAppApprovalId = 0;
+  public currentStatus = null;
+  public approvalLowerBound=1;
+  public approvalUpperBound=10;
+  public approvalperPage=10;
+  public approvalTotalCount=0;
+  public appAvailabilityList: any;
+  public appExceptionList: any;
+  public appAvailabilityEffectedVisitsResponse: any;
+  public appExceptionEffectedVisitsResponse: any;
 
 
-  public appaprovalInint() {
+  public appaprovalInint(flag?: boolean, template?) {
     this.appApprovalIntialDate.setDate(this.todayDate.getDate() - 30)
     this.appApprovalStartDate = this.appApprovalIntialDate;
     this.appApprovalEndDate = this.todayDate;
@@ -358,20 +368,23 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
 
 
+    if (flag) { this.getAppApprovals(); template.hide() } else {
+      this.getDCSList()
+      this.getAppApprovals();
+      this.getLookupsData();
+    }
 
-    this.getDCSList()
-    this.getAppApprovals();
-    this.getLookupsData();
   }
 
   public getAppApprovals() {
     this.appApprovalSpinner++;
     this.ngxspineer.show('spinner1');
-    let obj = { dcsId: this.appliedDcsId, appApprovalTypeId: this.appliedApprovalTypeId, approvalStatusId: this.appliedStatusId, startDate: this.appliedApprovalStartDate, endDate: this.appliedApprovalEndDate, userId: this.userDetails.userId, lowerBound: this.appApprovalLowerbound, upperBound: this.appApprovalUpperbound }
+    let obj = { dcsId: this.appliedDcsId, appApprovalTypeId: this.appliedApprovalTypeId, approvalStatusId: this.appliedStatusId, startDate: this.appliedApprovalStartDate, endDate: this.appliedApprovalEndDate, userId: this.userDetails.userId, lowerBound: this.approvalLowerBound, upperBound: this.approvalUpperBound }
     try {
       this.dashboardService.getAppApprovals(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         this.appApprovalList = res.appApprovalList;
+           this.approvalTotalCount=res?.totalCount;
         this.appApprovalSpinner--;
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
@@ -437,23 +450,23 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public onAppApprovalSearch(template) {
-    if(this.appApprovalStartDate>this.appApprovalEndDate){
+    if (this.appApprovalStartDate > this.appApprovalEndDate) {
       Swal.fire('Invalid Dates', 'Start date cannot be greater than End date', 'warning')
 
-    }else{
-    this.appliedApprovalStartDate = this.datepipe.transform(this.appApprovalStartDate, 'MM/dd/yyyy');
-    this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
-    this.appliedApprovalTypeId = this.approvalTypeId != null ? this.approvalTypeId : 0;
-    this.appliedDcsId = this.dcsFilterId != null ? this.dcsFilterId : 0;
-    this.appliedStatusId = this.statusId != null ? this.statusId : 0;
-    template.hide();
-    this.getAppApprovals();
-  }}
+    } else {
+      this.appliedApprovalStartDate = this.datepipe.transform(this.appApprovalStartDate, 'MM/dd/yyyy');
+      this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
+      this.appliedApprovalTypeId = this.approvalTypeId != null ? this.approvalTypeId : 0;
+      this.appliedDcsId = this.dcsFilterId != null ? this.dcsFilterId : 0;
+      this.appliedStatusId = this.statusId != null ? this.statusId : 0;
+      template.hide();
+      this.getAppApprovals();
+    }
+  }
 
   public getAppEditPunchList(data, template: TemplateRef<any>) {
-    this.currentApprovedComments='';
-    this.currentAppApprovalId=data.appApprovalId;
-    this.currentStatus=null;
+    this.currentAppApprovalId = data.appApprovalId;
+    this.currentStatus = null;
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
@@ -464,8 +477,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
         }
-        this.appEditPunchList = res.appEditPunchList[0];
-        this.currentStatus=this.appEditPunchList.status;
+        this.appEditPunchList = res;
+        this.currentStatus = this.appEditPunchList.status;
+        this.currentApprovedComments = this.appEditPunchList.approvedComments ? this.appEditPunchList.approvedComments : '';
         this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
 
       }, err => {
@@ -480,33 +494,71 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public approvingEditPunch() {
-    console.log(this.currentStatus,this.currentApprovedComments.length)
+    console.log(this.currentStatus, this.currentApprovedComments.length)
 
-  if(this.currentStatus==null || (this.currentApprovedComments.length>4000 ||this.currentApprovedComments.length==0) ){
+    if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
+      if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
+        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+      } else
+        if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
+          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+        } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
+          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+        } else if (this.currentApprovedComments.length > 4000) {
+          Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
+        }
+    }
+    else {
 
-    let str=this.currentStatus==null?'Status is mandatory filed':'';
-    let str2=this.currentApprovedComments.length>0?"Comments is  mandatory filed ":''
-    let str3=this.currentApprovedComments.length>4000?"Comments Cannot be More than 4000 Characters ":''
-    Swal.fire('Invalid ', `Status and comments are mandotry Feilds`, 'warning')
+      try {
+        this.appApprovalSpinner++;
+        this.ngxspineer.show('spinner1');
+        console.log(this.currentStatus)
+        let obj = { "appApprovalId": this.currentAppApprovalId, "userId": this.userDetails.userId, "approvedComments": this.currentApprovedComments, "status": this.currentStatus }
+        this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
+          console.log(res);
+          console.log(Object.keys(res).length)
+          if (Object.keys(res).length > 0) {
+            Swal.fire('', res.errorMsg, 'error')
+          } else {
+            this.modalRef.hide();
+            Swal.fire('', 'Sucessfully saved', 'success')
+            this.getAppApprovals();
+          }
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+        }, err => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+        })
 
+      } catch (error) {
+
+      }
+    }
   }
-  else{
-
+  public getAppAvailabilityList(data, template: TemplateRef<any>) {
+    this.currentApprovedComments = '';
+    this.currentAppApprovalId = data.appApprovalId;
+    this.currentStatus = null;
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
-      console.log(this.currentStatus)
-      let obj={"appApprovalId":this.currentAppApprovalId,"userId":this.userDetails.userId,"approvedComments":this.currentApprovedComments,"status":this.currentStatus}
-      this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
+      let obj = { "appApprovalId": data.appApprovalId }
+      this.dashboardService.getAppAvailabilityList(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
-        console.log(Object.keys(res).length)
-        if(Object.keys(res).length>0){
-          Swal.fire('',res.errorMsg,'error')
-        }
         this.appApprovalSpinner--;
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
         }
+        this.appAvailabilityList = res
+        this.currentStatus = this.appAvailabilityList.status;
+        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+
       }, err => {
         this.appApprovalSpinner--;
         if (this.appApprovalSpinner == 0) {
@@ -517,13 +569,322 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     } catch (error) {
 
     }
-  }}
+  }
+
+  public validateAPPAvailability(item, template: TemplateRef<any>) {
+    if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
+      if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
+        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+      } else
+        if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
+          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+        } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
+          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+        } else if (this.currentApprovedComments.length > 4000) {
+          Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
+        }
+    }
+    else if (this.appAvailabilityList.terminationDate) {
+      let terminationDate = Date.parse(this.appAvailabilityList.terminationDate);
+      let startDate = Date.parse(this.appAvailabilityList.startDate);
+      let enddate = Date.parse(this.appAvailabilityList.enddate);
+
+      if (enddate <= terminationDate && startDate <= terminationDate) {
+        this.getAppAvailabilityEffectedVisits(item, template)
+      } else {
+        if (enddate > terminationDate && startDate > terminationDate) {
+          Swal.fire('Invalid Dates', `Start and  End dates should be less than or equal to DCS Termination Date ${this.appAvailabilityList.terminationDate}`, 'warning');
+        } else if (startDate > terminationDate) {
+          Swal.fire('Invalid Dates', `Start date should be less than or equal to DCS Termination Date ${this.appAvailabilityList.terminationDate}`, 'warning');
+        } else if (enddate > terminationDate) {
+          Swal.fire('Invalid Dates', `End date should be less than or equal to DCS Termination Date ${this.appAvailabilityList.terminationDate}`, 'warning');
+        }
+
+      }
+    }
+    else {
+      this.getAppAvailabilityEffectedVisits(item, template)
+
+    }
+  }
+  private getAppAvailabilityEffectedVisits(item, template: TemplateRef<any>) {
+    try {
+      let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item.endDate }
+      this.appApprovalSpinner++;
+      this.ngxspineer.show('spinner1');
+      this.dashboardService.getAppAvailabilityEffectedVisits(JSON.stringify(obj)).subscribe(res => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+        console.log(res);
+
+        this.appAvailabilityEffectedVisitsResponse = res;
+        console.log()
+        if (this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.length > 0 && this.appAvailabilityEffectedVisitsResponse.availabilityId > 0 && (this.appAvailabilityEffectedVisitsResponse?.errorMsg.length>0)) {
+          //direct
+          this.dcsmodelRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+
+        }else if(this.appAvailabilityEffectedVisitsResponse?.errorMsg.length>0){
+           Swal.fire('',this.appAvailabilityEffectedVisitsResponse.errorMsg,'error')
+        } else {
+          console.log("validation Failed");
+          this.approveAppDCSAvailability();
+
+        }
+      }, err => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      })
+    } catch (error) {
+    }
+
+  }
+  public approveAppDCSAvailability(flag?: boolean) {
+
+    if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
+      if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
+        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+      } else
+        if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
+          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+        } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
+          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+        } else if (this.currentApprovedComments.length > 4000) {
+          Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
+        }
+    } else {
+
+      let obj = {
+        appApproveId: this.currentAppApprovalId,
+        approvedComments: this.currentApprovedComments,
+        dcsId: this.appAvailabilityList.dcsId,
+        officeId: this.appAvailabilityList.officeId,
+        startDate: this.appAvailabilityList.startDate,
+        endDate: this.appAvailabilityList.endDate,
+        days: this.appAvailabilityList.days,
+        statusId: +(this.currentStatus),
+        userId: this.userDetails.userId,
+        availabilityId: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.availabilityId,
+        startTime1: this.appAvailabilityList.startTime1,
+        endTime1: this.appAvailabilityList.endTime1,
+        startTime2: this.appAvailabilityList?.startTime2?this.appAvailabilityList.startTime2:'',
+        endTime2: this.appAvailabilityList?.endTime2?this.appAvailabilityList.endTime2:'',
+        lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated
+      }
+      try {
+        this.appApprovalSpinner++;
+        this.ngxspineer.show('spinner1');
+        this.dashboardService.approveAppDCSAvailability(JSON.stringify(obj)).subscribe(res => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+          this.modalRef.hide();
+          Swal.fire('', 'Sucessfully saved', 'success')
+          this.getAppApprovals();
+        }, err => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+        })
+      } catch (error) {
+
+      }
+    }
+
+  }
+  public availbilityAlert(flag) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to Continue Changing Availbility",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#76bd43',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Proceed'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (flag == 'availbility') {
+          this.approveAppDCSAvailability();
+        } else {
+          this.approveAppDCSException();
+        }
+      }
+    })
+
+  }
+
+  public getAppExceptionList(data, template: TemplateRef<any>) {
+    this.currentApprovedComments = '';
+    this.currentAppApprovalId = data.appApprovalId;
+    this.currentStatus = null;
+    try {
+      this.appApprovalSpinner++;
+      this.ngxspineer.show('spinner1');
+      let obj = { "appApprovalId": data.appApprovalId }
+      this.dashboardService.getAppExceptionList(JSON.stringify(obj)).subscribe(res => {
+        console.log(res);
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+        this.appExceptionList = res;
+        this.currentStatus = this.appExceptionList.status;
+        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+
+      }, err => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      })
+
+    } catch (error) {
+
+    }
+  }
+
+  public getAppExceptionEffectedVisits(item, template: TemplateRef<any>) {
+    if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
+      if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
+        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+      } else
+        if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
+          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+        } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
+          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+        } else if (this.currentApprovedComments.length > 4000) {
+          Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
+        }
+    }
+    else {
+      try {
+        let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item.endDate }
+        this.appApprovalSpinner++;
+        this.ngxspineer.show('spinner1');
+        this.dashboardService.getAppExceptionEffectedVisits(JSON.stringify(obj)).subscribe(res => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+          console.log(res);
+          this.appExceptionEffectedVisitsResponse = res;
+          if (this.appExceptionEffectedVisitsResponse.effectedVisitsList.length > 0) {
+            this.dcsExceptionModelRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+          } else {
+            this.approveAppDCSException()
+          }
+
+        }, err => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+        })
+      } catch (error) {
+
+      }
+    }
+  }
+
+  public approveAppDCSException() {
+    if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
+      if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
+        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+      } else
+        if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
+          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+        } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
+          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+        } else if (this.currentApprovedComments.length > 4000) {
+          Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
+        }
+    } else {
+
+
+      let obj = {
+        appApproveId: this.currentAppApprovalId,
+        approvedComments: this.currentApprovedComments,
+        dcsId: this.appExceptionList.dcsId,
+        officeId: this.appExceptionList.officeId,
+        statusId: +(this.currentStatus),
+        userId: this.userDetails.userId,
+        exceptionTypeId: this.appExceptionList.exceptionTypeId,
+        exceptionComments: this.appExceptionList.exceptionComments,
+        startDate: this.appExceptionList.startDate,
+        endDate: this.appExceptionList.endDate,
+        startTime1: this.appExceptionList.startTime1,
+        endTime1: this.appExceptionList.endTime1,
+
+      }
+      try {
+        this.appApprovalSpinner++;
+        this.ngxspineer.show('spinner1');
+        this.dashboardService.approveAppDCSException(JSON.stringify(obj)).subscribe(res => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+          this.modalRef.hide();
+          Swal.fire('', 'Sucessfully saved', 'success')
+          this.getAppApprovals();
+        }, err => {
+          this.appApprovalSpinner--;
+          if (this.appApprovalSpinner == 0) {
+            this.ngxspineer.hide('spinner1');
+          }
+        })
+      } catch (error) {
+      }
+    }
+  }
+  private dummymethod() {
+    try {
+      this.appApprovalSpinner++;
+      this.ngxspineer.show('spinner1');
+      this.dashboardService.getAppExceptionList(1).subscribe(res => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      }, err => {
+        this.appApprovalSpinner--;
+        if (this.appApprovalSpinner == 0) {
+          this.ngxspineer.hide('spinner1');
+        }
+      })
+    } catch (error) {
+
+    }
+  }
+
+  public approvalPrevPage() {
+    this.approvalLowerBound = this.approvalLowerBound - this.approvalperPage;
+    this.approvalUpperBound = this.approvalUpperBound - this.approvalperPage;
+    this.getAppApprovals()
+  }
+  public approvalNextPage() {
+    this.approvalLowerBound = this.approvalLowerBound + this.approvalperPage;
+    this.approvalUpperBound = this.approvalUpperBound + this.approvalperPage;
+    this.getAppApprovals()
+
+  }
+
+  public approvalpageReset() {
+    this.approvalLowerBound = 1;
+    this.approvalUpperBound = this.approvalperPage;
+    this.getAppApprovals()
+
+  }
 
 
 
 
-
-  /* Point of care Started*/
+  /*------------------------------ Point of care Started-----------------------------------*/
   public pocReleaseNotesList = [];
   public pointofCareDates = [];
   public pointofCareStartDate: Date = new Date();
@@ -605,7 +966,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.pocUpperBound = this.pocperPage;
     this.getPocReleaseNotesList();
   }
-
+  /* ------------------- POC Release notes Ended-------------------------------------------- *****/
 
   displayBasic: boolean;
 
