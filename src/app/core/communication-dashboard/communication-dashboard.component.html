@@ -847,12 +847,12 @@
         <p class="mb-0 title-font f-15 p-0  w-45">Status:<span class="text-danger"> *</span> </p>
         <div class="col-6 p-0">
           <p-dropdown [(ngModel)]="currentStatus" [options]="appAprovalStatusList" [showClear]="true"
-            placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" optionValue="id"></p-dropdown>
-        </div>
+          placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" appendTo="body"
+          optionValue="id"></p-dropdown>        </div>
       </div>
       <div class="d-flex mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea [(ngModel)]="currentApprovedComments" rows="3" cols="30"></textarea>
+        <textarea rows="3" cols="30" pInputTextarea class="p-inputtextarea p-inputtext p-component"></textarea>
       </div>
 
     </div>
