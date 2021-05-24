@@ -159,4 +159,13 @@ export class DashboardService {
   public approveAppDCSException(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/approveAppDCSException?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
+  public getAllDcsWithRecentMessage(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAllDcsWithRecentMessage?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public getDcsMessagesForUser(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getDcsMessagesForUser?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public saveDcsMessage(obj): Observable<any> {
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/saveDcsMessage`,obj,httpOptions).pipe(catchError(this.errorHandler))
+  }
 }

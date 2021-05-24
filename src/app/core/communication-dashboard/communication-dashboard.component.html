@@ -57,8 +57,8 @@
                                 optionValue="id"></p-dropdown>
                             </div>
                             <div class="text-right">
-                              <button (click)="appaprovalInint(true,filter)" type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
-                                  class="fas fa-sync mr-2"></i>Reset</button>
+                              <!-- <button (click)="appaprovalInint(true,filter)" type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                  class="fas fa-sync mr-2"></i>Reset</button> -->
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="onAppApprovalSearch(filter)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -150,25 +150,28 @@
                       <!-- <div class="col-md-4"></div> -->
                       <h5 class="text-white m-0  ">DCS Messages</h5>
                       <div class="d-flex justify-content-end align-items-center right-filter-icons">
-
-
-
-                        <div class="btn-group" #filter1="bs-dropdown" dropdown [autoClose]="false" container="body"
+                        <ngx-spinner [name]="'dcsSpinner'" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+                          DCS Messages loding...
+                        </ngx-spinner>
+                       <div class="btn-group" #dcsfilter="bs-dropdown" dropdown [autoClose]="false" container="body"
                           [insideClick]="true" placement="left">
                           <span class="mx-2" dropdownToggle>
                             <i class="pi pi-filter" title="Filter"></i>
                           </span>
-                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
-                            <div class="form-group form-input">
-                              <input type="text" placeholder="DCS Name" class="form-control">
+                          <div id="dropdown-basic"  *dropdownMenu class="dropdown-menu dropdown-filter-menu">
+                            <div class="form-group form-input  alert-dropdown ">
+                              <p-dropdown [(ngModel)]="messageDcsId" [options]="appApprovalDCSList"
+                                [virtualScroll]="true" [itemSize]="31" [showClear]="true" placeholder="DCS"
+                                [filter]="true" filterBy="dcsName" optionLabel="dcsName" optionValue="dcsId">
+                              </p-dropdown>
                             </div>
                             <div class="d-flex align-items-center">
                               <div class="form-group form-input mr-2">
-                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker [(ngModel)]="dcsStartDate" [bsConfig]="{ adaptivePosition: true }"
                                   placeholder="Start Date" class="form-control">
                               </div>
                               <div class="form-group form-input">
-                                <input type="text" bsDatepicker readonly [bsConfig]="{ adaptivePosition: true }"
+                                <input type="text" bsDatepicker [(ngModel)]="dcsEndDate" [bsConfig]="{ adaptivePosition: true }"
                                   placement="left" placeholder="End Date" class="form-control">
                               </div>
                             </div>
@@ -178,15 +181,15 @@
                             </div> -->
 
                             <div class="text-right">
-                              <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
-                                  class="fas fa-sync mr-2"></i>Reset</button>
-                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                              <!-- <button type="submit" class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
+                                  class="fas fa-sync mr-2"></i>Reset</button> -->
+                              <button (click)="onDcsSearch(dcsfilter)" type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                   class="pi pi-search mr-2"></i>Search</button>
                             </div>
                           </div>
                         </div>
                         <div class="ico d-flex align-items-center">
-                          <i class="fas fa-sync px-2" title="Refresh"></i>
+                          <i class="fas fa-sync px-2" (click)="getAllDcsWithRecentMessage()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
                             (click)="widgetReSize(false,'admissions',$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
@@ -200,7 +203,6 @@
                           <thead class="thead-light no-wrap">
                             <tr>
                               <th scope="col"></th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black">Site</th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">DCS Name</th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Message Text</th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Last Received</th>
@@ -208,64 +210,53 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                            <tr *ngFor="let item of allDcsWithRecentMessage;let i=index;">
 
                               <td class="">
                                 <ul class="m-0 p-0">
-                                  <li class="" (click)="op.toggle($event)">
-                                    <!-- <div class="share-button"  >
-                                    <input class="toggle-input" id="toggle-input1" type="checkbox"  />
-                                    <label for="toggle-input1" class="toggle"  ></label>
-                                  </div> -->
-                                    <div class="">
-                                      <span class="material-icons add-bg" (click)="op.toggle($event)">
+                                  <li class="">
+                                     <div class="">
+                                      <span class="material-icons add-bg" (click)="getDcsMessagesForUser(op,$event,item)">
                                         add_circle
                                       </span>
                                     </div>
-                                    <!-- <div class="slider d-flex align-items-center">
 
-                                    <p class="blue-bg googleplus">
-                                      <span>
-                                        <a class="text-white" title="Authorizations">
-                                        </a>
-                                      </span>
-                                    </p>
-                                  </div> -->
                                   </li>
                                 </ul>
                               </td>
-                              <td>1724</td>
-                              <td>Abay,George</td>
-                              <td>Is my 2pm visit going to be rescheduled today ?</td>
-                              <td>04/03/2021 12:15 </td>
+                              <td>{{item.dcsName}}</td>
+                              <td>{{item.message}}</td>
+                              <td>{{item.createdOn}} </td>
                               <td class="position-relative"><span class="material-icons">
                                   chat_bubble_outline
                                 </span>
-                                <span class="notification-badge">1</span>
+                                <span *ngIf="item.unreadMessageCount>0" class="notification-badge">{{item.unreadMessageCount>0?item.unreadMessageCount:''}}</span>
                               </td>
 
                             </tr>
                           </tbody>
                         </table>
-                        <!-- <div class="text-center no-data-text" >
+                        <div *ngIf="allDcsWithRecentMessage.length==0" class="text-center no-data-text" >
                           No Data To Display
-                        </div> -->
+                        </div>
                       </div>
                       <div class="pager mt-2 d-flex justify-content-end">
 
                         <div class="nav">
                           <span class="mr-2">Per page</span>
-                          <select class="border-0 mr-2">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
+                          <select (change)="dcsPageReset()" [(ngModel)]="dcsPerPage" class="border-0 mr-2">
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="15">15</option>
+                            <option [ngValue]="20">20</option>
                           </select>
-                          <span class="mr-2">showing
-                            10
-                            of 100 </span>
-                          <button type="button" class="btn-common-small mx-2">Prev</button>
-                          <button type="button" class="btn-common-small mx-2">Next</button>
+                          <span class="mr-2">Showing {{allDcsWithRecentMessage.length>0?dcsLowerBound:'0'}} to
+                            {{dcsUpperBound >dcsTotalRecordCount?dcsTotalRecordCount:dcsUpperBound}} of
+                            {{dcsTotalRecordCount}} </span>
+                            <button type="button" [disabled]="dcsLowerBound==1" class="btn-common-small mx-2"
+                            (click)="dcsPrevPage()">Prev</button>
+                          <button type="button" [disabled]="dcsUpperBound>dcsTotalRecordCount"
+                            class="btn-common-small mx-2" (click)="dcsNextPage()">Next</button>
                         </div>
                       </div>
                     </div>
@@ -307,9 +298,9 @@
                          </div> -->
 
                             <div class="text-right">
-                              <button type="submit" (click)="pocFilterReset(filterPOC)"
+                              <!-- <button type="submit" (click)="pocFilterReset(filterPOC)"
                                 class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
-                                  class="fas fa-sync mr-2"></i>Reset</button>
+                                  class="fas fa-sync mr-2"></i>Reset</button> -->
                               <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"
                                 (click)="onPocSearch(filterPOC)"><i class="pi pi-search mr-2"></i>Search</button>
                             </div>
@@ -432,14 +423,14 @@
 
                               </div>
                               <div class="form-group form-input col-6 alert-dropdown pr-0">
-                                <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Defination"
+                                <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Definition"
                                   [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name"
                                   optionValue="id"></p-dropdown>
                               </div>
                               <div class="text-right col-12 pr-0">
-                                <button type="submit"
+                                <!-- <button type="submit"
                                   class="btn btn-common bg-blue-light mr-2 w-auto h-30 color-white"><i
-                                    class="fas fa-sync mr-2" (click)="onAmsReset(filter2)"></i>Reset</button>
+                                    class="fas fa-sync mr-2" (click)="onAmsReset(filter2)"></i>Reset</button> -->
                                 <button (click)="onAmsSearch(filter2)" type="submit"
                                   class="btn btn-common bg-dark w-auto h-30 color-white"><i
                                     class="pi pi-search mr-2"></i>Search</button>
@@ -463,7 +454,7 @@
                               <th></th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Type</th>
                               <th class="align-middle AvenirLTStd-Heavy color-black">Alert Message </th>
-                              <th class="align-middle AvenirLTStd-Heavy color-black">Recieved Date</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Received Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -476,8 +467,8 @@
 
                                   <div class=" align-items-center btn-hover-content">
                                     <div *ngFor="let button of item.buttonsNameArray;let i=index" class="mr-2">
-                                      <button (click)="processDynamicActions(item,i)" pButton type="button" [label]="button"
-                                        class="p-button-secondary p-button "></button>
+                                      <button (click)="processDynamicAlert(item,i)" pButton type="button"
+                                        [label]="button" class="p-button-secondary p-button "></button>
                                     </div>
 
 
@@ -527,258 +518,47 @@
   </div>
 </div>
 <!-- ====================end of the file================== -->
-<!-- Edited Punch -->
-<p-dialog [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '70%'}"
-  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-  <ng-template pTemplate="header">
-    <div class="d-flex align-items-center "></div>
-    <div class="d-flex align-items-center ">
-      <p class="mb-0 title-font f-15">PS:</p>
-      <p class="mb-0 title-font ml-2">Doe,Jane</p>
-    </div>
-    <div class="d-flex align-items-center mx-2">
-      <p class="mb-0 title-font f-15">DCS:</p>
-      <p class="mb-0 title-font ml-2">PS,PS</p>
-    </div>
-    <div class="d-flex align-items-center">
-      <p class="mb-0 title-font f-15">Service:</p>
-      <p class="mb-0 title-font ml-2">[CCRN] ATC-ATTENDANT CARE</p>
-    </div>
-  </ng-template>
-  <div class="border-5"></div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Arrival Time:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Departure Time:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Updated Arrival Time:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Updated Departure Time:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Arrival Diff:</p>
-      <p class="mb-0 title-font ml-2">0.0 Mins</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Departure Diff:</p>
-      <p class="mb-0 title-font ml-2">-60.0 Mins</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Arrival Adjusted Reason:</p>
-      <p class="mb-0 title-font ml-2"></p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Departure Adjusted Reason:</p>
-      <p class="mb-0 title-font ml-2">DCS Called Early/Late</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30"></textarea>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
-      <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
-        </p-dropdown>
 
-      </div>
-    </div>
-  </div>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-save" (click)="displayPosition=false" label="Save" styleClass="p-button-raised"></p-button>
-  </ng-template>
-</p-dialog>
-<!-- Create Exception -->
-<p-dialog [(visible)]="createException" [position]="position" [modal]="true" [style]="{width: '60%'}"
-  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-  <ng-template pTemplate="header">
-    <!-- DCS Exceptions -->
-    <div class="d-flex align-items-center ">
-      <h3 class="mb-0 AvenirLTStd-Heavy ml-5">DCS Exceptions</h3>
-      <!-- <p class="mb-0 title-font ml-2">Doe,Jane</p> -->
-    </div>
-  </ng-template>
-  <div class="border-5"></div>
-  <div class="row">
-    <div class="d-flex align-items-center  col-12 col-md-6">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">DCS:</p>
-      <p class="mb-0 title-font ml-2">PS,PS</p>
-    </div>
-    <div class="col-md-6 col-12"></div>
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Start Date:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">End Date:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021 06:00 PM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Exception Type:</p>
-      <p class="mb-0 title-font ml-2">Paid Time Off</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Exception Comments:</p>
-      <p class="mb-0 title-font ml-2">Paid Time Off</p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="d-flex   col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
-      <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
-        </p-dropdown>
-      </div>
-    </div>
-    <div class="d-flex  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30"></textarea>
-    </div>
-  </div>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-save" (click)="createException=false" label="Save" styleClass="p-button-raised"></p-button>
-  </ng-template>
-</p-dialog>
-<p-dialog [(visible)]="createAvailability" [position]="position" [modal]="true" [style]="{width: '60%'}"
-  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-  <ng-template pTemplate="header">
-    <!-- DCS Exceptions -->
-    <div class="d-flex align-items-center ">
-      <h4 class="mb-0  AvenirLTStd-Heavy ml-5">DCS Availability</h4>
-    </div>
-  </ng-template>
-  <div class="border-5"></div>
-  <div class="row">
-    <div class="d-flex align-items-center  col-12 col-md-6">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">DCS:</p>
-      <p class="mb-0 title-font ml-2">PS,PS</p>
-    </div>
-    <div class="d-flex align-items-center  col-12 col-md-6">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Day(s)</p>
-      <p class="mb-0 title-font ml-2">Wed</p>
-    </div>
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Start Date:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">End Date:</p>
-      <p class="mb-0 title-font ml-2">04/07/2021</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Start Time1:</p>
-      <p class="mb-0 title-font ml-2">07:00 AM</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">End Time1:</p>
-      <p class="mb-0 title-font ml-2">07:00 AM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex align-items-center col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">Start Time2:</p>
-      <p class="mb-0 title-font ml-2">07:00 AM</p>
-    </div>
-    <div class="d-flex align-items-center  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right">End Time2:</p>
-      <p class="mb-0 title-font ml-2">07:00 AM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex   col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Status:</p>
-      <div class="col-6 p-0">
-        <p-dropdown inputId="state" [options]="[]" placeholder="Select" optionLabel="name" [appendTo]="'body'">
-        </p-dropdown>
-      </div>
-    </div>
-    <div class="d-flex  col-md-6 col-12">
-      <p class="mb-0 title-font f-15 col-6 p-0 text-right mr-2">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" cols="30"></textarea>
-    </div>
-  </div>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-save" (click)="createAvailability=false" label="Save" styleClass="p-button-raised"></p-button>
-  </ng-template>
-</p-dialog>
 <!-- messaage overlay  -->
 <p-overlayPanel #op [style]="{width: '40%'}" [baseZIndex]="0">
 
   <ng-template pTemplate>
+    <div  *ngFor="let item of dcsMessagesForUser;let i=index">
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
       <!-- <div class="border-5 m-0"></div> -->
-      <p class="mb-0 mx-2 today-text">Today</p>
+      <p *ngIf="i==0?true:dcsMessagesForUser[i].date!=item.date" class="mb-0 mx-2 today-text">{{item.createdOn|date:'MMM d y'}} </p>
       <!-- <div class="border-5 m-0"></div> -->
     </div>
     <div class="">
-      <div class="bg-color">
-        <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-green-dark">Abbay, George</p>
-        <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
-            class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
+      <!-- reciever -->
+      <div *ngIf="item.isDcsMessage=='No'" class="bg-color">
+        <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-green-dark">{{currentDcs.dcsName}}</p>
+        <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
+            class="AvenirLTStd-Light time-stamp">{{item.createdOn|date:'hh:mm a'}}</span></p>
       </div>
 
     </div>
-    <div class="position-relative d-flex align-items-center justify-content-center mb-2 mt-2 box-shadow">
-      <!-- <div class="border-5 m-0"></div> -->
+    <!-- <div class="position-relative d-flex align-items-center justify-content-center mb-2 mt-2 box-shadow">
       <p class="mb-0 mx-2 white-space-nowrap unread-text AvenirLTStd-Heavy">3 Unread Messages</p>
-      <!-- <div class="border-5 m-0"></div> -->
+    </div> -->
+    <div *ngIf="item.isDcsMessage!='No'" class="bg-color-right">
+      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{userDetails?.userName}}</p>
+      <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
+          class="AvenirLTStd-Light time-stamp"> {{item.createdOn|date:'hh:mm a'}}</span></p>
     </div>
-    <div class="bg-color-right">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
-          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
-    </div>
-    <div class="bg-color-right">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
-          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
-    </div>
-    <div class="bg-color-right">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">Abbay, George</p>
-      <p class="mb-0 mb-0 AvenirLTStd-Medium">Is my 2pm visit going to be rescheduled today ?<span
-          class="AvenirLTStd-Light time-stamp"> 2:21 PM</span></p>
-    </div>
+  </div>
     <div class=" w-100 pt-2 p-message-input d-flex">
       <!-- <i class="pi pi-send "></i> -->
 
-      <input type="text" pInputText class=" input-message ml-2 w-100 mr-2" />
-      <span class="material-icons send-msg-icon mr-2">
+      <input type="text" placeholder="Type a message" [(ngModel)]="currentMessage" pInputText class=" input-message ml-2 w-100 mr-2" />
+      <span *ngIf="this.currentMessage.trim().length!=0" (click)="saveDcsMessage()"  class="material-icons send-msg-icon mr-2">
         send
       </span>
     </div>
   </ng-template>
 </p-overlayPanel>
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
-
-
-<p-dialog header="Header" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <p>{{pocReleaseNotesFile}}</p>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-  </ng-template>
-</p-dialog>
 
 
 <!-- Visit Edit Details for Approval -->
@@ -847,12 +627,14 @@
         <p class="mb-0 title-font f-15 p-0  w-45">Status<span class="text-danger"> *</span>:</p>
         <div class="col-6 p-0">
           <p-dropdown [(ngModel)]="currentStatus" [options]="appAprovalStatusList" [showClear]="true"
-          placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" appendTo="body"
-          optionValue="id"></p-dropdown>        </div>
+            placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" appendTo="body" optionValue="id">
+          </p-dropdown>
+        </div>
       </div>
       <div class="d-flex mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea rows="3" cols="30" [(ngModel)]="currentApprovedComments" class="p-inputtextarea p-inputtext p-component"></textarea>
+        <textarea rows="3" cols="30" [(ngModel)]="currentApprovedComments"
+          class="p-inputtextarea p-inputtext p-component"></textarea>
       </div>
 
     </div>
@@ -911,12 +693,14 @@
         <p class="mb-0 title-font f-15 p-0  w-45">Status:</p>
         <div class="col-6 p-0">
           <p-dropdown [(ngModel)]="currentStatus" [options]="appAprovalStatusList" [showClear]="true"
-            placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" optionValue="id" appendTo="body"></p-dropdown>
+            placeholder="Status" [filter]="true" filterBy="name" optionLabel="name" optionValue="id" appendTo="body">
+          </p-dropdown>
         </div>
       </div>
       <div class="d-flex mb-2">
         <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-        <textarea rows="3" [(ngModel)]="currentApprovedComments" cols="30" class="p-inputtextarea p-inputtext p-component"></textarea>
+        <textarea rows="3" [(ngModel)]="currentApprovedComments" cols="30"
+          class="p-inputtextarea p-inputtext p-component"></textarea>
       </div>
 
     </div>
@@ -988,7 +772,8 @@
     </div>
     <div class="d-flex mb-2">
       <p class="mb-0 title-font f-15 p-0 w-45">Comments<span class="text-danger"> *</span> :</p>
-      <textarea rows="3" [(ngModel)]="currentApprovedComments" cols="30" class="p-inputtextarea p-inputtext p-component"></textarea>
+      <textarea rows="3" [(ngModel)]="currentApprovedComments" cols="30"
+        class="p-inputtextarea p-inputtext p-component"></textarea>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close

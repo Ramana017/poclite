@@ -45,9 +45,7 @@ public processDynamicActions(userId,applicationId,captions,actions,amsActions,id
     console.log("wwwwwwwwwwwwwwww", this.amsAlertUrl)
     return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getAlertsForDevices?userId=${userId}&startDate=${startDate}&endDate=${endDate}&searchByKeyword=${searchBy}&viewByFlag=0&applicationId=${applicationId}&alertDefinitionId=${alertDefinitionId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
   }
-  public getAlertButtonDetails(applicationId, alertDefId, userId, sessionId): Observable<any> {
-    return this.http.get(`${this.amsAlertUrl}/communicationDashboard/getAlertButtonDetails?applicationId=${applicationId}&alertDefId=${alertDefId}&userId=${userId}&sessionId=${sessionId}`).pipe(catchError(this.errorHandler));
-  }
+
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in AMS  service Alerts", error);
     return throwError(error);
@@ -94,7 +92,7 @@ export interface alertForDevices {
   buttonsNameArray?:Array<any>;
   buttonsActionIdsArray?:Array<any>,
   buttonsActionArray?:Array<any>,
-  confirmPrompt?:string
+  confirmPromptArray?:string
 
 }
 
