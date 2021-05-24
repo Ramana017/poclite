@@ -100,6 +100,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   public arrGpsAcceptedOn;
   public depGpsAcceptedBy;
   public depGpsAcceptedOn;
+
   public ngOnInit(): void {
     console.log('gps oninit working');
     this.displayData();
@@ -420,6 +421,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.psdetailsSelectedLatitude = event.latitude;
     this.psdetailsSelectedLongitude = event.longitude;
     this.psAddressId = event.psAddressId;
+    this.googleFormattedAddress=event?.googleFormattedAddress;
 
   }
 
