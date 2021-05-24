@@ -3,6 +3,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import isThisHour from 'date-fns/isThisHour';
+import Swal from 'sweetalert2';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -98,6 +99,7 @@ export class DashboardService {
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in API service", error);
     return throwError(error);
+
   }
 
   public getTelephonyStats(data): Observable<any> {
@@ -139,5 +141,22 @@ export class DashboardService {
   public getAppEditPunchList(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppEditPunchList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
-
+  public getAppAvailabilityList(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppAvailabilityList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+   public getAppExceptionList(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppExceptionList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public getAppAvailabilityEffectedVisits(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppAvailabilityEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public approveAppDCSAvailability(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/approveAppDCSAvailability?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public getAppExceptionEffectedVisits(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppExceptionEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
+  public approveAppDCSException(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/communicationDashboard/approveAppDCSException?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+  }
 }
