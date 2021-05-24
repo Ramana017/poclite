@@ -68,7 +68,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'schedule-modal' }));
   }
   public amsAlertList: Array<alertForDevices> = [];
-  public amsAuthenicateResponse: amsLogin;
+  public amsAuthenicateResponse:amsLogin;
   public alertDefinitionList = [];
   public alertDefinationId = null;
   public applicationId = 0;
@@ -86,9 +86,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         console.log(res);
         this.amsAuthenicateResponse = res[0];
         this.getAlertsForDevices();
-        this.getApplicationList();
-        this.getAlertDefinitionList();
+        // this.getApplicationList();
+        // this.getAlertDefinitionList();
       }, err => {
+
+
         Swal.fire('', 'Failed to Authenticate AMS', 'error')
       })
     } catch (error) {
@@ -140,9 +142,17 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     try {
       this.ngxspineer.show('amsspinner');
-      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy'), this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy'), this.amsSearchBy, 1, this.applicationId, this.alertDefinationId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
+      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy'), this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy'), this.amsSearchBy, 1, this.applicationId, this.alertDefinationId!=null?this.alertDefinationId:0, this.amsAuthenicateResponse.sessionId).subscribe(res => {
         console.log(res);
         this.amsAlertList = res;
+        this.amsAlertList.map(x=>{
+          x.buttonsNameArray=((JSON.parse(x.buttonDetails)[0].captions.split(',')));
+          x.buttonsActionIdsArray=((JSON.parse(x.buttonDetails)[0].AmsActionIds.split(',')));
+          x.buttonsActionArray=((JSON.parse(x.buttonDetails)[0].actions.split(',')))
+
+        })
+        console.log(this.amsAlertList)
+
         this.ngxspineer.hide('amsspinner');
 
       }, err => {
@@ -161,6 +171,18 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.amsSearchBy = '';
     template.hide();
     this.getAlertsForDevices()
+  }
+  public processDynamicActions(item,i){
+    try {
+      console.log(item,i)
+      // (userId,applicationId,captions,actions,amsActions,ids,alertIds,aggregateAlertIds,sessionId)
+      this.amsService.processDynamicActions(this.amsAuthenicateResponse.userId,item.applicationId,item.buttonsNameArray[i],item.buttonsActionArray[i],item.buttonsActionIdsArray[i],item.id,item.alertId,item.aggregateAlertId,this.amsAuthenicateResponse.sessionId).subscribe(res=>{
+        console.log("res",res);
+
+      })
+    } catch (error) {
+
+    }
   }
 
 
@@ -368,7 +390,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
 
 
-    if (flag) { this.getAppApprovals(); template.hide() } else {
+    if (flag) { this.approvalpageReset(); template.hide() } else {
       this.getDCSList()
       this.getAppApprovals();
       this.getLookupsData();
@@ -384,7 +406,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.dashboardService.getAppApprovals(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         this.appApprovalList = res.appApprovalList;
-           this.approvalTotalCount=res?.totalCount;
+           this.approvalTotalCount=res.totalRecordsCount;
         this.appApprovalSpinner--;
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
@@ -663,7 +685,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         dcsId: this.appAvailabilityList.dcsId,
         officeId: this.appAvailabilityList.officeId,
         startDate: this.appAvailabilityList.startDate,
-        endDate: this.appAvailabilityList.endDate,
+        endDate: this.appAvailabilityList?.endDate?this.appAvailabilityList.endDate:'',
         days: this.appAvailabilityList.days,
         statusId: +(this.currentStatus),
         userId: this.userDetails.userId,
@@ -999,202 +1021,5 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
 
 
-  defaultstaticData() {
-    this.amsAlertList = [
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "CHRISTY NORTON's TB Skin Test Certification will expire on 06/15/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56449587,
-        "alertId": 14943762,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "LUCIA ACOSTA BEIRO's Annual Evaluation Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56449657,
-        "alertId": 14943786,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "LAURA BROTHERS's Annual Competency Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56454020,
-        "alertId": 14945540,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "CHRISTY NORTON's Annual Competency Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56449633,
-        "alertId": 14943778,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "LAURA BROTHERS's TB Skin Test Certification will expire on 06/18/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56454063,
-        "alertId": 14945554,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "LAURA BROTHERS's First Aid Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56454023,
-        "alertId": 14945542,
-        "applicationId": 2,
-        "status": 1
-      },
-      {
-        "alertSendDate": "03:10 am",
-        "subject": "Certification Expired",
-        "errorCode": 0,
-        "alertDefId": 1,
-        "groupBy": "05/19/2021",
-        "message": "LAURA BROTHERS's BBP/Infection Control Certification will expire on 06/17/2021 [RCHC GA TOCCOA (30017)].",
-        "userId": 52171,
-        "buttonDetails": "[{\"confirmPrompt\":\"null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?\",\"AmsActionIds\":\"0,1,2\",\"errorCode\":0,\"actions\":\"null,null,null\",\"captions\":\"Close,Dismiss,Action Taken\"}]",
-        "aggregateAlertId": "0",
-        "messageTypeId": 1,
-        "id": 56454019,
-        "alertId": 14945539,
-        "applicationId": 2,
-        "status": 1
-      }
-    ]
-
-    this.alertDefinitionList = [{
-      "name": "Certification Expired",
-      "errorCode": 0,
-      "id": 1
-    }, {
-      "name": "Missed Arrival",
-      "errorCode": 0,
-      "id": 2
-    }, {
-      "name": "Missed Departure",
-      "errorCode": 0,
-      "id": 3
-    }, {
-      "name": "DCS Denied Visits",
-      "errorCode": 0,
-      "id": 4
-    }, {
-      "name": "DCS Exceptions",
-      "errorCode": 0,
-      "id": 5
-    }, {
-      "name": "Sandata Job Errors",
-      "errorCode": 0,
-      "id": 6
-    }, {
-      "name": "LA EVV Job Errors",
-      "errorCode": 0,
-      "id": 8
-    }, {
-      "name": "Broadcast Message",
-      "errorCode": 0,
-      "id": 10
-    }, {
-      "name": "CareBridge Job Errors",
-      "errorCode": 0,
-      "id": 12
-    }, {
-      "name": "HHA NJ Job Errors",
-      "errorCode": 0,
-      "id": 13
-    }, {
-      "name": "Sandata AZ Job Errors",
-      "errorCode": 0,
-      "id": 16
-    }, {
-      "name": "Sandata NC Job Errors",
-      "errorCode": 0,
-      "id": 17
-    }, {
-      "name": "Sandata IN Job Errors",
-      "errorCode": 0,
-      "id": 18
-    }, {
-      "name": "POC Job Errors",
-      "errorCode": 0,
-      "id": 19
-    }]
-
-    this.alertButtonDetails = [{
-      "confirmPrompt": "null,Are you sure you want to dismiss the Alert(s)?,Are you sure you want to dismiss the selected Alert(s) for all the Users?",
-      "AmsActionIds": "0,1,2",
-      "errorCode": 0,
-      "actions": "null,null,null",
-      "captions": "Close,Dismiss,Action Taken"
-    }];
-    console.log(this.alertButtonDetails[0].captions.split(','))
-    this.alertbuttons = this.alertButtonDetails[0].captions.split(',');
-
-    this.applicationList = [{
-      "name": "Rescare - POC",
-      "errorCode": 0,
-      "id": 2
-    }]
-    this.customers = [
-      { field: 'id', header: 'Id' },
-      { field: 'date', header: 'Date' },
-      { field: 'company', header: 'Company' },
-      { field: 'status', header: 'Status' },
-      { field: 'activity', header: 'Activity' }
-    ];
-  }
 
 }

@@ -122,10 +122,10 @@
                         <div class="nav">
                           <span class="mr-2">Per page</span>
                           <select (change)="approvalpageReset()" [(ngModel)]="approvalperPage" class="border-0 mr-2">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="15">15</option>
+                            <option [ngValue]="20">20</option>
                           </select>
                           <span class="mr-2">Showing {{appApprovalList.length>0?approvalLowerBound:'0'}} to
                             {{approvalUpperBound >approvalTotalCount?approvalTotalCount:approvalUpperBound}} of
@@ -360,10 +360,10 @@
                         <div class="nav">
                           <span class="mr-2">Per page</span>
                           <select (change)="pocpageReset()" [(ngModel)]="pocperPage" class="border-0 mr-2">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
+                            <option [ngValue]="5">5</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="15">15</option>
+                            <option [ngValue]="20">20</option>
                           </select>
                           <span class="mr-2">Showing {{pocReleaseNotesList.length>0?pocLowerBound:'0'}} to
                             {{pocUpperBound >pocTotalRecordsCount?pocTotalRecordsCount:pocUpperBound}} of
@@ -475,8 +475,8 @@
                                   </span>
 
                                   <div class=" align-items-center btn-hover-content">
-                                    <div *ngFor="let button of alertbuttons;let i=index" class="mr-2">
-                                      <button pButton type="button" [label]="button"
+                                    <div *ngFor="let button of item.buttonsNameArray;let i=index" class="mr-2">
+                                      <button (click)="processDynamicActions(item,i)" pButton type="button" [label]="button"
                                         class="p-button-secondary p-button "></button>
                                     </div>
 
