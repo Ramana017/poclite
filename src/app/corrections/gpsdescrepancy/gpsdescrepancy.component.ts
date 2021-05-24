@@ -694,9 +694,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
   public savepsAddreess() {
     let obj = { "psAddressId": this.psAddressId }
+    let psAddessId=0;
     if (this.editMarkerObj.zipCode != null) {
       this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
+        psAddessId=res.psAddress.id;
         this.geoCoordinatesRange = res.geoCoordinatesRange;
         let latitudeFlag = false;
         let longitudeFlag = false;
@@ -728,7 +730,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         if (latitudeFlag && longitudeFlag) {
 
           var jsonObj = {
-            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId": this.psAddressId, "stateCode": this.editMarkerObj.stateName
+            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId": psAddessId, "stateCode": this.editMarkerObj.stateName
           };
           console.log(jsonObj)
           try {
