@@ -332,7 +332,8 @@
               </span>
             <p class="m-0">To correct the PS service address, click Edit.</p>
             <div class="sizes ml-3">
-              <p-button label="Edit&nbsp;PS&nbsp;Address" [disabled]="this.psAddressId!=this.jsonData.psAddressId" (click)="editpsAdreesButton=true"  styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Address"  disabled="true"  styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Address"  (click)="editpsAdreesButton=true"  styleClass="p-button-sm"></p-button>
             </div>
           </div>
           <div *ngIf="editpsAdreesButton" class="d-flex align-items-center ">
@@ -344,7 +345,8 @@
               <textarea type="text" [(ngModel)]="psaddressTxtArea" readonly rows="1" pInputTextarea placeholder="Address"></textarea>
           </div>
             <div class="sizes ml-3">
-              <p-button label="Save&nbsp;PS&nbsp;Address" [disabled]="this.psAddressId!=this.jsonData.psAddressId" (click)="savepsAddreess()"   styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" disabled="true" label="Save&nbsp;PS&nbsp;Address" styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Save&nbsp;PS&nbsp;Address"  (click)="savepsAddreess()"   styleClass="p-button-sm"></p-button>
             </div>
           </div>
 
