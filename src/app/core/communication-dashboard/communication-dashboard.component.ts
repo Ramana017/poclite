@@ -975,7 +975,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       }
   }
 
-  public getPocReleaseNotesFile(id) {
+  public getPocReleaseNotesFile(id,fileName) {
     try {
       this.ngxspineer.show('spinner3');
       this.dashboardService.getPocReleaseNotesFile(id).subscribe(res => {
@@ -987,7 +987,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         const byteArray = new Uint8Array(atob(res.fileData).split('').map(char => char.charCodeAt(0)));
         var file = new Blob([byteArray], { type: 'application/pdf' });
         var fileURL = window.URL.createObjectURL(file);
-        window.open(fileURL)
+        window.open(fileURL);
+        // var a:any = document.createElement("a");
+        // a.href = fileURL;
+        // a.target = '_blank';
+        // // Don't set download attribute
+        // a.download = fileName;
+        // a.click();
 
       })
 
