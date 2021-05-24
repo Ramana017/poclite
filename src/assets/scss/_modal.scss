@@ -286,6 +286,20 @@ div#exampleModal {
     width: 14rem;
   }
 }
+.available-modal{
+  max-width: 500px !important;
+  
+  .modal-content{
+    width: 100% !important;
+    height: auto !important;
+    .w-45{
+      width: 45%;
+    }
+  }
+  .p-dropdown{
+    width: 14rem;
+  }
+}
 .schedule-modal{
   .modal-content{
     height: auto !important;

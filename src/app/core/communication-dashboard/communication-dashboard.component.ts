@@ -579,7 +579,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         }
         this.appAvailabilityList = res
         this.currentStatus = this.appAvailabilityList.status;
-        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'available-modal' }));
 
       }, err => {
         this.appApprovalSpinner--;
@@ -756,7 +756,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         }
         this.appExceptionList = res;
         this.currentStatus = this.appExceptionList.status;
-        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
+        this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'available-modal' }));
 
       }, err => {
         this.appApprovalSpinner--;
