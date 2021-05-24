@@ -86,8 +86,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         console.log(res);
         this.amsAuthenicateResponse = res[0];
         this.getAlertsForDevices();
-        // this.getApplicationList();
-        // this.getAlertDefinitionList();
+        this.getApplicationList();
+        this.getAlertDefinitionList();
       }, err => {
 
 
@@ -178,6 +178,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       // (userId,applicationId,captions,actions,amsActions,ids,alertIds,aggregateAlertIds,sessionId)
       this.amsService.processDynamicActions(this.amsAuthenicateResponse.userId,item.applicationId,item.buttonsNameArray[i],item.buttonsActionArray[i],item.buttonsActionIdsArray[i],item.id,item.alertId,item.aggregateAlertId,this.amsAuthenicateResponse.sessionId).subscribe(res=>{
         console.log("res",res);
+        if(res[0].returnFlag==1){
+          Swal.fire('','Save SucessedFully','success');
+        }else{
+          Swal.fire('','Failed to save','error');
+        }
 
       })
     } catch (error) {
@@ -631,7 +636,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
   private getAppAvailabilityEffectedVisits(item, template: TemplateRef<any>) {
     try {
-      let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item.endDate }
+      let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item?.endDate?item.endDate:'' }
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
       this.dashboardService.getAppAvailabilityEffectedVisits(JSON.stringify(obj)).subscribe(res => {
@@ -785,7 +790,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
     else {
       try {
-        let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item.endDate }
+        let obj = { dcsId: item.dcsId, startDate: item.startDate, endDate: item?.endDate?item.endDate:'' }
         this.appApprovalSpinner++;
         this.ngxspineer.show('spinner1');
         this.dashboardService.getAppExceptionEffectedVisits(JSON.stringify(obj)).subscribe(res => {
@@ -926,7 +931,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
       this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
         this.pocReleaseNotesList = res.releaseNotesList;
-        this.pocTotalRecordsCount = res.totalCount;
+        this.pocTotalRecordsCount = res.totalRecordsCount;
         this.ngxspineer.hide('spinner3');
       }, err => {
         Swal.fire('404 Not Found', '', 'error')

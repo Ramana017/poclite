@@ -158,7 +158,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
   }
   public getGpsExceptionData() {
-
+    this.locations = [];
     let jsonObj =
       { "psId": this.jsonData.psId, "visitDetailsId": this.jsonData.visitDetailsId, "arrGpsException": this.jsonData.ArrGpsException, "depGpsException": this.jsonData.DepGpsException, "officeId": this.jsonData.officeId, "arrivalId": this.jsonData.arrivalId, "departureId": this.jsonData.departureId, "psAddressId": this.jsonData.psAddressId }
     let parameters = JSON.stringify(jsonObj);
@@ -182,6 +182,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           this.clockInVariance = this.getResponseData.clockInVariance;
           this.clockOutVariance = this.getResponseData.clockOutVariance;
           this.geoCoordResultsIdRadio = this.getResponseData.geoCoordResultsId;
+          this.geoCoordResultsId = this.getResponseData.geoCoordResultsId;
           this.clockInGpsAcceptReasonsId = this.getResponseData.clockInGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockInGpsAcceptReasonsId;
           this.clockOutGpsAcceptReasonsId = this.getResponseData.clockOutGpsAcceptReasonsId == 0 ? null : this.getResponseData.clockOutGpsAcceptReasonsId;
           this.clockInComments = this.getResponseData?.clockInGpsAcceptComments;
@@ -683,8 +684,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         this.editMarkerObj.longitude = event.coords.lng;
         this.editMarkerObj.street = this.editMarkerObj.formattedAddress?.split(',')[0];
         console.log(this.editMarkerObj.formattedAddress.split(','))
-      }else{
-        this.locations[2].address="Invalid Address"
+      } else {
+        this.locations[2].address = "Invalid Address"
       }
       console.log("final object after drag", this.editMarkerObj)
 
@@ -727,7 +728,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         if (latitudeFlag && longitudeFlag) {
 
           var jsonObj = {
-            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId":this.psAddressId, "statecode": this.editMarkerObj.stateName
+            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.geoCoordResultsId, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId": this.psAddressId, "stateCode": this.editMarkerObj.stateName
           };
           console.log(jsonObj)
           try {
@@ -777,7 +778,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
 
       })
-    }else{
+    } else {
       swal.fire({
         title: 'Invalid ',
         text: `Invalid Address Format - ${this.editMarkerObj.formattedAddress} `,
