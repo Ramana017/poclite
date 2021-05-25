@@ -527,7 +527,7 @@
     <div  *ngFor="let item of dcsMessagesForUser;let i=index">
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
       <!-- <div class="border-5 m-0"></div> -->
-      <p *ngIf="i==0?true:dcsMessagesForUser[i].date!=item.date" class="mb-0 mx-2 today-text">{{item.createdOn|date:'MMM d y'}} </p>
+      <p *ngIf="i==0?true:dcsMessagesForUser[i-1].date!=item.date" class="mb-0 mx-2 today-text">{{item.createdOn|date:'MMM d y'}} </p>
       <!-- <div class="border-5 m-0"></div> -->
     </div>
     <div class="">

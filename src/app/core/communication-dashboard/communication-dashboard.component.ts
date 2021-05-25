@@ -50,12 +50,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appaprovalInint();
     this.dcsMessageInIt();
     this.authenticateUserForDevices();
-    $(".p-overlaypanel-content").attr('id','msg-box');
-    var objDiv = document.getElementById("msg-box");
-    setTimeout(function(){ objDiv.scrollTop = objDiv?.scrollHeight; }, 1000);
-
-
-  }
+    }
   ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
@@ -101,15 +96,17 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   public authenticateUserForDevices() {
     try {
+      this.ngxspineer.show('amsspinner');
       console.log("Authentic user")
       this.amsService.authenticateUserForDevices().subscribe(res => {
         console.log(res);
         this.amsAuthenicateResponse = res[0];
         this.getAlertsForDevices();
         this.getApplicationList();
-        this.getAlertDefinitionList();
+        this.ngxspineer.hide('amsspinner');
+        // this.getAlertDefinitionList();
       }, err => {
-
+        this.ngxspineer.hide('amsspinner');
 
         Swal.fire('', 'Failed to Authenticate AMS', 'error')
       })
@@ -121,6 +118,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAlertDefinitionList() {
 
       try {
+        this.ngxspineer.show('amsspinner');
         this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
           .subscribe(res => {
             console.log(res);
@@ -128,6 +126,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
               console.log("hello")
               this.alertDefinitionList = res;
             }
+            this.ngxspineer.hide('amsspinner');
+          },err=>{
+            this.ngxspineer.hide('amsspinner');
           })
       } catch (error) {
 
@@ -149,9 +150,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   public getApplicationList() {
     try {
+      this.ngxspineer.show('amsspinner');
       this.amsService.getApplicationList(this.amsAuthenicateResponse.userId, this.amsAuthenicateResponse.userTypeId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
         console.log(res)
         this.applicationList = res;
+        this.ngxspineer.hide('amsspinner');
+      },err=>{
+        this.ngxspineer.hide('amsspinner');
       })
     } catch (error) {
 
@@ -209,9 +214,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     })
   }
   public processDynamicActions(item, i) {
-
-
-
+    this.ngxspineer.show('amsspinner');
     try {
       console.log(item, i)
       // (userId,applicationId,captions,actions,amsActions,ids,alertIds,aggregateAlertIds,sessionId)
@@ -223,7 +226,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         } else {
           Swal.fire('', 'Failed to save', 'error');
         }
-
+        this.ngxspineer.hide('amsspinner');
+      },err=>{
+        this.ngxspineer.hide('amsspinner');
       })
     } catch (error) {
 
@@ -1158,17 +1163,20 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.dcsSpinner--;
         if (this.dcsSpinner == 0) {
           this.ngxspineer.hide('dcsSpinner');
-          this.dcsMessagesForUser = res.dcsMessagesForUser;
-          this.dcsMessagesForUser.map(x => {
-            x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
-          })
-        }
+           }
+
+        this.dcsMessagesForUser = res.dcsMessagesForUser;
+        this.dcsMessagesForUser.map(x => {
+          x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
+        })
         dailog?.toggle(event);
 
-        $(".p-overlaypanel-content").attr('id','msg-box');
-        var objDiv = document.getElementById("msg-box");
-        setTimeout(function(){ objDiv.scrollTop = objDiv?.scrollHeight; }, 1000);
-        // console.log(objDiv.scrollHeight)
+
+        setTimeout(()=>{
+          $(".p-overlaypanel-content").attr('id','msg-box');
+          var objDiv = document.getElementById("msg-box");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        },100)
 
       }, err => {
         this.dcsSpinner--;
