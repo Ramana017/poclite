@@ -709,7 +709,7 @@
 
     </div> -->
     <div class="d-flex align-items-center justify-content-between mt-3">
-      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      <button (click)="modalRef.hide()"  class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
       <!-- <button *ngIf="appExceptionList.status=='1'"
         (click)="currentStatus!='2'?approveAppDCSException():getAppExceptionEffectedVisits(appExceptionList,dcsSchedules)"

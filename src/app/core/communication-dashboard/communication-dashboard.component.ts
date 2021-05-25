@@ -17,8 +17,6 @@ import { ToastRef, ToastrService } from 'ngx-toastr';
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
-  // @ViewChild('op', { static: true }) public myScrollContainer: any;
-
   // @HostListener('window:resize', ['event'])
   customers: any = [];
   public userDetails: any;
@@ -65,9 +63,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.resize();
     this.onResize();
     this.getPocReleaseNotesList();
-    // this.myScrollContainer.nativeElement.className = 'p-overlaypanel-content';
-    // console.log(this.myScrollContainer.nativeElement.className.innerHeight)
-    // this.myScrollContainer.nativeElement.scrollTo(0, this.myScrollContainer.nativeElement.scrollHeight);
+
   }
 
 
@@ -396,19 +392,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.onResize();
     }
   }
-  // showPositionDialog(position: string) {
-  //   this.position = position;
-  //   this.displayPosition = true;
-  // }
-  // showcreateExceptionDialog(position: string) {
-  //   this.position = position;
-  //   this.createException = true;
-  // }
-  // showcreateAvailabilityDialog(position: string) {
-  //   this.position = position;
-  //   this.createAvailability = true;
-  // }
-
 
   /* ---------------------- App approval Started------------------------*/
 
@@ -424,11 +407,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   private appliedApprovalEndDate = '';
   public dcsFilterId = null;
   public approvalTypeId = null;
-  public statusId = null;
+  public statusId = "1";
   public appEditPunchList: any;
   private appliedApprovalTypeId = 0;
   private appliedDcsId = 0;
-  private appliedStatusId = 0;
+  private appliedStatusId = "1";
   public currentApprovedComments = '';
   public currentAppApprovalId = 0;
   public currentStatus = null;
@@ -545,7 +528,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.appliedApprovalEndDate = this.datepipe.transform(this.appApprovalEndDate, 'MM/dd/yyyy');
       this.appliedApprovalTypeId = this.approvalTypeId != null ? this.approvalTypeId : 0;
       this.appliedDcsId = this.dcsFilterId != null ? this.dcsFilterId : 0;
-      this.appliedStatusId = this.statusId != null ? this.statusId : 0;
+      this.appliedStatusId = this.statusId != null ? this.statusId : "0";
       template.hide();
       this.approvalpageReset();
     }
