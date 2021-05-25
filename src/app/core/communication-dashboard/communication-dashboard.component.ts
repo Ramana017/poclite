@@ -558,7 +558,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.ngxspineer.show('spinner1');
         console.log(this.currentStatus)
         let obj = { "appApprovalId": this.currentAppApprovalId, "userId": this.userDetails.userId, "approvedComments": this.currentApprovedComments, "status": this.currentStatus }
-        this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approvingEditPunch((obj)).subscribe(res => {
           console.log(res);
           console.log(Object.keys(res).length)
           if (Object.keys(res).length > 0) {
@@ -720,7 +720,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       try {
         this.appApprovalSpinner++;
         this.ngxspineer.show('spinner1');
-        this.dashboardService.approveAppDCSAvailability(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approveAppDCSAvailability((obj)).subscribe(res => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
@@ -867,7 +867,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       try {
         this.appApprovalSpinner++;
         this.ngxspineer.show('spinner1');
-        this.dashboardService.approveAppDCSException(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approveAppDCSException((obj)).subscribe(res => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');

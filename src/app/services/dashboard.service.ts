@@ -6,8 +6,8 @@ import isThisHour from 'date-fns/isThisHour';
 import Swal from 'sweetalert2';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+    'Content-Type': 'text/plain',
+    }),
 };
 
 @Injectable({
@@ -136,7 +136,7 @@ export class DashboardService {
   }
 
   public approvingEditPunch(obj): Observable<any> {
-    return this.http.get(this.webserviceUrl + `/communicationDashboard/approvingEditPunch?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approvingEditPunch`,obj,httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAppEditPunchList(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppEditPunchList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
@@ -144,20 +144,20 @@ export class DashboardService {
   public getAppAvailabilityList(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppAvailabilityList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
-   public getAppExceptionList(obj): Observable<any> {
+  public getAppExceptionList(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppExceptionList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public getAppAvailabilityEffectedVisits(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppAvailabilityEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public approveAppDCSAvailability(obj): Observable<any> {
-    return this.http.get(this.webserviceUrl + `/communicationDashboard/approveAppDCSAvailability?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSAvailability`,obj,httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAppExceptionEffectedVisits(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppExceptionEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public approveAppDCSException(obj): Observable<any> {
-    return this.http.get(this.webserviceUrl + `/communicationDashboard/approveAppDCSException?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSException`,obj,httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAllDcsWithRecentMessage(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAllDcsWithRecentMessage?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
@@ -166,6 +166,6 @@ export class DashboardService {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getDcsMessagesForUser?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public saveDcsMessage(obj): Observable<any> {
-    return this.http.post(this.webserviceUrl + `/communicationDashboard/saveDcsMessage`,obj,httpOptions).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/saveDcsMessage`, obj, httpOptions).pipe(catchError(this.errorHandler))
   }
 }
