@@ -711,13 +711,13 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button (click)="modalRef.hide()"  class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <!-- <button *ngIf="appExceptionList.status=='1'"
+      <button *ngIf="appExceptionList.status=='1'"
         (click)="currentStatus!='2'?approveAppDCSException():getAppExceptionEffectedVisits(appExceptionList,dcsSchedules)"
         class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span
           class="material-icons ml-2">
           navigate_next
         </span>
-      </button> -->
+      </button>
     </div>
   </div>
 </ng-template>
@@ -778,13 +778,13 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button (click)="modalRef.hide()" class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <!-- <button *ngIf="appAvailabilityList.status=='1'"
+      <button *ngIf="appAvailabilityList.status=='1'"
         class="btn-common btn-green d-flex align-items-center justify-content-center"
         (click)=" currentStatus!='2'?approveAppDCSAvailability(true): validateAPPAvailability(appAvailabilityList,schedules)">Proceed<span
           class="material-icons ml-2">
           navigate_next
         </span>
-      </button> -->
+      </button>
     </div>
   </div>
 </ng-template>
