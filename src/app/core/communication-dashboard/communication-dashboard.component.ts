@@ -7,6 +7,8 @@ import { alertForDevices, AmsAlertsServiceService, amsLogin } from 'src/app/serv
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 declare var $: any;
 @Component({
   selector: 'app-communication-dashboard',
@@ -14,6 +16,7 @@ declare var $: any;
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
+  @ViewChild('op') private myScrollContainer: ElementRef;
 
   // @HostListener('window:resize', ['event'])
   customers: any = [];
@@ -46,7 +49,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appaprovalInint();
     this.dcsMessageInIt();
     this.authenticateUserForDevices();
-
+  
   }
   ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
@@ -321,7 +324,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
 
   // minimize and maximize screens
-  public widgetReSize(flag, widgetName, event?) {
+  public widgetReSize(flag, widgetName,template, event?) {
+    // console.log(template)
+    // template.hide();
+
     if (widgetName == 'ps') {
       flag
         ? (this.widgetArray = [true, false, false, false])
@@ -350,20 +356,19 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.minmaxResize = false;
       this.onResize();
     }
-
   }
-  showPositionDialog(position: string) {
-    this.position = position;
-    this.displayPosition = true;
-  }
-  showcreateExceptionDialog(position: string) {
-    this.position = position;
-    this.createException = true;
-  }
-  showcreateAvailabilityDialog(position: string) {
-    this.position = position;
-    this.createAvailability = true;
-  }
+  // showPositionDialog(position: string) {
+  //   this.position = position;
+  //   this.displayPosition = true;
+  // }
+  // showcreateExceptionDialog(position: string) {
+  //   this.position = position;
+  //   this.createException = true;
+  // }
+  // showcreateAvailabilityDialog(position: string) {
+  //   this.position = position;
+  //   this.createAvailability = true;
+  // }
 
 
   /* ---------------------- App approval Started------------------------*/
@@ -1116,7 +1121,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
         }
         dailog.toggle(event);
-
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
 
       }, err => {
         this.dcsSpinner--;

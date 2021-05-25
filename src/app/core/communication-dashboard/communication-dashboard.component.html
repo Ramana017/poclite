@@ -67,9 +67,9 @@
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" (click)="getAppApprovals()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
-                            (click)="widgetReSize(false,'ps',$event)"></i>
+                            (click)="widgetReSize(false,'ps',filter,$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
-                            (click)="widgetReSize(true,'ps',$event)"></i>
+                            (click)="widgetReSize(true,'ps',filter,$event)"></i>
                         </div>
                       </div>
                     </div>
@@ -191,9 +191,9 @@
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" (click)="getAllDcsWithRecentMessage()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
-                            (click)="widgetReSize(false,'admissions',$event)"></i>
+                            (click)="widgetReSize(false,'admissions',dcsfilter,$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
-                            (click)="widgetReSize(true,'admissions',$event)"></i>
+                            (click)="widgetReSize(true,'admissions',dcsfilter,$event);filter.hide();filter2.hide();filterPOC.hide()"></i>
                         </div>
                       </div>
                     </div>
@@ -309,9 +309,9 @@
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" (click)="getPocReleaseNotesList()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
-                            (click)="widgetReSize(false,'authorization')"></i>
+                            (click)="widgetReSize(false,'authorization',filterPOC,$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
-                            (click)="widgetReSize(true,'authorization')"></i>
+                            (click)="widgetReSize(true,'authorization',filterPOC,$event)"></i>
                         </div>
                       </div>
                     </div>
@@ -441,8 +441,8 @@
                         <div class="ico d-flex align-items-center">
                           <i class="fas fa-sync px-2" (click)="getAlertsForDevices()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
-                            (click)="widgetReSize(false,'dcs')"></i>
-                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs')"></i>
+                            (click)="widgetReSize(false,'dcs',filter2,$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs',filter2,$event)"></i>
                         </div>
                       </div>
                     </div>
