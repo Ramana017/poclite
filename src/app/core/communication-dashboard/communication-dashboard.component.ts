@@ -7,6 +7,8 @@ import { alertForDevices, AmsAlertsServiceService, amsLogin } from 'src/app/serv
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 declare var $: any;
 import { ToastRef, ToastrService } from 'ngx-toastr';
 @Component({
@@ -15,6 +17,7 @@ import { ToastRef, ToastrService } from 'ngx-toastr';
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
+  // @ViewChild('op', { static: true }) public myScrollContainer: any;
 
   // @HostListener('window:resize', ['event'])
   customers: any = [];
@@ -47,6 +50,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appaprovalInint();
     this.dcsMessageInIt();
     this.authenticateUserForDevices();
+    $(".p-overlaypanel-content").attr('id','msg-box');
+    var objDiv = document.getElementById("msg-box");
+    setTimeout(function(){ objDiv.scrollTop = objDiv?.scrollHeight; }, 1000);
+
 
   }
   ngAfterViewInit() {
@@ -63,6 +70,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.resize();
     this.onResize();
     this.getPocReleaseNotesList();
+    // this.myScrollContainer.nativeElement.className = 'p-overlaypanel-content';
+    // console.log(this.myScrollContainer.nativeElement.className.innerHeight)
+    // this.myScrollContainer.nativeElement.scrollTo(0, this.myScrollContainer.nativeElement.scrollHeight);
   }
 
 
@@ -348,7 +358,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
 
   // minimize and maximize screens
-  public widgetReSize(flag, widgetName, event?) {
+  public widgetReSize(flag, widgetName) {
+    // console.log(template)
+    // template.hide();
+
     if (widgetName == 'ps') {
       flag
         ? (this.widgetArray = [true, false, false, false])
@@ -377,20 +390,19 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.minmaxResize = false;
       this.onResize();
     }
-
   }
-  showPositionDialog(position: string) {
-    this.position = position;
-    this.displayPosition = true;
-  }
-  showcreateExceptionDialog(position: string) {
-    this.position = position;
-    this.createException = true;
-  }
-  showcreateAvailabilityDialog(position: string) {
-    this.position = position;
-    this.createAvailability = true;
-  }
+  // showPositionDialog(position: string) {
+  //   this.position = position;
+  //   this.displayPosition = true;
+  // }
+  // showcreateExceptionDialog(position: string) {
+  //   this.position = position;
+  //   this.createException = true;
+  // }
+  // showcreateAvailabilityDialog(position: string) {
+  //   this.position = position;
+  //   this.createAvailability = true;
+  // }
 
 
   /* ---------------------- App approval Started------------------------*/
@@ -1149,25 +1161,24 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.dcsMessagesForUser = res.dcsMessagesForUser;
           this.dcsMessagesForUser.map(x => {
             x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
-
           })
-
-
         }
         dailog?.toggle(event);
 
+        $(".p-overlaypanel-content").attr('id','msg-box');
+        var objDiv = document.getElementById("msg-box");
+        setTimeout(function(){ objDiv.scrollTop = objDiv?.scrollHeight; }, 1000);
+        // console.log(objDiv.scrollHeight)
 
       }, err => {
         this.dcsSpinner--;
         if (this.dcsSpinner == 0) {
           this.ngxspineer.hide('dcsSpinner');
         }
-
       })
+
     } catch (error) {
-
     }
-
   }
   public saveDcsMessage() {
     if (this.currentMessage.trim().length == 0) {
@@ -1199,11 +1210,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.toaster.error('', "Message sent Failed", {
             timeOut: 1800
           });
-
-
         })
       } catch (error) {
-
       }
     }
   }
