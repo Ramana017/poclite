@@ -109,17 +109,29 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
 
   public getAlertDefinitionList() {
-    try {
-      this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
-        .subscribe(res => {
-          console.log(res);
-          if (res[0].errorCode != 412) {
-            this.alertDefinitionList = res;
-          }
-        })
-    } catch (error) {
 
+      try {
+        this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
+          .subscribe(res => {
+            console.log(res);
+            if (res[0].errorCode != 412) {
+              console.log("hello")
+              this.alertDefinitionList = res;
+            }
+          })
+      } catch (error) {
+
+      }
+
+  }
+
+  public onApplicationIdChange(){
+    this.alertDefinitionList=[];
+    this.alertDefinationId=null;
+    if (this.applicationId != null) {
+       this.getAlertDefinitionList();
     }
+
   }
 
 
@@ -216,9 +228,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     } else if (this.amsDateFilter[0] <= this.amsDateFilter[1]) {
       this.appliedamsStartDate = this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy');
       this.appliedamsEndDate = this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy');;
-      this.appliedApplicationId=this.applicationId==null?0:this.applicationId;
-      this.appliedAlertDefinationId=this.alertDefinationId==null?0:this.alertDefinationId;
-      this.appliedamsSearch=this.amsSearchBy;
+      this.appliedApplicationId = this.applicationId == null ? 0 : this.applicationId;
+      this.appliedAlertDefinationId = this.alertDefinationId == null ? 0 : this.alertDefinationId;
+      this.appliedamsSearch = this.amsSearchBy;
 
       console.log(this.amsDateFilter);
       template.hide();
@@ -732,7 +744,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         endTime1: this.appAvailabilityList.endTime1,
         startTime2: this.appAvailabilityList?.startTime2 ? this.appAvailabilityList.startTime2 : '',
         endTime2: this.appAvailabilityList?.endTime2 ? this.appAvailabilityList.endTime2 : '',
-        lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated
+        lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated,
+        actualStartDate:this.appAvailabilityEffectedVisitsResponse.actualStartDate?this.appAvailabilityEffectedVisitsResponse.actualStartDate:''
       }
       try {
         this.appApprovalSpinner++;
@@ -1091,6 +1104,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
   public getAllDcsWithRecentMessage() {
     try {
+      this.sendmessagecount=0;
       this.dcsSpinner++;
       this.ngxspineer.show('dcsSpinner');
       let obj = { userId: this.userDetails.userId, dcsId: this.appliedmessageDcsId, startDate: this.appliedDcsStartDate, endDate: this.appliedDcsEndDate, lowerBound: this.dcsLowerBound, upperBound: this.dcsUpperBound };
@@ -1115,8 +1129,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
 
   }
-  public getDcsMessagesForUser(item, dailog?, event?) {
+  public currentindex=0;
+  public sendmessagecount=0;
+  public getDcsMessagesForUser(item,i,dailog?, event?) {
     this.currentDcs = item;
+    this.currentindex=i;
+      this.allDcsWithRecentMessage[i].unreadMessageCount=0;
+
 
     // this.dcsMessagesForUser = [];
     try {
@@ -1166,10 +1185,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.toaster.success('', res.message, {
             timeOut: 1800
           });
+          this.sendmessagecount++;
           this.currentMessage = '';
           // this.getAllDcsWithRecentMessage()
 
-          this.getDcsMessagesForUser(this.currentDcs);
+          this.getDcsMessagesForUser(this.currentDcs,this.currentindex);
 
         }, err => {
           this.dcsSpinner--;
