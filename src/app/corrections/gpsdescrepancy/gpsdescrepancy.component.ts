@@ -364,10 +364,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.fomatAddressManualInput ?0:this.geoCoordResultsId, "formattedAddress": formattedAddress, "latitude": latitude, "longitude": longitude, "userId": this.userId, "street": this.fomatAddressManualInput ? this.psAddress.street : '', "suite":
         this.fomatAddressManualInput ? this.psAddress.suite : '', "city": this.fomatAddressManualInput ? this.psAddress.city : '', "stateId": this.fomatAddressManualInput ? this.psAddress.stateId : '', "zipCode": this.fomatAddressManualInput ? this.psAddress.zipCode : '', "addressId": this.fomatAddressManualInput ? this.psAddress.id : ''
     };
-    var parameters = JSON.stringify(jsonObj);
-    console.log(parameters);
     try {
-      this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
+      this.apiservice.saveFormatAddress(jsonObj).subscribe(
         response => {
           console.log(response);
           var response2 = JSON.stringify(response);
@@ -736,7 +734,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
           };
           console.log(jsonObj)
           try {
-            this.apiservice.saveFormatAddress(JSON.stringify(jsonObj)).subscribe(
+            this.apiservice.saveFormatAddress(jsonObj).subscribe(
               response => {
                 console.log(response);
                 this.saveResponseData = response;

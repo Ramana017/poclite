@@ -124,6 +124,8 @@
             @include margin(null, 10px, null, 0px);
             font-size: 15;
             color: $text;
+            cursor: pointer;
+
         }
         // ...
         h3 {

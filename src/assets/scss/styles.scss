@@ -37,3 +37,10 @@
 // @import "node_modules/angular-calendar/css/angular-calendar.css"
 @import 'ps-edit';
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

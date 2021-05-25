@@ -3,6 +3,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map } from 'rxjs/operators';
+import { httpOptions } from './ams-alerts-service.service';
 
 
 @Injectable({
@@ -102,9 +103,9 @@ export class ApiserviceService {
     this.geturl();
     return this._http.get(this.baseURL + "/updateGpsException?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
   }
-  public saveFormatAddress(jsondata: string): Observable<any> {
+  public saveFormatAddress(jsondata): Observable<any> {
     this.geturl();
-    return this._http.get(this.baseURL + "/saveFormatAddress?jsonObj=" + jsondata).pipe(catchError(this.errorHandler));
+    return this._http.post(this.baseURL + "/saveFormatAddress",jsondata,httpOptions).pipe(catchError(this.errorHandler));
   }
    public getPSAddressData(jsondata: string): Observable<any> {
     this.geturl();

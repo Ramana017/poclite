@@ -10,18 +10,19 @@ import Swal from 'sweetalert2';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 declare var $: any;
+import { ToastRef, ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-communication-dashboard',
   templateUrl: './communication-dashboard.component.html',
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
-  @ViewChild('op') private myScrollContainer: ElementRef;
-
+  // @ViewChild('op', { static: true }) public myScrollContainer: any;
+  
   // @HostListener('window:resize', ['event'])
   customers: any = [];
   public userDetails: any;
-  constructor(public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
+  constructor(public toaster: ToastrService, public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
     public ngxspineer: NgxSpinnerService, public amsService: AmsAlertsServiceService, private modalService: BsModalService) {
 
     this.userDetails = JSON.parse(sessionStorage.getItem('useraccount'))
@@ -49,11 +50,15 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appaprovalInint();
     this.dcsMessageInIt();
     this.authenticateUserForDevices();
-  
+   
+ 
   }
   ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
+    this.appliedamsStartDate = this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy');
+    this.appliedamsEndDate = this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy');;
+
     this.pointofCareIntialStartDate.setDate(this.todayDate.getDate() - 30)
     this.pointofCareStartDate = this.pointofCareIntialStartDate;
     this.pocStartDate = this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
@@ -62,6 +67,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.resize();
     this.onResize();
     this.getPocReleaseNotesList();
+    // this.myScrollContainer.nativeElement.className = 'p-overlaypanel-content';
+    // console.log(this.myScrollContainer.nativeElement.className.innerHeight)
+    // this.myScrollContainer.nativeElement.scrollTo(0, this.myScrollContainer.nativeElement.scrollHeight);
   }
 
 
@@ -75,13 +83,18 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public amsAuthenicateResponse: amsLogin;
   public alertDefinitionList = [];
   public alertDefinationId = null;
-  public applicationId = 0;
+  public applicationId = null;
   public alertFlag = 1;
   public alertButtonDetails: any;
   public alertbuttons = [];
   public applicationList = [];
   public amsDateFilter = [];
   public amsSearchBy = '';
+  public appliedamsStartDate = '';
+  public appliedamsEndDate = '';
+  public appliedamsSearch = '';
+  public appliedApplicationId = 0;
+  public appliedAlertDefinationId = 0;
 
   public authenticateUserForDevices() {
     try {
@@ -133,7 +146,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAlertsForDevices() {
     try {
       this.ngxspineer.show('amsspinner');
-      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy'), this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy'), this.amsSearchBy, 1, this.applicationId, this.alertDefinationId != null ? this.alertDefinationId : 0, this.amsAuthenicateResponse.sessionId).subscribe(res => {
+      this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.appliedApprovalStartDate, this.appliedamsEndDate, this.appliedamsSearch, 1, this.appliedApplicationId, this.appliedAlertDefinationId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
         console.log(res);
         this.amsAlertList = res;
         this.amsAlertList.map(x => {
@@ -204,10 +217,16 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
 
   public onAmsSearch(template) {
-    if (this.amsDateFilter[0]== null || this.amsDateFilter[1]== null) {
+    if (this.amsDateFilter[0] == null || this.amsDateFilter[1] == null) {
       Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
 
-    }else if (this.amsDateFilter[0] <= this.amsDateFilter[1]) {
+    } else if (this.amsDateFilter[0] <= this.amsDateFilter[1]) {
+      this.appliedamsStartDate = this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy');
+      this.appliedamsEndDate = this.datepipe.transform(this.amsDateFilter[1], 'MM/dd/yyyy');;
+      this.appliedApplicationId=this.applicationId==null?0:this.applicationId;
+      this.appliedAlertDefinationId=this.alertDefinationId==null?0:this.alertDefinationId;
+      this.appliedamsSearch=this.amsSearchBy;
+
       console.log(this.amsDateFilter);
       template.hide();
       this.getAlertsForDevices();
@@ -493,7 +512,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
   }
   public onAppApprovalSearch(template) {
-    console.log(this.appApprovalEndDate, this.appApprovalStartDate,this.appApprovalStartDate > this.appApprovalEndDate)
+    console.log(this.appApprovalEndDate, this.appApprovalStartDate, this.appApprovalStartDate > this.appApprovalEndDate)
     if (this.appApprovalStartDate == null || this.appApprovalEndDate == null) {
       Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
 
@@ -508,7 +527,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.appliedDcsId = this.dcsFilterId != null ? this.dcsFilterId : 0;
       this.appliedStatusId = this.statusId != null ? this.statusId : 0;
       template.hide();
-      this.getAppApprovals();
+      this.approvalpageReset();
     }
   }
 
@@ -563,7 +582,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.ngxspineer.show('spinner1');
         console.log(this.currentStatus)
         let obj = { "appApprovalId": this.currentAppApprovalId, "userId": this.userDetails.userId, "approvedComments": this.currentApprovedComments, "status": this.currentStatus }
-        this.dashboardService.approvingEditPunch(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approvingEditPunch((obj)).subscribe(res => {
           console.log(res);
           console.log(Object.keys(res).length)
           if (Object.keys(res).length > 0) {
@@ -605,6 +624,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         }
         this.appAvailabilityList = res
         this.currentStatus = this.appAvailabilityList.status;
+        this.currentApprovedComments = this.appAvailabilityList.approvedComments ? this.appAvailabilityList.approvedComments : '';
+
         this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'available-modal' }));
 
       }, err => {
@@ -725,7 +746,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       try {
         this.appApprovalSpinner++;
         this.ngxspineer.show('spinner1');
-        this.dashboardService.approveAppDCSAvailability(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approveAppDCSAvailability((obj)).subscribe(res => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
@@ -782,6 +803,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         }
         this.appExceptionList = res;
         this.currentStatus = this.appExceptionList.status;
+        this.currentApprovedComments = this.appExceptionList.approvedComments ? this.appExceptionList.approvedComments : '';
+
         this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'available-modal' }));
 
       }, err => {
@@ -872,7 +895,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       try {
         this.appApprovalSpinner++;
         this.ngxspineer.show('spinner1');
-        this.dashboardService.approveAppDCSException(JSON.stringify(obj)).subscribe(res => {
+        this.dashboardService.approveAppDCSException((obj)).subscribe(res => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
@@ -976,11 +999,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.pocStartDate = this.datepipe.transform(this.pointofCareStartDate, 'MM/dd/yyyy');
       this.pocEndDate = this.datepipe.transform(this.pointofCareEndDate, 'MM/dd/yyyy');
       template.hide();
-      this.getPocReleaseNotesList();
-      }
+      this.pocpageReset();
+    }
   }
 
-  public getPocReleaseNotesFile(id,fileName) {
+  public getPocReleaseNotesFile(id, fileName) {
     try {
       this.ngxspineer.show('spinner3');
       this.dashboardService.getPocReleaseNotesFile(id).subscribe(res => {
@@ -1071,7 +1094,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.appliedDcsStartDate = this.datepipe.transform(this.dcsStartDate, 'MM/dd/yyyy');
       this.appliedDcsEndDate = this.datepipe.transform(this.dcsEndDate, 'MM/dd/yyyy');
       this.appliedmessageDcsId = this.messageDcsId == null ? 0 : this.messageDcsId;
-      this.getAllDcsWithRecentMessage();
+      this.dcsPageReset();
       template.hide();
     }
   }
@@ -1101,10 +1124,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
 
   }
-  public getDcsMessagesForUser(dailog, event, item) {
+  public getDcsMessagesForUser(item, dailog?, event?) {
     this.currentDcs = item;
 
-    this.dcsMessagesForUser = [];
+    // this.dcsMessagesForUser = [];
     try {
       let obj = { userId: this.userDetails.userId, dcsId: item.dcsId, startDate: this.appliedDcsStartDate, endDate: this.appliedDcsEndDate, lowerBound: 0, upperBound: 0 };
       this.dcsSpinner++;
@@ -1119,10 +1142,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
           })
 
-        }
-        dailog.toggle(event);
-        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
 
+        }
+        dailog?.toggle(event);
+        // console.log(this.myScrollContainer.nativeElement.scrollHeight,"Height")
+        // this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        
       }, err => {
         this.dcsSpinner--;
         if (this.dcsSpinner == 0) {
@@ -1148,12 +1173,23 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.dcsSpinner == 0) {
             this.ngxspineer.hide('dcsSpinner');
           }
+          this.toaster.success('', res.message, {
+            timeOut: 1800
+          });
+          this.currentMessage = '';
+          // this.getAllDcsWithRecentMessage()
+
+          this.getDcsMessagesForUser(this.currentDcs);
 
         }, err => {
           this.dcsSpinner--;
           if (this.dcsSpinner == 0) {
             this.ngxspineer.hide('dcsSpinner');
           }
+          this.toaster.error('', "Message sent Failed", {
+            timeOut: 1800
+          });
+
 
         })
       } catch (error) {

@@ -69,7 +69,7 @@
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
                             (click)="widgetReSize(false,'ps',filter,$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
-                            (click)="widgetReSize(true,'ps',filter,$event)"></i>
+                            (click)="widgetReSize(true,'ps',filter,$event);dcsfilter.hide();filter2.hide();filterPOC.hide()"></i>
                         </div>
                       </div>
                     </div>
@@ -216,7 +216,7 @@
                                 <ul class="m-0 p-0">
                                   <li class="">
                                      <div class="">
-                                      <span class="material-icons add-bg" (click)="getDcsMessagesForUser(op,$event,item)">
+                                      <span class="material-icons add-bg" (click)="getDcsMessagesForUser(item,op,$event)">
                                         add_circle
                                       </span>
                                     </div>
@@ -311,7 +311,7 @@
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
                             (click)="widgetReSize(false,'authorization',filterPOC,$event)"></i>
                           <i class="fas fa-expand max-1 px-2" title="Maximize"
-                            (click)="widgetReSize(true,'authorization',filterPOC,$event)"></i>
+                            (click)="widgetReSize(true,'authorization',filterPOC,$event);filter.hide();filter2.hide();dcsfilter.hide()"></i>
                         </div>
                       </div>
                     </div>
@@ -418,13 +418,13 @@
                               </div> -->
                               <div class="form-group form-input col-6 alert-dropdown pr-0">
                                 <p-dropdown [options]="applicationList" placeholder="Select Application"
-                                  [(ngModel)]="applicationId" [filter]="true" filterBy="name" optionLabel="name"
+                                  [(ngModel)]="applicationId" [showClear]="true" [filter]="true" filterBy="name" optionLabel="name"
                                   optionValue="id"></p-dropdown>
 
                               </div>
                               <div class="form-group form-input col-6 alert-dropdown pr-0">
                                 <p-dropdown [options]="alertDefinitionList" placeholder="Select Alert Definition"
-                                  [(ngModel)]="alertDefinationId" [filter]="true" filterBy="name" optionLabel="name"
+                                  [(ngModel)]="alertDefinationId" [showClear]="true" [filter]="true" filterBy="name" optionLabel="name"
                                   optionValue="id"></p-dropdown>
                               </div>
                               <div class="text-right col-12 pr-0">
@@ -442,7 +442,7 @@
                           <i class="fas fa-sync px-2" (click)="getAlertsForDevices()" title="Refresh"></i>
                           <i class="fas fa-compress-alt min-1 px-2" title="Minimize"
                             (click)="widgetReSize(false,'dcs',filter2,$event)"></i>
-                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs',filter2,$event)"></i>
+                          <i class="fas fa-expand max-1 px-2" title="Maximize" (click)="widgetReSize(true,'dcs',filter2,$event);filter.hide();dcsfilter.hide();filterPOC.hide()"></i>
                         </div>
                       </div>
                     </div>
@@ -521,9 +521,9 @@
 
 
 <!-- messaage overlay  -->
-<p-overlayPanel #op [style]="{width: '40%'}" [baseZIndex]="0">
+<p-overlayPanel  [showCloseIcon]="true"  #op [style]="{width: '40%'}" [baseZIndex]="0">
 
-  <ng-template pTemplate>
+  <ng-template pTemplate> 
     <div  *ngFor="let item of dcsMessagesForUser;let i=index">
     <div class="position-relative d-flex align-items-center justify-content-center mb-2">
       <!-- <div class="border-5 m-0"></div> -->
@@ -532,7 +532,7 @@
     </div>
     <div class="">
       <!-- reciever -->
-      <div *ngIf="item.isDcsMessage=='No'" class="bg-color">
+      <div *ngIf="item.isDcsMessage!='No'" class="bg-color">
         <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-green-dark">{{currentDcs.dcsName}}</p>
         <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
             class="AvenirLTStd-Light time-stamp">{{item.createdOn|date:'hh:mm a'}}</span></p>
@@ -542,8 +542,8 @@
     <!-- <div class="position-relative d-flex align-items-center justify-content-center mb-2 mt-2 box-shadow">
       <p class="mb-0 mx-2 white-space-nowrap unread-text AvenirLTStd-Heavy">3 Unread Messages</p>
     </div> -->
-    <div *ngIf="item.isDcsMessage!='No'" class="bg-color-right">
-      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{userDetails?.userName}}</p>
+    <div *ngIf="item.isDcsMessage=='No'" class="bg-color-right">
+      <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{userDetails.userName}}</p>
       <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
           class="AvenirLTStd-Light time-stamp"> {{item.createdOn|date:'hh:mm a'}}</span></p>
     </div>
@@ -551,8 +551,8 @@
     <div class=" w-100 pt-2 p-message-input d-flex">
       <!-- <i class="pi pi-send "></i> -->
 
-      <input type="text" placeholder="Type a message" [(ngModel)]="currentMessage" pInputText class=" input-message ml-2 w-100 mr-2" />
-      <span *ngIf="this.currentMessage.trim().length!=0" (click)="saveDcsMessage()"  class="material-icons send-msg-icon mr-2">
+      <input type="search" placeholder="Type a message" (search)="currentMessage.trim().length!=0?saveDcsMessage():''"  [(ngModel)]="currentMessage" pInputText class=" input-message ml-2 w-100 mr-2" />
+      <span *ngIf="currentMessage.trim().length!=0" (click)="saveDcsMessage()" title="click to send"  class="material-icons send-msg-icon mr-2">
         send
       </span>
     </div>
@@ -644,7 +644,7 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button (click)="modalRef.hide()" class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button *ngIf="appEditPunchList.status!='2'" (click)="approvingEditPunch()"
+      <button *ngIf="appEditPunchList.status=='1'" (click)="approvingEditPunch()"
         class="btn-common btn-green d-flex align-items-center justify-content-center"> Proceed<span
           class="material-icons ml-2">
           navigate_next
@@ -711,7 +711,7 @@
     <div class="d-flex align-items-center justify-content-between mt-3">
       <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button
+      <button *ngIf="appExceptionList.status=='1'"
         (click)="currentStatus!='2'?approveAppDCSException():getAppExceptionEffectedVisits(appExceptionList,dcsSchedules)"
         class="btn-common btn-green d-flex align-items-center justify-content-center">Proceed<span
           class="material-icons ml-2">
@@ -776,9 +776,9 @@
         class="p-inputtextarea p-inputtext p-component"></textarea>
     </div>
     <div class="d-flex align-items-center justify-content-between mt-3">
-      <button class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
+      <button (click)="modalRef.hide()" class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
       </button>
-      <button *ngIf="appAvailabilityList.status!='2'"
+      <button *ngIf="appAvailabilityList.status=='1'"
         class="btn-common btn-green d-flex align-items-center justify-content-center"
         (click)=" currentStatus!='2'?approveAppDCSAvailability(true): validateAPPAvailability(appAvailabilityList,schedules)">Proceed<span
           class="material-icons ml-2">
