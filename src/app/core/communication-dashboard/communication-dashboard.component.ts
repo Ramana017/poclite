@@ -1139,26 +1139,21 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.dcsMessagesForUser = res.dcsMessagesForUser;
           this.dcsMessagesForUser.map(x => {
             x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
-
           })
-
-
         }
         dailog?.toggle(event);
-        // console.log(this.myScrollContainer.nativeElement.scrollHeight,"Height")
-        // this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-        
       }, err => {
         this.dcsSpinner--;
         if (this.dcsSpinner == 0) {
           this.ngxspineer.hide('dcsSpinner');
         }
-
       })
+      $(".p-overlaypanel-content").attr('id','msg-box');
+        var objDiv = document.getElementById("msg-box");
+        setTimeout(function(){ objDiv.scrollTop = objDiv.scrollHeight; }, 1000);
+        console.log(objDiv.scrollHeight)
     } catch (error) {
-
     }
-
   }
   public saveDcsMessage() {
     if (this.currentMessage.trim().length == 0) {
@@ -1178,9 +1173,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           });
           this.currentMessage = '';
           // this.getAllDcsWithRecentMessage()
-
           this.getDcsMessagesForUser(this.currentDcs);
-
         }, err => {
           this.dcsSpinner--;
           if (this.dcsSpinner == 0) {
@@ -1189,11 +1182,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.toaster.error('', "Message sent Failed", {
             timeOut: 1800
           });
-
-
         })
       } catch (error) {
-
       }
     }
   }
