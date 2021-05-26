@@ -225,7 +225,7 @@
                                 </ul>
                               </td>
                               <td>{{item.dcsName}}</td>
-                              <td>{{item.message}}</td>
+                              <td>{{item.message|slice:0:30}}{{item.message?.length>30?'...':''}}</td>
                               <td>{{item.createdOn}} </td>
                               <td class="position-relative"><span class="material-icons">
                                   chat_bubble_outline
@@ -534,7 +534,7 @@
       <!-- reciever -->
       <div *ngIf="item.isDcsMessage!='No'" class="bg-color">
               <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{currentDcs.dcsName}}</p>
-       <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
+       <p class="mb-0 mb-0 mt-1 AvenirLTStd-Medium">{{item.message}}<span
             class="AvenirLTStd-Light time-stamp">{{item.createdOn|date:'hh:mm a'}}</span></p>
       </div>
 
@@ -780,7 +780,7 @@
       </button>
       <button *ngIf="appAvailabilityList.status=='1'"
         class="btn-common btn-green d-flex align-items-center justify-content-center"
-        (click)=" currentStatus!='2'?approveAppDCSAvailability(true): validateAPPAvailability(appAvailabilityList,schedules)">Proceed<span
+        (click)="currentStatus!='2'?approveAppDCSAvailability(true): validateAPPAvailability(appAvailabilityList,schedules)">Proceed<span
           class="material-icons ml-2">
           navigate_next
         </span>

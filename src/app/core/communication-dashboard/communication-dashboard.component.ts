@@ -98,13 +98,14 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.ngxspineer.show('amsspinner');
       console.log("Authentic user")
       this.amsService.authenticateUserForDevices().subscribe(res => {
+        this.ngxspineer.hide('amsspinner');
         console.log(res);
         this.amsAuthenicateResponse = res[0];
         this.getAlertsForDevices();
         this.getApplicationList();
-        this.ngxspineer.hide('amsspinner');
         // this.getAlertDefinitionList();
       }, err => {
+        console.log(err)
         this.ngxspineer.hide('amsspinner');
 
         Swal.fire('', 'Failed to Authenticate AMS', 'error')
@@ -166,6 +167,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     try {
       this.ngxspineer.show('amsspinner');
       this.amsService.getAlertsForDevices(this.amsAuthenicateResponse.userId, this.appliedApprovalStartDate, this.appliedamsEndDate, this.appliedamsSearch, 1, this.appliedApplicationId, this.appliedAlertDefinationId, this.amsAuthenicateResponse.sessionId).subscribe(res => {
+        this.ngxspineer.hide('amsspinner');
         console.log(res);
         this.amsAlertList = res;
         this.amsAlertList.map(x => {
@@ -597,7 +599,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
             Swal.fire('', res.errorMsg, 'error')
           } else {
             this.modalRef.hide();
-            Swal.fire('', 'Sucessfully saved', 'success')
+            Swal.fire('', 'Data saved successfully', 'success')
             this.getAppApprovals();
           }
           this.appApprovalSpinner--;
@@ -692,6 +694,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.ngxspineer.show('spinner1');
       this.dashboardService.getAppAvailabilityEffectedVisits(JSON.stringify(obj)).subscribe(res => {
         this.appApprovalSpinner--;
+
         if (this.appApprovalSpinner == 0) {
           this.ngxspineer.hide('spinner1');
         }
@@ -699,12 +702,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
         this.appAvailabilityEffectedVisitsResponse = res;
         console.log()
-        if (this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.length > 0 && this.appAvailabilityEffectedVisitsResponse.availabilityId > 0 && (this.appAvailabilityEffectedVisitsResponse?.errorMsg.length > 0)) {
+        if (this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.length > 0 && this.appAvailabilityEffectedVisitsResponse.availabilityId > 0 && (this.appAvailabilityEffectedVisitsResponse?.errorMsg?this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0:true)) {
           //direct
           this.dcsmodelRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
 
-        } else if (this.appAvailabilityEffectedVisitsResponse?.errorMsg.length > 0) {
-          Swal.fire('', this.appAvailabilityEffectedVisitsResponse.errorMsg, 'error')
+        } else if (this.appAvailabilityEffectedVisitsResponse?.errorMsg?this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0:false) {
+          Swal.fire('', this.appAvailabilityEffectedVisitsResponse?.errorMsg, 'error')
         } else {
           console.log("validation Failed");
           this.approveAppDCSAvailability();
@@ -721,6 +724,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   }
   public approveAppDCSAvailability(flag?: boolean) {
+    console.log("hello")
 
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
@@ -751,7 +755,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         startTime2: this.appAvailabilityList?.startTime2 ? this.appAvailabilityList.startTime2 : '',
         endTime2: this.appAvailabilityList?.endTime2 ? this.appAvailabilityList.endTime2 : '',
         lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated,
-        actualStartDate: this.appAvailabilityEffectedVisitsResponse.actualStartDate ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
+        actualStartDate: this.appAvailabilityEffectedVisitsResponse?.actualStartDate ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
       }
       try {
         this.appApprovalSpinner++;
@@ -761,8 +765,9 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
+          this.dcsmodelRef?.hide()
           this.modalRef.hide();
-          Swal.fire('', 'Sucessfully saved', 'success')
+          Swal.fire('', 'Data saved successfully', 'success')
           this.getAppApprovals();
         }, err => {
           this.appApprovalSpinner--;
@@ -913,7 +918,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           }
           this.dcsExceptionModelRef?.hide()
           this.modalRef.hide();
-          Swal.fire('', 'Sucessfully saved', 'success')
+          Swal.fire('', 'Data saved successfully', 'success')
           this.getAppApprovals();
         }, err => {
           this.appApprovalSpinner--;
@@ -986,9 +991,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       let jsonObj = { "startDate": this.pocStartDate, "endDate": this.pocEndDate, "lowerBound": this.pocLowerBound, "upperBound": this.pocUpperBound };
       // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
       this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
+        this.ngxspineer.hide('spinner3');
+       console.log(res)
         this.pocReleaseNotesList = res.releaseNotesList;
         this.pocTotalRecordsCount = res.totalRecordsCount;
-        this.ngxspineer.hide('spinner3');
       }, err => {
         Swal.fire('404 Not Found', '', 'error')
         this.ngxspineer.hide('spinner3');
@@ -1160,7 +1166,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.dcsMessagesForUser.map(x => {
           x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
         })
-        this.dcsMessagesForUser = this.dcsMessagesForUser.reverse()
 
         dailog?.toggle(event);
 
@@ -1168,8 +1173,8 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
          setTimeout(()=>{
           $(".p-overlaypanel-content").attr('id','msg-box');
           var objDiv = document.getElementById("msg-box");
-            objDiv.scrollTop = 0;
-        },100)
+            objDiv.scrollTop =  objDiv.scrollHeight;
+          },100)
 
       }, err => {
         this.dcsSpinner--;
