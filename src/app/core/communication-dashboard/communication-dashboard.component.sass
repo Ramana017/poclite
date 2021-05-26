@@ -12,18 +12,18 @@
     margin: 0 auto 10px auto
 .bg-color
   background: #f5f5f5
-  padding: 5px 10px
+  padding: 10px 10px 15px 10px
   max-width: 90%
   border-radius: 20px
 .l-height-21
  line-height:21px
 .bg-color-right
  background: #ecf0f1
- padding: 5px 10px
+ padding:10px 10px 15px 10px
  max-width: 90%
  border-radius: 20px
  margin: 10px 0 auto auto
- 
+
 .send-msg-icon
     width: 33px
     height: 33px
@@ -42,7 +42,7 @@
   height: 16px
   width: 16px
   margin-left: -10px
-.color-black 
+.color-black
   color: #000 !important
 .notification
   width: 22%
@@ -56,7 +56,7 @@
 .color-white
  color:#fff !important
 .add-bg
- color:#145194 
+ color:#145194
 .alert-filter-dropdown-menu
   width: 450px
   padding: 10px
@@ -72,12 +72,14 @@
 ::ng-deep .tooltip-inner
   max-width:100%
 ::ng-deep .time-stamp
-  float: right
   font-size: 10px
   margin-top: 6px
   color: gray
+  position: absolute
+  bottom:0
+  right:15px
 ::ng-deep .p-overlaypanel-content
-  height: 50vh
+  height: 40vh
   overflow: auto
   background:#e7e8d2
   margin-bottom: 50px !important
@@ -94,21 +96,23 @@
 ::ng-deep .p-overlaypanel
   &:after
     border-bottom-color: #e7e8d2
-    
+
   &:before
-    border-bottom-color: #e7e8d2 
+    border-bottom-color: #e7e8d2
   &.p-overlaypanel-flipped
     &:after
       border-top-color: #e7e8d2
     &:before
-     border-top-color: #e7e8d2 
+     border-top-color: #e7e8d2
   .today-text
     background: #e1f4fa
     padding: 5px
     border-radius: 5px
     color: black
-  .unread-text 
+  .unread-text
     background: #fff
     padding: 3px 5px
     border-radius: 20px
     margin: 5px 0 !important
+
+

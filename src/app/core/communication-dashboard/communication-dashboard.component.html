@@ -532,8 +532,8 @@
     </div>
     <div class="">
       <!-- reciever -->
-      <div *ngIf="item.isDcsMessage!='No'" class="bg-color">
-              <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{currentDcs.dcsName}}</p>
+      <div *ngIf="item.isDcsMessage!='No'" class="bg-color position-relative">
+              <!-- <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{currentDcs.dcsName}}</p> -->
        <p class="mb-0 mb-0 mt-1 AvenirLTStd-Medium">{{item.message}}<span
             class="AvenirLTStd-Light time-stamp">{{item.createdOn|date:'hh:mm a'}}</span></p>
       </div>
@@ -542,7 +542,7 @@
     <!-- <div class="position-relative d-flex align-items-center justify-content-center mb-2 mt-2 box-shadow">
       <p class="mb-0 mx-2 white-space-nowrap unread-text AvenirLTStd-Heavy">3 Unread Messages</p>
     </div> -->
-    <div *ngIf="item.isDcsMessage=='No'" style="background-color: #addfc2 !important;" class="bg-color-right">
+    <div *ngIf="item.isDcsMessage=='No'" style="background-color: #addfc2 !important; " class="bg-color-right position-relative">
       <!-- <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{userDetails.userName}}</p> -->
       <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
           class="AvenirLTStd-Light time-stamp"> {{item.createdOn|date:'hh:mm a'}}</span></p>
