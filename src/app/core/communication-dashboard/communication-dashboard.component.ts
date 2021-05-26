@@ -11,6 +11,9 @@ import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 declare var $: any;
 import { ToastRef, ToastrService } from 'ngx-toastr';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver'
+import * as moment from 'moment';
 @Component({
   selector: 'app-communication-dashboard',
   templateUrl: './communication-dashboard.component.html',
@@ -48,7 +51,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.appaprovalInint();
     this.dcsMessageInIt();
     this.authenticateUserForDevices();
-    }
+  }
   ngAfterViewInit() {
     this.intialStartDate.setDate(this.todayDate.getDate() - 7);
     this.amsDateFilter = [this.intialStartDate, this.todayDate];
@@ -113,30 +116,30 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   public getAlertDefinitionList() {
 
-      try {
-        this.ngxspineer.show('amsspinner');
-        this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
-          .subscribe(res => {
-            console.log(res);
-            if (res[0].errorCode != 412) {
-              console.log("hello")
-              this.alertDefinitionList = res;
-            }
-            this.ngxspineer.hide('amsspinner');
-          },err=>{
-            this.ngxspineer.hide('amsspinner');
-          })
-      } catch (error) {
+    try {
+      this.ngxspineer.show('amsspinner');
+      this.amsService.getAlertDefinitionList(this.applicationId, this.alertFlag, this.amsAuthenicateResponse?.sessionId)
+        .subscribe(res => {
+          console.log(res);
+          if (res[0].errorCode != 412) {
+            console.log("hello")
+            this.alertDefinitionList = res;
+          }
+          this.ngxspineer.hide('amsspinner');
+        }, err => {
+          this.ngxspineer.hide('amsspinner');
+        })
+    } catch (error) {
 
-      }
+    }
 
   }
 
-  public onApplicationIdChange(){
-    this.alertDefinitionList=[];
-    this.alertDefinationId=null;
+  public onApplicationIdChange() {
+    this.alertDefinitionList = [];
+    this.alertDefinationId = null;
     if (this.applicationId != null) {
-       this.getAlertDefinitionList();
+      this.getAlertDefinitionList();
     }
 
   }
@@ -151,7 +154,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         console.log(res)
         this.applicationList = res;
         this.ngxspineer.hide('amsspinner');
-      },err=>{
+      }, err => {
         this.ngxspineer.hide('amsspinner');
       })
     } catch (error) {
@@ -223,7 +226,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           Swal.fire('', 'Failed to save', 'error');
         }
         this.ngxspineer.hide('amsspinner');
-      },err=>{
+      }, err => {
         this.ngxspineer.hide('amsspinner');
       })
     } catch (error) {
@@ -423,6 +426,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public appExceptionList: any;
   public appAvailabilityEffectedVisitsResponse: any;
   public appExceptionEffectedVisitsResponse: any;
+  public currentApprovalDcs = "_"
 
 
   public appaprovalInint(flag?: boolean, template?) {
@@ -537,6 +541,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAppEditPunchList(data, template: TemplateRef<any>) {
     this.currentAppApprovalId = data.appApprovalId;
     this.currentStatus = null;
+
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
@@ -614,6 +619,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAppAvailabilityList(data, template: TemplateRef<any>) {
     this.currentApprovedComments = '';
     this.currentAppApprovalId = data.appApprovalId;
+    this.currentApprovalDcs = data.dcsName;
     this.currentStatus = null;
     try {
       this.appApprovalSpinner++;
@@ -745,7 +751,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         startTime2: this.appAvailabilityList?.startTime2 ? this.appAvailabilityList.startTime2 : '',
         endTime2: this.appAvailabilityList?.endTime2 ? this.appAvailabilityList.endTime2 : '',
         lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated,
-        actualStartDate:this.appAvailabilityEffectedVisitsResponse.actualStartDate?this.appAvailabilityEffectedVisitsResponse.actualStartDate:''
+        actualStartDate: this.appAvailabilityEffectedVisitsResponse.actualStartDate ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
       }
       try {
         this.appApprovalSpinner++;
@@ -795,6 +801,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.currentApprovedComments = '';
     this.currentAppApprovalId = data.appApprovalId;
     this.currentStatus = null;
+    this.currentApprovalDcs = data.dcsName;
     try {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
@@ -904,6 +911,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
+          this.dcsExceptionModelRef?.hide()
           this.modalRef.hide();
           Swal.fire('', 'Sucessfully saved', 'success')
           this.getAppApprovals();
@@ -1104,7 +1112,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
   public getAllDcsWithRecentMessage() {
     try {
-      this.sendmessagecount=0;
+      this.sendmessagecount = 0;
       this.dcsSpinner++;
       this.ngxspineer.show('dcsSpinner');
       let obj = { userId: this.userDetails.userId, dcsId: this.appliedmessageDcsId, startDate: this.appliedDcsStartDate, endDate: this.appliedDcsEndDate, lowerBound: this.dcsLowerBound, upperBound: this.dcsUpperBound };
@@ -1129,12 +1137,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     }
 
   }
-  public currentindex=0;
-  public sendmessagecount=0;
-  public getDcsMessagesForUser(item,i,dailog?, event?) {
+  public currentindex = 0;
+  public sendmessagecount = 0;
+  public getDcsMessagesForUser(item, i, dailog?, event?) {
     this.currentDcs = item;
-    this.currentindex=i;
-      this.allDcsWithRecentMessage[i].unreadMessageCount=0;
+    this.currentindex = i;
+    this.allDcsWithRecentMessage[i].unreadMessageCount = 0;
 
 
     // this.dcsMessagesForUser = [];
@@ -1146,19 +1154,21 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         this.dcsSpinner--;
         if (this.dcsSpinner == 0) {
           this.ngxspineer.hide('dcsSpinner');
-           }
+        }
 
         this.dcsMessagesForUser = res.dcsMessagesForUser;
         this.dcsMessagesForUser.map(x => {
           x.date = this.datepipe.transform(x.createdOn, 'MM/dd/yyyy')
         })
+        this.dcsMessagesForUser = this.dcsMessagesForUser.reverse()
+
         dailog?.toggle(event);
 
 
-        setTimeout(()=>{
+         setTimeout(()=>{
           $(".p-overlaypanel-content").attr('id','msg-box');
           var objDiv = document.getElementById("msg-box");
-            objDiv.scrollTop = objDiv.scrollHeight;
+            objDiv.scrollTop = 0;
         },100)
 
       }, err => {
@@ -1191,7 +1201,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           this.currentMessage = '';
           // this.getAllDcsWithRecentMessage()
 
-          this.getDcsMessagesForUser(this.currentDcs,this.currentindex);
+          this.getDcsMessagesForUser(this.currentDcs, this.currentindex);
 
         }, err => {
           this.dcsSpinner--;
@@ -1222,7 +1232,58 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
     this.getAllDcsWithRecentMessage();
   }
 
+  /*************************************end dcs */
+  public exportException(): void {
+    let mappedJson = this.appExceptionEffectedVisitsResponse.effectedVisitsList.map(item => {
+      return {
+        "Start Date": item.startDate ? moment(item.startDate).format('MM/DD/YYYY hh:mm a') : '',
+        "End Date": item.endDate ? moment(item.endDate).format('MM/DD/YYYY hh:mm a') : ''
+      }
+    }
+    )
+    var wscols = [
+      { wch: 25 },
+      { wch: 25 },
+    ];
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+    worksheet["!cols"] = wscols;
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer);
 
+
+
+  }
+  public exportAvailiblity() {
+    let mappedJson = this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.map(item => {
+      return {
+        "PS": item.psName ? item.psName : '',
+        "Service": item.serviceName ? item.serviceName : '',
+        "Start Date": item.startDate ? moment(item.startDate).format('MM/DD/YYYY hh:mm a') : '',
+        "End Date": item.endDate ? moment(item.endDate).format('MM/DD/YYYY hh:mm a') : ''
+      }
+    }
+    )
+    var wscols = [
+      { wch: 10 },
+      { wch: 20 },
+      { wch: 25 },
+      { wch: 25 },
+    ];
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+    worksheet["!cols"] = wscols;
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer);
+
+  }
+  private saveAsExcelFile(buffer: any): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, this.currentApprovalDcs + '.xlsx');
+  }
 
 
 

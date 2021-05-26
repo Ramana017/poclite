@@ -533,8 +533,8 @@
     <div class="">
       <!-- reciever -->
       <div *ngIf="item.isDcsMessage!='No'" class="bg-color">
-        <!-- <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-green-dark">{{currentDcs.dcsName}}</p> -->
-        <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
+              <p class="mb-0 AvenirLTStd-Heavy l-height-21 color-text-message">{{currentDcs.dcsName}}</p>
+       <p class="mb-0 mb-0 AvenirLTStd-Medium">{{item.message}}<span
             class="AvenirLTStd-Light time-stamp">{{item.createdOn|date:'hh:mm a'}}</span></p>
       </div>
 
@@ -798,7 +798,7 @@
   </div>
   <div class="modal-body pt-0">
     <p class="text-visits-modal my-1 d-flex align-items-center justify-content-between">Visits That will be Affected
-      With the change in Availability <span class="material-icons color-green">
+      With the change in Availability <span (click)="exportAvailiblity()" class="material-icons color-green">
         file_download
       </span></p>
     <div class="table-responsive box-shadow height-67 bg-white">
@@ -813,7 +813,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of this.appAvailabilityEffectedVisitsResponse.effectedVisitsList">
+          <tr *ngFor="let item of appAvailabilityEffectedVisitsResponse.effectedVisitsList">
             <td class="text-center border-right align-middle">{{item.psName}}</td>
             <td class="text-center border-right align-middle">{{item.serviceName}}</td>
             <td class="text-center border-right align-middle">{{item.startDate}}</td>
@@ -845,7 +845,7 @@
   </div>
   <div class="modal-body">
     <p class="text-visits-modal my-1 d-flex align-items-center justify-content-between">Visits that are found during the
-      Unavailable dates <span class="material-icons color-green">
+      Unavailable dates <span (click)="exportException()" class="material-icons color-green">
         file_download
       </span></p>
     <div class="table-responsive box-shadow height-67 bg-white">
