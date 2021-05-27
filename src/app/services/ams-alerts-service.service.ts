@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 export const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'text/plain'
@@ -48,6 +49,9 @@ public processDynamicActions(userId,applicationId,captions,actions,amsActions,id
 
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in AMS  service Alerts", error);
+    Swal.fire({
+      html:error.error
+    })
     return throwError(error);
   }
   public errtoast() {

@@ -426,7 +426,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public approvalTotalCount = 0;
   public appAvailabilityList: any;
   public appExceptionList: any;
-  public appAvailabilityEffectedVisitsResponse: any;
+  public appAvailabilityEffectedVisitsResponse: any={};
   public appExceptionEffectedVisitsResponse: any;
   public currentApprovalDcs = "_"
 
@@ -724,7 +724,6 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   }
   public approveAppDCSAvailability(flag?: boolean) {
-    console.log("hello")
 
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
@@ -738,14 +737,14 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
     } else {
-
+// console.log(this.appAvailabilityEffectedVisitsResponse['actualStartDate'],this.appAvailabilityEffectedVisitsResponse['actualStartDate']!=undefined)
       let obj = {
         appApproveId: this.currentAppApprovalId,
         approvedComments: this.currentApprovedComments,
         dcsId: this.appAvailabilityList.dcsId,
         officeId: this.appAvailabilityList.officeId,
         startDate: this.appAvailabilityList.startDate,
-        endDate: this.appAvailabilityList['endDate']!=undefined ? this.appAvailabilityList.endDate : '',
+        endDate: this.appAvailabilityList?.endDate? this.appAvailabilityList.endDate : '',
         days: this.appAvailabilityList.days,
         statusId: +(this.currentStatus),
         userId: this.userDetails.userId,
@@ -755,7 +754,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         startTime2: this.appAvailabilityList?.startTime2 ? this.appAvailabilityList.startTime2 : '',
         endTime2: this.appAvailabilityList?.endTime2 ? this.appAvailabilityList.endTime2 : '',
         lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated,
-        actualStartDate: this.appAvailabilityEffectedVisitsResponse['actualStartDate ']!=undefined ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
+        actualStartDate:flag?'':this.appAvailabilityEffectedVisitsResponse?.actualStartDate?this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
       }
       try {
         this.appApprovalSpinner++;
