@@ -764,13 +764,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
-          if (res['message'] != undefined) {
+          if (res.validationFlag==0) {
             this.dcsmodelRef?.hide()
             this.modalRef.hide();
-            Swal.fire('', 'Data saved successfully', 'success')
+            Swal.fire('', res.message, 'success')
             this.getAppApprovals();
-          } else if (res['errorMsg'] != undefined) {
-            Swal.fire('', res.errorMsg, 'error')
+          } else{
+            Swal.fire('', res.message, 'error')
 
           }
 
@@ -787,9 +787,10 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   }
   public availbilityAlert(flag) {
+    let Availbility='Are you sure you want to Continue Changing Availbility?';
+    let exception='Are you sure you want to unassign the DCS from the schedules?';
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You want to Continue Changing Availbility",
+      text: flag=='availbility'?Availbility:exception,
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#76bd43',
@@ -921,13 +922,13 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
-          if (res['message'] != undefined) {
+          if (res.validationFlag==0) {
             this.dcsExceptionModelRef?.hide()
             this.modalRef.hide();
-            Swal.fire('', 'Data saved successfully', 'success')
+            Swal.fire('',res.message, 'success')
             this.getAppApprovals();
-          } else if (res['errorMsg'] != undefined) {
-            Swal.fire('', res.errorMsg, 'error')
+          } else{
+            Swal.fire('', res.message, 'error')
 
           }
         }, err => {

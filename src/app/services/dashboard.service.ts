@@ -99,7 +99,8 @@ export class DashboardService {
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in API service", error);
     Swal.fire({
-      html:error.error
+      html:error.error,
+      icon:'error'
     })
     return throwError(error);
 
