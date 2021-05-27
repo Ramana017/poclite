@@ -239,7 +239,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   public onAmsSearch(template) {
     if (this.amsDateFilter[0] == null || this.amsDateFilter[1] == null) {
-      Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
+      Swal.fire('Invalid Dates', 'Start date and End date are mandatory fields', 'warning')
 
     } else if (this.amsDateFilter[0] <= this.amsDateFilter[1]) {
       this.appliedamsStartDate = this.datepipe.transform(this.amsDateFilter[0], 'MM/dd/yyyy');
@@ -523,7 +523,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public onAppApprovalSearch(template) {
     console.log(this.appApprovalEndDate, this.appApprovalStartDate, this.appApprovalStartDate > this.appApprovalEndDate)
     if (this.appApprovalStartDate == null || this.appApprovalEndDate == null) {
-      Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
+      Swal.fire('Invalid Dates', 'Start date and End date are mandatory fields', 'warning')
 
     }
     else if (this.appApprovalStartDate > this.appApprovalEndDate) {
@@ -575,12 +575,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
-        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+        Swal.fire('Invalid ', `Status and Comments are mandatory fields`, 'warning');
       } else
         if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
-          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Status is mandatory field`, 'warning');
         } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
-          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Comments is mandatory field`, 'warning');
         } else if (this.currentApprovedComments.length > 4000) {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
@@ -654,12 +654,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public validateAPPAvailability(item, template: TemplateRef<any>) {
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
-        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+        Swal.fire('Invalid ', `Status and Comments are mandatory fields`, 'warning');
       } else
         if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
-          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Status is mandatory field`, 'warning');
         } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
-          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Comments is mandatory field`, 'warning');
         } else if (this.currentApprovedComments.length > 4000) {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
@@ -701,12 +701,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         console.log(res);
 
         this.appAvailabilityEffectedVisitsResponse = res;
-        console.log()
-        if (this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.length > 0 && this.appAvailabilityEffectedVisitsResponse.availabilityId > 0 && (this.appAvailabilityEffectedVisitsResponse?.errorMsg?this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0:true)) {
+        console.log(res['errorMsg'])
+        if (this.appAvailabilityEffectedVisitsResponse.effectedVisitsList.length > 0 && this.appAvailabilityEffectedVisitsResponse.availabilityId > 0 && (res['errorMsg'] != undefined ? this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0 : true)) {
           //direct
           this.dcsmodelRef = this.modalService.show(template, Object.assign({}, { class: 'approval-modal' }));
 
-        } else if (this.appAvailabilityEffectedVisitsResponse?.errorMsg?this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0:false) {
+        } else if (res['errorMsg'] != undefined ? this.appAvailabilityEffectedVisitsResponse.errorMsg?.length > 0 : false) {
           Swal.fire('', this.appAvailabilityEffectedVisitsResponse?.errorMsg, 'error')
         } else {
           console.log("validation Failed");
@@ -728,12 +728,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
-        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+        Swal.fire('Invalid ', `Status and Comments are mandatory fields`, 'warning');
       } else
         if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
-          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Status is mandatory field`, 'warning');
         } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
-          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Comments is mandatory field`, 'warning');
         } else if (this.currentApprovedComments.length > 4000) {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
@@ -745,7 +745,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         dcsId: this.appAvailabilityList.dcsId,
         officeId: this.appAvailabilityList.officeId,
         startDate: this.appAvailabilityList.startDate,
-        endDate: this.appAvailabilityList?.endDate ? this.appAvailabilityList.endDate : '',
+        endDate: this.appAvailabilityList['endDate']!=undefined ? this.appAvailabilityList.endDate : '',
         days: this.appAvailabilityList.days,
         statusId: +(this.currentStatus),
         userId: this.userDetails.userId,
@@ -755,7 +755,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         startTime2: this.appAvailabilityList?.startTime2 ? this.appAvailabilityList.startTime2 : '',
         endTime2: this.appAvailabilityList?.endTime2 ? this.appAvailabilityList.endTime2 : '',
         lastUpdated: flag ? 0 : this.appAvailabilityEffectedVisitsResponse.lastUpdated,
-        actualStartDate: this.appAvailabilityEffectedVisitsResponse?.actualStartDate ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
+        actualStartDate: this.appAvailabilityEffectedVisitsResponse['actualStartDate ']!=undefined ? this.appAvailabilityEffectedVisitsResponse.actualStartDate : ''
       }
       try {
         this.appApprovalSpinner++;
@@ -765,10 +765,16 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
-          this.dcsmodelRef?.hide()
-          this.modalRef.hide();
-          Swal.fire('', 'Data saved successfully', 'success')
-          this.getAppApprovals();
+          if (res['message'] != undefined) {
+            this.dcsmodelRef?.hide()
+            this.modalRef.hide();
+            Swal.fire('', 'Data saved successfully', 'success')
+            this.getAppApprovals();
+          } else if (res['errorMsg'] != undefined) {
+            Swal.fire('', res.errorMsg, 'error')
+
+          }
+
         }, err => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
@@ -838,12 +844,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public getAppExceptionEffectedVisits(item, template: TemplateRef<any>) {
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
-        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+        Swal.fire('Invalid ', `Status and Comments are mandatory fields`, 'warning');
       } else
         if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
-          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Status is mandatory field`, 'warning');
         } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
-          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Comments is mandatory field`, 'warning');
         } else if (this.currentApprovedComments.length > 4000) {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
@@ -881,12 +887,12 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public approveAppDCSException() {
     if (this.currentStatus == null || (this.currentApprovedComments.length > 4000 || this.currentApprovedComments.length == 0)) {
       if (this.currentStatus == null && this.currentApprovedComments.length == 0) {
-        Swal.fire('Invalid ', `Status and Comments are mandatory feilds`, 'warning');
+        Swal.fire('Invalid ', `Status and Comments are mandatory fields`, 'warning');
       } else
         if (this.currentStatus == null && this.currentApprovedComments.length > 0) {
-          Swal.fire('Invalid ', `Status is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Status is mandatory field`, 'warning');
         } else if (this.currentStatus != null && this.currentApprovedComments.length == 0) {
-          Swal.fire('Invalid ', `Comments is mandatory feild`, 'warning');
+          Swal.fire('Invalid ', `Comments is mandatory field`, 'warning');
         } else if (this.currentApprovedComments.length > 4000) {
           Swal.fire('Invalid ', `Comments Cannot be More than 4000 Characters`, 'warning');
         }
@@ -916,10 +922,15 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
           if (this.appApprovalSpinner == 0) {
             this.ngxspineer.hide('spinner1');
           }
-          this.dcsExceptionModelRef?.hide()
-          this.modalRef.hide();
-          Swal.fire('', 'Data saved successfully', 'success')
-          this.getAppApprovals();
+          if (res['message'] != undefined) {
+            this.dcsExceptionModelRef?.hide()
+            this.modalRef.hide();
+            Swal.fire('', 'Data saved successfully', 'success')
+            this.getAppApprovals();
+          } else if (res['errorMsg'] != undefined) {
+            Swal.fire('', res.errorMsg, 'error')
+
+          }
         }, err => {
           this.appApprovalSpinner--;
           if (this.appApprovalSpinner == 0) {
@@ -992,7 +1003,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       // let jsonObj = { "startDate": '01/01/2020', "endDate": '01/01/2021', "lowerBound": 1, "upperBound": 10 };
       this.dashboardService.getPocReleaseNotesList(JSON.stringify(jsonObj)).subscribe(res => {
         this.ngxspineer.hide('spinner3');
-       console.log(res)
+        console.log(res)
         this.pocReleaseNotesList = res.releaseNotesList;
         this.pocTotalRecordsCount = res.totalRecordsCount;
       }, err => {
@@ -1007,7 +1018,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   }
   public onPocSearch(template) {
     if (this.pointofCareStartDate == null || this.pointofCareEndDate == null) {
-      Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
+      Swal.fire('Invalid Dates', 'Start date and End date are mandatory fields', 'warning')
 
     }
     else if (this.pointofCareStartDate > this.pointofCareEndDate) {
@@ -1101,7 +1112,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
   public onDcsSearch(template) {
 
     if (this.dcsStartDate == null || this.dcsEndDate == null) {
-      Swal.fire('Invalid Dates', 'Start date and End date are mandatory feilds', 'warning')
+      Swal.fire('Invalid Dates', 'Start date and End date are mandatory fields', 'warning')
 
     }
     else if (this.dcsStartDate > this.dcsEndDate) {
@@ -1170,11 +1181,11 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
         dailog?.toggle(event);
 
 
-         setTimeout(()=>{
-          $(".p-overlaypanel-content").attr('id','msg-box');
+        setTimeout(() => {
+          $(".p-overlaypanel-content").attr('id', 'msg-box');
           var objDiv = document.getElementById("msg-box");
-            objDiv.scrollTop =  objDiv.scrollHeight;
-          },100)
+          objDiv.scrollTop = objDiv.scrollHeight;
+        }, 100)
 
       }, err => {
         this.dcsSpinner--;

@@ -361,8 +361,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     var latitude = this.fomatAddressManualInput ? this.manualLatitude != undefined || null ? this.manualLatitude : " " : this.selectedLatitude;
     var longitude = this.fomatAddressManualInput ? this.manualLongitude != undefined || null ? this.manualLongitude : " " : this.selectedLongitude;
     var jsonObj = {
-      "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.fomatAddressManualInput ?0:this.geoCoordResultsId, "formattedAddress": formattedAddress, "latitude": latitude, "longitude": longitude, "userId": this.userId, "street": this.fomatAddressManualInput ? this.psAddress.street : '', "suite":
-        this.fomatAddressManualInput ? this.psAddress.suite : '', "city": this.fomatAddressManualInput ? this.psAddress.city : '', "stateId": this.fomatAddressManualInput ? this.psAddress.stateId : '', "zipCode": this.fomatAddressManualInput ? this.psAddress.zipCode : '', "addressId": this.fomatAddressManualInput ? this.psAddress.id : '',"stateCode":this.fomatAddressManualInput?'':'GA',
+       "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": this.fomatAddressManualInput ? 0 : this.geoCoordResultsId, "formattedAddress": formattedAddress, "latitude": latitude, "longitude": longitude, "userId": this.userId, "street": this.fomatAddressManualInput ? this.psAddress.street : '',"city": this.fomatAddressManualInput ? this.psAddress.city : '', "stateId": this.fomatAddressManualInput ? this.psAddress.stateId : '', "zipCode": this.fomatAddressManualInput ? this.psAddress.zipCode : '', "addressId": this.fomatAddressManualInput ? this.psAddress.id : '',
     };
     try {
       this.apiservice.saveFormatAddress(jsonObj).subscribe(
@@ -419,7 +418,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     this.psdetailsSelectedLatitude = event.latitude;
     this.psdetailsSelectedLongitude = event.longitude;
     this.psAddressId = event.psAddressId;
-    this.googleFormattedAddress=event?.googleFormattedAddress;
+    this.googleFormattedAddress = event?.googleFormattedAddress;
 
   }
 
@@ -551,7 +550,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
     if (this.psAddress.Latitude == undefined || this.psAddress.Longitude == undefined) {
       swal.fire({
         title: "Invalid Details",
-        text: "Please Enter all Feilds",
+        text: "Please Enter all fields",
         icon: "warning",
         confirmButtonText: 'OK',
 
@@ -563,7 +562,7 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
       if (latitutde.length == 0 || longitude.length == 0) {
         swal.fire({
           title: "Invalid Details",
-          text: "Please Enter all Feilds",
+          text: "Please Enter all fields",
           icon: "warning",
           confirmButtonText: 'OK',
 
@@ -660,8 +659,8 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
 
           console.log(type, address);
           this.locations[2].address = address;
-          // this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
-          this.psaddressTxtArea = address;
+          this.psaddressTxtArea = address + '  ,lat: ' + lat + " lng: " + lng;
+          // this.psaddressTxtArea = address;
           console.log(this.psaddressTxtArea)
           x.types.map(y => {
             if (y == "postal_code") {
@@ -694,11 +693,11 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
   }
   public savepsAddreess() {
     let obj = { "psAddressId": this.psAddressId }
-    let psAddessId=0;
+    let psAddessId = 0;
     if (this.editMarkerObj.zipCode != null) {
       this.apiservice.getPSAddressData(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
-        psAddessId=res.psAddress.id;
+        psAddessId = res.psAddress.id;
         this.geoCoordinatesRange = res.geoCoordinatesRange;
         let latitudeFlag = false;
         let longitudeFlag = false;
@@ -730,7 +729,18 @@ export class GpsdescrepancyComponent implements OnInit, AfterViewInit {
         if (latitudeFlag && longitudeFlag) {
 
           var jsonObj = {
-            "id": this.jsonData.id, "visitDetailsId": this.jsonData.visitDetailsId, "geoCoordId": this.psGeoCoordId, "geoCoordResultsId": 0, "formattedAddress": this.editMarkerObj.formattedAddress, "latitude": this.editMarkerObj.latitude, "longitude": this.editMarkerObj.longitude, "userId": this.userId, "street": this.editMarkerObj.street, "suite": this.editMarkerObj.suite, "city": this.editMarkerObj.city, "stateId": 0, "zipCode": this.editMarkerObj.zipCode, "addressId": psAddessId, "stateCode": this.editMarkerObj.stateName
+            "visitDetailsId": this.jsonData.visitDetailsId,
+            "geoCoordId": this.psGeoCoordId,
+            "geoCoordResultsId": 0,
+            "formattedAddress": this.editMarkerObj.formattedAddress,
+            "latitude": this.editMarkerObj.latitude,
+            "longitude": this.editMarkerObj.longitude,
+            "userId": this.userId,
+            "street": "",
+            "city": "",
+            "stateId": 0,
+            "zipCode": "",
+            "addressId": 0,
           };
           console.log(jsonObj)
           try {

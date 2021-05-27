@@ -312,7 +312,7 @@
             [longitude]="centerlangutide">
             <agm-marker [markerDraggable]="(item.type=='ps' &&editpsAdreesButton)" (mouseOver)="item.type!='ps'?infowindow.open():''" (mouseOut)="item.type!='ps'?infowindow.close():''" (dragEnd)="onmarkerDrag($event,item.type)" *ngFor='let item of locations; let i=index ' [latitude]="item.latitude" [iconUrl]='item.type=="ps"?blueicon:item.type=="clockin"&& arrivalgpsErr?redicon:item.type=="clockout"&&depgpsErr?redicon:greenicon' [longitude]="item.longitude">
               <agm-info-window [disableAutoPan]="false" #infowindow>
-                <strong style="color: blue;" ><b>{{item.type=='ps'?'PS':item.type=="clockin"?"Clock In":'Clock Out'}}</b></strong><br>
+                <strong style="color: blue;" ><b>{{item.type=='ps'?editpsAdreesButton?'PS : Only the PS Coordinates will be updated':'PS':item.type=="clockin"?"Clock In":'Clock Out'}}</b></strong><br>
                 <strong>{{item.address}}<br>lat: {{item.latitude}},lng: {{item.longitude}}</strong>
               </agm-info-window>
             </agm-marker>
@@ -330,10 +330,10 @@
             <span class="material-icons mr-2">
               help_outline
               </span>
-            <p class="m-0">To correct the PS service address, click Edit.</p>
+            <p class="m-0">To correct the PS service coordinates, click Edit</p>
             <div class="sizes ml-3">
-              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Address"  disabled="true"  styleClass="p-button-sm"></p-button>
-              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Address"  (click)="editpsAdreesButton=true"  styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Coordinates"  disabled="true"  styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Edit&nbsp;PS&nbsp;Coordinates"  (click)="editpsAdreesButton=true"  styleClass="p-button-sm"></p-button>
             </div>
           </div>
           <div *ngIf="editpsAdreesButton" class="d-flex align-items-center ">
@@ -345,8 +345,8 @@
               <textarea type="text" [(ngModel)]="psaddressTxtArea" readonly rows="1" pInputTextarea placeholder="Address"></textarea>
           </div>
             <div class="sizes ml-3">
-              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" disabled="true" label="Save&nbsp;PS&nbsp;Address" styleClass="p-button-sm"></p-button>
-              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Save&nbsp;PS&nbsp;Address"  (click)="savepsAddreess()"   styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId!=this.jsonData.psAddressId" disabled="true" label="Save&nbsp;PS&nbsp;Coordinates" styleClass="p-button-sm"></p-button>
+              <p-button *ngIf="this.psAddressId==this.jsonData.psAddressId" label="Save&nbsp;PS&nbsp;Coordinates"  (click)="savepsAddreess()"   styleClass="p-button-sm"></p-button>
             </div>
           </div>
 

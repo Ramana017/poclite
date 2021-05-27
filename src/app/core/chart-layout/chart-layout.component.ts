@@ -123,7 +123,7 @@ export class ChartLayoutComponent implements OnInit {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.defaultstartdate.setDate(this.todayDate.getDate() - 7);
     this.scheduleStart.setDate(this.todayDate.getDate() - 7);
-    
+
     // Object.assign(this.single, { single2 })
   }
   public psList: Array<any> = [];
@@ -166,16 +166,16 @@ export class ChartLayoutComponent implements OnInit {
     $('.divA').toggleClass('hide');
     this.displayVisitCards = true;
     this.displayClientVisits = false;
-  
+
   }
   charts() {
-   
+
     $('.divB').toggleClass('hide');
   }
 
 
   public getDashBoardClientsCount(flag: boolean) {
-    
+
     this.displayClientTable = false;
     this.displayClientVisits = true;
     this.displayVisitCards = false;
@@ -271,7 +271,7 @@ export class ChartLayoutComponent implements OnInit {
     } catch (error) { }
   }
   public getDashBoardVisitsDetails(str, count) {
-    
+
     if (count >= 0) {
       this.cssFilterAutocomplete = '';
       this.psFilterAutocomplete = '';
@@ -505,7 +505,7 @@ export class ChartLayoutComponent implements OnInit {
 
     if (this.scheduleStart == null || this.scheduleEnd == null) {
       let str = !this.displayClientVisits ? 'Visit' : 'Authz Service';
-      Swal.fire('Invalid Dates', `${this.scheduleStart == null && this.scheduleEnd == null ? str + ' Start and End Dates are mandatory feilds' : this.scheduleStart == null ? str + ' Start Date is mandatory feild' : str + ' End Date is mandatory feild'}`, 'warning')
+      Swal.fire('Invalid Dates', `${this.scheduleStart == null && this.scheduleEnd == null ? str + ' Start and End Dates are mandatory fields' : this.scheduleStart == null ? str + ' Start Date is mandatory field' : str + ' End Date is mandatory field'}`, 'warning')
 
     }
 
