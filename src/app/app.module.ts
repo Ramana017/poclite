@@ -10,7 +10,7 @@ import { ScheduledvarianceComponent } from './corrections/scheduledvariance/sche
 import { InvalidcalleridComponent } from './corrections/invalidcallerid/invalidcallerid.component';
 import { MileageexceptionComponent } from './corrections/mileageexception/mileageexception.component';
 import { TarveltimeexceptionComponent } from './corrections/tarveltimeexception/tarveltimeexception.component';
-import {GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
+import { GpsdescrepancyComponent } from './corrections/gpsdescrepancy/gpsdescrepancy.component';
 import { ClockinComponent } from './corrections/clockin/clockin.component';
 import { ClockoutComponent } from './corrections/clockout/clockout.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';

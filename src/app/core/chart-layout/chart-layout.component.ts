@@ -152,7 +152,6 @@ export class ChartLayoutComponent implements OnInit {
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    // console.log(event)
     this.resize();
   }
   public chartheight
