@@ -82,14 +82,14 @@
 .progress {
   .modal-content {
 
-    width: 80%;
-    height: calc(100vh - 52px) !important;
+    // width: 80%;
+    // height: calc(100vh - 52px) !important;
     overflow-y: auto;
   }
 
   .modal-body {
-    height: calc(100vh - 48px) !important;
-    overflow-y: auto;
+    // height: calc(100vh - 48px) !important;
+    // overflow-y: auto;
   }
 
   font-size: 16px;
@@ -312,4 +312,13 @@ div#exampleModal {
   padding: 5px;
   font-family: "AvenirLTStd-Medium", sans-serif !important;
   color: $black;
+}
+.progress-modal{
+.modal-content{
+  width: 600px;
+  max-width: 600px;
+  height: auto !important;
+  max-height: 90vh;
+  overflow: auto;
+}
 }
