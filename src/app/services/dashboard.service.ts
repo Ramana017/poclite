@@ -172,4 +172,7 @@ export class DashboardService {
   public saveDcsMessage(obj): Observable<any> {
     return this.http.post(this.webserviceUrl + `/communicationDashboard/saveDcsMessage`, obj, httpOptions).pipe(catchError(this.errorHandler))
   }
+  public getDcsList2(obj): Observable<any> {
+    return this.http.get<any>(this.webserviceUrl + `/communicationDashboard/getDcsList?jsonObj=${obj}`).pipe(catchError(this.errorHandler));
+  }
 }

@@ -477,7 +477,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
       this.appApprovalSpinner++;
       this.ngxspineer.show('spinner1');
       let obj = { userId: this.userDetails.userId }
-      this.dashboardService.getDcsList(JSON.stringify(obj)).subscribe(res => {
+      this.dashboardService.getDcsList2(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         let data: any = res;
         this.appApprovalDCSList = data.dcsList;
@@ -787,7 +787,7 @@ export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
 
   }
   public availbilityAlert(flag) {
-    let Availbility='Are you sure you want to Continue Changing Availbility?';
+    let Availbility='Are you sure you want to Continue Changing Availability?';
     let exception='Are you sure you want to unassign the DCS from the schedules?';
     Swal.fire({
       text: flag=='availbility'?Availbility:exception,

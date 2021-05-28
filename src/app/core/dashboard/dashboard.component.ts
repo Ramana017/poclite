@@ -24,10 +24,12 @@ export class DashboardComponent implements OnInit {
     this.userId = data.userId;
     let useraccount = sessionStorage.getItem('useraccount');
     let mapkey=sessionStorage.getItem('mapsApiKey');
+    let logindata=sessionStorage.getItem(btoa('logindetils'));
 
     sessionStorage.clear();
     sessionStorage.setItem('useraccount', useraccount);
     sessionStorage.setItem('mapsApiKey',mapkey);
+    sessionStorage.setItem(btoa('logindetils'),logindata);
   }
   @ViewChild('autops') autops;
   @ViewChild('autodcs') autodcs;
