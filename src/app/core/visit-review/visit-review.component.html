@@ -686,289 +686,267 @@
     </div>
   </div>
 </div>
-
+<!-- progress modal -->
 <div class="progress" *ngIf="progressmodel">
   <div class="modal fade" id="progress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list progress-modal modal-md" role="document">
-      <div class=" sticky modal-content" >
+      <div class=" sticky modal-content">
         <div class="modal-header bg-dark d-flex justify-content-between align-items-center">
-          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel"></h5>
-
-         <p class="text-white mb-0" > {{progressmodelLabel}}  -  {{progressmodelprocedureLabel}}</p>
-
+          <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">{{progressmodelLabel}} - {{progressmodelprocedureLabel}}</h5>
+          <!-- <p class="text-white mb-0"> </p> -->
           <button type="button" class="close m-0 p-0" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body text-dark p-0">
-           <!-- <div class="d-flex justify-content-between progress-title text-white">
-            <h5>{{progressmodelLabel}}</h5>
-            <h5>{{progressmodelprocedureLabel}}</h5>
-          </div> -->
-
-
-
-<div class="d-flex mt-4 ml-3">
-  <button class="abc mx-1 d-none" id="home-tab" (click)="progressbtn=[true,false]" [ngClass]="progressbtn[0]?'active ':''" >Progress Notes</button>
-  <button class="abc  d-none" id="home-tab" (click)="progressbtn=[false,true]" [ngClass]="progressbtn[1]?'active ':''" >Form </button>
-</div>
-<div class="pt-3 d-none">
-  <div class="mx-3" [ngClass]="progressbtn[0]?'active show':'hide'" >
-    <div>
-      <h5 class="m-0 px-3"> Progress Notes </h5>
-      <div class="py-3 px-3">
-        <div class="mb-3">
-          <textarea rows="10" cols="60"value="">
-          </textarea>
-        </div>
-        <!-- <button class="btn-green border-radius-curved text-white py-2 px-3 pull-right"> Submit </button> -->
-      </div>
-
-    </div>
-  </div>
-<div class="" [ngClass]="progressbtn[1]?'active show':'hide'">
-  <div>
-    <ul class=" mx-3 p-0" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link white-space-nowrap"  (click)="navbuttons=[true,false,false,false]" [ngClass]="navbuttons[0]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 1</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link white-space-nowrap"  (click)="navbuttons=[false,true,false,false]" [ngClass]="navbuttons[1]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 2</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link white-space-nowrap"  (click)="navbuttons=[false,false,true,false]" [ngClass]="navbuttons[2]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 3</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,false,false,true]" [ngClass]="navbuttons[3]?'active border-radius-curved':''" ><i class="fas fa-edit mr-2"></i>Form 4</button>
-      </li>
-    </ul>
-    <div class="tab-content mx-3 p-0 w-auto" id="myTabContent">
-      <div class="tab-pane fade w-100"  [ngClass]="navbuttons[0]?'active show':''">
-        <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
-        </textarea></div>
-        <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
-          <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
-            <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
-            <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox" class="mt-1"
-                id="exampleCheck{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
+          <div class="d-flex mt-4 ml-3">
+            <button class="abc mx-1 " id="home-tab" (click)="progressbtn=[true,false]"
+              [ngClass]="progressbtn[0]?'active ':''">Progress Notes</button>
+            <button class="abc " id="home-tab" (click)="progressbtn=[false,true]"
+              [ngClass]="progressbtn[1]?'active ':''">Form </button>
           </div>
-          <div *ngIf="data.displayType=='radio'">
-            <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
-            <div class="" *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
-                [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="other{{i}}{{j}}">{{option.displayName}}</label>
+          <div class="pt-3 ">
+            <div class="mx-3" [ngClass]="progressbtn[0]?'active show':'hide'">
+              <div>
+                <h5 class="m-0 px-3"> Progress Notes </h5>
+                <div class="py-3 px-3">
+                  <div class="mb-3">
+                    <textarea rows="10" cols="30" value="">
+                     </textarea>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div *ngIf="data.displayType=='textbox'">
-            <div class="bottom-input pt-2">
-              <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <input type="text" value="{{data.answer}}" />
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='textarea'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-
-              <textarea rows="3" cols="35"value="{{data.answer}}">
+            <div class="" [ngClass]="progressbtn[1]?'active show':'hide'">
+              <div>
+                <!-- <ul class=" mx-3 p-0" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link white-space-nowrap" (click)="navbuttons=[true,false,false,false]"
+                      [ngClass]="navbuttons[0]?'active border-radius-curved':''"><i class="fas fa-edit mr-2"></i>Form
+                      1</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,true,false,false]"
+                      [ngClass]="navbuttons[1]?'active border-radius-curved':''"><i class="fas fa-edit mr-2"></i>Form
+                      2</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,false,true,false]"
+                      [ngClass]="navbuttons[2]?'active border-radius-curved':''"><i class="fas fa-edit mr-2"></i>Form
+                      3</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link white-space-nowrap" (click)="navbuttons=[false,false,false,true]"
+                      [ngClass]="navbuttons[3]?'active border-radius-curved':''"><i class="fas fa-edit mr-2"></i>Form
+                      4</button>
+                  </li>
+                </ul> -->
+                <div class="tab-content mx-3 p-0 w-auto" id="myTabContent">
+                  <div class="tab-pane  w-100" >
+                    <!-- <div class="ml-10 mt-5" style="margin-left: 60px;" *ngIf="progressNotesList.length==0"> <textarea
+                        rows="3" cols="35" value="{{progressNotes}}">
+        </textarea></div> -->
+                    <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
+                      <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
+                        <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
+                        <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                            [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox"
+                            class="mt-1" id="exampleCheck{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='radio'">
+                        <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
+                        <div class="" *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
+                            [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"
+                            value="other{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="other{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textbox'">
+                        <div class="bottom-input pt-2">
+                          <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <input type="text" value="{{data.answer}}" />
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textarea'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <textarea rows="3" cols="35" value="{{data.answer}}">
                 </textarea>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='selectbox'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <select [ngModel]="+(data.answer)"class="form-control">
-                <option>select</option>
-                <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                  *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
-              </select>
-            </div>
-          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='selectbox'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <select [ngModel]="+(data.answer)" class="form-control">
+                            <option>select</option>
+                            <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                              *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="tab-pane fade w-100" [ngClass]="navbuttons[1]?'active show':''">
+                 
+                    <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
+                      <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
+                        <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
+                        <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                            [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox"
+                            class="mt-1" id="exampleCheck{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='radio'">
+                        <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
+                        <div class="" *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
+                            [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"
+                            value="other{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="other{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textbox'">
+                        <div class="bottom-input pt-2">
+                          <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <input type="text" value="{{data.answer}}" />
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textarea'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
-
-        </div>
-      </div>
-      <div class="tab-pane fade w-100"  [ngClass]="navbuttons[1]?'active show':''">
-        <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
-        </textarea></div>
-        <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
-          <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
-            <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
-            <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox" class="mt-1"
-                id="exampleCheck{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='radio'">
-            <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
-            <div class="" *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
-                [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="other{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-
-          <div *ngIf="data.displayType=='textbox'">
-            <div class="bottom-input pt-2">
-              <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <input type="text" value="{{data.answer}}" />
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='textarea'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-
-              <textarea rows="3" cols="35"value="{{data.answer}}">
+                          <textarea rows="3" cols="35" value="{{data.answer}}">
                 </textarea>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='selectbox'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <select [ngModel]="+(data.answer)"class="form-control">
-                <option>select</option>
-                <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                  *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
-              </select>
-            </div>
-          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='selectbox'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <select [ngModel]="+(data.answer)" class="form-control">
+                            <option>select</option>
+                            <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                              *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade w-100" [ngClass]="navbuttons[2]?'active show':''">
+         
+                    <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
+                      <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
+                        <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
+                        <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                            [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox"
+                            class="mt-1" id="exampleCheck{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='radio'">
+                        <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
+                        <div class="" *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
+                            [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"
+                            value="other{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="other{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textbox'">
+                        <div class="bottom-input pt-2">
+                          <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <input type="text" value="{{data.answer}}" />
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textarea'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
-
-        </div>
-      </div>
-      <div class="tab-pane fade w-100" [ngClass]="navbuttons[2]?'active show':''">
-        <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
-        </textarea></div>
-        <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
-          <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
-            <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
-            <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox" class="mt-1"
-                id="exampleCheck{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='radio'">
-            <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
-            <div class="" *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
-                [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="other{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-
-          <div *ngIf="data.displayType=='textbox'">
-            <div class="bottom-input pt-2">
-              <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <input type="text" value="{{data.answer}}" />
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='textarea'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-
-              <textarea rows="3" cols="35"value="{{data.answer}}">
+                          <textarea rows="3" cols="35" value="{{data.answer}}">
                 </textarea>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='selectbox'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <select [ngModel]="+(data.answer)"class="form-control">
-                <option>select</option>
-                <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                  *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
-              </select>
-            </div>
-          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='selectbox'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <select [ngModel]="+(data.answer)" class="form-control">
+                            <option>select</option>
+                            <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                              *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade w-100" [ngClass]="navbuttons[3]?'active show':''">
+               
+                    <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
+                      <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
+                        <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
+                        <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                            [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox"
+                            class="mt-1" id="exampleCheck{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='radio'">
+                        <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
+                        <div class="" *ngFor="let option of formLovList;let j=index;">
+                          <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
+                            [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"
+                            value="other{{i}}{{j}}">
+                          <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
+                            for="other{{i}}{{j}}">{{option.displayName}}</label>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textbox'">
+                        <div class="bottom-input pt-2">
+                          <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <input type="text" value="{{data.answer}}" />
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='textarea'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
-
-        </div>
-      </div>
-      <div class="tab-pane fade w-100"  [ngClass]="navbuttons[3]?'active show':''">
-        <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
-        </textarea></div>
-        <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
-          <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
-            <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
-            <div class="d-flex " *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                [checked]='data.answerArray.includes(option.lovValueId.toString())' type="checkbox" class="mt-1"
-                id="exampleCheck{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="exampleCheck{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='radio'">
-            <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
-            <div class="" *ngFor="let option of formLovList;let j=index;">
-              <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
-                [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
-              <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
-                for="other{{i}}{{j}}">{{option.displayName}}</label>
-            </div>
-          </div>
-
-          <div *ngIf="data.displayType=='textbox'">
-            <div class="bottom-input pt-2">
-              <p class="strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <input type="text" value="{{data.answer}}" />
-            </div>
-          </div>
-          <div *ngIf="data.displayType=='textarea'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-
-              <textarea rows="3" cols="35"value="{{data.answer}}">
+                          <textarea rows="3" cols="35" value="{{data.answer}}">
                 </textarea>
+                        </div>
+                      </div>
+                      <div *ngIf="data.displayType=='selectbox'">
+                        <div class="pt-2">
+                          <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
+                          <select [ngModel]="+(data.answer)" class="form-control">
+                            <option>select</option>
+                            <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
+                              *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
             </div>
           </div>
-          <div *ngIf="data.displayType=='selectbox'">
-            <div class="pt-2">
-              <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-              <select [ngModel]="+(data.answer)"class="form-control">
-                <option>select</option>
-                <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
-                  *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
-              </select>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-          <div class="ml-10 mt-5" style="margin-left: 60px;"  *ngIf="progressNotesList.length==0"> <textarea rows="3" cols="35" value="{{progressNotes}}">
-          </textarea></div>
+          <!-- <div class="ml-10 mt-5" style="margin-left: 60px;" *ngIf="progressNotesList.length==0"> <textarea rows="3"
+              cols="35" value="{{progressNotes}}">
+          </textarea></div> -->
           <div *ngFor="let data of progressNotesList;let i=index" class="p-3">
             <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
               <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -984,7 +962,8 @@
               <p class="strong mb-1"><b>{{i+1}}.{{data.question}}</b></p>
               <div class="" *ngFor="let option of formLovList;let j=index;">
                 <input [ngClass]="data.lovId==option.lovId?'':'d-none'" [ngModel]="+(data.answer)"
-                  [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"value="other{{i}}{{j}}">
+                  [value]="option.lovValueId" type="radio" id="other{{i}}{{j}}" class="" name="gender"
+                  value="other{{i}}{{j}}">
                 <label [ngClass]="data.lovId==option.lovId?'':'d-none'" class=" text-dark mx-2"
                   for="other{{i}}{{j}}">{{option.displayName}}</label>
               </div>
@@ -1000,30 +979,27 @@
               <div class="pt-2">
                 <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
 
-                <textarea rows="3" cols="35"value="{{data.answer}}">
+                <textarea rows="3" cols="35" value="{{data.answer}}">
                   </textarea>
               </div>
             </div>
             <div *ngIf="data.displayType=='selectbox'">
               <div class="pt-2">
                 <p class="m-0 p-0 strong"> <b>{{i+1}}.{{data.question}}</b> </p>
-                <select [ngModel]="+(data.answer)"class="form-control">
+                <select [ngModel]="+(data.answer)" class="form-control">
                   <option>select</option>
                   <option [value]="option.lovValueId" [ngClass]="data.lovId==option.lovId?'':'d-none'"
                     *ngFor="let option of formLovList;let j=index;" value="1">{{option.displayName}}</option>
                 </select>
               </div>
             </div>
-
-
           </div>
-
         </div>
       </div>
     </div>
   </div>
-
 </div>
+
 <ng-template #notFoundTemplate let-notFound>
   <div [innerHTML]="notFound" class="text-dark"></div>
 </ng-template>
