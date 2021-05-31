@@ -15,18 +15,34 @@ export class SideBarComponent implements OnInit {
     this.sidebar();
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //UI related Funcationality
+
   @HostListener('window:resize')
   onResize() {
     this.resize();
   }
 
-  resize() {
+  public resize() {
     this.screenHeight = window.innerHeight;
     var height = this.screenHeight - 66
     $('.sidebar-container').css('height', height + 'px');
     // $('.chart-content').css('height', height + 'px');
   }
-  sidebar() {
+  public sidebar() {
     $(".close").click(function () {
       $(".sidebar-wrapper").toggleClass("toggled");
       $(".arrow-forward").show();
@@ -56,6 +72,6 @@ export class SideBarComponent implements OnInit {
           .addClass("active");
       }
     });
-  
+
   }
 }

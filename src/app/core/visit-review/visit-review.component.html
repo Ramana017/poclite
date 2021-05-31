@@ -692,9 +692,9 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered times-list progress-modal modal-md" role="document">
       <div class=" sticky modal-content">
-        <div class="modal-header bg-dark d-flex justify-content-between align-items-center">
+        <div class="modal-header sticky bg-dark d-flex justify-content-between align-items-center">
           <h5 class="modal-title   AvenirLTStd-Heavy color-white text-center" id="exampleModalLabel">{{progressmodelLabel}} - {{progressmodelprocedureLabel}}</h5>
- 
+
           <button type="button" class="close m-0 p-0" data-dismiss="modal" (click)="modelhide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -797,7 +797,7 @@
                     </div>
                   </div>
                   <!-- <div class="tab-pane fade w-100" [ngClass]="navbuttons[1]?'active show':''">
-                 
+
                     <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
                       <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
                         <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -846,7 +846,7 @@
                     </div>
                   </div>
                   <div class="tab-pane fade w-100" [ngClass]="navbuttons[2]?'active show':''">
-         
+
                     <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
                       <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
                         <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -895,7 +895,7 @@
                     </div>
                   </div>
                   <div class="tab-pane fade w-100" [ngClass]="navbuttons[3]?'active show':''">
-               
+
                     <div *ngFor="let data of progressNotesList;let i=index" class="p-3 border m-3">
                       <div *ngIf="data.displayType=='checkbox' &&data.answerArray!=undefined" class="ml-2">
                         <p class="strong mb-1"> <b>{{i+1}}.{{data.question}}</b> </p>
@@ -998,7 +998,7 @@
           <div class="d-flex align-items-center justify-content-between mt-3 mx-3 mb-3">
             <button  class="btn-common btn-green bg-dark"><i class="fas fa-times mr-1 "></i> Close
             </button>
-            <button 
+            <button
               class="btn-common btn-green d-flex align-items-center justify-content-center"><span class="material-icons mr-2">
                 save
                 </span>Save

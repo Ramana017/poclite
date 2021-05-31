@@ -51,16 +51,16 @@
                     <a>Communication Dashboard </a>
                   </li>
 
-                  <li class=" d-none  dropdown-item dropdown side-menu-analytics"
+                  <li class="  dropdown-item dropdown side-menu-analytics"
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
                     <ul class=" dropdown-menu side-menu" aria-labelledby="dropdown1-1">
-                      <li class=" d-none  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
+                      <li class="  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
                         [routerLink]="['/analytics']"><a>Compliance</a>
                       </li>
-                      <li class="d-none dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
+                      <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
                         [routerLink]="['/maintaince']">
                         <a>Maintainence</a>
                       </li>
@@ -70,7 +70,7 @@
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
                         [routerLink]="['/telephony']"><a>Telephony Stats</a>
                       </li>
-                      <li class=" d-none dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
+                      <li class=" s dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
                         [routerLink]="['/utilization']"><a>Utilization Stats</a>
                       </li>
                     </ul>
