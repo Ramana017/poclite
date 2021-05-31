@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map } from 'rxjs/operators';
 import { httpOptions } from './ams-alerts-service.service';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -224,6 +225,10 @@ export class ApiserviceService {
 
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in API service", error);
+    // Swal.fire({
+    //   html:error.error,
+    //   icon:'error'
+    // })
     return throwError(error);
   }
 

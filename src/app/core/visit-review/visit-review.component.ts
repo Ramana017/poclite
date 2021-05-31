@@ -207,6 +207,14 @@ export class VisitReviewComponent implements OnInit {
         let data: any = res;
         this.getTaskListresponse = data;
         $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
+      },err=>{
+        this.getTaskListresponse =[
+          {taskName:'work',taskRefusedReason:'Hello',taskAcceptFlag:1},
+          {taskName:'work',taskRefusedReason:'Hello',taskAcceptFlag:1},
+          {taskName:'work',taskRefusedReason:'Task Refused',taskAcceptFlag:0},
+        ]
+        $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
+
       })
     } catch (error) {
 
