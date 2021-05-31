@@ -160,16 +160,7 @@ import { ConfirmationService } from 'primeng/api';
     BsDropdownModule.forRoot(),
     MultiSelectModule,
     NgSelectModule,
-    OrderModule,
-    DialogModule,
-    ButtonModule,
-    ConfirmPopupModule,
-    InputTextareaModule,
-    DropdownModule,
-    OverlayPanelModule,
-    InputTextModule,
 
-    ConfirmDialogModule
 
   ],
   providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService

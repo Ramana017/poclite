@@ -6,6 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderModule } from 'ngx-order-pipe';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 
@@ -18,7 +26,16 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    OrderModule,
+    DialogModule,
+    ButtonModule,
+    ConfirmPopupModule,
+    InputTextareaModule,
+    DropdownModule,
+    OverlayPanelModule,
+    InputTextModule,
 
+    ConfirmDialogModule
 
   ],
   providers: [
@@ -30,7 +47,17 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     HttpClientModule,
     DropdownModule,
-    NgSelectModule
+    NgSelectModule,
+    OrderModule,
+    DialogModule,
+    ButtonModule,
+    ConfirmPopupModule,
+    InputTextareaModule,
+    DropdownModule,
+    OverlayPanelModule,
+    InputTextModule,
+
+    ConfirmDialogModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

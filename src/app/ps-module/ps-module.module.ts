@@ -15,9 +15,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     CommonModule,
     PsModuleRoutingModule,
     SharedModule,
-    InputTextModule,
-    FormsModule,
-    AutoCompleteModule
+
   ]
 })
 export class PsModuleModule { }
