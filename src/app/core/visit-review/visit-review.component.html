@@ -536,20 +536,26 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">
-          <div class="task-wrapper">
-            <div *ngFor="let data of getTaskListresponse" class="card p-3 mb-2 box-shadow">
-              <span class="d-flex justify-content-between align-items-center">
-                {{data.taskName}}
-                <i *ngIf="data.taskAcceptFlag==1" class="fas fa-check-circle f-18 text-success"></i>
-                <i *ngIf="data.taskAcceptFlag!=1" class="fas fa-times-circle f-18 text-danger"></i>
-
-              </span>
-              <div *ngIf="data.taskAcceptFlag!=1" class="alert alert-danger mt-2" role="alert">
-                {{data.taskRefusedReason}}
-              </div>
-            </div>
+          <div class="task-wrapper d-flex " *ngFor="let data of getTaskListresponse">
+            <div  class="card p-3 mb-2 box-shadow w-100">
+                <span class="d-flex justify-content-between align-items-center">
+                  <!-- <span> {{data.taskName}}</span> -->
+                  <input type="text" value={{data.taskName}} class="form-control mr-2">
+                  <span class="d-flex align-items-center">
+                  <span class="material-icons mr-2">
+                    edit
+                    </span>
+                  <i *ngIf="data.taskAcceptFlag==1" class="fas fa-check-circle f-20 text-success"></i>
+                  <i *ngIf="data.taskAcceptFlag!=1" class="fas fa-times-circle f-20 text-danger"></i>
+                </span>
+                </span>
+                <div *ngIf="data.taskAcceptFlag!=1" class="alert alert-danger mt-2" role="alert">
+                  {{data.taskRefusedReason}}
+                </div>
+            </div> 
+            <!-- <button *ngIf="data.taskAcceptFlag!=1" pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text"></button> -->
+            <!-- <button *ngIf="data.taskAcceptFlag!=1" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text p-button-plain"></button> -->
           </div>
         </div>
       </div>
