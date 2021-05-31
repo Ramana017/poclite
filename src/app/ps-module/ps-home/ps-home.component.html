@@ -1,0 +1,110 @@
+<!-- <p>ps-home works!</p> -->
+<div class="home-container px-3 py-2">
+    <!-- filter -->
+    <div class="nav">
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <div class="p-field ">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">Last Name:</label>
+                </span>
+            </div>
+            <div class="p-field ">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">First Name:</label>
+                </span>
+            </div>
+            <div class="p-field ">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">SSN:</label>
+                </span>
+            </div>
+            <div class="p-field ">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">MRN:</label>
+                </span>
+            </div>
+            <div class="p-field ">
+                <span class="p-float-label">
+                    <input type="text" id="inputtext" pInputText>
+                    <label for="inputtext">City:</label>
+                </span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between w-100">
+        <div class="p-field ">
+            <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText>
+                <label for="inputtext">State:</label>
+            </span>
+        </div>
+        <div class="p-field ">
+            <span class="p-float-label">
+                <input type="text" id="inputtext" pInputText>
+                <label for="inputtext">Zip:</label>
+            </span>
+        </div>
+        <div class="d-flex">
+            <h5 class="mb-0">Scope:</h5>
+            <div class="p-field-radiobutton d-flex align-items-center">
+                <p-radioButton name="city" value="Chicago" inputId="city1"></p-radioButton>
+                <p class="mb-0 ml-2 mr-2" for="city1">This Site</p>
+            </div>
+            <div class="p-field-radiobutton d-flex align-items-center">
+                <p-radioButton name="city" value="Chicago" inputId="city2"></p-radioButton>
+                <p class="mb-0 ml-2 mr-2" for="city2">All Sites</p>
+            </div>
+        </div>
+        <div class="d-flex">
+            <h5 class="mb-0">PS Status:</h5>
+            <div class="p-field-radiobutton  d-flex align-items-center">
+                <p-radioButton name="city" value="Chicago" inputId="city3"></p-radioButton>
+                <p class="mb-0 ml-2 mr-2" for="city3">Active</p>
+            </div>
+            <div class="p-field-radiobutton  d-flex align-items-center">
+                <p-radioButton name="city" value="Chicago" inputId="city4"></p-radioButton>
+                <p class="mb-0 ml-2 mr-2" for="city4">In Active</p>
+            </div>
+            <div class="p-field-radiobutton  d-flex align-items-center">
+                <p-radioButton name="city" value="Chicago" inputId="city5"></p-radioButton>
+                <p class="mb-0 ml-2 mr-2" for="city5">All</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- table  -->
+    <div class="table-responsive ps-home-table">
+        <table class="table position-relative">
+            <thead class="thead-light no-wrap">
+                <tr>
+                    <th class="sticky-top"></th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">PS Name</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">Home Site</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">MRN</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">SSN</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">City</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">State</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">Zip code</th>
+                    <th class="align-middle AvenirLTStd-Heavy color-black sticky-top">Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of psList">
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.id}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

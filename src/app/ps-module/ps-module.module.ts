@@ -8,16 +8,18 @@ import { SharedModule } from '../shared/shared.module';
 import {InputTextModule} from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from "primeng/autocomplete";
-
+import { PsHomeComponent } from './ps-home/ps-home.component';
+import {RadioButtonModule} from 'primeng/radiobutton';
 @NgModule({
-  declarations: [PsModuleComponent, SideBarComponent],
+  declarations: [PsModuleComponent, SideBarComponent, PsHomeComponent],
   imports: [
     CommonModule,
     PsModuleRoutingModule,
     SharedModule,
     InputTextModule,
     FormsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    RadioButtonModule
   ]
 })
 export class PsModuleModule { }

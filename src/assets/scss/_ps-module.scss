@@ -1,26 +1,19 @@
 @import 'common';
 
 .sidebar-container {
-    
   position: relative;
   height: 100%;
-
   .sidebar-wrapper {
-    position: absolute;
+    // position: absolute;
     width: 200px;
     height: 100%;
     background-color: $heading-bg;
-
     .list-container {
-      background: #66b3ff;
+      background: $bg-blue-light;
     }
-
-    //  @extend .w-80px ;
     .list-content {
-
-      //   background: blue;
       a {
-        color: white;
+        color: $white;
         padding: 10px 10px;
         @extend .blue-bg;
         font-size: 14px;
@@ -30,13 +23,11 @@
         width: 100%;
       }
     }
-
     .toggle-div {
       .sidebar-submenu {
         display: none;
-
         .subtitle {
-          color: white;
+          color: $white;
           padding: 10px 10px;
           @extend .blue-bg;
           font-size: 14px;
@@ -44,11 +35,10 @@
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          background-color: #66b3ff;
-          border-bottom: 2px solid #145194;
+          background-color: $bg-blue-light;
+          border-bottom: 2px solid $blue;
         }
       }
-
       &.active {
         .material-icons {
           transform: rotate(-90deg);
@@ -57,30 +47,30 @@
     }
     &.toggled{
         display: none;
-    //   .arrow-forward{
-    //       position: absolute;
-    //       left: 0;
-    //     }
     }
   }
-
- 
 }
 .arrow-forward{
     position: absolute;
     left: 0;
     top: 9px;
+    display: none;
   }
   .close-left{
     background: #e0e1e2;
     padding: 4px;
-    color: #343a40;
+    color: $heading-bg;
     &:hover{
-        color: #343a40;
+        color: $heading-bg;
     }
   }
   .open{
-    background: #343a40;
-    color: white;
+    background: $heading-bg;
+    color: $white;
     padding: 5px;
+  }
+  .ps-home-table{
+    background-color: #f7fafc;
+    height: 70vh;
+    margin: 10px 0;
   }

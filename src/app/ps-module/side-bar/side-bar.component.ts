@@ -28,10 +28,12 @@ export class SideBarComponent implements OnInit {
   }
   sidebar() {
     $(".close").click(function () {
-      $(".sidebar-wrapper").toggleClass("toggled")
+      $(".sidebar-wrapper").toggleClass("toggled");
+      $(".arrow-forward").show();
     });
     $(".open").click(function () {
-      $(".sidebar-wrapper").toggleClass("toggled")
+      $(".sidebar-wrapper").toggleClass("toggled");
+      $(".arrow-forward").hide();
     });
     $(".toggle-div > a").click(function () {
       $(".sidebar-submenu").slideUp(200);
