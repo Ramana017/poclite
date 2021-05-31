@@ -47,7 +47,7 @@ export class SideBarComponent implements OnInit {
       $(".sidebar-wrapper").toggleClass("toggled");
       $(".arrow-forward").show();
     });
-    $(".open").click(function () {
+    $(".open-right").click(function () {
       $(".sidebar-wrapper").toggleClass("toggled");
       $(".arrow-forward").hide();
     });
