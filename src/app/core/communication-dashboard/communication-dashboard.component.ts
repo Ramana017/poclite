@@ -20,7 +20,8 @@ import * as moment from 'moment';
   styleUrls: ['./communication-dashboard.component.sass']
 })
 export class CommunicationDashboardComponent implements OnInit, AfterViewInit {
-  // @HostListener('window:resize', ['event'])
+  @HostListener('window:resize')onresize(){
+    this.onResize();}
   customers: any = [];
   public userDetails: any;
   constructor(public toaster: ToastrService, public datepipe: DatePipe, private sanitizer: DomSanitizer, public dashboardService: DashboardService,
