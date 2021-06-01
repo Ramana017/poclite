@@ -16,7 +16,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { AutoCompleteModule } from "primeng/autocomplete";
-
+import {SplitButtonModule} from 'primeng/splitbutton';
 @NgModule({
   declarations: [],
   imports: [
@@ -36,8 +36,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     InputTextModule,
     RadioButtonModule,
     ConfirmDialogModule,
-    AutoCompleteModule
-
+    AutoCompleteModule,
+    SplitButtonModule
   ],
   providers: [
   ],
@@ -57,7 +57,9 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     DropdownModule,
     OverlayPanelModule,
     InputTextModule,
-
+    SplitButtonModule,
+    AutoCompleteModule,
+    RadioButtonModule,
     ConfirmDialogModule
 
   ],
