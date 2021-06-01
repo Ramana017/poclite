@@ -13,6 +13,7 @@ public dcsList=[];
 public psAdmissionId=null;
 public psAuthorizationid=null;
   constructor(private http: HttpClient) {
+    console.log("psService Constructor")
     this.geturl();
   }
   public webserviceUrl = '';

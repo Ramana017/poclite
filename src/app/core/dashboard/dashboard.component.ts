@@ -7,6 +7,7 @@ import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { UserdetailsService } from 'src/app/services/userdetails.service';
 import { Router } from '@angular/router';
+import { PsServiceService } from './ps-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
     public apiService: ApiserviceService,
     private zipcode: PSRegistrationService,
     public userDetailService:UserdetailsService,
-    private _router:Router
+    private _router:Router,
+    private psService:PsServiceService
   ) {
     let data: any = JSON.parse(sessionStorage.getItem('useraccount'));
     this.userId = data.userId;
@@ -404,5 +406,13 @@ export class DashboardComponent implements OnInit {
 
     this._router.navigateByUrl('update/ps');
     console.log(this.psList[index])
+  }
+
+
+  ngOnDestroy() {
+    console.log('++++++++++++++++')
+    console.log("NgOndestroy in widgets managment");
+    this.psService.psAdmissionId=null;
+    this.psService.psAuthorizationid=null;
   }
 }
