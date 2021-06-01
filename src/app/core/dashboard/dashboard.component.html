@@ -1,4 +1,4 @@
-<div class="css-dashboard-wrapper" [ngClass]="psHomeDynamicClass?'wizard-dashboard':''" >
+<div class="css-dashboard-wrapper" id="widgetDashboard" >
   <!-- home-inner-wrapper -->
   <div class="home-inner-wrapper d-flex">
     <!-- Content-wrapper -->
@@ -9,10 +9,10 @@
             <div class="row m-0">
               <!-- =========================================== 1st Widget============================= -->
               <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0 left-table">
-                <app-ps-home #ps (psHomeClass)="addDynamicClass(ps.dynamicClass)" [authoriztion]="auth" [admission]="admission"></app-ps-home>
+                <app-ps-home #ps  [authoriztion]="auth" [admission]="admission"></app-ps-home>
               </div>
               <div class="right-input-container">
-                <app-ps-edit></app-ps-edit>
+                sas
               </div>
               <!-- =========================================== 2nd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad hide-content">

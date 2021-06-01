@@ -13,7 +13,6 @@ import { PsServiceService } from '../ps-service.service';
 export class PsHomeComponent implements OnInit {
   @Input()authoriztion:PsAuthorizationComponent;
   @Input()admission:PsAdmissionsComponent;
-  @Output()psHomeClass: EventEmitter<any> = new EventEmitter<any>();
 
   public psList: any = [];
 
@@ -89,16 +88,14 @@ export class PsHomeComponent implements OnInit {
 
   }
 
-  public dynamicClass=false;
   public onEdit(){
-   this.dynamicClass=true;
     console.log("hellp")
-    this.psHomeClass.emit()
+    document.getElementById('widgetDashboard').classList.add("wizard-dashboard");
+
   }
   public onMinMize(){
     this.maximize=false;
-    this.dynamicClass=false;
-    this.psHomeClass.emit()
 
+    document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
   }
 }
