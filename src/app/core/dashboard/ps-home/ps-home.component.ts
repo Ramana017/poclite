@@ -93,12 +93,14 @@ export class PsHomeComponent implements OnInit {
   public onEdit(){
    this.dynamicClass=true;
     console.log("hellp")
-    this.psHomeClass.emit()
+    this.psHomeClass.emit();
+    document.getElementById('widgetDashboard').classList.add("classname");
+
   }
   public onMinMize(){
     this.maximize=false;
     this.dynamicClass=false;
     this.psHomeClass.emit()
-
+    document.getElementById('widgetDashboard').classList.remove("ramana");
   }
 }
