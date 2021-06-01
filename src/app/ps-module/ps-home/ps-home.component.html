@@ -103,6 +103,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of psList">
+                    <td>
+                        <span class="material-icons-outlined cursor-pointer" (click)="op.toggle($event)">
+                            more_vert
+                            </span>
+                    </td>
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
@@ -111,25 +116,59 @@
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
-                    <td>{{item.id}}</td>
-
                 </tr>
             </tbody>
         </table>
     </div>
-    <div  class="pager d-flex justify-content-between"><button 
-            type="button" class="btn-create text-white mx-2 ng-star-inserted" tabindex="0"
-            ng-reflect-router-link="/registration/basic"><i 
+    <div class="pager d-flex justify-content-between"><button type="button"
+            class="btn-create text-white mx-2 ng-star-inserted" tabindex="0"><i
                 class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
-        <div  class="c"><span  class="mr-2">Per page</span><select
-                 class="border-0 mr-2 ng-untouched ng-pristine ng-valid" ng-reflect-model="20">
-                <option  value="0: 5" ng-reflect-ng-value="5">5</option>
-                <option  value="1: 10" ng-reflect-ng-value="10">10</option>
-                <option  value="2: 15" ng-reflect-ng-value="15">15</option>
-                <option  value="3: 20" ng-reflect-ng-value="20">20</option>
-            </select><span  class="mr-2">showing 1 to 20 of 21059 </span><button
-                 type="button" class="btn-common-small mx-2 psDisabled"
-                ng-reflect-ng-class="psDisabled" disabled="">Prev</button><button  type="button"
-                class="btn-common-small mx-2" ng-reflect-ng-class="">Next</button></div>
+        <div class="c"><span class="mr-2">Per page</span><select
+                class="border-0 mr-2 ng-untouched ng-pristine ng-valid">
+                <option value="0: 5">5</option>
+                <option value="1: 10">10</option>
+                <option value="2: 15">15</option>
+                <option value="3: 20">20</option>
+            </select><span class="mr-2">showing 1 to 20 of 21059 </span><button type="button"
+                class="btn-common-small mx-2 psDisabled" disabled="">Prev</button><button type="button"
+                class="btn-common-small mx-2">Next</button></div>
     </div>
 </div>
+
+<!-- Dropdown overlay  -->
+<p-overlayPanel #op>
+    <ng-template pTemplate>
+        <ul class="p-0 mb-0">
+            <li class="d-flex align-items-center cursor-pointer">
+                <span class="material-icons mr-2 f-20">
+                    book_online
+                </span>Edit Admission</li>
+            <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    content_copy
+                </span>Copy Admission</li>
+            <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+              
+                    format_list_bulleted
+              
+                </span>Authorization List</li>
+            <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    edit
+                </span>Create Authorization</li>
+                <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    refresh
+                </span>Authorization Reinstate</li>
+                <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    menu_book
+                </span>Admission Log</li>
+                <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    check_circle
+                </span>Export Success Log</li>
+                <li class="d-flex align-items-center mt-2"><span class="material-icons f-20 mr-2">
+                    error
+                </span>Export Error Log</li>
+                <li class="d-flex align-items-center mt-2 cursor-pointer"><span class="material-icons f-20 mr-2">
+                    warning_amber
+                </span>Service on Hold</li>
+        </ul>
+    </ng-template>
+</p-overlayPanel>
