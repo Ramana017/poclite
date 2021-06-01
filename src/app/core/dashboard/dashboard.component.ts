@@ -206,7 +206,7 @@ export class DashboardComponent implements OnInit {
 // for UI maximize and minimize
  public  resize() {
     $('.max-1,.max-2,.max-3,.max-4').click(function () {
-      $(this).parent().parent().parent().parent().parent().siblings().hide();
+      $(this).parent().parent().parent().parent().parent().parent().parent().siblings().hide();
       $(this)
         .parent()
         .parent()
@@ -227,9 +227,11 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
+          .parent()
           .hasClass('col-md-6')
       ) {
         $(this)
+          .parent()
           .parent()
           .parent()
           .parent()
@@ -242,12 +244,13 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
+          .parent()
           .removeClass('col-md-6');
       }
     });
 
     $('.min-1,.min-2,.min-3,.min-4').click(function () {
-      $(this).parent().parent().parent().parent().parent().siblings().show();
+      $(this).parent().parent().parent().parent().parent().parent().parent().siblings().show();
       $(this)
         .parent()
         .parent()
@@ -273,6 +276,7 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
+          .parent()
           .hasClass('col-md-12')
       ) {
         $(this)
@@ -281,8 +285,10 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .parent()
+          .parent()
           .addClass('col-md-6');
         $(this)
+          .parent()
           .parent()
           .parent()
           .parent()
