@@ -11,13 +11,13 @@ import { PsServiceService } from '../ps-service.service';
 export class PsAuthorizationComponent implements OnInit {
 
   public authorizationList: any = [];
-  public widgetArray: Array<boolean> = [false, false, false, false];
   public authorizationLowerBound = 1;
   public authorizationUpperBound: number = 20;
   public authorizationPerPage: number = 20;
   public authorizationtotalRecordsCount: number;
-  public psId=null;
+  // public psId=null;
   public userId:number;
+  public maxmize:boolean=false;
 
 
   constructor( public psService: PsServiceService,
@@ -31,7 +31,7 @@ export class PsAuthorizationComponent implements OnInit {
   public  getAuthorizationList() {
     const userData = {
       userId: this.userId,
-      psId: this.psId==null?0:this.psId,
+      psId: this.psService.psAuthorizationid==null?0:this.psService.psAuthorizationid,
       lowerBound: this.authorizationLowerBound,
       upperBound: this.authorizationUpperBound,
     };
@@ -61,6 +61,7 @@ export class PsAuthorizationComponent implements OnInit {
     this.getAuthorizationList();
   }
   public authorizationpagereset(): void {
+    console.log("Page Reset called")
     this.authorizationLowerBound = 1;
     this.authorizationUpperBound = this.authorizationPerPage;
     this.getAuthorizationList();

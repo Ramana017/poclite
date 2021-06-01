@@ -17,8 +17,8 @@
         optionValue="dcsId">
       </p-dropdown>
       <div class="ico">
-        <i class="fas fa-compress-alt min-1 px-2" ></i>
-        <i class="fas fa-expand max-1 px-2" ></i>
+        <i class="fas fa-compress-alt min-1 px-2"(click)="maximize=false" ></i>
+        <i class="fas fa-expand max-1 px-2"(click)="maximize=true" ></i>
       </div>
          </div>
   </div>
@@ -33,11 +33,11 @@
             <th class="align-middle">DCS Name</th>
             <th class="align-middle">Home Site</th>
             <th class="align-middle">Emp Code</th>
-            <th *ngIf="widgetArray[3]" class="align-middle">SSN</th>
-            <th *ngIf="widgetArray[3]" class="align-middle">City </th>
-            <th *ngIf="widgetArray[3]" class="align-middle">State</th>
-            <th *ngIf="widgetArray[3]" class="align-middle">Zip Code</th>
-            <th *ngIf="widgetArray[3]" class="align-middle">Phone</th>
+            <th *ngIf="maximize" class="align-middle">SSN</th>
+            <th *ngIf="maximize" class="align-middle">City </th>
+            <th *ngIf="maximize" class="align-middle">State</th>
+            <th *ngIf="maximize" class="align-middle">Zip Code</th>
+            <th *ngIf="maximize" class="align-middle">Phone</th>
 
           </tr>
         </thead>
@@ -48,11 +48,11 @@
             <td>{{dcs.dcsName}}</td>
             <td>{{dcs.homeSite}}</td>
             <td>{{dcs.empCode}}</td>
-            <td *ngIf="widgetArray[3]">{{dcs.ssn}}</td>
-            <td *ngIf="widgetArray[3]">{{dcs.city}}</td>
-            <td *ngIf="widgetArray[3]">{{dcs.state}}</td>
-            <td *ngIf="widgetArray[3]">{{dcs.zipCode}}</td>
-            <td *ngIf="widgetArray[3]">{{dcs.phone}}</td>
+            <td *ngIf="maximize">{{dcs.ssn}}</td>
+            <td *ngIf="maximize">{{dcs.city}}</td>
+            <td *ngIf="maximize">{{dcs.state}}</td>
+            <td *ngIf="maximize">{{dcs.zipCode}}</td>
+            <td *ngIf="maximize">{{dcs.phone}}</td>
 
             <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
           </tr>

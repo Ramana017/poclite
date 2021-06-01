@@ -86,6 +86,7 @@ import { PsHomeComponent } from './core/dashboard/ps-home/ps-home.component';
 import { PsAdmissionsComponent } from './core/dashboard/ps-admissions/ps-admissions.component';
 import { PsAuthorizationComponent } from './core/dashboard/ps-authorization/ps-authorization.component';
 import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
+import { PsServiceService } from './core/dashboard/ps-service.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -171,7 +172,7 @@ import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 
 
   ],
-  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService
+  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService,PsServiceService
     , {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

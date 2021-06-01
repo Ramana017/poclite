@@ -79,12 +79,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.resize();
-    this.getPsList();
-    this.getAdmissionsList();
-    this.getAuthorizationList();
-    this.getDcsList();
-    this.getPsListFilter();
-    this.getDcsListFilter();
+    // this.getPsList();
+    // this.getAdmissionsList();
+    // this.getAuthorizationList();
+    // this.getDcsList();
+    // this.getPsListFilter();
+    // this.getDcsListFilter();
 
   }
 

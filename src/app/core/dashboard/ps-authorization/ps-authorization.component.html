@@ -12,13 +12,13 @@
                       <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
                         <a [innerHTML]="item.PSName"></a>
                       </ng-template>-->
-      <p-dropdown [(ngModel)]="psId" (ngModelChange)="authorizationpagereset()" [options]="psService.PsList" [virtualScroll]="true"
+      <p-dropdown [(ngModel)]="psService.psAuthorizationid" (ngModelChange)="authorizationpagereset()" [options]="psService.PsList" [virtualScroll]="true"
         [itemSize]="20" appendTo="body" [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName"
         optionLabel="PSName" optionValue="PSId">
       </p-dropdown>
       <div class="ico">
-        <i class="fas fa-compress-alt min-1 px-2"></i>
-        <i class="fas fa-expand max-1 px-2"></i>
+        <i class="fas fa-compress-alt min-1 px-2" (click)="maxmize=false"></i>
+        <i class="fas fa-expand max-1 px-2"(click)="maxmize=true"></i>
       </div>
     </div>
   </div>
@@ -37,9 +37,9 @@
             <th class="align-middle">Procedure Code</th>
             <th class="align-middle">Total Units</th>
             <!-- <th class="align-middle">Consumed DP</th> -->
-            <th *ngIf="widgetArray[2]" class="align-middle">Site Code</th>
-            <th *ngIf="widgetArray[2]" class="align-middle">Begin Date</th>
-            <th *ngIf="widgetArray[2]" class="align-middle">End Date</th>
+            <th *ngIf="maxmize" class="align-middle">Site Code</th>
+            <th *ngIf="maxmize" class="align-middle">Begin Date</th>
+            <th *ngIf="maxmize" class="align-middle">End Date</th>
 
           </tr>
         </thead>
@@ -50,9 +50,9 @@
             <td>{{auth.authorizationNumber}}</td>
             <td>{{auth.procedureCode}}</td>
             <td>{{auth.totalUnits}}</td>
-            <td *ngIf="widgetArray[2]">{{auth.siteCode}}</td>
-            <td *ngIf="widgetArray[2]">{{auth.beginDate}}</td>
-            <td *ngIf="widgetArray[2]">{{auth.endDate}}</td>
+            <td *ngIf="maxmize">{{auth.siteCode}}</td>
+            <td *ngIf="maxmize">{{auth.beginDate}}</td>
+            <td *ngIf="maxmize">{{auth.endDate}}</td>
 
             <!-- <td>{{auth.consumedUnits}}</td> -->
           </tr>

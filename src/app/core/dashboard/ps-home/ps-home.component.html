@@ -14,8 +14,8 @@
         optionValue="PSId">
       </p-dropdown>
       <div class="ico">
-        <i class="fas fa-compress-alt min-1 px-2" (click)="widgetReSize(false,'ps')"></i>
-        <i class="fas fa-expand max-1 px-2" (click)="widgetReSize(true,'ps')"></i>
+        <i class="fas fa-compress-alt min-1 px-2" (click)="maximize=false"></i>
+        <i class="fas fa-expand max-1 px-2" (click)="maximize=true"></i>
       </div>
     </div>
   </div>
@@ -29,11 +29,11 @@
             <th class="align-middle">PS Name</th>
             <th class="align-middle">Home Site</th>
             <th class="align-middle">MRN</th>
-            <th *ngIf="widgetArray[0]" class="align-middle">SSN</th>
-            <th *ngIf="widgetArray[0]" class="align-middle">City</th>
-            <th *ngIf="widgetArray[0]" class="align-middle">State</th>
-            <th *ngIf="widgetArray[0]" class="align-middle">Zip code</th>
-            <th *ngIf="widgetArray[0]" class="align-middle">Phone</th>
+            <th *ngIf="maximize" class="align-middle">SSN</th>
+            <th *ngIf="maximize" class="align-middle">City</th>
+            <th *ngIf="maximize" class="align-middle">State</th>
+            <th *ngIf="maximize" class="align-middle">Zip code</th>
+            <th *ngIf="maximize" class="align-middle">Phone</th>
           </tr>
         </thead>
 
@@ -56,12 +56,12 @@
                           </a>
                         </span>
                       </p> -->
-                    <p class="blue-bg facebook mr-2" title="Admission">
+                    <p (click)="psService.psAdmissionId=ps.PSId" class="blue-bg facebook mr-2" title="Admission">
                       <span>
                         <a class="text-white" title="Admissions"></a>
                       </span>
                     </p>
-                    <p class="blue-bg googleplus mr-2" title="Authorizations">
+                    <p (click)="psService.psAuthorizationid=ps.PSId" class="blue-bg googleplus mr-2" title="Authorizations">
                       <span>
                         <a class="text-white" title="Authorizations">
 
@@ -75,11 +75,11 @@
             <td>{{ps.PSName}}</td>
             <td>{{ps.homeSite}}</td>
             <td>{{ps.mrn}}</td>
-            <td *ngIf="widgetArray[0]">{{ps.ssn}}</td>
-            <td *ngIf="widgetArray[0]">{{ps.city}}</td>
-            <td *ngIf="widgetArray[0]">{{ps.state}}</td>
-            <td *ngIf="widgetArray[0]">{{ps.zipCode}}</td>
-            <td *ngIf="widgetArray[0]">{{ps.phone}}</td>
+            <td *ngIf="maximize">{{ps.ssn}}</td>
+            <td *ngIf="maximize">{{ps.city}}</td>
+            <td *ngIf="maximize">{{ps.state}}</td>
+            <td *ngIf="maximize">{{ps.zipCode}}</td>
+            <td *ngIf="maximize">{{ps.phone}}</td>
             <!-- <td>{{x.name}}</td>
               <td>{{x.name}}</td>
               <td>{{x.name}}</td> -->

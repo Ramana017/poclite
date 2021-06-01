@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PsAuthorizationComponent } from '../ps-authorization/ps-authorization.component';
 import { PsServiceService } from '../ps-service.service';
 
 @Component({
@@ -7,15 +8,17 @@ import { PsServiceService } from '../ps-service.service';
   styleUrls: ['./ps-admissions.component.sass']
 })
 export class PsAdmissionsComponent implements OnInit {
+  @ViewChild(PsAuthorizationComponent) authorizationComponent: PsAuthorizationComponent;
+
   public psListArray: Array<any>;
-  public widgetArray: Array<boolean> = [false, false, false, false];
   public admissionsList: any = [];
   private userId: number;
   public admissionLowerBound: number = 1;
   public admissionUpperBound: number = 20;
   public admissionPerPage: number = 20;
-  public admissionId: number = null;
+  // public admissionId: number = null;
   public admissiontotalRecordsCount: number;
+  public maxmize:boolean=false;
 
 
   constructor(public psService: PsServiceService) {
@@ -29,7 +32,7 @@ export class PsAdmissionsComponent implements OnInit {
   }
   public getAdmissionsList() {
     let params = {
-      userId: this.userId,psId: this.admissionId==null?0:this.admissionId,lowerBound: this.admissionLowerBound,upperBound: this.admissionUpperBound,
+      userId: this.userId,psId: this.psService.psAdmissionId==null?0:this.psService.psAdmissionId,lowerBound: this.admissionLowerBound,upperBound: this.admissionUpperBound,
     };
     this.psService
       .getAdmissionsList(JSON.stringify(params))
@@ -59,6 +62,12 @@ export class PsAdmissionsComponent implements OnInit {
     this.admissionLowerBound = 1;
     this.admissionUpperBound = this.admissionPerPage;
     this.getAdmissionsList();
+  }
+
+  public onAuthorization(psId){
+    this.psService.psAuthorizationid=psId;
+    this.authorizationComponent?.authorizationpagereset();
+
   }
 
 }

@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 export class PsServiceService {
 public PsList=[];
 public dcsList=[];
+public psAdmissionId=null;
+public psAuthorizationid=null;
   constructor(private http: HttpClient) {
     this.geturl();
   }

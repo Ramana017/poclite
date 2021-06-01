@@ -21,7 +21,7 @@ export class PsHomeComponent implements OnInit {
   public pstotalRecordsCount: number = 0;
   private userId: number;
   public psId = null;
-  public widgetArray: Array<boolean> = [false, false, false, false];
+  public maximize:boolean=false;
   public psListArray: Array<any>;
 
 
@@ -76,27 +76,5 @@ export class PsHomeComponent implements OnInit {
     this.psUpperBound = this.psPerPage;
     this.getPsList();
   }
- // minimize and maximize screens
- public widgetReSize(flag, widgetName) {
-  if (widgetName == 'ps') {
-    flag
-      ? (this.widgetArray = [true, false, false, false])
-      : (this.widgetArray = [false, false, false, false]);
-  }
-  if (widgetName == 'admissions') {
-    flag
-      ? (this.widgetArray = [false, true, false, false])
-      : (this.widgetArray = [false, false, false, false]);
-  }
-  if (widgetName == 'authorization') {
-    flag
-      ? (this.widgetArray = [false, false, true, false])
-      : (this.widgetArray = [false, false, false, false]);
-  }
-  if (widgetName == 'dcs') {
-    flag
-      ? (this.widgetArray = [false, false, false, true])
-      : (this.widgetArray = [false, false, false, false]);
-  }
-}
+
 }

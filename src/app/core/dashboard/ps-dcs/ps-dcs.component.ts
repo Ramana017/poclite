@@ -15,7 +15,7 @@ export class PsDcsComponent implements OnInit {
   public userId:number;
   public dcsId:number=null;
   public dcsList: any = [];
-  public widgetArray: Array<boolean> = [false, false, false, false];
+  public maximize:boolean=false;
 
 
 

@@ -12,13 +12,13 @@
       <ng-template style="width: 100%;" #itemTemplateps let-item>
         <a [innerHTML]="item.PSName"></a>
       </ng-template> -->
-      <p-dropdown [(ngModel)]="admissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20" appendTo="body"
+      <p-dropdown [(ngModel)]="psService.psAdmissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20" appendTo="body"
       [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName"
       optionValue="PSId">
     </p-dropdown>
        <div class="ico">
-        <i class="fas fa-compress-alt min-1 px-2" ></i>
-        <i class="fas fa-expand max-1 px-2"></i>
+        <i class="fas fa-compress-alt min-1 px-2"(click)="maxmize=false" ></i>
+        <i class="fas fa-expand max-1 px-2"(click)="maxmize=true"></i>
       </div>
        </div>
   </div>
@@ -32,11 +32,11 @@
             <th class="align-middle">PS Name</th>
             <th class="align-middle">Account#</th>
             <th class="align-middle">Admission Date</th>
-            <th *ngIf="widgetArray[1]" class="align-middle">Site Code</th>
-            <th *ngIf="widgetArray[1]" class="align-middle">First Visit Date</th>
-            <th *ngIf="widgetArray[1]" class="align-middle">Case Manager</th>
-            <th *ngIf="widgetArray[1]" class="align-middle">Coordinator</th>
-            <th *ngIf="widgetArray[1]" class="align-middle">PS Discharge Date</th>
+            <th *ngIf="maxmize" class="align-middle">Site Code</th>
+            <th *ngIf="maxmize" class="align-middle">First Visit Date</th>
+            <th *ngIf="maxmize" class="align-middle">Case Manager</th>
+            <th *ngIf="maxmize" class="align-middle">Coordinator</th>
+            <th *ngIf="maxmize" class="align-middle">PS Discharge Date</th>
 
           </tr>
         </thead>
@@ -52,7 +52,7 @@
                   </div>
                   <div class="slider d-flex align-items-center">
 
-                    <p class="blue-bg googleplus">
+                    <p (click)="onAuthorization(admission.PSId)" class="blue-bg googleplus">
                       <span>
                         <a class="text-white"
                           title="Authorizations">
@@ -67,11 +67,11 @@
             <td>{{admission.PSName}}</td>
             <td>{{admission.accountNumber==0?'':admission.accountNumber}}</td>
             <td>{{admission.admissionDate}}</td>
-            <td *ngIf="widgetArray[1]">{{admission.siteCode}}</td>
-            <td *ngIf="widgetArray[1]">{{admission.firstVisitDate}}</td>
-            <td *ngIf="widgetArray[1]">{{admission.caseManager}}</td>
-            <td *ngIf="widgetArray[1]">{{admission.coordinator}}</td>
-            <td *ngIf="widgetArray[1]">{{admission.psDischargeDate}}</td>
+            <td *ngIf="maxmize">{{admission.siteCode}}</td>
+            <td *ngIf="maxmize">{{admission.firstVisitDate}}</td>
+            <td *ngIf="maxmize">{{admission.caseManager}}</td>
+            <td *ngIf="maxmize">{{admission.coordinator}}</td>
+            <td *ngIf="maxmize">{{admission.psDischargeDate}}</td>
 
           </tr>
         </tbody>
