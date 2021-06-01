@@ -110,7 +110,7 @@ public parentChild(){
 
   public closeModel() {
     this.bsmodelRef.hide();
-    //  this._apiService.updateTable.next(true);
+     this._apiService.updateTable.next(true);
   }
 
 }

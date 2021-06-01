@@ -1,6 +1,7 @@
 import { DatePipe, JsonPipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs';
 import { CorrectionheaderComponent } from 'src/app/corrections/correctionheader/correctionheader.component';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ declare var $: any;
   templateUrl: './visit-review.component.html',
   styleUrls: ['./visit-review.component.sass']
 })
-export class VisitReviewComponent implements OnInit {
+export class VisitReviewComponent implements OnInit,AfterViewInit {
   @ViewChild('autoservice') autoservice;
   @ViewChild('autocss') itemTemplatecss;
   @ViewChild('autodcs') itemTemplatedcs;
@@ -61,6 +62,8 @@ export class VisitReviewComponent implements OnInit {
   public progressmodel: boolean = false;
   public navbuttons:Array<boolean>=[true,false,false,false];
   public progressbtn:Array<boolean>=[true,false];
+  private cancelSubscription: Subscription;
+
 
   constructor(public apiservice: ApiserviceService, public modalService: BsModalService, public datepipe: DatePipe) {
     var data = JSON.parse(sessionStorage.getItem("useraccount"));
@@ -97,6 +100,20 @@ export class VisitReviewComponent implements OnInit {
   ngOnInit(): void {
     this.getFilterData();
     this.getVisitReviewList();
+  }
+  public ngAfterViewInit(): void {
+
+    this.cancelSubscription = this.apiservice.updateTable$.subscribe(
+      isupdated => {
+        console.log("update observable call", isupdated)
+        isupdated ? this.getVisitReviewList() : null;
+
+      })
+  }
+  ngOnDestroy() {
+    console.log("ng on destroy")
+    this.cancelSubscription.unsubscribe();
+    localStorage.removeItem('userlist');
   }
   public getVisitReviewList() {
     let obj = { "userId": this.userId, "officeIds": this.officelist.length > 0 ? this.officelist.map(x => x.siteId) : [], "psId": this.psId, "dcsId": this.dcsId, "cssId": this.cssId, "payorPlanId": this.payorPlanId, "serviceId": this.serviceId, "scheBeginDate": this.datepipe.transform(this.scheBeginDate, 'MM/dd/yyyy'), "scheEndDate": this.datepipe.transform(this.scheEndDate, 'MM/dd/yyyy'), "noPSSignatureFlag": this.noPSSignatureFlag ? 1 : 0, "noDCSSignatureFlag": this.noDCSSignatureFlag ? 1 : 0, "noTaskFlag": this.noTaskFlag ? 1 : 0, "noProgressNotesFlag": this.noProgressNotesFlag ? 1 : 0, "lowerBound": this.lowerBound, "upperBound": this.upperBound }
@@ -364,10 +381,7 @@ export class VisitReviewComponent implements OnInit {
   }
 
 
-  ngOnDestroy(){
-    console.log('++++++++++++++++')
-    console.log("NgOndestroy in visitreview")
-  }
+
 }
 interface visitReviewList {
   visitDetailsId: number,
