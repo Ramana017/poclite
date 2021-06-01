@@ -3,13 +3,28 @@
     <!-- filter -->
     <div class="nav">
         <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="p-field ">
+            <!-- <div class="p-field ">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
                     <label for="inputtext">Last Name:</label>
                 </span>
+            </div> -->
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="Last Name" class="form-control">
             </div>
-            <div class="p-field ">
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="First Name" class="form-control">
+            </div>
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="SSN" class="form-control">
+            </div>
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="MRN" class="form-control">
+            </div>
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="City" class="form-control">
+            </div>
+            <!-- <div class="p-field ">
                 <span class="p-float-label">
                     <input type="text" id="inputtext" pInputText>
                     <label for="inputtext">First Name:</label>
@@ -32,47 +47,42 @@
                     <input type="text" id="inputtext" pInputText>
                     <label for="inputtext">City:</label>
                 </span>
-            </div>
+            </div> -->
         </div>
         <div class="d-flex align-items-center justify-content-between w-100">
-        <div class="p-field ">
-            <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText>
-                <label for="inputtext">State:</label>
-            </span>
-        </div>
-        <div class="p-field ">
-            <span class="p-float-label">
-                <input type="text" id="inputtext" pInputText>
-                <label for="inputtext">Zip:</label>
-            </span>
-        </div>
-        <div class="d-flex">
-            <h5 class="mb-0">Scope:</h5>
-            <div class="p-field-radiobutton d-flex align-items-center">
-                <!-- <p-radioButton name="city" value="Chicago" inputId="city1"></p-radioButton> -->
-                <p class="mb-0 ml-2 mr-2" for="city1">This Site</p>
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="State" class="form-control">
             </div>
-            <div class="p-field-radiobutton d-flex align-items-center">
-                <!-- <p-radioButton name="city" value="Chicago" inputId="city2"></p-radioButton> -->
-                <p class="mb-0 ml-2 mr-2" for="city2">All Sites</p>
+            <div class="form-group input-group mr-2">
+                <input type="text" placeholder="Zip" class="form-control">
             </div>
-        </div>
-        <div class="d-flex">
-            <h5 class="mb-0">PS Status:</h5>
-            <div class="p-field-radiobutton  d-flex align-items-center">
-                <!-- <p-radioButton name="city" value="Chicago" inputId="city3"></p-radioButton> -->
-                <p class="mb-0 ml-2 mr-2" for="city3">Active</p>
+            <div class="d-flex input-group">
+                <h5 class="mb-0">Scope:</h5>
+                <div class="p-field-radiobutton d-flex align-items-center">
+                    <!-- <p-radioButton name="city" value="Chicago" inputId="city1"></p-radioButton> -->
+                    <p class="mb-0 ml-2 mr-2" for="city1">This Site</p>
+                </div>
+                <div class="p-field-radiobutton d-flex align-items-center">
+                    <!-- <p-radioButton name="city" value="Chicago" inputId="city2"></p-radioButton> -->
+                    <p class="mb-0 ml-2 mr-2" for="city2">All Sites</p>
+                </div>
             </div>
-            <div class="p-field-radiobutton  d-flex align-items-center">
-                <!-- <p-radioButton name="city" value="Chicago" inputId="city4"></p-radioButton> -->
-                <p class="mb-0 ml-2 mr-2" for="city4">In Active</p>
+            <div class="d-flex input-group">
+                <h5 class="mb-0">PS Status:</h5>
+                <div class="p-field-radiobutton  d-flex align-items-center">
+                    <!-- <p-radioButton name="city" value="Chicago" inputId="city3"></p-radioButton> -->
+                    <p class="mb-0 ml-2 mr-2" for="city3">Active</p>
+                </div>
+                <div class="p-field-radiobutton  d-flex align-items-center">
+                    <!-- <p-radioButton name="city" value="Chicago" inputId="city4"></p-radioButton> -->
+                    <p class="mb-0 ml-2 mr-2" for="city4">In Active</p>
+                </div>
+                <div class="p-field-radiobutton  d-flex align-items-center">
+                    <!-- <p-radioButton name="city" value="Chicago" inputId="city5"></p-radioButton> -->
+                    <p class="mb-0 ml-2 mr-2" for="city5">All</p>
+                </div>
             </div>
-            <div class="p-field-radiobutton  d-flex align-items-center">
-                <!-- <p-radioButton name="city" value="Chicago" inputId="city5"></p-radioButton> -->
-                <p class="mb-0 ml-2 mr-2" for="city5">All</p>
-            </div>
-        </div>
+            <div class="input-group"></div>
         </div>
     </div>
     <!-- table  -->
@@ -102,9 +112,24 @@
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
                     <td>{{item.id}}</td>
-                    
+
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div  class="pager d-flex justify-content-between"><button 
+            type="button" class="btn-create text-white mx-2 ng-star-inserted" tabindex="0"
+            ng-reflect-router-link="/registration/basic"><i 
+                class="fas fa-plus-circle mr-2 mt-0"></i>Create</button>
+        <div  class="c"><span  class="mr-2">Per page</span><select
+                 class="border-0 mr-2 ng-untouched ng-pristine ng-valid" ng-reflect-model="20">
+                <option  value="0: 5" ng-reflect-ng-value="5">5</option>
+                <option  value="1: 10" ng-reflect-ng-value="10">10</option>
+                <option  value="2: 15" ng-reflect-ng-value="15">15</option>
+                <option  value="3: 20" ng-reflect-ng-value="20">20</option>
+            </select><span  class="mr-2">showing 1 to 20 of 21059 </span><button
+                 type="button" class="btn-common-small mx-2 psDisabled"
+                ng-reflect-ng-class="psDisabled" disabled="">Prev</button><button  type="button"
+                class="btn-common-small mx-2" ng-reflect-ng-class="">Next</button></div>
     </div>
 </div>
