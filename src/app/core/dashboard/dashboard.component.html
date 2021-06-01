@@ -7,69 +7,28 @@
         <div class="d-flex">
           <div class="cards-content w-100">
             <div class="row m-0">
+              <!-- =========================================== 1st Widget============================= -->
               <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
-                <app-ps-home [authoriztion]="auth" [admission]="admission" ></app-ps-home>
+                <app-ps-home [authoriztion]="auth" [admission]="admission"></app-ps-home>
               </div>
               <!-- =========================================== 2nd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-               <app-ps-admissions #admission [authoriztion]="auth"></app-ps-admissions>
+                <app-ps-admissions #admission [authoriztion]="auth"></app-ps-admissions>
               </div>
             </div>
             <div class="row m-0">
+              <!-- =========================================== 3rd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                 <app-ps-authorization #auth></app-ps-authorization>
               </div>
+              <!-- =========================================== 4rd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
-                  <app-ps-dcs></app-ps-dcs>
-                <!-- ============ -->
-              </div>
+                <app-ps-dcs></app-ps-dcs>
+               </div>
             </div>
           </div>
         </div>
-        <!-- <section class="scrolling-alerts mt-1 pb-4">
-          <h5 class="text-center py-2 scrolling-alerts-title">Alerts List</h5>
-          <div class="d-flex justify-content-between align-items-center py-2">
-            <marquee>
-              <h6>
-                {{scrollData}}
-              </h6>
-            </marquee>
-          </div>
-        </section> -->
       </div>
-      <!-- <div class="mr-0 mt-0 mb-2 cms-widget">
-        <div class="">
-          <div class="cms-header px-2">
-            <h5 class="text-white"><a href="javasript:void(0)">Call Management</a></h5>
-          </div>
-          <div class="cms-widget-content">
-            <li>
-              <div id="gpsGuage1"></div>
-              <p class="m-0 "><a href="javasript:void(0)">GPS Discrepancy</a></p>
-            </li>
-            <li>
-              <div id="gpsGuage2"></div>
-              <p class="m-0"><a href="javasript:void(0)">Invalid Caller ID</a></p>
-            </li>
-            <li>
-              <div id="gpsGuage3"></div>
-              <p class="m-0 "> <a href="javasript:void(0)">Scheduled Variance</a></p>
-            </li>
-            <li>
-              <div id="gpsGuage4"></div>
-              <p class="m-0 "><a href="javasript:void(0)">Missed Clock In/Out</a></p>
-            </li>
-            <li>
-              <div id="gpsGuage5"></div>
-              <p class="m-0 "><a href="javasript:void(0)">Excessive TT</a> </p>
-            </li>
-            <li>
-              <div id="gpsGuage6"></div>
-              <p class="m-0 "><a href="javasript:void(0)">Excessive Mileage</a></p>
-            </li>
-          </div>
-        </div>
-      </div> -->
     </section>
   </div>
 </div>
