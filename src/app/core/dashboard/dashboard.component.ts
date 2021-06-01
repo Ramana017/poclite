@@ -8,7 +8,6 @@ import { PsServiceService } from './ps-service.service';
 })
 export class DashboardComponent implements OnInit {
 
-  public psHomeDynamicClass: boolean = false;
   constructor(private psService: PsServiceService) {
     this.psService.geturl()
 
@@ -128,8 +127,5 @@ export class DashboardComponent implements OnInit {
     this.psService.psAdmissionId = null;
     this.psService.psAuthorizationid = null;
   }
-  addDynamicClass(value?) {
-    console.log("++++++++",value);
-    this.psHomeDynamicClass=value;
-  }
+
 }
