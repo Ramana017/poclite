@@ -361,6 +361,20 @@ https://fortawesome.github.io/Font-Awesome/
                 //   box-shadow: inset 0 0 0 2px $googleplus;
             }
         }
+        .edit{
+            a:before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f304";
+                display: inline-block;
+                // padding-right: 3px;
+                vertical-align: middle;
+                font-weight: 900;
+                color: $white;
+            }
+            a:hover:before {
+                //   box-shadow: inset 0 0 0 2px $googleplus;
+            }
+        }
         // }
         // // =============================================
         // // Open Network List

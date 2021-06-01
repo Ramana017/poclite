@@ -205,6 +205,9 @@ export class DashboardComponent implements OnInit {
   }
 // for UI maximize and minimize
  public  resize() {
+   $('.edit').click(function(){
+    $('.css-dashboard-wrapper').addClass("abcd");
+   });
     $('.max-1,.max-2,.max-3,.max-4').click(function () {
       $(this).parent().parent().parent().parent().parent().parent().parent().siblings().hide();
       $(this)
