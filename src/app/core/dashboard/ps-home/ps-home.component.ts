@@ -1,8 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
-import { DashboardService } from 'src/app/services/dashboard.service';
-import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { UserdetailsService } from 'src/app/services/userdetails.service';
 import { PsAdmissionsComponent } from '../ps-admissions/ps-admissions.component';
 import { PsAuthorizationComponent } from '../ps-authorization/ps-authorization.component';
@@ -16,6 +13,7 @@ import { PsServiceService } from '../ps-service.service';
 export class PsHomeComponent implements OnInit {
   @Input()authoriztion:PsAuthorizationComponent;
   @Input()admission:PsAdmissionsComponent;
+  @Output()psHomeClass: EventEmitter<any> = new EventEmitter<any>();
 
   public psList: any = [];
 
@@ -88,6 +86,19 @@ export class PsHomeComponent implements OnInit {
   public onAdmission(psId){
     this.psService.psAdmissionId=psId;
     this.admission.admissionpagereset()
+
+  }
+
+  public dynamicClass=false;
+  public onEdit(){
+   this.dynamicClass=true;
+    console.log("hellp")
+    this.psHomeClass.emit()
+  }
+  public onMinMize(){
+    this.maximize=false;
+    this.dynamicClass=false;
+    this.psHomeClass.emit()
 
   }
 }

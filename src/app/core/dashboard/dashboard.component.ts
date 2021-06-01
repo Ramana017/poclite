@@ -7,6 +7,8 @@ import { PsServiceService } from './ps-service.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+
+  public psHomeDynamicClass: boolean = true;
   constructor(private psService: PsServiceService) {
     this.psService.geturl()
 
@@ -125,5 +127,9 @@ export class DashboardComponent implements OnInit {
     console.log("NgOndestroy in widgets managment");
     this.psService.psAdmissionId = null;
     this.psService.psAuthorizationid = null;
+  }
+  addDynamicClass(value?) {
+    console.log("++++++++",value);
+    this.psHomeDynamicClass=value;
   }
 }

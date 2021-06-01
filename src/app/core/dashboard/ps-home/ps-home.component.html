@@ -14,7 +14,7 @@
         optionValue="PSId">
       </p-dropdown>
       <div class="ico">
-        <i class="fas fa-compress-alt min-1 px-2" (click)="maximize=false"></i>
+        <i class="fas fa-compress-alt min-1 px-2" (click)="onMinMize()"></i>
         <i class="fas fa-expand max-1 px-2" (click)="maximize=true"></i>
       </div>
     </div>
@@ -68,7 +68,7 @@
                         </a>
                       </span>
                     </p>
-                    <p  class="blue-bg edit mr-2" title="Authorizations">
+                    <p (click)="onEdit()"  class="blue-bg edit mr-2" title="Authorizations">
                       <span>
                         <a class="text-white" title="Edit PS">
 
