@@ -1,0 +1,94 @@
+<div class="widget-block">
+  <div class="widget-header row align-items-center lightblue-bg m-0">
+    <div class="col-md-4"></div>
+    <h5 class="text-white m-0 text-center col-md-3">Authorizations</h5>
+    <div class="col-md-5 d-flex justify-content-end align-items-center">
+      <!-- <ng-autocomplete class="w-150" [data]="psListArray" [(ngModel)]="AuthorizationsFill"
+                        [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS "
+                        (inputCleared)="selectAuthorizationByPsId('',false)"
+                        (selected)='selectAuthorizationByPsId($event,true)' [itemTemplate]="AuthorizationByPsId">
+                      </ng-autocomplete>
+
+                      <ng-template style="width: 100%;" #AuthorizationByPsId let-item>
+                        <a [innerHTML]="item.PSName"></a>
+                      </ng-template>-->
+      <p-dropdown [(ngModel)]="psId" (ngModelChange)="authorizationpagereset()" [options]="psService.PsList" [virtualScroll]="true"
+        [itemSize]="31" [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName"
+        optionLabel="PSName" optionValue="PSId">
+      </p-dropdown>
+      <div class="ico">
+        <i class="fas fa-compress-alt min-1 px-2"></i>
+        <i class="fas fa-expand max-1 px-2"></i>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="widget-inner p-2">
+    <div class="table-responsive">
+      <table class="table position-relative">
+        <thead class="thead-light no-wrap">
+          <tr>
+            <th></th>
+            <th class="align-middle">PS Name</th>
+            <th class="align-middle">Auth#</th>
+            <th class="align-middle">Procedure Code</th>
+            <th class="align-middle">Total Units</th>
+            <!-- <th class="align-middle">Consumed DP</th> -->
+            <th *ngIf="widgetArray[2]" class="align-middle">Site Code</th>
+            <th *ngIf="widgetArray[2]" class="align-middle">Begin Date</th>
+            <th *ngIf="widgetArray[2]" class="align-middle">End Date</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let auth of authorizationList'>
+            <td></td>
+            <td>{{auth.PSName}}</td>
+            <td>{{auth.authorizationNumber}}</td>
+            <td>{{auth.procedureCode}}</td>
+            <td>{{auth.totalUnits}}</td>
+            <td *ngIf="widgetArray[2]">{{auth.siteCode}}</td>
+            <td *ngIf="widgetArray[2]">{{auth.beginDate}}</td>
+            <td *ngIf="widgetArray[2]">{{auth.endDate}}</td>
+
+            <!-- <td>{{auth.consumedUnits}}</td> -->
+          </tr>
+        </tbody>
+
+      </table>
+      <div class="text-center no-data-text" *ngIf="authorizationtotalRecordsCount==0"> No Data To
+        Display </div>
+
+    </div>
+    <div class="pager mt-2 d-flex justify-content-between">
+      <div>
+        <!-- <button></button> -->
+      </div>
+      <div class="nav">
+        <span class="mr-2">Per page</span>
+        <select (change)="authorizationpagereset()" [(ngModel)]="this.authorizationPerPage" class="border-0 mr-2">
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="15">15</option>
+          <option [ngValue]="20">20</option>
+        </select>
+        <span class="mr-2">showing
+          {{authorizationtotalRecordsCount!=0 ? authorizationLowerBound:'0'}} to
+          {{authorizationUpperBound>=authorizationtotalRecordsCount?authorizationtotalRecordsCount:authorizationUpperBound}}
+          of {{authorizationtotalRecordsCount}} </span>
+
+
+        <button type="button" class="btn-common-small mx-2" [ngClass]=" authorizationLowerBound==1?'psDisabled' :'' "
+          [disabled]='authorizationLowerBound==1' (click)="this.authorizationPagePrev()">Prev</button>
+        <button type="button" class="btn-common-small mx-2"
+          [ngClass]=" authorizationUpperBound>=authorizationtotalRecordsCount?'psDisabled' :'' "
+          [disabled]="authorizationUpperBound>=authorizationtotalRecordsCount"
+          (click)="this.authorizationPageNext()">Next</button>
+      </div>
+
+    </div>
+  </div>
+</div>

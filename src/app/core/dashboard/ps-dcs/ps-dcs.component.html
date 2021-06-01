@@ -1,0 +1,95 @@
+<div class="widget-block">
+
+  <div class="widget-header row align-items-center green-bg m-0">
+    <div class="col-md-4"></div>
+    <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
+    <div class="col-md-5 d-flex justify-content-end align-items-center">
+      <!-- <ng-autocomplete class="w-150" [data]="dcsListArray" [searchKeyword]="dcskeyword" #autodcs
+        placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)"
+        (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
+      </ng-autocomplete>
+
+      <ng-template style="width: 100%;" #itemTemplateDcs let-item>
+        <a [innerHTML]="item.dcsName"></a>
+      </ng-template> -->
+      <p-dropdown [(ngModel)]="dcsId" (ngModelChange)="dcspagereset()" [options]="psService.dcsList" [virtualScroll]="true" [itemSize]="31"
+        [showClear]="true" placeholder="Search DCS" [filter]="true" filterBy="dcsName" optionLabel="dcsName"
+        optionValue="dcsId">
+      </p-dropdown>
+      <div class="ico">
+        <i class="fas fa-compress-alt min-1 px-2" ></i>
+        <i class="fas fa-expand max-1 px-2" ></i>
+      </div>
+         </div>
+  </div>
+
+  <div class="widget-inner p-2">
+    <div class="table-responsive">
+      <table class="table position-relative">
+        <thead class="thead-light no-wrap">
+          <tr>
+            <!-- <th class="align-middle">Info</th> -->
+            <th class="align-middle"></th>
+            <th class="align-middle">DCS Name</th>
+            <th class="align-middle">Home Site</th>
+            <th class="align-middle">Emp Code</th>
+            <th *ngIf="widgetArray[3]" class="align-middle">SSN</th>
+            <th *ngIf="widgetArray[3]" class="align-middle">City </th>
+            <th *ngIf="widgetArray[3]" class="align-middle">State</th>
+            <th *ngIf="widgetArray[3]" class="align-middle">Zip Code</th>
+            <th *ngIf="widgetArray[3]" class="align-middle">Phone</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor='let dcs of dcsList; let i=index;'>
+           <td></td>
+            <td>{{dcs.dcsName}}</td>
+            <td>{{dcs.homeSite}}</td>
+            <td>{{dcs.empCode}}</td>
+            <td *ngIf="widgetArray[3]">{{dcs.ssn}}</td>
+            <td *ngIf="widgetArray[3]">{{dcs.city}}</td>
+            <td *ngIf="widgetArray[3]">{{dcs.state}}</td>
+            <td *ngIf="widgetArray[3]">{{dcs.zipCode}}</td>
+            <td *ngIf="widgetArray[3]">{{dcs.phone}}</td>
+
+            <!-- <td *ngIf='dcs.expiringCertificates==0'>No</td> -->
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="text-center no-data-text" *ngIf="dcstotalRecordsCount==0"> No Data To Display </div>
+
+    </div>
+  </div>
+  <div class="pager d-flex justify-content-between">
+    <div>
+      <!-- <button></button> -->
+    </div>
+    <div class="nav">
+      <span class="mr-2">Per page</span>
+      <select [(ngModel)]="this.dcsPerPage" (change)="this.dcspagereset()" class="border-0 mr-2">
+        <option [ngValue]="5">5</option>
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="15">15</option>
+        <option [ngValue]="20">20</option>
+
+
+      </select>
+      <span class="mr-2">showing {{dcstotalRecordsCount!=0? dcsLowerBound:0}} to
+        {{dcsUpperBound>=dcstotalRecordsCount?dcstotalRecordsCount:dcsUpperBound}}
+        of
+        {{dcstotalRecordsCount}} </span>
+
+
+      <button type="button" class="btn-common-small mx-2"
+        [ngClass]=" dcsLowerBound==1?'psDisabled' :'' " [disabled]='dcsLowerBound==1'
+        (click)="this.dcsPagePrev()">Prev</button>
+      <button type="button" class="btn-common-small mx-2"
+        [ngClass]=" dcsUpperBound>=dcstotalRecordsCount?'psDisabled' :'' "
+        [disabled]="dcsUpperBound>=dcstotalRecordsCount" (click)="this.dcsPageNext()">Next</button>
+
+    </div>
+  </div>
+</div>
