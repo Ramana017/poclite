@@ -74,3 +74,22 @@
     height: 67vh;
     margin: 10px 0;
   }
+
+
+
+  .wizard-dashboard{
+    .hide-content{
+      display: none;
+    }
+    .right-input-container{
+      display: block;
+      width: 60%;
+    }
+    .left-table{
+      width: 40% !important;
+      max-width: 40%;
+    }
+  }
+  .right-input-container{
+    display: none;
+  }
