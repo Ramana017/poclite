@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PsAuthorizationComponent } from '../ps-authorization/ps-authorization.component';
 import { PsServiceService } from '../ps-service.service';
@@ -8,8 +9,7 @@ import { PsServiceService } from '../ps-service.service';
   styleUrls: ['./ps-admissions.component.sass']
 })
 export class PsAdmissionsComponent implements OnInit {
-  @ViewChild(PsAuthorizationComponent) authorizationComponent: PsAuthorizationComponent;
-
+  @Input()authoriztion:PsAuthorizationComponent;
   public psListArray: Array<any>;
   public admissionsList: any = [];
   private userId: number;
@@ -66,7 +66,7 @@ export class PsAdmissionsComponent implements OnInit {
 
   public onAuthorization(psId){
     this.psService.psAuthorizationid=psId;
-    this.authorizationComponent?.authorizationpagereset();
+    this.authoriztion.authorizationpagereset();
 
   }
 

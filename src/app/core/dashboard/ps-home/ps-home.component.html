@@ -56,12 +56,12 @@
                           </a>
                         </span>
                       </p> -->
-                    <p (click)="psService.psAdmissionId=ps.PSId" class="blue-bg facebook mr-2" title="Admission">
+                    <p (click)="onAdmission(ps.PSId)" class="blue-bg facebook mr-2" title="Admission">
                       <span>
                         <a class="text-white" title="Admissions"></a>
                       </span>
                     </p>
-                    <p (click)="psService.psAuthorizationid=ps.PSId" class="blue-bg googleplus mr-2" title="Authorizations">
+                    <p (click)="onAuthorization(ps.PSId)" class="blue-bg googleplus mr-2" title="Authorizations">
                       <span>
                         <a class="text-white" title="Authorizations">
 

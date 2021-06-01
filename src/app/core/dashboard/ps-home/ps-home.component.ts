@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/services/apiservice.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { PSRegistrationService } from 'src/app/services/PS-registarion.service';
 import { UserdetailsService } from 'src/app/services/userdetails.service';
+import { PsAdmissionsComponent } from '../ps-admissions/ps-admissions.component';
+import { PsAuthorizationComponent } from '../ps-authorization/ps-authorization.component';
 import { PsServiceService } from '../ps-service.service';
 
 @Component({
@@ -12,6 +14,8 @@ import { PsServiceService } from '../ps-service.service';
   styleUrls: ['./ps-home.component.sass']
 })
 export class PsHomeComponent implements OnInit {
+  @Input()authoriztion:PsAuthorizationComponent;
+  @Input()admission:PsAdmissionsComponent;
 
   public psList: any = [];
 
@@ -76,5 +80,14 @@ export class PsHomeComponent implements OnInit {
     this.psUpperBound = this.psPerPage;
     this.getPsList();
   }
+  public onAuthorization(psId){
+    this.psService.psAuthorizationid=psId;
+    this.authoriztion.authorizationpagereset();
 
+  }
+  public onAdmission(psId){
+    this.psService.psAdmissionId=psId;
+    this.admission.admissionpagereset()
+
+  }
 }
