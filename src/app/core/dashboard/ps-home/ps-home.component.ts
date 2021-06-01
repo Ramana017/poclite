@@ -94,13 +94,13 @@ export class PsHomeComponent implements OnInit {
    this.dynamicClass=true;
     console.log("hellp")
     this.psHomeClass.emit();
-    document.getElementById('widgetDashboard').classList.add("classname");
+    document.getElementById('widgetDashboard').classList.add("wizard-dashboard");
 
   }
   public onMinMize(){
     this.maximize=false;
     this.dynamicClass=false;
     this.psHomeClass.emit()
-    document.getElementById('widgetDashboard').classList.remove("ramana");
+    document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
   }
 }

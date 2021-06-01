@@ -1,4 +1,4 @@
-<div class="css-dashboard-wrapper" id="widgetDashboard" [ngClass]="psHomeDynamicClass?'':''" >
+<div class="css-dashboard-wrapper" id="widgetDashboard" >
   <!-- home-inner-wrapper -->
   <div class="home-inner-wrapper d-flex">
     <!-- Content-wrapper -->
@@ -8,15 +8,18 @@
           <div class="cards-content w-100">
             <div class="row m-0">
               <!-- =========================================== 1st Widget============================= -->
-              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
+              <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0 left-table">
                 <app-ps-home #ps (psHomeClass)="addDynamicClass(ps.dynamicClass)" [authoriztion]="auth" [admission]="admission"></app-ps-home>
               </div>
+              <div class="right-input-container">
+                aasasa
+              </div>
               <!-- =========================================== 2nd Widget============================= -->
-              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad">
+              <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad hide-content">
                 <app-ps-admissions #admission [authoriztion]="auth"></app-ps-admissions>
               </div>
             </div>
-            <div class="row m-0">
+            <div class="row m-0 hide-content">
               <!-- =========================================== 3rd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0">
                 <app-ps-authorization #auth></app-ps-authorization>
