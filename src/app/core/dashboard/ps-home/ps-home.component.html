@@ -2,15 +2,15 @@
   <div class="widget-header row align-items-center blue-bg m-0 nav">
     <div class="col-md-4 col-0"></div>
     <h5 class="text-white m-0 text-center col-md-3 col-12">Person Served</h5>
-    <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav">
+    <div class="col-md-5 col-12 d-flex justify-content-end align-items-center nav filter-dropdown">
       <!-- <ng-autocomplete class="w-150" [data]="psService.PsList" [searchKeyword]="'PSName'" #autops
           placeHolder="Search PS"  [itemTemplate]="itemTemplateps">
         </ng-autocomplete>
         <ng-template style="width: 100%;" #itemTemplateps let-item>
           <a [innerHTML]="item.PSName"></a>
         </ng-template> -->
-      <p-dropdown [(ngModel)]="psId" (ngModelChange)="pspagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="31"
-        [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName"
+      <p-dropdown [(ngModel)]="psId" (ngModelChange)="pspagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20"
+        [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName" appendTo="body"
         optionValue="PSId">
       </p-dropdown>
       <div class="ico">

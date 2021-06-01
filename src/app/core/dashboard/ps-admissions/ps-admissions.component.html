@@ -3,7 +3,7 @@
   <div class="widget-header row align-items-center peach-bg m-0">
     <div class="col-md-4"></div>
     <h5 class="text-white m-0 text-center col-md-3">Admissions</h5>
-    <div class="col-md-5 d-flex justify-content-end align-items-center">
+    <div class="col-md-5 d-flex justify-content-end align-items-center filter-dropdown">
       <!-- <ng-autocomplete class="w-150" [data]="psListArray"
         [searchKeyword]="'PSName'" #autoadm placeHolder="Search PS"
         [itemTemplate]="itemTemplateps">
@@ -12,7 +12,7 @@
       <ng-template style="width: 100%;" #itemTemplateps let-item>
         <a [innerHTML]="item.PSName"></a>
       </ng-template> -->
-      <p-dropdown [(ngModel)]="admissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="31"
+      <p-dropdown [(ngModel)]="admissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20" appendTo="body"
       [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName"
       optionValue="PSId">
     </p-dropdown>

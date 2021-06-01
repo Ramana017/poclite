@@ -2,7 +2,7 @@
   <div class="widget-header row align-items-center lightblue-bg m-0">
     <div class="col-md-4"></div>
     <h5 class="text-white m-0 text-center col-md-3">Authorizations</h5>
-    <div class="col-md-5 d-flex justify-content-end align-items-center">
+    <div class="col-md-5 d-flex justify-content-end align-items-center filter-dropdown">
       <!-- <ng-autocomplete class="w-150" [data]="psListArray" [(ngModel)]="AuthorizationsFill"
                         [searchKeyword]="authorizationkeyword" #autoauth placeHolder="Search PS "
                         (inputCleared)="selectAuthorizationByPsId('',false)"
@@ -13,7 +13,7 @@
                         <a [innerHTML]="item.PSName"></a>
                       </ng-template>-->
       <p-dropdown [(ngModel)]="psId" (ngModelChange)="authorizationpagereset()" [options]="psService.PsList" [virtualScroll]="true"
-        [itemSize]="31" [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName"
+        [itemSize]="20" appendTo="body" [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName"
         optionLabel="PSName" optionValue="PSId">
       </p-dropdown>
       <div class="ico">

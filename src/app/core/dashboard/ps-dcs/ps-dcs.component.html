@@ -3,7 +3,7 @@
   <div class="widget-header row align-items-center green-bg m-0">
     <div class="col-md-4"></div>
     <h5 class="text-white m-0 text-center col-md-3">Direct Care Staff</h5>
-    <div class="col-md-5 d-flex justify-content-end align-items-center">
+    <div class="col-md-5 d-flex justify-content-end align-items-center filter-dropdown">
       <!-- <ng-autocomplete class="w-150" [data]="dcsListArray" [searchKeyword]="dcskeyword" #autodcs
         placeHolder="search DCS" (inputCleared)="selectDcsListByDcsId('',false)"
         (selected)='selectDcsListByDcsId($event,true)' [itemTemplate]="itemTemplateDcs">
@@ -12,8 +12,8 @@
       <ng-template style="width: 100%;" #itemTemplateDcs let-item>
         <a [innerHTML]="item.dcsName"></a>
       </ng-template> -->
-      <p-dropdown [(ngModel)]="dcsId" (ngModelChange)="dcspagereset()" [options]="psService.dcsList" [virtualScroll]="true" [itemSize]="31"
-        [showClear]="true" placeholder="Search DCS" [filter]="true" filterBy="dcsName" optionLabel="dcsName"
+      <p-dropdown [(ngModel)]="dcsId" (ngModelChange)="dcspagereset()" [options]="psService.dcsList" [virtualScroll]="true" [itemSize]="20"
+        [showClear]="true" placeholder="Search DCS" [filter]="true" filterBy="dcsName" optionLabel="dcsName" appendTo="body"
         optionValue="dcsId">
       </p-dropdown>
       <div class="ico">
