@@ -8,7 +8,7 @@ import { PsServiceService } from './ps-service.service';
 })
 export class DashboardComponent implements OnInit {
 
-  public psHomeDynamicClass: boolean = true;
+  public psHomeDynamicClass: boolean = false;
   constructor(private psService: PsServiceService) {
     this.psService.geturl()
 

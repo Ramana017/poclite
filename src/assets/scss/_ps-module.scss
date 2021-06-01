@@ -77,7 +77,7 @@
 
 
 
-  .wizard-dashboard{
+  .css-dashboard-wrapper.wizard-dashboard{
     .hide-content{
       display: none;
     }
@@ -90,6 +90,8 @@
       max-width: 40%;
     }
   }
-  .right-input-container{
-    display: none;
+  .css-dashboard-wrapper{
+    .right-input-container{
+      display: none;
+    }
   }
