@@ -87,6 +87,7 @@ import { PsAdmissionsComponent } from './core/dashboard/ps-admissions/ps-admissi
 import { PsAuthorizationComponent } from './core/dashboard/ps-authorization/ps-authorization.component';
 import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
+import { TabsetConfig } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -172,7 +173,7 @@ import { PsServiceService } from './core/dashboard/ps-service.service';
 
 
   ],
-  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService,PsServiceService
+  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService,PsServiceService,TabsetConfig
     , {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

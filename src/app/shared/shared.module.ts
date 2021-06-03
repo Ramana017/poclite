@@ -17,6 +17,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import {SplitButtonModule} from 'primeng/splitbutton';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +38,9 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     RadioButtonModule,
     ConfirmDialogModule,
     AutoCompleteModule,
-    SplitButtonModule
+    SplitButtonModule,
+    TabsModule.forRoot(),
+
   ],
   providers: [
   ],
@@ -60,7 +63,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     SplitButtonModule,
     AutoCompleteModule,
     RadioButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TabsModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
