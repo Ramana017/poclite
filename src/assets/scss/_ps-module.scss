@@ -89,6 +89,15 @@
       width: 40% !important;
       max-width: 40%;
     }
+    .widget-block {
+      height: 100%;
+      .table-responsive{
+        height: 67vh;
+      }
+    }
+    .pager{
+      margin-bottom: 10px;
+    }
   }
   .css-dashboard-wrapper{
     .right-input-container{
