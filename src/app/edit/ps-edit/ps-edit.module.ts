@@ -22,22 +22,10 @@ import { PersonServedComponent } from './person-served/person-served.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { psComponents } from './pscomponent';
 
 @NgModule({
-  declarations: [PsEditComponent,
-    AlternateIdComponent,
-    CommentsComponent,
-    TelephonyComponent,
-    HospitalsComponent,
-    DetailsComponent,
-    LanguagesComponent,
-    AllergiesComponent,
-    MedicationComponent,
-    HealthComponent,
-    GurantorComponent,
-    PersonServedComponent,
-    AddressesComponent,
-    ContactsComponent],
+  declarations: [psComponents],
   imports: [
     CommonModule,
     SharedModule,
@@ -47,6 +35,6 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     ModalModule,
     AutoCompleteModule
   ],
-  exports:[ContactsComponent]
+  exports:[psComponents]
 })
 export class PsEditModule { }
