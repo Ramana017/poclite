@@ -11,12 +11,13 @@
               <div class="col-md-6 col-xs-12 px-0 pb-2 pt-0 mr-0 left-table">
                 <app-ps-home #ps  [authoriztion]="auth" [admission]="admission"></app-ps-home>
               </div>
+              <!-- ps edit code  -->
               <div >
                 <div class="right-input-container">
-                  sas
+                  <app-ps-module></app-ps-module>
                 </div>
               </div>
-            
+             <!-- ps edit code  ends -->
               <!-- =========================================== 2nd Widget============================= -->
               <div class="col-md-6 col-xs-12 px-3 pb-2 pt-0 mr-0 xs-pad hide-content">
                 <app-ps-admissions #admission [authoriztion]="auth"></app-ps-admissions>
