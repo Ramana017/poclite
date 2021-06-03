@@ -68,10 +68,12 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .removeClass('col-md-6');
+          document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
       }
     });
 
     $('.min-1,.min-2,.min-3,.min-4').click(function () {
+      document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
       $(this).parent().parent().parent().parent().parent().parent().parent().siblings().show();
       $(this)
         .parent()
@@ -117,6 +119,7 @@ export class DashboardComponent implements OnInit {
           .parent()
           .parent()
           .removeClass('col-md-12');
+          
       }
     });
   }
