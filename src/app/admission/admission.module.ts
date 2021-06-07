@@ -27,7 +27,7 @@ import { PsEditModule } from '../edit/ps-edit/ps-edit.module';
     BsDropdownModule,
     SplitButtonModule,
     SharedModule,
-    PsEditModule,
+    // PsEditModule,
 
 
   ]

@@ -34,7 +34,7 @@
                   </button>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                  <li *ngIf="userDetailService.checkUser('ceat')"  class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/widgets']">
+                  <li *ngIf="userDetailService.checkUser('ceat')"  class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/ps-edit/widgets']">
                     <a>Home</a>
                   </li>
                   <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
@@ -151,7 +151,7 @@
             <span routerLink="/summary" routerLinkActive #dashboard="routerLinkActive">
               {{dashboard.isActive ? "Call Management" : null}}
             </span>
-            <span routerLink="/widgets" routerLinkActive #errorlog="routerLinkActive">
+            <span routerLink="/ps-edit/widgets" routerLinkActive #errorlog="routerLinkActive">
               {{errorlog.isActive ? "POC Home" :null}}
             </span>
             <span routerLink="/visitreview" routerLinkActive #interface="routerLinkActive">

@@ -1,3 +1,9 @@
+import { CommunicationDashboardComponent } from "src/app/core/communication-dashboard/communication-dashboard.component";
+import { DashboardComponent } from "src/app/core/dashboard/dashboard.component";
+import { PsAdmissionsComponent } from "src/app/core/dashboard/ps-admissions/ps-admissions.component";
+import { PsAuthorizationComponent } from "src/app/core/dashboard/ps-authorization/ps-authorization.component";
+import { PsDcsComponent } from "src/app/core/dashboard/ps-dcs/ps-dcs.component";
+import { PsHomeComponent } from "src/app/core/dashboard/ps-home/ps-home.component";
 import { AddressesComponent } from "./addresses/addresses.component";
 import { AllergiesComponent } from "./allergies/allergies.component";
 import { AlternateIdComponent } from "./alternate-id/alternate-id.component";
@@ -26,4 +32,12 @@ export const psComponents=[PsEditComponent,
   GurantorComponent,
   PersonServedComponent,
   AddressesComponent,
-  ContactsComponent]
+  ContactsComponent];
+
+  export const dashboardcomponents=[
+    DashboardComponent,
+    PsHomeComponent,
+    PsAdmissionsComponent,
+    PsAuthorizationComponent,
+    PsDcsComponent,
+  ]

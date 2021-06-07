@@ -22,10 +22,11 @@ import { PersonServedComponent } from './person-served/person-served.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { psComponents } from './pscomponent';
+import { dashboardcomponents, psComponents } from './pscomponent';
 
 @NgModule({
-  declarations: [psComponents],
+  declarations: [psComponents,dashboardcomponents
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -33,7 +34,7 @@ import { psComponents } from './pscomponent';
     TabsModule.forRoot(),
     FileUploadModule, HttpClientModule,
     ModalModule,
-    AutoCompleteModule
+    AutoCompleteModule,
   ],
   exports:[psComponents]
 })

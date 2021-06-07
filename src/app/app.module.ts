@@ -82,10 +82,10 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {InputTextModule} from 'primeng/inputtext';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { PsHomeComponent } from './core/dashboard/ps-home/ps-home.component';
-import { PsAdmissionsComponent } from './core/dashboard/ps-admissions/ps-admissions.component';
-import { PsAuthorizationComponent } from './core/dashboard/ps-authorization/ps-authorization.component';
-import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
+// import { PsHomeComponent } from './core/dashboard/ps-home/ps-home.component';
+// import { PsAdmissionsComponent } from './core/dashboard/ps-admissions/ps-admissions.component';
+// import { PsAuthorizationComponent } from './core/dashboard/ps-authorization/ps-authorization.component';
+// import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
 @NgModule({
@@ -106,7 +106,7 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     ClockInAndOutComponent,
     ChartsComponent,
     InvalidTokenComponent,
-    DashboardComponent,
+    // DashboardComponent,
     HeaderComponentPS,
     RegistrationComponent,
     BasicInfoComponent,
@@ -134,10 +134,10 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     TelephonyStatsComponent,
     UtilizationStatsComponent,
     CommunicationDashboardComponent,
-    PsHomeComponent,
-    PsAdmissionsComponent,
-    PsAuthorizationComponent,
-    PsDcsComponent,
+    // PsHomeComponent,
+    // PsAdmissionsComponent,
+    // PsAuthorizationComponent,
+    // PsDcsComponent,
 
 
 
