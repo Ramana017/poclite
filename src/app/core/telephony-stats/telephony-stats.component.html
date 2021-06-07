@@ -1,6 +1,13 @@
-<div class="downloads d-flex justify-content-end mr-4 mt-2">
-  <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
-  <i class="fas fa-filter mx-2 f-18"  (click)="openFilter(filtermodal)" ></i>
+<div class="downloads d-flex justify-content-between mr-4 mt-2 ml-4">
+  <div class="d-flex align-items-center">
+<h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
+<h5 class="mb-0 AvenirLTStd-Heavy ml-2">03/06/2020</h5>
+  </div>
+  <div>
+    <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
+    <i class="fas fa-filter mx-2 f-18"  (click)="openFilter(filtermodal)" ></i>
+  </div>
+
 </div>
 
 <div class="daily-stats-wrapper px-4 pt-2 pb-3">
@@ -15,7 +22,10 @@
           <th scope="col" class="sticky-top">Site Name</th>
           <th scope="col" class="sticky-top">State </th>
           <th scope="col" class="sticky-top"> Period </th>
+          <th scope="col" class="sticky-top">Total Expected Punches</th>
           <th scope="col" class="sticky-top"> Total <br />Punches# </th>
+          <th scope="col" class="sticky-top">Missing Punches</th>
+          <th scope="col" class="sticky-top">Missing Punches Percent</th>
           <th scope="col" class="sticky-top"> Telephony <br> Landline Punches#</th>
           <th scope="col" class="sticky-top"> Telephony <br> App Punches# </th>
           <th scope="col" class="sticky-top"> Manual Punches# </th>
@@ -30,7 +40,10 @@
           <td> {{item.siteName}} </td>
           <td>{{item.state}} </td>
           <td>{{item.period}} </td>
+          <td></td>
           <td>{{item.totalPunches}} </td>
+          <td></td>
+          <td></td>
           <td>{{item.telephonyLandlinePunches}} </td>
           <td>{{item.telephonyAppPunches}} </td>
           <td>{{item.manualPunches}} </td>

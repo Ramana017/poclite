@@ -247,7 +247,23 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="sticky-top table-header-inner">
-                                                    <h5 class="mainheading-wrapper">Service </h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('cssName',false)" [class.active]="orderByColumn=='cssName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Service&nbsp;<i (click)="setOrder('cssName',true)" [class.active]="orderByColumn=='cssName' && reverse" class="fas fa-arrow-down text-white"></i> </h5>
+                                                    <div class="input-outter-wrapper dropdown">
+                                                        <ng-autocomplete [(ngModel)]="serviceFilterAutoComplete"
+                                                            [data]="serviceFilter" [searchKeyword]="'serviceCode'"
+                                                            (inputCleared)=" selectFilterEvent('','service')"
+                                                            [notFoundTemplate]="notFoundTemplate"
+                                                            (selected)='selectFilterEvent($event,"service")'
+                                                            placeHolder="Service" [itemTemplate]="itemTemplateservice"
+                                                            [notFoundTemplate]="notFoundTemplate">
+                                                        </ng-autocomplete>
+                                                        <ng-template style="width: 100%;" #itemTemplateservice let-item>
+                                                            <a [innerHTML]="item.serviceCode"></a>
+                                                        </ng-template>
+                                                    </div>
+                                                </th>
+                                                <th scope="col" class="sticky-top table-header-inner">
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('cssName',false)" [class.active]="orderByColumn=='cssName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Payor/Plan&nbsp;<i (click)="setOrder('cssName',true)" [class.active]="orderByColumn=='cssName' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <ng-autocomplete [(ngModel)]="serviceFilterAutoComplete"
                                                             [data]="serviceFilter" [searchKeyword]="'serviceCode'"
@@ -336,6 +352,10 @@
                                                         {{data.serviceCode}}
 
                                                     </div>
+
+                                                </td>
+                                                <td class="body-cell text-color col4 ">
+                                                    payor/plan
 
                                                 </td>
                                                 <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
