@@ -62,7 +62,7 @@ export class TelephonyStatsComponent implements OnInit {
   private appliedEdsList = [];
   private appliedBrancheslist = [];
   private appliedSitelist = [];
-  private applyjobDate:string='';
+  public applyjobDate:string='';
 
   public getRVPList() {
     let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "" };
