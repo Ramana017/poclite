@@ -247,7 +247,7 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="sticky-top table-header-inner">
-                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('cssName',false)" [class.active]="orderByColumn=='cssName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Service&nbsp;<i (click)="setOrder('cssName',true)" [class.active]="orderByColumn=='cssName' && reverse" class="fas fa-arrow-down text-white"></i> </h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('serviceCode',false)" [class.active]="orderByColumn=='serviceCode' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Service&nbsp;<i (click)="setOrder('serviceCode',true)" [class.active]="orderByColumn=='serviceCode' && reverse" class="fas fa-arrow-down text-white"></i> </h5>
                                                     <div class="input-outter-wrapper dropdown">
                                                         <ng-autocomplete [(ngModel)]="serviceFilterAutoComplete"
                                                             [data]="serviceFilter" [searchKeyword]="'serviceCode'"
@@ -263,18 +263,18 @@
                                                     </div>
                                                 </th>
                                                 <th scope="col" class="sticky-top table-header-inner">
-                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('cssName',false)" [class.active]="orderByColumn=='cssName' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Payor/Plan&nbsp;<i (click)="setOrder('cssName',true)" [class.active]="orderByColumn=='cssName' && reverse" class="fas fa-arrow-down text-white"></i></h5>
+                                                    <h5 class="mainheading-wrapper"><i (click)="setOrder('payorPlan',false)" [class.active]="orderByColumn=='payorPlan' && !reverse" class="fas fa-arrow-up text-white"></i>&nbsp;Payor/Plan&nbsp;<i (click)="setOrder('payorPlan',true)" [class.active]="orderByColumn=='payorPlan' && reverse" class="fas fa-arrow-down text-white"></i></h5>
                                                     <div class="input-outter-wrapper dropdown">
-                                                        <ng-autocomplete [(ngModel)]="serviceFilterAutoComplete"
-                                                            [data]="serviceFilter" [searchKeyword]="'serviceCode'"
-                                                            (inputCleared)=" selectFilterEvent('','service')"
+                                                        <ng-autocomplete
+                                                            [data]="payorPlanFilter" [searchKeyword]="'payorPlan'"
+                                                            (inputCleared)=" selectFilterEvent('','payor')"
                                                             [notFoundTemplate]="notFoundTemplate"
-                                                            (selected)='selectFilterEvent($event,"service")'
-                                                            placeHolder="Service" [itemTemplate]="itemTemplateservice"
+                                                            (selected)='selectFilterEvent($event,"payor")'
+                                                            placeHolder="Payor/Plan" [itemTemplate]="itemTemplatepyor"
                                                             [notFoundTemplate]="notFoundTemplate">
                                                         </ng-autocomplete>
-                                                        <ng-template style="width: 100%;" #itemTemplateservice let-item>
-                                                            <a [innerHTML]="item.serviceCode"></a>
+                                                        <ng-template style="width: 100%;" #itemTemplatepyor let-item>
+                                                            <a [innerHTML]="item.payorPlan"></a>
                                                         </ng-template>
                                                     </div>
                                                 </th>
@@ -355,7 +355,7 @@
 
                                                 </td>
                                                 <td class="body-cell text-color col4 ">
-                                                    payor/plan
+                                                    {{data.payorPlan}}
 
                                                 </td>
                                                 <td class="body-cell col4 ">{{data.scheduledBeginDateTime}}</td>
