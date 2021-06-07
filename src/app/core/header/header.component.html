@@ -57,22 +57,22 @@
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
                     <ul class=" dropdown-menu side-menu" aria-labelledby="dropdown1-1">
-                      <li class="  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
+                      <!-- <li class="  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
                         [routerLink]="['/analytics']"><a>Compliance</a>
                       </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="maintaince.isActive?'active':''"
                         [routerLink]="['/maintaince']">
                         <a>Maintainence</a>
-                      </li>
+                      </li> -->
                       <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''"
                         [routerLink]="['/daily-reports']"><a>Daily Reports</a>
                       </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
                         [routerLink]="['/telephony']"><a>Telephony Stats</a>
                       </li>
-                      <li class=" s dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
+                      <!-- <li class=" s dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
                         [routerLink]="['/utilization']"><a>Utilization Stats</a>
-                      </li>
+                      </li> -->
                     </ul>
                   </li>
                   <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class=" d-none dropdown-item dropdown side-menu-analytics">

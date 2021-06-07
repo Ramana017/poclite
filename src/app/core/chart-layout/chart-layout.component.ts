@@ -139,7 +139,7 @@ export class ChartLayoutComponent implements OnInit {
   public cssName: string = null;
   public dcsName: string = null;
   public serviceName: string = null;
-  public payorName:string=null;
+  public payorName=[];
   public siteName: string = null;
   public siteSelect = [];
   public displayTable = [];
@@ -291,6 +291,7 @@ export class ChartLayoutComponent implements OnInit {
       this.highlightcardcount = count;
       let officelist = [];
       let csslist = [];
+      this.payorName=[];
       this.officeIds.map((y) => {
         officelist.push(y.siteId);
       });
@@ -426,10 +427,18 @@ export class ChartLayoutComponent implements OnInit {
         return x.serviceCode == this.serviceName;
       });
     }
-    if (this.payorName != null) {
-      this.displayTable = this.displayTable.filter((x) => {
-        return x.payorPlan == this.payorName;
-      });
+    if (this.payorName.length>0) {
+      console.log(this.payorName.length);
+
+      let dummeyarray = [];
+      this.displayTable.map(x => {
+        this.payorName.map(y => {
+          if (x.payorPlan == y.payorPlan) {
+            dummeyarray.push(x);
+          }
+        })
+      })
+      this.displayTable = dummeyarray;
     }
 
     if (this.siteSelect.length > 0) {

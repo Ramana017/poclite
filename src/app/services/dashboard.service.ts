@@ -175,4 +175,7 @@ export class DashboardService {
   public getDcsList2(obj): Observable<any> {
     return this.http.get<any>(this.webserviceUrl + `/communicationDashboard/getDcsList?jsonObj=${obj}`).pipe(catchError(this.errorHandler));
   }
+  public getJobSuccessRunDate():Observable<any>{
+    return this.http.get(this.webserviceUrl+`/analytics/getJobSuccessRunDate`).pipe(catchError(this.errorHandler));
+  }
 }

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import Swal from 'sweetalert2';
 declare var $:any;
 import * as XLSX from 'xlsx';
 
@@ -21,7 +22,7 @@ export class TelephonyStatsComponent implements OnInit {
   public telephonyStatsList: Array<any> = [];
   public userData: any;
   ngOnInit(): void {
-    this.getTelephonyStats();
+    this.getJobSuccessRunDate();
     this.getRVPList();
   }
 
@@ -132,6 +133,11 @@ export class TelephonyStatsComponent implements OnInit {
   }
 
   public onApply(){
+    let date=new Date(this.jobsuccessrunDate);
+
+    if(this.jobRunDate>date){
+    Swal.fire('',`Job run date cannot be greater than ${this.jobsuccessrunDate}`,'warning')
+    }else{
     this.appliedRvpList= this.selectedRvpList.map(x => x.operationOfficer);
    this.appliedEdsList= this.selectedEdList.map(x => x.executiveDirector);
    this.appliedBrancheslist= this.selectedBranches.map(x => x.branchManager);
@@ -139,7 +145,7 @@ export class TelephonyStatsComponent implements OnInit {
     this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
     this.getTelephonyStats();
     this.modelRef.hide();
-
+    }
   }
 
 
@@ -161,5 +167,18 @@ export class TelephonyStatsComponent implements OnInit {
        /* save to file */
        XLSX.writeFile(wb, 'Telephony.xlsx');
 
+    }
+public jobsuccessrunDate='';
+    public getJobSuccessRunDate(){
+      try {
+        this.dashboardService.getJobSuccessRunDate().subscribe(res=>{
+          this.jobsuccessrunDate=res.telephonyStatsJobDate
+          this.applyjobDate=res.telephonyStatsJobDate;
+          this.jobRunDate=new Date(res.telephonyStatsJobDate)
+          this.getTelephonyStats();
+        })
+      } catch (error) {
+
+      }
     }
 }
