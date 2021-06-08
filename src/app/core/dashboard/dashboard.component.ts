@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
         .parent()
         .parent()
         .parent()
-        .siblings()
+        .siblings(".col-md-6")
         .show();
       $(this)
         .parent()

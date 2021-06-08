@@ -1,6 +1,6 @@
-<div class="bg-white mh-90">
+<div class="bg-white ">
 
-  <div class="px-3">
+  <div class="px-3 pt-3 mb-2">
     <!-- <div class="d-flex">
       <h4 class="my-3 color-black AvenirLTStd-Heavy">POC,POC</h4>
       <button type="button" class="btn">(To be Registered)</button>
@@ -23,19 +23,20 @@
         <tab heading="Health" #health (deselect)="health.active=false" (selectTab)="health.active=true">
           <app-health *ngIf="health.active"></app-health>
         </tab>
-        <tab heading="Medication" #medication (deselect)="medication.active=false" (selectTab)="medication.active=true">
-          <app-medication *ngIf="medication.active"></app-medication>
-        </tab>
-        <tab heading="Allergies" #allergies (deselect)="allergies.active=false" (selectTab)="allergies.active=true">
-          <app-allergies *ngIf="allergies.active"></app-allergies>
-        </tab>
         <tab heading="Languages" #languages (deselect)="languages.active=false" (selectTab)="languages.active=true">
           <app-languages *ngIf="languages.active"></app-languages>
         </tab>
         <tab heading="Details" #details (deselect)="details.active=false" (selectTab)="details.active=true">
           <app-details *ngIf="details.active"></app-details>
         </tab>
-        <tab heading="Hospitals" #hospitals (deselect)="hospitals.active=false" (selectTab)="hospitals.active=true">
+        <tab heading="Medication" #medication (deselect)="medication.active=false" (selectTab)="medication.active=true">
+          <app-medication *ngIf="medication.active"></app-medication>
+        </tab>
+        <tab heading="Allergies" #allergies (deselect)="allergies.active=false" (selectTab)="allergies.active=true">
+          <app-allergies *ngIf="allergies.active"></app-allergies>
+        </tab>
+       
+        <!-- <tab heading="Hospitals" #hospitals (deselect)="hospitals.active=false" (selectTab)="hospitals.active=true">
           <app-hospitals *ngIf="hospitals.active"></app-hospitals>
         </tab>
         <tab heading="Telephony" #telephony (deselect)="telephony.active=false" (selectTab)="telephony.active=true">
@@ -47,7 +48,7 @@
         <tab heading="Alternate Id" #alternateId (deselect)="alternateId.active=false"
           (selectTab)="alternateId.active=true">
           <app-alternate-id *ngIf="alternateId.active"></app-alternate-id>
-        </tab>
+        </tab> -->
       </tabset>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { UserdetailsService } from 'src/app/services/userdetails.service';
 import { PsAdmissionsComponent } from '../ps-admissions/ps-admissions.component';
 import { PsAuthorizationComponent } from '../ps-authorization/ps-authorization.component';
 import { PsServiceService } from '../ps-service.service';
-
+declare var $: any;
 @Component({
   selector: 'app-ps-home',
   templateUrl: './ps-home.component.html',
@@ -91,7 +91,8 @@ export class PsHomeComponent implements OnInit {
   public onEdit(){
     console.log("hellp")
     document.getElementById('widgetDashboard').classList.add("wizard-dashboard");
-
+    // document.getElementById('right-form-container').show();
+    $("#right-form-container").show();
   }
   public onMinMize(){
     // this.maximize=false;

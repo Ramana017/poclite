@@ -1,10 +1,10 @@
-<span class="slack-icon" (click)="pslogdata(pslog)">
-  <i class="pi pi-slack"></i></span>
+<!-- <span class="slack-icon" (click)="pslogdata(pslog)"> -->
+  <!-- <i class="pi pi-slack"></i></span> -->
 <div class="visit-information position-relative border-2 rounded my-3 mr-4">
   <p class="visit-info-text AvenirLTStd-Heavy bg-white">PS</p>
 
   <!--    -->
-  <div class="container-wrapper">
+  <div class="container-wrapper person-served-home">
     <div class="ps-registration-tabs-container">
       <div class="">
         <div class="d-flex align-items-center site-form">
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <section class="d-flex justify-content-between basic-container">
+        <section class="d-flex justify-content-between basic-container align-items-start">
           <div>
             <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">
               Basic Details
@@ -88,23 +88,21 @@
                   <input type="text" class="form-control lastName text-capital" />
                 </div>
               </div>
-              <div class="basic-input-container nav d-flex align-items-center justify-content-between">
-                <div class="w-50 pb-sm-0">
+              <div class="basic-input-container ">
                   <label class="">
                     Marital Status<span class="text-danger">*</span>
                   </label>
                   <div class="input-group">
                     <input type="text" class="form-control lastName text-capital" />
                   </div>
-                </div>
-                <div class="w-48">
-                  <label class="">
-                    Date of Birth<span class="text-danger">*</span>
-                  </label>
-                  <div class="input-group">
-                    <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
-                      bsDatepicker />
-                  </div>
+              </div>
+              <div class="basic-input-container">
+                <label class="">
+                  Date of Birth<span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
+                    bsDatepicker />
                 </div>
               </div>
               <div class="basic-input-container">
@@ -123,7 +121,7 @@
                   <input type="text" maxlength="11" class="form-control" aria-label="Case Manager" />
                 </div>
               </div>
-              <div class="basic-input-container pb-sm-0 pr-sm-0">
+              <div class="basic-input-container pb-sm-0 ">
                 <label class="">
                   Primary Language<span class="text-danger">*</span>
                 </label>
@@ -314,7 +312,7 @@
                 </div>
               </div>
             </div>
-            <div class="w-50">
+            <div class="w-150px">
               <div class="form-group">
                 <label class="mb-0 color-black">Directions</label>
                 <div class="input-group form-group">

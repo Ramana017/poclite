@@ -1,16 +1,16 @@
 
-          <span class="slack-icon" (click)="healthlogdata(healthlog)">
-            <i class="pi pi-slack"></i></span>
+          <!-- <span class="slack-icon" (click)="healthlogdata(healthlog)">
+            <i class="pi pi-slack"></i></span> -->
           <div
             class="visit-information position-relative border-2 rounded my-3 mr-4"
           >
             <p class="visit-info-text AvenirLTStd-Heavy bg-white">Health</p>
-            <div class="container-wrapper mt-2">
+            <div class="container-wrapper mt-2 person-served-home">
               <div class="ps-registration-tabs-container">
                 <div class="">
                   <form class="d-flex nav border-2">
-                    <div class="input-container-wrapper">
-                      <label class="">
+                    <div class="input-container-wrapper w-100px">
+                      <label class="white-space-nowrap">
                         Disaster Code<span class="text-danger">*</span>
                       </label>
                       <div class="input-group">
@@ -40,8 +40,8 @@
                         />
                       </div>
                     </div>
-                    <div class="input-container-wrapper d-flex nav">
-                      <div>
+                    <div class="input-container-wrapper w-100px">
+                    
                         <label class="">
                           Weight (lbs)<span class="text-danger">*</span>
                         </label>
@@ -52,26 +52,26 @@
                             aria-label="Auth"
                           />
                         </div>
-                      </div>
+                     
 
-                      <div class="check-box-wrapper">
-                        <label class="mb-0 color-black"
-                          >Advance Directive</label
-                        >
-                        <div class="on-off-toggle">
-                          <input
-                            class="on-off-toggle__input"
-                            type="checkbox"
-                            id="bopis"
-                          />
-                          <label
-                            for="bopis"
-                            class="on-off-toggle__slider"
-                          ></label>
-                        </div>
+                     
+                    </div>
+                    <div class="check-box-wrapper">
+                      <label class="mb-0 color-black"
+                        >Advance Directive</label
+                      >
+                      <div class="on-off-toggle">
+                        <input
+                          class="on-off-toggle__input"
+                          type="checkbox"
+                          id="bopis"
+                        />
+                        <label
+                          for="bopis"
+                          class="on-off-toggle__slider"
+                        ></label>
                       </div>
                     </div>
-
                     <div class="check-box-wrapper">
                       <label class="mb-0 color-black">Do not Resuscitate</label>
                       <div class="on-off-toggle">

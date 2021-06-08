@@ -1,48 +1,63 @@
 .ps-edit-tabs {
   .nav-tabs {
-    border-top: 1px solid #dee2e6;
+    border:0;
+    background: #f8f6f9;
+    justify-content: space-around;
   }
 
   .nav-link {
     padding: 5px 10px;
-    font-size: 12px;
-    font-family: "AvenirLTStd-Light", sans-serif !important;
+    font-size: 14px;
+    // font-family: "AvenirLTStd-Light", sans-serif !important;
     color: black;
     position: relative;
+    font-family: "AvenirLTStd-Medium", sans-serif !important;
 
     &.active {
-      color: $white;
-      background-color: #a88746 !important;
-    }
-
-    &::after {
+      color: $black;
+      background-color: $white !important;
+      position: relative;
+      &::after {
       content: '';
       position: absolute;
-      right: 0;
-      top: 5px;
-      // bottom: 50%;
-      width: 1px;
-      height: 65%;
-      background: #dee2e6;
+      left: 0;
+      width: 100%;
+      top: 0px;
+     border-top: 2px solid #0472d2;
+    }
+    }
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   right: 0;
+    //   top: 5px;
+    //   // bottom: 50%;
+    //   width: 1px;
+    //   height: 65%;
+    //   background: #dee2e6;
+    // }
+    &:hover{
+      color: $black;
     }
   }
 
-  .nav-item {
-    &:first-child {
-      .nav-link {
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 5px;
-          // bottom: 50%;
-          width: 1px;
-          height: 65%;
-          background: #dee2e6;
-        }
-      }
-    }
-  }
+  // .nav-item {
+  //   &:first-child {
+  //     .nav-link {
+  //       &::before {
+  //         content: '';
+  //         position: absolute;
+  //         left: 0;
+  //         top: 5px;
+  //         // bottom: 50%;
+  //         width: 1px;
+  //         height: 65%;
+  //         background: #dee2e6;
+  //       }
+  //     }
+  //   }
+  // }
 
   .basic-input-container label,
   .telephony-input label,

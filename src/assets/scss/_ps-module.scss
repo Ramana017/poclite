@@ -1,5 +1,5 @@
 // @import 'common';
-
+// dashboard module code 
 .sidebar-container {
   position: relative;
   height: 100%;
@@ -74,9 +74,9 @@
     height: 67vh;
     margin: 10px 0;
   }
+// dashboard module code 
 
-
-
+// dashboard module code 
   .css-dashboard-wrapper.wizard-dashboard{
     .hide-content{
       display: none;
@@ -90,7 +90,8 @@
       max-width: 40%;
     }
     .widget-block {
-      height: 100%;
+      // height: 100%;
+      height: auto;
       .table-responsive{
         height: 67vh;
       }
@@ -104,3 +105,18 @@
       display: none;
     }
   }
+// dashboard module code 
+.person-served-home{
+  .site-container{
+    width: 200px;
+  }
+  .mapped-site-container{
+    min-width: 200px;
+  }
+  .basic-input-container{
+    width: Calc(100%/3);
+  }
+  .input-container-wrapper{
+    width: Calc(100%/3);
+  }
+}
