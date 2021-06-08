@@ -190,7 +190,7 @@
                                                                  (ngModelChange)="selectFilterEvent(siteSelect,'site')" (onDeSelectAll)="selectFilterEvent('','site')"
                                                                  [settings]="dropdownSettingsFilter">
                                                             </angular2-multiselect> -->
-                              <p-multiSelect appendTo="body" defaultLabel="Code" [showToggleAll]="false" display="chip"
+                              <p-multiSelect appendTo="body" [resetFilterOnHide]="true" defaultLabel="Code" [showToggleAll]="false" display="chip"
                                 [options]="siteFilter" [(ngModel)]="siteSelect" optionLabel="site"
                                 (onChange)="arrayManipulate()">
                               </p-multiSelect>
@@ -276,7 +276,7 @@
                               [class.active]="orderByColumn=='payorPlan' && reverse"
                               class="fas fa-arrow-down text-white"></i></h5>
                           <div class="ng-autocomplete code-dropdown" style="width: 100%;">
-                              <p-multiSelect [options]="payorPlanFilter" (onChange)="arrayManipulate()"
+                              <p-multiSelect [options]="payorPlanFilter" [resetFilterOnHide]="true" (onChange)="arrayManipulate()"
                               [(ngModel)]="payorName" maxSelectedLabels="1" optionLabel="payorPlan"
                               [panelStyle]="{ minWidth: '15em' }" [itemSize]="30"
                               selectedItemsLabel="{0} items selected" [virtualScroll]="true" class="multiselect-custom">
