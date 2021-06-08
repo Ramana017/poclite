@@ -92,6 +92,7 @@ export class ChartLayoutComponent implements OnInit {
   public serviceFilter = [];
   public visitData = [];
   public clientData = [];
+  public payorPlanFilter=[];
   private defaultstartdate: Date = new Date();
   public cancelledVisitsCount: number = 0;
   public missedVisitsCount: number = 0;
@@ -138,6 +139,7 @@ export class ChartLayoutComponent implements OnInit {
   public cssName: string = null;
   public dcsName: string = null;
   public serviceName: string = null;
+  public payorName=[];
   public siteName: string = null;
   public siteSelect = [];
   public displayTable = [];
@@ -289,6 +291,7 @@ export class ChartLayoutComponent implements OnInit {
       this.highlightcardcount = count;
       let officelist = [];
       let csslist = [];
+      this.payorName=[];
       this.officeIds.map((y) => {
         officelist.push(y.siteId);
       });
@@ -319,6 +322,8 @@ export class ChartLayoutComponent implements OnInit {
             let dcsData = [...new Set(this.visitData.map((x) => x.dcsName))];
             let cssData = [...new Set(this.visitData.map((x) => x.cssName))];
             let psData = [...new Set(this.visitData.map((x) => x.psName))];
+            let payorplan=[...new Set(this.visitData.map((x)=>x.payorPlan))]
+            console.log(payorplan,psData)
             let serviceData = [
               ...new Set(this.visitData.map((x) => x.serviceCode)),
             ];
@@ -337,6 +342,9 @@ export class ChartLayoutComponent implements OnInit {
             this.psFilter = psData.map((x) => {
               return { psName: x };
             });
+            this.payorPlanFilter=payorplan.map(x=>{
+              return{payorPlan:x}
+            })
             let visitdatedata = [
               ...new Set(this.visitData.map((x) => x.visitDate)),
             ];
@@ -356,7 +364,8 @@ export class ChartLayoutComponent implements OnInit {
               this.siteFilter,
               this.cssFilter,
               this.dcsFilter,
-              this.serviceFilter
+              this.serviceFilter,
+              this.payorPlanFilter
             );
             this.displyHighlightCard = str;
             this.displayVisitCards = false;
@@ -383,6 +392,9 @@ export class ChartLayoutComponent implements OnInit {
     }
     if (filter == 'service') {
       this.serviceName = eventpresent ? event.serviceCode : null;
+    }
+    if (filter == 'payor') {
+      this.payorName = eventpresent ? event.payorPlan : null;
     }
 
     this.arrayManipulate();
@@ -414,6 +426,19 @@ export class ChartLayoutComponent implements OnInit {
       this.displayTable = this.displayTable.filter((x) => {
         return x.serviceCode == this.serviceName;
       });
+    }
+    if (this.payorName.length>0) {
+      console.log(this.payorName.length);
+
+      let dummeyarray = [];
+      this.displayTable.map(x => {
+        this.payorName.map(y => {
+          if (x.payorPlan == y.payorPlan) {
+            dummeyarray.push(x);
+          }
+        })
+      })
+      this.displayTable = dummeyarray;
     }
 
     if (this.siteSelect.length > 0) {

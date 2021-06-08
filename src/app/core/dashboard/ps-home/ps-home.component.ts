@@ -97,6 +97,6 @@ export class PsHomeComponent implements OnInit {
   public onMinMize(){
     // this.maximize=false;
 
-    document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
+    // document.getElementById('widgetDashboard').classList.remove("wizard-dashboard");
   }
 }

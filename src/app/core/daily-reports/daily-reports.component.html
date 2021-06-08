@@ -1,23 +1,29 @@
-<div class="navigation d-flex justify-content-center position-relative pt-2">
+<div class="navigation d-flex justify-content-between position-relative pt-2">
   <!-- <div></div> -->
-  <div class="">
+  <div class="d-flex align-items-center ml-4">
+    <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
+    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy'}}</h5>
+  </div>
+
+
+  <div class="mr-5">
     <ul class="nav nav-pills mb-2">
       <li class="nav-item mx-3" [tooltip]="months[currentMonth-1]">
         <a class="nav-link" (click)="onMonthChange(-1)" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
             class="fa fa-arrow-left mr-1"></i>Prev</a>
       </li>
-      <li class="nav-item mx-3"[tooltip]="months[currentMonth]">
+      <li class="nav-item mx-3" [tooltip]="months[currentMonth]">
         <a class="nav-link" (click)="onMonthChange(0)"
           [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
-      <li class="nav-item mx-3"[tooltip]="months[currentMonth+1]">
+      <li class="nav-item mx-3" [tooltip]="months[currentMonth+1]">
         <a class="nav-link" (click)="onMonthChange(1)" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
             class="fa fa-arrow-right ml-1"></i></a>
       </li>
     </ul>
   </div>
-  <div class="downloads d-flex align-items-center mr-3 position-absolute fd-icons">
-    <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()" ></i>
+  <div class="downloads d-flex align-items-center mr-3 ">
+    <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
     <i class="fas fa-filter mx-2 f-18" (click)="openFilter(filtermodal)"></i>
   </div>
 </div>
@@ -26,7 +32,7 @@
 
 <div class="daily-stats-wrapper px-4 ">
   <div class="table-responsive box-shadow">
-    <table class="table mb-0"  id='excel-table' [ngClass]="{'daily-stats-table': dailyStatsList.length==0}">
+    <table class="table mb-0" id='excel-table' [ngClass]="{'daily-stats-table': dailyStatsList.length==0}">
       <thead class="thead-dark">
         <tr>
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-0">RVP</th>

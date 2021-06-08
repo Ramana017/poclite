@@ -1,6 +1,8 @@
 // GLOBAL HEADER START
 .component-wrapperreview {
-
+  button{
+    display: none;
+  }
   // position: fixed;
   @include size(100%, null);
   background-color: $table-body;
