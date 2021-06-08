@@ -36,16 +36,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
-  // { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
-  // {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
+  { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
+  {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
   {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},
-  // {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
-  // {path:'scheduling',component:ScheduleManagementComponent},
-  // { path: 'calendar', component: CalenderSchedulingComponent },
+  {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
+  {path:'scheduling',component:ScheduleManagementComponent},
+  { path: 'calendar', component: CalenderSchedulingComponent },
 
   { path: 'chart-layout',canActivate: [AuthGuard], component: ChartLayoutComponent },
-  // { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
+
   {
     path: "registration", canActivate: [AuthGuard], canActivateChild: [AuthGuard], component: RegistrationComponent,
     children: [
