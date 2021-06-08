@@ -9,7 +9,7 @@
         <ng-template style="width: 100%;" #itemTemplateps let-item>
           <a [innerHTML]="item.PSName"></a>
         </ng-template> -->
-      <p-dropdown [(ngModel)]="psId" (ngModelChange)="pspagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20"
+      <p-dropdown [(ngModel)]="psId" [resetFilterOnHide]="true" (ngModelChange)="pspagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20"
         [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName" appendTo="body"
         optionValue="PSId">
       </p-dropdown>

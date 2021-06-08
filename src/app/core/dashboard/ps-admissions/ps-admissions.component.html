@@ -12,7 +12,7 @@
       <ng-template style="width: 100%;" #itemTemplateps let-item>
         <a [innerHTML]="item.PSName"></a>
       </ng-template> -->
-      <p-dropdown [(ngModel)]="psService.psAdmissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20" appendTo="body"
+      <p-dropdown [resetFilterOnHide]="true" [(ngModel)]="psService.psAdmissionId" (ngModelChange)="admissionpagereset()" [options]="psService.PsList" [virtualScroll]="true" [itemSize]="20" appendTo="body"
       [showClear]="true" placeholder="Search Ps" [filter]="true" filterBy="PSName" optionLabel="PSName"
       optionValue="PSId">
     </p-dropdown>
