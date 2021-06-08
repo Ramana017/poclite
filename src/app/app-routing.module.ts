@@ -20,10 +20,10 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
-import { AnalyticsComponent } from './core/analytics/analytics.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
-import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
-import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
+import { DailyReportsComponent } from './analytics/daily-reports/daily-reports.component';
+import { TelephonyStatsComponent } from './analytics/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
@@ -36,16 +36,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
-  // { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
-  // {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
+  { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
+  {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
   {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},
-  // {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
-  // {path:'scheduling',component:ScheduleManagementComponent},
-  // { path: 'calendar', component: CalenderSchedulingComponent },
+  {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
+  {path:'scheduling',component:ScheduleManagementComponent},
+  { path: 'calendar', component: CalenderSchedulingComponent },
 
   { path: 'chart-layout',canActivate: [AuthGuard], component: ChartLayoutComponent },
-  // { path: 'widgets', canActivate: [AuthGuard], component: DashboardComponent },
+
   {
     path: "registration", canActivate: [AuthGuard], canActivateChild: [AuthGuard], component: RegistrationComponent,
     children: [
@@ -73,6 +73,7 @@ const routes: Routes = [
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: 'admission', canActivate: [AuthGuard],loadChildren: () => import('./admission/admission.module').then(m => m.AdmissionModule) },
   { path: 'ps', loadChildren: () => import('./ps-module/ps-module.module').then(m => m.PsModuleModule) },
+  { path: 'Analytics', loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 

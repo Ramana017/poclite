@@ -12,7 +12,7 @@
       <ng-template style="width: 100%;" #itemTemplateDcs let-item>
         <a [innerHTML]="item.dcsName"></a>
       </ng-template> -->
-      <p-dropdown [(ngModel)]="dcsId" (ngModelChange)="dcspagereset()" [options]="psService.dcsList" [virtualScroll]="true" [itemSize]="20"
+      <p-dropdown [resetFilterOnHide]="true" [(ngModel)]="dcsId" (ngModelChange)="dcspagereset()" [options]="psService.dcsList" [virtualScroll]="true" [itemSize]="20"
         [showClear]="true" placeholder="Search DCS" [filter]="true" filterBy="dcsName" optionLabel="dcsName" appendTo="body"
         optionValue="dcsId">
       </p-dropdown>

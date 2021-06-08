@@ -58,10 +58,10 @@ import {DomsanitizePipe, FilterPipe, PhonePipe} from '../app/pipes/domsanitize.p
 
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
-import { AnalyticsComponent } from './core/analytics/analytics.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
-import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
-import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
+import { DailyReportsComponent } from './analytics/daily-reports/daily-reports.component';
+import { TelephonyStatsComponent } from './analytics/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';

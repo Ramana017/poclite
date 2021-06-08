@@ -18,6 +18,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -40,6 +42,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AutoCompleteModule,
     SplitButtonModule,
     TabsModule.forRoot(),
+    TooltipModule.forRoot()
 
   ],
   providers: [
@@ -64,7 +67,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AutoCompleteModule,
     RadioButtonModule,
     ConfirmDialogModule,
-    TabsModule
+    TabsModule,
+    TooltipModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
