@@ -20,10 +20,10 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
-import { AnalyticsComponent } from './core/analytics/analytics.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
-import { DailyReportsComponent } from './core/daily-reports/daily-reports.component';
-import { TelephonyStatsComponent } from './core/telephony-stats/telephony-stats.component';
+import { DailyReportsComponent } from './analytics/daily-reports/daily-reports.component';
+import { TelephonyStatsComponent } from './analytics/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
@@ -73,6 +73,7 @@ const routes: Routes = [
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: 'admission', canActivate: [AuthGuard],loadChildren: () => import('./admission/admission.module').then(m => m.AdmissionModule) },
   { path: 'ps', loadChildren: () => import('./ps-module/ps-module.module').then(m => m.PsModuleModule) },
+  { path: 'Analytics', loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 
