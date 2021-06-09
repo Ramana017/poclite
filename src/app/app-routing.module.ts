@@ -42,8 +42,7 @@ const routes: Routes = [
   { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
   {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
   {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
-  {path:'daily-schedule',canActivate: [AuthGuard],component:DailyScheduleComponent},
-  {path:'daily-evv',canActivate: [AuthGuard],component:DailyEvvComponent},
+
   {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},
   {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
