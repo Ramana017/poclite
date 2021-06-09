@@ -28,6 +28,9 @@ import { UtilizationStatsComponent } from './core/utilization-stats/utilization-
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
+import { DailyScheduleComponent } from './analytics/daily-schedule/daily-schedule.component';
+import { DailyEvvComponent } from './analytics/daily-evv/daily-evv.component';
+import { DailyCancelComponent } from './analytics/daily-cancel/daily-cancel.component';
 
 
 
@@ -39,6 +42,9 @@ const routes: Routes = [
   { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
   {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
   {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
+  {path:'daily-schedule',canActivate: [AuthGuard],component:DailyScheduleComponent},
+  {path:'daily-evv',canActivate: [AuthGuard],component:DailyEvvComponent},
+  {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},
   {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
   {path:'scheduling',component:ScheduleManagementComponent},

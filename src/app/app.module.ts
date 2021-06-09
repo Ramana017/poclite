@@ -88,6 +88,7 @@ import { ConfirmationService } from 'primeng/api';
 // import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,6 +135,7 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     TelephonyStatsComponent,
     UtilizationStatsComponent,
     CommunicationDashboardComponent,
+
     // PsHomeComponent,
     // PsAdmissionsComponent,
     // PsAuthorizationComponent,

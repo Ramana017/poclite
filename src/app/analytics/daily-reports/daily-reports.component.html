@@ -75,26 +75,6 @@
           <td>{{item.servicedHrs}}</td>
           <td>{{item.servicedHrsPercent}}</td>
         </tr>
-
-        <!-- <tr style="white-space: nowrap;">
-          <th scope="row">Pacific</th>
-          <td>ED: RCHC WA SOUTH KING COUNTY ddsfdsfdsfdsf</td>
-          <td>BR: RCHC FL BONITA SPRINGS</td>
-          <td>3176.</td>
-          <td>2662.00 </td>
-          <td>83.8 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td>0.00 </td>
-          <td>0.0 </td>
-          <td> 2662.00 </td>
-          <td> 83.8 </td>
-          <td> 2062.00 </td>
-          <td> 600.00 </td>
-          <td>22.5 </td>
-          <td> 0.00 </td>
-          <td> 0.0 </td>
-        </tr> -->
       </tbody>
       <tfoot class="daily-report-foot" *ngIf="dailyStatsList.length!=0">
         <tr class="border-top">
@@ -117,21 +97,8 @@
         </tr>
       </tfoot>
     </table>
-
     <p *ngIf="dailyStatsList.length==0" class="no-records text-center">No Records Found</p>
-
   </div>
-  <!-- <table class="table">
-    <tbody>
-      <tr>
-        <td colspan="3" class="sticky-left left-0">Grand Total
-
-        </td>
-        <td>22,500</td>
-      </tr>
-    </tbody>
-  </table> -->
-  <!-- <p class="mt-2 AvenirLTStd-Heavy text-right">Grand Total :<span class="ml-1 color-light-blue mr-5">200</span></p> -->
 </div>
 
 <ng-template #filtermodal>
