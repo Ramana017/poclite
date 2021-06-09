@@ -39,3 +39,35 @@ tfoot.daily-report-foot td{
   background: #666;
   color: $white;
 }
+.evv-stats{
+  .table-responsive {
+    background-color: white;
+    height: 75vh;
+    overflow-y: auto;
+    .table .thead-dark th{
+      z-index: 1;
+      font-family: "AvenirLTStd-Medium", sans-serif !important;
+    }
+  }
+}
+.icon-tel{
+  position: absolute;
+    left: -35px;
+    top: 30px;
+    z-index: 99;
+    background: #343a40;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+}
+.icon-tel-c{
+  top: 70px;
+}
+.icon-tel-d{
+top: 110px;
+}

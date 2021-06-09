@@ -6,10 +6,11 @@ import { SharedModule } from 'primeng/api';
 import { DailyScheduleComponent } from './daily-schedule/daily-schedule.component';
 import { DailyEvvComponent } from './daily-evv/daily-evv.component';
 import { DailyCancelComponent } from './daily-cancel/daily-cancel.component';
+import { EvvStatsBranchComponent } from './evv-stats-branch/evv-stats-branch.component';
 
 
 @NgModule({
-  declarations: [DailyScheduleComponent, DailyEvvComponent, DailyCancelComponent],
+  declarations: [DailyScheduleComponent, DailyEvvComponent, DailyCancelComponent, EvvStatsBranchComponent],
   imports: [
     CommonModule,
     AnalyticsRoutingModule,
