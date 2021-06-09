@@ -56,7 +56,7 @@
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
-                    <ul class=" dropdown-menu side-menu" aria-labelledby="dropdown1-1">
+                    <ul class=" dropdown-menu side-menu w-100" aria-labelledby="dropdown1-1">
                       <!-- <li class="  dropdown-item side-menu-item" [ngClass]="analytics.isActive?'active':''"
                         [routerLink]="['/analytics']"><a>Compliance</a>
                       </li>
@@ -67,9 +67,15 @@
                       <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''"
                         [routerLink]="['/daily-reports']">
                         <a>Daily Reports</a>
-                        <ul class="dropdown-menu">
-                          <li class="dropdown-item">
+                        <ul class="dropdown-menu w-100 side-menu-inner">
+                          <li class="dropdown-item side-menu-inner-item">
                             <a>Evv</a>
+                          </li>
+                          <li class="dropdown-item side-menu-inner-item">
+                            <a>Telephony</a>
+                          </li>
+                          <li class="dropdown-item side-menu-inner-item">
+                            <a>Scheduling</a>
                           </li>
                         </ul>
                       </li>
