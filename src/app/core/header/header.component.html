@@ -65,7 +65,13 @@
                         <a>Maintainence</a>
                       </li> -->
                       <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''"
-                        [routerLink]="['/daily-reports']"><a>Daily Reports</a>
+                        [routerLink]="['/daily-reports']">
+                        <a>Daily Reports</a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-item">
+                            <a>Evv</a>
+                          </li>
+                        </ul>
                       </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
                         [routerLink]="['/telephony']"><a>Telephony Stats</a>
