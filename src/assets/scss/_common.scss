@@ -1198,6 +1198,12 @@ input[type="number"] {
 .color-text-message{
   color: #922040;
 }
+.bg-yellow{
+  background-color: #c49f47 !important;
+}
+.bg-light-grey{
+  background: #f8f9fa;
+}
 // ==================scroll styles=================
 
 /* width & height*/
@@ -2489,7 +2495,7 @@ app-maintainence {
     display: block;
     position: absolute;
     left: 100%;
-    top: 0;
+    top: -9px;
     .side-menu-inner-item{
       
     }
