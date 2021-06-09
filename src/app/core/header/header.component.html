@@ -34,25 +34,29 @@
                   </button>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                  <li *ngIf="userDetailService.checkUser('ceat')"  class="dropdown-item" [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/ps-edit/widgets']">
+                  <li *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item"
+                    [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/ps-edit/widgets']">
                     <a>Home</a>
                   </li>
-                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')" [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
+                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"
+                    [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
                     <a> Call
                       Management</a>
                   </li>
-                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"  [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>CSM
+                  <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"
+                    [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>CSM
                       DashBoard</a>
                   </li>
                   <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">
                     <a>Visit Review </a>
                   </li>
-                  <li class="dropdown-item" [ngClass]="communication.isActive?'active':''" [routerLink]="['/communication-dashboard']">
+                  <li class="dropdown-item" [ngClass]="communication.isActive?'active':''"
+                    [routerLink]="['/communication-dashboard']">
                     <a>Communication Dashboard </a>
                   </li>
 
                   <li class="  dropdown-item dropdown side-menu-analytics"
-                    [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive?'active':''">
+                    [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive||dailyCancel.isActive||dailyEvv.isActive||dailySchedule.isActive?'active':''">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
@@ -80,35 +84,51 @@
                         </ul>
                       </li>
                       <li class="dropdown-item side-menu-item" [ngClass]="telephony.isActive?'active':''"
-                        [routerLink]="['/telephony']"><a>Weekly - Telephony Stats</a>
+                        [routerLink]="['/telephony']"><a>Weekly-Telephony Stats</a>
+                      </li>
+                      <li class="dropdown-item side-menu-item" [ngClass]="dailyEvv.isActive?'active':''"
+                        [routerLink]="['/Analytics/daily-evv']"><a>Daily-Evv</a>
+                      </li>
+                      <li class="dropdown-item side-menu-item" [ngClass]="dailySchedule.isActive?'active':''"
+                        [routerLink]="['/Analytics/daily-schedule']"><a>Daily-Schedule</a>
+                      </li>
+                      <li class="dropdown-item side-menu-item" [ngClass]="dailyCancel.isActive?'active':''"
+                        [routerLink]="['/Analytics/daily-cancel']"><a>Daily-Cancel</a>
                       </li>
                       <!-- <li class=" s dropdown-item side-menu-item" [ngClass]="utilization.isActive?'active':''"
                         [routerLink]="['/utilization']"><a>Utilization Stats</a>
                       </li> -->
                     </ul>
                   </li>
-                  <li [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''" class=" d-none dropdown-item dropdown side-menu-analytics">
+                  <li
+                    [ngClass]="scheduling.isActive||mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''"
+                    class=" d-none dropdown-item dropdown side-menu-analytics">
                     <a class=" d-none dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
-                      aria-haspopup="true"  aria-expanded="false">POC Scheduling</a>
+                      aria-haspopup="true" aria-expanded="false">POC Scheduling</a>
 
                     <ul class="dropdown-menu side-menu" aria-labelledby="dropdown1-1">
-                      <li class="dropdown-item side-menu-item" [ngClass]="scheduling.isActive?'active':''" [routerLink]="['/schedulingmodule/scheduling']">
+                      <li class="dropdown-item side-menu-item" [ngClass]="scheduling.isActive?'active':''"
+                        [routerLink]="['/schedulingmodule/scheduling']">
                         <a>Scheduling</a>
                       </li>
                       <li class="dropdown-item map-menu-item p-0">
                         <ul class="p-0">
-                          <li class="dropdown-item dropdown map-menu-analytics" [ngClass]="mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''">
+                          <li class="dropdown-item dropdown map-menu-analytics"
+                            [ngClass]="mapspsdcs.isActive||locateDCS.isActive||dcsroute.isActive?'active':''">
                             <a class="dropdown-toggle map-menu-link" id="dropdown1-1" data-toggle="dropdown"
-                              aria-haspopup="true"  aria-expanded="false">Maps</a>
+                              aria-haspopup="true" aria-expanded="false">Maps</a>
 
                             <ul class="dropdown-menu map-menu w-160" aria-labelledby="dropdown1-1">
-                              <li class="dropdown-item map-menu-item" [ngClass]="mapspsdcs.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/ps-dcs']"><a>PS/DCS
+                              <li class="dropdown-item map-menu-item" [ngClass]="mapspsdcs.isActive?'active':''"
+                                [routerLink]="['/schedulingmodule/maps/ps-dcs']"><a>PS/DCS
                                   Distribution</a>
                               </li>
-                              <li class="dropdown-item map-menu-item" [ngClass]="locateDCS.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/locate-dcs']"><a>Locate
+                              <li class="dropdown-item map-menu-item" [ngClass]="locateDCS.isActive?'active':''"
+                                [routerLink]="['/schedulingmodule/maps/locate-dcs']"><a>Locate
                                   DCS</a>
                               </li>
-                              <li class="dropdown-item map-menu-item" [ngClass]="dcsroute.isActive?'active':''" [routerLink]="['/schedulingmodule/maps/dcs-map']"><a>DCS Route
+                              <li class="dropdown-item map-menu-item" [ngClass]="dcsroute.isActive?'active':''"
+                                [routerLink]="['/schedulingmodule/maps/dcs-map']"><a>DCS Route
                                   Map</a>
                               </li>
 
@@ -187,9 +207,11 @@
             <span class="ml" routerLink="/schedulingmodule/scheduling" routerLinkActive #scheduling="routerLinkActive">
               {{scheduling.isActive ? 'Schedule Management' : null}}
             </span>
-            <span class="ml" routerLink="/schedulingmodule/maps/locate-dcs" routerLinkActive #locateDCS="routerLinkActive">
+            <span class="ml" routerLink="/schedulingmodule/maps/locate-dcs" routerLinkActive
+              #locateDCS="routerLinkActive">
               {{locateDCS.isActive ? 'Locate DCS ' : null}}
-            </span><span class="ml" routerLink="/schedulingmodule/maps/ps-dcs" routerLinkActive #mapspsdcs="routerLinkActive">
+            </span><span class="ml" routerLink="/schedulingmodule/maps/ps-dcs" routerLinkActive
+              #mapspsdcs="routerLinkActive">
               {{mapspsdcs.isActive ? 'PS/DCS Distribution ' : null}}
             </span>
             <span class="ml" routerLink="/schedulingmodule/maps/dcs-map" routerLinkActive #dcsroute="routerLinkActive">
@@ -198,7 +220,17 @@
             <span class="ml" routerLink="/communication-dashboard" routerLinkActive #communication="routerLinkActive">
               {{communication.isActive ? "Communication Dashboard" : ''}}
             </span>
-            <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive #admission="routerLinkActive">
+            <span class="ml" routerLink="/Analytics/daily-evv" routerLinkActive #dailyEvv="routerLinkActive">
+              {{dailyEvv.isActive ? "Daily - EVV" : ''}}
+            </span>
+            <span class="ml" routerLink="/Analytics/daily-schedule" routerLinkActive #dailySchedule="routerLinkActive">
+              {{dailySchedule.isActive ? "Daily - Schedule" : ''}}
+            </span>
+            <span class="ml" routerLink="/Analytics/daily-cancel" routerLinkActive #dailyCancel="routerLinkActive">
+              {{dailyCancel.isActive ? "Daily - Cancel" : ''}}
+            </span>
+            <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive
+              #admission="routerLinkActive">
               {{admission.isActive ? 'Admissions ' : ''}}
             </span>
 
