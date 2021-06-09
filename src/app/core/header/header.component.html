@@ -68,21 +68,21 @@
                         [routerLink]="['/maintaince']">
                         <a>Maintainence</a>
                       </li> -->
-                      <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive?'active':''"
+                      <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive||dailyEvv.isActive||dailyCancel.isActive||dailyCancel.isActive?'active':''"
                         >
                         <a>Daily</a>
                         <ul class="dropdown-menu w-100 side-menu-inner">
-                          <li class="dropdown-item side-menu-inner-item" [routerLink]="['/daily-reports']">
-                            <a>Reports</a>
+                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/daily-reports']">
+                            <a>Branch Scheduled Hours Breakdown</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [routerLink]="['/Analytics/daily-evv']"> 
-                            <a>Evv</a>
+                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyEvv.isActive?'active':''" [routerLink]="['/Analytics/daily-evv']">
+                            <a>EVV Stats by Caregiver</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [routerLink]="['/Analytics/daily-cancel']">
-                            <a>Cancel</a>
+                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyCancel.isActive?'active':''" [routerLink]="['/Analytics/daily-cancel']">
+                            <a>ALL Cancelled Visits</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [routerLink]="['/Analytics/daily-schedule']">
-                            <a>Scheduling</a>
+                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/Analytics/daily-schedule']">
+                            <a>Scheduled Hours</a>
                           </li>
                         </ul>
                       </li>
@@ -199,7 +199,7 @@
               {{maintaince.isActive ? 'Maintainence' : null}}
             </span>
             <span class="ml" routerLink="/daily-reports" routerLinkActive #dailyReports="routerLinkActive">
-              {{dailyReports.isActive ? 'Daily Reports' : null}}
+              {{dailyReports.isActive ? 'Branch Scheduled Hours Breakdown' : null}}
             </span>
             <span class="ml" routerLink="/telephony" routerLinkActive #telephony="routerLinkActive">
               {{telephony.isActive ? 'Telephony Stats' : null}}
@@ -224,13 +224,13 @@
               {{communication.isActive ? "Communication Dashboard" : ''}}
             </span>
             <span class="ml" routerLink="/Analytics/daily-evv" routerLinkActive #dailyEvv="routerLinkActive">
-              {{dailyEvv.isActive ? "Daily - EVV" : ''}}
+              {{dailyEvv.isActive ? " EVV Stats by Caregiver" : ''}}
             </span>
             <span class="ml" routerLink="/Analytics/daily-schedule" routerLinkActive #dailySchedule="routerLinkActive">
-              {{dailySchedule.isActive ? "Daily - Schedule" : ''}}
+              {{dailySchedule.isActive ? "Scheduled Hours" : ''}}
             </span>
             <span class="ml" routerLink="/Analytics/daily-cancel" routerLinkActive #dailyCancel="routerLinkActive">
-              {{dailyCancel.isActive ? "Daily - Cancel" : ''}}
+              {{dailyCancel.isActive ? "ALL Cancelled Visits" : ''}}
             </span>
             <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive
               #admission="routerLinkActive">
