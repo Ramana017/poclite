@@ -72,8 +72,10 @@ tfoot.daily-report-foot td{
 top: 110px;
 }
 .pivot-table{
+  @extend .box-shadow;
   height: 75vh;
   overflow: auto;
+  background: $white;
   table{
 
     width: 100%;
@@ -87,7 +89,7 @@ top: 110px;
       }
     }
     tbody{
-      background: $white;
+    
     }
   }
 }
