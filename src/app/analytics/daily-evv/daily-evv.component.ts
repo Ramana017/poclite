@@ -7,7 +7,9 @@ import { DashboardService } from 'src/app/services/dashboard.service';
   styleUrls: ['./daily-evv.component.sass']
 })
 export class DailyEvvComponent implements OnInit {
-public display=[true,false,false]
+public display=[true,false,false];
+public header=['RVP','ED','Branch','DCS Home Site#','Site Name','DCS Name','Dcs Coordinator','Enterprise Id','Job Title','Period','Total Expected Punches','Total Punches#','Missing Punches','Missing Punches Percent '
+,'Telephony Landline Punches#','Tel Landline Percent','Telephony App Punches#','Tel App Percent','Manual Punches#','Tel Manual Percent ',' Manual + missing','EVV compliant','Compliance Status']
   constructor(private dashBoardService:DashboardService) { }
 
   ngOnInit(): void {
@@ -21,10 +23,10 @@ public getTelephonyByCareGiver(){
     this.dashBoardService.getTelephonyByCareGiver().subscribe(res=>{
       this.telephonyByCareGiver=res.telephonyByCaregiver;
       //this code to contral border styles its mandatory
-      this.display[0]=false;
-      setTimeout(()=>{
-        this.display[0]=true;
-      },1)
+      // this.display[0]=false;
+      // setTimeout(()=>{
+      //   this.display[0]=true;
+      // },1)
       //*********************************** */
       console.log(this.telephonyByCareGiver)
     })
