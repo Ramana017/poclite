@@ -20,6 +20,12 @@ public getTelephonyByCareGiver(){
   try {
     this.dashBoardService.getTelephonyByCareGiver().subscribe(res=>{
       this.telephonyByCareGiver=res.telephonyByCaregiver;
+      //this code to contral border styles its mandatory
+      this.display[0]=false;
+      setInterval(()=>{
+        this.display[0]=true;
+      },1)
+      //*********************************** */
       console.log(this.telephonyByCareGiver)
     })
   } catch (error) {
