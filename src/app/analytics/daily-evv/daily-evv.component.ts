@@ -22,7 +22,7 @@ public getTelephonyByCareGiver(){
       this.telephonyByCareGiver=res.telephonyByCaregiver;
       //this code to contral border styles its mandatory
       this.display[0]=false;
-      setInterval(()=>{
+      setTimeout(()=>{
         this.display[0]=true;
       },1)
       //*********************************** */

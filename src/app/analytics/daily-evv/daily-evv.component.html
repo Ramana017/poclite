@@ -80,8 +80,8 @@
       </table>
       <p *ngIf="telephonyByCareGiver?.length==0" class="no-records text-center">No Records Found</p>
     </div> -->
-    <div  class=" prime-table">
-  <p-table  [value]="telephonyByCareGiver" styleClass="p-datatable-striped" [paginator]="true" [rows]="10" *ngIf="display[0]"
+    <div *ngIf="display[0]" class=" prime-table">
+  <p-table  [value]="telephonyByCareGiver" styleClass="p-datatable-striped" [paginator]="true" [rows]="10"
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
@@ -105,7 +105,7 @@
         <th scope="col" class="sticky-top border"> Telephony App Punches#</th>
         <th scope="col" class="sticky-top border"> Total Expected Punches</th>
         <th scope="col" class="sticky-top border"> Tel App Percent</th>
-        <th scope="col" class="sticky-top border">Manual Punches#</th>
+        <th   scope="col" class="sticky-top border">Manual Punches#</th>
         <th scope="col" class="sticky-top border"> Tel Manual Percent </th>
         <th scope="col" class="sticky-top border"> Manual + missing</th>
         <th scope="col" class="sticky-top border"> EVV compliant</th>
