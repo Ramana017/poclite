@@ -85,31 +85,31 @@
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
-      <tr>
-        <th scope="col" class="sticky-top border">RVP</th>
-        <th scope="col" class="sticky-top border">ED</th>
-        <th scope="col" class="sticky-top border">Branch</th>
-        <th scope="col" class="sticky-top border">DCS Home Site#</th>
-        <th scope="col" class="sticky-top border">Site Name</th>
-        <th scope="col" class="sticky-top border"> DCS Name</th>
-        <th scope="col" class="sticky-top border"> Dcs Coordinator </th>
-        <th scope="col" class="sticky-top border"> Enterprise Id</th>
-        <th scope="col" class="sticky-top border"> Job Title</th>
-        <th scope="col" class="sticky-top border"> Period</th>
-        <th scope="col" class="sticky-top border"> Total Expected Punches</th>
-        <th scope="col" class="sticky-top border"> Total Punches#</th>
-        <th scope="col" class="sticky-top border"> Missing Punches</th>
-        <th scope="col" class="sticky-top border"> Missing Punches Percent </th>
-        <th scope="col" class="sticky-top border"> Telephony Landline Punches#</th>
-        <th scope="col" class="sticky-top border"> Tel Landline Percent</th>
-        <th scope="col" class="sticky-top border"> Telephony App Punches#</th>
-        <th scope="col" class="sticky-top border"> Total Expected Punches</th>
-        <th scope="col" class="sticky-top border"> Tel App Percent</th>
-        <th   scope="col" class="sticky-top border">Manual Punches#</th>
-        <th scope="col" class="sticky-top border"> Tel Manual Percent </th>
-        <th scope="col" class="sticky-top border"> Manual + missing</th>
-        <th scope="col" class="sticky-top border"> EVV compliant</th>
-        <th scope="col" class="sticky-top border"> Compliance Status </th>
+      <tr class="sticky-top">
+        <th scope="col" class="">RVP</th>
+        <th scope="col" class="">ED</th>
+        <th scope="col" class="">Branch</th>
+        <th scope="col" class="">DCS Home Site#</th>
+        <th scope="col" class="">Site Name</th>
+        <th scope="col" class=""> DCS Name</th>
+        <th scope="col" class=""> Dcs Coordinator </th>
+        <th scope="col" class=""> Enterprise Id</th>
+        <th scope="col" class=""> Job Title</th>
+        <th scope="col" class=""> Period</th>
+        <th scope="col" class=""> Total Expected Punches</th>
+        <th scope="col" class=""> Total Punches#</th>
+        <th scope="col" class=""> Missing Punches</th>
+        <th scope="col" class=""> Missing Punches Percent </th>
+        <th scope="col" class=""> Telephony Landline Punches#</th>
+        <th scope="col" class=""> Tel Landline Percent</th>
+        <th scope="col" class=""> Telephony App Punches#</th>
+        <th scope="col" class=""> Total Expected Punches</th>
+        <th scope="col" class=""> Tel App Percent</th>
+        <th   scope="col" class="">Manual Punches#</th>
+        <th scope="col" class=""> Tel Manual Percent </th>
+        <th scope="col" class=""> Manual + missing</th>
+        <th scope="col" class=""> EVV compliant</th>
+        <th scope="col" class=""> Compliance Status </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
