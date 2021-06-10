@@ -1,5 +1,19 @@
 <!-- <p>daily-schedule works!</p> -->
-<div class="daily-stats-wrapper p-4 ">
+<div class="daily-stats-wrapper p-4 pl-5 position-relative">
+  <div class="d-flex align-items-center">
+    <span class="material-icons icon-tel" [tooltip]="sitecontent" tooltipPlacement="right">
+      query_stats
+        <ng-template #sitecontent>EVV Stats By Branch</ng-template>
+      </span>
+      <span class="material-icons icon-tel icon-tel-c" [tooltip]="sitecontent1" tooltipPlacement="right">
+        fact_check
+        <ng-template #sitecontent1>Branch Compliance Status</ng-template>
+        </span>      
+        <span class="material-icons icon-tel icon-tel-d" [tooltip]="sitecontent2" tooltipPlacement="right">
+          tty
+          <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
+          </span>
+  </div>
     <div class="table-responsive box-shadow">
       <table class="table mb-0" id='excel-table' >
         <thead class="thead-dark">
@@ -31,30 +45,124 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let item of  dailyStatsList">
-            <td scope="row" class="sticky-left left-0">{{item.rvp}}</td>
-            <td class="sticky-left left-97 td">{{item.ed}}</td>
-            <td class="sticky-left left-277 td">{{item.branch}}</td>
-            <td>{{item.authorizedHrs}}</td>
-            <td>{{item.scheduledHrs}} </td>
-            <td>{{item.percentOfAuthSchHrs}}</td>
-            <td>{{item.cancelledHrs}}</td>
-            <td>{{item.percentOfCancelHrs}}</td>
-            <td>{{item.noNeedHrs}}</td>
-            <td>{{item.percentOfNoNeedHrs}}</td>
-            <td>{{item.scheduledHrsWithoutCancel}}</td>
-            <td>{{item.perOfSchLessCancelHrs}}</td>
-            <td>{{item.sumScheduledHrsWithDcs}}</td>
-            <td>{{item.sumScheduledHrsWithNoDcs}}</td>
-            <td>{{item.scheduledWithNoDcsPercent}}</td>
-            <td>{{item.servicedHrs}}</td>
-            <td>{{item.servicedHrsPercent}}</td>
-          </tr> -->
+         
         </tbody>
 
       </table>
-      <!-- <p *ngIf="dailyStatsList.length==0" class="no-records text-center">No Records Found</p> -->
+      
     </div>
+
+<!-- evv  -->
+<!-- <div class="  evv-stats table-stats-evv">
+    <div class="table-responsive box-shadow">
+        <table class="table " id='excel-table'>
+            <thead class="thead-dark">
+                <tr class="dark">
+                    <th colspan="2"></th>
+                    <th scope="col" class="sticky-top py-1 bg-dark">PERIOD - May</th>
+                    <th scope="col" class="sticky-top py-1 bg-dark" colspan="3">Values</th>
+                </tr>
+                <tr>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Branch
+                    </th>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">DCS Coordinator
+                    </th>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Manual %
+                    </th>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Landline %
+                    </th>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Mobile App %
+                    </th>
+                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Sum of Total EVV
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-light-grey">
+                    <td colspan="2" class="py-1">BR: RCHC LA ALEXANDRIA
+                    </td>
+                    <td class="py-1">11.0%
+                    </td>
+                    <td class="py-1">0.0%
+                    </td>
+                    <td class="py-1"> 89.0%
+                    </td>
+                    <td class="py-1">89.0%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-1">
+                    </td>
+                    <td class="py-1">Stanley, Kayla
+                    </td>
+                    <td class="py-1">0.0%
+                    </td>
+                    <td class="py-1">0.0%
+                    </td>
+                    <td class="py-1"> 89.0%
+                    </td>
+                    <td class="py-1">89.0%
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-1">
+                    </td>
+                    <td class="py-1">Stanley, Kayla
+                    </td>
+                    <td class="py-1">0.0%
+                    </td>
+                    <td class="py-1">0.0%
+                    </td>
+                    <td class="py-1"> 89.0%
+                    </td>
+                    <td class="py-1">89.0%
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> -->
+
+<!-- compliance  -->
+<!-- <div class="table-stats-evv evv-stats">
+  <div class="table-responsive box-shadow">
+      <table class="table " id='excel-table'>
+          <thead class="thead-dark">
+              <tr class="dark">
+               
+                  <th scope="col" class="sticky-top py-1">Count of Employees</th>
+                  <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
+              </tr>
+              <tr>
+                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Row Labels
+                  </th>
+                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Compliant
+                  </th>
+                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Partial Compliance,<br> but below threshold
+                  </th>
+                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Non Compliant
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="py-1">Stanley, Kayla
+                  </td>
+                  <td class="py-1">0.0%
+                  </td>
+                  <td class="py-1">0.0%
+                  </td>
+                  <td class="py-1"> 89.0%
+                  </td>
+             
+              </tr>
+          
+          </tbody>
+      </table>
+  </div>
+</div> -->
+
+
     <div class="pager d-flex justify-content-end mt-2">
      
     

@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
       //     }
       // });
 
-
+this.clickheader();
     }
 
   public logout() {
@@ -99,5 +99,11 @@ export class HeaderComponent implements OnInit {
 //   })
 //   });
 // }
-
+clickheader(){
+  document.querySelectorAll('.dropdown-item').forEach(function(element){
+    element.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  })
+}
 }

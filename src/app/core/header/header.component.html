@@ -36,28 +36,28 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
                   <li *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item"
                     [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/ps-edit/widgets']">
-                    <a>Home</a>
+                    <a href="javascript:void(0)">Home</a>
                   </li>
                   <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"
                     [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
-                    <a> Call
+                    <a href="javascript:void(0)"> Call
                       Management</a>
                   </li>
                   <li class="dropdown-item" *ngIf="userDetailService.checkUser('schedule')"
-                    [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a>CSM
+                    [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a href="javascript:void(0)"> CSM
                       DashBoard</a>
                   </li>
-                  <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']">
-                    <a>Visit Review </a>
+                  <li class="dropdown-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']" >
+                    <a href="javascript:void(0)">Visit Review </a>
                   </li>
                   <li class="dropdown-item" [ngClass]="communication.isActive?'active':''"
-                    [routerLink]="['/communication-dashboard']">
-                    <a>Communication Dashboard </a>
+                    [routerLink]="['/communication-dashboard']" >
+                    <a href="javascript:void(0)">Communication Dashboard </a>
                   </li>
 
-                  <li class="  dropdown-item dropdown side-menu-analytics"
+                  <li class="  dropdown-item dropdown side-menu-analytics" 
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive||dailyCancel.isActive||dailyEvv.isActive||dailySchedule.isActive?'active':''">
-                    <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
+                    <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown" 
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
                     <ul class=" dropdown-menu side-menu w-100" aria-labelledby="dropdown1-1">
@@ -70,19 +70,19 @@
                       </li> -->
                       <li class="dropdown-item side-menu-item" [ngClass]="dailyReports.isActive||dailyEvv.isActive||dailyCancel.isActive||dailyCancel.isActive?'active':''"
                         >
-                        <a>Daily</a>
+                        <a >Daily</a>
                         <ul class="dropdown-menu   side-menu-inner">
-                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/daily-reports']">
-                            <a>Branch Scheduled Hours Breakdown</a>
+                          <li class="dropdown-item side-menu-inner-item"  [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/daily-reports']">
+                            <a href="javascript:void(0)">Branch Scheduled Hours Breakdown</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyEvv.isActive?'active':''" [routerLink]="['/Analytics/daily-evv']">
-                            <a>EVV Stats by Caregiver</a>
+                          <li class="dropdown-item side-menu-inner-item"  [ngClass]="dailyEvv.isActive?'active':''" [routerLink]="['/Analytics/daily-evv']">
+                            <a href="javascript:void(0)">EVV Stats by Caregiver</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailyCancel.isActive?'active':''" [routerLink]="['/Analytics/daily-cancel']">
-                            <a>ALL Cancelled Visits</a>
+                          <li class="dropdown-item side-menu-inner-item"  [ngClass]="dailyCancel.isActive?'active':''" [routerLink]="['/Analytics/daily-cancel']">
+                            <a href="javascript:void(0)">ALL Cancelled Visits</a>
                           </li>
-                          <li class="dropdown-item side-menu-inner-item" [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/Analytics/daily-schedule']">
-                            <a>Scheduled Hours</a>
+                          <li class="dropdown-item side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/Analytics/daily-schedule']">
+                            <a href="javascript:void(0)">Scheduled Hours</a>
                           </li>
                         </ul>
                       </li>

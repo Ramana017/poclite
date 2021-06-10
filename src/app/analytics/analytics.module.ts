@@ -7,14 +7,15 @@ import { DailyScheduleComponent } from './daily-schedule/daily-schedule.componen
 import { DailyEvvComponent } from './daily-evv/daily-evv.component';
 import { DailyCancelComponent } from './daily-cancel/daily-cancel.component';
 import { EvvStatsBranchComponent } from './evv-stats-branch/evv-stats-branch.component';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [DailyScheduleComponent, DailyEvvComponent, DailyCancelComponent, EvvStatsBranchComponent],
   imports: [
     CommonModule,
     AnalyticsRoutingModule,
-    SharedModule
+    SharedModule,
+    TooltipModule
   ]
 })
 export class AnalyticsModule { }

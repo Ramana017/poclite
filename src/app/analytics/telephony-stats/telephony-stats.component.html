@@ -3,23 +3,7 @@
 <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
 <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy'}}</h5>
   </div>
-  <div class="d-flex align-items-center">
-    <span class="material-icons icon-tel" [tooltip]="sitecontent" tooltipPlacement="right">
-      query_stats
-        <ng-template #sitecontent>EVV Stats By Branch</ng-template>
-      </span>
-      <span class="material-icons icon-tel icon-tel-c" [tooltip]="sitecontent1" tooltipPlacement="right">
-        fact_check
-        <ng-template #sitecontent1>Branch Compliance Status</ng-template>
-        </span>      
-        <span class="material-icons icon-tel icon-tel-d" [tooltip]="sitecontent2" tooltipPlacement="right">
-          tty
-          <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
-          </span>
-    <!-- <p class="mb-0 ">EVV Stats By Branch</p>
-    <p class="mb-0">Branch Compliance Status</p>
-    <p class="mb-0 ">Telephony by Caregiver</p> -->
-  </div>
+
   <div>
     <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
     <i class="fas fa-filter mx-2 f-18"  (click)="openFilter(filtermodal)" ></i>
@@ -27,7 +11,7 @@
 
 </div>
 
-<div class="daily-stats-wrapper px-4 pl-5 pt-2 pb-3">
+<div class="daily-stats-wrapper px-4  pt-2 pb-3">
   <div class="table-responsive box-shadow">
     <table class="table "id='excel-table' >
       <thead class="thead-dark">
@@ -74,119 +58,6 @@
   </div>
 </div>
 
-<!-- evv  -->
-<!-- <div class=" px-4 pl-5 pt-2 pb-3 evv-stats">
-    <div class="table-responsive box-shadow">
-        <table class="table " id='excel-table'>
-            <thead class="thead-dark">
-                <tr>
-                    <th colspan="2"></th>
-                    <th scope="col" class="sticky-top py-1">PERIOD - May</th>
-                    <th scope="col" class="sticky-top py-1" colspan="3">Values</th>
-                </tr>
-                <tr>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Branch
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">DCS Coordinator
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Manual %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Landline %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Mobile App %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Sum of Total EVV
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-light-grey">
-                    <td colspan="2" class="py-1">BR: RCHC LA ALEXANDRIA
-                    </td>
-
-                    <td class="py-1">11.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-                <tr>
-                    <td class="py-1">
-                    </td>
-
-                    <td class="py-1">Stanley, Kayla
-
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-                <tr>
-                    <td class="py-1">
-                    </td>
-
-                    <td class="py-1">Stanley, Kayla
-
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
-<!-- compliance  -->
-<!-- <div class=" px-4 pl-5 pt-2 pb-3 evv-stats">
-  <div class="table-responsive box-shadow">
-      <table class="table " id='excel-table'>
-          <thead class="thead-dark">
-              <tr>
-               
-                  <th scope="col" class="sticky-top py-1">Count of Employees</th>
-                  <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
-              </tr>
-              <tr>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Row Labels
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Compliant
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Partial Compliance,<br> but below threshold
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Non Compliant
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td class="py-1">Stanley, Kayla
-                  </td>
-                  <td class="py-1">0.0%
-                  </td>
-                  <td class="py-1">0.0%
-                  </td>
-                  <td class="py-1"> 89.0%
-                  </td>
-             
-              </tr>
-          
-          </tbody>
-      </table>
-  </div>
-</div> -->
 
 
 
