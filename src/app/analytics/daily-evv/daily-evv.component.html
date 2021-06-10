@@ -1,23 +1,23 @@
 <!-- <p>daily-schedule works!</p> -->
 <div class="daily-stats-wrapper p-4 pl-5 position-relative">
   <div class="d-flex align-items-center">
-    <span class="material-icons icon-tel" [tooltip]="sitecontent" tooltipPlacement="right">
+    <span class="material-icons icon-tel"(click)="display=[true,false,false]" [tooltip]="sitecontent" tooltipPlacement="right">
       query_stats
         <ng-template #sitecontent>EVV Stats By Branch</ng-template>
       </span>
-      <span class="material-icons icon-tel icon-tel-c" [tooltip]="sitecontent1" tooltipPlacement="right">
+      <span class="material-icons icon-tel icon-tel-c" (click)="display=[false,false,true]" [tooltip]="sitecontent1" tooltipPlacement="right">
         fact_check
         <ng-template #sitecontent1>Branch Compliance Status</ng-template>
-        </span>      
-        <span class="material-icons icon-tel icon-tel-d" [tooltip]="sitecontent2" tooltipPlacement="right">
+        </span>
+        <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [tooltip]="sitecontent2" tooltipPlacement="right">
           tty
           <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
           </span>
   </div>
-    <div class="table-responsive box-shadow">
+    <div *ngIf="display[0]" class="table-responsive box-shadow">
       <table class="table mb-0" id='excel-table' >
         <thead class="thead-dark">
-          <tr>										
+          <tr>
             <th scope="col" class="sticky-top ">RVP</th>
             <th scope="col" class="sticky-top">ED</th>
             <th scope="col" class="sticky-top ">Branch</th>
@@ -45,15 +45,15 @@
           </tr>
         </thead>
         <tbody>
-         
+
         </tbody>
 
       </table>
-      
+
     </div>
 
 <!-- evv  -->
-<!-- <div class="  evv-stats table-stats-evv">
+<div *ngIf="display[1]" class="  evv-stats table-stats-evv">
     <div class="table-responsive box-shadow">
         <table class="table " id='excel-table'>
             <thead class="thead-dark">
@@ -121,15 +121,15 @@
             </tbody>
         </table>
     </div>
-</div> -->
+</div>
 
 <!-- compliance  -->
-<!-- <div class="table-stats-evv evv-stats">
+ <div *ngIf="false" class="table-stats-evv evv-stats">
   <div class="table-responsive box-shadow">
       <table class="table " id='excel-table'>
           <thead class="thead-dark">
               <tr class="dark">
-               
+
                   <th scope="col" class="sticky-top py-1">Count of Employees</th>
                   <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
               </tr>
@@ -154,18 +154,20 @@
                   </td>
                   <td class="py-1"> 89.0%
                   </td>
-             
+
               </tr>
-          
+
           </tbody>
       </table>
   </div>
-</div> -->
+</div>
+<db-angular-pivot-table *ngIf="display[2]" [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
 
 
-    <div class="pager d-flex justify-content-end mt-2">
-     
-    
+
+    <div *ngIf="display[0]" class="pager d-flex justify-content-end mt-2">
+
+
         <div class="c">
           <span class="mr-2">Per page</span>
           <select class="border-0 mr-2">
@@ -173,13 +175,13 @@
             <option >10</option>
             <option>15</option>
             <option>20</option>
-    
+
           </select>
           <span class="mr-2">Showing 10 to
           100 of
             200
           </span>
-    
+
           <button type="button" class="btn-common-small mx-2"  >Prev</button>
           <button type="button" class="btn-common-small mx-2"
            >Next</button>
