@@ -102,6 +102,8 @@ export class DailyReportsComponent implements OnInit {
   public siteList = [];
   public selectedSites = [];
   public modelRef: BsModalRef;
+  public payorClass=[{value:'MD'},{value:'OG'},{value:'VA'}];
+  public selectedPayorClass:Array<any>=this.payorClass;
 
 
 
