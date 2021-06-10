@@ -80,36 +80,36 @@
       </table>
       <p *ngIf="telephonyByCareGiver?.length==0" class="no-records text-center">No Records Found</p>
     </div> -->
-
-  <p-table *ngIf="display[0]" [value]="telephonyByCareGiver" [paginator]="true" [rows]="10"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    <!-- <div  class="box-shadow prime-table"> -->
+  <p-table  [value]="telephonyByCareGiver" [paginator]="true" [rows]="10" *ngIf="display[0]"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true" scrollHeight="60vh"
     [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
       <tr>
         <th scope="col" class="sticky-top ">RVP</th>
         <th scope="col" class="sticky-top">ED</th>
         <th scope="col" class="sticky-top ">Branch</th>
-        <th scope="col" class="sticky-top">DCS Home<br> Site#</th>
+        <th scope="col" class="sticky-top">DCS Home Site#</th>
         <th scope="col" class="sticky-top">Site Name</th>
         <th scope="col" class="sticky-top"> DCS Name</th>
-        <th scope="col" class="sticky-top"> Dcs<br> Coordinator </th>
+        <th scope="col" class="sticky-top"> Dcs Coordinator </th>
         <th scope="col" class="sticky-top"> Enterprise Id</th>
         <th scope="col" class="sticky-top"> Job Title</th>
         <th scope="col" class="sticky-top"> Period</th>
-        <th scope="col" class="sticky-top"> Total Expected <br>Punches</th>
-        <th scope="col" class="sticky-top"> Total<br> Punches#</th>
-        <th scope="col" class="sticky-top"> Missing<br> Punches</th>
-        <th scope="col" class="sticky-top"> Missing Punches <br>Percent </th>
-        <th scope="col" class="sticky-top"> Telephony Landline<br> Punches#</th>
-        <th scope="col" class="sticky-top"> Tel Landline<br> Percent</th>
-        <th scope="col" class="sticky-top"> Telephony App <br>Punches#</th>
-        <th scope="col" class="sticky-top"> Total Expected<br> Punches</th>
-        <th scope="col" class="sticky-top"> Tel App <br>Percent</th>
-        <th scope="col" class="sticky-top">Manual<br> Punches#</th>
-        <th scope="col" class="sticky-top"> Tel Manual <br>Percent </th>
-        <th scope="col" class="sticky-top"> Manual + <br>missing</th>
-        <th scope="col" class="sticky-top"> EVV <br>compliant</th>
-        <th scope="col" class="sticky-top"> Compliance<br> Status </th>
+        <th scope="col" class="sticky-top"> Total Expected Punches</th>
+        <th scope="col" class="sticky-top"> Total Punches#</th>
+        <th scope="col" class="sticky-top"> Missing Punches</th>
+        <th scope="col" class="sticky-top"> Missing Punches Percent </th>
+        <th scope="col" class="sticky-top"> Telephony Landline Punches#</th>
+        <th scope="col" class="sticky-top"> Tel Landline Percent</th>
+        <th scope="col" class="sticky-top"> Telephony App Punches#</th>
+        <th scope="col" class="sticky-top"> Total Expected Punches</th>
+        <th scope="col" class="sticky-top"> Tel App Percent</th>
+        <th scope="col" class="sticky-top">Manual Punches#</th>
+        <th scope="col" class="sticky-top"> Tel Manual Percent </th>
+        <th scope="col" class="sticky-top"> Manual + missing</th>
+        <th scope="col" class="sticky-top"> EVV compliant</th>
+        <th scope="col" class="sticky-top"> Compliance Status </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
@@ -141,6 +141,7 @@
       </tr>
     </ng-template>
   </p-table>
+  <!-- </div> -->
   <!-- evv  -->
   <div *ngIf="display[1]" class="  evv-stats table-stats-evv">
     <div class="table-responsive box-shadow">

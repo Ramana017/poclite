@@ -93,3 +93,13 @@ top: 110px;
     }
   }
 }
+// .prime-table{
+  .p-datatable table{
+    table-layout: auto !important;
+    th{
+      white-space: normal !important;
+      color:$white !important;
+      font-family: "AvenirLTStd-Medium", sans-serif !important;
+    }
+  }
+// }
