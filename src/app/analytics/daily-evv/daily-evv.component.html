@@ -161,7 +161,10 @@
       </table>
   </div>
 </div>
-<db-angular-pivot-table *ngIf="display[2]" [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
+<div class="pivot-table" *ngIf="display[2]">
+  <db-angular-pivot-table  [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
+</div>
+
 
 
 

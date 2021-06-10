@@ -71,3 +71,23 @@ tfoot.daily-report-foot td{
 .icon-tel-d{
 top: 110px;
 }
+.pivot-table{
+  height: 75vh;
+  overflow: auto;
+  table{
+
+    width: 100%;
+    thead{
+      th{
+        position: sticky !important;
+        top: 0;
+        z-index: 5;
+        font-family: "AvenirLTStd-Medium", sans-serif !important;
+        color: $white !important;
+      }
+    }
+    tbody{
+      background: $white;
+    }
+  }
+}
