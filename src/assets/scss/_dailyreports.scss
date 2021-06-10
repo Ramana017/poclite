@@ -60,7 +60,7 @@ tfoot.daily-report-foot td{
     height: 30px;
     border-radius: 5px;
     text-align: center;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     color: $white;
