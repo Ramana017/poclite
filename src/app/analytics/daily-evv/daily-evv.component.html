@@ -1,20 +1,23 @@
 <!-- <p>daily-schedule works!</p> -->
 <div class="daily-stats-wrapper p-4 pl-5 position-relative">
   <div class="d-flex align-items-center">
-    <span class="material-icons icon-tel"(click)="display=[true,false,false]" [tooltip]="sitecontent" tooltipPlacement="right">
+    <span class="material-icons icon-tel" (click)="display=[true,false,false]" [tooltip]="sitecontent"
+      tooltipPlacement="right">
       query_stats
-        <ng-template #sitecontent>EVV Stats By Branch</ng-template>
-      </span>
-      <span class="material-icons icon-tel icon-tel-c" (click)="display=[false,false,true]" [tooltip]="sitecontent1" tooltipPlacement="right">
-        fact_check
-        <ng-template #sitecontent1>Branch Compliance Status</ng-template>
-        </span>
-        <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [tooltip]="sitecontent2" tooltipPlacement="right">
-          tty
-          <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
-          </span>
+      <ng-template #sitecontent>EVV Stats By Branch</ng-template>
+    </span>
+    <span class="material-icons icon-tel icon-tel-c" (click)="display=[false,false,true]" [tooltip]="sitecontent1"
+      tooltipPlacement="right">
+      fact_check
+      <ng-template #sitecontent1>Branch Compliance Status</ng-template>
+    </span>
+    <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [tooltip]="sitecontent2"
+      tooltipPlacement="right">
+      tty
+      <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
+    </span>
   </div>
-    <div *ngIf="display[0]" class="table-responsive box-shadow">
+  <!-- <div *ngIf="display[0]" class="table-responsive box-shadow">
       <table class="table mb-0" id='excel-table' >
         <thead class="thead-dark">
           <tr>
@@ -75,138 +78,196 @@
         </tbody>
 
       </table>
-      <p *ngIf="telephonyByCareGiver.length==0" class="no-records text-center">No Records Found</p>
-    </div>
+      <p *ngIf="telephonyByCareGiver?.length==0" class="no-records text-center">No Records Found</p>
+    </div> -->
 
-<!-- evv  -->
-<div *ngIf="display[1]" class="  evv-stats table-stats-evv">
+  <!-- evv  -->
+  <div *ngIf="display[1]" class="  evv-stats table-stats-evv">
     <div class="table-responsive box-shadow">
-        <table class="table " id='excel-table'>
-            <thead class="thead-dark">
-                <tr class="dark">
-                    <th colspan="2"></th>
-                    <th scope="col" class="sticky-top py-1 bg-dark">PERIOD - May</th>
-                    <th scope="col" class="sticky-top py-1 bg-dark" colspan="3">Values</th>
-                </tr>
-                <tr>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Branch
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">DCS Coordinator
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Manual %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Landline %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Mobile App %
-                    </th>
-                    <th scope="col" class="sticky-top py-1 bg-yellow border-0">Sum of Total EVV
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-light-grey">
-                    <td colspan="2" class="py-1">BR: RCHC LA ALEXANDRIA
-                    </td>
-                    <td class="py-1">11.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-                <tr>
-                    <td class="py-1">
-                    </td>
-                    <td class="py-1">Stanley, Kayla
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-                <tr>
-                    <td class="py-1">
-                    </td>
-                    <td class="py-1">Stanley, Kayla
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1">0.0%
-                    </td>
-                    <td class="py-1"> 89.0%
-                    </td>
-                    <td class="py-1">89.0%
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- compliance  -->
- <div *ngIf="false" class="table-stats-evv evv-stats">
-  <div class="table-responsive box-shadow">
       <table class="table " id='excel-table'>
-          <thead class="thead-dark">
-              <tr class="dark">
-
-                  <th scope="col" class="sticky-top py-1">Count of Employees</th>
-                  <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
-              </tr>
-              <tr>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Row Labels
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Compliant
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Partial Compliance,<br> but below threshold
-                  </th>
-                  <th scope="col" class="sticky-top py-1 bg-yellow border-0">Non Compliant
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td class="py-1">Stanley, Kayla
-                  </td>
-                  <td class="py-1">0.0%
-                  </td>
-                  <td class="py-1">0.0%
-                  </td>
-                  <td class="py-1"> 89.0%
-                  </td>
-
-              </tr>
-
-          </tbody>
+        <thead class="thead-dark">
+          <tr class="dark">
+            <th colspan="2"></th>
+            <th scope="col" class="sticky-top py-1 bg-dark">PERIOD - May</th>
+            <th scope="col" class="sticky-top py-1 bg-dark" colspan="3">Values</th>
+          </tr>
+          <tr>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Branch
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">DCS Coordinator
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Manual %
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Landline %
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Mobile App %
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Sum of Total EVV
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-light-grey">
+            <td colspan="2" class="py-1">BR: RCHC LA ALEXANDRIA
+            </td>
+            <td class="py-1">11.0%
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1"> 89.0%
+            </td>
+            <td class="py-1">89.0%
+            </td>
+          </tr>
+          <tr>
+            <td class="py-1">
+            </td>
+            <td class="py-1">Stanley, Kayla
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1"> 89.0%
+            </td>
+            <td class="py-1">89.0%
+            </td>
+          </tr>
+          <tr>
+            <td class="py-1">
+            </td>
+            <td class="py-1">Stanley, Kayla
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1"> 89.0%
+            </td>
+            <td class="py-1">89.0%
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </div>
   </div>
-</div>
-<div class="pivot-table" *ngIf="display[2]">
-  <db-angular-pivot-table  [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
-</div>
 
-    <div *ngIf="display[0]" class="pager d-flex justify-content-end mt-2">
-        <div class="c">
-          <span class="mr-2">Per page</span>
-          <select class="border-0 mr-2">
-            <option >5</option>
-            <option >10</option>
-            <option>15</option>
-            <option>20</option>
-          </select>
-          <span class="mr-2">Showing 10 to
-          100 of
-            200
-          </span>
-          <button type="button" class="btn-common-small mx-2"  >Prev</button>
-          <button type="button" class="btn-common-small mx-2"
-           >Next</button>
-        </div>
-      </div>
+  <!-- compliance  -->
+  <div *ngIf="false" class="table-stats-evv evv-stats">
+    <div class="table-responsive box-shadow">
+      <table class="table " id='excel-table'>
+        <thead class="thead-dark">
+          <tr class="dark">
+
+            <th scope="col" class="sticky-top py-1">Count of Employees</th>
+            <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
+          </tr>
+          <tr>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Row Labels
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Compliant
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Partial Compliance,<br> but below threshold
+            </th>
+            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Non Compliant
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="py-1">Stanley, Kayla
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1">0.0%
+            </td>
+            <td class="py-1"> 89.0%
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
   </div>
+  <div class="pivot-table" *ngIf="display[2]">
+    <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
+  </div>
+
+  <p-table *ngIf="display[0]" [value]="telephonyByCareGiver" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col" class="sticky-top ">RVP</th>
+        <th scope="col" class="sticky-top">ED</th>
+        <th scope="col" class="sticky-top ">Branch</th>
+        <th scope="col" class="sticky-top">DCS Home<br> Site#</th>
+        <th scope="col" class="sticky-top">Site Name</th>
+        <th scope="col" class="sticky-top"> DCS Name</th>
+        <th scope="col" class="sticky-top"> Dcs<br> Coordinator </th>
+        <th scope="col" class="sticky-top"> Enterprise Id</th>
+        <th scope="col" class="sticky-top"> Job Title</th>
+        <th scope="col" class="sticky-top"> Period</th>
+        <th scope="col" class="sticky-top"> Total Expected <br>Punches</th>
+        <th scope="col" class="sticky-top"> Total<br> Punches#</th>
+        <th scope="col" class="sticky-top"> Missing<br> Punches</th>
+        <th scope="col" class="sticky-top"> Missing Punches <br>Percent </th>
+        <th scope="col" class="sticky-top"> Telephony Landline<br> Punches#</th>
+        <th scope="col" class="sticky-top"> Tel Landline<br> Percent</th>
+        <th scope="col" class="sticky-top"> Telephony App <br>Punches#</th>
+        <th scope="col" class="sticky-top"> Total Expected<br> Punches</th>
+        <th scope="col" class="sticky-top"> Tel App <br>Percent</th>
+        <th scope="col" class="sticky-top">Manual<br> Punches#</th>
+        <th scope="col" class="sticky-top"> Tel Manual <br>Percent </th>
+        <th scope="col" class="sticky-top"> Manual + <br>missing</th>
+        <th scope="col" class="sticky-top"> EVV <br>compliant</th>
+        <th scope="col" class="sticky-top"> Compliance<br> Status </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{item.rvp}}</td>
+        <td>{{item.ed}}</td>
+        <td>{{item.branch}}</td>
+        <td>{{item.dcsHomeSite}}</td>
+        <td>{{item.siteName}}</td>
+        <td>{{item.dcsName}}</td>
+        <td>{{item.dcsCoordinator}}</td>
+        <td>{{item.enterpriseId}}</td>
+        <td>{{item.jobTitle}}</td>
+        <td>{{item.period}}</td>
+        <td>{{item.totalExpectedPunches}}</td>
+        <td>{{item.totalPunches}}</td>
+        <td>{{item.missingPunches}}</td>
+        <td>{{item.missingPunchesPercent}}</td>
+        <td>{{item.telephonyLandlinePunches}}</td>
+        <td>{{item.telLandLinePercent}}</td>
+        <td>{{item.telephonyAppPunches}}</td>
+        <td>{{item.totalExpectedPunches}}</td>
+        <td>{{item.telAppPercent}}</td>
+        <td>{{item.manualPunches}}</td>
+        <td>{{item.telManualPercent}}</td>
+        <td>{{item.ManualMissing}}</td>
+        <td>{{item.evvCompliant}}</td>
+        <td>{{item.complianceStatus}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div *ngIf="false" class="pager d-flex justify-content-end mt-2">
+    <div class="c">
+      <span class="mr-2">Per page</span>
+      <select class="border-0 mr-2">
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+      <span class="mr-2">Showing 10 to
+        100 of
+        200
+      </span>
+      <button type="button" class="btn-common-small mx-2">Prev</button>
+      <button type="button" class="btn-common-small mx-2">Next</button>
+    </div>
+  </div>
+</div>

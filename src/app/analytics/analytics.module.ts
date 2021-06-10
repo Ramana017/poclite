@@ -9,16 +9,19 @@ import { DailyCancelComponent } from './daily-cancel/daily-cancel.component';
 import { EvvStatsBranchComponent } from './evv-stats-branch/evv-stats-branch.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {AngularPivotTableModule} from 'angular-pivot-table';
+import {TableModule} from 'primeng/table';
+
 
 
 @NgModule({
   declarations: [DailyScheduleComponent, DailyEvvComponent, DailyCancelComponent, EvvStatsBranchComponent],
   imports: [
     CommonModule,
-    AnalyticsRoutingModule,
     SharedModule,
+    AnalyticsRoutingModule,
     TooltipModule,
-    AngularPivotTableModule
+    AngularPivotTableModule,
+    TableModule
   ]
 })
 export class AnalyticsModule { }

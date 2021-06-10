@@ -19,6 +19,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {TableModule} from 'primeng/table';
+
 
 @NgModule({
   declarations: [],
@@ -42,7 +44,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     AutoCompleteModule,
     SplitButtonModule,
     TabsModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    TableModule
 
   ],
   providers: [
@@ -68,7 +71,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     RadioButtonModule,
     ConfirmDialogModule,
     TabsModule,
-    TooltipModule
+    TooltipModule,
+    TableModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
