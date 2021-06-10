@@ -59,5 +59,7 @@ interface telephonyByCareGiver {
   "manualPunches": number,
   "telManualPercent":number,
   "ManualMissing": string,
-  "evvCompliant": string
+  "evvCompliant": string,
+  "complianceStatus": string
+
 }
