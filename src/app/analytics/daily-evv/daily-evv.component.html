@@ -45,11 +45,37 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngFor="let item of telephonyByCareGiver">
+            <td>{{item.rvp}}</td>
+            <td>{{item.ed}}</td>
+            <td>{{item.branch}}</td>
+            <td>{{item.dcsHomeSite}}</td>
+            <td>{{item.siteName}}</td>
+            <td>{{item.dcsName}}</td>
+            <td>{{item.dcsCoordinator}}</td>
+            <td>{{item.enterpriseId}}</td>
+            <td>{{item.jobTitle}}</td>
+            <td>{{item.period}}</td>
+            <td>{{item.totalExpectedPunches}}</td>
+            <td>{{item.totalPunches}}</td>
+            <td>{{item.missingPunches}}</td>
+            <td>{{item.missingPunchesPercent}}</td>
+            <td>{{item.telephonyLandlinePunches}}</td>
+            <td>{{item.telLandLinePercent}}</td>
+            <td>{{item.telephonyAppPunches}}</td>
+            <td>{{item.totalExpectedPunches}}</td>
+            <td>{{item.telAppPercent}}</td>
+            <td>{{item.manualPunches}}</td>
+            <td>{{item.telManualPercent}}</td>
+            <td>{{item.ManualMissing}}</td>
+            <td>{{item.evvCompliant}}</td>
+            <td>{{item.complianceStatus}}</td>
+          </tr>
 
         </tbody>
 
       </table>
-
+      <p *ngIf="telephonyByCareGiver.length==0" class="no-records text-center">No Records Found</p>
     </div>
 
 <!-- evv  -->
