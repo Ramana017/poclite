@@ -34,28 +34,28 @@
                   </button>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                  <li *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item hide-toggle "
+                  <li *ngIf="userDetailService.checkUser('ceat')" class="dropdown-item hide-toggle parent-item"
                     [ngClass]="errorlog.isActive?'active':''" [routerLink]="['/ps-edit/widgets']">
                     <a>Home</a>
                   </li>
-                  <li class="dropdown-item hide-toggle" *ngIf="userDetailService.checkUser('schedule')"
+                  <li class="dropdown-item hide-toggle parent-item" *ngIf="userDetailService.checkUser('schedule')"
                     [ngClass]="dashboard.isActive?'active':''" [routerLink]="['/summary']">
                     <a > Call
                       Management</a>
                   </li>
-                  <li class="dropdown-item hide-toggle" *ngIf="userDetailService.checkUser('schedule')"
+                  <li class="dropdown-item hide-toggle parent-item" *ngIf="userDetailService.checkUser('schedule')"
                     [ngClass]="activity.isActive?'active':''" [routerLink]="['/chart-layout']"><a > CSM
                       DashBoard</a>
                   </li>
-                  <li class="dropdown-item hide-toggle" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']" >
+                  <li class="dropdown-item hide-toggle parent-item" [ngClass]="interface.isActive?'active':''" [routerLink]="['/visitreview']" >
                     <a>Visit Review </a>
                   </li>
-                  <li class="dropdown-item hide-toggle" [ngClass]="communication.isActive?'active':''"
+                  <li class="dropdown-item hide-toggle parent-item" [ngClass]="communication.isActive?'active':''"
                     [routerLink]="['/communication-dashboard']" >
                     <a>Communication Dashboard </a>
                   </li>
 
-                  <li class="  dropdown-item  dropdown side-menu-analytics" 
+                  <li class="  dropdown-item  dropdown side-menu-analytics parent-item" 
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive||dailyCancel.isActive||dailyEvv.isActive||dailySchedule.isActive?'active':''">
                     <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown" 
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
