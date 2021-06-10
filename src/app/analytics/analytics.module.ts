@@ -8,6 +8,8 @@ import { DailyEvvComponent } from './daily-evv/daily-evv.component';
 import { DailyCancelComponent } from './daily-cancel/daily-cancel.component';
 import { EvvStatsBranchComponent } from './evv-stats-branch/evv-stats-branch.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {AngularPivotTableModule} from 'angular-pivot-table';
+
 
 @NgModule({
   declarations: [DailyScheduleComponent, DailyEvvComponent, DailyCancelComponent, EvvStatsBranchComponent],
@@ -15,7 +17,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     CommonModule,
     AnalyticsRoutingModule,
     SharedModule,
-    TooltipModule
+    TooltipModule,
+    AngularPivotTableModule
   ]
 })
 export class AnalyticsModule { }

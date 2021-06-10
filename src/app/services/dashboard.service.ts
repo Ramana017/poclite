@@ -178,4 +178,15 @@ export class DashboardService {
   public getJobSuccessRunDate():Observable<any>{
     return this.http.get(this.webserviceUrl+`/analytics/getJobSuccessRunDate`).pipe(catchError(this.errorHandler));
   }
+
+
+
+
+
+
+
+
+  public getTelephonyByCareGiver():Observable<any>{
+       return this.http.get('assets/evvcaregiver.json').pipe(catchError(this.errorHandler));
+  }
 }
