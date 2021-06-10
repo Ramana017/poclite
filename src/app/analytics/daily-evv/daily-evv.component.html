@@ -81,8 +81,8 @@
       <p *ngIf="telephonyByCareGiver?.length==0" class="no-records text-center">No Records Found</p>
     </div> -->
     <div  class=" prime-table">
-  <p-table  [value]="telephonyByCareGiver" [paginator]="true" [rows]="10" *ngIf="display[0]"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [scrollable]="true" scrollHeight="60vh"
+  <p-table  [value]="telephonyByCareGiver" styleClass="p-datatable-striped" [paginator]="true" [rows]="10" *ngIf="display[0]"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10,25,50]">
     <ng-template pTemplate="header">
       <tr>
