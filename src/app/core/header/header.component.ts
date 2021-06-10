@@ -105,5 +105,20 @@ clickheader(){
       e.stopPropagation();
     });
   })
+  $(".hide-toggle").click(function(){
+$(".dropdown-menu").removeClass("show");
+  });
+  $(".side-menu-inner-item", ".parent-item").click(function(){
+    // $('.side-menu-inner-item:has(.active)')
+    if($(".side-menu-inner-item").hasClass("active")){
+      $(".side-menu-item").addClass("active")
+    }
+    else{
+      $(".side-menu-item").removeClass("active")
+    }
+  })
+  $( ".parent-item").click(function(){
+      $(".side-menu-item").removeClass("active")
+  })
 }
 }
