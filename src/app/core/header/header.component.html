@@ -55,9 +55,9 @@
                     <a>Communication Dashboard </a>
                   </li>
 
-                  <li class="  dropdown-item  dropdown side-menu-analytics parent-item" 
+                  <li class="  dropdown-item  dropdown side-menu-analytics parent-item"
                     [ngClass]="analytics.isActive||maintaince.isActive||dailyReports.isActive||telephony.isActive||utilization.isActive||dailyCancel.isActive||dailyEvv.isActive||dailySchedule.isActive?'active':''">
-                    <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown" 
+                    <a class="dropdown-toggle side-menu-link" id="dropdown1-1" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Analytics</a>
 
                     <ul class=" dropdown-menu side-menu w-100" aria-labelledby="dropdown1-1">
@@ -68,7 +68,7 @@
                         [routerLink]="['/maintaince']">
                         <a>Maintainence</a>
                       </li> -->
-                      <li class="dropdown-item  side-menu-item" [ngClass]="dailyReports.isActive||dailyEvv.isActive||dailyCancel.isActive||dailyCancel.isActive?'active':''"
+                      <li class="dropdown-item  side-menu-item" [ngClass]="dailyReports.isActive||dailyEvv.isActive||dailyCancel.isActive||dailySchedule.isActive?'active':''"
                         >
                         <a >Daily</a>
                         <ul class="dropdown-menu   side-menu-inner">

@@ -8,7 +8,7 @@ import { EVVStatsList } from '../analytics/daily-evv/daily-evv.component';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'text/plain',
-    }),
+  }),
 };
 
 @Injectable({
@@ -100,8 +100,8 @@ export class DashboardService {
   private errorHandler(error: HttpErrorResponse) {
     console.log("error in API service", error);
     Swal.fire({
-      html:error.error,
-      icon:'error'
+      html: error.error,
+      icon: 'error'
     })
     return throwError(error);
 
@@ -141,7 +141,7 @@ export class DashboardService {
   }
 
   public approvingEditPunch(obj): Observable<any> {
-    return this.http.post(this.webserviceUrl + `/communicationDashboard/approvingEditPunch`,obj,httpOptions).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approvingEditPunch`, obj, httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAppEditPunchList(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppEditPunchList?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
@@ -156,13 +156,13 @@ export class DashboardService {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppAvailabilityEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public approveAppDCSAvailability(obj): Observable<any> {
-    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSAvailability`,obj,httpOptions).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSAvailability`, obj, httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAppExceptionEffectedVisits(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAppExceptionEffectedVisits?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
   }
   public approveAppDCSException(obj): Observable<any> {
-    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSException`,obj,httpOptions).pipe(catchError(this.errorHandler))
+    return this.http.post(this.webserviceUrl + `/communicationDashboard/approveAppDCSException`, obj, httpOptions).pipe(catchError(this.errorHandler))
   }
   public getAllDcsWithRecentMessage(obj): Observable<any> {
     return this.http.get(this.webserviceUrl + `/communicationDashboard/getAllDcsWithRecentMessage?jsonObj=${obj}`).pipe(catchError(this.errorHandler))
@@ -176,18 +176,14 @@ export class DashboardService {
   public getDcsList2(obj): Observable<any> {
     return this.http.get<any>(this.webserviceUrl + `/communicationDashboard/getDcsList?jsonObj=${obj}`).pipe(catchError(this.errorHandler));
   }
-  public getJobSuccessRunDate():Observable<any>{
-    return this.http.get(this.webserviceUrl+`/analytics/getJobSuccessRunDate`).pipe(catchError(this.errorHandler));
+  public getJobSuccessRunDate(): Observable<any> {
+    return this.http.get(this.webserviceUrl + `/analytics/getJobSuccessRunDate`).pipe(catchError(this.errorHandler));
   }
+  public getScheduledHours(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + '/analytics/getScheduledHours?jsonObj=' + obj).pipe(catchError(this.errorHandler));
 
-
-
-
-
-
-
-
-  public getEVVStats(obj):Observable<EVVStatsList>{
-       return this.http.get<EVVStatsList>(this.webserviceUrl+'/analytics/getEVVStats?jsonObj='+obj).pipe(catchError(this.errorHandler));
+  }
+  public getEVVStats(obj): Observable<EVVStatsList> {
+    return this.http.get<EVVStatsList>(this.webserviceUrl + '/analytics/getEVVStats?jsonObj=' + obj).pipe(catchError(this.errorHandler));
   }
 }

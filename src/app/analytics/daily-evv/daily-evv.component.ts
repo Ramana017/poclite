@@ -17,12 +17,13 @@ public userData:any;
 
   ngOnInit(): void {
 this.getTelephonyByCareGiver();
+this.getRVPList();
   }
 
   public telephonyByCareGiver:Array<EVVStatsListobject>=[];
 
 public getTelephonyByCareGiver(){
-  let obj={"userId":7068,"userTypeId":0,"siteIds":"","rvpIds":"","edIds":"","bmIds":"","jobRunDate":"06/10/2021"}
+  let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate}
   try {
     this.dashboardService.getEVVStats(JSON.stringify(obj)).subscribe(res=>{
       this.telephonyByCareGiver=res.EVVStatsList;
