@@ -20,6 +20,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {TableModule} from 'primeng/table';
+import {MultiSelectModule} from 'primeng/multiselect';
+
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import {TableModule} from 'primeng/table';
     SplitButtonModule,
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
-    TableModule
+    TableModule,
+    MultiSelectModule
 
   ],
   providers: [
@@ -72,7 +75,8 @@ import {TableModule} from 'primeng/table';
     ConfirmDialogModule,
     TabsModule,
     TooltipModule,
-    TableModule
+    TableModule,
+    MultiSelectModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
