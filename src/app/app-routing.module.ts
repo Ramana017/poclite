@@ -39,9 +39,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
-  { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
+  // { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
   {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
-  {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
+  // {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
 
   {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},

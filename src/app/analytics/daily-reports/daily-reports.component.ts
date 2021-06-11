@@ -47,7 +47,7 @@ export class DailyReportsComponent implements OnInit {
   public getDailyUtilStats() {
 
     try {
-      let obj = { "userId": this.userData.userId, "monthFlag": this.monthFlag, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate };
+      let obj = { "userId": this.userData.userId, "monthFlag": this.monthFlag, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate,"payorClass":this.appliedPayorClass.toString()};
       this.dashboardService.getDailyUtilStats(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         this.dailyStatsList = res.dailyStatsList;
@@ -113,6 +113,7 @@ export class DailyReportsComponent implements OnInit {
   private appliedBrancheslist = [];
   private appliedSitelist = [];
   public applyjobDate: string = '';
+  public appliedPayorClass=this.payorClass;
 
   public getRVPList() {
     let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "" };
@@ -192,6 +193,7 @@ export class DailyReportsComponent implements OnInit {
       this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
       this.appliedSitelist = this.selectedSites.map(x => x.siteId);
       this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
+      this.appliedPayorClass=this.selectedPayorClass;
       this.getDailyUtilStats();
       this.modelRef.hide();
     }

@@ -30,6 +30,8 @@
     "@ng-select/ng-select": "^6.1.0",
     "@sparkbox/cachebust": "^0.3.0",
     "@swimlane/ngx-charts": "^16.0.0",
+    "@syncfusion/ej2": "^19.1.67",
+    "@syncfusion/ej2-angular-pivotview": "^19.1.67",
     "@types/google-maps": "^3.2.2",
     "angular-calendar": "^0.28.22",
     "angular-ng-autocomplete": "^2.0.1",

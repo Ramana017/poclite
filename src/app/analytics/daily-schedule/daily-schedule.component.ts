@@ -13,7 +13,7 @@ export class DailyScheduleComponent implements OnInit {
   public lowerBound:number=1;
   public upperBound:number=20;
   public perpage:number=20;
-  public totalRecordsCount:number=50;
+  public totalRecordsCount:number=0;
 
   constructor(private dashboardService:DashboardService,public modalService:BsModalService,public datePipe:DatePipe) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
@@ -32,6 +32,7 @@ public getScheduledHours(){
 
     this.dashboardService.getScheduledHours(JSON.stringify(obj)).subscribe(res=>{
       this.scheduledHoursList=res.scheduledHoursList;
+      this.totalRecordsCount=res.totalRecordsCount;
     })
 
   } catch (error) {
@@ -48,10 +49,14 @@ public perpageChange(){
 public nextPage(){
   this.lowerBound=this.lowerBound+this.perpage;
   this.upperBound=this.upperBound+this.perpage;
+  this.getScheduledHours();
+
 }
 public prevPage(){
   this.lowerBound=this.lowerBound-this.perpage;
   this.upperBound=this.upperBound-this.perpage;
+  this.getScheduledHours();
+
 }
 
 
