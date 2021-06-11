@@ -104,6 +104,12 @@ top: 110px;
       border: 0  !important;
       border-width: 0 !important;
     }
+  tbody{
+    tr{
+      color: $black;
+      font-family: "AvenirLTSTD-Roman", sans-serif;
+    }
+  }
 
   }
 
