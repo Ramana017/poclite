@@ -3,7 +3,7 @@
     <div class="table-responsive box-shadow">
       <table class="table mb-0" id='excel-table' >
         <thead class="thead-dark">
-          <tr>										
+          <tr>
             <th scope="col" class="sticky-top ">RVP</th>
             <th scope="col" class="sticky-top">ED</th>
             <th scope="col" class="sticky-top ">Branch</th>
@@ -21,33 +21,30 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let item of  dailyStatsList">
-            <td scope="row" class="sticky-left left-0">{{item.rvp}}</td>
-            <td class="sticky-left left-97 td">{{item.ed}}</td>
-            <td class="sticky-left left-277 td">{{item.branch}}</td>
-            <td>{{item.authorizedHrs}}</td>
-            <td>{{item.scheduledHrs}} </td>
-            <td>{{item.percentOfAuthSchHrs}}</td>
-            <td>{{item.cancelledHrs}}</td>
-            <td>{{item.percentOfCancelHrs}}</td>
-            <td>{{item.noNeedHrs}}</td>
-            <td>{{item.percentOfNoNeedHrs}}</td>
-            <td>{{item.scheduledHrsWithoutCancel}}</td>
-            <td>{{item.perOfSchLessCancelHrs}}</td>
-            <td>{{item.sumScheduledHrsWithDcs}}</td>
-            <td>{{item.sumScheduledHrsWithNoDcs}}</td>
-            <td>{{item.scheduledWithNoDcsPercent}}</td>
-            <td>{{item.servicedHrs}}</td>
-            <td>{{item.servicedHrsPercent}}</td>
-          </tr> -->
+           <tr *ngFor="let item of  scheduledHoursList">
+            <td scope="row" >{{item.rvp}}</td>
+            <td>{{item.ed}}</td>
+            <td>{{item.branch}}</td>
+            <td>{{item.site}}</td>
+            <td>{{item.siteName}} </td>
+            <td>{{item.ps}}</td>
+            <td>{{item.mrn}}</td>
+            <td>{{item.payorPlan}}</td>
+            <td>{{item.fiscalPeriodNumber}}</td>
+            <td>{{item.scheduledBeginDateTime}}</td>
+            <td>{{item.scheduledEndDateTime}}</td>
+            <td>{{item.fiscalDayName}}</td>
+            <td>{{item.scheduledHours}}</td>
+            <td>{{item.revenueStatus}}</td>
+            </tr>
         </tbody>
 
       </table>
-      <!-- <p *ngIf="dailyStatsList.length==0" class="no-records text-center">No Records Found</p> -->
+      <p *ngIf="scheduledHoursList.length==0" class="no-records text-center">No Records Found</p>
     </div>
     <div class="pager d-flex justify-content-end mt-2">
-     
-    
+
+
         <div class="c">
           <span class="mr-2">Per page</span>
           <select class="border-0 mr-2">
@@ -55,13 +52,13 @@
             <option >10</option>
             <option>15</option>
             <option>20</option>
-    
+
           </select>
           <span class="mr-2">Showing 10 to
           100 of
             200
           </span>
-    
+
           <button type="button" class="btn-common-small mx-2"  >Prev</button>
           <button type="button" class="btn-common-small mx-2"
            >Next</button>

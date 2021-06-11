@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { catchError } from 'rxjs/operators';
 import isThisHour from 'date-fns/isThisHour';
 import Swal from 'sweetalert2';
+import { EVVStatsList } from '../analytics/daily-evv/daily-evv.component';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'text/plain',
@@ -186,7 +187,7 @@ export class DashboardService {
 
 
 
-  public getTelephonyByCareGiver():Observable<any>{
-       return this.http.get('assets/evvcaregiver.json').pipe(catchError(this.errorHandler));
+  public getEVVStats(obj):Observable<EVVStatsList>{
+       return this.http.get<EVVStatsList>(this.webserviceUrl+'/analytics/getEVVStats?jsonObj='+obj).pipe(catchError(this.errorHandler));
   }
 }

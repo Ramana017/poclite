@@ -9,6 +9,8 @@ export class DailyScheduleComponent implements OnInit {
 
   constructor() { }
 
+  public scheduledHoursList=[];
+
   ngOnInit(): void {
   }
 
