@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,TemplateRef} from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
-
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-daily-evv',
   templateUrl: './daily-evv.component.html',
@@ -8,9 +8,10 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 })
 export class DailyEvvComponent implements OnInit {
 public display=[true,false,false];
+public modelRef:BsModalRef;
 public header=['RVP','ED','Branch','DCS Home Site#','Site Name','DCS Name','Dcs Coordinator','Enterprise Id','Job Title','Period','Total Expected Punches','Total Punches#','Missing Punches','Missing Punches Percent '
 ,'Telephony Landline Punches#','Tel Landline Percent','Telephony App Punches#','Tel App Percent','Manual Punches#','Tel Manual Percent ',' Manual + missing','EVV compliant','Compliance Status']
-  constructor(private dashBoardService:DashboardService) { }
+  constructor(private dashBoardService:DashboardService,public modalService:BsModalService) { }
 
   ngOnInit(): void {
 this.getTelephonyByCareGiver();
@@ -69,6 +70,10 @@ configs2: any = {
   'rows': this.config3
 };
 
+public openFilter(template:TemplateRef<any>){
+  this.modelRef=this.modalService.show(template,{class:'stats-filter modal-lg mb-0',
+})
+}
 }
 export interface EVVStatsList {
   "EVVStatsList":Array<EVVStatsListobject>}

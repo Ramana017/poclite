@@ -104,6 +104,12 @@ top: 110px;
       border: 0  !important;
       border-width: 0 !important;
     }
+  tbody{
+    tr{
+      color: $black;
+      font-family: "AvenirLTSTD-Roman", sans-serif;
+    }
+  }
 
   }
 
@@ -118,7 +124,9 @@ top: 110px;
   // border-color: #E8F5E9;
   color: #ffffff !important;
 }
-
+.p-paginator-current{
+  color: $black !important;
+}
 // .p-datatable {
 //   .p-inputwrapper-filled {
 //     order: 1;
