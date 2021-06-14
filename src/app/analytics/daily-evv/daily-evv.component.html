@@ -8,17 +8,17 @@
 </div>
 <div class="daily-stats-wrapper px-4 pb-3 pt-0 pl-5 position-relative">
   <div class="d-flex align-items-center">
-    <span class="material-icons icon-tel" (click)="display=[true,false,false]" [ngClass]="{active: display[0]}" [tooltip]="sitecontent"
+    <span class="material-icons icon-tel" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontent"
       tooltipPlacement="right">
       query_stats
       <ng-template #sitecontent>EVV Stats By Branch</ng-template>
     </span>
-    <span class="material-icons icon-tel icon-tel-c" (click)="display=[false,false,true]" [tooltip]="sitecontent1" [ngClass]="{active:display[2]}"
+    <span class="material-icons icon-tel icon-tel-c" [ngClass]="{active: display[2]}" (click)="display=[false,false,true]" [tooltip]="sitecontent1"
       tooltipPlacement="right">
       fact_check
       <ng-template #sitecontent1>Branch Compliance Status</ng-template>
     </span>
-    <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [tooltip]="sitecontent2" [ngClass]="{active:display[1]}"
+    <span class="material-icons icon-tel icon-tel-d" [ngClass]="{active: display[0]}" (click)="display=[true,false,false]" [tooltip]="sitecontent2"
       tooltipPlacement="right">
       tty
       <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
@@ -160,46 +160,13 @@
   </div>
 
   <!-- compliance  -->
-  <div *ngIf="false" class="table-stats-evv evv-stats">
-    <div class="table-responsive box-shadow">
-      <table class="table " id='excel-table'>
-        <thead class="thead-dark">
-          <tr class="dark">
-
-            <th scope="col" class="sticky-top py-1">Count of Employees</th>
-            <th scope="col" class="sticky-top py-1" colspan="3">Column Labels</th>
-          </tr>
-          <tr>
-            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Row Labels
-            </th>
-            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Compliant
-            </th>
-            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Partial Compliance,<br> but below threshold
-            </th>
-            <th scope="col" class="sticky-top py-1 bg-yellow border-0">Non Compliant
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="py-1">Stanley, Kayla
-            </td>
-            <td class="py-1">0.0%
-            </td>
-            <td class="py-1">0.0%
-            </td>
-            <td class="py-1"> 89.0%
-            </td>
-
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="pivot-table" *ngIf="display[2]">
+  <!-- <div class="pivot-table" *ngIf="display[2]">
     <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
-  </div>
+  </div> -->
+  <div class="pivot-table" *ngIf="display[2]" style="height: 65vh;" >
+    <ejs-pivotview #pivotview id='PivotView' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
+    </ejs-pivotview>
+    </div>
   <!-- <div class="pivot-table" *ngIf="display[1]">
     <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs2'></db-angular-pivot-table>
   </div> -->

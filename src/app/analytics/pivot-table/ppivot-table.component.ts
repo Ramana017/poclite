@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IDataOptions, IDataSet } from '@syncfusion/ej2-angular-pivotview';
+import { CalculatedField, FieldList, IDataOptions, IDataSet, PivotView } from '@syncfusion/ej2-angular-pivotview';
 import { GridSettings } from '@syncfusion/ej2-pivotview/src/pivotview/model/gridsettings';
-import { sample } from 'rxjs/operators';
+PivotView.Inject(FieldList, CalculatedField);
+
 
 @Component({
   selector: 'app-ppivot-table',
@@ -60,15 +61,16 @@ export class PpivotTableComponent implements OnInit {
     this.dataSourceSettings = {
       enableSorting: true,
       columns: [],
-      values: [{ name: 'telephonyLandlinePunches'},{ name: 'telephonyAppPunches#'},{ name: 'manualPunches'},{name:'missingPunches'},{name:'totalExpectedPunches'}],
+      values: [{ name: 'telephonyLandlinePunches'},{ name: 'manualPunches'},{ name: 'telephonyAppPunches#'}],
       dataSource: this.RawData  ,
       rows: [{ name: 'branch',caption:'Branch' },{name:'dcsCoordinator'}],
       expandAll: false,
       filters: [],
-      calculatedFieldSettings:[{name:'manual'}]
+      calculatedFieldSettings:[{name:"manualPunches",formula:'"Sum(manualPunches)"/"(totalPunches)"*100'},{name:"telephonyLandlinePunches",formula:'"Sum(telephonyLandlinePunches)"/"(totalPunches)"*100'},{name:"telephonyAppPunches#",formula:'"Sum(telephonyAppPunches#)"/"(totalPunches)"*100'}]
       // showRowGrandTotals:false,
       // showColumnGrandTotals:false,
       // showGrandTotals:false,
+
 
     }
   }
