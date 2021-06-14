@@ -132,7 +132,9 @@ top: 110px;
     align-items: center;
   }
 }
-
+.icon-tel.active{
+  @extend .bg-blue-light;
+}
 // .p-datatable {
 //   .p-inputwrapper-filled {
 //     order: 1;
