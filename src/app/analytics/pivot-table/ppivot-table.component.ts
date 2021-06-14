@@ -65,6 +65,7 @@ export class PpivotTableComponent implements OnInit {
       rows: [{ name: 'branch',caption:'Branch' },{name:'dcsCoordinator'}],
       expandAll: false,
       filters: [],
+      calculatedFieldSettings:[{name:'manual'}]
       // showRowGrandTotals:false,
       // showColumnGrandTotals:false,
       // showGrandTotals:false,

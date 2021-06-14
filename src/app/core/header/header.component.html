@@ -72,21 +72,21 @@
                         >
                         <a >Daily</a>
                         <ul class="dropdown-menu   side-menu-inner">
-                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/Analytics/daily-reports']">
+                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyReports.isActive?'active':''" [routerLink]="['/analytics/daily-reports']">
                             <a>Branch Scheduled Hours Breakdown</a>
                           </li>
-                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyEvv.isActive?'active':''" [routerLink]="['/Analytics/daily-evv']">
+                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyEvv.isActive?'active':''" [routerLink]="['/analytics/daily-evv']">
                             <a >EVV Stats by Caregiver</a>
                           </li>
-                          <!-- <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyCancel.isActive?'active':''" [routerLink]="['/Analytics/daily-cancel']">
+                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailyCancel.isActive?'active':''" [routerLink]="['/analytics/daily-cancel']">
                             <a >ALL Cancelled Visits</a>
-                          </li> -->
-                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/Analytics/daily-schedule']">
+                          </li>
+                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/analytics/daily-schedule']">
                             <a >Scheduled Hours</a>
                           </li>
-                          <!-- <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/Analytics/pivot']">
+                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/analytics/pivot']">
                             <a >Pivot</a>
-                          </li> -->
+                          </li>
                         </ul>
                       </li>
                       <li class="dropdown-item hide-toggle " [ngClass]="telephony.isActive?'active':''"
@@ -96,10 +96,10 @@
                         ><a>Daily-Evv</a>
                       </li>
                       <li class="dropdown-item hide-toggle side-menu-item" [ngClass]="dailySchedule.isActive?'active':''"
-                        [routerLink]="['/Analytics/daily-schedule']"><a>Daily-Schedule</a>
+                        [routerLink]="['/analytics/daily-schedule']"><a>Daily-Schedule</a>
                       </li>
                       <li class="dropdown-item hide-toggle side-menu-item" [ngClass]="dailyCancel.isActive?'active':''"
-                        [routerLink]="['/Analytics/daily-cancel']"><a>Daily-Cancel</a>
+                        [routerLink]="['/analytics/daily-cancel']"><a>Daily-Cancel</a>
                       </li> -->
                       <!-- <li class=" s dropdown-item hide-toggle side-menu-item" [ngClass]="utilization.isActive?'active':''"
                         [routerLink]="['/utilization']"><a>Utilization Stats</a>
@@ -201,7 +201,7 @@
             <span class="ml" routerLink="/maintaince" routerLinkActive #maintaince="routerLinkActive">
               {{maintaince.isActive ? 'Maintainence' : null}}
             </span>
-            <span class="ml" routerLink="/Analytics/daily-reports" routerLinkActive #dailyReports="routerLinkActive">
+            <span class="ml" routerLink="/analytics/daily-reports" routerLinkActive #dailyReports="routerLinkActive">
               {{dailyReports.isActive ? 'Branch Scheduled Hours Breakdown' : null}}
             </span>
             <span class="ml" routerLink="/telephony" routerLinkActive #telephony="routerLinkActive">
@@ -226,13 +226,13 @@
             <span class="ml" routerLink="/communication-dashboard" routerLinkActive #communication="routerLinkActive">
               {{communication.isActive ? "Communication Dashboard" : ''}}
             </span>
-            <span class="ml" routerLink="/Analytics/daily-evv" routerLinkActive #dailyEvv="routerLinkActive">
+            <span class="ml" routerLink="/analytics/daily-evv" routerLinkActive #dailyEvv="routerLinkActive">
               {{dailyEvv.isActive ? " EVV Stats by Caregiver" : ''}}
             </span>
-            <span class="ml" routerLink="/Analytics/daily-schedule" routerLinkActive #dailySchedule="routerLinkActive">
+            <span class="ml" routerLink="/analytics/daily-schedule" routerLinkActive #dailySchedule="routerLinkActive">
               {{dailySchedule.isActive ? "Scheduled Hours" : ''}}
             </span>
-            <span class="ml" routerLink="/Analytics/daily-cancel" routerLinkActive #dailyCancel="routerLinkActive">
+            <span class="ml" routerLink="/analytics/daily-cancel" routerLinkActive #dailyCancel="routerLinkActive">
               {{dailyCancel.isActive ? "ALL Cancelled Visits" : ''}}
             </span>
             <span style="margin-right: 8rem!important;" routerLink="/admission/edit-admission" routerLinkActive
