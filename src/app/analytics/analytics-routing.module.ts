@@ -16,7 +16,7 @@ const routes: Routes = [
 {path:'daily-evv',canActivate: [AuthGuard],component:DailyEvvComponent},
 {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},
 {path:'evv-stats',canActivate: [AuthGuard],component:EvvStatsBranchComponent},
-{path:'pivot',component:PpivotTableComponent},
+{path:'pivot',canActivate:[AuthGuard],component:PpivotTableComponent},
 {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
 
 

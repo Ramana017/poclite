@@ -20,16 +20,13 @@ import { PsAddressComponent } from './core/update_ps/ps-address/ps-address.compo
 import { PsTelephonyComponent } from './core/update_ps/ps-telephony/ps-telephony.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
 import { MaintainenceComponent } from './core/maintainence/maintainence.component';
-import { DailyReportsComponent } from './analytics/daily-reports/daily-reports.component';
 import { TelephonyStatsComponent } from './analytics/telephony-stats/telephony-stats.component';
 import { UtilizationStatsComponent } from './core/utilization-stats/utilization-stats.component';
 import { ScheduleManagementComponent } from './core/schedule-management/schedule-management.component';
 import { CalenderSchedulingComponent } from './core/calender-scheduling/calender-scheduling.component';
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
-import { DailyScheduleComponent } from './analytics/daily-schedule/daily-schedule.component';
-import { DailyEvvComponent } from './analytics/daily-evv/daily-evv.component';
+
 import { DailyCancelComponent } from './analytics/daily-cancel/daily-cancel.component';
 
 
@@ -39,10 +36,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'summary', canActivate: [AuthGuard], component: SummarytableComponent, },
   { path: 'visitreview', canActivate: [AuthGuard], component: VisitReviewComponent },
-  // { path: 'analytics',canActivate: [AuthGuard], component: AnalyticsComponent },
   {path:'maintaince',canActivate: [AuthGuard],component:MaintainenceComponent},
-  // {path:'daily-reports',canActivate: [AuthGuard],component:DailyReportsComponent},
-
   {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},
   {path:'telephony',canActivate: [AuthGuard], component:TelephonyStatsComponent},
   {path:'utilization',canActivate: [AuthGuard],component:UtilizationStatsComponent},
@@ -78,7 +72,7 @@ const routes: Routes = [
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },
   { path: 'admission', canActivate: [AuthGuard],loadChildren: () => import('./admission/admission.module').then(m => m.AdmissionModule) },
   { path: 'ps', loadChildren: () => import('./ps-module/ps-module.module').then(m => m.PsModuleModule) },
-  { path: 'Analytics', loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule) },
+  { path: 'analytics', loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule) },
   { path: '**', redirectTo: "/page-not-found", pathMatch: 'full' },
 
 
