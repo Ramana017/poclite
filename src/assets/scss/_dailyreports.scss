@@ -119,15 +119,20 @@ top: 110px;
     height: 70vh;
     background: $white;
   }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #76bd43 !important;
+    // border-color: #E8F5E9;
+    color: #ffffff !important;
+  }
+  .p-paginator-current{
+    color: $black !important;
+  }
+  .p-paginator-rpp-options{
+    display: flex;
+    align-items: center;
+  }
 }
-.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  background: #76bd43 !important;
-  // border-color: #E8F5E9;
-  color: #ffffff !important;
-}
-.p-paginator-current{
-  color: $black !important;
-}
+
 // .p-datatable {
 //   .p-inputwrapper-filled {
 //     order: 1;
