@@ -22,9 +22,9 @@
       <table class="table mb-0" id='excel-table' >
         <thead class="thead-dark">
           <tr class="sticky-top">
-            <th scope="col">RVP</th>
-            <th scope="col">ED</th>
-            <th scope="col">Branch</th>
+            <th scope="col" class="sticky-left"  >RVP</th>
+            <th scope="col" class="sticky-left" >ED</th>
+            <th scope="col" class="sticky-left" >Branch</th>
             <th scope="col">Site#</th>
             <th scope="col">Site Name</th>
             <th scope="col"> PS</th>
@@ -40,9 +40,9 @@
         </thead>
         <tbody>
            <tr *ngFor="let item of  scheduledHoursList">
-            <td scope="row" >{{item.rvp}}</td>
-            <td>{{item.ed}}</td>
-            <td>{{item.branch}}</td>
+            <td class="sticky-left" scope="row" >{{item.rvp}}</td>
+            <td class="sticky-left">{{item.ed}}</td>
+            <td class="sticky-left">{{item.branch}}</td>
             <td>{{item.site}}</td>
             <td>{{item.siteName}} </td>
             <td>{{item.ps}}</td>
