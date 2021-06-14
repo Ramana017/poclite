@@ -183,6 +183,10 @@ export class DashboardService {
     return this.http.get(this.webserviceUrl + '/analytics/getScheduledHours?jsonObj=' + obj).pipe(catchError(this.errorHandler));
 
   }
+  public getCancelledVisits(obj): Observable<any> {
+    return this.http.get(this.webserviceUrl + '/analytics/getCancelledVisits?jsonObj=' + obj).pipe(catchError(this.errorHandler));
+
+  }
   public getEVVStats(obj): Observable<EVVStatsList> {
     return this.http.get<EVVStatsList>(this.webserviceUrl + '/analytics/getEVVStats?jsonObj=' + obj).pipe(catchError(this.errorHandler));
   }

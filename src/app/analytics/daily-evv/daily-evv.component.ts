@@ -19,16 +19,16 @@ export class DailyEvvComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getTelephonyByCareGiver();
-    this.http.get('assets/evvcaregiver.json').subscribe(res => {
-      let data: any = res;
-      this.telephonyByCareGiver = data.telephonyByCaregiver;
-      console.log(this.telephonyByCareGiver[0]);
-      this.sample();
+    this.getTelephonyByCareGiver();
+    // this.http.get('assets/evvcaregiver.json').subscribe(res => {
+    //   let data: any = res;
+    //   this.telephonyByCareGiver = data.telephonyByCaregiver;
+    //   console.log(this.telephonyByCareGiver[0]);
+    //   this.sample();
 
 
-    }
-    )
+    // }
+    // )
 
 
     this.getRVPList();
@@ -64,34 +64,11 @@ export class DailyEvvComponent implements OnInit {
     try {
       this.dashboardService.getEVVStats(JSON.stringify(obj)).subscribe(res => {
         this.telephonyByCareGiver = res.EVVStatsList;
+        this.sample();
 
         console.log(this.telephonyByCareGiver)
       }, err => {
-        this.telephonyByCareGiver = [{
-          "period": "June     ",
-          "dcsHomeSite": 30017,
-          "dcsCoordinator": "Blakely, Casey",
-          "manualPunches": 0,
-          "missingPunchesPercent": 100,
-          "dcsName": "ADAMS, TONYA",
-          "jobTitle": "Caregiver",
-          "telephonyLandlinePunches": 0,
-          "siteName": "RCHC GA TOCCOA",
-          "complianceStatus": "Non Compliant",
-          "totalPunches": 0,
-          "manualPlusMissing": 100,
-          "rvp": "COASTAL",
-          "branch": "BR: RCHC GA TOCCOA",
-          "telephonyAppPunches": 0,
-          "telephonyAppPercent": 0,
-          "telephonyLandlinePercent": 0,
-          "evvCompliant": 0,
-          "missingPunches": 20,
-          "enterpriseId": 587185,
-          "telephonyManualPercent": 0,
-          "totalExpectedPunches": 20,
-          "ed": "ED: RCHC GA EAST"
-        }]
+
       })
     } catch (error) {
 

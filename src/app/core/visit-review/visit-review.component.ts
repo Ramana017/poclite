@@ -272,6 +272,7 @@ export class VisitReviewComponent implements OnInit,AfterViewInit {
           }
         })
         console.log(this.progressNotesList)
+        this.progressbtn=[true,false]
         $(modalId).modal({ keyboard: false, backdrop: false }, 'show')
       })
     } catch (error) {

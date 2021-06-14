@@ -32,7 +32,7 @@ public getScheduledHours(){
 
     this.dashboardService.getScheduledHours(JSON.stringify(obj)).subscribe(res=>{
       this.scheduledHoursList=res.scheduledHoursList;
-      this.totalRecordsCount=res.totalRecordsCount;
+      this.totalRecordsCount=res.totalCount;
     })
 
   } catch (error) {

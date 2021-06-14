@@ -11,7 +11,7 @@ import { EvvStatsBranchComponent } from './evv-stats-branch/evv-stats-branch.com
 import { PpivotTableComponent } from './pivot-table/ppivot-table.component';
 
 const routes: Routes = [
-{ path: '',canActivate:[AuthGuard] ,component: AnalyticsComponent },
+{ path: 'analytics',canActivate:[AuthGuard] ,component: AnalyticsComponent },
 {path:'daily-schedule',canActivate: [AuthGuard],component:DailyScheduleComponent},
 {path:'daily-evv',canActivate: [AuthGuard],component:DailyEvvComponent},
 {path:'daily-cancel',canActivate: [AuthGuard],component:DailyCancelComponent},

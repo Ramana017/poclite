@@ -84,9 +84,9 @@
                           <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/analytics/daily-schedule']">
                             <a >Scheduled Hours</a>
                           </li>
-                          <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/analytics/pivot']">
+                          <!-- <li class="dropdown-item hide-toggle side-menu-inner-item"  [ngClass]="dailySchedule.isActive?'active':''" [routerLink]="['/analytics/pivot']">
                             <a >Pivot</a>
-                          </li>
+                          </li> -->
                         </ul>
                       </li>
                       <li class="dropdown-item hide-toggle " [ngClass]="telephony.isActive?'active':''"
@@ -195,7 +195,7 @@
             <span routerLink="/visitreview" routerLinkActive #interface="routerLinkActive">
               {{interface.isActive ? 'Visit Review' : null}}
             </span>
-            <span routerLink="/analytics" routerLinkActive #analytics="routerLinkActive">
+            <span routerLink="/analytics/analytics" routerLinkActive #analytics="routerLinkActive">
               {{analytics.isActive ? 'SP Compliance Measures Overview' : null}}
             </span>
             <span class="ml" routerLink="/maintaince" routerLinkActive #maintaince="routerLinkActive">
@@ -205,7 +205,7 @@
               {{dailyReports.isActive ? 'Branch Scheduled Hours Breakdown' : null}}
             </span>
             <span class="ml" routerLink="/telephony" routerLinkActive #telephony="routerLinkActive">
-              {{telephony.isActive ? 'Telephony Stats' : null}}
+              {{telephony.isActive ? 'Weekly Telephony Stats' : null}}
             </span>
             <span class="ml" routerLink="/utilization" routerLinkActive #utilization="routerLinkActive">
               {{utilization.isActive ? 'Utilization Stats' : null}}
