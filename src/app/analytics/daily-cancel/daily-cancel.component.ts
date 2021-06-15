@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-daily-cancel',
@@ -223,7 +224,10 @@ export class DailyCancelComponent implements OnInit {
   }
 
   public onApply() {
-
+    let date = new Date(this.jobsuccessrunDate);
+    if (this.jobRunDate > date) {
+      Swal.fire('', `Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate,'MM/dd/yyyy')}`, 'warning')
+    } else {
     this.appliedRvpList = this.selectedRvpList.map(x => x.operationOfficer);
     this.appliedEdsList = this.selectedEdList.map(x => x.executiveDirector);
     this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
@@ -231,7 +235,7 @@ export class DailyCancelComponent implements OnInit {
     this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
     this.modelRef.hide();
     this.getCancelledVisits();
-
+    }
   }
 
 

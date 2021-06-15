@@ -134,9 +134,8 @@ export class TelephonyStatsComponent implements OnInit {
 
   public onApply(){
     let date=new Date(this.jobsuccessrunDate);
-
     if(this.jobRunDate>date){
-    Swal.fire('',`Job run date cannot be greater than ${this.jobsuccessrunDate}`,'warning')
+    Swal.fire('',`Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate,'MM/dd/yyyy')}`,'warning')
     }else{
     this.appliedRvpList= this.selectedRvpList.map(x => x.operationOfficer);
    this.appliedEdsList= this.selectedEdList.map(x => x.executiveDirector);

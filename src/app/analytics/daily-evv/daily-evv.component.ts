@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { IDataOptions } from '@syncfusion/ej2-angular-pivotview';
 import { GridSettings } from '@syncfusion/ej2-pivotview/src/pivotview/model/gridsettings';
 import * as XLSX from 'xlsx';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-daily-evv',
@@ -96,18 +97,7 @@ export class DailyEvvComponent implements OnInit {
 
     }
   }
-  configs: any = {
-    'rows': 'branch',
-    'columns': 'complianceStatus'
-  }
-  config3: any = {
-    rows: 'dcsCoordinator',
-    columns: 'manualPlusMissing'
-  };
-  configs2: any = {
-    'columns': 'branch,',
-    'rows': this.config3
-  };
+
 
 
   //filter Related variables and functionality.
@@ -201,7 +191,10 @@ export class DailyEvvComponent implements OnInit {
   }
 
   public onApply() {
-
+    let date = new Date(this.jobsuccessrunDate);
+    if (this.jobRunDate > date) {
+      Swal.fire('', `Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate,'MM/dd/yyyy')}`, 'warning')
+    } else {
     this.appliedRvpList = this.selectedRvpList.map(x => x.operationOfficer);
     this.appliedEdsList = this.selectedEdList.map(x => x.executiveDirector);
     this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
@@ -209,7 +202,7 @@ export class DailyEvvComponent implements OnInit {
     this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
     this.getTelephonyByCareGiver();
     this.modelRef.hide();
-
+    }
   }
 
 
