@@ -10,7 +10,7 @@
   </div> -->
 
   <div>
-    <i class="fas fa-file-download mx-3 f-18" (click)="downLoad()" ></i>
+    <i class="fas fa-file-download mx-3 f-18" title="Download" (click)="downLoad()" ></i>
     <i class="fas fa-filter mx-2 f-18" (click)="openFilter(filtermodal)"></i>
   </div>
 
@@ -89,10 +89,10 @@
   </div>
   <div class="pager d-flex justify-content-between mt-2">
 
-    
-  
+
+
       <p class="mb-0 AvenirLTStd-Heavy ">This report has the updated data as of {{jobsuccessrunDate|date:'MM/dd/yyyy hh:mm a'}} </p>
- 
+
     <div class="c">
       <span class="mr-2">Per page</span>
       <select (change)="perpageChange()" [(ngModel)]="perpage" class="border-0 mr-2">
