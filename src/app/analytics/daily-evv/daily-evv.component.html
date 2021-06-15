@@ -29,11 +29,11 @@
       fact_check
       <ng-template #sitecontent1>Branch Compliance Status</ng-template>
     </span>
-    <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontentw"
+    <!-- <span class="material-icons icon-tel icon-tel-d" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontentw"
     tooltipPlacement="right">
     query_stats
     <ng-template #sitecontentw>EVV Stats By Branch</ng-template>
-  </span>
+  </span> -->
   </div>
  <div [ngClass]="{'d-none':!display[0]}"  class=" prime-table">
   <p-table  [value]="telephonyByCareGiver" id='excel-table' styleClass="p-datatable-striped" [paginator]="true" [rows]="100"
