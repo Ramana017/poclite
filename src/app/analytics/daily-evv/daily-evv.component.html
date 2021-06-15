@@ -3,10 +3,10 @@
   <div class="d-flex align-items-center ">
     <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
     <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}</h5>
-    <span class="material-icons ml-2" [tooltip]="sitecontent1"
+    <span class="material-icons ml-2" [tooltip]="sitecontent"
     tooltipPlacement="right">
       help
-      <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}
+      <ng-template #sitecontent>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}
       </ng-template>
       </span>
   </div>
@@ -18,11 +18,11 @@
 </div>
 <div class="daily-stats-wrapper px-4 pb-3 pt-0 pl-5 position-relative">
   <div class="d-flex align-items-center">
-    <!-- <span class="material-icons icon-tel" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontent"
+    <span class="material-icons icon-tel" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontentw"
       tooltipPlacement="right">
       query_stats
-      <ng-template #sitecontent>EVV Stats By Branch</ng-template>
-    </span> -->
+      <ng-template #sitecontentw>EVV Stats By Branch</ng-template>
+    </span>
     <span class="material-icons icon-tel icon-tel-c" [ngClass]="{active: display[2]}" (click)="display=[false,false,true]" [tooltip]="sitecontent1"
       tooltipPlacement="right">
       fact_check
@@ -40,9 +40,9 @@
     [rowsPerPageOptions]="[10,25,50,100,200,300]">
     <ng-template pTemplate="header">
       <tr class="sticky-top">
-        <th scope="col" class="sticky-left">RVP</th>
-        <th scope="col" class="sticky-left">ED</th>
-        <th scope="col" class="sticky-left">Branch</th>
+        <th scope="col">RVP</th>
+        <th scope="col">ED</th>
+        <th scope="col">Branch</th>
         <th scope="col" class="">DCS Home Site#</th>
         <th scope="col" class="">Site Name</th>
         <th scope="col" class=""> DCS Name</th>
@@ -69,9 +69,9 @@
     <ng-template pTemplate="body" let-item>
       <tr>
 
-        <td class="sticky-left">{{item.rvp}}</td>
-        <td class="sticky-left">{{item.ed}}</td>
-        <td class="sticky-left">{{item.branch}}</td>
+        <td>{{item.rvp}}</td>
+        <td>{{item.ed}}</td>
+        <td>{{item.branch}}</td>
         <td>{{item.dcsHomeSite}}</td>
         <td>{{item.siteName}}</td>
         <td>{{item.dcsName}}</td>

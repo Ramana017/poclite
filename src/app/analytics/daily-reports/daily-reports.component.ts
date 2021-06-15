@@ -104,7 +104,7 @@ export class DailyReportsComponent implements OnInit {
   public selectedSites = [];
   public modelRef: BsModalRef;
   public payorClass=[{value:'MD'},{value:'OG'},{value:'VA'}];
-  public selectedPayorClass:Array<any>=this.payorClass;
+  public selectedPayorClass:Array<any>=[]
 
 
 
@@ -113,7 +113,7 @@ export class DailyReportsComponent implements OnInit {
   private appliedBrancheslist = [];
   private appliedSitelist = [];
   public applyjobDate: string = '';
-  public appliedPayorClass=this.selectedPayorClass.map(x=>x.value);
+  public appliedPayorClass=[]
 
 
   public getRVPList() {
