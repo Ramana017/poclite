@@ -1,18 +1,28 @@
 <!-- <p>daily-schedule works!</p> -->
 <div class="downloads d-flex justify-content-end mr-4  mt-2 ml-5 mb-2 position-relative">
+  <!-- <div class="d-flex align-items-center ">
+    <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
+    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}</h5>
+    <span class="material-icons ml-2" [tooltip]="sitecontent"
+    tooltipPlacement="right">
+      help
+      <ng-template #sitecontent>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}
+      </ng-template>
+      </span>
+  </div> -->
   <div>
-    <!-- <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i> -->
+    <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
     <i class="fas fa-filter mx-2 f-18"   (click)="openFilter(filtermodal)"></i>
   </div>
 
 </div>
 <div class="daily-stats-wrapper px-4 pb-3 pt-0 pl-5 position-relative">
   <div class="d-flex align-items-center">
-    <!-- <span class="material-icons icon-tel" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontent"
+    <span class="material-icons icon-tel" (click)="display=[false,true,false]" [ngClass]="{active: display[1]}" [tooltip]="sitecontentw"
       tooltipPlacement="right">
       query_stats
-      <ng-template #sitecontent>EVV Stats By Branch</ng-template>
-    </span> -->
+      <ng-template #sitecontentw>EVV Stats By Branch</ng-template>
+    </span>
     <span class="material-icons icon-tel icon-tel-c" [ngClass]="{active: display[2]}" (click)="display=[false,false,true]" [tooltip]="sitecontent1"
       tooltipPlacement="right">
       fact_check
@@ -24,15 +34,15 @@
       <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
     </span>
   </div>
- <div *ngIf="display[0]" class=" prime-table">
-  <p-table  [value]="telephonyByCareGiver" styleClass="p-datatable-striped" [paginator]="true" [rows]="100"
+ <div [ngClass]="{'d-none':!display[0]}"  class=" prime-table">
+  <p-table  [value]="telephonyByCareGiver" id='excel-table' styleClass="p-datatable-striped" [paginator]="true" [rows]="100"
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10,25,50,100,200,300]">
     <ng-template pTemplate="header">
       <tr class="sticky-top">
-        <th scope="col" >RVP</th>
-        <th scope="col" >ED</th>
-        <th scope="col" >Branch</th>
+        <th scope="col">RVP</th>
+        <th scope="col">ED</th>
+        <th scope="col">Branch</th>
         <th scope="col" class="">DCS Home Site#</th>
         <th scope="col" class="">Site Name</th>
         <th scope="col" class=""> DCS Name</th>
@@ -59,9 +69,9 @@
     <ng-template pTemplate="body" let-item>
       <tr>
 
-        <td >{{item.rvp}}</td>
-        <td >{{item.ed}}</td>
-        <td >{{item.branch}}</td>
+        <td>{{item.rvp}}</td>
+        <td>{{item.ed}}</td>
+        <td>{{item.branch}}</td>
         <td>{{item.dcsHomeSite}}</td>
         <td>{{item.siteName}}</td>
         <td>{{item.dcsName}}</td>
@@ -163,31 +173,15 @@
   <!-- <div class="pivot-table" *ngIf="display[2]">
     <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
   </div> -->
-  <div class="pivot-table ejs-pivot-table" *ngIf="display[2]" style="height: 75vh;" >
-    <ejs-pivotview #pivotview id='PivotView' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
+  <div class="pivot-table ejs-pivot-table" [ngClass]="{'d-none':!display[2]}"    style="height: 75vh;" >
+    <ejs-pivotview #pivotview id='PivotView'  [allowExcelExport]='true' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
     </ejs-pivotview>
     </div>
-  <!-- <div class="pivot-table" *ngIf="display[1]">
-    <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs2'></db-angular-pivot-table>
-  </div> -->
 
-  <div *ngIf="false" class="pager d-flex justify-content-end mt-2">
-    <div class="c">
-      <span class="mr-2">Per page</span>
-      <select class="border-0 mr-2">
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
-      <span class="mr-2">Showing 10 to
-        100 of
-        200
-      </span>
-      <button type="button" class="btn-common-small mx-2">Prev</button>
-      <button type="button" class="btn-common-small mx-2">Next</button>
-    </div>
+    <div class="d-flex align-items-center justify-content-center mt-1">
+      <p class="mb-0 AvenirLTStd-Heavy ">This report has the updated data as of {{jobsuccessrunDate|date:'MM/dd/yyyy hh:mm a'}} </p>
   </div>
+
 </div>
 
 

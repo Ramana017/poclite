@@ -36,7 +36,7 @@ export class DailyReportsComponent implements OnInit {
     try {
       this.dashboardService.getJobSuccessRunDate().subscribe(res => {
         this.jobsuccessrunDate = res.dailyUtilStatsJobDate
-        this.applyjobDate = res.dailyUtilStatsJobDate;
+        this.applyjobDate = this.datePipe.transform(res.dailyUtilStatsJobDate, 'MM/dd/yyyy');
         this.jobRunDate = new Date(res.dailyUtilStatsJobDate)
         this.getDailyUtilStats();
       })
@@ -47,7 +47,7 @@ export class DailyReportsComponent implements OnInit {
   public getDailyUtilStats() {
 
     try {
-      let obj = { "userId": this.userData.userId, "monthFlag": this.monthFlag, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate,"payorClass":this.appliedPayorClass.toString()};
+      let obj = { "userId": this.userData.userId, "monthFlag": this.monthFlag, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "payorClass": this.appliedPayorClass.toString() };
       this.dashboardService.getDailyUtilStats(JSON.stringify(obj)).subscribe(res => {
         console.log(res);
         this.dailyStatsList = res.dailyStatsList;
@@ -67,7 +67,6 @@ export class DailyReportsComponent implements OnInit {
   }
 
   // file saving functionality
-  fileName = 'dailyReports.xlsx';
 
   exportexcel2(): void {
     /* table id is passed over here */
@@ -77,10 +76,10 @@ export class DailyReportsComponent implements OnInit {
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
-
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
+    let name = 'Branch Scheduled Hours Breakdown_' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
     /* save to file */
-    XLSX.writeFile(wb, this.fileName);
+    XLSX.writeFile(wb, name);
 
   }
 
@@ -103,8 +102,8 @@ export class DailyReportsComponent implements OnInit {
   public siteList = [];
   public selectedSites = [];
   public modelRef: BsModalRef;
-  public payorClass=[{value:'MD'},{value:'OG'},{value:'VA'}];
-  public selectedPayorClass:Array<any>=this.payorClass;
+  public payorClass = [{ value: 'MD' }, { value: 'OG' }, { value: 'VA' }];
+  public selectedPayorClass: Array<any> = []
 
 
 
@@ -113,7 +112,8 @@ export class DailyReportsComponent implements OnInit {
   private appliedBrancheslist = [];
   private appliedSitelist = [];
   public applyjobDate: string = '';
-  public appliedPayorClass=this.payorClass;
+  public appliedPayorClass = []
+
 
   public getRVPList() {
     let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "" };
@@ -193,7 +193,7 @@ export class DailyReportsComponent implements OnInit {
       this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
       this.appliedSitelist = this.selectedSites.map(x => x.siteId);
       this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
-      this.appliedPayorClass=this.selectedPayorClass;
+      this.appliedPayorClass = this.selectedPayorClass.map(x => x.value);
       this.getDailyUtilStats();
       this.modelRef.hide();
     }

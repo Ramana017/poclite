@@ -1,18 +1,18 @@
 <!-- <p>daily-schedule works!</p> -->
 
-<div class="downloads d-flex justify-content-between mr-4  mt-2 ml-4 position-relative">
-  <div class="d-flex align-items-center">
+<div class="downloads d-flex justify-content-end mr-4  mt-2 ml-4 position-relative">
+  <!-- <div class="d-flex align-items-center">
 <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
-<h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy'}}</h5>
+<h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy hh:mm a '}}</h5>
 <span class="material-icons ml-2" [tooltip]="sitecontent1" tooltipPlacement="right">
   help
-  <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy'}}
+  <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a '}}
   </ng-template>
 </span>
-  </div>
+  </div> -->
 
   <div>
-    <i class="fas fa-file-download mx-3 f-18"></i>
+    <i class="fas fa-file-download mx-3 f-18" (click)="downLoad()"></i>
     <i class="fas fa-filter mx-2 f-18"  (click)="openFilter(filtermodal)" ></i>
   </div>
 
@@ -60,7 +60,8 @@
       </table>
       <p *ngIf="scheduledHoursList.length==0" class="no-records text-center">No Records Found</p>
     </div>
-    <div class="pager d-flex justify-content-end mt-2">
+    <div class="pager d-flex justify-content-between mt-2">
+      <p class="mb-0 AvenirLTStd-Heavy ">This report has the updated data as of {{jobsuccessrunDate|date:'MM/dd/yyyy hh:mm a'}} </p>
         <div class="c">
           <span class="mr-2">Per page</span>
           <select (change)="perpageChange()" [(ngModel)]="perpage" class="border-0 mr-2">

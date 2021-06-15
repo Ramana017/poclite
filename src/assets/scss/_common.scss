@@ -2235,7 +2235,7 @@ app-maintainence {
   position: absolute;
   right: 0;
   z-index: 999;
-  background: blue;
+  background: #00adf0;
   color: white;
   width: 30px;
   height: 30px;
@@ -2516,4 +2516,9 @@ app-maintainence {
     }
   }
  
+}
+
+.filter-d-i{
+  right: 0;
+  top: 14px;
 }

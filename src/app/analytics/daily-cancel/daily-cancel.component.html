@@ -1,28 +1,28 @@
-<div class="downloads d-flex justify-content-between mr-4  mt-2 ml-4 position-relative">
-  <div class="d-flex align-items-center">
+<div class="downloads d-flex justify-content-end mr-4  mt-2 ml-4 position-relative">
+  <!-- <div class="d-flex align-items-center">
     <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
-    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy'}}</h5>
+    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}</h5>
     <span class="material-icons ml-2" [tooltip]="sitecontent1" tooltipPlacement="right">
       help
-      <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy'}}
+      <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}
       </ng-template>
     </span>
-  </div>
+  </div> -->
 
   <div>
-    <i class="fas fa-file-download mx-3 f-18"></i>
+    <i class="fas fa-file-download mx-3 f-18" (click)="downLoad()" ></i>
     <i class="fas fa-filter mx-2 f-18" (click)="openFilter(filtermodal)"></i>
   </div>
 
 </div>
-<div class="daily-stats-wrapper p-4 ">
+<div class="daily-stats-wrapper px-4 pb-2 pt-2 ">
   <div class="table-responsive box-shadow">
     <table class="table mb-0" id='excel-table'>
       <thead class="thead-dark">
         <tr class="sticky-top">
-          <th scope="col" class="sticky-left" >RVP</th>
-          <th scope="col" class="sticky-left" >ED</th>
-          <th scope="col" class="sticky-left" >Branch</th>
+          <th scope="col">RVP</th>
+          <th scope="col">ED</th>
+          <th scope="col">Branch</th>
           <th scope="col" >Operation#</th>
           <th scope="col" >Operation<br> Name</th>
           <th scope="col" >Site#</th>
@@ -51,13 +51,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of  cancelledHoursList">
-          <td class="sticky-left" scope="row" >{{item.rvp}}</td>
-          <td class="sticky-left">{{item.ed}}</td>
-          <td class="sticky-left">{{item.branch}}</td>
+          <td>{{item.rvp}}</td>
+          <td class="mw-130px">{{item.ed}}</td>
+          <td class="mw-130px">{{item.branch}}</td>
           <td>{{item.operation}}</td>
-          <td>{{item.operationName}} </td>
+          <td class="mw-130px">{{item.operationName}} </td>
           <td>{{item.site}}</td>
-          <td>{{item.siteName}}</td>
+          <td class="mw-130px">{{item.siteName}}</td>
           <td>{{item.mrn}}</td>
           <td>{{item.psAccountNumber}}</td>
           <td>{{item.psLastName}}</td>
@@ -72,12 +72,12 @@
           <td>{{item.visitEndDateTime}}</td>
           <td>{{item.visitDurationInHrs}}</td>
           <td>{{item.cancellationReason}}</td>
-          <td>{{item.visitComments}}</td>
+          <td class="mw-130px">{{item.visitComments}}</td>
           <td>{{item.cancellationDateTime}}</td>
           <td>{{item.visitStatus}}</td>
           <td>{{item.scheduledRevenue}}</td>
           <td>{{item.clientClass}}</td>
-          <td>{{item.clientClassDesc}}</td>
+          <td class="mw-130px">{{item.clientClassDesc}}</td>
 
 
 
@@ -87,7 +87,12 @@
     </table>
     <p *ngIf="cancelledHoursList.length==0" class="no-records text-center">No Records Found</p>
   </div>
-  <div class="pager d-flex justify-content-end mt-2">
+  <div class="pager d-flex justify-content-between mt-2">
+
+    
+  
+      <p class="mb-0 AvenirLTStd-Heavy ">This report has the updated data as of {{jobsuccessrunDate|date:'MM/dd/yyyy hh:mm a'}} </p>
+ 
     <div class="c">
       <span class="mr-2">Per page</span>
       <select (change)="perpageChange()" [(ngModel)]="perpage" class="border-0 mr-2">
@@ -249,3 +254,4 @@
     </div>
   </div>
 </ng-template>
+

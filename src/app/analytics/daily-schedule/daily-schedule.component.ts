@@ -2,6 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver'
 
 @Component({
   selector: 'app-daily-schedule',
@@ -14,25 +16,101 @@ export class DailyScheduleComponent implements OnInit {
   public upperBound:number=20;
   public perpage:number=20;
   public totalRecordsCount:number=0;
+  public jobsuccessrunDate='';
 
   constructor(private dashboardService:DashboardService,public modalService:BsModalService,public datePipe:DatePipe) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
-    this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
   }
   public scheduledHoursList=[];
 
   ngOnInit(): void {
     this.getRVPList();
-    this.getScheduledHours();
+    this.getJobSuccessRunDate();
   }
+  public getJobSuccessRunDate() {
+    try {
+      this.dashboardService.getJobSuccessRunDate().subscribe(res => {
+        this.jobsuccessrunDate = res.scheduledHoursJobDate;
+        this.applyjobDate =this.datePipe.transform(res.scheduledHoursJobDate, 'MM/dd/yyyy');
+        this.jobRunDate = new Date(res.scheduledHoursJobDate)
+        this.getScheduledHours();
+      })
+    } catch (error) {
 
+    }
+  }
+  public downloadArray = []
+  public downLoad() {
+
+    try {
+      let mappedJson = [];
+      let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate,"lowerBound":this.lowerBound,"upperBound":this.upperBound};
+
+      this.dashboardService.getScheduledHours(JSON.stringify(obj)).subscribe(res => {
+        this.downloadArray = res.scheduledHoursList;
+        mappedJson = this.downloadArray.map(item => {
+          return {
+            "RVP": item?.rvp,
+            "ED": item?.ed,
+            "Branch": item?.branch,
+            "Site": item?.site,
+            "SiteName": item?.siteName,
+            "PS": item?.ps,
+            "MRN": item?.mrn,
+            "Payor Plan": item?.payorPlan,
+            "Fiscal Period Number":item?.fiscalPeriodNumber,
+            "Scheduled Begin Date Time":item.scheduledBeginDateTime,
+            "Scheduled End Date Time":item.scheduledEndDateTime,
+            "Fiscal Day Name":item.fiscalDayName,
+            "SCH Hours":item.scheduledHours,
+            "Revenue Status":item.revenueStatus
+          }
+        })
+        var wscols = [
+          { wch: 22 },
+          { wch: 20 },
+          { wch: 22 },
+          { wch: 10 },
+          { wch: 22 },
+          { wch: 22 },
+          { wch: 20 },
+          { wch: 20 },
+          { wch: 15 },
+          { wch: 30 },
+          { wch: 30 },
+          { wch: 25 },
+          { wch: 10 },
+          { wch: 25 },
+
+        ];
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+        worksheet["!cols"]=wscols
+        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        let name='ScheduledHours_' + this.datePipe.transform(this.applyjobDate,'MM_dd_yyy')
+        this.saveAsExcelFile(excelBuffer, name);
+
+      })
+
+    } catch (error) {
+
+    }
+
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, fileName + '.xlsx');
+  }
 public getScheduledHours(){
   try {
     let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate,"lowerBound":this.lowerBound,"upperBound":this.upperBound};
 
     this.dashboardService.getScheduledHours(JSON.stringify(obj)).subscribe(res=>{
       this.scheduledHoursList=res.scheduledHoursList;
-      this.totalRecordsCount=res.totalCount;
+      this.totalRecordsCount=res.totalRecordsCount;
     })
 
   } catch (error) {
