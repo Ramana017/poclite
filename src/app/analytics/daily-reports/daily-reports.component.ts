@@ -15,6 +15,7 @@ export class DailyReportsComponent implements OnInit {
   public monthFlag = 0;
   public months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",];
   public currentMonth = new Date().getMonth();
+  public sheetname=this.months[this.currentMonth];
 
   public navbuttons: Array<boolean> = [false, true, false];
   constructor(private dashboardService: DashboardService, private datePipe: DatePipe, private modalService: BsModalService) {
@@ -60,6 +61,7 @@ export class DailyReportsComponent implements OnInit {
 
   public onMonthChange(flag) {
     if (this.monthFlag != flag) {
+      this.sheetname=flag==0?this.months[this.currentMonth]:flag==1?this.months[this.currentMonth+1]:this.months[this.currentMonth-1]
       this.monthFlag = flag
       this.getDailyUtilStats();
     }
@@ -75,7 +77,7 @@ export class DailyReportsComponent implements OnInit {
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.utils.book_append_sheet(wb, ws, this.sheetname);
     // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
     let name = 'Branch Scheduled Hours Breakdown_' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
     /* save to file */

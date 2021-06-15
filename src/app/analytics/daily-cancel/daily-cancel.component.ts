@@ -115,7 +115,7 @@ export class DailyCancelComponent implements OnInit {
           }
         })
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
-        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+        const workbook: XLSX.WorkBook = { Sheets: { 'ALL_Cancelled_Visits': worksheet }, SheetNames: ['ALL_Cancelled_Visits'] };
         const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
         let name='ALL_Cancelled_Visits_' + this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy')
         this.saveAsExcelFile(excelBuffer, name);

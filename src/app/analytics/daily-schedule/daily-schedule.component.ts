@@ -45,7 +45,7 @@ export class DailyScheduleComponent implements OnInit {
 
     try {
       let mappedJson = [];
-      let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate,"lowerBound":this.lowerBound,"upperBound":this.upperBound};
+      let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate,"lowerBound":0,"upperBound":0};
 
       this.dashboardService.getScheduledHours(JSON.stringify(obj)).subscribe(res => {
         this.downloadArray = res.scheduledHoursList;
@@ -86,7 +86,7 @@ export class DailyScheduleComponent implements OnInit {
         ];
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
         worksheet["!cols"]=wscols
-        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+        const workbook: XLSX.WorkBook = { Sheets: { 'ScheduledHours': worksheet }, SheetNames: ['ScheduledHours'] };
         const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
         let name='ScheduledHours_' + this.datePipe.transform(this.applyjobDate,'MM_dd_yyy')
         this.saveAsExcelFile(excelBuffer, name);

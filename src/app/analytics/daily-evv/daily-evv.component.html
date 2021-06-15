@@ -12,7 +12,7 @@
   </div> -->
   <h4 class="mb-0 AvenirLTStd-Heavy">{{display[0]?'Telephony by Caregiver':'Branch Compliance Status'}}</h4>
   <div class="position-absolute r-0">
-    <i class="fas fa-file-download mx-3 f-18" title="Download" (click)="exportexcel2()"></i>
+    <i *ngIf="display[0]" class="fas fa-file-download mx-3 f-18" title="Download" (click)="downLoad()"></i>
     <i class="fas fa-filter mx-2 f-18"   (click)="openFilter(filtermodal)"></i>
   </div>
 
@@ -174,7 +174,7 @@
   <!-- <div class="pivot-table" *ngIf="display[2]">
     <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
   </div> -->
-  <div class="pivot-table ejs-pivot-table" [ngClass]="{'d-none':!display[2]}"    style="height: 75vh;" >
+  <div class="pivot-table ejs-pivot-table" *ngIf="display[2]"    style="height: 75vh;" >
     <ejs-pivotview #pivotview id='PivotView'  [allowExcelExport]='true' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
     </ejs-pivotview>
     </div>

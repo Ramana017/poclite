@@ -1,11 +1,13 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { IDataOptions } from '@syncfusion/ej2-angular-pivotview';
+import { IDataOptions, PivotView } from '@syncfusion/ej2-angular-pivotview';
 import { GridSettings } from '@syncfusion/ej2-pivotview/src/pivotview/model/gridsettings';
 import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver'
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,6 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./daily-evv.component.sass']
 })
 export class DailyEvvComponent implements OnInit {
+  @ViewChild('pivotview')
+  public pivotObj: PivotView;
   public display = [true, false, false];
   public userData: any;
   public jobsuccessrunDate = '';
@@ -24,6 +28,7 @@ export class DailyEvvComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobSuccessRunDate();
+
     this.getRVPList();
   }
   public getJobSuccessRunDate() {
@@ -56,28 +61,85 @@ export class DailyEvvComponent implements OnInit {
       filters: [],
       showRowGrandTotals: false,
       showColumnGrandTotals: false,
-      showGrandTotals: false,
+      showGrandTotals: true,
 
 
     };
   }
-  exportexcel2(): void {
-    /* table id is passed over here */
-    let element = document.getElementById('excel-table');
-    let element2 = document.getElementById('PivotView');
 
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const ws2:XLSX.WorkSheet = XLSX.utils.table_to_sheet(element2);
 
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Telephony by Caregiver');
-    XLSX.utils.book_append_sheet(wb, ws2, 'Branch Compliance status');
 
-    /* save to file */
-    let name='EVV Stats by Caregiver_Updated_'+this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy')+'.xlsx'
-    XLSX.writeFile(wb, name);
+  public downloadArray = []
+  public downLoad() {
 
+    try {
+      let mappedJson = [];
+
+        this.downloadArray = this.telephonyByCareGiver;
+        mappedJson = this.downloadArray.map(item => {
+          return {
+            "RVP": item.rvp,
+            "ED": item.ed,
+            "BRANCH": item.branch,
+            "DCS_HOME_SITE#": item.dcsHomeSite,
+            "SITE_NAME": item.siteName,
+            "DCS_NAME":item.dcsName,
+            "DCS_COORDINATOR": item.dcsCoordinator,
+            "ENTERPRISE_ID": item.enterpriseId,
+            "JOB_TITLE": item.jobTitle,
+            "PERIOD": item.period,
+            "TOTAL_EXPECTED_PUNCHES":item.totalExpectedPunches,
+            "TOTAL_PUNCHES#": item.totalPunches,
+            "MISSING_PUNCHES": item.missingPunches,
+            "MISSING_PUNCHES_PERCENT":item.missingPunchesPercent,
+            "TELEPHONY_LANDLINE_PUNCHES#": item.telephonyLandlinePunches,
+            "TEL_LANDLINE_PERCENT": item.telephonyLandlinePercent,
+            "TELEPHONY_APP_PUNCHES#":  item.telephonyAppPunches,
+            "TEL_APP_PERCENT":item.telephonyAppPercent,
+            "MANUAL_PUNCHES#":  item.manualPunches,
+            "TEL_MANUAL_PERCENT": item.telephonyManualPercent,
+            "Manual + missing":   item.manualPlusMissing,
+            "EVV compliant": item.evvCompliant,
+            "Compliance Status": item.complianceStatus,
+        }
+        })
+        var wscols = [
+          { wch: 22 },
+          { wch: 20 },
+          { wch: 22 },
+          { wch: 10 },
+          { wch: 22 },
+          { wch: 22 },
+          { wch: 20 },
+          { wch: 20 },
+          { wch: 15 },
+          { wch: 30 },
+          { wch: 30 },
+          { wch: 25 },
+          { wch: 10 },
+          { wch: 25 },
+
+        ];
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+        worksheet["!cols"]=wscols
+        const workbook: XLSX.WorkBook = { Sheets: { 'Telephony by Caregiver': worksheet }, SheetNames: ['Telephony by Caregiver'] };
+        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        let name='EVV Stats by Caregiver_Updated '+ this.datePipe.transform(this.applyjobDate,'MM_dd_yyy')
+        this.saveAsExcelFile(excelBuffer, name);
+
+
+
+    } catch (error) {
+
+    }
+
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, fileName + '.xlsx');
   }
 
   public telephonyByCareGiver = [];
