@@ -11,7 +11,7 @@
       </span>
   </div>
   <div>
-    <i *ngIf="display[0]" class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
+    <i class="fas fa-file-download mx-3 f-18" (click)="exportexcel2()"></i>
     <i class="fas fa-filter mx-2 f-18"   (click)="openFilter(filtermodal)"></i>
   </div>
 
@@ -34,7 +34,7 @@
       <ng-template #sitecontent2>Telephony by Caregiver</ng-template>
     </span>
   </div>
- <div *ngIf="display[0]" class=" prime-table">
+ <div [ngClass]="{'d-none':!display[0]}"  class=" prime-table">
   <p-table  [value]="telephonyByCareGiver" id='excel-table' styleClass="p-datatable-striped" [paginator]="true" [rows]="100"
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10,25,50,100,200,300]">
@@ -173,31 +173,13 @@
   <!-- <div class="pivot-table" *ngIf="display[2]">
     <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs'></db-angular-pivot-table>
   </div> -->
-  <div class="pivot-table ejs-pivot-table" *ngIf="display[2]" style="height: 75vh;" >
-    <ejs-pivotview #pivotview id='PivotView' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
+  <div class="pivot-table ejs-pivot-table" [ngClass]="{'d-none':!display[2]}"    style="height: 75vh;" >
+    <ejs-pivotview #pivotview id='PivotView'  [allowExcelExport]='true' [dataSourceSettings]=dataSourceSettings width='100%' height='100%' [gridSettings]='gridSettings'>
     </ejs-pivotview>
     </div>
-  <!-- <div class="pivot-table" *ngIf="display[1]">
-    <db-angular-pivot-table [source]="telephonyByCareGiver" [configs]='configs2'></db-angular-pivot-table>
-  </div> -->
 
-  <div *ngIf="false" class="pager d-flex justify-content-end mt-2">
-    <div class="c">
-      <span class="mr-2">Per page</span>
-      <select class="border-0 mr-2">
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
-      <span class="mr-2">Showing 10 to
-        100 of
-        200
-      </span>
-      <button type="button" class="btn-common-small mx-2">Prev</button>
-      <button type="button" class="btn-common-small mx-2">Next</button>
-    </div>
-  </div>
+
+
 </div>
 
 

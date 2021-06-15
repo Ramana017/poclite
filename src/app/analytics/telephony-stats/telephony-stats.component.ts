@@ -165,7 +165,9 @@ export class TelephonyStatsComponent implements OnInit {
        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
        /* save to file */
-       XLSX.writeFile(wb, 'Telephony.xlsx');
+       let name ='Telephony_Stats_ '+this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy') +'.xlsx'
+
+       XLSX.writeFile(wb, name);
 
     }
 public jobsuccessrunDate='';
@@ -173,7 +175,7 @@ public jobsuccessrunDate='';
       try {
         this.dashboardService.getJobSuccessRunDate().subscribe(res=>{
           this.jobsuccessrunDate=res.telephonyStatsJobDate
-          this.applyjobDate=res.telephonyStatsJobDate;
+          this.applyjobDate=this.datePipe.transform(res.telephonyStatsJobDate,'MM/dd/yyyy');
           this.jobRunDate=new Date(res.telephonyStatsJobDate)
           this.getTelephonyStats();
         })

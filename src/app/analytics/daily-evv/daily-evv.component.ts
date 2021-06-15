@@ -63,15 +63,19 @@ export class DailyEvvComponent implements OnInit {
   exportexcel2(): void {
     /* table id is passed over here */
     let element = document.getElementById('excel-table');
+    let element2 = document.getElementById('PivotView');
+
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const ws2:XLSX.WorkSheet = XLSX.utils.table_to_sheet(element2);
 
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
+    XLSX.utils.book_append_sheet(wb, ws, 'Telephony by Caregiver');
+    XLSX.utils.book_append_sheet(wb, ws2, 'Branch Compliance status');
 
     /* save to file */
-    XLSX.writeFile(wb, 'EVV Stats by Caregiver.xlsx');
+    let name='EVV Stats by Caregiver_Updated_'+this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy')+'.xlsx'
+    XLSX.writeFile(wb, name);
 
   }
 

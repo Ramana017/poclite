@@ -87,7 +87,7 @@ export class DailyScheduleComponent implements OnInit {
         worksheet["!cols"]=wscols
         const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
         const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-        let name='dailyScheduled' + this.datePipe.transform(this.applyjobDate,'MM-dd-yyy')
+        let name='ScheduledHours_' + this.datePipe.transform(this.applyjobDate,'MM_dd_yyy')
         this.saveAsExcelFile(excelBuffer, name);
 
       })
