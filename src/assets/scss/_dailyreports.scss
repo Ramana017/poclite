@@ -61,7 +61,7 @@ tfoot.daily-report-foot td {
 .icon-tel {
   position: absolute;
   left: 0px;
-  top: 30px;
+  top: 0px;
   z-index: 99;
   background: #343a40;
   width: 30px;
@@ -75,11 +75,11 @@ tfoot.daily-report-foot td {
 }
 
 .icon-tel-c {
-  top: 70px;
+  top: 40px;
 }
 
 .icon-tel-d {
-  top: 110px;
+  top: 80px;
 }
 
 .pivot-table {
