@@ -77,7 +77,7 @@ export class DailyReportsComponent implements OnInit {
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
 
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
@@ -113,7 +113,8 @@ export class DailyReportsComponent implements OnInit {
   private appliedBrancheslist = [];
   private appliedSitelist = [];
   public applyjobDate: string = '';
-  public appliedPayorClass=this.payorClass;
+  public appliedPayorClass=this.selectedPayorClass.map(x=>x.value);
+
 
   public getRVPList() {
     let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "" };
@@ -193,7 +194,7 @@ export class DailyReportsComponent implements OnInit {
       this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
       this.appliedSitelist = this.selectedSites.map(x => x.siteId);
       this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
-      this.appliedPayorClass=this.selectedPayorClass;
+      this.appliedPayorClass=this.selectedPayorClass.map(x=>x.value);
       this.getDailyUtilStats();
       this.modelRef.hide();
     }

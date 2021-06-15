@@ -61,12 +61,14 @@ export class PpivotTableComponent implements OnInit {
     this.dataSourceSettings = {
       enableSorting: true,
       columns: [],
-      values: [{ name: 'telephonyLandlinePunches'},{ name: 'manualPunches'},{ name: 'telephonyAppPunches#'}],
+      values: [{ name: 'manualPunches'},{ name: 'telephonyLandlinePunches'},{ name: 'telephonyAppPunches#'}],
       dataSource: this.RawData  ,
       rows: [{ name: 'branch',caption:'Branch' },{name:'dcsCoordinator'}],
       expandAll: false,
       filters: [],
-      calculatedFieldSettings:[{name:"manualPunches",formula:'"Sum(manualPunches)"/"(totalPunches)"*100'},{name:"telephonyLandlinePunches",formula:'"Sum(telephonyLandlinePunches)"/"(totalPunches)"*100'},{name:"telephonyAppPunches#",formula:'"Sum(telephonyAppPunches#)"/"(totalPunches)"*100'}]
+      calculatedFieldSettings:[
+      {name:"manualPunches",formula:'"(manualPunches)"/"(totalPunches)"*100'},
+      {name:"telephonyLandlinePunches",formula:'"(telephonyLandlinePunches)"/"(totalPunches)"*100'},{name:"telephonyAppPunches#",formula:'"(telephonyAppPunches#)"/"(totalPunches)"*100'}]
       // showRowGrandTotals:false,
       // showColumnGrandTotals:false,
       // showGrandTotals:false,

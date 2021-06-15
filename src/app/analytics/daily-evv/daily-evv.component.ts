@@ -5,6 +5,8 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { IDataOptions } from '@syncfusion/ej2-angular-pivotview';
 import { GridSettings } from '@syncfusion/ej2-pivotview/src/pivotview/model/gridsettings';
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-daily-evv',
   templateUrl: './daily-evv.component.html',
@@ -13,25 +15,27 @@ import { GridSettings } from '@syncfusion/ej2-pivotview/src/pivotview/model/grid
 export class DailyEvvComponent implements OnInit {
   public display = [true, false, false];
   public userData: any;
+  public jobsuccessrunDate = '';
   constructor(private http: HttpClient, private dashboardService: DashboardService, public modalService: BsModalService, public datePipe: DatePipe) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
     this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
   }
 
   ngOnInit(): void {
-    this.getTelephonyByCareGiver();
-    // this.http.get('assets/evvcaregiver.json').subscribe(res => {
-    //   let data: any = res;
-    //   this.telephonyByCareGiver = data.telephonyByCaregiver;
-    //   console.log(this.telephonyByCareGiver[0]);
-    //   this.sample();
-
-
-    // }
-    // )
-
-
+    this.getJobSuccessRunDate();
     this.getRVPList();
+  }
+  public getJobSuccessRunDate() {
+    try {
+      this.dashboardService.getJobSuccessRunDate().subscribe(res => {
+        this.jobsuccessrunDate = res.evvStatsJobDate
+        this.applyjobDate =this.datePipe.transform(res.evvStatsJobDate, 'MM/dd/yyyy');
+        this.jobRunDate = new Date(res.evvStatsJobDate)
+        this.getTelephonyByCareGiver();
+      })
+    } catch (error) {
+
+    }
   }
   public dataSourceSettings: IDataOptions;
   public gridSettings: GridSettings;
@@ -49,12 +53,26 @@ export class DailyEvvComponent implements OnInit {
       dataSource: this.telephonyByCareGiver,
       rows: [{ name: 'branch', caption: 'Branch' }],
       filters: [],
-      showRowGrandTotals:false,
-      showColumnGrandTotals:false,
-      showGrandTotals:false,
+      showRowGrandTotals: false,
+      showColumnGrandTotals: false,
+      showGrandTotals: false,
 
 
     };
+  }
+  exportexcel2(): void {
+    /* table id is passed over here */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'EVV Stats by Caregiver.xlsx');
+
   }
 
   public telephonyByCareGiver = [];

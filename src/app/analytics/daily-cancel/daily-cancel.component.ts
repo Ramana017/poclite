@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver'
 
 @Component({
   selector: 'app-daily-cancel',
@@ -11,29 +13,40 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 })
 export class DailyCancelComponent implements OnInit {
   public userData: any;
-  public cancelledHoursList=[];
-  public lowerBound:number=1;
-  public upperBound:number=20;
-  public perpage:number=20;
-  public totalRecordsCount:number=0;
+  public cancelledHoursList = [];
+  public lowerBound: number = 1;
+  public upperBound: number = 20;
+  public perpage: number = 20;
+  public totalRecordsCount: number = 0;
+  public jobsuccessrunDate = '';
 
   constructor(private http: HttpClient, private dashboardService: DashboardService, public modalService: BsModalService, public datePipe: DatePipe) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
-    this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
   }
   ngOnInit(): void {
     this.getRVPList();
-    this.getCancelledVisits();
+    this.getJobSuccessRunDate();
   }
+  public getJobSuccessRunDate() {
+    try {
+      this.dashboardService.getJobSuccessRunDate().subscribe(res => {
+        this.jobsuccessrunDate = res.cancelledVisitsJobDate;
+        this.applyjobDate = this.datePipe.transform(res.cancelledVisitsJobDate, 'MM/dd/yyyy');
+        this.jobRunDate = new Date(res.cancelledVisitsJobDate)
+        this.getCancelledVisits();
+      })
+    } catch (error) {
 
+    }
+  }
 
   public getCancelledVisits() {
     try {
-      let obj={"userId":this.userData.userId,"userTypeId":0,"siteIds":this.appliedSitelist.toString(),"rvpIds":this.appliedRvpList.toString(),"edIds":this.appliedEdsList.toString(),"bmIds":this.appliedBrancheslist.toString(),"jobRunDate":this.applyjobDate,"lowerBound":this.lowerBound,"upperBound":this.upperBound};
+      let obj = { "userId": this.userData.userId, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "lowerBound": this.lowerBound, "upperBound": this.upperBound };
 
-      this.dashboardService.getCancelledVisits(JSON.stringify(obj)).subscribe(res=>{
-        this.cancelledHoursList=res.cancelledHoursList;
-        this.totalRecordsCount=res.totalCount;
+      this.dashboardService.getCancelledVisits(JSON.stringify(obj)).subscribe(res => {
+        this.cancelledHoursList = res.cancelledHoursList;
+        this.totalRecordsCount = res.totalRecordsCount;
       })
 
     } catch (error) {
@@ -42,23 +55,83 @@ export class DailyCancelComponent implements OnInit {
   }
 
 
-  public perpageChange(){
-    this.lowerBound=1;
-    this.upperBound=this.perpage;
+  public perpageChange() {
+    this.lowerBound = 1;
+    this.upperBound = this.perpage;
     this.getCancelledVisits();
 
   }
-  public nextPage(){
-    this.lowerBound=this.lowerBound+this.perpage;
-    this.upperBound=this.upperBound+this.perpage;
+  public nextPage() {
+    this.lowerBound = this.lowerBound + this.perpage;
+    this.upperBound = this.upperBound + this.perpage;
     this.getCancelledVisits();
 
   }
-  public prevPage(){
-    this.lowerBound=this.lowerBound-this.perpage;
-    this.upperBound=this.upperBound-this.perpage;
+  public prevPage() {
+    this.lowerBound = this.lowerBound - this.perpage;
+    this.upperBound = this.upperBound - this.perpage;
     this.getCancelledVisits();
 
+  }
+  public downloadArray = []
+  public downLoad() {
+
+    try {
+      let mappedJson = [];
+      let obj = { "userId": this.userData.userId, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "lowerBound": 0, "upperBound": 0 };
+
+      this.dashboardService.getCancelledVisits(JSON.stringify(obj)).subscribe(res => {
+        this.downloadArray = res.cancelledHoursList;
+        mappedJson = this.downloadArray.map(item => {
+          return {
+            "RVP": item?.rvp,
+            "ED": item?.ed,
+            "Branch": item?.branch,
+            "Operation": item?.operation,
+            "Operation Name": item?.operationName,
+            "Site": item?.site,
+            "SiteName": item?.siteName,
+            "MRN": item?.mrn,
+            "PS AccountNumber": item?.psAccountNumber,
+            "PS LastName": item?.psLastName,
+            "PS FirstName": item?.psFirstName,
+            "PS MiddleName": item?.psMidleName,
+            "PS Coordinator": item?.psCoordinator,
+            "Service Code": item?.serviceCode,
+            "Service Code Description": item?.serviceCodeDescription,
+            "Payor Plan": item?.payorPlan,
+            "Payor Plan Description": item?.payorPlanDescription,
+            "VisitStart DateTime": item?.visitStartDateTime,
+            "visit EndDateTime": item?.visitEndDateTime,
+            "Visit DurationInHrs": item?.visitDurationInHrs,
+            "Cancellation Reason": item?.cancellationReason,
+            "Visit Comments": item?.visitComments,
+            "Cancellation DateTime": item?.cancellationDateTime,
+            "Visit Status": item?.visitStatus,
+            "Scheduled Revenue": item?.scheduledRevenue,
+            "Client Class": item?.clientClass,
+            "Client ClassDesc": item?.clientClassDesc
+          }
+        })
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        let name='dailyCancelled' + this.datePipe.transform(this.applyjobDate,'MM-dd-yyy')
+        this.saveAsExcelFile(excelBuffer, name);
+
+      })
+
+    } catch (error) {
+
+    }
+
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, fileName + '.xlsx');
   }
 
   public jobRunDate: Date = new Date();

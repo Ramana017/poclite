@@ -2,11 +2,11 @@
   <!-- <div></div> -->
   <div class="d-flex align-items-center ml-4">
     <h4 class="mb-0 AvenirLTStd-Heavy">Job Run Date :</h4>
-    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy'}}</h5>
+    <h5 class="mb-0 AvenirLTStd-Heavy ml-2">{{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}</h5>
     <span class="material-icons ml-2" [tooltip]="sitecontent1"
     tooltipPlacement="right">
       help
-      <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy'}}
+      <ng-template #sitecontent1>This report has the updated data as of {{applyjobDate|date:'MM/dd/yyyy hh:mm a'}}
       </ng-template>
       </span>
   </div>
