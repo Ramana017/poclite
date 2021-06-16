@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injectable, APP_INITIALIZER } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/login/login/login.component';
@@ -20,30 +20,25 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, APP_BASE_HREF, TitleCasePipe } from '@angular/common';
-import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ClockInAndOutComponent } from './corrections/clock-in-and-out/clock-in-and-out.component';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartsComponent } from './core/charts/charts.component';
-// import { NgxGaugeModule } from 'ngx-gauge';
-
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 import { MomentModule } from 'angular2-moment';
 import { InvalidTokenComponent } from './corrections/invalid-token/invalid-token.component';
-import { DashboardComponent } from './core/dashboard/dashboard.component';
-
-import {RegistrationComponent} from './core/create_new_ps/registration/registration.component';
-import {HeaderComponentPS} from './core/create_new_ps/header/header.component';
-import{BasicInfoComponent} from './core/create_new_ps/basic-info/basic-info.component';
-import{GuarantorDetailsComponent}from './core/create_new_ps/guarantor-details/guarantor-details.component';
-import {AdmissionDetailsComponent} from './core/create_new_ps/admission-details/admission-details.component';
-import {PayorPlanDetailsComponent} from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
-import {AuthorizationComponent} from './core/create_new_ps/authorization/authorization.component';
+import { RegistrationComponent } from './core/create_new_ps/registration/registration.component';
+import { HeaderComponentPS } from './core/create_new_ps/header/header.component';
+import { BasicInfoComponent } from './core/create_new_ps/basic-info/basic-info.component';
+import { GuarantorDetailsComponent } from './core/create_new_ps/guarantor-details/guarantor-details.component';
+import { AdmissionDetailsComponent } from './core/create_new_ps/admission-details/admission-details.component';
+import { PayorPlanDetailsComponent } from './core/create_new_ps/payor-plan-details/payor-plan-details.component';
+import { AuthorizationComponent } from './core/create_new_ps/authorization/authorization.component';
 import { ToastrModule } from 'ngx-toastr';
-import {PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { PsBasicComponent } from './core/update_ps/ps-basic/ps-basic.component';
 import { PsHeaderComponent } from './core/update_ps/ps-header/ps-header.component';
 import { PsGurantorComponent } from './core/update_ps/ps-gurantor/ps-gurantor.component';
@@ -54,8 +49,7 @@ import { EditPsComponent } from './core/update_ps/edit-ps/edit-ps.component';
 import { ChartLayoutComponent } from './core/chart-layout/chart-layout.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import {DomsanitizePipe, FilterPipe, PhonePipe} from '../app/pipes/domsanitize.pipe'
-
+import { DomsanitizePipe, FilterPipe, PhonePipe } from '../app/pipes/domsanitize.pipe'
 import { VisitReviewComponent } from './core/visit-review/visit-review.component';
 import { ReviewExceptionpopupComponent } from './core/review-exceptionpopup/review-exceptionpopup.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
@@ -67,27 +61,17 @@ import { SharedModule } from './shared/shared.module';
 import { AgmCoreModule, LazyMapsAPILoaderConfigLiteral, LAZY_MAPS_API_CONFIG } from '@agm/core';
 import { map } from 'rxjs/operators';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import {MultiSelectModule} from 'primeng/multiselect';
-const mapsApikey=atob(sessionStorage.getItem('mapsApiKey'));
+import { MultiSelectModule } from 'primeng/multiselect';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { OrderModule } from 'ngx-order-pipe';
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
-
-import {DialogModule} from 'primeng/dialog';
-import {ButtonModule} from 'primeng/button';
-import {ConfirmPopupModule} from 'primeng/confirmpopup';
-import {InputTextareaModule} from 'primeng/inputtextarea';
-import {DropdownModule} from 'primeng/dropdown';
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-import {InputTextModule} from 'primeng/inputtext';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
-// import { PsHomeComponent } from './core/dashboard/ps-home/ps-home.component';
-// import { PsAdmissionsComponent } from './core/dashboard/ps-admissions/ps-admissions.component';
-// import { PsAuthorizationComponent } from './core/dashboard/ps-authorization/ps-authorization.component';
-// import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
+import { ConfirmationService } from 'primeng/api';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+const mapsApikey = atob(sessionStorage.getItem('mapsApiKey'));
+
 
 @NgModule({
   declarations: [
@@ -107,7 +91,6 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     ClockInAndOutComponent,
     ChartsComponent,
     InvalidTokenComponent,
-    // DashboardComponent,
     HeaderComponentPS,
     RegistrationComponent,
     BasicInfoComponent,
@@ -136,12 +119,6 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     UtilizationStatsComponent,
     CommunicationDashboardComponent,
 
-    // PsHomeComponent,
-    // PsAdmissionsComponent,
-    // PsAuthorizationComponent,
-    // PsDcsComponent,
-
-
 
   ],
   imports: [
@@ -156,14 +133,11 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     AngularMultiSelectModule,
-    TimepickerModule.forRoot(),
-
     AgmCoreModule.forRoot(
       {
-        apiKey:mapsApikey
+        apiKey: mapsApikey
       }),
     NgbModule,
-    // NgxGaugeModule,
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     ToastrModule.forRoot(),
@@ -173,9 +147,16 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     MultiSelectModule,
     NgSelectModule,
 
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+
+
 
   ],
-  providers: [DatePipe, BsModalRef,TitleCasePipe,ConfirmationService,PsServiceService,TabsetConfig
+  providers: [DatePipe, BsModalRef, TitleCasePipe, ConfirmationService, PsServiceService, TabsetConfig
     , {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
@@ -212,7 +193,7 @@ export function agmConfigFactory(http: HttpClient, config: LazyMapsAPILoaderConf
           let data2: any = mapresponse;
           config.apiKey = data2.googleAPIKey;
           console.log(config.apiKey)
-          sessionStorage.setItem('mapsApiKey',btoa(data2.googleAPIKey))
+          sessionStorage.setItem('mapsApiKey', btoa(data2.googleAPIKey))
           return mapresponse;
         })
       ).toPromise()
