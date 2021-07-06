@@ -10,7 +10,7 @@
   </div> -->
 
   <div>
-    <i class="fas fa-file-download mx-3 f-18" title="Download" (click)="downLoad()" ></i>
+    <i class="fas fa-file-download mx-3 f-18" title="Download" (click)="onDownload()" ></i>
     <i class="fas fa-filter mx-2 f-18" (click)="openFilter(filtermodal)"></i>
   </div>
 
@@ -121,7 +121,7 @@
 <ng-template #filtermodal>
   <div class="modal-header bg-dark">
     <h5 class="modal-title text-white" id="exampleModalLabel">
-      Cancelled visits Filter
+     All Cancelled visits Filter
     </h5>
     <button type="button" class="close" (click)="modelRef.hide()" aria-label="Close">
       <span aria-hidden="true">&times;</span>

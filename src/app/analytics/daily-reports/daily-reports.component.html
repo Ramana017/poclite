@@ -14,15 +14,15 @@
 
   <div class="">
     <ul class="nav nav-pills mb-2">
-      <li class="nav-item mx-3" [tooltip]="months[currentMonth-1]">
+      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth() -1]">
         <a class="nav-link" (click)="onMonthChange(-1)" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
             class="fa fa-arrow-left mr-1"></i>Prev</a>
       </li>
-      <li class="nav-item mx-3" [tooltip]="months[currentMonth]">
+      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()]">
         <a class="nav-link" (click)="onMonthChange(0)"
           [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
-      <li class="nav-item mx-3" [tooltip]="months[currentMonth+1]">
+      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()+1]">
         <a class="nav-link" (click)="onMonthChange(1)" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
             class="fa fa-arrow-right ml-1"></i></a>
       </li>
@@ -51,7 +51,7 @@
           <th scope="col" class="sticky-top"> Cancelled <br />Hours </th>
           <th scope="col" class="sticky-top"> Cancellation<br /> % </th>
           <th scope="col" class="sticky-top"> No Need <br />Hours</th>
-          <th scope="col" class="sticky-top"> Ps No Need<br /> % </th>
+          <th scope="col" class="sticky-top"> PS No Need<br/>&nbsp;%</th>
           <th scope="col" class="sticky-top"> Scheduled less Cancelled/<br> No need Hours </th>
           <th scope="col" class="sticky-top"> % Authorized Hours Scheduled <br>(after Cancellations/no need) </th>
           <th scope="col" class="sticky-top"> Scheduled Hours w/a <br>DCS Assigned </th>
@@ -113,7 +113,7 @@
 <ng-template #filtermodal>
   <div class="modal-header bg-dark">
     <h5 class="modal-title text-white" id="exampleModalLabel">
-      Measures Filter
+      Branch Scheduled Hours Breakdown
     </h5>
     <button type="button" class="close" (click)="modelRef.hide()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -144,7 +144,7 @@
                   <!-- <angular2-multiselect >
                   </angular2-multiselect> -->
                   <p-multiSelect [options]="rvpList" [resetFilterOnHide]="true" (onPanelHide)="getEDList()" [(ngModel)]="selectedRvpList"
-                    optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"
+                    optionLabel="operationOfficerName" selectedItemsLabel="{0} items selected"  maxSelectedLabels="1"
                     class="multiselect-custom"></p-multiSelect>
 
                 </div>

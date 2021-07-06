@@ -3,7 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
-declare var $:any;
+declare var $: any;
 import * as XLSX from 'xlsx';
 
 
@@ -14,9 +14,9 @@ import * as XLSX from 'xlsx';
 })
 export class TelephonyStatsComponent implements OnInit {
 
-  constructor(private dashboardService: DashboardService,private datePipe:DatePipe,public modalService:BsModalService) {
+  constructor(private dashboardService: DashboardService, private datePipe: DatePipe, public modalService: BsModalService) {
     this.userData = JSON.parse(sessionStorage.getItem('useraccount'));
-    this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
+    this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
 
   }
   public telephonyStatsList: Array<any> = [];
@@ -55,7 +55,7 @@ export class TelephonyStatsComponent implements OnInit {
   public selectedBranches = [];
   public siteList = [];
   public selectedSites = [];
-  public modelRef:BsModalRef;
+  public modelRef: BsModalRef;
 
 
 
@@ -63,7 +63,7 @@ export class TelephonyStatsComponent implements OnInit {
   private appliedEdsList = [];
   private appliedBrancheslist = [];
   private appliedSitelist = [];
-  public applyjobDate:string='';
+  public applyjobDate: string = '';
 
   public getRVPList() {
     let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "" };
@@ -77,9 +77,9 @@ export class TelephonyStatsComponent implements OnInit {
     }
   }
   public getEDList() {
-    this.selectedEdList=[];
-    this.selectedBranches=[];
-    this.selectedSites=[];
+    this.selectedEdList = [];
+    this.selectedBranches = [];
+    this.selectedSites = [];
     console.log(this.selectedRvpList.map(x => x.operationOfficer).toString())
     if (this.selectedRvpList.length > 0) {
       try {
@@ -93,14 +93,14 @@ export class TelephonyStatsComponent implements OnInit {
       } catch (error) {
 
       }
-    }else{
-    this.edsList=[];
+    } else {
+      this.edsList = [];
 
     }
   }
   public getBMList() {
-    this.selectedBranches=[];
-    this.selectedSites=[];
+    this.selectedBranches = [];
+    this.selectedSites = [];
     if (this.selectedEdList.length > 0) {
 
       let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "", "rvpIds": this.selectedRvpList.map(x => x.operationOfficer).toString(), "edIds": this.selectedEdList.map(x => x.executiveDirector).toString() }
@@ -116,7 +116,7 @@ export class TelephonyStatsComponent implements OnInit {
     }
   }
   public getSiteList() {
-    this.selectedSites=[];
+    this.selectedSites = [];
 
     if (this.selectedBranches.length > 0) {
       let obj = { "userId": this.userData.userId, "userTypeId": 0, "name": "", "rvpIds": this.selectedRvpList.map(x => x.operationOfficer).toString(), "edIds": this.selectedEdList.map(x => x.executiveDirector).toString(), "bmIds": this.selectedBranches.map(x => x.branchManager).toString() }
@@ -132,54 +132,74 @@ export class TelephonyStatsComponent implements OnInit {
     }
   }
 
-  public onApply(){
-    let date=new Date(this.jobsuccessrunDate);
-    if(this.jobRunDate>date){
-    Swal.fire('',`Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate,'MM/dd/yyyy')}`,'warning')
-    }else{
-    this.appliedRvpList= this.selectedRvpList.map(x => x.operationOfficer);
-   this.appliedEdsList= this.selectedEdList.map(x => x.executiveDirector);
-   this.appliedBrancheslist= this.selectedBranches.map(x => x.branchManager);
-   this.appliedSitelist= this.selectedSites.map(x=>x.siteId);
-    this.applyjobDate=this.datePipe.transform(this.jobRunDate,'MM/dd/yyyy');
-    this.getTelephonyStats();
-    this.modelRef.hide();
+  public onApply() {
+    let date = new Date(this.jobsuccessrunDate);
+    if (this.jobRunDate > date) {
+      Swal.fire('', `Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate, 'MM/dd/yyyy')}`, 'warning')
+    } else {
+      this.appliedRvpList = this.selectedRvpList.map(x => x.operationOfficer);
+      this.appliedEdsList = this.selectedEdList.map(x => x.executiveDirector);
+      this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
+      this.appliedSitelist = this.selectedSites.map(x => x.siteId);
+      this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
+      this.getTelephonyStats();
+      this.modelRef.hide();
     }
   }
 
 
-  public openFilter(template:TemplateRef<any>){
-    this.modelRef=this.modalService.show(template,{class:'stats-filter modal-lg mb-0',
-  })
+  public openFilter(template: TemplateRef<any>) {
+    this.modelRef = this.modalService.show(template, {
+      class: 'stats-filter modal-lg mb-0',
+    })
   }
 
-  exportexcel2(): void
-    {
-       /* table id is passed over here */
-       let element = document.getElementById('excel-table');
-       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  exportexcel2(): void {
+    let mappedJson = [];
+    // mappedJson = this.telephonyStatsList.map(item => {
+    //   return {
+    //     "RVP": item?.rvp,
+    //     "ED": item?.ed,
+    //     "BRANCH": item?.branch,
+    //     "SITE": item?.site,
+    //     "SITE_NAME": item?.siteName,
+    //     "STATE": item?.state,
+    //     "PERIOD": item?.period,
+    //     "TOTAL_EXPECTED_PUNCHES": item?.totalExpectedPunches,
+    //     "TOTAL_PUNCHES#": item?.totalPunches,
+    //     "MISSING_PUNCHES": item?.missingPunches,
+    //     "MISSING_PUNCHES_PERCENT": item?.missingPunchesPercent,
+    //     "TELEPHONY_LANDLINE_PUNCHES#": item?.telephonyLandlinePunches,
+    //     "TELEPHONY_APP_PUNCHES#": item?.telephonyAppPunches,
+    //     "MANUAL_PUNCHES#": item?.manualPunches,
 
-       /* generate workbook and add the worksheet */
-       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    //   }
+    // })
+      /* table id is passed over here */
+      let element = document.getElementById('excel-table');
+      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-       /* save to file */
-       let name ='Telephony_Stats_ '+this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy') +'.xlsx'
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-       XLSX.writeFile(wb, name);
+      /* save to file */
+      let name = 'Telephony_Stats_ ' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
+
+      XLSX.writeFile(wb, name);
 
     }
-public jobsuccessrunDate='';
-    public getJobSuccessRunDate(){
-      try {
-        this.dashboardService.getJobSuccessRunDate().subscribe(res=>{
-          this.jobsuccessrunDate=res.telephonyStatsJobDate
-          this.applyjobDate=this.datePipe.transform(res.telephonyStatsJobDate,'MM/dd/yyyy');
-          this.jobRunDate=new Date(res.telephonyStatsJobDate)
-          this.getTelephonyStats();
-        })
-      } catch (error) {
+public jobsuccessrunDate = '';
+    public getJobSuccessRunDate() {
+    try {
+      this.dashboardService.getJobSuccessRunDate().subscribe(res => {
+        this.jobsuccessrunDate = res.telephonyStatsJobDate
+        this.applyjobDate = this.datePipe.transform(res.telephonyStatsJobDate, 'MM/dd/yyyy');
+        this.jobRunDate = new Date(res.telephonyStatsJobDate)
+        this.getTelephonyStats();
+      })
+    } catch (error) {
 
-      }
     }
+  }
 }

@@ -75,15 +75,29 @@ export class DailyCancelComponent implements OnInit {
 
   }
   public downloadArray = []
+
+  private downLoadLowerbound: number = 1;
+  private downLoadUpperbound: number = 10;
+  public onDownload() {
+  this.downLoadLowerbound=1;
+  this.downLoadUpperbound=25000;
+  this.downloadArray=[];
+  this.mappedJson = []
+  this.downLoad();
+  }
+  public mappedJson = []
   public downLoad() {
 
+
+
     try {
-      let mappedJson = [];
-      let obj = { "userId": this.userData.userId, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "lowerBound": 0, "upperBound": 0 };
+
+      let obj = { "userId": this.userData.userId, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "lowerBound": this.downLoadLowerbound, "upperBound": this.downLoadUpperbound };
 
       this.dashboardService.getCancelledVisits(JSON.stringify(obj)).subscribe(res => {
         this.downloadArray = res.cancelledHoursList;
-        mappedJson = this.downloadArray.map(item => {
+        let data=[]
+        data = this.downloadArray.map(item => {
           return {
             "RVP": item?.rvp,
             "ED": item?.ed,
@@ -114,12 +128,57 @@ export class DailyCancelComponent implements OnInit {
             "Client ClassDesc": item?.clientClassDesc
           }
         })
-        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
-        const workbook: XLSX.WorkBook = { Sheets: { 'ALL_Cancelled_Visits': worksheet }, SheetNames: ['ALL_Cancelled_Visits'] };
-        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-        let name='ALL_Cancelled_Visits_' + this.datePipe.transform(this.applyjobDate,'MM_dd_yyyy')
-        this.saveAsExcelFile(excelBuffer, name);
+        console.log("data",data);
+        console.log("mappedJson",this.mappedJson)
+        this.mappedJson=[...this.mappedJson,...data]
 
+        if (this.downLoadUpperbound >= this.totalRecordsCount) {
+          var wscols = [
+            { wch: 25 },
+            { wch: 25 },
+            { wch: 25 },
+            { wch: 10 },
+            { wch: 22 },
+            { wch: 10 },
+            { wch: 25 },
+            { wch: 25 },
+            { wch: 15 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
+
+          ];
+
+          const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.mappedJson);
+          worksheet["!cols"]=wscols
+          const workbook: XLSX.WorkBook = { Sheets: { 'ALL_Cancelled_Visits': worksheet }, SheetNames: ['ALL_Cancelled_Visits'] };
+          const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+          let name = 'ALL_Cancelled_Visits_' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy')
+          this.saveAsExcelFile(excelBuffer, name);
+        }
+        else {
+          if (this.downLoadUpperbound < this.totalRecordsCount) {
+            this.downLoadLowerbound = this.downLoadUpperbound + 1;
+            this.downLoadUpperbound = this.downLoadUpperbound + this.downLoadUpperbound;
+            if (this.downLoadUpperbound > this.totalRecordsCount) {
+              this.downLoadUpperbound = this.totalRecordsCount;
+            }
+          }
+          this.downLoad();
+        }
       })
 
     } catch (error) {
@@ -226,15 +285,15 @@ export class DailyCancelComponent implements OnInit {
   public onApply() {
     let date = new Date(this.jobsuccessrunDate);
     if (this.jobRunDate > date) {
-      Swal.fire('', `Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate,'MM/dd/yyyy')}`, 'warning')
+      Swal.fire('', `Job run date cannot be greater than ${this.datePipe.transform(this.jobsuccessrunDate, 'MM/dd/yyyy')}`, 'warning')
     } else {
-    this.appliedRvpList = this.selectedRvpList.map(x => x.operationOfficer);
-    this.appliedEdsList = this.selectedEdList.map(x => x.executiveDirector);
-    this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
-    this.appliedSitelist = this.selectedSites.map(x => x.siteId);
-    this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
-    this.modelRef.hide();
-    this.getCancelledVisits();
+      this.appliedRvpList = this.selectedRvpList.map(x => x.operationOfficer);
+      this.appliedEdsList = this.selectedEdList.map(x => x.executiveDirector);
+      this.appliedBrancheslist = this.selectedBranches.map(x => x.branchManager);
+      this.appliedSitelist = this.selectedSites.map(x => x.siteId);
+      this.applyjobDate = this.datePipe.transform(this.jobRunDate, 'MM/dd/yyyy');
+      this.modelRef.hide();
+      this.getCancelledVisits();
     }
   }
 
