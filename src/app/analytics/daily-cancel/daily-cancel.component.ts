@@ -172,7 +172,7 @@ export class DailyCancelComponent implements OnInit {
         else {
           if (this.downLoadUpperbound < this.totalRecordsCount) {
             this.downLoadLowerbound = this.downLoadUpperbound + 1;
-            this.downLoadUpperbound = this.downLoadUpperbound + this.downLoadUpperbound;
+            this.downLoadUpperbound = this.downLoadUpperbound + 25000;
             if (this.downLoadUpperbound > this.totalRecordsCount) {
               this.downLoadUpperbound = this.totalRecordsCount;
             }

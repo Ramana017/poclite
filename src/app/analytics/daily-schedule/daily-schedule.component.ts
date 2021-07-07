@@ -45,7 +45,10 @@ export class DailyScheduleComponent implements OnInit {
   private mappedJson = [];
   public onDownload() {
     this.downLoadLowerbound = 1;
-    this.downLoadUpperbound =5;
+    this.downLoadUpperbound =25000;
+    if (this.downLoadUpperbound > this.totalRecordsCount) {
+      this.downLoadUpperbound = this.totalRecordsCount;
+    }
     this.downloadArray = [];
     this.mappedJson = []
     this.downLoad();
@@ -108,7 +111,7 @@ export class DailyScheduleComponent implements OnInit {
       else{
         if (this.downLoadUpperbound < this.totalRecordsCount) {
           this.downLoadLowerbound = this.downLoadUpperbound + 1;
-          this.downLoadUpperbound = this.downLoadUpperbound + this.downLoadUpperbound;
+          this.downLoadUpperbound = this.downLoadUpperbound+ 25000;
           if (this.downLoadUpperbound > this.totalRecordsCount) {
             this.downLoadUpperbound = this.totalRecordsCount;
           }
