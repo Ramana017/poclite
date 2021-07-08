@@ -79,11 +79,11 @@ export class DailyCancelComponent implements OnInit {
   private downLoadLowerbound: number = 1;
   private downLoadUpperbound: number = 10;
   public onDownload() {
-  this.downLoadLowerbound=1;
-  this.downLoadUpperbound=25000;
-  this.downloadArray=[];
-  this.mappedJson = []
-  this.downLoad();
+    this.downLoadLowerbound = 1;
+    this.downLoadUpperbound = 25000;
+    this.downloadArray = [];
+    this.mappedJson = []
+    this.downLoad();
   }
   public mappedJson = []
   public downLoad() {
@@ -93,44 +93,43 @@ export class DailyCancelComponent implements OnInit {
     try {
 
       let obj = { "userId": this.userData.userId, "userTypeId": 0, "siteIds": this.appliedSitelist.toString(), "rvpIds": this.appliedRvpList.toString(), "edIds": this.appliedEdsList.toString(), "bmIds": this.appliedBrancheslist.toString(), "jobRunDate": this.applyjobDate, "lowerBound": this.downLoadLowerbound, "upperBound": this.downLoadUpperbound };
-
       this.dashboardService.getCancelledVisits(JSON.stringify(obj)).subscribe(res => {
         this.downloadArray = res.cancelledHoursList;
-        let data=[]
+        let data = []
         data = this.downloadArray.map(item => {
           return {
             "RVP": item?.rvp,
             "ED": item?.ed,
-            "Branch": item?.branch,
-            "Operation": item?.operation,
-            "Operation Name": item?.operationName,
-            "Site": item?.site,
-            "SiteName": item?.siteName,
+            "BRANCH": item?.branch,
+            "OPERATION#": item?.operation,
+            "OPERATION_NAME": item?.operationName,
+            "SITE#": item?.site,
+            "SITE_NAME": item?.siteName,
             "MRN": item?.mrn,
-            "PS AccountNumber": item?.psAccountNumber,
-            "PS LastName": item?.psLastName,
-            "PS FirstName": item?.psFirstName,
-            "PS MiddleName": item?.psMidleName,
-            "PS Coordinator": item?.psCoordinator,
-            "Service Code": item?.serviceCode,
-            "Service Code Description": item?.serviceCodeDescription,
-            "Payor Plan": item?.payorPlan,
-            "Payor Plan Description": item?.payorPlanDescription,
-            "VisitStart DateTime": item?.visitStartDateTime,
-            "visit EndDateTime": item?.visitEndDateTime,
-            "Visit DurationInHrs": item?.visitDurationInHrs,
-            "Cancellation Reason": item?.cancellationReason,
-            "Visit Comments": item?.visitComments,
-            "Cancellation DateTime": item?.cancellationDateTime,
-            "Visit Status": item?.visitStatus,
-            "Scheduled Revenue": item?.scheduledRevenue,
-            "Client Class": item?.clientClass,
-            "Client ClassDesc": item?.clientClassDesc
+            "PS_ACCT#": item?.psAccountNumber,
+            "PS_LAST_NAME": item?.psLastName,
+            "PS_FIRST_NAME": item?.psFirstName,
+            "PS_MI": item?.psMidleName,
+            "PS_COORDINATOR": item?.psCoordinator,
+            "SERVICE_CODE": item?.serviceCode,
+            "SERVICE_CODE_DESCRIPTION": item?.serviceCodeDescription,
+            "PAYOR_PLAN": item?.payorPlan,
+            "PAYOR_PLAN_DESCRIPTION": item?.payorPlanDescription,
+            "VISIT_START_DATE_TIME": item?.visitStartDateTime,
+            "VISIT_END_DATE_TIME": item?.visitEndDateTime,
+            "VISIT_DURATION_IN_HRS": item?.visitDurationInHrs,
+            "CANCELLATION_REASON": item?.cancellationReason,
+            "VISIT_COMMENTS": item?.visitComments,
+            "CANCELLATION_DATE_TIME": item?.cancellationDateTime,
+            "VISIT_STATUS": item?.visitStatus,
+            "SCHEDULED_REVENUE": item?.scheduledRevenue,
+            "CLIENT_CLASS": item?.clientClass,
+            "CLIENT_CLASS_DESC": item?.clientClassDesc
           }
         })
-        console.log("data",data);
-        console.log("mappedJson",this.mappedJson)
-        this.mappedJson=[...this.mappedJson,...data]
+        console.log("data", data);
+        console.log("mappedJson", this.mappedJson)
+        this.mappedJson = [...this.mappedJson, ...data]
 
         if (this.downLoadUpperbound >= this.totalRecordsCount) {
           var wscols = [
@@ -139,10 +138,13 @@ export class DailyCancelComponent implements OnInit {
             { wch: 25 },
             { wch: 10 },
             { wch: 22 },
-            { wch: 10 },
+            { wch: 8 },
             { wch: 25 },
             { wch: 25 },
             { wch: 15 },
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 },
             { wch: 20 },
             { wch: 20 },
             { wch: 20 },
@@ -163,7 +165,7 @@ export class DailyCancelComponent implements OnInit {
           ];
 
           const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.mappedJson);
-          worksheet["!cols"]=wscols
+          worksheet["!cols"] = wscols
           const workbook: XLSX.WorkBook = { Sheets: { 'ALL_Cancelled_Visits': worksheet }, SheetNames: ['ALL_Cancelled_Visits'] };
           const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
           let name = 'ALL_Cancelled_Visits_' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy')

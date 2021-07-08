@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import * as FileSaver from 'file-saver';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
@@ -156,41 +157,71 @@ export class TelephonyStatsComponent implements OnInit {
 
   exportexcel2(): void {
     let mappedJson = [];
-    // mappedJson = this.telephonyStatsList.map(item => {
-    //   return {
-    //     "RVP": item?.rvp,
-    //     "ED": item?.ed,
-    //     "BRANCH": item?.branch,
-    //     "SITE": item?.site,
-    //     "SITE_NAME": item?.siteName,
-    //     "STATE": item?.state,
-    //     "PERIOD": item?.period,
-    //     "TOTAL_EXPECTED_PUNCHES": item?.totalExpectedPunches,
-    //     "TOTAL_PUNCHES#": item?.totalPunches,
-    //     "MISSING_PUNCHES": item?.missingPunches,
-    //     "MISSING_PUNCHES_PERCENT": item?.missingPunchesPercent,
-    //     "TELEPHONY_LANDLINE_PUNCHES#": item?.telephonyLandlinePunches,
-    //     "TELEPHONY_APP_PUNCHES#": item?.telephonyAppPunches,
-    //     "MANUAL_PUNCHES#": item?.manualPunches,
+    mappedJson = this.telephonyStatsList.map(item => {
+      return {
+        "SITE #": item?.site,
+        "Site Name": item?.siteName,
+        "RVP": item?.rvp,
+        "ED": item?.ed,
+        "Branch": item?.branch,
+        "State": item?.state,
+        "Period": item?.period,
+        "Total Expected Punches": item?.totalExpectedPunches,
+        "Total Punches": item?.totalPunches,
+        "Missing Punches": item?.missingPunches,
+        "Missing Punches Percent": item?.missingPunchesPercent,
+        "Telephony Landline": item?.telephonyLandlinePunches,
+        "Telephony App": item?.telephonyAppPunches,
+        "Manual": item?.manualPunches,
+      }
+    });
+    var wscols = [
+      { wch: 10 },
+      { wch: 25 },
+      { wch: 15 },
+      { wch: 25 },
+      { wch: 25 },
+      { wch: 15 },
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 15 },
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 15 },
+      { wch: 15 },
 
-    //   }
-    // })
-      /* table id is passed over here */
-      let element = document.getElementById('excel-table');
-      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    ];
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+    worksheet["!cols"] = wscols
+    const workbook: XLSX.WorkBook = { Sheets: { '2020&2021 TeleStats': worksheet }, SheetNames: ['2020&2021 TeleStats'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-      /* generate workbook and add the worksheet */
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-      /* save to file */
-      let name = 'Telephony_Stats_ ' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
+    // /* table id is passed over here */
+    // let element = document.getElementById('excel-table');
+    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-      XLSX.writeFile(wb, name);
+    // /* generate workbook and add the worksheet */
+    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    }
-public jobsuccessrunDate = '';
-    public getJobSuccessRunDate() {
+    // /* save to file */
+    let name = 'Telephony_Stats_ ' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
+    this.saveAsExcelFile(excelBuffer, name);
+
+    // XLSX.writeFile(wb, name);
+
+  }
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'string' });
+    /***********`
+    *YOUR EXCEL FILE'S NAME
+    */
+    FileSaver.saveAs(data, fileName + '.xlsx');
+  }
+  public jobsuccessrunDate = '';
+  public getJobSuccessRunDate() {
     try {
       this.dashboardService.getJobSuccessRunDate().subscribe(res => {
         this.jobsuccessrunDate = res.telephonyStatsJobDate

@@ -67,18 +67,18 @@ export class DailyScheduleComponent implements OnInit {
           return {
             "RVP": item?.rvp,
             "ED": item?.ed,
-            "Branch": item?.branch,
-            "Site": item?.site,
-            "SiteName": item?.siteName,
+            "BRANCH": item?.branch,
+            "SITE#": item?.site,
+            "SITE_NAME": item?.siteName,
             "PS": item?.ps,
             "MRN": item?.mrn,
-            "Payor Plan": item?.payorPlan,
-            "Fiscal Period Number": item?.fiscalPeriodNumber,
-            "Scheduled Begin Date Time": item.scheduledBeginDateTime,
-            "Scheduled End Date Time": item.scheduledEndDateTime,
-            "Fiscal Day Name": item.fiscalDayName,
-            "SCH Hours": item.scheduledHours,
-            "Revenue Status": item.revenueStatus
+            "PAYOR_PLAN": item?.payorPlan,
+            "FISCALPERIODNUMBER": item?.fiscalPeriodNumber,
+            "SCHEDULED_BEGIN_DATE_TIME": item.scheduledBeginDateTime,
+            "SCHEDULED_END_DATE_TIME": item.scheduledEndDateTime,
+            "FISCALDAYNAME": item.fiscalDayName,
+            "SCHHOURS": item.scheduledHours,
+            "REVENUE_STATUS": item.revenueStatus
           }
         })
         this.mappedJson=[...this.mappedJson,...data]

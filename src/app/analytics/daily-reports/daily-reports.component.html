@@ -15,15 +15,15 @@
   <div class="">
     <ul class="nav nav-pills mb-2">
       <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth() -1]">
-        <a class="nav-link" (click)="onMonthChange(-1)" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
+        <a class="nav-link" (click)="onMonthChange(-1,months[jobRunDate.getMonth() -1])" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
             class="fa fa-arrow-left mr-1"></i>Prev</a>
       </li>
       <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()]">
-        <a class="nav-link" (click)="onMonthChange(0)"
+        <a class="nav-link" (click)="onMonthChange(0,months[jobRunDate.getMonth()])"
           [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
       <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()+1]">
-        <a class="nav-link" (click)="onMonthChange(1)" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
+        <a class="nav-link" (click)="onMonthChange(1,months[jobRunDate.getMonth()+1])" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
             class="fa fa-arrow-right ml-1"></i></a>
       </li>
     </ul>
