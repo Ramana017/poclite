@@ -5,6 +5,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-daily-reports',
@@ -62,8 +64,8 @@ export class DailyReportsComponent implements OnInit {
 
   public onMonthChange(flag,sheetname) {
     if (this.monthFlag != flag) {
-      // this.sheetname=flag==0?this.months[this.currentMonth]:flag==1?this.months[this.currentMonth+1]:this.months[this.currentMonth-1];
-      this.sheetname=sheetname;
+      this.sheetname=flag==0?this.months[this.currentMonth]:flag==1?this.months[this.currentMonth+1]:this.months[this.currentMonth-1];
+      // this.sheetname=sheetname;
       this.monthFlag = flag
       this.getDailyUtilStats();
     }
@@ -73,28 +75,29 @@ export class DailyReportsComponent implements OnInit {
   // file saving functionality
 
   exportexcel2(): void {
+
     let mappedJson = [];
-    mappedJson = this.dailyStatsList.map(item => {
-      return {
-        "RVP": item?.rvp,
-        "ED": item?.ed,
-        "BRANCH": item?.branch,
-        "Authorized Hours": item?.authorizedHrs,
-        "Scheduled Hours (including cancellations)": item?.scheduledHrs,
-        "% Authorized Hours Scheduled (including cancellations)": item?.percentOfAuthSchHrs,
-        "Cancelled Hours": item?.cancelledHrs,
-        "Cancellation %": item?.percentOfCancelHrs,
-        "No Need Hours": item?.noNeedHrs,
-        "PS No Need %": item?.percentOfNoNeedHrs,
-        "Scheduled less Cancelled/No Need Hours": item?.scheduledHrsWithoutCancel,
-        "% Authorized Hours Scheduled (after Cancellations/no need)": item?.perOfSchLessCancelHrs,
-        "Scheduled Hours w/a DCS Assigned":item.sumScheduledHrsWithDcs,
-        "Scheduled Hours w/no DCS Assigned":item.sumScheduledHrsWithNoDcs,
-        "% Scheduled Hours not Staffed ":item.scheduledWithNoDcsPercent,
-        "Serviced Hours":item.servicedHrs,
-        "Served Utilization":item.servicedHrsPercent,
-      }
-    });
+    // mappedJson = this.dailyStatsList.map(item => {
+    //   return {
+    //     "RVP": item?.rvp,
+    //     "ED": item?.ed,
+    //     "BRANCH": item?.branch,
+    //     "Authorized Hours": item?.authorizedHrs,
+    //     "Scheduled Hours (including cancellations)": item?.scheduledHrs,
+    //     "% Authorized Hours Scheduled (including cancellations)": item?.percentOfAuthSchHrs,
+    //     "Cancelled Hours": item?.cancelledHrs,
+    //     "Cancellation %": item?.percentOfCancelHrs,
+    //     "No Need Hours": item?.noNeedHrs,
+    //     "PS No Need %": item?.percentOfNoNeedHrs,
+    //     "Scheduled less Cancelled/No Need Hours": item?.scheduledHrsWithoutCancel,
+    //     "% Authorized Hours Scheduled (after Cancellations/no need)": item?.perOfSchLessCancelHrs,
+    //     "Scheduled Hours w/a DCS Assigned":item.sumScheduledHrsWithDcs,
+    //     "Scheduled Hours w/no DCS Assigned":item.sumScheduledHrsWithNoDcs,
+    //     "% Scheduled Hours not Staffed ":item.scheduledWithNoDcsPercent,
+    //     "Serviced Hours":item.servicedHrs,
+    //     "Served Utilization":item.servicedHrsPercent,
+    //   }
+    // });
     var wscols = [
       { wch: 10 },
       { wch: 15 },
@@ -115,31 +118,32 @@ export class DailyReportsComponent implements OnInit {
       { wch: 25 },
 
     ];
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
-    worksheet["!cols"] = wscols
-    let sheetName=this.sheetname;
-    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-    // { Sheets: { sheetName: worksheet }, SheetNames: [sheetName] };
+    // const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(mappedJson);
+    // worksheet["!cols"] = wscols
+    // let sheetName=this.sheetname;
+    // const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    // // { Sheets: { sheetName: worksheet }, SheetNames: [sheetName] };
 
-     XLSX.utils.book_append_sheet(workbook, worksheet, this.sheetname);
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    //  XLSX.utils.book_append_sheet(workbook, worksheet, this.sheetname);
+    // const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
 
     /* table id is passed over here */
-    // let element = document.getElementById('excel-table');
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    // /* generate workbook and add the worksheet */
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, this.sheetname);
-    // // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    ws["!cols"]=wscols;
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.sheetname);
+    // XLSX.utils.book_append_sheet(wb, ws, 'Sheet2');
     // /* save to file */
     // XLSX.writeFile(wb, name);
     let name = 'Branch Scheduled Hours Breakdown_' + this.datePipe.transform(this.applyjobDate, 'MM_dd_yyyy') + '.xlsx'
 
 
-    this.saveAsExcelFile(excelBuffer, name);
+    // this.saveAsExcelFile(excelBuffer, name);
 
-    // XLSX.writeFile(wb, name);
+    XLSX.writeFile(wb, name);
 
   }
   private saveAsExcelFile(buffer: any, fileName: string): void {

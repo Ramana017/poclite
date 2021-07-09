@@ -14,16 +14,16 @@
 
   <div class="">
     <ul class="nav nav-pills mb-2">
-      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth() -1]">
+      <li class="nav-item mx-3" [tooltip]="months[currentMonth -1]">
         <a class="nav-link" (click)="onMonthChange(-1,months[jobRunDate.getMonth() -1])" [ngClass]="monthFlag==-1?'active border-radius-curved':''"><i
             class="fa fa-arrow-left mr-1"></i>Prev</a>
       </li>
-      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()]">
+      <li class="nav-item mx-3" [tooltip]="months[currentMonth]">
         <a class="nav-link" (click)="onMonthChange(0,months[jobRunDate.getMonth()])"
           [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
       <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()+1]">
-        <a class="nav-link" (click)="onMonthChange(1,months[jobRunDate.getMonth()+1])" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
+        <a class="nav-link" (click)="onMonthChange(1,months[currentMonth+1])" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
             class="fa fa-arrow-right ml-1"></i></a>
       </li>
     </ul>
@@ -44,21 +44,21 @@
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-0">RVP</th>
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-97">ED</th>
           <th scope="col" class="sticky-top sticky-left sticky-top-th left-277 ">BRANCH</th>
-          <th scope="col" class="sticky-top">Authorized <br />Hours</th>
-          <th scope="col" class="sticky-top">Scheduled Hours <br> <span>(Including Cancellations)</span></th>
-          <th scope="col" class="sticky-top"> % Authorized Hours Scheduled<br> <span>(Including Cancellations)</span>
+          <th scope="col" class="sticky-top">Authorized&nbsp;<br/>Hours</th>
+          <th scope="col" class="sticky-top">Scheduled Hours <br><span>&nbsp;(including cancellations)</span></th>
+          <th scope="col" class="sticky-top"> % Authorized Hours Scheduled<br>&nbsp;<span>(including cancellations)</span>
           </th>
-          <th scope="col" class="sticky-top"> Cancelled <br />Hours </th>
-          <th scope="col" class="sticky-top"> Cancellation<br /> % </th>
-          <th scope="col" class="sticky-top"> No Need <br />Hours</th>
+          <th scope="col" class="sticky-top">Cancelled&nbsp; <br/>Hours </th>
+          <th scope="col" class="sticky-top"> Cancellation&nbsp; <br>% </th>
+          <th scope="col" class="sticky-top"> No Need&nbsp;<br>Hours</th>
           <th scope="col" class="sticky-top"> PS No Need<br/>&nbsp;%</th>
-          <th scope="col" class="sticky-top"> Scheduled less Cancelled/<br> No need Hours </th>
-          <th scope="col" class="sticky-top"> % Authorized Hours Scheduled <br>(after Cancellations/no need) </th>
-          <th scope="col" class="sticky-top"> Scheduled Hours w/a <br>DCS Assigned </th>
-          <th scope="col" class="sticky-top"> Scheduled Hours w/no <br>DCS Assigned </th>
-          <th scope="col" class="sticky-top"> % Scheduled Hours <br> not Staffed </th>
-          <th scope="col" class="sticky-top"> Serviced <br />Hours </th>
-          <th scope="col" class="sticky-top"> Served <br />Utilization </th>
+          <th scope="col" class="sticky-top"> Scheduled less Cancelled/<br> No Need Hours </th>
+          <th scope="col" class="sticky-top"> % Authorized  Hours Scheduled<br>&nbsp;(after Cancellations/no need) </th>
+          <th scope="col" class="sticky-top"> Scheduled Hours w/a&nbsp;<br>DCS Assigned </th>
+          <th scope="col" class="sticky-top"> Scheduled Hours w/no&nbsp;<br>DCS Assigned</th>
+          <th scope="col" class="sticky-top">% Scheduled Hours<br>&nbsp;not Staffed </th>
+          <th scope="col" class="sticky-top"> Serviced<br/>&nbsp;Hours </th>
+          <th scope="col" class="sticky-top"> Served<br>&nbsp;Utilization </th>
         </tr>
       </thead>
       <tbody>
@@ -84,7 +84,7 @@
       </tbody>
       <tfoot class="daily-report-foot" *ngIf="dailyStatsList.length!=0">
         <tr class="border-top">
-          <td colspan="3" class="sticky-left left-0 border-top AvenirLTStd-Heavy">Grand Total</td>
+          <td colspan="3" class="sticky-left left-0 border-top AvenirLTStd-Heavy">Grand Totals</td>
 
           <td class="AvenirLTStd-Heavy">{{grandtotal?.authorizedHrs}}</td>
           <td class="AvenirLTStd-Heavy">{{grandtotal?.scheduledHrs}} </td>
