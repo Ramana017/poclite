@@ -28,6 +28,7 @@ import { CalenderSchedulingComponent } from './core/calender-scheduling/calender
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
 
 import { DailyCancelComponent } from './analytics/daily-cancel/daily-cancel.component';
+import { OpenScheduledHrsComponent } from './core/open-scheduled-hrs/open-scheduled-hrs.component';
 
 
 
@@ -67,6 +68,7 @@ const routes: Routes = [
     ]
   },
   {path: "communication-dashboard",canActivate: [AuthGuard], component:CommunicationDashboardComponent},
+  {path:"open-scheduled-hrs",component:OpenScheduledHrsComponent},
   { path: "page-not-found",canActivate: [AuthGuard], component: PageNotFoundComponent },
   { path: 'schedulingmodule', canActivate: [AuthGuard],loadChildren: () => import('./schedulingmodule/schedulingmodule.module').then(m => m.SchedulingmoduleModule) },
   { path: 'ps-edit', canActivate: [AuthGuard],loadChildren: () => import('./edit/ps-edit/ps-edit.module').then(m => m.PsEditModule) },

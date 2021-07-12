@@ -5,7 +5,7 @@
 
   <!--    -->
   <div class="container-wrapper person-served-home">
-    <div class="ps-registration-tabs-container">
+    <div class="ps-registration-tabs-container" >
       <div class="">
         <div class="d-flex align-items-center site-form">
           <div class="site-container d-flex align-items-center">
@@ -15,7 +15,12 @@
             <div class="input-group">
               <div class="procedurecode w-100 multiselect-angular">
                 <div class="input-group form-input">
-                  <input type="text" class="form-control lastName text-capital" />
+                  <!-- <input type="text" class="form-control lastName text-capital" [(ngModel)]="siteSelectedItems" /> -->
+                  <div class="ng-auto-style">
+                    <p-autoComplete  class="  " [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)"
+                    #autocomplete (onFocus)="!autocomplete.value && autocomplete.handleDropdownClick(null)"  [(ngModel)]="siteSelectedItems"
+                    field="name" [forceSelection]="true" [minLength]="0"></p-autoComplete>
+                  </div>
                 </div>
               </div>
             </div>
@@ -26,14 +31,14 @@
             <h4 class="pb-2 AvenirLTStd-Heavy m-0 f-size-16">
               Basic Details
             </h4>
-            <form [formGroup]="psForm" class="d-flex align-items-center nav justify-content-between border-2">
+            <form  class="d-flex align-items-center nav justify-content-between border-2" [formGroup]="psForm" >
               <div class="basic-input-container">
                 <label class="text-capital">
                   Last Name<span class="text-danger">*</span>
                 </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control lastName text-capital" />
+                  <input type="text" class="form-control lastName text-capital" formControlName="lastName"/>
                 </div>
               </div>
 
@@ -46,6 +51,7 @@
                             <input
                               type="text"
                               class="form-control firstName text-capital"
+                              formControlName="firstName"
                             />
                           </div>
 
@@ -57,14 +63,14 @@
                 <label class="text-capital"> Middle Name </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control firstName text-capital" />
+                  <input type="text" class="form-control firstName text-capital" formControlName="middleName"/>
                 </div>
               </div>
               <div class="basic-input-container">
                 <label class="text-capital"> Alias </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control firstName text-capital" />
+                  <input type="text" class="form-control firstName text-capital" formControlName="alias" />
                 </div>
               </div>
               <div class="m-0 basic-input-container">
@@ -85,7 +91,7 @@
                   Salutation<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control lastName text-capital" />
+                  <input type="text" class="form-control lastName text-capital" formControlName="salutation" />
                 </div>
               </div>
               <div class="basic-input-container ">
@@ -93,7 +99,7 @@
                     Marital Status<span class="text-danger">*</span>
                   </label>
                   <div class="input-group">
-                    <input type="text" class="form-control lastName text-capital" />
+                    <input type="text" class="form-control lastName text-capital" formControlName="maritalStatus" />
                   </div>
               </div>
               <div class="basic-input-container">
@@ -101,7 +107,7 @@
                   Date of Birth<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" placeholder="mm/dd/yyyy " class="form-control" aria-label="Case Manager"
+                  <input type="text" placeholder="mm/dd/yyyy " class="form-control" formControlName="dob"
                     bsDatepicker />
                 </div>
               </div>
@@ -110,7 +116,7 @@
                   Race<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control lastName text-capital" />
+                  <input type="text" class="form-control lastName text-capital" formControlName="race" />
                 </div>
               </div>
 
@@ -118,7 +124,7 @@
                 <label class=""> SSN </label>
 
                 <div class="input-group">
-                  <input type="text" maxlength="11" class="form-control" aria-label="Case Manager" />
+                  <input type="text" maxlength="11" class="form-control" formControlName="ssn" />
                 </div>
               </div>
               <div class="basic-input-container pb-sm-0 ">
@@ -126,7 +132,7 @@
                   Primary Language<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control lastName text-capital" />
+                  <input type="text" class="form-control lastName text-capital" formControlName="primaryLanguage"/>
                 </div>
               </div>
               <div class="basic-input-container pb-sm-0 pr-sm-0"></div>
@@ -139,11 +145,11 @@
             </h4>
             <div class="border-2">
               <div class="textarea-wrapper">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios"
+                <div class="form-check"  *ngFor="let data of siteSelectedItems;let i=index">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios{{i}}"
                     value="option1" />
-                  <label class="form-check-label" for="exampleRadios">
-                    Site
+                  <label class="form-check-label" for="exampleRadios{{i}}">
+                    {{data.siteName}}
                   </label>
                 </div>
               </div>
@@ -162,7 +168,7 @@
                   Location<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control text-capital" aria-label="Auth" />
+                  <input type="text" class="form-control text-capital" formControlName="location" />
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -170,13 +176,13 @@
                   Address Line #1<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Auth" />
+                  <input type="text" class="form-control" aria-label="Auth" formControlName="address1"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
                 <label class=""> Address Line #2 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Auth" />
+                  <input type="text" class="form-control" aria-label="Auth" formControlName="address2"/>
                 </div>
               </div>
               <!-- <div class="basic-input-container form-group pb-sm-0">
@@ -196,7 +202,7 @@
                   </label>
                   <div class="input-group">
                     <input type="text" class="form-control" aria-label="date"  type="text"
-                      class="form-control" />
+                      class="form-control" formControlName="zipcode"/>
                   </div>
                 </div>
                 <div class="w-48">
@@ -205,7 +211,7 @@
                   </label>
                   <div class="input-group">
                     <input type="text" class="form-control" aria-label="date"  type="text"
-                      class="form-control" />
+                      class="form-control" formControlName="zip4code"/>
                   </div>
                 </div>
               </div>
@@ -217,10 +223,10 @@
                 <div class="input-group">
                   <div class="date-input d-flex align-items-center w-100">
                     <div class="ng-autocomplete phone-select">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth" formControlName="phoneType1"/>
                     </div>
                     <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth"  formControlName="phoneNumber1"/>
                     </div>
                   </div>
                 </div>
@@ -231,10 +237,10 @@
                 <div class="input-group">
                   <div class="date-input d-flex align-items-center w-100">
                     <div class="ng-autocomplete phone-select">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth" formControlName="phoneType2"/>
                     </div>
                     <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth" formControlName="phoneNumber2"/>
                     </div>
                   </div>
                 </div>
@@ -245,10 +251,10 @@
                 <div class="input-group">
                   <div class="date-input d-flex align-items-center w-100">
                     <div class="ng-autocomplete phone-select">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth" formControlName="phoneType3"/>
                     </div>
                     <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Auth" />
+                      <input type="text" class="form-control" aria-label="Auth" formControlName="phoneNumber3"/>
                     </div>
                   </div>
                 </div>
@@ -257,7 +263,7 @@
                 <label class="">City<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="date" disabled="true" />
+                  <input type="text" class="form-control" aria-label="date" disabled="true" formControlName="city"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -265,7 +271,7 @@
                   State <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="date" disabled="true" />
+                  <input type="text" class="form-control" aria-label="date" disabled="true" formControlName="state"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -273,7 +279,7 @@
                   County<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="date" disabled />
+                  <input type="text" class="form-control" aria-label="date" disabled formControlName="county"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -281,7 +287,7 @@
                   Time Zone<span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Case Manager" disabled />
+                  <input type="text" class="form-control" aria-label="Case Manager" disabled formControlName="timezone"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -290,7 +296,7 @@
                 </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Case Manager" disabled />
+                  <input type="text" class="form-control" aria-label="Case Manager" disabled formControlName="country"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -299,7 +305,7 @@
                 </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Case Manager" />
+                  <input type="text" class="form-control" aria-label="Case Manager" formControlName="fax"/>
                 </div>
               </div>
               <div class="basic-input-container form-group pb-sm-0">
@@ -308,7 +314,7 @@
                 </label>
 
                 <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Case Manager" />
+                  <input type="text" class="form-control" aria-label="Case Manager" formControlName="email"/>
                 </div>
               </div>
             </div>
@@ -316,7 +322,7 @@
               <div class="form-group">
                 <label class="mb-0 color-black">Directions</label>
                 <div class="input-group form-group">
-                  <textarea rows="7" class="form-control bg-light-grey"></textarea>
+                  <textarea rows="7" class="form-control bg-light-grey" formControlName="directions"></textarea>
                 </div>
               </div>
             </div>
@@ -343,7 +349,7 @@
             </button>
           </div>
           <div class="next">
-            <button type="button" class="btn-common btn-green w-auto px-3">
+            <button type="button" class="btn-common btn-green w-auto px-3" (click)="onSubmit()">
               <i class="fas fa-save mr-2"></i>Save
             </button>
           </div>

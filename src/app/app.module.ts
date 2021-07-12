@@ -88,6 +88,7 @@ import { ConfirmationService } from 'primeng/api';
 // import { PsDcsComponent } from './core/dashboard/ps-dcs/ps-dcs.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
+import { OpenScheduledHrsComponent } from './core/open-scheduled-hrs/open-scheduled-hrs.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
     TelephonyStatsComponent,
     UtilizationStatsComponent,
     CommunicationDashboardComponent,
+    OpenScheduledHrsComponent,
 
     // PsHomeComponent,
     // PsAdmissionsComponent,

@@ -20,16 +20,17 @@ export class PersonServedComponent implements OnInit {
 
   public psForm: FormGroup;
   public genderList: any[];
-  selectedCountry:any;
+  public siteSelectedItems:any[] =[];
+  selectedCountry: any;
   ngOnInit(): void {
     console.log("yess")
- this.intialForm();
+    this.intialForm();
     this.genderList = [
-      {name:"MALE",'value':'M'},
-      {name:"FEMALE",'value':'F'},
-      {name:"Others",'value':'O'},
-      {name:"male",'value':'m'},
-      {name:"female",'value':'f'}
+      { name: "MALE", 'value': 'M' },
+      { name: "FEMALE", 'value': 'F' },
+      { name: "Others", 'value': 'O' },
+      { name: "male", 'value': 'm' },
+      { name: "female", 'value': 'f' }
 
 
 
@@ -42,13 +43,37 @@ export class PersonServedComponent implements OnInit {
 
   public intialForm() {
     this.psForm = this._fb.group({
+
       lastName: new FormControl(null, [Validators.required]),
       firstName: new FormControl(null, [Validators.required]),
       middleName: new FormControl(null, [Validators.required]),
       alias: new FormControl(null, [Validators.required]),
       gender: new FormControl('', [Validators.required]),
-
-
+      primaryLanguage: new FormControl(null, [Validators.required]),
+      ssn: new FormControl(null, [Validators.required]),
+      race: new FormControl(null, [Validators.required]),
+      dob: new FormControl(null, [Validators.required]),
+      maritalStatus: new FormControl(null, [Validators.required]),
+      salutation: new FormControl(null, [Validators.required]),
+      location: new FormControl(null, [Validators.required]),
+      address1: new FormControl(null, [Validators.required]),
+      address2: new FormControl(null, [Validators.required]),
+      zipcode: new FormControl(null, [Validators.required]),
+      zip4code: new FormControl(null, [Validators.required]),
+      phoneType1: new FormControl(null, [Validators.required]),
+      phoneNumber1: new FormControl(null, [Validators.required]),
+      phoneType2: new FormControl(null, [Validators.required]),
+      phoneNumber2: new FormControl(null, [Validators.required]),
+      phoneType3: new FormControl(null, [Validators.required]),
+      phoneNumber3: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      state: new FormControl(null, [Validators.required]),
+      county: new FormControl(null, [Validators.required]),
+      timezone: new FormControl(null, [Validators.required]),
+      country: new FormControl(null, [Validators.required]),
+      fax: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      directions: new FormControl(null, [Validators.required]),
     })
   }
   val = '';
@@ -73,7 +98,11 @@ export class PersonServedComponent implements OnInit {
   }
   public filteredCountries: any[];
 
-ngOnDestroy(){
-  console.log("PS Destroy")
-}
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.psForm.value);
+  }
+  ngOnDestroy() {
+    console.log("PS Destroy")
+  }
 }

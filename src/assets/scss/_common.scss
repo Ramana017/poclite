@@ -1204,6 +1204,23 @@ input[type="number"] {
 .bg-light-grey{
   background: #f8f9fa;
 }
+.bg-green-logo{
+  background-color: #76bd43 !important;
+}
+.l-height-0{
+  line-height: 11px !important;
+  color: #76bd43;
+}
+.color-blue-text{
+  font-weight: 600;
+    color: #6575be;
+}
+.height-21{
+  height: 21px !important;
+}
+.mb-2px{
+  margin-bottom: 2px;
+}
 // ==================scroll styles=================
 
 /* width & height*/
@@ -2521,4 +2538,12 @@ app-maintainence {
 .filter-d-i{
   right: 0;
   top: 14px;
+}
+
+.map-tt{
+  max-width: 420px !important;
+  .modal-content{
+    width: 100%;
+    height: auto !important;
+  }
 }
