@@ -22,7 +22,7 @@
         <a class="nav-link" (click)="onMonthChange(0,months[jobRunDate.getMonth()])"
           [ngClass]="monthFlag==0?'active border-radius-curved':''">Current</a>
       </li>
-      <li class="nav-item mx-3" [tooltip]="months[jobRunDate.getMonth()+1]">
+      <li class="nav-item mx-3" [tooltip]="[currentMonth+1]">
         <a class="nav-link" (click)="onMonthChange(1,months[currentMonth+1])" [ngClass]="monthFlag== 1?'active border-radius-curved':''">Next<i
             class="fa fa-arrow-right ml-1"></i></a>
       </li>
