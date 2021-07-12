@@ -59,7 +59,7 @@ export class DailyEvvComponent implements OnInit {
       dataSource: this.telephonyByCareGiver,
       rows: [{ name: 'branch', caption: 'Branch' }],
       filters: [],
-      showRowGrandTotals: false,
+      showRowGrandTotals: true,
       showColumnGrandTotals: false,
       showGrandTotals: true,
 

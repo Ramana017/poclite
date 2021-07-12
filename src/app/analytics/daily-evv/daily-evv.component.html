@@ -47,23 +47,23 @@
         <th scope="col" class="">DCS Home Site#</th>
         <th scope="col" class="">Site Name</th>
         <th scope="col" class=""> DCS Name</th>
-        <th scope="col" class=""> Dcs Coordinator </th>
-        <th scope="col" class=""> Enterprise Id</th>
+        <th scope="col" class=""> DCS Coordinator </th>
+        <th scope="col" class=""> Enterprise ID</th>
         <th scope="col" class=""> Job Title</th>
         <th scope="col" class=""> Period</th>
         <th scope="col" class=""> Total Expected Punches</th>
         <th scope="col" class=""> Total Punches#</th>
         <th scope="col" class=""> Missing Punches</th>
         <th scope="col" class=""> Missing Punches Percent </th>
-        <th scope="col" class=""> Telephony Landline Punches#</th>
+        <th scope="col" class=""> Tel Landline Punches#</th>
         <th scope="col" class=""> Tel Landline Percent</th>
-        <th scope="col" class=""> Telephony App Punches#</th>
-        <th scope="col" class=""> Total Expected Punches</th>
+        <th scope="col" class=""> Tel App Punches#</th>
+        <!-- <th scope="col" class=""> Total Expected Punches</th> -->
         <th scope="col" class=""> Tel App Percent</th>
         <th scope="col" class="">Manual Punches#</th>
         <th scope="col" class=""> Tel Manual Percent </th>
-        <th scope="col" class=""> Manual + missing</th>
-        <th scope="col" class=""> EVV compliant</th>
+        <th scope="col" class=""> Manual + Missing</th>
+        <th scope="col" class=""> EVV Complaint</th>
         <th scope="col" class=""> Compliance Status </th>
       </tr>
     </ng-template>
@@ -87,7 +87,7 @@
         <td>{{item.telephonyLandlinePunches}}</td>
         <td>{{item.telephonyLandlinePercent}}</td>
         <td>{{item.telephonyAppPunches}}</td>
-        <td>{{item.totalExpectedPunches}}</td>
+        <!-- <td>{{item.totalExpectedPunches}}</td> -->
         <td>{{item.telephonyAppPercent}}</td>
         <td>{{item.manualPunches}}</td>
         <td>{{item.telephonyManualPercent}}</td>
@@ -196,7 +196,7 @@
  <ng-template #filtermodal>
 <div class="modal-header bg-dark">
     <h5 class="modal-title text-white" id="exampleModalLabel">
-      Evv Filter
+      EVV Stats by Caregiver filter
     </h5>
     <button type="button" class="close" (click)="modelRef.hide()" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -225,7 +225,7 @@
                 <div class="procedurecode w-100 multiselect-angular">
 
                   <p-multiSelect [options]="rvpList" (onPanelHide)="getEDList()" [(ngModel)]="selectedRvpList"
-                     optionLabel="operationOfficerName"
+                     optionLabel="operationOfficerName" maxSelectedLabels="1"
                     selectedItemsLabel="{0} items selected" class="multiselect-custom"></p-multiSelect>
 
                 </div>
