@@ -66,6 +66,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CommunicationDashboardComponent } from './core/communication-dashboard/communication-dashboard.component';
 import { PsServiceService } from './core/dashboard/ps-service.service';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
+import { OpenScheduledHrsComponent } from './core/open-scheduled-hrs/open-scheduled-hrs.component';
 import { ConfirmationService } from 'primeng/api';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -118,6 +119,7 @@ const mapsApikey = atob(sessionStorage.getItem('mapsApiKey'));
     TelephonyStatsComponent,
     UtilizationStatsComponent,
     CommunicationDashboardComponent,
+    OpenScheduledHrsComponent,
 
 
   ],

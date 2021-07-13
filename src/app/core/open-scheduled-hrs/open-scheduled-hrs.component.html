@@ -1,0 +1,516 @@
+<div class="css-dashboard-wrapper">
+  <!-- home-inner-wrapper -->
+  <div class="home-inner-wrapper d-flex">
+    <!-- Content-wrapper -->
+    <section class="content-wrapper pl-3 pt-2 pb-0 d-flex">
+      <div class="content-inner-wrapper">
+        <div class="d-flex">
+          <div class="cards-content w-100">
+            <div class="row m-0">
+              <ng-container>
+                <div class=" col-12 pl-0 pb-2 pt-0 mr-0">
+                  <div class="widget-block h-auto">
+                    <div class="widget-header  blue-bg text-center py-2">
+                      <h5 class="text-white m-0  ">Open Schedules Approvals</h5>
+
+                      <div class="d-flex justify-content-end align-items-center right-filter-icons">
+
+                        <div class="btn-group" #filter="bs-dropdown" dropdown [autoClose]="false" [insideClick]="true"
+                          placement="left" container="body">
+                          <span class="mx-2" dropdownToggle>
+                            <i class="pi pi-filter" title="Filter"></i>
+                          </span>
+                          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-filter-menu">
+                            <div class="d-flex align-items-center">
+                              <div class="form-group form-input mr-2">
+                                <input type="text" bsDatepicker [bsConfig]="{ adaptivePosition: true }"
+                                  placeholder="Start Date" class="form-control">
+                              </div>
+                              <div class="form-group form-input">
+                                <input type="text" bsDatepicker [bsConfig]="{ adaptivePosition: true }"
+                                  placeholder="End Date" class="form-control">
+                              </div>
+                            </div>
+                            <div class="form-group form-input  alert-dropdown ">
+                              <p-dropdown [virtualScroll]="true" [itemSize]="31" [showClear]="true" placeholder="DCS"
+                                [filter]="true" filterBy="dcsName" optionLabel="dcsName" optionValue="dcsId">
+                              </p-dropdown>
+                            </div>
+                            <div class="form-group form-input  alert-dropdown">
+                              <p-dropdown [showClear]="true" placeholder="Service" [filter]="true" filterBy="name"
+                                optionLabel="name" optionValue="id"></p-dropdown>
+                            </div>
+
+
+                            <div class="form-group form-input  alert-dropdown">
+                              <p-dropdown [showClear]="true" placeholder="Status" [filter]="true" filterBy="name"
+                                optionLabel="name" optionValue="id"></p-dropdown>
+                            </div>
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-common bg-dark w-auto h-30 color-white"><i
+                                  class="pi pi-search mr-2"></i>Search</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="widget-inner p-2">
+                      <div class="table-responsive communication-table" style="height: 67vh;">
+                        <table class="table position-relative">
+                          <thead class="thead-light no-wrap">
+                            <tr>
+                              <th class=""></th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">PS</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Service</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Payor/Plan</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Start Date</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">End Date</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">DCS</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Pay Rate</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Preferences<br>%</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Previously<br>
+                                Served</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Qualifications</th>
+
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Shared<br>
+                                DCS</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Preferred<br>
+                                By PS</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Preferred<br>
+                                By DCS</th>
+                              <th class="align-middle AvenirLTStd-Heavy color-black">Margin <br>Projection</th>
+                              <!-- <th class="align-middle AvenirLTStd-Heavy color-black">Available<br>
+                                                        DCS
+                                                        </th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="border-right">
+                                <div class="form-check pl-0">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios"
+                                    value="" />
+                                  <label class="form-check-label" for="exampleRadios">
+                                  </label>
+                                </div>
+                              </td>
+                              <td class="border-right">ALDRED, EDITH</td>
+                              <td class="border-right">[CCRN] CCRN - CCRN REGISTERED NURSE(17)
+                              </td>
+                              <td class="border-right"> ADVANCE PAY(100/1) </td>
+                              <td class="border-right">06/29/2021
+                                12:00 AM</td>
+                              <td class="border-right">06/29/2021
+                                12:30 AM
+                                <p class="mb-0 white-space-nowrap"><span class="AvenirLTStd-Heavy blue f-12 "
+                                    (click)="openModal(template)">Map TT</span> : 0.00</p>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0">
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios3" value="" />
+                                      <label class="form-check-label color-black white-space-nowrap"
+                                        for="exampleRadios3">
+                                        ADAMS, CAMILLE
+                                      </label>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios4" value="" />
+                                      <label class="form-check-label color-black white-space-nowrap"
+                                        for="exampleRadios4">
+                                        ADAMS, JOHN
+                                      </label>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios5" value="" />
+                                      <label class="form-check-label color-black white-space-nowrap"
+                                        for="exampleRadios5">
+                                        BANKS, LYNDA
+                                      </label>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0">
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="height-21 mb-2px" type="text" name="exampleRadios"
+                                        id="exampleRadios3" value="" />
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="height-21 mb-2px" type="text" name="exampleRadios"
+                                        id="exampleRadios4" value="" />
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="height-21 mb-2px" type="text" name="exampleRadios"
+                                        id="exampleRadios5" value="" />
+                                    </div>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li>80%</li>
+                                  <li>
+                                    50%
+                                  </li>
+                                  <li>
+                                    90%
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li>20</li>
+                                  <li>
+                                    0
+                                  </li>
+                                  <li>
+                                    2
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0"><span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span></li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="color-blue-text">50%</li>
+                                  <li class="color-blue-text">
+                                    45%
+                                  </li>
+                                  <li class="color-blue-text">
+                                    55%
+                                  </li>
+                                </ul>
+                              </td>
+                              <!-- <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li>Yes</li>
+                                  <li>
+                                    Yes
+                                  </li>
+                                  <li>
+                                    No
+                                  </li>
+                                </ul>
+                              </td> -->
+
+                            </tr>
+                            <tr class="border-bottom">
+                              <td class="border-right">
+                                <div class="form-check pl-0">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                    value="" [checked]="check1" />
+                                  <label class="form-check-label" for="exampleRadios1">
+
+                                  </label>
+                                </div>
+                              </td>
+                              <td class="border-right">ALDRED, EDITH</td>
+                              <td class="border-right">[CCRN] CCRN - CCRN REGISTERED NURSE(17)
+                              </td>
+                              <td class="border-right"> ADVANCE PAY(100/1) </td>
+                              <td class="border-right">06/30/2021
+                                12:30 AM</td>
+                              <td class="border-right">06/30/2021
+                                12:30 AM</td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0">
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios6" value="" [checked]="check" />
+                                      <label class="form-check-label color-black white-space-nowrap"
+                                        for="exampleRadios6">
+                                        ADAMS, CAMILLE
+                                      </label>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios7" value="" />
+                                      <label class="form-check-label color-black white-space-nowrap"
+                                        for="exampleRadios7">
+                                        ADAMS, JOHN
+                                      </label>
+                                    </div>
+                                  </li>
+
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0">
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="height-21 mb-2px" type="text" name="exampleRadios"
+                                        id="exampleRadios3" value="" />
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="form-check pl-0">
+                                      <input class="height-21 mb-2px" type="text" name="exampleRadios"
+                                        id="exampleRadios4" value="" />
+                                    </div>
+                                  </li>
+
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li>80%</li>
+                                  <li>
+                                    50%
+                                  </li>
+
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li>10</li>
+                                  <li>
+                                    20
+                                  </li>
+
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      ss
+                                    </span>
+                                  </li>
+                                  <li class="l-height-0">
+                                    <span class="material-icons-outlined l-height-0">
+                                      check
+                                    </span>
+                                  </li>
+                                </ul>
+                              </td>
+                              <td class="border-right">
+                                <ul class="p-0 mb-0 text-center">
+                                  <li class="color-blue-text">80%</li>
+                                  <li class="color-blue-text">
+                                    90%
+                                  </li>
+                                </ul>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- <div *ngIf="appApprovalList.length==0" class="text-center no-data-text">
+                                              No Data To Display
+                                            </div> -->
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div class="pager mt-2 d-flex justify-content-end mt-2">
+                      <div>
+                      </div>
+                      <div class="nav">
+                        <span class="mr-2">Per page</span>
+                        <select class="border-0 mr-2">
+                          <option [ngValue]="5">5</option>
+                          <option [ngValue]="10">10</option>
+                          <option [ngValue]="15">15</option>
+                          <option [ngValue]="20">20</option>
+                        </select>
+
+                        <button type="button" class="btn-common-small mx-2">Prev</button>
+                        <button type="button" class="btn-common-small mx-2">Next</button>
+                      </div>
+
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <button type="button"
+                        class="btn-common-small mx-2 mt-2 d-flex align-items-center px-2 py-1   btn-common bg-danger"><span
+                          class="material-icons mr-2">
+                          close
+                        </span>Reject</button>
+                      <button type="button"
+                        class="btn-common-small mx-2 mt-2 d-flex align-items-center px-2 py-1   btn-common bg-green-logo"><span
+                          class="material-icons mr-2">
+                          check
+                        </span>Approve</button>
+                    </div>
+
+                  </div>
+
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Travel Times</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <tbody>
+        <tr class="border-left border-right">
+          <td class=" AvenirLTStd-Heavy color-black  border-right">Actual Travel Time</td>
+          <td>0.00</td>
+        </tr>
+        <tr class="border-left border-right">
+          <td class=" AvenirLTStd-Heavy color-black  border-right">Payable Travel Time</td>
+          <td>0.00</td>
+        </tr>
+        <tr class="border-left border-right">
+          <td class=" AvenirLTStd-Heavy color-black  border-right">Travel Mileage</td>
+          <td>0.00</td>
+        </tr>
+        <tr class="border-left border-right border-bottom">
+          <td class=" AvenirLTStd-Heavy color-black  border-right">Route Map</td>
+          <td ><span class="material-icons blue">
+              map
+            </span></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn-common btn-green bg-dark h-30 w-auto px-3">
+      <i class="fas fa-times mr-1 "></i> Close </button>
+  </div>
+</ng-template>
